@@ -1,0 +1,43 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "4.25",
+	"Category": "",
+	"Description": "",
+	"Plugins": [
+		{
+			"Name": "OculusVR",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "SteamVR",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		},
+		{
+			"Name": "OnlineSubsystemPico",
+			"Enabled": true
+		},
+		{
+			"Name": "PicoMobile",
+			"Enabled": true
+		},
+		{
+			"Name": "PicoMobileController",
+			"Enabled": true
+		},
+		{
+			"Name": "PicoNeoController",
+			"Enabled": true
+		}
+	]
+}
