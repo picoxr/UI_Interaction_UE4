@@ -23,4 +23,4 @@ Press the trigger button on the right controller for interaction, UI functions a
 
 ## Note:
 - This demo is implemented in Unreal Engine.
-- Pico_UnrealEngine_4_SDK is not in the Demo, so the SDK needs to be imported separately via Unreal Engine 4 plugins manager after downloading the Demo. SDK can be found at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
+- This project includes 4.25 SDK, if your engine version is different, you need to download the corresponding version of SDK. It can be found at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
