@@ -1,4 +1,4 @@
-# UI Interaction-Demo-Unreal Engine 4
+# UI Interaction
 
 - If you have any questions/comments, please visit [**Pico Developer Answers**](https://devanswers.pico-interactive.com/) and raise your question there.
 
@@ -22,5 +22,4 @@ Press the trigger button on the right controller for interaction, UI functions a
 
 
 ## Note:
-- This demo is implemented in Unreal Engine.
-- This project includes 4.25 SDK, if your engine version is different, you need to download the corresponding version of SDK. It can be found at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
+- This project includes v4.25 of PicoVR Unreal SDK, If you are using other version of the engine, you need to download the corresponding version of PicoVR Unreal SDK at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
