@@ -12,7 +12,7 @@ This demo includes following UI implementations:
 * Checkbox   
 * Slide Bar    
 
-1. Press the trigger button on the right controller for interaction, UI functions are shown in the figure below:
+Press the trigger button on the right controller for interaction, UI functions are shown in the figure below:
 
    <img src="./ReadMeScreenshot/1-1.png"  width = "600"/>
 
