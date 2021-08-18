@@ -16,7 +16,7 @@ This demo includes following UI implementations:
 
    <img src="./ReadMeScreenshot/1-1.png"  width = "600"/>
 
-   <img src="./ReadMeScreenshot/2-1.png"  width = "600"/>
+   <img src="./ReadMeScreenshot/1-2.png"  width = "600"/>
 
 
 
