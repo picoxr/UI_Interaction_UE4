@@ -1,0 +1,44 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.2.6.1",
+	"FriendlyName": "Online Subsystem Pico",
+	"Description": "Access to Pico platform",
+	"Category": "Online Platform",
+	"CreatedBy": "Pico Technology Co., Ltd",
+	"CreatedByURL": "https://www.pico-interactive.com/",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": true,
+	"Modules": 
+	[
+		{
+			"Name": "OnlineSubsystemPico",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		}
+	],
+	"Plugins": 
+	[
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "PicoMobile",
+			"Enabled": true
+		}
+	]
+}
