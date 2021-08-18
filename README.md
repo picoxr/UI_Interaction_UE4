@@ -22,4 +22,4 @@ Press the trigger button on the right controller for interaction, UI functions a
 
 
 ## Note:
-- This project includes v4.25 of PicoVR Unreal SDK, If you are using other version of the engine, you need to download the corresponding version of PicoVR Unreal SDK at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
+- This project integrates v4.25 of PicoVR Unreal SDK, If you are using other version of the engine, you need to download the corresponding version of PicoVR Unreal SDK at [here.](https://developer.pico-interactive.com/sdk/index?id=5)
