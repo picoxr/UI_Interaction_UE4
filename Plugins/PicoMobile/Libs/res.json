@@ -1,0 +1,2991 @@
+{
+  "annotation-0": "json格式校验:www.bejson.com",
+  "annotation-1": "此文件需以utf-8编码",
+  "annotation-2": "语言代码标准ISO-639,ISO-3166",
+  "annotation-3": "文件位置:/sdcard/psmart/phoenix/res.json",
+  "version": 1.04,
+  "default_lang": {
+    "lg_toast": "需要在手机上通过\n权限才能正常使用U+VR.",
+    "dialog0_title": "您已离开安全边界",
+    "dialog0_content1":"方法一：您可以原路走回安全边界内；\n\n方法二：或按【头戴确认键】进入安全边界设置，重新创建新的安全边界。",
+    "dialog1_title": "您已离开安全边界",
+    "dialog1_content1":"方法一：您可以原路走回安全边界内；\n\n方法二：或按【头戴确认键】进入安全边界设置，重新创建新的安全边界。",
+    "dialog2_content_text0":"无法追踪您的位置",
+    "dialog2_content_text1": ">请勿遮挡前方摄像头\n>且保证室内光线充足",
+    "dialog2_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog2_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog3_title": "无法追踪您的位置",
+    "dialog3_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog3_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog4_title": "摄像头校准数据错误",
+    "dialog4_content_text1":"如果一直无法恢复，请联系客服或进行以下操作：",
+    "dialog4_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog5_title": "环境光线过强",
+    "dialog5_content_text1":"请避免面向强光源。",
+    "dialog5_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog5_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog6_title": "环境过暗",
+    "dialog6_content_text1":"请勿遮挡摄像头，且保证室内光线充足。",
+    "dialog6_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog6_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog7_title": "环境特征点过少",
+    "dialog7_content_text1":"请避免面向纯色墙面、重复图案的壁纸、镜面。",
+    "dialog7_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog7_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog8_title": "正在恢复定位追踪...",
+    "dialog8_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog8_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog9_title": "正在初始化",
+    "dialog9_content_text1":"请保持静止",
+    "dialog9_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog9_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog10_title": "摄像头数据错误",
+    "dialog10_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog10_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog11_title": "惯性传感器数据错误",
+    "dialog11_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog11_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog12_title": "设备抖动明显",
+    "dialog12_content_text1":"请保持静止。",
+    "dialog12_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog12_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog13_title": "未知错误",
+    "dialog13_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog13_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"无法追踪您的位置",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">按头戴【确认键】重启定位追踪\n",
+
+    "safeToast0": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast1": " meters，then point the controller forward，long press on the 【home button】",
+    "safeToast2": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast3": " meters，then long press on the 【home button】 on headset",
+    "resetPanel0": "Please take off the headset，insure there have no obstacles in the radius of ",
+    "resetPanel1": " meters，then press on 【confirm button】 again",
+    "safePanel0": "Safe zone has reset successfully, please insure there have no obstacles in the radius of ",
+    "safePanel1": " meters，then press on 【confirm button】",
+    "msgtoast0": "Receive a message",
+    "msgtoast1": "To check MMS，please take off HMD and plug out HMD from smart phone",
+    "calltoast0": "Incoming Call",
+    "calltoast1": "To check phone call or MMS，please take off HMD and plug out HMD from smart phone",
+    "lowhmdBatterytoast": "VR device low battery，5% remaining，please charge",
+    "lowphoneBatterytoast": "Smart phone low battery，5% remaining，please charge",
+    "LowPhoneHealthtoast": "Heat warning，please take off HMD and plug out HMD from smart phone",
+    "LowcontrollerBatterytoast": "Low battery of controller",
+    "apptip": "Back",
+    "touchtip": "Confirm",
+    "hometip": "Home",
+    "voluptip": "Volume+",
+    "voldowntip": "Volume-",
+    "triggertip": "Trigger",
+    "griptip": "Grip",
+    "lg_permission_text": "请先在手机上通过权限，再继续使用",
+    "servicetip0": "No handle service found, please turnon the handle service first",
+    "servicetip1": "No handle service found, please use PicoVR to download and install",
+    "servicetip2": "Can not find any handle, please turn on bluetooth and press handle home key",
+    "servicetip3": "Find more than one handle, turn off the unused handle",
+    "servicetip4": "The handle service starts abnormally. Please check the background permissions and security settings"
+  },
+  "zh": {
+    "lg_toast": "需要在手机上通过\n权限才能正常使用U+VR.",
+    "safeToast0": "若需重置位置，请确保周围半径",
+    "safeToast1": "米范围内没有障碍物，将手柄指向前方，长按【Home键】",
+    "safeToast2": "若需重置位置，请确保周围半径",
+    "safeToast3": "米范围内没有障碍物，长按头戴【Home键】",
+    "resetPanel0": "请摘下头盔，确保周围半径",
+    "resetPanel1": "米范围内没有障碍物，再次点击【确认键】重置位置",
+    "safePanel0": "安全区域已重置，请摘下头盔，确保周围半径",
+    "safePanel1": "米内没有障碍物，并点击【确认键】",
+    "msgtoast0": "收到短信",
+    "msgtoast1": "如需确认,请摘下VR设备并断开连接",
+    "calltoast0": "收到来电",
+    "calltoast1": "如接听来电,请摘下VR设备并断开连接",
+    "lowhmdBatterytoast": "VR设备电量低于5%",
+    "lowphoneBatterytoast": "手机电量低于5%",
+    "LowPhoneHealthtoast": "手机过热，请摘下头戴并拔掉USB线，暂停使用该设备",
+    "LowcontrollerBatterytoast": "手柄电量不足",
+    "apptip": "返回键",
+    "touchtip": "确认键",
+    "hometip": "Home键",
+    "voluptip": "音量+",
+    "voldowntip": "音量-",
+    "triggertip": "扳机键",
+    "griptip": "侧按键",
+    "lg_permission_text": "请先在手机上通过权限，再继续使用",
+    "servicetip0": "手柄服务未启动，请先启动手柄服务",
+    "servicetip1": "未发现手柄服务，请使用PicoVR下载并安装",
+    "servicetip2": "没有扫描到手柄，请确保手机蓝牙开启，并短按手柄Home键",
+    "servicetip3": "扫描到多个手柄，请保持周围只有一个开启状态的手柄",
+    "servicetip4": "手柄服务启动异常，请检查后台权限及安全设置",
+    "dialog0_title": "您已离开安全边界",
+    "dialog0_content1":"方法一：您可以原路走回安全边界内；\n\n方法二：或按【头戴确认键】进入安全边界设置，重新创建新的安全边界。",
+    "dialog1_title": "您已离开安全边界",
+    "dialog1_content1":"方法一：您可以原路走回安全边界内；\n\n方法二：或按【头戴确认键】进入安全边界设置，重新创建新的安全边界。",
+    "dialog2_content_text0":"无法追踪您的位置",
+    "dialog2_content_text1": ">请勿遮挡前方摄像头\n>且保证室内光线充足",
+    "dialog2_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog2_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog3_title": "无法追踪您的位置",
+    "dialog3_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog3_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog4_title": "摄像头校准数据错误",
+    "dialog4_content_text1":"如果一直无法恢复，请联系客服或进行以下操作：",
+    "dialog4_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog5_title": "环境光线过强",
+    "dialog5_content_text1":"请避免面向强光源。",
+    "dialog5_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog5_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog6_title": "环境过暗",
+    "dialog6_content_text1":"请勿遮挡摄像头，且保证室内光线充足。",
+    "dialog6_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog6_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog7_title": "环境特征点过少",
+    "dialog7_content_text1":"请避免面向纯色墙面、重复图案的壁纸、镜面。",
+    "dialog7_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog7_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog8_title": "正在恢复定位追踪...",
+    "dialog8_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog8_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog9_title": "正在初始化",
+    "dialog9_content_text1":"请保持静止",
+    "dialog9_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog9_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog10_title": "摄像头数据错误",
+    "dialog10_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog10_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog11_title": "惯性传感器数据错误",
+    "dialog11_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog11_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog12_title": "设备抖动明显",
+    "dialog12_content_text1":"请保持静止。",
+    "dialog12_content_text2":"如果一直无法恢复，您还可以：",
+    "dialog12_content_text3":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog13_title": "未知错误",
+    "dialog13_content_text1":"如果一直无法恢复，您还可以：",
+    "dialog13_content_text2":">按头戴【确认键】重启定位追踪\n>按头戴【返回键】关闭定位追踪",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"无法追踪您的位置",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">按头戴【确认键】重启定位追踪\n"
+  },
+  "en": {
+    "lg_toast": "U+VR can be used normally only\n through permissions on the smartphone",
+    "lg_toast_textsize": 12,
+    "tx_space": 3,
+    "safeToast0": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast1": " meters，then point the controller forward，long press on the 【home button】",
+    "safeToast2": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast3": " meters，then long press on the 【home button】 on headset",
+    "resetPanel0": "Please take off the headset，insure there have no obstacles in the radius of ",
+    "resetPanel1": " meters，then press on 【confirm button】 again",
+    "safePanel0": "Safe zone has reset successfully, please insure there have no obstacles in the radius of ",
+    "safePanel1": " meters，then press on 【confirm button】",
+    "msgtoast0": "Receive a message",
+    "msgtoast1": "To check MMS，please take off HMD and plug out HMD from smart phone",
+    "calltoast0": "Incoming Call",
+    "calltoast1": "To check phone call or MMS，please take off HMD and plug out HMD from smart phone",
+    "lowhmdBatterytoast": "VR device low battery，5% remaining，please charge",
+    "lowphoneBatterytoast": "Smart phone low battery，5% remaining，please charge",
+    "LowPhoneHealthtoast": "Heat warning，please take off HMD and plug out HMD from smart phone",
+    "LowcontrollerBatterytoast": "Low battery of controller",
+    "apptip": "Back",
+    "touchtip": "Confirm",
+    "hometip": "Home",
+    "voluptip": "Volume+",
+    "voldowntip": "Volume-",
+    "triggertip": "Trigger",
+    "griptip": "Grip",
+    "servicetip0": "No handle service found, please turnon the handle service first",
+    "servicetip1": "No handle service found, please use PicoVR to download and install",
+    "servicetip2": "Can not find any handle, please turn on bluetooth and press handle home key",
+    "servicetip3": "Find more than one handle, turn off the unused handle",
+    "servicetip4": "The handle service starts abnormally. Please check the background permissions and security settings",
+    "dialog0_title": "You've left the Play Boundary",
+    "dialog0_content1":"To continue, please return to the Play Boundary.\n\nOr, press headset [Confirm] button to create a new Play Boundary.",
+    "dialog1_title": "You've left the Play Boundary",
+    "dialog1_content1":"To continue, please return to the Play Boundary.\n\nOr, press headset [Confirm] button to create a new Play Boundary.",
+    "dialog2_content_text0":"Movement Tracking Lost",
+    "dialog2_content_text1": "Ensure the headset cameras are not obstructed, and your room is well-lit.",
+    "dialog2_content_text2":"If the problem persists: ",
+    "dialog2_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog3_title": "Movement Tracking Lost",
+    "dialog3_content_text1":"If the problem persists: ",
+    "dialog3_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog4_title": "Camera calibration error",
+    "dialog4_content_text1":"If the problem persists, please contact customer service or do the following: ",
+    "dialog4_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog5_title": "Environment lighting is too brigh",
+    "dialog5_content_text1":"Please avoid facing bright light sources.。",
+    "dialog5_content_text2":"If the problem persists: ",
+    "dialog5_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog6_title": "Environment is too dark",
+    "dialog6_content_text1":"Ensure the headset cameras are not obstructed, and your room is well-lit.",
+    "dialog6_content_text2":"If the problem persists: ",
+    "dialog6_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog7_title": "Looking for more visual features in your environment",
+    "dialog7_content_text1":"Please avoid facing blank walls, patterned wallpaper, and mirrors.",
+    "dialog7_content_text2":"If the problem persists: ",
+    "dialog7_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog8_title": "Recovering Movement Tracking…",
+    "dialog8_content_text1":"If the problem persists: ",
+    "dialog8_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog9_title": "Initializing...",
+    "dialog9_content_text1":"Please remain still.",
+    "dialog9_content_text2":"If the problem persists: ",
+    "dialog9_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog10_title": "Camera data error",
+    "dialog10_content_text1":"If the problem persists: ",
+    "dialog10_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog11_title": "Inertial sensor data error",
+    "dialog11_content_text1":"If the problem persists: ",
+    "dialog11_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog12_title": "Abnormal device motion detected",
+    "dialog12_content_text1":"Please remain still.",
+    "dialog12_content_text2":"If the problem persists: ",
+    "dialog12_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog13_title": "Unknown error",
+    "dialog13_content_text1":"If the problem persists: ",
+    "dialog13_content_text2":">Press headset [Confirm] button to reset Movement Tracking\n>Press headset [Back] button to disable Movement Tracking",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Movement Tracking Lost",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Press headset [Confirm] button to reset Movement Tracking\n"
+  },
+  "ko": {
+    "lg_toast": "휴대폰에서 접근 권한을 허용해야\n U+VR을 정상적으로 이용할 수 있습니다.",
+    "tx_sapce": 1,
+    "dialog0_title": "플레이 가능 영역 밖입니다",
+    "dialog0_content1":"계속하시려면 플레이 가능 영역으로 돌아가 주세요.\n\n또는, 헤드셋 확인 을 눌러서 새 영역을 생성하세요.",
+    "dialog1_title": "플레이 가능 영역 밖입니다",
+    "dialog1_content1":"계속하시려면 플레이 가능 영역으로 돌아가 주세요.\n\n또는, 헤드셋 확인 을 눌러서 새 영역을 생성하세요.",
+    "dialog2_content_text0":"이동 트래킹 없음",
+    "dialog2_content_text1": "헤드셋 카메라가 차단되지 않았는지, 그리고 실내 조명 상태가 좋은지 확인해 주세요.",
+    "dialog2_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog2_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog3_title": "이동 트래킹 없음",
+    "dialog3_content_text1":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog3_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog4_title": "카메라 보정 오류",
+    "dialog4_content_text1":"복원될 수 없는 경우, 고객 서비스에 문의하거나 다음을 하세요:",
+    "dialog4_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog5_title": "주변 조명이 너무 밝음",
+    "dialog5_content_text1":"밝은 빛이 나는 곳을 향하지 마세요.",
+    "dialog5_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog5_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog6_title": "주변이 너무 어두움",
+    "dialog6_content_text1":"헤드셋 카메라가 차단되지 않았는지, 그리고 실내 조명 상태가 좋은지 확인해 주세요.",
+    "dialog6_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog6_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog7_title": "주변 특징 포인트가 너무 적음",
+    "dialog7_content_text1":"단색 색상 벽, 반복된 패턴이 있는 벽지 및 거울 표면을 향하지 마세요.",
+    "dialog7_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog7_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog8_title": "트래킹 복원 중…",
+    "dialog8_content_text1":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog8_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog9_title": "초기화 중...",
+    "dialog9_content_text1":"가만히 서 주세요.",
+    "dialog9_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog9_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog10_title": "카메라 데이터 오류",
+    "dialog10_content_text1":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog10_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog11_title": "관성 센서 데이터 오류",
+    "dialog11_content_text1":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog11_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog12_title": "비정상적 기기 진동이 탐지됨",
+    "dialog12_content_text1":"가만히 서 주세요.",
+    "dialog12_content_text2":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog12_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog13_title": "알 수 없는 오류",
+    "dialog13_content_text1":"복원될 수 없는 경우, 다음을 할 수도 있습니다:",
+    "dialog13_content_text2":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n>헤드셋의 [뒤로 버튼]을 눌러서 트래킹을 끄세요",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"이동 트래킹 없음",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">헤드셋의 [확인 버튼]을 눌러서 트래킹을 다시 시작하세요\n",
+	"safeToast0": "위치를 리셋해야 할 경우, 주변 반경 ",
+    "safeToast1": " 범위 내에 장애물이 없도록 확보해 주시고 컨트롤러를 앞쪽으로 가리키며 【Home 키】를 길게 눌러 주십시오",
+    "safeToast2": "위치를 리셋해야 할 경우, 주변 반경 ",
+    "safeToast3": "미터를 누른 다음 헤드셋의 【Home 키】을 길게 누릅니다.",
+    "resetPanel0": "헤드셋을 벗고 주변 반경 ",
+    "resetPanel1": " 범위 내에 장애물이 없도록 확보해 주신 후 다시 【확인 키】를 눌러 위치를 리셋해 주십시오",
+    "safePanel0": "안전 구역이 리셋되었으니 헤드셋을 벗고 주변 반경 ",
+    "safePanel1": " 범위 내에 장애물이 없도록 확보해 주신 후 【확인 키】를 눌러 주십시오.",
+    "msgtoast0": "Receive a message",
+    "msgtoast1": "To check MMS，please take off HMD and plug out HMD from smart phone",
+    "calltoast0": "Incoming Call",
+    "calltoast1": "To check phone call or MMS，please take off HMD and plug out HMD from smart phone",
+    "lowhmdBatterytoast": "VR device low battery，5% remaining，please charge",
+    "lowphoneBatterytoast": "Smart phone low battery，5% remaining，please charge",
+    "LowPhoneHealthtoast": "Heat warning，please take off HMD and plug out HMD from smart phone",
+    "LowcontrollerBatterytoast": "Low battery of controller",
+    "apptip": "리턴 키",
+    "touchtip": "확인 키",
+    "hometip": "Home 키",
+    "voluptip": "볼륨+",
+    "voldowntip": "볼륨-",
+    "triggertip": "트리거 키",
+    "griptip": "Grip",
+    "servicetip0": "컨트롤러 서비스가 작동되지 않았습니다. 먼저 컨트롤러 서비스를 작동해 주십시오",
+    "servicetip1": "컨트롤러 서비스가 발견되지 않았습니다. PicoVR을 사용하여 다운로드 및 설치해 주십시오",
+    "servicetip2": "컨트롤러 서비스가 작동되지 않았습니다. 먼저 컨트롤러 서비스를 작동해 주십시오",
+    "servicetip3": "컨트롤러 서비스가 작동되지 않았습니다. 먼저 컨트롤러 서비스를 작동해 주십시오",
+    "servicetip4": "컨트롤러 서비스가 작동되지 않았습니다. 먼저 컨트롤러 서비스를 작동해 주십시오"
+  },
+  "ja": {
+    "lg_toast": "スマートホンで権限許可\nしてから、U+VRをご使用ください",
+    "tx_sapce": 4,
+	"safeToast0": "安全域をリセットしたい時は、半径",
+    "safeToast1": "メルトに障害物がないように確認して、Homeボタンを長押ししてください",
+    "safeToast2": "安全域をリセットしたい時は、半径",
+    "safeToast3": "メーター範囲内に障害物はありません。[ホームボタン]を長押しします",
+    "resetPanel0": "ヘッドセットを取り外して、半径 ",
+    "resetPanel1": " メルトに障害物がないように確認して、また確認ボタンを押してください",
+    "safePanel0": "安全域がリエットしました、ヘッドセットを取り外して、半径",
+    "safePanel1": "メルトに障害物がないように確認して、確認ボタンを押してください",
+    "msgtoast0": "新着メッセージがあります",
+    "msgtoast1": "メッセージを見るには、ヘッドセットを取り外して、スマートホンからヘッドセットを外しでください",
+    "calltoast0": "お電話です",
+    "calltoast1": "応答するには、ヘッドセットを取り外して、スマートホンからヘッドセットを外しでください",
+    "lowhmdBatterytoast": "ヘッドセットのバッテリー残量が5％になっています",
+    "lowphoneBatterytoast": "スマートホンのバッテリー残量が5％になっています",
+    "LowPhoneHealthtoast": "スマートホンが過熱になっています、今すぐにヘッドセットを取り外して、スマートホンからヘッドセットを外しでください",
+    "LowcontrollerBatterytoast": "コントローラーのバッテリー残量が低いです",
+    "apptip": "バック",
+    "touchtip": "確認",
+    "hometip": "Home",
+    "voluptip": "Volume+",
+    "voldowntip": "Volume-",
+    "triggertip": "Trigger",
+    "griptip": "Grip",
+    "servicetip0": "コントローラーサービスは起動していません、先ずコントローラーサービスを起動してください",
+    "servicetip1": "コントローラーサービスが見つかりませんでした、PicoVRでダウンロードしてください",
+    "servicetip2": "コントローラーサービスは起動していません、先ずコントローラーサービスを起動してください",
+    "servicetip3": "コントローラーサービスは起動していません、先ずコントローラーサービスを起動してください",
+    "servicetip4": "コントローラーサービスは起動していません、先ずコントローラーサービスを起動してください",
+    "dialog0_title": "プレイエリア外です。",
+    "dialog0_content1":"ゲームを続けるにはプレイエリアに戻ってください。\n\nまたはヘッドセットの決定ボタンを押して新たにプレイエリアを作成してください。",
+    "dialog1_title": "プレイエリア外です。",
+    "dialog1_content1":"ゲームを続けるにはプレイエリアに戻ってください。\n\nまたはヘッドセットの決定ボタンを押して新たにプレイエリアを作成してください。",
+    "dialog2_content_text0":"トラッキングできません。",
+    "dialog2_content_text1": "本体付属のカメラが塞がれていないこと、照明が明るいことをお確かめください。",
+    "dialog2_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog2_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog3_title": "トラッキングできません。",
+    "dialog3_content_text1":"復元できない場合、次のことをお試しいただけます:",
+    "dialog3_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog4_title": "カメラキャリブレーションエラー",
+    "dialog4_content_text1":"復元できない場合、カスタマーサービスにお問い合わせいただくか、次のことをお試しください:",
+    "dialog4_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog5_title": "周囲光が明るすぎます",
+    "dialog5_content_text1":"明るい光源の方を向かないようにしてください。",
+    "dialog5_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog5_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog6_title": "周囲光が暗すぎます",
+    "dialog6_content_text1":"本体付属のカメラが塞がれていないこと、照明が明るいことをお確かめください。",
+    "dialog6_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog6_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog7_title": "周囲の特徴点の数が少なすぎます",
+    "dialog7_content_text1":"単色塗りの壁、繰り返しパターン柄の壁紙、鏡張りの壁の方を向かないようにしてください",
+    "dialog7_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog7_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog8_title": "トラッキングを復元中…",
+    "dialog8_content_text1":"復元できない場合、次のことをお試しいただけます:",
+    "dialog8_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog9_title": "初期化中...",
+    "dialog9_content_text1":"真っ直ぐ立ってください。",
+    "dialog9_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog9_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog10_title": "カメラデータエラー",
+    "dialog10_content_text1":"復元できない場合、次のことをお試しいただけます:",
+    "dialog10_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog11_title": "慣性センターデータエラー",
+    "dialog11_content_text1":"復元できない場合、次のことをお試しいただけます:",
+    "dialog11_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog12_title": "異常なデバイスの振動が検出されました",
+    "dialog12_content_text1":"真っ直ぐ立ってください。",
+    "dialog12_content_text2":"復元できない場合、次のことをお試しいただけます:",
+    "dialog12_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog13_title": "不明なエラー",
+    "dialog13_content_text1":"復元できない場合、次のことをお試しいただけます:",
+    "dialog13_content_text2":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n>ヘッドセットの[戻るボタン]を押してトラッキングをオフにしてください",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"トラッキングできません。",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">ヘッドセットの[決定ボタン]を押してトラッキングを再開してください\n"
+  },
+  "zh_TW": {
+    "dialog0_title": "您已離開遊戲區",
+    "dialog0_content1":"要繼續遊戲，請返回遊戲區。\n\n或是按壓頭戴式裝置的確認鍵，建立新的遊戲區。",
+    "dialog1_title": "您已离开安全边界",
+    "dialog1_content1":"要繼續遊戲，請返回遊戲區。\n\n或是按壓頭戴式裝置的確認鍵，建立新的遊戲區。",
+    "dialog2_content_text0":"無法追蹤動作",
+    "dialog2_content_text1": "請確保頭戴式裝置的相機未被遮擋，以及所在房間光線充足。",
+    "dialog2_content_text2":"若無法還原，您還可以：",
+    "dialog2_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog3_title": "無法追蹤動作",
+    "dialog3_content_text1":"若無法還原，您還可以：",
+    "dialog3_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog4_title": "相機校正錯誤",
+    "dialog4_content_text1":"若無法還原，請聯繫客服，或是採取以下動作：",
+    "dialog4_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog5_title": "環境光線太強",
+    "dialog5_content_text1":"請勿面向強光。",
+    "dialog5_content_text2":"若無法還原，您還可以：",
+    "dialog5_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog6_title": "環境太暗",
+    "dialog6_content_text1":"請確保頭戴式裝置的相機未被遮擋，以及所在房間光線充足。",
+    "dialog6_content_text2":"若無法還原，您還可以：",
+    "dialog6_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog7_title": "環境特徵點太少",
+    "dialog7_content_text1":"請勿面向素色牆面、圖案重複的壁紙以及鏡面。",
+    "dialog7_content_text2":"若無法還原，您還可以：",
+    "dialog7_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog8_title": "正在還原定位追蹤…",
+    "dialog8_content_text1":"若無法還原，您還可以：",
+    "dialog8_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog9_title": "正在初始化",
+    "dialog9_content_text1":"請保持靜止。",
+    "dialog9_content_text2":"若無法還原，您還可以：",
+    "dialog9_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog10_title": "攝像頭數據錯誤",
+    "dialog10_content_text1":"若無法還原，您還可以：",
+    "dialog10_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog11_title": "慣性傳感器數據錯誤",
+    "dialog11_content_text1":"若無法還原，您還可以：",
+    "dialog11_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog12_title": "設備抖動明顯",
+    "dialog12_content_text1":"請保持靜止。",
+    "dialog12_content_text2":"若無法還原，您還可以：",
+    "dialog12_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog13_title": "未知錯誤",
+    "dialog13_content_text1":"若無法還原，您還可以：",
+    "dialog13_content_text2":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n>按壓頭戴式裝置的 [返回鍵]，關閉定位追蹤",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"無法追蹤動作",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">按壓頭戴式裝置的 [確認鍵]，重新開始定位追蹤\n",
+    "lg_toast": "========================"
+  },
+  "zh_HK": {
+    "dialog0_title": "你已離開了遊戲邊界",
+    "dialog0_content1":"請返回遊戲邊界內。\n\n或按頭戴式裝置上的確認鍵來設置新的遊戲邊界以繼續操作。",
+    "dialog1_title": "你已離開了遊戲邊界",
+    "dialog1_content1":"請返回遊戲邊界內。\n\n或按頭戴式裝置上的確認鍵來設置新的遊戲邊界以繼續操作。",
+    "dialog2_content_text0":"失去動作追蹤",
+    "dialog2_content_text1": "請確保頭戴式裝置的鏡頭沒有被遮擋，以及所在房間有充足光線。",
+    "dialog2_content_text2":"如無法回復，你還可以：",
+    "dialog2_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog3_title": "失去動作追蹤",
+    "dialog3_content_text1":"如無法回復，你還可以：",
+    "dialog3_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog4_title": "相機校準錯誤",
+    "dialog4_content_text1":"如無法回復，請聯絡客戶服務或嘗試以下操作：",
+    "dialog4_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog5_title": "環境光太亮",
+    "dialog5_content_text1":"請避免面向明亮的光源。",
+    "dialog5_content_text2":"如無法回復，你還可以：",
+    "dialog5_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog6_title": "環境太暗",
+    "dialog6_content_text1":"請確保頭戴式裝置的鏡頭沒有被遮擋，以及所在房間有充足光線。",
+    "dialog6_content_text2":"如無法回復，你還可以：",
+    "dialog6_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog7_title": "環境特點太少",
+    "dialog7_content_text1":"請避免面對純色牆壁，重複圖案的牆紙和鏡面。",
+    "dialog7_content_text2":"如無法回復，你還可以：",
+    "dialog7_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog8_title": "正在回復跟蹤...",
+    "dialog8_content_text1":"如無法回復，你還可以：",
+    "dialog8_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog9_title": "正在初始化",
+    "dialog9_content_text1":"請保持靜止。",
+    "dialog9_content_text2":"如無法回復，你還可以：",
+    "dialog9_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog10_title": "攝像頭數據錯誤",
+    "dialog10_content_text1":"如無法回復，你還可以：",
+    "dialog10_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog11_title": "慣性傳感器數據錯誤",
+    "dialog11_content_text1":"如無法回復，你還可以：",
+    "dialog11_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog12_title": "設備抖動明顯",
+    "dialog12_content_text1":"請保持靜止。",
+    "dialog12_content_text2":"如無法回復，你還可以：",
+    "dialog12_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog13_title": "未知錯誤",
+    "dialog13_content_text1":"如無法回復，你還可以：",
+    "dialog13_content_text2":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n>按下頭戴式裝置上的「返回鍵」以關閉跟蹤",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"失去動作追蹤",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">按下頭戴式裝置上的「確認鍵」以重新啟動追蹤\n"
+  },
+  "th": {
+    "dialog0_title": "คุณออกจาก Play Boundary ของคุณ",
+    "dialog0_content1":"เพื่อดำเนินการต่อ กรุณากลับสู่ Play Boundary ของคุณ\n\nหรือ กดปุ่มยืนยันบนชุดแว่นเพื่อสร้าง Boundary ใหม่",
+    "dialog1_title": "คุณออกจาก Play Boundary ของคุณ",
+    "dialog1_content1":"เพื่อดำเนินการต่อ กรุณากลับสู่ Play Boundary ของคุณ\n\nหรือ กดปุ่มยืนยันบนชุดแว่นเพื่อสร้าง Boundary ใหม่",
+    "dialog2_content_text0":"การติดตามการเคลื่อนไหวขาดหาย",
+    "dialog2_content_text1": "ตรวจสอบให้แน่ใจว่ากล้องของชุดหูแว่นไม่ถูกบดบัง และห้องของคุณนั้นสว่างมากพอ",
+    "dialog2_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog2_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog3_title": "การติดตามการเคลื่อนไหวขาดหาย",
+    "dialog3_content_text1":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog3_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog4_title": "การเปรียบเทียบกล้องผิดพลาด",
+    "dialog4_content_text1":"ถ้าไม่สามารถคืนค่าได้ กรุณาติดต่อฝ่ายบริการลูกค้าหรือดำเนินการต่อไปนี้:",
+    "dialog4_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog5_title": "แสงรอบตัวสว่างเกินไป",
+    "dialog5_content_text1":"กรุณาลีกเลี่ยงต้นกำเนิดแสงที่สว่างจ้า",
+    "dialog5_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog5_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog6_title": "แสงรอบตัวมืดเกินไป",
+    "dialog6_content_text1":"ตรวจสอบให้แน่ใจว่ากล้องของชุดหูแว่นไม่ถูกบดบัง และห้องของคุณนั้นสว่างมากพอ",
+    "dialog6_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog6_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog7_title": "ฟีเจอร์จุดแสงสิ่งแวดล้อมน้อยเกินไป",
+    "dialog7_content_text1":"กรุณาหลีกเลีี่ยงกำแพงพื้นสีเดียว, วอลเปเปอร์ที่มีลวดลายซ้ำๆ กัน และ กระจก",
+    "dialog7_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog7_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog8_title": "กำลังคืนค่าการติดตาม...",
+    "dialog8_content_text1":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog8_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog9_title": "กำลังเริ่มต้น...",
+    "dialog9_content_text1":"กรุณายืนนิ่งๆ",
+    "dialog9_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog9_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog10_title": "ข้อมูลกล้องผิดพลาด",
+    "dialog10_content_text1":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog10_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog11_title": "ข้อมูลเซ็นเซอร์แรงเฉื่อยผิดพลาด",
+    "dialog11_content_text1":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog11_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog12_title": "ตรวจพบการสั่นที่ผิดปกติของอุปกรณ์",
+    "dialog12_content_text1":"กรุณายืนนิ่งๆ",
+    "dialog12_content_text2":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog12_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog13_title": "ข้อผิดพลาดที่ไม่รู้จัก",
+    "dialog13_content_text1":"ถ้าไม่สามารถคืนค่าได้ คุณยังสามารถ:",
+    "dialog13_content_text2":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n>กดที่ [ปุ่มกลับ] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้งเพื่อปิดการติดตาม",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"无法追踪您的位置",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">กดที่ [ปุ่มยืนยัน] บนชุดแว่นตาเพื่อเริ่มการติดตามอีกครั้ง\n"
+  },
+  "fr": {
+    "dialog0_title": "Vous avez quitté votre zone de jeu",
+    "dialog0_content1":"Pour continuer, veuillez retourner à votre zone de jeu.\n\nOu appuyez sur le bouton Confirmer de votre casque pour créer une nouvelle zone.",
+    "dialog1_title": "Vous avez quitté votre zone de jeu",
+    "dialog1_content1":"Pour continuer, veuillez retourner à votre zone de jeu.\n\nOu appuyez sur le bouton Confirmer de votre casque pour créer une nouvelle zone.",
+    "dialog2_content_text0":"Suivi du mouvement perdu",
+    "dialog2_content_text1": "Assurez-vous que les caméras du casque ne sont pas obstruées et que votre pièce est bien éclairée.",
+    "dialog2_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog2_content_text3":">按Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog3_title": "Suivi du mouvement perdu",
+    "dialog3_content_text1":"Si la restauration est impossible, vous pouvez également :",
+    "dialog3_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog4_title": "Erreur de calibrage de la caméra",
+    "dialog4_content_text1":"Si la restauration est impossible, veuillez contacter le service client ou effectuer les actions suivantes :",
+    "dialog4_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog5_title": "Lumière ambiante trop vive",
+    "dialog5_content_text1":"Veuillez éviter de faire face à des sources lumineuses vives.",
+    "dialog5_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog5_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog6_title": "Lumière ambiante trop sombre",
+    "dialog6_content_text1":"Assurez-vous que les caméras du casque ne sont pas obstruées et que votre pièce est bien éclairée.",
+    "dialog6_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog6_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog7_title": "Trop peu de points caractéristiques ambiants",
+    "dialog7_content_text1":"Veuillez éviter de faire face à des murs de couleur unie, du papier peint avec des motifs répétés et des surfaces en miroir.",
+    "dialog7_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog7_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog8_title": "Restauration du suivi...",
+    "dialog8_content_text1":"Si la restauration est impossible, vous pouvez également :",
+    "dialog8_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog9_title": "Initialisation...",
+    "dialog9_content_text1":"Veuillez ne pas bouger.",
+    "dialog9_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog9_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog10_title": "Erreur de données de la caméra",
+    "dialog10_content_text1":"Si la restauration est impossible, vous pouvez également :",
+    "dialog10_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog11_title": "Erreur de données du capteur inertiel",
+    "dialog11_content_text1":"Si la restauration est impossible, vous pouvez également :",
+    "dialog11_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog12_title": "Vibration anormale de l'appareil détectée",
+    "dialog12_content_text1":"Veuillez ne pas bouger.",
+    "dialog12_content_text2":"Si la restauration est impossible, vous pouvez également :",
+    "dialog12_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog13_title": "Erreur inconnue",
+    "dialog13_content_text1":"Si la restauration est impossible, vous pouvez également :",
+    "dialog13_content_text2":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n>Appuyez sur le [Bouton Retour] du casque pour désactiver le suivi",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Suivi du mouvement perdu",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Appuyez sur le [Bouton Confirmer] du casque pour redémarrer le suivi\n",
+    "lg_toast": "========================"
+  },
+  "de": {
+    "dialog0_title": "Sie haben Ihren Spielbereich verlassen",
+    "dialog0_content1":"Um fortzufahren, kehren Sie bitte in Ihren Spielbereich zurück.\n\nAlternativ können Sie die Bestätigungs-Taste an Ihrem Headset drücken, um einen neuen Bereich zu definieren.",
+    "dialog1_title": "Sie haben Ihren Spielbereich verlassen",
+    "dialog1_content1":"Um fortzufahren, kehren Sie bitte in Ihren Spielbereich zurück.\n\nAlternativ können Sie die Bestätigungs-Taste an Ihrem Headset drücken, um einen neuen Bereich zu definieren.",
+    "dialog2_content_text0":"Bewegungsverfolgung verloren",
+    "dialog2_content_text1": "Stellen Sie sicher, dass die Headset-Kameras nicht blockiert sind und Ihr Raum gut beleuchtet ist.",
+    "dialog2_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog2_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog3_title": "Bewegungsverfolgung verloren",
+    "dialog3_content_text1":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog3_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog4_title": "Fehler bei Kamerakalibrierung",
+    "dialog4_content_text1":"Wenn sie nicht wiederhergestellt werden kann, wenden Sie sich bitte an den Kundendienst oder gehen Sie wie folgt vor:",
+    "dialog4_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog5_title": "Umgebung zu hell",
+    "dialog5_content_text1":"Bitte vermeiden Sie es, sich hellen Lichtquellen gegenüberzustellen.",
+    "dialog5_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog5_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog6_title": "Umgebung zu dunkel",
+    "dialog6_content_text1":"Stellen Sie sicher, dass die Headset-Kameras nicht blockiert sind und Ihr Raum gut beleuchtet ist.",
+    "dialog6_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog6_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog7_title": "Zu wenige Details in der Umgebung",
+    "dialog7_content_text1":"Bitte vermeiden Sie einfarbige Wände, Tapeten mit sich wiederholenden Mustern und Spiegelflächen.",
+    "dialog7_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog7_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog8_title": "Verfolgung wird wiederhergestellt…",
+    "dialog8_content_text1":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog8_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog9_title": "Initialisierung …",
+    "dialog9_content_text1":"Bitte stillstehen.",
+    "dialog9_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog9_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog10_title": "Kameradatenfehler",
+    "dialog10_content_text1":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog10_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog11_title": "Datenfehler beim Inertialsensor",
+    "dialog11_content_text1":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog11_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog12_title": "Ungewöhnliche Gerätevibration erkannt",
+    "dialog12_content_text1":"Bitte stillstehen.",
+    "dialog12_content_text2":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog12_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog13_title": "Unbekannter Fehler",
+    "dialog13_content_text1":"Wenn sie nicht wiederhergestellt werden kann, können Sie auch Folgendes tun:",
+    "dialog13_content_text2":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n>Drücken Sie die [Zurück-Taste] am Headset, um die Verfolgung zu deaktivieren",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Bewegungsverfolgung verloren",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Drücken Sie die [Bestätigungstaste] am Headset, um die Verfolgung neu zu starten\n",
+    "lg_toast": "========================"
+  }, 
+  "it": {
+    "dialog0_title": "Sei uscito dall'area di gioco",
+    "dialog0_content1":"Per continuare, torna all'area di gioco.\n\nOppure, premi il pulsante Conferma sulle cuffie per definire una nuova area di gioco.",
+    "dialog1_title": "Sei uscito dall'area di gioco",
+    "dialog1_content1":"Per continuare, torna all'area di gioco.\n\nOppure, premi il pulsante Conferma sulle cuffie per definire una nuova area di gioco.",
+    "dialog2_content_text0":"Monitoraggio del movimento perso",
+    "dialog2_content_text1": "Assicurati che le telecamere delle cuffie non siano ostruite e che la stanza sia ben illuminata.",
+    "dialog2_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog2_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog3_title": "Monitoraggio del movimento perso",
+    "dialog3_content_text1":"Se non può essere ripristinato, puoi anche:",
+    "dialog3_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog4_title": "Errore di calibrazione della telecamera",
+    "dialog4_content_text1":"Se non può essere ripristinato, contattare il servizio clienti o effettuare le seguenti operazioni:",
+    "dialog4_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog5_title": "Luce ambientale troppo intensa",
+    "dialog5_content_text1":"Evitare fonti di luce intensa.",
+    "dialog5_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog5_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog6_title": "Ambiente troppo buio",
+    "dialog6_content_text1":"Assicurati che le telecamere delle cuffie non siano ostruite e che la stanza sia ben illuminata.",
+    "dialog6_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog6_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog7_title": "I punti di caratterizzazione ambientale sono insufficienti",
+    "dialog7_content_text1":"Evitare pareti a tinta unita, carta da parati con motivi ripetuti e superfici a specchio.",
+    "dialog7_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog7_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog8_title": "Ripristino del tracciamento...",
+    "dialog8_content_text1":"Se non può essere ripristinato, puoi anche:",
+    "dialog8_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog9_title": "Inizializzazione...",
+    "dialog9_content_text1":"Rimani fermo.",
+    "dialog9_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog9_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog10_title": "Errore dati della telecamera",
+    "dialog10_content_text1":"Se non può essere ripristinato, puoi anche:",
+    "dialog10_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog11_title": "Errore dati del sensore inerziale",
+    "dialog11_content_text1":"Se non può essere ripristinato, puoi anche:",
+    "dialog11_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog12_title": "Rilevata vibrazione anomala del dispositivo",
+    "dialog12_content_text1":"Rimani fermo.",
+    "dialog12_content_text2":"Se non può essere ripristinato, puoi anche:",
+    "dialog12_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog13_title": "Errore sconosciuto",
+    "dialog13_content_text1":"Se non può essere ripristinato, puoi anche:",
+    "dialog13_content_text2":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n>Premere il [pulsante Indietro] sul visore per disattivare il tracciamento",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Monitoraggio del movimento perso",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Premere il [pulsante Conferma] sul visore per riavviare il tracciamento\n",
+    "lg_toast": "========================"
+  },  
+  "es": {
+    "dialog0_title": "Saliste de la frontera de tu juego",
+    "dialog0_content1":"Para continuar, regresa a la frontera de tu juego.\n\nO presiona el botón de confirmación de las gafas para crear una nueva frontera.",
+    "dialog1_title": "Saliste de la frontera de tu juego",
+    "dialog1_content1":"Para continuar, regresa a la frontera de tu juego.\n\nO presiona el botón de confirmación de las gafas para crear una nueva frontera.",
+    "dialog2_content_text0":"Se perdió el seguimiento del movimiento",
+    "dialog2_content_text1": "Asegúrate de que las cámaras de las gafas no estén obstruidas y que tu habitación está bien iluminada.",
+    "dialog2_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog2_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog3_title": "Se perdió el seguimiento del movimiento",
+    "dialog3_content_text1":"Si no se puede restaurar también puedes:",
+    "dialog3_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog4_title": "Error de calibración de la cámara",
+    "dialog4_content_text1":"Si no se puede restaurar comunícate con atención al cliente o haz lo siguiente:",
+    "dialog4_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog5_title": "Luz ambiental demasiado brillante",
+    "dialog5_content_text1":"Evita tener de frente luz brillante",
+    "dialog5_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog5_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog6_title": "El ambiente es demasiado oscuro",
+    "dialog6_content_text1":"Asegúrate de que las cámaras de las gafas no estén obstruidas y que tu habitación está bien iluminada.",
+    "dialog6_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog6_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog7_title": "Hay muy pocas características (puntos de enfoque) en el ambiente",
+    "dialog7_content_text1":"Evita tener de frente muros con colores sólidos, papel tapiz con patrones repetidos y superficies con espejos.",
+    "dialog7_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog7_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog8_title": "Restaurando el seguimiento…",
+    "dialog8_content_text1":"Si no se puede restaurar también puedes:",
+    "dialog8_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog9_title": "Inicializando...",
+    "dialog9_content_text1":"Por favor, quédate quieto",
+    "dialog9_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog9_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog10_title": "Error de datos de cámara",
+    "dialog10_content_text1":"Si no se puede restaurar también puedes:",
+    "dialog10_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog11_title": "Error de datos de sensor de inercia",
+    "dialog11_content_text1":"Si no se puede restaurar también puedes:",
+    "dialog11_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog12_title": "Vibración anormal del dispositivo detectada",
+    "dialog12_content_text1":"Por favor, quédate quieto",
+    "dialog12_content_text2":"Si no se puede restaurar también puedes:",
+    "dialog12_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog13_title": "Error desconocido",
+    "dialog13_content_text1":"Si no se puede restaurar también puedes:",
+    "dialog13_content_text2":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n>Presiona [Back Button] en las gafas para desactivar el seguimiento",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Se perdió el seguimiento del movimiento",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Presiona [Confirm Button] en las gafas para reiniciar el seguimiento\n",
+    "lg_toast": "========================"
+  },  
+  "pt": {
+    "dialog0_title": "Você saiu do seu limite de jogo",
+    "dialog0_content1":"Para continuar, por favor, retorne ao seu limite de jogo.\n\nOu pressione Confirmar no headset para criar um novo limite.",
+    "dialog1_title": "Você saiu do seu limite de jogo",
+    "dialog1_content1":"Para continuar, por favor, retorne ao seu limite de jogo.\n\nOu pressione Confirmar no headset para criar um novo limite.",
+    "dialog2_content_text0":"Monitoramento de movimentos perdido",
+    "dialog2_content_text1": "Verifique se as câmeras do headset não estão obstruídas e se o ambiente está bem iluminado.",
+    "dialog2_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog2_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog3_title": "Monitoramento de movimentos perdido",
+    "dialog3_content_text1":"Se não puder ser restaurado, você também pode:",
+    "dialog3_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog4_title": "Erro de calibração da câmera",
+    "dialog4_content_text1":"Se não puder ser restaurado, entre em contato com o serviço de atendimento ao cliente ou faça o seguinte:",
+    "dialog4_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog5_title": "Luz ambiente muito clara",
+    "dialog5_content_text1":"Evite ficar de frente para fontes de luz claras.",
+    "dialog5_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog5_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog6_title": "Ambiente muito escuro",
+    "dialog6_content_text1":"Verifique se as câmeras do headset não estão obstruídas e se o ambiente está bem iluminado.",
+    "dialog6_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog6_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog7_title": "Número de pontos distintivos no ambiente muito baixo",
+    "dialog7_content_text1":"Evite ficar de frente para paredes de cor sólida, papéis de parede com padrões repetidos e superfícies espelhadas.",
+    "dialog7_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog7_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog8_title": "Restaurando monitoramento...",
+    "dialog8_content_text1":"Se não puder ser restaurado, você também pode:",
+    "dialog8_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog9_title": "Inicializando...",
+    "dialog9_content_text1":"Fique parado.",
+    "dialog9_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog9_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog10_title": "Erro nos dados da câmera",
+    "dialog10_content_text1":"Se não puder ser restaurado, você também pode:",
+    "dialog10_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog11_title": "Erro nos dados do sensor inercial",
+    "dialog11_content_text1":"Se não puder ser restaurado, você também pode:",
+    "dialog11_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog12_title": "Vibração anormal do dispositivo detectada",
+    "dialog12_content_text1":"Fique parado.",
+    "dialog12_content_text2":"Se não puder ser restaurado, você também pode:",
+    "dialog12_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog13_title": "Erro desconhecido",
+    "dialog13_content_text1":"Se não puder ser restaurado, você também pode:",
+    "dialog13_content_text2":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n>Pressione o [Botão Voltar] no Headset para desativar o Monitoramento",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Monitoramento de movimentos perdido",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Pressione o [Botão Confirmar] no Headset para reiniciar o Monitoramento\n",
+    "lg_toast": "========================"
+  },
+  "ru": {
+    "lg_toast": "需要在手机上通过\n权限才能正常使用U+VR.",
+    "dialog0_title": "Вы покинули игровую зону",
+    "dialog0_content1":"Для продолжения вернитесь в игровую зону.\n\nИли нажмите кнопку [Подтвердить] на гарнитуре, чтобы создать новую игровую зону.",
+    "dialog1_title": "Вы покинули игровую зону",
+    "dialog1_content1":"Для продолжения вернитесь в игровую зону.\n\nИли нажмите кнопку [Подтвердить] на гарнитуре, чтобы создать новую игровую зону.",
+    "dialog2_content_text0":"Отслеживание движений отключено",
+    "dialog2_content_text1":"Убедитесь, что камеры гарнитуры не закрыты, а комната хорошо освещена.",
+    "dialog2_content_text2":"Если проблема не устранена: ",
+    "dialog2_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog3_title": "Отслеживание движений отключено",
+    "dialog3_content_text1":"Если проблема не устранена: ",
+    "dialog3_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog4_title": "Ошибка калибровки камеры",
+    "dialog4_content_text1":"Если проблема не устранена, свяжитесь со службой поддержки или выполните следующие действия: ",
+    "dialog4_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog5_title": "Слишком яркое освещение!",
+    "dialog5_content_text1":"Избегайте источников яркого света!。",
+    "dialog5_content_text2":"Если проблема не устранена: ",
+    "dialog5_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog6_title": "Недостаточное освещение!",
+    "dialog6_content_text1":"Убедитесь, что камеры гарнитуры не закрыты, а комната хорошо освещена.",
+    "dialog6_content_text2":"Если проблема не устранена: ",
+    "dialog6_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog7_title": "Анализ визуальных особенностей помещения.",
+    "dialog7_content_text1":"Не направляйте устройство на глухие стены, узорчатые обои и зеркала. ",
+    "dialog7_content_text2":"Если проблема не устранена: ",
+    "dialog7_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog8_title": "Восстановление отслеживания движений...",
+    "dialog8_content_text1":"Если проблема не устранена: ",
+    "dialog8_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog9_title": "Инициализация...",
+    "dialog9_content_text1":"Постарайтесь не двигаться! ",
+    "dialog9_content_text2":"Если проблема не устранена: ",
+    "dialog9_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog10_title": "Ошибка данных камеры",
+    "dialog10_content_text1":"Если проблема не устранена: ",
+    "dialog10_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog11_title": "Ошибка данных инерционного датчика",
+    "dialog11_content_text1":"Если проблема не устранена: ",
+    "dialog11_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog12_title": "Обнаружена нештатная вибрация устройства",
+    "dialog12_content_text1":"Постарайтесь не двигаться! ",
+    "dialog12_content_text2":"Если проблема не устранена: ",
+    "dialog12_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog13_title": "Неизвестная ошибка",
+    "dialog13_content_text1":"Если проблема не устранена: ",
+    "dialog13_content_text2":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n>Нажмите кнопку [Назад] на гарнитуре, чтобы отключить отслеживание движений.",
+    "dialog1000_content_text0":"请在符合以下条件的环境中使用设备：",
+    "dialog1000_content_text1":"1 室内光线充足\n   避免黑暗环境和强光直射\n2 环境摆设丰富\n   避免空旷\n   避免墙面大面积纯色、重复图案 \n   避免面对镜子\n3 没有动态移动画面\n   避免面对电视\n   避免周围有人频繁走动",
+    "dialog1000_content_text2":"如果您在不需要移动的状态下使用设备，也可以选择关闭定位追踪；",
+    "dialog1000_content_text3":"Отслеживание движений отключено",
+    "dialog1000_confirm":"重启定位追踪",
+    "dialog1000_cancel":"关闭定位追踪",
+    "dialog10x_content_text3":">Нажмите кнопку [Подтвердить] на гарнитуре, чтобы сбросить отслеживание движений.\n",
+
+    "safeToast0": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast1": " meters，then point the controller forward，long press on the 【home button】",
+    "safeToast2": "To reset safe zone，please insure there have no obstacles in the radius of ",
+    "safeToast3": " meters，then long press on the 【home button】 on headset",
+    "resetPanel0": "Please take off the headset，insure there have no obstacles in the radius of ",
+    "resetPanel1": " meters，then press on 【confirm button】 again",
+    "safePanel0": "Safe zone has reset successfully, please insure there have no obstacles in the radius of ",
+    "safePanel1": " meters，then press on 【confirm button】",
+    "msgtoast0": "Receive a message",
+    "msgtoast1": "To check MMS，please take off HMD and plug out HMD from smart phone",
+    "calltoast0": "Incoming Call",
+    "calltoast1": "To check phone call or MMS，please take off HMD and plug out HMD from smart phone",
+    "lowhmdBatterytoast": "VR device low battery，5% remaining，please charge",
+    "lowphoneBatterytoast": "Smart phone low battery，5% remaining，please charge",
+    "LowPhoneHealthtoast": "Heat warning，please take off HMD and plug out HMD from smart phone",
+    "LowcontrollerBatterytoast": "Low battery of controller",
+    "apptip": "Back",
+    "touchtip": "Confirm",
+    "hometip": "Home",
+    "voluptip": "Volume+",
+    "voldowntip": "Volume-",
+    "triggertip": "Trigger",
+    "griptip": "Grip",
+    "lg_permission_text": "请先在手机上通过权限，再继续使用",
+    "servicetip0": "No handle service found, please turnon the handle service first",
+    "servicetip1": "No handle service found, please use PicoVR to download and install",
+    "servicetip2": "Can not find any handle, please turn on bluetooth and press handle home key",
+    "servicetip3": "Find more than one handle, turn off the unused handle",
+    "servicetip4": "The handle service starts abnormally. Please check the background permissions and security settings"
+  },
+  "config": {
+    "text_size": {
+      "lg_toast_textsize": 13,
+      "lg_main_screen_textsize": 15
+    },
+    "char_space": {
+      "tx_space": 2,
+      "bo_space": 3
+    },
+    "boundary_dialog": {
+      "dpi": 2.562,
+      "sdpi": 2.562,
+      "dialog0": {
+        "annotation-0": "出边界提示框",
+        "enable": 1,
+        "width": 268,
+        "height":134,
+        "bottom_margin":51,
+        "depthNDC":1200,
+        "widthNDC":650,
+        "logo": {
+          "enable": 1,
+          "top": 15,
+          "left": 17,
+          "width": 13,
+          "height": 13,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog0_title",
+            "top": 15,
+            "left":33,
+            "width": 211,
+            "height": 14,
+            "text_size": 12,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 0,
+            "width": 233,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog0_content1",
+                "top": 11,
+                "left":15,
+                "width": 233,
+                "text_size": 9,
+                "text_color": "txt_color_content"
+              }
+            ]
+          },
+          "buttons": [
+           ]
+        }
+      },
+      "dialog1": {
+        "annotation-0": "离开安全区3m提示框",
+        "enable": 1,
+        "width": 268,
+        "height":134,
+        "bottom_margin":51,
+        "depthNDC":1200,
+        "widthNDC":650,
+        "logo": {
+          "enable": 1,
+          "top": 15,
+          "left": 17,
+          "width": 15,
+          "height": 15,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog1_title",
+            "top": 15,
+            "left":33,
+            "width": 211,
+            "height": 14,
+            "text_size": 12,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 0,
+            "width": 233,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog1_content1",
+                "top": 11,
+                "left":15,
+                "width": 233,
+                "text_size": 9,
+                "text_color": "txt_color_content"
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog2": {
+        "annotation-0": "6Dof丢失固定提示框",
+        "enable": 1,
+        "width": 210,
+        "height":180,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 12,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog2_content_text0",
+            "top": 12,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog2_content_text1",
+                "top": 3,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog2_content_text2",
+                "top": 15,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog2_content_text3",
+                "top": 7,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog3": {
+        "annotation-0": "6Dof丢失无原因提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog3_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog3_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog3_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog4": {
+        "annotation-0": "6Dof丢失Camera校准提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog4_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 170,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog4_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog4_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog5": {
+        "annotation-0": "6Dof丢失光线过强提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog5_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog5_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog5_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog5_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog6": {
+        "annotation-0": "6Dof丢失环境过暗提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog6_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog6_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog6_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog6_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog7": {
+        "annotation-0": "6Dof丢失特征点少提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog7_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog7_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog7_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog7_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog8": {
+        "annotation-0": "6Dof丢失正在恢复定位提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog8_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog8_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog8_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog9": {
+        "annotation-0": "6Dof丢失正在初始化提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog9_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog9_content_text1",
+                "top": 13,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog9_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog9_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog10": {
+        "annotation-0": "6Dof丢失相机错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog10_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog10_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog11": {
+        "annotation-0": "6Dof丢失IMU错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog11_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog11_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog11_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog12": {
+        "annotation-0": "6Dof丢失IMU抖动提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog12_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog12_content_text1",
+                "top": 13,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog12_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog12_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog13": {
+        "annotation-0": "6Dof丢失未知错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog13_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog13_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog13_content_text2",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog1000": {
+        "annotation-0": "提示框配置模板",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "depthNDC":600,
+        "widthNDC":270,
+        "logo": {
+          "enable": 1,
+          "top": 15,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog1000_content_text3",
+            "top": 12,
+            "left":33,
+            "width": 171,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog1000_content_text0",
+                "top": 44,
+                "left":17,
+                "width": 157,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              },
+              {
+                "text": "dialog1000_content_text1",
+                "top": 59,
+                "left":23,
+                "width": 163,
+                "text_color": "txt_color_content",
+                "text_size": 7
+              },
+              {
+                "text": "dialog1000_content_text2",
+                "top": 145,
+                "left":17,
+                "width": 176,
+                "text_color": "txt_color_content_note",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+            {
+              "type": 1,
+              "enable": 0,
+              "height_valid": 1,
+              "top": 7,
+              "left": 10,
+              "width": 190,
+              "height": 25,
+              "text_size": 8,
+              "text": "dialog1000_confirm",
+              "text_color": "txt_color_bt0",
+              "background_color": "bg_color_bt_confirm"
+            },
+            {
+              "type": 2,
+              "enable": 0,
+              "height_valid": 1,
+              "top": 5,
+              "left": 9,
+              "width": 190,
+              "height": 25,
+              "text_size": 8,
+              "text": "dialog1000_cancel",
+              "text_color": "txt_color_bt1",
+              "background_color": "bg_color_bt_cancel"
+            }
+          ]
+        }
+      },
+      "dialog100": {
+        "annotation-0": "出边界提示框",
+        "enable": 1,
+        "width": 268,
+        "height":134,
+        "bottom_margin":51,
+        "depthNDC":1200,
+        "widthNDC":650,
+        "logo": {
+          "enable": 1,
+          "top": 15,
+          "left": 17,
+          "width": 13,
+          "height": 13,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog0_title",
+            "top": 15,
+            "left":33,
+            "width": 211,
+            "height": 14,
+            "text_size": 12,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 0,
+            "width": 233,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog0_content1",
+                "top": 11,
+                "left":15,
+                "width": 233,
+                "text_size": 9,
+                "text_color": "txt_color_content"
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog101": {
+        "annotation-0": "离开安全区3m提示框",
+        "enable": 1,
+        "width": 268,
+        "height":134,
+        "bottom_margin":51,
+        "depthNDC":1200,
+        "widthNDC":650,
+        "logo": {
+          "enable": 1,
+          "top": 15,
+          "left": 17,
+          "width": 15,
+          "height": 15,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog1_title",
+            "top": 15,
+            "left":33,
+            "width": 211,
+            "height": 14,
+            "text_size": 12,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 0,
+            "width": 233,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog1_content1",
+                "top": 11,
+                "left":15,
+                "width": 233,
+                "text_size": 9,
+                "text_color": "txt_color_content"
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog102": {
+        "annotation-0": "6Dof丢失固定提示框",
+        "enable": 1,
+        "width": 210,
+        "height":180,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 12,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog2_content_text0",
+            "top": 12,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog2_content_text1",
+                "top": 3,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog2_content_text2",
+                "top": 15,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":27,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog103": {
+        "annotation-0": "6Dof丢失无原因提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog3_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog3_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog104": {
+        "annotation-0": "6Dof丢失Camera校准提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog4_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 170,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog4_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog105": {
+        "annotation-0": "6Dof丢失光线过强提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog5_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog5_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog5_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog106": {
+        "annotation-0": "6Dof丢失环境过暗提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog6_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog6_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog6_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog107": {
+        "annotation-0": "6Dof丢失特征点少提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog7_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog7_content_text1",
+                "top": 3,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog7_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog108": {
+        "annotation-0": "6Dof丢失正在恢复定位提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog8_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog8_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog109": {
+        "annotation-0": "6Dof丢失正在初始化提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog9_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog9_content_text1",
+                "top": 13,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog9_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog110": {
+        "annotation-0": "6Dof丢失相机错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog10_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog10_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog111": {
+        "annotation-0": "6Dof丢失IMU错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog11_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog11_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog112": {
+        "annotation-0": "6Dof丢失IMU抖动提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 13,
+          "left": 9,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog12_title",
+            "top": 12,
+            "left":25,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog12_content_text1",
+                "top": 13,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog12_content_text2",
+                "top": 15,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":25,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      },
+      "dialog113": {
+        "annotation-0": "6Dof丢失未知错误提示框",
+        "enable": 1,
+        "width": 210,
+        "height":246,
+        "bottom_margin":16,
+        "depthNDC":1200,
+        "widthNDC":500,
+        "logo": {
+          "enable": 1,
+          "top": 16,
+          "left": 11,
+          "width": 13,
+          "height": 12,
+          "path": "dialog1_logo"
+        },
+        "body": {
+          "top": 0,
+          "left": 0,
+          "width": 268,
+          "height":0,
+          "marginBottom":10,
+          "background_color": "bg_color_body",
+          "title": {
+            "text": "dialog13_title",
+            "top": 14,
+            "left":29,
+            "width": 170,
+            "height": 15,
+            "text_size": 13,
+            "text_color": "txt_color_title"
+          },
+          "content": {
+            "count": 2,
+            "width": 176,
+            "height": 95,
+            "text_color": "txt_color_content",
+            "text_size": 9,
+            "texts": [
+              {
+                "text": "dialog13_content_text1",
+                "top": 25,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_title",
+                "text_size": 9
+              },
+              {
+                "text": "dialog10x_content_text3",
+                "top": 7,
+                "left":22,
+                "width": 170,
+                "text_color": "txt_color_content",
+                "text_size": 9
+              }
+            ]
+          },
+          "buttons": [
+          ]
+        }
+      }
+    },
+    "controller": [
+      {
+        "model_name": "Goblin",
+        "base_path": "/system/media/PvrRes/controller/Goblin/",
+        "material_type": 0,
+        "tex_format": "png",
+        "drawable": "lg_up_screen",
+        "control_num": 1,
+        "tips_x": 0.9,
+        "tips_y": 0.8,
+        "tips_z": 0.7,
+        "tex_width": 1024,
+        "tex_height": 1024,
+        "keys0": [
+          {
+            "name": "",
+            "tips_x": 0,
+            "tips_y": 0,
+            "tips_z": 0
+          },
+          {}
+        ],
+        "keys1": [
+        ]
+      },
+      {
+        "model_name": "Neo",
+        "base_path": "/system/media/PvrRes/controller/Neo/",
+        "material_type": 0,
+        "tex_format": "png",
+        "drawable": "lg_up_screen",
+        "control_num": 2,
+        "tips_x": 0.9,
+        "tips_y": 0.8,
+        "tips_z": 0.7,
+        "tex_width": 1024,
+        "tex_height": 1024,
+        "keys0": [
+          {
+            "name": "",
+            "tips_x": 0,
+            "tips_y": 0,
+            "tips_z": 0
+          },
+          {}
+        ],
+        "keys1": [
+        ]
+      },
+      {
+        "model_name": "G2",
+        "base_path": "/system/media/PvrRes/controller/G2/",
+        "material_type": 0,
+        "tex_format": "png",
+        "drawable": "lg_up_screen",
+        "control_num": 1,
+        "tips_x": 0.9,
+        "tips_y": 0.8,
+        "tips_z": 0.7,
+        "tex_width": 256,
+        "tex_height": 256,
+        "keys0": [
+          {
+            "name": "",
+            "tips_x": 0,
+            "tips_y": 0,
+            "tips_z": 0
+          },
+          {}
+        ],
+        "keys1": [
+        ]
+      },
+      {
+        "model_name": "Neo2",
+        "base_path": "/system/media/PvrRes/controller/Neo2/",
+        "material_type": 1,
+        "tex_format": "jpg",
+        "drawable": "lg_up_screen",
+        "control_num": 2,
+        "tips_x": 0.9,
+        "tips_y": 0.8,
+        "tips_z": 0.7,
+        "tex_width": 512,
+        "tex_height": 512,
+        "keys0": [
+          {
+            "name": "",
+            "tips_x": 0,
+            "tips_y": 0,
+            "tips_z": 0
+          },
+          {}
+        ],
+        "keys1": [
+        ]
+      }
+    ],
+    "lg_phone_main_screen": {
+      "type": 1,
+      "text": {
+        "text": "lg_toast",
+        "width": -1,
+        "height": 700,
+        "text_size": "lg_main_screen_textsize",
+        "text_color": "lg_toast_textcolor",
+        "background_color": "lg_toast_backgroundcolor"
+      },
+      "image": {
+        "drawable": "lg_main_screen"
+      }
+    },
+    "lg_hmd_permission_toast": {
+      "enable": 1,
+      "text": "lg_permission_text",
+      "text_size": "lg_toast_textsize",
+      "text_color": "lg_toast_textcolor",
+      "background_color": "lg_toast_backgroundcolor"
+    },
+    "controller_connected_toast": "lg_toast",
+    "controller_disconnected_toast": "lg_toast"
+  },
+  "font": {
+    "font_s": "sss"
+  },
+  "color": {
+    "lg_toast_textcolor": "ffffff",
+    "lg_toast_backgroundcolor": "111111",
+    "bg_color_body": "FF29292D",
+    "txt_color_title":"FFEEEEEE",
+    "txt_color_content":"FFA6A6A6",
+    "txt_color_bt0": "FF29292D",
+    "bg_color_bt0": "FF6656BE",
+    "txt_color_bt1": "FF29292D",
+    "bg_color_bt1": "FF6656BE",
+    "txt_color_bt2": "FF29292D",
+    "bg_color_bt2": "FF6656BE",
+    "bg_color_bt_confirm": "FF6551D6",
+    "bg_color_bt_cancel": "FF595959",
+    "txt_color_content_note": "FF8374DC"
+  },
+  "drawable": {
+    "lg_up_screen": "/product/etc/screensaverhint.png",
+    "lg_main_screen": "/sdcard/psmart/phoenix/screensaverhint.png",
+    "dialog1_logo": "/system/etc/pvr/boundary/dialog_logo.png"
+  }
+}

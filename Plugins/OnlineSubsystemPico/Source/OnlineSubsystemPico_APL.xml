@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- init section is always evaluated once per architecture -->
+  <init>
+  
+  </init>
+
+  <!-- optional updates applied to AndroidManifest.xml -->
+  <androidManifestUpdates>
+  
+  </androidManifestUpdates>
+
+
+  <!-- optional files or directories to copy to Intermediate/Android/APK -->
+  <resourceCopies>
+
+    <copyFile src="$S(PluginDir)/../Libs/achievement.jar"
+              dst="$S(BuildDir)/libs/achievement.jar" />
+
+    <copyFile src="$S(PluginDir)/../Libs/initServer.jar"
+              dst="$S(BuildDir)/libs/initServer.jar" />
+    
+  </resourceCopies>
+
+  <gameActivityImportAdditions>
+    <insert>
+      import com.pico.achievement.AchievementAPI;
+      import com.picovr.achievement.bean.PvrMessage;
+      import com.picovr.achievement.bean.MessageType;
+      import com.picovr.achievement.utils.pvrAchievementDefinitionArrayHandle;
+      import com.picovr.achievement.utils.pvrAchievementDefinitionHandle;
+      import com.picovr.achievement.utils.pvrAchievementProgressArrayHandle;
+      import com.picovr.achievement.utils.pvrAchievementProgressHandle;
+      import com.picovr.achievement.utils.pvrAchievementUpdateHandle;
+    </insert>
+  </gameActivityImportAdditions>
+
+  <gameActivityClassAdditions>
+
+    <insert>
+
+      public native static void SetInitRequestID(long ipd);
+      public void Payment_Login()
+      {
+      if (mLogin != null) {
+      mLogin.login(new Callback()
+      {
+      @Override
+      public void loginCallback(boolean isSuccess, String reason)
+      {
+      Log.debug("Pvr_UE OnlineXML loginCallback isSuccess "+isSuccess+ "   Reason: "+reason);
+      Log.debug("Pvr_UE OnlineXML loginCallback call InitAchievementAPI");
+      if(!isSuccess)
+      {
+      Payment_Logout();
+      }
+      long RequestID = InitAchievementAPI();
+      SetInitRequestID(RequestID);
+      }
+      });
+      }
+      else
+      {
+      Log.debug("Pvr_UE HMDXML Login class is not created!");
+      }
+      }
+
+      public void Payment_Logout()
+      {
+      if (mLogin != null) 
+      {
+      mLogin.logout(this, null);
+      }
+      }
+      
+      public AccessInfo GetAccessInfo()
+      {
+      return PicoAccessTokenKeeper.readAccessToken(this.getApplicationContext());
+      }
+
+      public String GetOpenID()
+      {
+      return GetAccessInfo().getOpenId();
+      }
+
+      public long InitAchievementAPI()
+      {
+      long ret = AchievementAPI.init(GetAccessInfo().getAccessToken(),GetAccessInfo().getOpenId(),this.getApplicationContext());
+      return ret;
+      }
+
+      public PvrMessage Achievement_PopMessage()
+      {
+      return AchievementAPI.pvr_PopMessage();
+      }
+
+      public long Achievement_AddCount(String AchievementId,long Count)
+      {
+      return AchievementAPI.pvr_Achievements_AddCount(AchievementId,Count,GetAccessInfo().getAccessToken());
+      }
+
+      public long Achievement_AddFields(String AchievementId,String Fields)
+      {
+      return AchievementAPI.pvr_Achievements_AddFields(AchievementId,Fields,GetAccessInfo().getAccessToken());
+      }
+
+      public long Achievement_GetAllDefinitions(String AppId)
+      {
+      return AchievementAPI.pvr_Achievements_GetAllDefinitions(AppId,this.getApplicationContext());
+      }
+
+      public long Achievement_GetDefinitionsByName(String[] AchievementIds)
+      {
+      return AchievementAPI.pvr_Achievements_GetDefinitionsByName(AchievementIds,this.getApplicationContext());
+      }
+      
+      public long Achievement_GetAllProgress()
+      {
+      return AchievementAPI.pvr_Achievements_GetAllProgress(GetAccessInfo().getAccessToken());
+      }
+
+      public long Achievement_Unlock(String AchievementId)
+      {
+      return AchievementAPI.pvr_Achievements_Unlock(AchievementId,GetAccessInfo().getAccessToken());
+      }
+
+      public long Message_GetMessageHandleType(PvrMessage msg)
+      {
+      return msg.getHandleType().getIndex();
+      }
+
+      public long Message_GetMessageId(PvrMessage msg)
+      {
+      return msg.getId();
+      }
+
+      public boolean Message_GetMessageIsError(PvrMessage msg)
+      {
+      return msg.isMessage_IsError();
+      }
+
+      public int AchievementDefinitionArray_GetSize(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionArrayHandle.pvr_AchievementDefinitionArray_GetSize(msg);
+      }
+
+      public PvrMessage AchievementDefinitionArray_GetElement(PvrMessage msg,int Index)
+      {
+      return pvrAchievementDefinitionArrayHandle.pvr_AchievementDefinitionArray_GetElement(msg,Index);
+      }
+
+      public String AchievementDefinitionArray_GetNextUrl(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionArrayHandle.pvr_AchievementDefinitionArray_GetNextUrl(msg);
+      }
+
+      public boolean AchievementDefinitionArray_HasNextPage(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionArrayHandle.pvr_AchievementDefinitionArray_HasNextPage(msg);
+      }
+
+      public long Achievements_GetAllDefinitionsByUrl(String msg)
+      {
+      return AchievementAPI.pvr_Achievements_GetAllDefinitionsByUrl(msg,this.getApplicationContext());
+      }      
+
+      public String AchievementDefinition_GetName(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetName(msg);
+      }
+
+      public int AchievementDefinition_GetBitfieldLength(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetBitfieldLength(msg);
+      }
+
+      public long AchievementDefinition_GetTarget(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetTarget(msg);
+      }
+
+      public int AchievementDefinition_GetType(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetType(msg).getIndex();
+      }
+
+      public String AchievementDefinition_GetTitle(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetTitle(msg);
+      }
+
+      public String AchievementDefinition_GetDescription(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetDescription(msg);
+      }
+
+      public boolean AchievementDefinition_GetIsSecret(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetIs_secret(msg);
+      }
+
+      public String AchievementDefinition_GetUnlockedDescription(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetUnlocked_description(msg);
+      }
+
+      public String AchievementDefinition_GetUnlockedImage(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetUnlocked_image(msg);
+      }
+
+      public String AchievementDefinition_GetLockedImage(PvrMessage msg)
+      {
+      return pvrAchievementDefinitionHandle.pvr_AchievementDefinition_GetLocked_image(msg);
+      }
+
+      public int AchievementProgressArray_GetSize(PvrMessage msg)
+      {
+      return pvrAchievementProgressArrayHandle.pvr_AchievementProgressArray_GetSize(msg);
+      }
+
+      public PvrMessage AchievementProgressArray_GetElement(PvrMessage msg,int Index)
+      {
+      return pvrAchievementProgressArrayHandle.pvr_AchievementProgressArray_GetElement(msg,Index);
+      }
+
+      public String AchievementProgressArray_GetNextUrl(PvrMessage msg)
+      {
+      return pvrAchievementProgressArrayHandle.pvr_AchievementProgressArray_GetNextUrl(msg);
+      }
+
+      public boolean AchievementProgressArray_HasNextPage(PvrMessage msg)
+      {
+      return pvrAchievementProgressArrayHandle.pvr_AchievementProgressArray_HasNextPage(msg);
+      }
+
+      public long Achievements_GetAllProgressByUrl(String msg)
+      {
+      return AchievementAPI.pvr_Achievements_GetAllProgressByUrl(msg);
+      }
+      
+      public String AchievementProgress_GetBitfield(PvrMessage msg)
+      {
+      return pvrAchievementProgressHandle.pvr_AchievementProgress_GetBitfield(msg);
+      }
+
+      public long AchievementProgress_GetCount(PvrMessage msg)
+      {
+      return pvrAchievementProgressHandle.pvr_AchievementProgress_GetCount(msg);
+      }
+
+      public boolean AchievementProgress_GetIsUnlocked(PvrMessage msg)
+      {
+      return pvrAchievementProgressHandle.pvr_AchievementProgress_GetIsUnlocked(msg);
+      }
+
+      public String AchievementProgress_GetName(PvrMessage msg)
+      {
+      return pvrAchievementProgressHandle.pvr_AchievementProgress_GetName(msg);
+      }
+
+      public boolean AchievementUpdate_GetJustUnlocked(PvrMessage msg)
+      {
+      return pvrAchievementUpdateHandle.pvr_AchievementUpdate_GetJustUnlocked(msg);
+      }
+
+      public long AchievementProgress_GetUnlockTime(PvrMessage msg)
+      {
+      return pvrAchievementProgressHandle.pvr_AchievementProgress_GetUnlockTime(msg);
+      }
+      
+      public String AchievementUpdate_GetName(PvrMessage msg)
+      {
+      return pvrAchievementUpdateHandle.pvr_AchievementUpdate_GetName(msg);
+      }
+
+    </insert>
+   
+  </gameActivityClassAdditions>
+
+  <gameActivityOnCreateAdditions>
+    <insert>
+      AchievementAPI.registerNetwork(this.getApplicationContext());
+    </insert>
+  </gameActivityOnCreateAdditions>
+
+  <gameActivityOnStartAdditions>
+
+  </gameActivityOnStartAdditions>
+
+  <gameActivityOnResumeAdditions>
+  </gameActivityOnResumeAdditions>
+
+  <gameActivityOnPauseAdditions>
+   
+  </gameActivityOnPauseAdditions>
+
+  <gameActivityOnStopAdditions>
+   
+  </gameActivityOnStopAdditions>
+
+  <gameActivityOnDestroyAdditions>
+    <insert>
+      AchievementAPI.unregisterNetwork();
+    </insert>
+  </gameActivityOnDestroyAdditions>
+
+  <gameActivityOnActivityResultAdditions>
+   
+  </gameActivityOnActivityResultAdditions>
+  
+</root>
