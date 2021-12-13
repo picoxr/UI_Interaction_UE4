@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.2.6.1",
+	"VersionName": "2.0.2.3",
 	"FriendlyName": "Online Subsystem Pico",
 	"Description": "Access to Pico platform",
 	"Category": "Online Platform",
@@ -10,7 +10,7 @@
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"EnabledByDefault": true,
+	"EnabledByDefault": false,
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"Installed": true,
@@ -19,7 +19,7 @@
 		{
 			"Name": "OnlineSubsystemPico",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PreDefault",
 			"WhitelistPlatforms": [
 				"Win64",
 				"Android"
@@ -37,7 +37,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "PicoMobile",
+			"Name": "PicoXR",
 			"Enabled": true
 		}
 	]

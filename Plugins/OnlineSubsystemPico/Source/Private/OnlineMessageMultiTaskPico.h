@@ -1,14 +1,13 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #pragma once
-
 #include "CoreMinimal.h"
 #include "OnlineSubsystemPico.h"
 
 class FOnlineMessageMultiTaskPico
 {
 private:
-	/** Requests that are waiting to be completed */
+
 	TArray<uint64> InProgressRequests;
 
 protected:
@@ -22,11 +21,9 @@ public:
 
 	FOnlineSubsystemPico& PicoSubsystem;
 
-	FOnlineMessageMultiTaskPico(
-        FOnlineSubsystemPico& InOculusSubsystem,
-        const FOnlineMessageMultiTaskPico::FFinalizeDelegate& InDelegate)
-        : Delegate(InDelegate)
-        , PicoSubsystem(InOculusSubsystem)
+	FOnlineMessageMultiTaskPico(FOnlineSubsystemPico& InPicoSubsystem,const FOnlineMessageMultiTaskPico::FFinalizeDelegate& InDelegate)
+       : Delegate(InDelegate), 
+		 PicoSubsystem(InPicoSubsystem)
 	{
 	}
 

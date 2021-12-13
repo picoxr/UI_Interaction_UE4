@@ -1,13 +1,11 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #include "OnlineMessageTaskManagerPico.h"
-
-
 #include "OnlinePlatformInterfacePico.h"
 #include "OnlineSubsystem.h"
 
-
 uint64 FOnlineMessageTaskManagerPico::InitRequestID = 0;
+const float DeltaTimeLimit = 4.0f;
 
 void FOnlineMessageTaskManagerPico::OnReceiveMessage(FOnlineMessageHandle Message)
 {
@@ -17,12 +15,11 @@ void FOnlineMessageTaskManagerPico::OnReceiveMessage(FOnlineMessageHandle Messag
 	UE_LOG(LogTemp,Log,TEXT("OnReceiveMessage RequestId :%llu,bIsError %d,MessageType %x, "),RequestId,bIsError,MessageType);
 	if (RequestId == FOnlineMessageTaskManagerPico::InitRequestID)
 	{
-		if (MessageType == EOnlineMessageType::Message_Achievements_verify_access_token)
+		if (MessageType == EOnlineMessageType::Message_Achievements_VerifyAccessToken)
 		{
 			uint64 InitID = 999;
 			RequestDelegates[InitID].ExecuteIfBound(Message, bIsError);
 
-			// Remove the delegate
 			RequestDelegates[InitID].Unbind();
 			RequestDelegates.Remove(InitID);
 			return;
@@ -32,13 +29,11 @@ void FOnlineMessageTaskManagerPico::OnReceiveMessage(FOnlineMessageHandle Messag
 	{
 		RequestDelegates[RequestId].ExecuteIfBound(Message, bIsError);
 
-		// Remove the delegate
 		RequestDelegates[RequestId].Unbind();
 		RequestDelegates.Remove(RequestId);
 	}
 	else
 	{
-		
 		if (NotifyDelegates.Contains(MessageType))
 		{
 			if (!bIsError)
@@ -51,8 +46,6 @@ void FOnlineMessageTaskManagerPico::OnReceiveMessage(FOnlineMessageHandle Messag
 			UE_LOG_ONLINE(Verbose, TEXT("Unhandled request id: %llu type: %d"), RequestId, MessageType);
 		}
 	}
-	//ovr_FreeMessage(Message);
-	//TODO:delete message
 }
 
 void FOnlineMessageTaskManagerPico::AddRequestDelegate(uint64 RequestId, FPicoMessageOnCompleteDelegate&& Delegate)
@@ -91,7 +84,7 @@ bool FOnlineMessageTaskManagerPico::Tick(float DeltaTime)
 		}	
 	}
 #endif
-	if (DeltaTime > 4.0f) 
+	if (DeltaTime > DeltaTimeLimit) 
 	{
 		UE_LOG_ONLINE(Warning, TEXT("DeltaTime was %f seconds.  Time sensitive Pico notifications may time out."), DeltaTime);
 	}

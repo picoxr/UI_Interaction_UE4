@@ -1,0 +1,48 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "2.0.2.3",
+  "FriendlyName": "PicoXR",
+  "Description": "",
+  "Category": "Virtual Reality",
+  "CreatedBy": "Pico Technology Co., Ltd",
+  "CreatedByURL": "https://www.pico-interactive.com/",
+  "DocsURL": "http://sdk.picovr.com/docs/UnrealSDK/cn/index.html",
+  "MarketplaceURL": "",
+  "SupportURL": "",
+  "EnabledByDefault": true,
+  "CanContainContent": true,
+  "IsBetaVersion": false,
+  "Installed": true,
+  "SupportedTargetPlatforms": [
+    "Win64",
+    "Android"
+  ],
+  "Modules": [
+    {
+      "Name": "PicoXRHMD",
+      "Type": "Runtime",
+      "LoadingPhase": "PostConfigInit",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Android"
+      ]
+    },
+    {
+      "Name": "PicoXRInput",
+      "Type": "Runtime",
+      "LoadingPhase": "PostEngineInit",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Android"
+      ]
+    }
+  ],
+  "Plugins":
+  [
+    {
+      "Name": "ProceduralMeshComponent",
+      "Enabled": true
+    }
+  ]
+}
