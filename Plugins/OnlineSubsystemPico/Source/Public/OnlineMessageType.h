@@ -1,6 +1,9 @@
-﻿#pragma once
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+
+#pragma once
 #include "CoreMinimal.h"
 #include "Interfaces/OnlineAchievementsInterface.h"
+
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
 #include "Android/AndroidJNI.h"
@@ -8,25 +11,25 @@
 
 enum EOnlineMessageType
 {
-	Message_Unknown = 0 , 
-	Message_Achievements_AddCount = 0x03E76231 ,
-	Message_Achievements_AddFields = 0x14AA2129 ,
-	Message_Achievements_GetAllDefinitions = 0x03D3458D ,
-	Message_Achievements_GetAllProgress = 0x4F9FDE1D ,
-	Message_Achievements_GetDefinitionsByName = 0x629101BC ,
-	Message_Achievements_GetAchievementDefinition = 0x2A7DD363 ,
-	Message_Achievements_GetAchievementProgress = 0x2F42E464 ,
+	Message_Unknown                                            = 0 , 
+	Message_Achievements_AddCount                              = 0x03E76231 ,
+	Message_Achievements_AddFields                             = 0x14AA2129 ,
+	Message_Achievements_GetAllDefinitions                     = 0x03D3458D ,
+	Message_Achievements_GetAllProgress                        = 0x4F9FDE1D ,
+	Message_Achievements_GetDefinitionsByName                  = 0x629101BC ,
+	Message_Achievements_GetAchievementDefinition              = 0x2A7DD363 ,
+	Message_Achievements_GetAchievementProgress                = 0x2F42E464 ,
 	Message_Achievements_GetNextAchievementDefinitionArrayPage = 0x2A7DD255 ,
-	Message_Achievements_GetNextAchievementProgressArrayPage = 0x2F42E727 ,
-	Message_Achievements_GetProgressByName = 0x152663B1 , 
-	Message_Achievements_Unlock = 0x593CCBDD ,
-	Message_Achievements_write_achievement_progress = 0x736BBDD ,
-	Message_Achievements_verify_access_token = 0x032D103C ,
-	Message_Notification_Networking_ConnectionStateChange = 0x5E02D49A 
+	Message_Achievements_GetNextAchievementProgressArrayPage   = 0x2F42E727 ,
+	Message_Achievements_GetProgressByName                     = 0x152663B1 , 
+	Message_Achievements_Unlock                                = 0x593CCBDD ,
+	Message_Achievements_WriteAchievementProgress              = 0x736BBDD  ,
+	Message_Achievements_VerifyAccessToken                     = 0x032D103C ,
+	Message_Notification_NetworkingConnectionStateChange       = 0x5E02D49A 
 };
 
 enum class EAchievementType {
-	Unknown = 0,
+	Unknown,
     Simple,
     Bitfield,
     Count
@@ -34,15 +37,9 @@ enum class EAchievementType {
 
 struct FOnlineAchievementDescPico : FOnlineAchievementDesc
 {
-	/** The way this achievement is unlocked */
 	EAchievementType Type;
-
-	/** The value that needs to be reached for "Count" Type achievements to unlock */
 	uint64 Target;
-
-	/** How many fields needs to be set for "Bitfield" Type achievements to unlock */
 	uint32 BitfieldLength;
-
 };
 
 
@@ -58,13 +55,11 @@ public:
 #else
 	void* JavaMessage = nullptr;
 #endif
-	
 	FOnlineMessageHandle()
 	:MessageType(Message_Unknown)
 	,bIsError(true)
 	,MessageID(0)
 	{
-		
 	}
 
 	FOnlineMessageHandle(int32 InMessageType,bool InbIsError, uint64 MessageID)
@@ -72,7 +67,6 @@ public:
     ,bIsError(InbIsError)
     ,MessageID(MessageID)
 	{
-		
 	}
 	
 	bool IsError()
@@ -101,8 +95,7 @@ public:
 	:FOnlineMessageHandle(),
 	bJustUnlocked(false),
 	Name("")
-	{
-		
+	{	
 	}
 
 	bool GetIsUnlock()
@@ -132,8 +125,7 @@ public:
 	bIsUnlocked(false),
     Name(""),
 	UnlockTime("")
-	{
-		
+	{	
 	}
 
 	FString GetBitfield()
@@ -176,14 +168,14 @@ public:
     Name(""),
     BitfieldLength(0),
     Target(0)
-	{
-		
+	{	
 	}
 
 	EAchievementType GetAchievementType()
 	{
 		return Type;
 	}
+
 	FString GetAchievementName()
 	{
 		return Name;
@@ -193,6 +185,7 @@ public:
 	{
 		return BitfieldLength;
 	}
+
 	uint64 GetTarget()
 	{
 		return Target;

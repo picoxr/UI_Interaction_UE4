@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -8,22 +8,15 @@
 #define PICO_SUBSYSTEM FName(TEXT("Pico"))
 #endif
 
-/**
- * Online subsystem module class  (Pico Implementation)
- * Code related to the loading of the Pico module
- */
 class FOnlineSubsystemPicoModule : public IModuleInterface
 {
 private:
 
-	/** Class responsible for creating instance(s) of the subsystem */
 	class FOnlineFactoryPico* PicoFactory;
 
 public:
 
-	FOnlineSubsystemPicoModule() :
-		PicoFactory(nullptr)
-	{}
+	FOnlineSubsystemPicoModule() :PicoFactory(nullptr){}
 
 	virtual ~FOnlineSubsystemPicoModule() {}
 
@@ -31,6 +24,10 @@ public:
 
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+
+	void RegisterSettings();
+	void UnregisterSettings();
+
 	virtual bool SupportsDynamicReloading() override
 	{
 		return false;

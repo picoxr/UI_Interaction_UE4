@@ -1,12 +1,13 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #pragma once
-
 #include "CoreMinimal.h"
+
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
 #include "Android/AndroidJNI.h"
 #endif
+
 class OnlinePlatformInterfacePico
 {
 public:
@@ -17,7 +18,7 @@ public:
 	
 	static void Achievement_Init();
 	
-	static uint64 Achievement_AddCount(FString AchievementId,uint64 Count);
+	static uint64 Achievement_AddCount(FString AchievementId,int64 Count);
 
 	static uint64 Achievement_AddFields(FString AchievementId,FString AchievementFields);
 
@@ -80,7 +81,7 @@ public:
 	
 	static FString AchievementProgress_GetBitfield(jclass Message);
 
-	static uint64 AchievementProgress_GetCount(jclass Message);
+	static int64 AchievementProgress_GetCount(jclass Message);
 
 	static bool AchievementProgress_GetIsUnlocked(jclass Message);
 

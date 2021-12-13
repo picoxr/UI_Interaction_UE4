@@ -1,5 +1,6 @@
-﻿#include "OnlinePlatformInterfacePico.h"
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
+#include "OnlinePlatformInterfacePico.h"
 
 FString OnlinePlatformInterfacePico::GetAppID()
 {
@@ -31,13 +32,13 @@ void OnlinePlatformInterfacePico::Achievement_Init()
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "Payment_Login", "()V", false);
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "Achievement_Login", "()V", false);
 		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
 	}
 #endif
 }
 
-uint64 OnlinePlatformInterfacePico::Achievement_AddCount(FString AchievementId, uint64 Count)
+uint64 OnlinePlatformInterfacePico::Achievement_AddCount(FString AchievementId, int64 Count)
 {	
 	uint64 Ret = 0;
 #if PLATFORM_ANDROID
@@ -49,7 +50,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_AddCount(FString AchievementId, 
 		Ret = (uint64)FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method,j_AchievementId,Count);
 		Env->DeleteLocalRef(j_AchievementId);
 	}
-	
 #endif
 	return Ret;
 }
@@ -67,7 +67,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_AddFields(FString AchievementId,
 		Env->DeleteLocalRef(j_AchievementId);
 		Env->DeleteLocalRef(j_AchievementFields);
 	}
-	
 #endif
 	return Ret;
 }
@@ -84,7 +83,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_GetAllDefinitions(FString AppId)
 		Ret = (uint64)FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method,j_AppId);
 		Env->DeleteLocalRef(j_AppId);
 	}
-
 #endif
 	return Ret;
 }
@@ -113,7 +111,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_Unlock(FString AchievementId)
 		Ret = (uint64)FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method,j_AchievementId);
 		Env->DeleteLocalRef(j_AchievementId);
 	}
-	
 #endif
 	return Ret;
 }
@@ -124,7 +121,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_GetDefinitionsByName(TArray<FStr
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		//TArray<FString> ->> JObjectArray
 		auto AchievementIdArray = NewScopedJavaObject(Env, (jobjectArray)Env->NewObjectArray(AchievementIds.Num(), FJavaWrapper::JavaStringClass, NULL));
 		if (AchievementIdArray)
 		{
@@ -141,7 +137,6 @@ uint64 OnlinePlatformInterfacePico::Achievement_GetDefinitionsByName(TArray<FStr
 	}
 #endif
 	return Ret;
-	
 }
 
 uint64 OnlinePlatformInterfacePico::Achievements_GetAllProgressByUrl(FString NextUrl)
@@ -491,13 +486,13 @@ FString OnlinePlatformInterfacePico::AchievementProgress_GetBitfield(jclass Mess
 	return ret;
 }
 	
-uint64 OnlinePlatformInterfacePico::AchievementProgress_GetCount(jclass Message)
+int64 OnlinePlatformInterfacePico::AchievementProgress_GetCount(jclass Message)
 {
-	uint64 ret = 0;
+	int64 ret = 0;
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{		
 		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "AchievementProgress_GetCount", "(Lcom/picovr/achievement/bean/PvrMessage;)J", false);
-		ret = (uint64)FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method,Message);
+		ret = (int64)FJavaWrapper::CallLongMethod(Env, FJavaWrapper::GameActivityThis, Method,Message);
 	}
 	return ret;
 }
@@ -570,4 +565,5 @@ FString OnlinePlatformInterfacePico::AchievementUpdate_GetName(jclass Message)
 	}
 	return ret;
 }
+
 #endif

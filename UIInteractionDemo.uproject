@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.25",
+	"EngineAssociation": "4.26",
 	"Category": "",
 	"Description": "",
 	"Plugins": [
@@ -19,24 +19,11 @@
 			"SupportedTargetPlatforms": [
 				"Win32",
 				"Win64",
-				"Linux",
-				"Mac"
+				"Linux"
 			]
 		},
 		{
 			"Name": "OnlineSubsystemPico",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoMobile",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoMobileController",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoNeoController",
 			"Enabled": true
 		}
 	]

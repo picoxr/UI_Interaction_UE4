@@ -1,4 +1,4 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -11,10 +11,8 @@ class FOnlineMessageTaskManagerPico
 {
 	void OnReceiveMessage(FOnlineMessageHandle Message);
 
-	/** Direct Requests waiting for a Message response */
 	TMap<uint64, FPicoMessageOnCompleteDelegate> RequestDelegates;
 
-	/** Notify Requests waiting for a Message response */
 	TMap<EOnlineMessageType, FPicoMulticastMessageOnCompleteDelegate> NotifyDelegates;
 
 public:

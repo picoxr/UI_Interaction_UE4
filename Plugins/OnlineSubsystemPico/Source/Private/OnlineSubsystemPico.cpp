@@ -1,15 +1,13 @@
-// Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
 
 #include "OnlineSubsystemPico.h"
 #include "Misc/ConfigCacheIni.h"
 #include "OnlinePlatformInterfacePico.h"
-#include "OnlineLeaderboardInterfacePico.h"
 #include "OnlineAchievementsInterfacePico.h"
 
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
 #endif
-
 
 namespace FNetworkProtocolTypes
 {
@@ -49,7 +47,7 @@ IOnlineEntitlementsPtr FOnlineSubsystemPico::GetEntitlementsInterface() const
 
 IOnlineLeaderboardsPtr FOnlineSubsystemPico::GetLeaderboardsInterface() const
 {
-	return LeaderboardInterface;
+	return nullptr;
 }
 
 IOnlineVoicePtr FOnlineSubsystemPico::GetVoiceInterface() const
@@ -82,10 +80,12 @@ IOnlineTitleFilePtr FOnlineSubsystemPico::GetTitleFileInterface() const
 	return nullptr;
 }
 
+#if ENGINE_MINOR_VERSION < 26
 IOnlineStorePtr FOnlineSubsystemPico::GetStoreInterface() const
 {
 	return nullptr;
 }
+#endif
 
 IOnlineStoreV2Ptr FOnlineSubsystemPico::GetStoreV2Interface() const
 {
@@ -153,8 +153,6 @@ bool FOnlineSubsystemPico::Init()
 	MessageTaskManager = MakeUnique<FOnlineMessageTaskManagerPico>();
 	check(MessageTaskManager);
 	AchievementsInterface = MakeShareable(new FOnlineAchievementsPico(*this));
-	LeaderboardInterface = MakeShareable(new FOnlineLeaderboardPico(*this));
-
 	StartTicker();
 	return true;
 }
@@ -216,8 +214,7 @@ bool FOnlineSubsystemPico::Shutdown()
 
 FString FOnlineSubsystemPico::GetAppId() const
 {
-	//return "1";
-	return GConfig->GetStr(TEXT("/Script/PicoMobile.PicoMobileSettings"), TEXT("appID"), GEngineIni);
+	return GConfig->GetStr(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("Payment_AppID"), GEngineIni);
 }
 
 bool FOnlineSubsystemPico::Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar)

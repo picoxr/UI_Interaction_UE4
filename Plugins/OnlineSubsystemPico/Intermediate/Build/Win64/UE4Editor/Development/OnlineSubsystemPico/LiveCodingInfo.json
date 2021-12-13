@@ -1,0 +1,23 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.OnlineSubsystemPico.cpp.obj": [
+			"OnlineAchievementsInterfacePico.cpp.obj",
+			"OnlineMessageMultiTaskPico.cpp.obj",
+			"OnlineMessageTaskManagerPico.cpp.obj",
+			"OnlinePicoFunctionLibrary.cpp.obj",
+			"OnlinePicoPaymentManager.cpp.obj",
+			"OnlinePicoSettings.cpp.obj",
+			"OnlinePicoSettingsCustomization.cpp.obj",
+			"OnlinePlatformInterfacePico.cpp.obj",
+			"OnlineSubsystemPico.cpp.obj",
+			"OnlineSubsystemPicoModule.cpp.obj"
+		],
+		"Module.OnlineSubsystemPico.gen.cpp.obj": [
+			"OnlinePicoFunctionLibrary.gen.cpp.obj",
+			"OnlinePicoPaymentManager.gen.cpp.obj",
+			"OnlinePicoSettings.gen.cpp.obj",
+			"OnlineSubsystemPico.init.gen.cpp.obj"
+		]
+	}
+}

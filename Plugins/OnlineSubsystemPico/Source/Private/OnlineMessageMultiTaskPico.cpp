@@ -1,4 +1,6 @@
-﻿#include "OnlineMessageMultiTaskPico.h"
+// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+
+#include "OnlineMessageMultiTaskPico.h"
 
 void FOnlineMessageMultiTaskPico::AddNewRequest(uint64 RequestId)
 {
