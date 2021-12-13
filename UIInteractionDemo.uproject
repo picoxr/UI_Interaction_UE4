@@ -1,9 +1,13 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.26",
+	"EngineAssociation": "4.27",
 	"Category": "",
 	"Description": "",
 	"Plugins": [
+		{
+			"Name": "OnlineSubsystemPico",
+			"Enabled": true
+		},
 		{
 			"Name": "OculusVR",
 			"Enabled": false,
@@ -14,6 +18,39 @@
 			]
 		},
 		{
+			"Name": "OpenXRHandTracking",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"HoloLens",
+				"Android"
+			]
+		},
+		{
+			"Name": "OpenXREyeTracker",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"HoloLens",
+				"Android"
+			]
+		},
+		{
+			"Name": "OpenXR",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win32",
+				"Win64",
+				"Linux",
+				"Android",
+				"HoloLens"
+			]
+		},
+		{
 			"Name": "SteamVR",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
@@ -21,10 +58,6 @@
 				"Win64",
 				"Linux"
 			]
-		},
-		{
-			"Name": "OnlineSubsystemPico",
-			"Enabled": true
 		}
 	]
 }
