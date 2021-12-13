@@ -3,7 +3,7 @@
 - If you have any questions/comments, please visit [**Pico Developer Answers**](https://devanswers.pico-interactive.com/) and raise your question there.
 
 ## Unreal Engine 4 & SDK Version
-Unreal Engine : 4.27.1
+Unreal Engine : 4.27.2
 
 SDK : 2.0.2
 
