@@ -18,7 +18,7 @@
 			]
 		},
 		{
-			"Name": "OpenXRHandTracking",
+			"Name": "OpenXREyeTracker",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
 				"Win32",
@@ -29,7 +29,7 @@
 			]
 		},
 		{
-			"Name": "OpenXREyeTracker",
+			"Name": "OpenXRHandTracking",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
 				"Win32",
