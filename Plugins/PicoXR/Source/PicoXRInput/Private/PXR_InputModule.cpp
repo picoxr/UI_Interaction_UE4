@@ -1,6 +1,7 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_InputModule.h"
+#include "IPXR_HMDModule.h"
 #include "PXR_Input.h"
 
 #define LOCTEXT_NAMESPACE "FPicoXRInputModule"
@@ -17,7 +18,6 @@ FPicoXRInputModule::~FPicoXRInputModule()
 void FPicoXRInputModule::StartupModule()
 {
 	IInputDeviceModule::StartupModule();
-	InputDevice = MakeShared<FPicoXRInput>();
 }
 
 void FPicoXRInputModule::ShutdownModule()
@@ -25,13 +25,21 @@ void FPicoXRInputModule::ShutdownModule()
 	IInputDeviceModule::ShutdownModule();
 }
 
-TSharedPtr< class IInputDevice > FPicoXRInputModule::CreateInputDevice( const TSharedRef< FGenericApplicationMessageHandler >& InMessageHandler )
+TSharedPtr< class IInputDevice > FPicoXRInputModule::CreateInputDevice(const TSharedRef< FGenericApplicationMessageHandler >& InMessageHandler)
 {
-	if (InputDevice)
+	if (IPicoXRHMDModule::IsAvailable())
 	{
-		InputDevice->SetMessageHandler(InMessageHandler);
-	}	
-	return InputDevice;
+		if (UPicoXRHMDFunctionLibrary::GetPicoXRHMD())
+		{
+			InputDevice = MakeShared<FPicoXRInput>();
+			if (InputDevice)
+			{
+				InputDevice->SetMessageHandler(InMessageHandler);
+			}
+			return InputDevice;
+		}
+	}
+	return nullptr;
 }
 
 IMPLEMENT_MODULE(FPicoXRInputModule, PicoXRInput)

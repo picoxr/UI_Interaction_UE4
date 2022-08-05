@@ -1,7 +1,7 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
-#include "InputDevice.h"
+#include "IInputDevice.h"
 
 struct FPicoKeyNames
 {
@@ -27,6 +27,11 @@ struct FPicoKeyNames
 	static const FName PicoTouch_Left_Trigger_Touch;
 	static const FName PicoTouch_Left_Thumbrest_Touch;
 	static const FName PicoTouch_Left_Thumbstick_Touch;
+
+	static const FName PicoTouch_Left_Thumbstick_Up;
+	static const FName PicoTouch_Left_Thumbstick_Down;
+	static const FName PicoTouch_Left_Thumbstick_Left;
+	static const FName PicoTouch_Left_Thumbstick_Right;
 	
 	static const FName PicoTouch_Right_A_Click;
 	static const FName PicoTouch_Right_B_Click;
@@ -49,6 +54,11 @@ struct FPicoKeyNames
 	static const FName PicoTouch_Right_Trigger_Touch;
 	static const FName PicoTouch_Right_Thumbrest_Touch;
 	static const FName PicoTouch_Right_Thumbstick_Touch;
+
+	static const FName PicoTouch_Right_Thumbstick_Up;
+	static const FName PicoTouch_Right_Thumbstick_Down;
+	static const FName PicoTouch_Right_Thumbstick_Left;
+	static const FName PicoTouch_Right_Thumbstick_Right;
 
 };
 
@@ -75,6 +85,11 @@ struct FPicoTouchKey
 	static const FKey PicoTouch_Left_Trigger_Touch;
 	static const FKey PicoTouch_Left_Thumbrest_Touch;
 	static const FKey PicoTouch_Left_Thumbstick_Touch;
+
+	static const FKey PicoTouch_Left_Thumbstick_Up;
+	static const FKey PicoTouch_Left_Thumbstick_Down;
+	static const FKey PicoTouch_Left_Thumbstick_Left;
+	static const FKey PicoTouch_Left_Thumbstick_Right;
 	
 	static const FKey PicoTouch_Right_A_Click;
 	static const FKey PicoTouch_Right_B_Click;
@@ -96,5 +111,10 @@ struct FPicoTouchKey
 	static const FKey PicoTouch_Right_Trigger_Touch;
 	static const FKey PicoTouch_Right_Thumbrest_Touch;
 	static const FKey PicoTouch_Right_Thumbstick_Touch;
+
+	static const FKey PicoTouch_Right_Thumbstick_Up;
+	static const FKey PicoTouch_Right_Thumbstick_Down;
+	static const FKey PicoTouch_Right_Thumbstick_Left;
+	static const FKey PicoTouch_Right_Thumbstick_Right;
 	
 };

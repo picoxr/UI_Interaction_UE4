@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_InputFunctionLibrary.h"
 #include "PXR_Input.h"
@@ -21,7 +21,6 @@ FPicoXRInput* GetPicoXRInput()
             return static_cast<FPicoXRInput*>(MotionController);
         }
     }
-    PXR_LOGE(PxrUnreal,"GetPicoXRInput Failed!");
     return nullptr;
 }
 
@@ -55,7 +54,10 @@ bool UPicoXRInputFunctionLibrary::PXR_GetControllerConnectionState(EPicoXRContro
 		}
         return true;
     }  
-    return false;
+#if PLATFORM_WINDOWS
+	Status = true;
+#endif
+	return false;
 }
 
 bool UPicoXRInputFunctionLibrary::PXR_GetMainControllerHandle( EPicoXRHandedness& Handedness)
@@ -189,6 +191,9 @@ void UPicoXRInputFunctionLibrary::PXR_GetControllerDeviceType(EPicoXRControllerD
 	Pxr_GetControllerCapabilities(PXR_CONTROLLER_LEFT, &Cap);
 	ControllerType = Cap.type;
 #endif
+#if PLATFORM_WINDOWS
+	ControllerType = 5;
+#endif
 	OutControllerType = static_cast<EPicoXRControllerDeviceType>(ControllerType);
 }
 
@@ -240,16 +245,26 @@ void UPicoXRInputFunctionLibrary::PXR_SetControllerOriginOffset(EPicoXRControlle
     }
 }
 
-void UPicoXRInputFunctionLibrary::PXR_GetControllerPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FVector& OutLocation, FRotator& OutRotation)
+bool UPicoXRInputFunctionLibrary::PXR_GetControllerPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FVector& OutLocation, FRotator& OutRotation)
 {
+	bool Result = false;
     FVector PredictedLocation; FRotator PredictedRotation;
     PredictedLocation = FVector::ZeroVector;
     PredictedRotation = FRotator::ZeroRotator;
     FPicoXRInput* PxrInput = GetPicoXRInput();
     if (PxrInput)
 	{
-	    PxrInput->GetPredictedLocationAndRotation(DeviceHand, PredictedTime, PredictedRotation,PredictedLocation);
+		Result = PxrInput->GetPredictedLocationAndRotation(DeviceHand, PredictedTime, PredictedRotation, PredictedLocation);
     }
     OutLocation = PredictedLocation;
     OutRotation = PredictedRotation;
+	return Result;
+}
+
+int UPicoXRInputFunctionLibrary::PXR_SetControllerEnableKey(bool isEnable, EPxrControllerKeyMap Key) {
+#if PLATFORM_ANDROID
+    PxrControllerKeyMap PxrKey = static_cast<PxrControllerKeyMap>(Key);
+    return Pxr_SetControllerEnableKey(isEnable, PxrKey);
+#endif
+    return 0;
 }

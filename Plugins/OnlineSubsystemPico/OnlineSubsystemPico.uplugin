@@ -1,43 +1,36 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "2.0.2.3",
-	"FriendlyName": "Online Subsystem Pico",
-	"Description": "Access to Pico platform",
-	"Category": "Online Platform",
-	"CreatedBy": "Pico Technology Co., Ltd",
-	"CreatedByURL": "https://www.pico-interactive.com/",
-	"DocsURL": "",
+	"VersionName": "1.0",
+	"FriendlyName": "OnlineSubsystemPico",
+	"Description": "",
+  "Category": "OnlineSubsystem",
+  "CreatedBy": "Pico Technology Co., Ltd",
+  "CreatedByURL": "https://www.pico-interactive.com/",
+  "DocsURL": "http://sdk.picovr.com/docs/UnrealSDK/cn/index.html",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"EnabledByDefault": false,
+	"EngineVersion": "4.27.0",
 	"CanContainContent": true,
-	"IsBetaVersion": false,
 	"Installed": true,
-	"Modules": 
-	[
+	"Modules": [
 		{
 			"Name": "OnlineSubsystemPico",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault",
+			"LoadingPhase": "Default",
 			"WhitelistPlatforms": [
 				"Win64",
 				"Android"
 			]
 		}
 	],
-	"Plugins": 
-	[
+	"Plugins": [
 		{
 			"Name": "OnlineSubsystem",
 			"Enabled": true
 		},
 		{
 			"Name": "OnlineSubsystemUtils",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoXR",
 			"Enabled": true
 		}
 	]

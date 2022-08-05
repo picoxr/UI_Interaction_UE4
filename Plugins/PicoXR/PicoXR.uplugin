@@ -1,7 +1,7 @@
 {
   "FileVersion": 3,
   "Version": 1,
-  "VersionName": "2.0.2.3",
+  "VersionName": "2.0.5.4",
   "FriendlyName": "PicoXR",
   "Description": "",
   "Category": "Virtual Reality",
@@ -36,7 +36,33 @@
         "Win64",
         "Android"
       ]
+    },
+    {
+      "Name": "PicoXRDPInput",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64"
+      ]
+    },
+    {
+      "Name": "PicoXRMRC",
+      "Type": "Runtime",
+      "LoadingPhase": "PostEngineInit",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Android"
+      ]
+    },
+    {
+      "Name": "PicoXRDPHMD",
+      "Type": "Runtime",
+      "LoadingPhase": "PostConfigInit",
+      "WhitelistPlatforms": [
+        "Win64"
+      ]
     }
+
   ],
   "Plugins":
   [

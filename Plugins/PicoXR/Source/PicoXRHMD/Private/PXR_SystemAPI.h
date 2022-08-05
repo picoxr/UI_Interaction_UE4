@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -194,6 +194,7 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoEnableLargeSpaceDelegate, bool, Result);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoSwitchLargeSpaceStatusDelegate, const FString, Result); 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoExportMapsDelegate, bool, Result);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoImportMapsDelegate, bool, Result);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate, int32, Result);
 
 UCLASS(ClassGroup = (PXRComponent), meta = (BlueprintSpawnableComponent))
 class PICOXRHMD_API UPicoXRSystemAPI : public UActorComponent
@@ -389,6 +390,23 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
 		void PXR_ImportMaps(FPicoImportMapsDelegate InImportMapsDelegate, int ext = 0);
 
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_GetCpuUsages(TArray<float> &OutData);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_GetDeviceTemperatures(int inType, int inSource,TArray<float> &OutData);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_Capture();
 	
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_Record();
+
+	static FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate ControlSetAutoConnectWIFIWithErrorCodeDelegate;
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_ControlSetAutoConnectWIFIWithErrorCode(FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate InControlSetAutoConnectWIFIWithErrorCodeDelegate,FString ssid, FString pwd, int ext);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRSystemAPI")
+		void PXR_AppKeepAlive(FString appPackageName, bool keepAlive, int ext);
 };
 

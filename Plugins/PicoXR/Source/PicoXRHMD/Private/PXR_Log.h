@@ -1,15 +1,17 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 #pragma once
 DEFINE_LOG_CATEGORY_STATIC(PxrUnreal, Log, All);
-#if WITH_EDITOR
+DEFINE_LOG_CATEGORY_STATIC(PxrUnrealFunctionLibrary, Log, All);
+DEFINE_LOG_CATEGORY_STATIC(LogMRC, Log, All);
+#if !UE_BUILD_SHIPPING
 	#define PLATFORM_CHAR(str) str
 
 	#define PXR_LOGV(CategoryName, Format, ...) UE_LOG(CategoryName, Verbose, TEXT(Format), ##__VA_ARGS__)
 	#define PXR_LOGD(CategoryName, Format, ...) UE_LOG(CategoryName, Display, TEXT(Format), ##__VA_ARGS__)
-	#define PXR_LOGI(CategoryName, Format, ...) UE_LOG(CategoryName, Display, TEXT(Format), ##__VA_ARGS__)
+	#define PXR_LOGI(CategoryName, Format, ...) UE_LOG(CategoryName, Log, TEXT(Format), ##__VA_ARGS__)
 	#define PXR_LOGW(CategoryName, Format, ...) UE_LOG(CategoryName, Warning, TEXT(Format), ##__VA_ARGS__)
 	#define PXR_LOGE(CategoryName, Format, ...) UE_LOG(CategoryName, Error, TEXT(Format), ##__VA_ARGS__)
-	#define PXR_LOGF(CategoryName, Format, ...) UE_LOG(CategoryName, Error, TEXT(Format), ##__VA_ARGS__)
+	#define PXR_LOGF(CategoryName, Format, ...) UE_LOG(CategoryName, Fatal, TEXT(Format), ##__VA_ARGS__)
 
 #elif PLATFORM_ANDROID
 	#define PLATFORM_CHAR(str) TCHAR_TO_UTF8(str)

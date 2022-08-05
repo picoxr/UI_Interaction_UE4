@@ -1,0 +1,74 @@
+﻿//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+
+#include "/Engine/Private/Common.ush"
+#include "/Engine/Public/Platform.ush"
+
+Texture2D InTexture;
+SamplerState InTextureSampler;
+int MipLevel;
+
+void Main(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSample(InTexture, InTextureSampler,float2(Input.UV.x,1-Input.UV.y));
+	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+}
+
+void MainInvertAlpha(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSample(InTexture, InTextureSampler, Input.UV);
+	OutColor.a = 1.f - OutColor.a;
+}
+
+void MainsRGBSource(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSample(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y));
+	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
+	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+}
+
+void MainMipLevel(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
+	OutColor.rgb = OutColor.a != 1 ? float3(0,1,0) : OutColor.rgb;
+}
+
+void MainsRGBSourceMipLevel(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
+	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
+	OutColor.rgb = OutColor.a != 1 ? float3(0,1,0) : OutColor.rgb;
+}
+
+void MainMipLevel425(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
+	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+}
+
+void MainsRGBSourceMipLevel425(
+	FScreenVertexOutput Input,
+	out float4 OutColor : SV_Target0
+	)
+{
+	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
+	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
+	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+}

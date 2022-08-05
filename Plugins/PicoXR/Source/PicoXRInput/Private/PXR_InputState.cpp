@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_InputState.h"
 
@@ -22,6 +22,10 @@ const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_VolumeDown_Click("PicoTo
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Click("PicoTouch_Left_Thumbstick_Click");
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Touch("PicoTouch_Left_Thumbstick_Touch");
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbrest_Touch("PicoTouch_Left_Thumbrest_Touch");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Up("PicoTouch_Left_Thumbstick_Up");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Down("PicoTouch_Left_Thumbstick_Down");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Left("PicoTouch_Left_Thumbstick_Left");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Left_Thumbstick_Right("PicoTouch_Left_Thumbstick_Right");
 
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_A_Click("PicoTouch_Right_A_Click");
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_B_Click("PicoTouch_Right_B_Click");
@@ -41,6 +45,10 @@ const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_VolumeDown_Click("PicoT
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Click("PicoTouch_Right_Thumbstick_Click");
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Touch("PicoTouch_Right_Thumbstick_Touch");
 const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbrest_Touch("PicoTouch_Right_Thumbrest_Touch");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Up("PicoTouch_Right_Thumbstick_Up");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Down("PicoTouch_Right_Thumbstick_Down");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Left("PicoTouch_Right_Thumbstick_Left");
+const FPicoKeyNames::Type FPicoKeyNames::PicoTouch_Right_Thumbstick_Right("PicoTouch_Right_Thumbstick_Right");
 
 const FKey FPicoTouchKey::PicoTouch_Left_Home_Click("PicoTouch_Left_Home_Click");
 const FKey FPicoTouchKey::PicoTouch_Left_VolumeUp_Click("PicoTouch_Left_VolumeUp_Click");
@@ -60,6 +68,10 @@ const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Y("PicoTouch_Left_Thumbstick
 const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Click("PicoTouch_Left_Thumbstick_Click");
 const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Touch("PicoTouch_Left_Thumbstick_Touch");
 const FKey FPicoTouchKey::PicoTouch_Left_Thumbrest_Touch("PicoTouch_Left_Thumbrest_Touch");
+const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Up("PicoTouch_Left_Thumbstick_Up");
+const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Down("PicoTouch_Left_Thumbstick_Down");
+const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Left("PicoTouch_Left_Thumbstick_Left");
+const FKey FPicoTouchKey::PicoTouch_Left_Thumbstick_Right("PicoTouch_Left_Thumbstick_Right");
 
 const FKey FPicoTouchKey::PicoTouch_Right_Home_Click("PicoTouch_Right_Home_Click");
 const FKey FPicoTouchKey::PicoTouch_Right_VolumeUp_Click("PicoTouch_Right_VolumeUp_Click");
@@ -79,5 +91,9 @@ const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Y("PicoTouch_Right_Thumbsti
 const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Click("PicoTouch_Right_Thumbstick_Click");
 const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Touch("PicoTouch_Right_Thumbstick_Touch");
 const FKey FPicoTouchKey::PicoTouch_Right_Thumbrest_Touch("PicoTouch_Right_Thumbrest_Touch");
+const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Up("PicoTouch_Right_Thumbstick_Up");
+const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Down("PicoTouch_Right_Thumbstick_Down");
+const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Left("PicoTouch_Right_Thumbstick_Left");
+const FKey FPicoTouchKey::PicoTouch_Right_Thumbstick_Right("PicoTouch_Right_Thumbstick_Right");
 
 #undef LOCTEXT_NAMESPACE

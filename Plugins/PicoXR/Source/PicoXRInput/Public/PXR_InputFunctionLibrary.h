@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -45,6 +45,30 @@ enum class EPicoXRControllerDeviceType : uint8
     Neo2    = 4  UMETA(DisplayName = "Pico Neo2"),
 	Neo3    = 5  UMETA(DisplayName = "Pico Neo3"),
 };
+
+UENUM(BlueprintType)
+enum class EPxrControllerKeyMap : uint8
+{
+	PXR_CONTROLLER_KEY_HOME = 0,
+	PXR_CONTROLLER_KEY_AX = 1,
+	PXR_CONTROLLER_KEY_BY = 2,
+	PXR_CONTROLLER_KEY_BACK = 3,
+	PXR_CONTROLLER_KEY_TRIGGER = 4,
+	PXR_CONTROLLER_KEY_VOL_UP = 5,
+	PXR_CONTROLLER_KEY_VOL_DOWN = 6,
+	PXR_CONTROLLER_KEY_ROCKER = 7,
+	PXR_CONTROLLER_KEY_GRIP = 8,
+	PXR_CONTROLLER_KEY_TOUCHPAD = 9,
+	PXR_CONTROLLER_KEY_LASTONE = 127,
+
+	PXR_CONTROLLER_TOUCH_AX = 128,
+	PXR_CONTROLLER_TOUCH_BY = 129,
+	PXR_CONTROLLER_TOUCH_ROCKER = 130,
+	PXR_CONTROLLER_TOUCH_TRIGGER = 131,
+	PXR_CONTROLLER_TOUCH_THUMB = 132,
+	PXR_CONTROLLER_TOUCH_LASTONE = 255
+};
+
 
 UCLASS()
 class PICOXRINPUT_API UPicoXRInputFunctionLibrary : public UBlueprintFunctionLibrary
@@ -179,6 +203,9 @@ public:
 	 * @param OutRotation    (Out) Rotation with predicted time.
 	 */
 	UFUNCTION(BlueprintCallable,Category="PXR|PXRInput")
-	static void PXR_GetControllerPredictedLocationAndRotation(EControllerHand DeviceHand,float PredictedTime, FVector& OutLocation,FRotator &OutRotation);
+	static bool PXR_GetControllerPredictedLocationAndRotation(EControllerHand DeviceHand,float PredictedTime, FVector& OutLocation,FRotator &OutRotation);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRInput")
+	static int  PXR_SetControllerEnableKey(bool isEnable, EPxrControllerKeyMap Key);
 
 };

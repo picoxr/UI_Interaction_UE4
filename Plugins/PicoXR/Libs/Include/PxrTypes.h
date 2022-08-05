@@ -5,23 +5,11 @@
 #include <stdint.h>
 #include "PxrEnums.h"
 #include <jni.h>
-
-#if !defined(VK_VERSION_1_0)
+#ifndef VK_VERSION_1_0
 #define VK_DEFINE_HANDLE(object) typedef struct object##_T* object;
-#if defined(__LP64__) || defined(_WIN64) || (defined(__x86_64__) && !defined(__ILP32__)) || \
-    defined(_M_X64) || defined(__ia64) || defined(_M_IA64) || defined(__aarch64__) ||       \
-    defined(__powerpc64__)
-#define VK_DEFINE_NON_DISPATCHABLE_HANDLE(object) typedef struct object##_T* object;
-#else
-#define VK_DEFINE_NON_DISPATCHABLE_HANDLE(object) typedef uint64_t object;
-#endif
 VK_DEFINE_HANDLE(VkInstance)
 VK_DEFINE_HANDLE(VkPhysicalDevice)
 VK_DEFINE_HANDLE(VkDevice)
-VK_DEFINE_HANDLE(VkQueue)
-VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkImage)
-VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDeviceMemory)
-#define VK_NULL_HANDLE 0
 #endif
 
 static const int PXR_MAX_EVENT_COUNT = 20;
@@ -30,7 +18,9 @@ typedef uint64_t PxrTrackingModeFlags;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_ROTATION_BIT = 0x00000001;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_POSITION_BIT = 0x00000002;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_EYE_BIT = 0x00000004;
-
+static const PxrTrackingModeFlags PXR_TRACKING_MODE_FACE_BIT = 0x00000008;
+static const PxrTrackingModeFlags PXR_TRACKING_MODE_PHOENIX_BIT = 0x00000010;
+static const PxrTrackingModeFlags PXR_TRACKING_MODE_HAND_BIT = 0x00000020;
 typedef struct PxrVulkanBinding_ {
     VkInstance instance;
     VkPhysicalDevice physicalDevice;
@@ -127,7 +117,68 @@ typedef struct PxrEyeTrackingData_ {
     float      foveatedGazeDirection[3];   //!< Position of the gaze direction in meters from the HMD center-eye coordinate system's origin.
     int32_t    foveatedGazeTrackingState;  //!< The current state of the foveatedGazeDirection signal.
 } PxrEyeTrackingData;
+enum BlendShapeIndex {
+    EyeLookDown_L = 0,
+    NoseSneer_L = 1,
+    EyeLookIn_L = 2,
+    BrowInnerUp = 3,
+    BrowDown_L = 25,
+    MouthClose = 5,
+    MouthLowerDown_R = 6,
+    JawOpen = 7,
+    MouthLowerDown_L = 9,
+    MouthFunnel = 10,
+    EyeLookIn_R = 11,
+    EyeLookDown_R = 12,
+    NoseSneer_R = 13,
+    MouthRollUpper = 14,
+    JawRight = 15,
+    MouthDimple_L = 16,
+    MouthRollLower = 17,
+    MouthSmile_L = 18,
+    MouthPress_L = 19,
+    MouthSmile_R = 20,
+    MouthPress_R = 21,
+    MouthDimple_R = 22,
+    MouthLeft = 23,
+    EyeSquint_R = 41,
+    EyeSquint_L = 4,
+    MouthFrown_L = 26,
+    EyeBlink_L = 27,
+    CheekSquint_L = 28,
+    BrowOuterUp_L = 29,
+    EyeLookUp_L = 30,
+    JawLeft = 31,
+    MouthStretch_L = 32,
+    MouthStretch_R = 33,
+    MouthPucker = 34,
+    EyeLookUp_R = 35,
+    BrowOuterUp_R = 36,
+    CheekSquint_R = 37,
+    EyeBlink_R = 38,
+    MouthUpperUp_L = 39,
+    MouthFrown_R = 40,
+    BrowDown_R = 24,
+    JawForward = 42,
+    MouthUpperUp_R = 43,
+    CheekPuff = 44,
+    EyeLookOut_L = 45,
+    EyeLookOut_R = 46,
+    EyeWide_R = 47,
+    EyeWide_L = 49,
+    MouthRight = 48,
+    MouthShrugLower = 8,
+    MouthShrugUpper = 50,
+    TongueOut = 51,
+};
 
+#define BLEND_SHAPE_NUMS 52
+
+typedef struct PXrFaceTrackingData{
+    int64_t timestamp;                         // us​
+    float blendShapeWeight[BLEND_SHAPE_NUMS];   //52（51+1）表情分量权重系​
+    float reserved[16];
+} PxrFaceTrackingData;
 typedef struct PxrLayerHeader_ {
     int              layerId;
     uint32_t         layerFlags;
@@ -333,5 +384,24 @@ typedef struct PxrSeeThoughData_ {
     int64_t               startTimeOfExposure;
     bool                  valid;
 }PxrSeeThoughData;
+typedef struct AudioClipData_{
+    uint32_t delaytag;
+    uint32_t slot;
+    uint32_t buffersize;
+    uint32_t sampleRate;
+    uint32_t channelMask;
+    uint32_t bitrate;
+    uint32_t slotConfig;
+    uint32_t datatype;
+    uint32_t isCache;
+    uint32_t clicpId;
+} AudioClipData;
 
+typedef enum XrTrackingMode
+{
+    XR_TRACKING_MODE_ROTATION = 0x1,
+    XR_TRACKING_MODE_POSITION = 0x2,
+    XR_TRACKING_MODE_EYE = 0x4,
+    XR_TRACKING_MODE_FACE = 0x8
+}XrTrackingMode;
 #endif  // PXR_TYPES_H

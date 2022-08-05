@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDSwapChain.h"
 #include "OpenGLDrv.h"
@@ -35,7 +35,7 @@ FXRSwapChainPtr CreateSwapChain_OpenGL(uint8 Format, uint32 SizeX, uint32 SizeY,
     layerParam.mipmapCount = NumMips;
     layerParam.sampleCount = NumSamples;
     layerParam.arraySize = ArraySize;
-    layerParam.format = GL_RGBA8;
+    layerParam.format = IsMobileColorsRGB() ? GL_SRGB8_ALPHA8 : GL_RGBA8;
     if (ArraySize == 2) {
         layerParam.layerLayout = PXR_LAYER_LAYOUT_ARRAY;
         Pxr_EnableMultiview(true);
@@ -132,28 +132,28 @@ FXRSwapChainPtr CreateSwapChain_Vulkan(uint8 Format, uint32 SizeX, uint32 SizeY,
 
     if (IsMobileColorsRGB())
     {
-        Flags |= TexCreate_SRGB;
+        TargetableTextureFlags |= TexCreate_SRGB;
     }
 
     if (ArraySize == 1) {
         for (const auto& TexutreResource : TextureResources) {
-            TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, SizeX, SizeY, NumMips, NumSamples, TexutreResource, Flags)));
+            TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, SizeX, SizeY, NumMips, NumSamples, TexutreResource, TargetableTextureFlags)));
             PXR_LOGI(PxrUnreal,"TextureChain.size = %d", TextureChain.Num());
         }
 
         if (ENGINE_MINOR_VERSION < 25) {
-            ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, SizeX, SizeY, NumMips, NumSamples, TextureResources[0], Flags));
+            ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, SizeX, SizeY, NumMips, NumSamples, TextureResources[0], TargetableTextureFlags));
         } else {
             ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
         }
     } else if (ArraySize == 2) {
         for (const auto& TexutreResource : TextureResources) {
-            TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DArrayFromResource(PF_R8G8B8A8, SizeX, SizeY, ArraySize, NumMips, NumSamples, TexutreResource, Flags)));
+            TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DArrayFromResource(PF_R8G8B8A8, SizeX, SizeY, ArraySize, NumMips, NumSamples, TexutreResource, TargetableTextureFlags)));
             PXR_LOGI(PxrUnreal, "MultiView TextureChain.size = %d", TextureChain.Num());
         }
 
         if (ENGINE_MINOR_VERSION < 25) {
-            ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DArrayFromResource(PF_R8G8B8A8, SizeX, SizeY, ArraySize, NumMips, NumSamples, TextureResources[0], Flags));
+            ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DArrayFromResource(PF_R8G8B8A8, SizeX, SizeY, ArraySize, NumMips, NumSamples, TextureResources[0], TargetableTextureFlags));
         } else {
             ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
         }

@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDRenderBridge.h"
 #include "PXR_HMD.h"
@@ -13,6 +13,7 @@
 #include "CommonRenderResources.h"
 #include "HardwareInfo.h"
 #include "Runtime/Core/Public/Modules/ModuleManager.h"
+#include "PXR_Shaders.h"
 #if PLATFORM_ANDROID
 #include "VulkanRHIPrivate.h"
 #include "VulkanResources.h"
@@ -32,7 +33,7 @@ bool FPicoXRRenderBridge::NeedsNativePresent()
 
 bool FPicoXRRenderBridge::Present(int32& InOutSyncInterval)
 {
-	PicoXRHMD->EndFrame_RHIThread();
+	PicoXRHMD->OnRHIFrameEnd_RHIThread();
 #if UE_BUILD_DEBUG || UE_BUILD_DEVELOPMENT
 	// frame rate log
 	static int32 FrameCount = 0;
@@ -87,7 +88,7 @@ int FPicoXRRenderBridge::GetSystemRecommendedMSAA() const
 	return msaa;
 }
 
-void FPicoXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture* DstTexture, FRHITexture* SrcTexture, FIntRect DstRect, FIntRect SrcRect, bool bPremultiply, bool bNoAlpha, bool bReverse, bool sRGBSource) const
+void FPicoXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture* DstTexture, FRHITexture* SrcTexture, FIntRect DstRect, FIntRect SrcRect, bool bPremultiply, bool bNoAlpha,bool bIsMRCLayer, bool bReverse, bool sRGBSource) const
 {
     check(IsInRenderingThread());
 
@@ -171,30 +172,71 @@ void FPicoXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 #if ENGINE_MINOR_VERSION > 24
                 if (!sRGBSource)
                 {
-                    TShaderMapRef<FScreenPSMipLevel> PixelShader(ShaderMap);
-                    GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
-                    SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-                    PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    if (bIsMRCLayer)
+                    {
+						TShaderMapRef<FMRCPSMipLevel> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    }
+                    else
+					{
+                        TShaderMapRef<FScreenPSMipLevel> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    }
+
                 } else {
-                    TShaderMapRef<FScreenPSsRGBSourceMipLevel> PixelShader(ShaderMap);
-                    GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
-                    SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-                    PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    if (bIsMRCLayer)
+					{
+						TShaderMapRef<FMRCPSsRGBSourceMipLevel> PixelShader(ShaderMap);             
+                        GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    }
+                    else
+					{
+                        TShaderMapRef<FScreenPSsRGBSourceMipLevel> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+                    }
                 }
 
                 RHICmdList.SetViewport(DstRect.Min.X, DstRect.Min.Y, 0.0f, DstRect.Min.X + ViewportWidth, DstRect.Min.Y + ViewportHeight, 1.0f);
 #else
                 if (!sRGBSource)
                 {
-                    TShaderMapRef<FScreenPS> PixelShader(ShaderMap);
-                    GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
-                    SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-                    PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    if (bIsMRCLayer)
+                    {
+						TShaderMapRef<FMRCPS> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    }
+                    else
+                    {
+						TShaderMapRef<FScreenPS> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    }
                 } else {
-                    TShaderMapRef<FScreenPSsRGBSource> PixelShader(ShaderMap);
-                    GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
-                    SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-                    PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    if (bIsMRCLayer)
+                    {
+						TShaderMapRef<FMRCPSsRGBSource> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    }
+                    else
+                    {
+						TShaderMapRef<FScreenPSsRGBSource> PixelShader(ShaderMap);
+						GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
+						SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+						PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
+                    }
                 }
 
                 RHICmdList.SetViewport(DstRect.Min.X, DstRect.Min.Y, 0.0f, DstRect.Max.X, DstRect.Max.Y, 1.0f);

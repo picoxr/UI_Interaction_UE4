@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -24,7 +24,7 @@ public:
 #endif
     virtual void GetVulkanGraphics();
     virtual int GetSystemRecommendedMSAA() const;
-    void TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture* DstTexture, FRHITexture* SrcTexture, FIntRect DstRect=FIntRect(), FIntRect SrcRect = FIntRect(), bool bPremultiply=false, bool bNoAlpha=false, bool bReverse=false, bool sRGBSource=false) const;
+    void TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture* DstTexture, FRHITexture* SrcTexture, FIntRect DstRect=FIntRect(), FIntRect SrcRect = FIntRect(), bool bPremultiply=false, bool bNoAlpha=false, bool bIsMRCLayer = false, bool bReverse=false, bool sRGBSource=false) const;
 
     FPicoXRHMD* PicoXRHMD;
     FXRSwapChainPtr SwapChain;

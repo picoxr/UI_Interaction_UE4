@@ -2,7 +2,10 @@
 	"BuildId": "17155196",
 	"Modules": 
 	{
+		"PicoXRDPHMD": "UE4Editor-PicoXRDPHMD.dll",
+		"PicoXRDPInput": "UE4Editor-PicoXRDPInput.dll",
 		"PicoXRHMD": "UE4Editor-PicoXRHMD.dll",
-		"PicoXRInput": "UE4Editor-PicoXRInput.dll"
+		"PicoXRInput": "UE4Editor-PicoXRInput.dll",
+		"PicoXRMRC": "UE4Editor-PicoXRMRC.dll"
 	}
 }

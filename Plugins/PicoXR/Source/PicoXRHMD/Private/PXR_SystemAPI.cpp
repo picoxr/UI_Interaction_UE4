@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 #include "PXR_SystemAPI.h"
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
@@ -22,6 +22,7 @@ FPicoEnableLargeSpaceDelegate UPicoXRSystemAPI::EnableLargeSpaceDelegate;
 FPicoSwitchLargeSpaceStatusDelegate UPicoXRSystemAPI::SwitchLargeSpaceStatusDelegate;
 FPicoExportMapsDelegate UPicoXRSystemAPI::ExportMapsDelegate;
 FPicoImportMapsDelegate UPicoXRSystemAPI::ImportMapsDelegate;
+FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate UPicoXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate;
 // Sets default values for this component's properties
 UPicoXRSystemAPI::UPicoXRSystemAPI()
 {
@@ -722,6 +723,13 @@ void UPicoXRSystemAPI::PXR_SwitchLargeSpaceScene(FPicoEnableLargeSpaceDelegate I
 		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, open, ext);
 	}
 #endif
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetSwitchLargeSpaceStatus", "(I)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, ext);
+	}
+#endif
 }
 
 void UPicoXRSystemAPI::PXR_GetSwitchLargeSpaceStatus(FPicoSwitchLargeSpaceStatusDelegate InSwitchLargeSpaceStatusDelegate, int ext)
@@ -769,6 +777,92 @@ void UPicoXRSystemAPI::PXR_ImportMaps(FPicoImportMapsDelegate InImportMapsDelega
 	{
 		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "ImportMaps", "(I)V", false);
 		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, ext);
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_GetCpuUsages(TArray<float>& OutData)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetCpuUsages", "()[F", false);
+		auto FloatValuesArray = NewScopedJavaObject(Env, (jfloatArray)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method));
+		jfloat* FloatValues = Env->GetFloatArrayElements(*FloatValuesArray, 0);
+		jsize NumProducts = Env->GetArrayLength(*FloatValuesArray);
+		OutData.Empty();
+		for (int i = 0; i < NumProducts; i++)
+		{
+			UE_LOG(LogHMD, Log, TEXT("Data[%d]:%f"), i, FloatValues[i]);
+			OutData.Add(FloatValues[i]);
+		}
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_GetDeviceTemperatures(int inType, int inSource, TArray<float>& OutData)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetDeviceTemperatures", "(II)[F", false);
+		auto FloatValuesArray = NewScopedJavaObject(Env, (jfloatArray)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, inType, inSource));
+		jfloat* FloatValues = Env->GetFloatArrayElements(*FloatValuesArray, 0);
+		jsize NumProducts = Env->GetArrayLength(*FloatValuesArray);
+		OutData.Empty();
+		for (int i = 0; i < NumProducts; i++)
+		{
+			UE_LOG(LogHMD, Log, TEXT("Data[%d]:%f"), i, FloatValues[i]);
+			OutData.Add(FloatValues[i]);
+		}
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_Capture()
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "Capture", "()V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_Record()
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "Record", "()V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_ControlSetAutoConnectWIFIWithErrorCode(FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate InControlSetAutoConnectWIFIWithErrorCodeDelegate, FString ssid, FString pwd, int ext)
+{
+	ControlSetAutoConnectWIFIWithErrorCodeDelegate = InControlSetAutoConnectWIFIWithErrorCodeDelegate;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		auto jSsid = FJavaHelper::ToJavaString(Env, ssid);
+		auto jPwd = FJavaHelper::ToJavaString(Env, pwd);
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "ControlSetAutoConnectWIFIWithErrorCode", "(Ljava/lang/String;Ljava/lang/String;I)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, *jSsid, *jPwd, ext);
+	}
+#endif
+}
+
+void UPicoXRSystemAPI::PXR_AppKeepAlive(FString appPackageName, bool keepAlive, int ext)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		auto jAppPackageName = FJavaHelper::ToJavaString(Env, appPackageName);
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "AppKeepAlive", "(Ljava/lang/String;ZI)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, *jAppPackageName, keepAlive, ext);
 	}
 #endif
 }
@@ -961,6 +1055,11 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCLa
 {
 	FString result = FJavaHelper::FStringFromLocalRef(env, Result);
 	UPicoXRSystemAPI::SwitchLargeSpaceStatusDelegate.ExecuteIfBound(result);
+
+	if (GEngine && GEngine->XRSystem.IsValid())
+	{
+		static_cast<FPicoXRHMD*>(GEngine->XRSystem.Get())->OnLargeSpaceStatusChanged(result == "1" ? true : false);
+	}
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCExportMapsCallback(JNIEnv * env, jclass clazz, jboolean Result)
@@ -985,6 +1084,11 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCIm
 	{
 		UPicoXRSystemAPI::ImportMapsDelegate.ExecuteIfBound(false);
 	}
+}
+
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(JNIEnv * env, int Result)
+{
+	UPicoXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate.ExecuteIfBound(Result);
 }
 
 #endif

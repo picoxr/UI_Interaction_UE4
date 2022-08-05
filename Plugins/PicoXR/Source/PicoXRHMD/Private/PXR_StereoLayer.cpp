@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_StereoLayer.h"
 #include "HardwareInfo.h"
@@ -20,7 +20,7 @@
 #include "VulkanRHIPrivate.h"
 #include "VulkanResources.h"
 #endif
-#if ENGINE_MINOR_VERSION==24
+
 FPxrLayer::FPxrLayer(uint32 InPxrLayerId) :
 	PxrLayerId(InPxrLayerId)
 {
@@ -28,32 +28,44 @@ FPxrLayer::FPxrLayer(uint32 InPxrLayerId) :
 
 FPxrLayer::~FPxrLayer()
 {
-	if (!IsInGameThread())
+	if (IsInGameThread())
+	{
+		ExecuteOnRenderThread([this]()
+			{
+				ExecuteOnRHIThread_DoNotWait([this]()
+					{
+#if PLATFORM_ANDROID
+                        PXR_LOGD(PxrUnreal, "~FPxrLayer()a DestroyLayer %d", PxrLayerId);
+						Pxr_DestroyLayer(PxrLayerId);
+#endif
+					});
+			});
+	}
+	else
 	{
 		ExecuteOnRHIThread_DoNotWait([this]()
 			{
 #if PLATFORM_ANDROID
+                PXR_LOGD(PxrUnreal, "~FPxrLayer()b DestroyLayer %d", PxrLayerId);
 				Pxr_DestroyLayer(PxrLayerId);
 #endif
 			});
 	}
 }
-#endif
 
 uint64_t OverlayImages[2] = {};
-uint64_t OverlayNativeImages[2] = {};
+uint64_t OverlayNativeImages[2][3] = {};
 
 FPicoXRStereoLayer::FPicoXRStereoLayer(FPicoXRHMD* InHMDDevice, uint32 InId, const IStereoLayers::FLayerDesc& InDesc)
-    : HMDDevice(InHMDDevice)
+    : bMRCLayer(false)
+    , HMDDevice(InHMDDevice)
     , LayerId(InId)
-    , bUpdateTexture(false)
+    , bTextureNeedUpdate(false)
     , LayerState(EPicoXRLayerState::Unknown)
     , NeedDestoryRuntimeLayer(true)
     , UnderlayComponent(NULL)
     , UnderlayActor(NULL)
-#if ENGINE_MINOR_VERSION==24
     , PxrLayer(nullptr)
-#endif
 {
     PXR_LOGD(PxrUnreal, "FPicoXRStereoLayer with LayerId=%d", LayerId);
     const FString HardwareDetails = FHardwareInfo::GetHardwareDetailsString();
@@ -63,38 +75,27 @@ FPicoXRStereoLayer::FPicoXRStereoLayer(FPicoXRHMD* InHMDDevice, uint32 InId, con
 }
 
 FPicoXRStereoLayer::FPicoXRStereoLayer(const FPicoXRStereoLayer& InLayer)
-    : HMDDevice(InLayer.HMDDevice)
+    : bMRCLayer(InLayer.bMRCLayer)
+    , HMDDevice(InLayer.HMDDevice)
     , LayerId(InLayer.LayerId)
     , LayerDesc(InLayer.LayerDesc)
     , SwapChain(InLayer.SwapChain)
     , LeftSwapChain(InLayer.LeftSwapChain)
     , OverlaySwapChain(InLayer.OverlaySwapChain)
     , LeftOverlaySwapChain(InLayer.LeftOverlaySwapChain)
-    , bUpdateTexture(InLayer.bUpdateTexture)
+    , bTextureNeedUpdate(InLayer.bTextureNeedUpdate)
     , RHIString(InLayer.RHIString)
     , LayerState(InLayer.LayerState)
     , EyeLayerParam(InLayer.EyeLayerParam)
 	, NeedDestoryRuntimeLayer(false)
     , UnderlayComponent(InLayer.UnderlayComponent)
     , UnderlayActor(InLayer.UnderlayActor)
-#if ENGINE_MINOR_VERSION==24
     , PxrLayer(InLayer.PxrLayer)
-#endif
 {
 }
 
 FPicoXRStereoLayer::~FPicoXRStereoLayer()
 {
-#if ENGINE_MINOR_VERSION!=24
-#if PLATFORM_ANDROID
-	if (NeedDestoryRuntimeLayer) {
-		if (LayerState == EPicoXRLayerState::NeedToDestroy && HMDDevice->GetFrameState() == EFrameState::NeedToBeginFrame) {
-			PXR_LOGD(PxrUnreal, "Layer Constructor DestroyLayer %d", LayerId);
-			Pxr_DestroyLayer(LayerId);
-		}
-	}
-#endif
-#endif
 }
 
 TSharedPtr<FPicoXRStereoLayer, ESPMode::ThreadSafe> FPicoXRStereoLayer::Clone() const
@@ -207,12 +208,10 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
 void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags,uint32 MSAAValue)
 #endif
 {
-#if ENGINE_MINOR_VERSION==24
     if (!PxrLayer)
 	{
 		PxrLayer = MakeShareable<FPxrLayer>(new FPxrLayer(LayerId));
     }
-#endif
 #if PLATFORM_ANDROID
     if (LayerId == 0) { // EyeBuffer
         SwapChain = RenderBridge->CreateSwapChain(Format, SizeX, SizeY, ArraySize, NumMips, NumSamples, Flags, TargetableTextureFlags, MSAAValue);
@@ -267,7 +266,10 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
         layerParam.faceCount = 1;
         layerParam.arraySize = 1;
         layerParam.mipmapCount = LayerDesc.Texture->GetNumMips();
-        layerParam.layerFlags |= PXR_LAYER_FLAG_STATIC_IMAGE;
+		if (!(LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE))
+		{
+            layerParam.layerFlags |= PXR_LAYER_FLAG_STATIC_IMAGE;
+		}
         //layerParam.layerFlags = PXR_LAYER_FLAG_USE_EXTERNAL_IMAGES;
         //layerParam.externalImageCount = 1;
 
@@ -280,34 +282,51 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
         }
         Pxr_CreateLayer(&layerParam);
 
-        if (bTextureState) {
-            if (bLeftTextureState) {
-                Pxr_GetLayerImage(LayerId, PXR_EYE_LEFT, 0, &OverlayNativeImages[1]);
-                Pxr_GetLayerImage(LayerId, PXR_EYE_RIGHT, 0, &OverlayNativeImages[0]);
-            } else {
-                Pxr_GetLayerImage(LayerId, PXR_EYE_RIGHT, 0, &OverlayNativeImages[0]);
+		uint32_t leftImageCounts = 0;
+        uint32_t rightImageCounts = 0;
+        if (bTextureState)
+        {
+            Pxr_GetLayerImageCount(LayerId, PXR_EYE_RIGHT, &rightImageCounts);
+            PXR_LOGI(PxrUnreal, "Pxr_GetLayerImageCount right:%d", rightImageCounts);
+            for (int j = 0; j < rightImageCounts; j++)
+            {
+                Pxr_GetLayerImage(LayerId, PXR_EYE_RIGHT, j, &OverlayNativeImages[0][j]);
+                PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage OverlayNativeImages[0][%d]=u_%u", j, (uint32_t)OverlayNativeImages[0][j]);
             }
         }
-        PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage OverlayNativeImages[0]=u_%u", (uint32_t)OverlayNativeImages[0]);
+        if (bLeftTextureState)
+        {
+            Pxr_GetLayerImageCount(LayerId, PXR_EYE_LEFT, &leftImageCounts);
+            PXR_LOGI(PxrUnreal, "Pxr_GetLayerImageCount left:%d", leftImageCounts);
+            for (int j = 0; j < leftImageCounts; j++)
+            {
+                Pxr_GetLayerImage(LayerId, PXR_EYE_LEFT, j, &OverlayNativeImages[1][j]);
+                PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage OverlayNativeImages[1][%d]=u_%u", j, (uint32_t)OverlayNativeImages[1][j]);
+            }
+        }
 
         if (RHIString == TEXT("OpenGL")) {
             if (bTextureState) {
                 if (bLeftTextureState) {  //PXR_LAYER_LAYOUT_STEREO
                     TArray<FTextureRHIRef> TextureChain;
                     FOpenGLDynamicRHI* DynamicRHI = static_cast<FOpenGLDynamicRHI*>(GDynamicRHI);
-                    TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1], TargetableTextureFlags)));
-
+					for (int j = 0; j < leftImageCounts; j++)
+					{
+						TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1][j], TargetableTextureFlags)));
+                    }
                     FTextureRHIRef ChainTarget = nullptr;
-                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1], TargetableTextureFlags));
+                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1][0], TargetableTextureFlags));
                     LeftOverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
                 } 
                 //PXR_LAYER_LAYOUT_MONO
                     TArray<FTextureRHIRef> TextureChain;
                     FOpenGLDynamicRHI* DynamicRHI = static_cast<FOpenGLDynamicRHI*>(GDynamicRHI);
-                    TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0], TargetableTextureFlags)));
-
+					for (int j = 0; j < rightImageCounts; j++)
+					{
+                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0][j], TargetableTextureFlags)));
+                    }
                     FTextureRHIRef ChainTarget = nullptr;
-                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0], TargetableTextureFlags));
+                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0][0], TargetableTextureFlags));
                     OverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
                 }
            
@@ -321,16 +340,19 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
                     if (IsMobileColorsRGB()) {
                         TargetableTextureFlags |= TexCreate_SRGB;
                     }
-                    TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1], TargetableTextureFlags)));
-
+                    for (int j = 0; j < leftImageCounts; j++)
+                    {
+                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1][j], TargetableTextureFlags)));
+                    }
                     FTextureRHIRef ChainTarget = nullptr;
                     if (ENGINE_MINOR_VERSION < 25) {
-                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1], TargetableTextureFlags));
+                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1][0], TargetableTextureFlags));
                     } else {
                         ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
                     }
                     LeftOverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-                } else {  //PXR_LAYER_LAYOUT_MONO
+                } 
+                    //PXR_LAYER_LAYOUT_MONO
                     TArray<FTextureRHIRef> TextureChain;
                     FVulkanDynamicRHI* DynamicRHI = static_cast<FVulkanDynamicRHI*>(GDynamicRHI);
 
@@ -338,20 +360,21 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
                     if (IsMobileColorsRGB()) {
                         TargetableTextureFlags |= TexCreate_SRGB;
                     }
-                    TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0], TargetableTextureFlags)));
-
+                    for (int j = 0; j < rightImageCounts; j++)
+                    {
+                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0][j], TargetableTextureFlags)));
+                    }
                     FTextureRHIRef ChainTarget = nullptr;
                     if (ENGINE_MINOR_VERSION < 25) {
-                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0], TargetableTextureFlags));
+                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0][0], TargetableTextureFlags));
                     } else {
                         ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
                     }
                     OverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-                }
             }
         }
 
-        bUpdateTexture = true;
+        bTextureNeedUpdate = true;
     }
     LayerState = EPicoXRLayerState::Ready;
 #endif
@@ -360,13 +383,13 @@ void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* Rende
 void FPicoXRStereoLayer::RefreshLayers_RenderThread(FPicoXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList)
 {
     check(IsInRenderingThread());
-    if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN)!=0)
+    if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN)!=0 || LayerState!=EPicoXRLayerState::Ready)
     {
         return;
     }
-    PXR_LOGD(PxrUnreal, "LayerId=%d, bUpdateTexture=%d, OverlaySwapChain_Valid=%d, LayerDesc.Texture.IsValid()=%d, LayerState=%d", LayerId, bUpdateTexture, OverlaySwapChain.IsValid(), LayerDesc.Texture.IsValid(), LayerState);
+    PXR_LOGD(PxrUnreal, "LayerId=%d, bUpdateTexture=%d, OverlaySwapChain_Valid=%d, LayerDesc.Texture.IsValid()=%d, LayerState=%d", LayerId, bTextureNeedUpdate, OverlaySwapChain.IsValid(), LayerDesc.Texture.IsValid(), LayerState);
 
-    if (bUpdateTexture && LayerState == EPicoXRLayerState::Ready)
+    if (bTextureNeedUpdate && LayerState == EPicoXRLayerState::Ready)
     {
         // Copy textures
         if (LayerDesc.Texture.IsValid() && OverlaySwapChain.IsValid())
@@ -376,19 +399,19 @@ void FPicoXRStereoLayer::RefreshLayers_RenderThread(FPicoXRRenderBridge* RenderB
             // Mono
             FRHITexture* SrcTexture = LayerDesc.Texture;
             FRHITexture* DstTexture = OverlaySwapChain->GetTexture();
-            RenderBridge->TransferImage_RenderThread(RHICmdList, DstTexture, SrcTexture, FIntRect(), FIntRect(), false, bNoAlpha);
+            RenderBridge->TransferImage_RenderThread(RHICmdList, DstTexture, SrcTexture, FIntRect(), FIntRect(), false, bNoAlpha, bMRCLayer);
 
             // Stereo
             if (LayerDesc.LeftTexture.IsValid() && LeftOverlaySwapChain.IsValid())
             {
                 FRHITexture* LeftSrcTexture = LayerDesc.LeftTexture;
                 FRHITexture* LeftDstTexture = LeftOverlaySwapChain->GetTexture();
-                RenderBridge->TransferImage_RenderThread(RHICmdList, LeftDstTexture, LeftSrcTexture, FIntRect(), FIntRect(), false, bNoAlpha);
+                RenderBridge->TransferImage_RenderThread(RHICmdList, LeftDstTexture, LeftSrcTexture, FIntRect(), FIntRect(), false, bNoAlpha, bMRCLayer);
             }
 
             if (!(LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE))
             {
-                bUpdateTexture = false;
+                bTextureNeedUpdate = false;
             }
         }
     }
@@ -403,12 +426,6 @@ void FPicoXRStereoLayer::MarkCreateLayer()
 {
 	PXR_LOGD(PxrUnreal,"Layer MarkCreateLayer %d",LayerId);
 	LayerState = EPicoXRLayerState::NeedToCreate;
-}
-
-void FPicoXRStereoLayer::MarkDestroyLayer()
-{
-    PXR_LOGD(PxrUnreal, "Layer MarkDestroyLayer %d", LayerId);
-    LayerState = EPicoXRLayerState::NeedToDestroy;
 }
 
 void FPicoXRStereoLayer::MarkReCreateLayer()
@@ -434,63 +451,79 @@ void FPicoXRStereoLayer::CreateLayer(FPicoXRRenderBridge* RenderBridge)
 void FPicoXRStereoLayer::DestroyLayer()
 {
     PXR_LOGD(PxrUnreal, "Layer DestroyLayer %d", LayerId);
-#if PLATFORM_ANDROID
-    //Pxr_DestroyLayer(LayerId);
-#endif
 }
 
 void FPicoXRStereoLayer::ReCreateLayer(FPicoXRRenderBridge* RenderBridge)
 {
 	PXR_LOGD(PxrUnreal, "Layer ReCreateLayer=%d", LayerId);
-	DestroyLayer();
+#if PLATFORM_ANDROID
+	Pxr_DestroyLayer(LayerId);
+#endif
 	CreateLayer(RenderBridge);
 }
 
 void FPicoXRStereoLayer::IncrementSwapChainIndex_RHIThread(FPicoXRRenderBridge* RenderBridge)
 {
-	if (static_cast<int32>(LayerState) < 2)
+	if ((static_cast<int32>(LayerState) < 2)||((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0))
 	{
 		return;
 	}
-#if PLATFORM_ANDROID
     if (LayerId == 0)
-    {
-		if (SwapChain.IsValid())
+	{
+		if (SwapChain && SwapChain.IsValid())
 		{
-			int32 TextureID;
-            Pxr_GetLayerNextImageIndex(LayerId, &TextureID);
-			while (TextureID != GetSwapChain()->GetSwapChainIndex_RHIThread())
-            {
+			int32 index = 0;
+#if PLATFORM_ANDROID
+			Pxr_GetLayerNextImageIndex(0, &index);
+#endif
+			while (index != SwapChain->GetSwapChainIndex_RHIThread())
+			{
 #if ENGINE_MINOR_VERSION > 26
-					SwapChain->IncrementSwapChainIndex_RHIThread();
+				SwapChain->IncrementSwapChainIndex_RHIThread();
 #else
-					SwapChain->IncrementSwapChainIndex_RHIThread(0);
+				SwapChain->IncrementSwapChainIndex_RHIThread(0);
 #endif
 			}
 		}
-	}
-	else
+    }
+    else
 	{
-		if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0)
-			return;
-		int32 index;
+		int32 index = 0;
+#if PLATFORM_ANDROID
 		Pxr_GetLayerNextImageIndex(LayerId, &index);
-	}
 #endif
+		if (OverlaySwapChain && OverlaySwapChain.IsValid())
+		{
+			while (index != OverlaySwapChain->GetSwapChainIndex_RHIThread())
+			{
+#if ENGINE_MINOR_VERSION > 26
+				OverlaySwapChain->IncrementSwapChainIndex_RHIThread();
+#else
+				OverlaySwapChain->IncrementSwapChainIndex_RHIThread(0);
+#endif
+			}
+		}
+		if (LeftOverlaySwapChain && LeftOverlaySwapChain.IsValid())
+		{
+			while (index != LeftOverlaySwapChain->GetSwapChainIndex_RHIThread())
+			{
+#if ENGINE_MINOR_VERSION > 26
+				LeftOverlaySwapChain->IncrementSwapChainIndex_RHIThread();
+#else
+				LeftOverlaySwapChain->IncrementSwapChainIndex_RHIThread(0);
+#endif
+			}
+		}
+    }
 }
+
 void FPicoXRStereoLayer::SubmitCompositionLayerRenderMatrix_RHIThread(APlayerController* PlayerController, FQuat& CurrentOrientation, FVector& CurrentPosition, FTransform& CurrentTrackingToWorld)
 {
 #if PLATFORM_ANDROID
-#if ENGINE_MINOR_VERSION==24
-	if (LayerId == 0)
-#else
-	if (LayerId == 0 || LayerState != EPicoXRLayerState::Ready)
-#endif
-	{
-		return;
-	}
-	if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0)
-		return;
+    if (LayerId == 0 || LayerState!=EPicoXRLayerState::Ready || ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0))
+    {
+        return;
+    }
 	PXR_LOGD(PxrUnreal, "Layer Submit=%d", LayerId);
 	int32 ShapeType = GetShapeType();
 	FQuat CameraRotation = FQuat::Identity;
@@ -538,6 +571,11 @@ void FPicoXRStereoLayer::SubmitCompositionLayerRenderMatrix_RHIThread(APlayerCon
             layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_USE_EXTERNAL_HEAD_POSE;
         else
             layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_HEAD_LOCKED;
+		
+        if (bMRCLayer)
+        {
+            layerSubmit.header.layerFlags |= 1 << 30;
+        }
 
     	if (HMDDevice->GbApplyToAllLayers && !bSplashLayer)
     	{
@@ -594,13 +632,6 @@ void FPicoXRStereoLayer::SubmitCompositionLayerRenderMatrix_RHIThread(APlayerCon
         layerSubmit.size[0] = (float)Scale.X;
         layerSubmit.size[1] = (float)Scale.Y;
 
-#if ENGINE_MINOR_VERSION==24
-		if (LayerState == EPicoXRLayerState::NeedToDestroy)
-		{
-			layerSubmit.header.colorScale[3] = 0.0f;
-			PXR_LOGI(PxrUnreal, "Layer_%d need to destroy,set color scale to 0.", LayerId);
-		}
-#endif
         Pxr_SubmitLayer((PxrLayerHeader*)&layerSubmit);
     }
     else if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_CYLINDER) {

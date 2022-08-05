@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMD.h"
 #include "PXR_HMDRenderBridge.h"
@@ -10,6 +10,7 @@
 #include "PXR_Log.h"
 #include "PXR_StereoLayer.h"
 #include "PXR_HMDFunctionLibrary.h"
+#include "GameFramework/WorldSettings.h"
 
 #if PLATFORM_ANDROID
 #include "HardwareInfo.h"
@@ -28,7 +29,6 @@ int32 FPicoXRHMD::SubmitViewNumber = -1;
 FQuat FPicoXRHMD::SubmitOrientation = FQuat::Identity;
 FVector FPicoXRHMD::SubmitPosition = FVector::ZeroVector;
 FTransform FPicoXRHMD::SubmitTrackingToWorld = FTransform::Identity;
-bool  FPicoXRHMD::GIsMapPost = false;
 int32 FPicoXRHMD::GMapInitFrame = 0;
 FName FPicoXRHMD::GetSystemName() const
 {
@@ -60,9 +60,30 @@ bool FPicoXRHMD::GetRelativeEyePose(int32 InDeviceId, EStereoscopicPass InEye, F
 {
 	OutOrientation = FQuat::Identity;
 	OutPosition = FVector::ZeroVector;
+	if (InDeviceId != HMDDeviceId)
+	{
+		return false;
+	}
+	FPXRGameFrame* CurrentFrame;
+	if (IsInRenderingThread())
+	{
+		CurrentFrame = GameFrame_RenderThread.Get();
+	}
+	else if (IsInGameThread())
+	{
+		CurrentFrame = NextGameFrameToRender.Get();
+	}
+	else
+	{
+		return false;
+	}
+	if (!CurrentFrame)
+	{
+		return false;
+	}
 	if (InDeviceId == HMDDeviceId && (InEye == eSSP_LEFT_EYE || InEye == eSSP_RIGHT_EYE))
 	{
-		OutPosition = FVector(0, (InEye == eSSP_LEFT_EYE ? -.5 : .5) * GetInterpupillaryDistance() * GetWorldToMetersScale(), 0);
+		OutPosition = FVector(0, (InEye == eSSP_LEFT_EYE ? -.5 : .5) * GetInterpupillaryDistance() * CurrentFrame->WorldToMetersScale, 0); 
 		return true;
 	}
 	return false;
@@ -94,53 +115,115 @@ bool FPicoXRHMD::GetCurrentPose(int32 DeviceId, FQuat& CurrentOrientation, FVect
 	{
 		return false;
 	}
+	CurrentOrientation = FQuat::Identity;
+	CurrentPosition = FVector::ZeroVector;
+	FPXRGameFrame* CurrentFrame = NULL;
 #if PLATFORM_ANDROID
 	if (IsInRenderingThread())
 	{
-		if (bIsEndGameFrame)
-		{
-			bIsEndGameFrame = false;
-			UpdateSensorValue();
-		}
-		CurrentOrientation = CurrentFrameValue_RenderThread.CurrentOrientation;
-		CurrentPosition = CurrentFrameValue_RenderThread.CurrentPosition;
+		CurrentFrame = GameFrame_RenderThread.Get();
 	}
 	else if (IsInGameThread())
 	{
-		CurrentOrientation = CurrentFrameValue_GameThread.CurrentOrientation;
-		CurrentPosition = CurrentFrameValue_GameThread.CurrentPosition;
+		CurrentFrame = NextGameFrameToRender.Get();
 	}
- 	PXR_LOGV(PxrUnreal,"CurrentPose(%f,%f,%f) (%f,%f,%f,%f)",CurrentPosition.X,CurrentPosition.Y,CurrentPosition.Z,CurrentOrientation.X,CurrentOrientation.Y,CurrentOrientation.Z,CurrentOrientation.W);
+	else
+	{
+		return false;
+	}
+	if (CurrentFrame)
+	{
+		CurrentOrientation = CurrentFrame->Orientation;
+		CurrentPosition = CurrentFrame->Position;
+		PXR_LOGV(PxrUnreal, "GetCurrentPose Frame:%u Rotation:%s,Position:%s", CurrentFrame->FrameNumber, *CurrentOrientation.Rotator().ToString(), *CurrentPosition.ToString());
+		return true;
+	}
 #endif
- 	return true;
+	return false;
 }
 
 void FPicoXRHMD::UPxr_GetAngularAcceleration(FVector& AngularAcceleration)
 {
-#if PLATFORM_ANDROID
-	AngularAcceleration = CurrentFrameValue_RenderThread.AngularAcceleration;
-#endif
+	FPXRGameFrame* CurrentFrame = NULL;
+	if (IsInGameThread())
+	{
+		CurrentFrame = NextGameFrameToRender.Get();
+	}
+	else if (IsInRenderingThread())
+	{
+		CurrentFrame = GameFrame_RenderThread.Get();
+	}
+	if (CurrentFrame)
+	{
+		AngularAcceleration = CurrentFrame->AngularAcceleration;
+	}
+	else
+	{
+		AngularAcceleration = FVector::ZeroVector;
+	}
 }
 
 void FPicoXRHMD::UPxr_GetVelocity(FVector& Velocity)
 {
-#if PLATFORM_ANDROID
-	Velocity = CurrentFrameValue_RenderThread.Velocity;
-#endif
+	FPXRGameFrame* CurrentFrame = NULL;
+	if (IsInGameThread())
+	{
+		CurrentFrame = NextGameFrameToRender.Get();
+	}
+	else if (IsInRenderingThread())
+	{
+		CurrentFrame = GameFrame_RenderThread.Get();
+	}
+	if (CurrentFrame)
+	{
+		Velocity = CurrentFrame->Velocity;
+	}
+	else
+	{
+		Velocity = FVector::ZeroVector;
+	}
 }
 
 void FPicoXRHMD::UPxr_GetAcceleration(FVector& Acceleration)
 {
-#if PLATFORM_ANDROID
-	Acceleration = CurrentFrameValue_RenderThread.Acceleration;
-#endif
+	FPXRGameFrame* CurrentFrame = NULL;
+	if (IsInGameThread())
+	{
+		CurrentFrame = NextGameFrameToRender.Get();
+	}
+	else if (IsInRenderingThread())
+	{
+		CurrentFrame = GameFrame_RenderThread.Get();
+	}
+	if (CurrentFrame)
+	{
+		Acceleration = CurrentFrame->Acceleration;
+	}
+	else
+	{
+		Acceleration = FVector::ZeroVector;
+	}
 }
 
 void FPicoXRHMD::UPxr_GetAngularVelocity(FVector& AngularVelocity)
 {
-#if PLATFORM_ANDROID
-	AngularVelocity = CurrentFrameValue_RenderThread.AngularVelocity;
-#endif
+	FPXRGameFrame* CurrentFrame = NULL;
+	if (IsInGameThread())
+	{
+		CurrentFrame = NextGameFrameToRender.Get();
+	}
+	else if (IsInRenderingThread())
+	{
+		CurrentFrame = GameFrame_RenderThread.Get();
+	}
+	if (CurrentFrame)
+	{
+		AngularVelocity = CurrentFrame->AngularVelocity;
+	}
+	else
+	{
+		AngularVelocity = FVector::ZeroVector;
+	}
 }
 
 FString FPicoXRHMD::UPxr_GetDeviceModel()
@@ -210,11 +293,17 @@ class TSharedPtr< class IStereoRendering, ESPMode::ThreadSafe > FPicoXRHMD::GetS
 
 float FPicoXRHMD::GetWorldToMetersScale() const
 {
- 	if (IsInGameThread() && GWorld != nullptr)
- 	{
- 		return GWorld->GetWorldSettings()->WorldToMeters;
- 	}
- 	return 100.0f;
+	if (NextGameFrameToRender.IsValid())
+	{
+		return NextGameFrameToRender->WorldToMetersScale;
+	}
+
+	if (GWorld != nullptr)
+	{
+		return GWorld->GetWorldSettings()->WorldToMeters;
+	}
+
+	return 100.0f;
 }
 
 bool FPicoXRHMD::DoesSupportPositionalTracking() const
@@ -266,7 +355,7 @@ bool FPicoXRHMD::IsChromaAbCorrectionEnabled() const
 FIntPoint FPicoXRHMD::GetIdealRenderTargetSize() const
 {
 	FIntPoint IdealRenderTargetSize;
- 	IdealRenderTargetSize.X = FMath::CeilToInt(RTSize.X* PixelDensity / (bIsMobileMultiViewEnabled ? 2 : 1));
+ 	IdealRenderTargetSize.X = FMath::CeilToInt(RTSize.X * PixelDensity / (bIsMobileMultiViewEnabled ? 2 : 1));
  	IdealRenderTargetSize.Y = FMath::CeilToInt(RTSize.Y * PixelDensity);
 
 	FIntPoint MaxRenderTextureSize = FIntPoint(8192, 4096);
@@ -290,61 +379,42 @@ FIntPoint FPicoXRHMD::GetIdealRenderTargetSize() const
 
 void FPicoXRHMD::OnBeginRendering_GameThread()
 {
-	if (!bIsBindDelegate)
-	{
-		FCoreDelegates::ApplicationWillEnterBackgroundDelegate.AddRaw(this, &FPicoXRHMD::ApplicationPauseDelegate);
-		FCoreDelegates::ApplicationHasEnteredForegroundDelegate.AddRaw(this, &FPicoXRHMD::ApplicationResumeDelegate);
-		bIsBindDelegate = true;
-	}
+}
+
+void FPicoXRHMD::OnBeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& ViewFamily)
+{
 }
 
 bool FPicoXRHMD::OnStartGameFrame(FWorldContext& WorldContext)
 {
-	PollEvent();
+	UE_LOG(LogHMD, Log, TEXT("OnStartGameFrame"));
+	PXR_LOGD(PxrUnreal, "OnStartGameFrame");
+	if (IsEngineExitRequested())
+	{
+		return false;
+	}
 	RefreshTrackingToWorldTransform(WorldContext);
-#if PLATFORM_ANDROID
- 	if (FPicoXRHMD::GIsMapPost)
- 	{
- 		if (FPicoXRHMD::GMapInitFrame == 5)
- 		{
- 			if (MapToInitPos.Num() > 0 && MapToInitPos.Contains(WorldContext.World()->GetMapName()))
- 			{
- 				InitCamPos = *MapToInitPos.Find(WorldContext.World()->GetMapName());
- 			}
- 			else
- 			{
- 				InitCamPos = GEngine->GetFirstLocalPlayerController(WorldContext.World())->PlayerCameraManager->GetCameraLocation();
- 				InitCamPos = InitCamPos - PreCamPos;
- 				MapToInitPos.Add(WorldContext.World()->GetMapName(), InitCamPos);
- 			}
- 			FPicoXRHMD::GIsMapPost = false;
- 			FPicoXRHMD::GMapInitFrame = 1;
- 		}
- 		else
- 		{
- 			PreCamPos = CurrentFrameValue_GameThread.CurrentPosition;
- 			FPicoXRHMD::GMapInitFrame++;
- 		}
- 	}
-    CurrentFrameValue_RenderThread.WorldToMetersScale = GetWorldToMetersScale();
-
-	LastFrameValue_GameThread = CurrentFrameValue_GameThread;
-	CurrentFrameValue_GameThread = LastFrameValue_RenderThread;
-#endif
-	return true;
+	if (!WorldContext.World() || (!(GEnableVREditorHacks && WorldContext.WorldType == EWorldType::Editor) && !WorldContext.World()->IsGameWorld()))
+	{
+		return false;
+	}
+	CachedWorldToMetersScale = WorldContext.World()->GetWorldSettings()->WorldToMeters;
+	OnGameFrameBegin_GameThread();
+  	return true;
 }
 
 bool FPicoXRHMD::OnEndGameFrame(FWorldContext& WorldContext)
 {
-#if PLATFORM_ANDROID
-	CurrentFrameValue_GameThread.TrackingToWorld = ComputeTrackingToWorldTransform(WorldContext);
-	ExecuteOnRenderThread_DoNotWait([this]()
+	FPXRGameFrame* const CurrentGameFrame = GameFrame.Get();
+	if (CurrentGameFrame)
 	{
-		LastFrameValue_RenderThread = CurrentFrameValue_RenderThread;
-		CurrentFrameValue_RenderThread = CurrentFrameValue_GameThread;
-		this->bIsEndGameFrame = true;
-	});
-#endif
+		CurrentGameFrame->TrackingToWorld = ComputeTrackingToWorldTransform(WorldContext);
+	}
+	else
+	{
+		return false;
+	}
+	OnGameFrameEnd_GameThread();
 	return true;
 }
 
@@ -381,8 +451,9 @@ FMatrix FPicoXRHMD::GetStereoProjectionMatrix(const enum EStereoscopicPass Stere
 	FPicoXRFrustum Frustum = (StereoPassType == eSSP_LEFT_EYE) ? LeftFrustum : RightFrustum;
 	const float ProjectionCenterOffset = 0;// 0.151976421f;
 	const float PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
-	//float ZNear = Frustum.Near;
-	const float ZNear = GNearClippingPlane;
+	// correct far and near planes for reversed-Z projection matrix
+	const float WorldScale = GetWorldToMetersScale() * (1.0 / 100.0f); // physical scale is 100 UUs/meter
+	float ZNear = GNearClippingPlane * WorldScale;
 	Frustum.FovUp = tan(Frustum.FovUp);
 	Frustum.FovDown = tan(Frustum.FovDown);
 	Frustum.FovLeft = tan(Frustum.FovLeft);
@@ -422,17 +493,14 @@ void FPicoXRHMD::GetEyeRenderParams_RenderThread(const struct FRenderingComposit
 FPicoXRHMD::FPicoXRHMD(const FAutoRegister&AutoRegister)
 	: FHeadMountedDisplayBase(nullptr)
 	, FSceneViewExtensionBase(AutoRegister)
-	, CurrentLayerId(0)
+	, NextLayerId(0)
 	, InitCamPos(FVector::ZeroVector)
 	, PreCamPos(FVector::ZeroVector)
-	,CurrentFrameValue_RenderThread(FCurrentFrameValue())
+	, inputFocusState(true)
 	, bIsMobileMultiViewEnabled(false)
 	, PixelDensity(1)
 	, RTSize(FIntPoint(4096, 2048))
 	, MobileMSAAValue(0)
-	, LastFrameValue_RenderThread(FCurrentFrameValue())
-	, CurrentFrameValue_GameThread(FCurrentFrameValue())
-	, LastFrameValue_GameThread(FCurrentFrameValue())
 	, NeckOffset(FVector::ZeroVector)
 	, RenderBridge(nullptr)
 	, PicoXRSetting(nullptr)
@@ -440,19 +508,21 @@ FPicoXRHMD::FPicoXRHMD(const FAutoRegister&AutoRegister)
 	, bIsEndGameFrame(false)
 	, TrackingOrigin(EHMDTrackingOrigin::Eye)
 	, PlayerController(nullptr)
-	, FrameState(EFrameState::NeedToBeginFrame)
 	, PicoSplash(nullptr)
+	, DisplayRefreshRate(72.0f)
 {
 	EventManager = UPicoXREventManager::GetInstance();
 	PicoXRSetting = GetMutableDefault<UPicoXRSettings>();
 #if PLATFORM_ANDROID
 	DeviceModel = FAndroidMisc::GetDeviceModel();
 #endif
+	NextFrameIndex = 1;
+	WaitFrameIndex = 0;
 }
 
 FPicoXRHMD::~FPicoXRHMD()
 {
-	Shutdown();
+	UnInitialize();
 }
 
 void FPicoXRHMD::BeginXR()
@@ -487,6 +557,10 @@ void FPicoXRHMD::BeginXR()
                 {
 					SetRefreshRate();
 					Pxr_BeginXr();
+					float RefreshRate = 72.0f;
+					Pxr_GetDisplayRefreshRate(&RefreshRate);
+					DisplayRefreshRate = RefreshRate != 0 ? RefreshRate : 72.0f;
+					PXR_LOGI(PxrUnreal, "Pxr_GetDisplayRefreshRate:%f", DisplayRefreshRate);
                 }
                 else
                 {
@@ -537,156 +611,112 @@ FPicoXRInput* FPicoXRHMD::GetPicoXRInput()
 void FPicoXRHMD::BeginFrame_RHIThread()
 {
 #if PLATFORM_ANDROID
- 	if (Pxr_IsRunning() && FrameState == EFrameState::NeedToBeginFrame)
- 	{
- 		RefreshLayers_RHIThread();
- 		Pxr_BeginFrame();
- 		TMap<uint32,FPicoLayerPtr> XSplashLayers = PicoSplash->SplashLayersMap;
-        if (XSplashLayers.Num()>0)
-        {
- 			for (auto SplashLayer : XSplashLayers)
- 			{
- 				SplashLayer.Value->IncrementSwapChainIndex_RHIThread(RenderBridge);
- 			}
-        }
-#if ENGINE_MINOR_VERSION==24
-		if (Layers_RenderThread.Num() > 0)
+	if (Pxr_IsRunning())
+	{
+		RefreshLayers_RHIThread();
+		Pxr_BeginFrame();
+		if (!bWaitFrameVersion)
 		{
-			if (!PicoSplash->IsShown())
+			Pxr_GetPredictedDisplayTime(&PredictedTime);
+			PXR_LOGV(LogHMD, "Pxr_GetPredictedDisplayTime after Pxr_BeginFrame:%f", PredictedTime);
+		}
+	}
+	else
+	{
+		return;
+	}
+#endif
+	if (PicoSplash->IsShown())
+	{
+		TMap<uint32, FPicoLayerPtr> XSplashLayers = PicoSplash->SplashLayersMap;
+		if (XSplashLayers.Num() > 0)
+		{
+			for (auto SplashLayer : XSplashLayers)
 			{
-				for (auto Layer : Layers_RenderThread)
-				{
-					Layer->IncrementSwapChainIndex_RHIThread(RenderBridge);
-				}
-			}
-			else
-			{
-				if (Layers_RenderThread[0].IsValid())
-				{
-					Layers_RenderThread[0]->IncrementSwapChainIndex_RHIThread(RenderBridge);
-				}
+				SplashLayer.Value->IncrementSwapChainIndex_RHIThread(RenderBridge);
 			}
 		}
-#else
- 		TMap<uint32,FPicoLayerPtr> XLayers = LayerMap;
- 		if (XLayers.Num()>0)
+	}
+	else if (Layers_RHIThread.Num() > 0)
+	{
+		for (auto Layer : Layers_RHIThread)
 		{
- 			if (!PicoSplash->IsShown())
- 			{
- 				for (auto Layer : XLayers)
- 				{
- 					Layer.Value->IncrementSwapChainIndex_RHIThread(RenderBridge);
- 				}
- 			}
- 			else
- 			{
- 				if (LayerMap[0].IsValid())
- 					{
- 						LayerMap[0]->IncrementSwapChainIndex_RHIThread(RenderBridge);
- 					}
- 			}
- 		}
-#endif
- 		FrameState = EFrameState::NeedToEndFrame;
- 	}
-#endif
+			Layer->IncrementSwapChainIndex_RHIThread(RenderBridge);
+		}
+	}
 }
 
 void FPicoXRHMD::SplashShow(FRHICommandListImmediate& RHICmdList)
 {
-	#if PLATFORM_ANDROID
-	if (PicoSplash->IsShown())
+	if (PicoSplash->IsShown() && PicoSplash->SplashLayersMap.Num()>0)
+	{
+		for(auto Splash:PicoSplash->SplashLayersMap)
 		{
-			if (PicoSplash->SplashLayersMap.Num() > 0)
-			{
-				if (RHIString != TEXT("Vulkan")) {
-					FRHITexture2D* SrcTexture = LayerMap[0]->GetSwapChain()->GetTexture2D();
-					ClearTexture_RHIThread(SrcTexture);
-				}
-				TArray<FPicoLayerPtr> XLayers;
-				XLayers.Empty(PicoSplash->SplashLayersMap.Num());
-				for(auto Splash:PicoSplash->SplashLayersMap)
-				{
-					Splash.Value->RefreshLayers_RenderThread(RenderBridge, RHICmdList);
-					XLayers.Emplace(Splash.Value->Clone());
-				}
-				XLayers.Sort(FPicoXRStereoLayerPtr_ComparePriority());
-				for (auto SplashLayer:XLayers)
-				{
-					if (static_cast<int32>(SplashLayer->GetLayerState()) > 1)
-					{
-						SplashLayer->SubmitCompositionLayerRenderMatrix_RHIThread(PlayerController, SubmitOrientation, SubmitPosition, SubmitTrackingToWorld);
-					}
-				}
-			}
+			Splash.Value->RefreshLayers_RenderThread(RenderBridge, RHICmdList);
 		}
-
-#endif
+	}
 }
 
 void FPicoXRHMD::EndFrame_RHIThread()
 {
 #if PLATFORM_ANDROID
-    if (Pxr_IsRunning() && FrameState == EFrameState::NeedToEndFrame)
+    if (Pxr_IsRunning())
     {
-#if ENGINE_MINOR_VERSION==24
 		if (!PicoSplash->IsShown())
 		{
-			for (auto Layer : Layers_RenderThread)
+			for (auto Layer : Layers_RHIThread)
 			{
 				Layer->SubmitCompositionLayerRenderMatrix_RHIThread(PlayerController, SubmitOrientation, SubmitPosition, SubmitTrackingToWorld);
 			}
 		}
-#else
-		if (!PicoSplash->IsShown())
+		else
 		{
-			TArray<FPicoLayerPtr> XLayers;
-			XLayers.Empty(LayerMap.Num());
-			for (auto Pair : LayerMap)
+			if (PicoSplash->SplashLayersMap.Num() > 0)
 			{
-				XLayers.Emplace(Pair.Value->Clone());
-			}
-			XLayers.Sort(FPicoXRStereoLayerPtr_ComparePriority());
-
-			for (auto Layer : XLayers)
-			{
-				Layer->SubmitCompositionLayerRenderMatrix_RHIThread(PlayerController, SubmitOrientation, SubmitPosition, SubmitTrackingToWorld);
+				TArray<FPicoLayerPtr> XLayers;
+				XLayers.Empty(PicoSplash->SplashLayersMap.Num());
+				for (auto Splash : PicoSplash->SplashLayersMap)
+				{
+					XLayers.Emplace(Splash.Value->Clone());
+				}
+				XLayers.Sort(CompareLayerPriority_PredicateClass());
+				for (auto SplashLayer : XLayers)
+				{
+					SplashLayer->SubmitCompositionLayerRenderMatrix_RHIThread(PlayerController, SubmitOrientation, SubmitPosition, SubmitTrackingToWorld);
+				}
 			}
 		}
-#endif
     	
         PxrLayerProjection layerProjection = {};
         layerProjection.header.layerId = 0;
         layerProjection.header.layerFlags = 0;
         layerProjection.header.sensorFrameIndex = SubmitViewNumber;
-    	if (!PicoSplash->IsShown())
+    	if (PicoSplash->IsShown() || bIsSwitchingLevel)
     	{
-        layerProjection.header.colorScale[0] = GColorScale.R;
-        layerProjection.header.colorScale[1] = GColorScale.G;
-        layerProjection.header.colorScale[2] = GColorScale.B;
-        layerProjection.header.colorScale[3] = GColorScale.A;
-
-    	layerProjection.header.colorBias[0] = GColorOffset.R;
-    	layerProjection.header.colorBias[1] = GColorOffset.G;
-    	layerProjection.header.colorBias[2] = GColorOffset.B;
-    	layerProjection.header.colorBias[3] = GColorOffset.A;
+			UE_LOG(LogHMD,Log,TEXT("Dray black eye layer!"));
+			layerProjection.header.colorScale[0] = 0.0f;
+			layerProjection.header.colorScale[1] = 0.0f;
+			layerProjection.header.colorScale[2] = 0.0f;
+			layerProjection.header.colorScale[3] = 0.0f;
+			layerProjection.header.colorBias[0] = 0.0f;
+			layerProjection.header.colorBias[1] = 0.0f;
+			layerProjection.header.colorBias[2] = 0.0f;
+			layerProjection.header.colorBias[3] = 0.0f;
 		}
-    	else
-    	{
-    		layerProjection.header.colorScale[0] = 0.0f;
-    		layerProjection.header.colorScale[1] = 0.0f;
-    		layerProjection.header.colorScale[2] = 0.0f;
-    		layerProjection.header.colorScale[3] = 0.0f;
-    		layerProjection.header.colorBias[0] = 0.0f;
-    		layerProjection.header.colorBias[1]  = 0.0f;
-    		layerProjection.header.colorBias[2] = 0.0f;
-    		layerProjection.header.colorBias[3]  = 0.0f;
+		else
+		{
+			layerProjection.header.colorScale[0] = GColorScale.R;
+			layerProjection.header.colorScale[1] = GColorScale.G;
+			layerProjection.header.colorScale[2] = GColorScale.B;
+			layerProjection.header.colorScale[3] = GColorScale.A;
+			layerProjection.header.colorBias[0] = GColorOffset.R;
+			layerProjection.header.colorBias[1] = GColorOffset.G;
+			layerProjection.header.colorBias[2] = GColorOffset.B;
+			layerProjection.header.colorBias[3] = GColorOffset.A;
     	}
-
 
         Pxr_SubmitLayer((PxrLayerHeader*)&layerProjection);
         Pxr_EndFrame();
-        FrameState = EFrameState::NeedToBeginFrame;
     }
 #endif
 }
@@ -696,14 +726,16 @@ void FPicoXRHMD::RefreshLayers_RHIThread()
     TMap<uint32,FPicoLayerPtr> XLayers = LayerMap;
     for (auto Layer : XLayers)
     {
-        EPicoXRLayerState LayerState = Layer.Value->GetLayerState();
-        if (LayerState == EPicoXRLayerState::NeedToCreate) {
-            Layer.Value->CreateLayer(RenderBridge);
-        } else if (LayerState == EPicoXRLayerState::NeedToDestroy) {
-            Layer.Value->DestroyLayer();
-        } else if (LayerState == EPicoXRLayerState::NeedToReCreate) {
-            Layer.Value->ReCreateLayer(RenderBridge);
-        }
+		if (Layer.Key != 0)
+		{
+			EPicoXRLayerState LayerState = Layer.Value->GetLayerState();
+			if (LayerState == EPicoXRLayerState::NeedToCreate) {
+				Layer.Value->CreateLayer(RenderBridge);
+			}
+			else if (LayerState == EPicoXRLayerState::NeedToReCreate) {
+				Layer.Value->ReCreateLayer(RenderBridge);
+			}
+		}
     }
 
     TMap<uint32,FPicoLayerPtr> XSplashLayers = PicoSplash->SplashLayersMap;
@@ -711,39 +743,45 @@ void FPicoXRHMD::RefreshLayers_RHIThread()
     {
         EPicoXRLayerState LayerState = Layer.Value->GetLayerState();
         if (LayerState == EPicoXRLayerState::NeedToCreate) {
-            Layer.Value->CreateLayer(RenderBridge);
-        } else if (LayerState == EPicoXRLayerState::NeedToDestroy) {
-            Layer.Value->DestroyLayer();
-            PicoSplash->SplashLayersMap.FindAndRemoveChecked(Layer.Key);
-        } else if (LayerState == EPicoXRLayerState::NeedToReCreate) {
+			Layer.Value->CreateLayer(RenderBridge);
+        }  else if (LayerState == EPicoXRLayerState::NeedToReCreate) {
             Layer.Value->ReCreateLayer(RenderBridge);
         }
     }
 }
 
-void FPicoXRHMD::FinishRenderFrame_RenderThread(FRHICommandListImmediate& RHICmdList)
+FPXRGameFramePtr FPicoXRHMD::MakeNewGameFrame() const
 {
-    TMap<uint32, FPicoLayerPtr> XLayers = LayerMap;
-    for (auto Layer : XLayers)
-    {
-        Layer.Value->RefreshLayers_RenderThread(RenderBridge, RHICmdList);
-    }
+	FPXRGameFramePtr Result(MakeShareable(new FPXRGameFrame()));
+	Result->FrameNumber = NextFrameIndex;
+	Result->predictedDisplayTimeMs = PredictedTime + 1000.0f / DisplayRefreshRate;
+	Result->WorldToMetersScale = CachedWorldToMetersScale;
+	Result->bSplashShown = PicoSplash->IsShown();
+	Result->bIsSwitching = bIsSwitchingLevel;
+	return Result;
 }
 
-void FPicoXRHMD::SetFrameState(EFrameState NewState)
+void FPicoXRHMD::RefreshStereoRenderingState()
 {
-    FrameState = NewState;
+	check(IsInGameThread());
+	// TODO:Update EyeLayer
+	if (!bIsMobileMultiViewEnabled && PicoXRSetting->bEnableLateLatching)
+	{
+		PicoXRSetting->bEnableLateLatching = false;
+	}
+
+	static const auto AllowOcclusionQueriesCVar = IConsoleManager::Get().FindTConsoleVariableDataInt(TEXT("r.AllowOcclusionQueries"));
+	const bool bAllowOcclusionQueries = AllowOcclusionQueriesCVar && (AllowOcclusionQueriesCVar->GetValueOnAnyThread() != 0);
+	if (bAllowOcclusionQueries && PicoXRSetting->bEnableLateLatching)
+	{
+		PicoXRSetting->bEnableLateLatching = false;
+	}
 }
 
-EFrameState FPicoXRHMD::GetFrameState()
-{
- 	return FrameState;
-}
-
-bool FPicoXRHMD::Startup()
+bool FPicoXRHMD::Initialize()
 {
 #if PLATFORM_ANDROID
-    PXR_LOGI(PxrUnreal, "Startup");
+    PXR_LOGI(PxrUnreal, "Initialize");
 	PxrInitParamData initParamData;
 	initParamData.activity = (void*)FAndroidApplication::GetGameActivityThis();
 	initParamData.vm =(void*) GJavaVM;
@@ -789,6 +827,13 @@ bool FPicoXRHMD::Startup()
         return false;
     }
 
+	if (!bIsBindDelegate)
+	{
+		FCoreDelegates::ApplicationWillEnterBackgroundDelegate.AddRaw(this, &FPicoXRHMD::ApplicationPauseDelegate);
+		FCoreDelegates::ApplicationHasEnteredForegroundDelegate.AddRaw(this, &FPicoXRHMD::ApplicationResumeDelegate);
+		bIsBindDelegate = true;
+	}
+
     Pxr_SetColorSpace(IsMobileColorsRGB() ? PXR_COLOR_SPACE_SRGB : PXR_COLOR_SPACE_LINEAR);
 
     //Config MobileMultiView
@@ -800,11 +845,11 @@ bool FPicoXRHMD::Startup()
 #if PLATFORM_ANDROID
     PXR_LOGI(PxrUnreal, "bIsMobileMultiViewEnabled = %d", bIsMobileMultiViewEnabled);
     EnableContentProtect(PicoXRSetting->bUseContentProtect);
-    FString UnrealSDKVersion = "UE4_2.0.2.3_";
+    FString UnrealSDKVersion = "UE4_2.0.5.4";
 	FString UnrealVersion = FString::FromInt(ENGINE_MINOR_VERSION);
 	UnrealSDKVersion = UnrealSDKVersion + UnrealVersion;
     PXR_LOGI(PxrUnreal, "PxrUnreal xrVersion: %s", PLATFORM_CHAR(*UnrealSDKVersion));
-	Pxr_SetConfigString(PXR_ENGINE_VERSION,PLATFORM_CHAR(*UnrealSDKVersion));
+	Pxr_SetConfigString(PXR_ENGINE_VERSION,TCHAR_TO_UTF8(*UnrealSDKVersion));
     SetTrackingOrigin(EHMDTrackingOrigin::Eye);
 	Pxr_EnableMultiview(bIsMobileMultiViewEnabled);
     if (PicoXRSetting->bEnableFoveation) {
@@ -881,6 +926,23 @@ bool FPicoXRHMD::Startup()
  	check(EyeLayerId == 0);
 
  	PicoSplash = MakeShareable(new FPicoXRSplash(this));
+	if (PicoSplash)
+	{
+		PicoSplash->Initialize();
+	}
+
+	if (PicoXRSetting->bUseAdvanceInterface)
+	{
+		UPicoXRHMDFunctionLibrary::PXR_SetLargeSpaceEnable(PicoXRSetting->bEnableLargeSpace);
+	}
+
+	int CurrentVersion = 0;
+	Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
+	bWaitFrameVersion = CurrentVersion >= 0x2000304 ? true : false;
+	if (!PreLoadLevelDelegate.IsValid())
+	{
+		PreLoadLevelDelegate = FCoreUObjectDelegates::PreLoadMap.AddRaw(this, &FPicoXRHMD::OnPreLoadMap);
+	}
  	return true;
 #endif
  	return false;
@@ -986,8 +1048,14 @@ void FPicoXRHMD::ProcessEvent(int32 EventCount, PxrEventDataBuffer** EventData)
 		{
 			const PxrEventDataRefreshRateChanged RateState = *reinterpret_cast<const PxrEventDataRefreshRateChanged*>(Event);
 			PXR_LOGD(PxrUnreal, "ProcessEvent PXR_TYPE_EVENT_DATA_REFRESH_RATE_CHANGED Rate:%f", RateState.refrashRate);
+			DisplayRefreshRate = RateState.refrashRate;
 			EventManager->RefreshRateChangedDelegate.Broadcast(RateState.refrashRate);
 			break;
+		}
+		case PXR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED:
+		{
+			const PxrEventDataSessionStateChanged sessionStateChanged = *reinterpret_cast<const PxrEventDataSessionStateChanged*>(Event);
+			inputFocusState = sessionStateChanged.state == PXR_SESSION_STATE_FOCUSED;
 		}
 		default:
 			break;
@@ -1077,10 +1145,14 @@ void FPicoXRHMD::OnTargetFrameRateChange(int32 NewFrameRate)
  	GEngine->SetMaxFPS(NewFrameRate);
 }
 
-void FPicoXRHMD::Shutdown()
+void FPicoXRHMD::UnInitialize()
 {
 	LayerMap.Reset();
  	FCoreUObjectDelegates::PreLoadMap.RemoveAll(this);
+	if (PreLoadLevelDelegate.IsValid())
+	{
+		PreLoadLevelDelegate.Reset();
+	}
  	FCoreUObjectDelegates::PostLoadMapWithWorld.RemoveAll(this);
 #if PLATFORM_ANDROID
 	Pxr_Shutdown();
@@ -1110,31 +1182,6 @@ void FPicoXRHMD::UPxr_EnableFoveation(bool enable)
 	}
 }
 
-void FPicoXRHMD::OnPreLoadMap(const FString& MapName)
-{
-    ExecuteOnRenderThread_DoNotWait([this]()
-    {
-        if (RHIString != TEXT("Vulkan")) {
-            FRHITexture2D* SrcTexture = LayerMap[0]->GetSwapChain()->GetTexture2D();
-            ClearTexture_RHIThread(SrcTexture);
-        }
-         ExecuteOnRHIThread_DoNotWait([this]()
-         {
-         	 if (FrameState == EFrameState::NeedToEndFrame)
-         	 {
-                 EndFrame_RHIThread();
-             }
-		 });
-    });
-
- 	PicoSplash->OnPreLoadMap(MapName);
-}
-
-void FPicoXRHMD::OnPostLoadMap(UWorld* InWorld)
-{
- 	PicoSplash->OnPostLoadMap(InWorld);
-}
-
 FPicoLayerPtr FPicoXRHMD::GetEyeLayerPtr()
 {
 	if (LayerMap.Num()>0 && LayerMap[0])
@@ -1146,6 +1193,10 @@ FPicoLayerPtr FPicoXRHMD::GetEyeLayerPtr()
 
 TSharedPtr<FPicoXREyeTracker> FPicoXRHMD::UPxr_GetEyeTracker()
 {
+	if (!EyeTracker)
+	{
+		EyeTracker = MakeShared<FPicoXREyeTracker>();
+	}
  	return EyeTracker;
 }
 
@@ -1171,9 +1222,8 @@ void FPicoXRHMD::UpdateNeckOffset()
 	}
 }
 
-void FPicoXRHMD::UpdateSensorValue()
+void FPicoXRHMD::UpdateSensorValue(FPXRGameFrame* InFrame)
 {
-    PXR_LOGD(PxrUnreal, "UpdateSensorValue");
 #if PLATFORM_ANDROID
     //Position Orientation
     FPicoXRInput* PicoInput = GetPicoXRInput();
@@ -1186,38 +1236,67 @@ void FPicoXRHMD::UpdateSensorValue()
     int32 ViewNumber = 0;
     int eyeCount = 1;
     PxrPosef pose;
-    double predictedDisplayTimeMs = 0.0;
-    Pxr_GetPredictedDisplayTime(&predictedDisplayTimeMs);
-    PxrSensorState sensorState = {};
-    Pxr_GetPredictedMainSensorStateWithEyePose(predictedDisplayTimeMs, &sensorState, &ViewNumber, eyeCount, &pose);
+    
+	if (bDeviceHasEnableLargeSpace&&bUserEnableLargeSpace)
+	{
+		PxrSensorState2 sensorState = {};
+		float TrackingHeight;
+		Pxr_GetPredictedMainSensorState2(InFrame->predictedDisplayTimeMs, &sensorState, &ViewNumber);
+		Pxr_GetConfigFloat(PxrConfigType::PXR_TRACKING_ORIGIN_HEIGHT, &TrackingHeight);
+		SourcePosition.X = sensorState.globalPose.position.x;
+		SourcePosition.Y = sensorState.globalPose.position.y + TrackingHeight;
+		SourcePosition.Z = sensorState.globalPose.position.z;
 
-    SourcePosition.X = sensorState.pose.position.x;
-    SourcePosition.Y = sensorState.pose.position.y;
-    SourcePosition.Z = sensorState.pose.position.z;
+		SourceOrientation.X = sensorState.globalPose.orientation.x;
+		SourceOrientation.Y = sensorState.globalPose.orientation.y;
+		SourceOrientation.Z = sensorState.globalPose.orientation.z;
+		SourceOrientation.W = sensorState.globalPose.orientation.w;
+		LinearAcceleration.X = sensorState.linearAcceleration.x;
+		LinearAcceleration.Y = sensorState.linearAcceleration.y;
+		LinearAcceleration.Z = sensorState.linearAcceleration.z;
 
-    SourceOrientation.X = sensorState.pose.orientation.x;
-    SourceOrientation.Y = sensorState.pose.orientation.y;
-    SourceOrientation.Z = sensorState.pose.orientation.z;
-    SourceOrientation.W = sensorState.pose.orientation.w;
-	LinearAcceleration.X = sensorState.linearAcceleration.x;
-	LinearAcceleration.Y = sensorState.linearAcceleration.y;
-	LinearAcceleration.Z = sensorState.linearAcceleration.z;
+		AngularAcceleration.X = sensorState.angularAcceleration.x;
+		AngularAcceleration.Y = sensorState.angularAcceleration.y;
+		AngularAcceleration.Z = sensorState.angularAcceleration.z;
 
-	AngularAcceleration.X = sensorState.angularAcceleration.x;
-	AngularAcceleration.Y = sensorState.angularAcceleration.y;
-	AngularAcceleration.Z = sensorState.angularAcceleration.z;
+		AngularVelocity.X = sensorState.angularVelocity.x;
+		AngularVelocity.Y = sensorState.angularVelocity.y;
+		AngularVelocity.Z = sensorState.angularVelocity.z;
 
-	AngularVelocity.X = sensorState.angularVelocity.x;
-	AngularVelocity.Y = sensorState.angularVelocity.y;
-	AngularVelocity.Z = sensorState.angularVelocity.z;
+		LinearVelocity.X = sensorState.linearVelocity.x;
+		LinearVelocity.Y = sensorState.linearVelocity.y;
+		LinearVelocity.Z = sensorState.linearVelocity.z;
+	}
+	else
+	{
+		PxrSensorState sensorState = {};
+		Pxr_GetPredictedMainSensorStateWithEyePose(InFrame->predictedDisplayTimeMs, &sensorState, &ViewNumber, eyeCount, &pose);
+		SourcePosition.X = sensorState.pose.position.x;
+		SourcePosition.Y = sensorState.pose.position.y;
+		SourcePosition.Z = sensorState.pose.position.z;
 
-	LinearVelocity.X = sensorState.linearVelocity.x;
-	LinearVelocity.Y = sensorState.linearVelocity.y;
-	LinearVelocity.Z = sensorState.linearVelocity.z;
+		SourceOrientation.X = sensorState.pose.orientation.x;
+		SourceOrientation.Y = sensorState.pose.orientation.y;
+		SourceOrientation.Z = sensorState.pose.orientation.z;
+		SourceOrientation.W = sensorState.pose.orientation.w;
+		LinearAcceleration.X = sensorState.linearAcceleration.x;
+		LinearAcceleration.Y = sensorState.linearAcceleration.y;
+		LinearAcceleration.Z = sensorState.linearAcceleration.z;
 
-	PicoInput->SetHeadPosition(SourcePosition);
-	PicoInput->SetHeadOrientation(SourceOrientation);
-	FVector Position = FPicoXRUtils::ConvertXRVectorToUnrealVector(SourcePosition, CurrentFrameValue_RenderThread.WorldToMetersScale);
+		AngularAcceleration.X = sensorState.angularAcceleration.x;
+		AngularAcceleration.Y = sensorState.angularAcceleration.y;
+		AngularAcceleration.Z = sensorState.angularAcceleration.z;
+
+		AngularVelocity.X = sensorState.angularVelocity.x;
+		AngularVelocity.Y = sensorState.angularVelocity.y;
+		AngularVelocity.Z = sensorState.angularVelocity.z;
+
+		LinearVelocity.X = sensorState.linearVelocity.x;
+		LinearVelocity.Y = sensorState.linearVelocity.y;
+		LinearVelocity.Z = sensorState.linearVelocity.z;
+	}
+
+	FVector Position = FPicoXRUtils::ConvertXRVectorToUnrealVector(SourcePosition, InFrame->WorldToMetersScale);
 
 	FQuat Orientation = FPicoXRUtils::ConvertXRQuatToUnrealQuat(SourceOrientation);
 	// Position
@@ -1225,32 +1304,31 @@ void FPicoXRHMD::UpdateSensorValue()
 	{
 		if (PicoXRSetting->bEnableNeckModel)
 		{
-			CurrentFrameValue_RenderThread.CurrentPosition = Orientation * NeckOffset - NeckOffset.Z * FVector::UpVector;
+			InFrame->Position = (Orientation * NeckOffset - NeckOffset.Z * FVector::UpVector);
 		}
 		else
 		{
-			CurrentFrameValue_RenderThread.CurrentPosition = FVector::ZeroVector;
+			InFrame->Position = FVector::ZeroVector;
 		}
 		//FloorLevel need add Position y
 		if (TrackingOrigin == EHMDTrackingOrigin::Floor)
 		{
-			CurrentFrameValue_RenderThread.CurrentPosition.Z += SourcePosition.Y * CurrentFrameValue_RenderThread.WorldToMetersScale;
+			InFrame->Position = InFrame->Position + SourcePosition.Y * InFrame->WorldToMetersScale;
 		}
 	}
 	else//head 6Dof
 	{
-		CurrentFrameValue_RenderThread.CurrentPosition = Position;
+		InFrame->Position = Position;
 	}
 	// Orientation
-	CurrentFrameValue_RenderThread.CurrentOrientation = Orientation;
-	// ViewNumber
-	CurrentFrameValue_RenderThread.ViewNumber = ViewNumber;
-
- 	//velocity
-	CurrentFrameValue_RenderThread.Acceleration = LinearAcceleration;
-	CurrentFrameValue_RenderThread.AngularAcceleration = AngularAcceleration;
-	CurrentFrameValue_RenderThread.AngularVelocity = AngularVelocity;
-	CurrentFrameValue_RenderThread.Velocity = LinearVelocity;
+	InFrame->Orientation = Orientation;
+	PXR_LOGV(PxrUnreal, "UpdateSensorValue:%u,PredtTime:%f,ViewNumber:%d,Rotation:%s,Position:%s", InFrame->FrameNumber, InFrame->predictedDisplayTimeMs, ViewNumber,*InFrame->Orientation.Rotator().ToString(), *InFrame->Position.ToString());
+	//velocity
+	InFrame->Acceleration = LinearAcceleration;
+	InFrame->AngularAcceleration = AngularAcceleration;
+	InFrame->AngularVelocity = AngularVelocity;
+	InFrame->Velocity = LinearVelocity;
+	InFrame->ViewNumber = ViewNumber;
 #endif
 }
 
@@ -1287,7 +1365,7 @@ void FPicoXRHMD::ClearTexture_RHIThread(FRHITexture2D* SrcTexture)
 
 	if (RHIString == TEXT("Vulkan"))
 	{
-		UE_LOG(LogTemp,Log,TEXT("Pico XR Vulkan, Cannot Clear Texture"));
+		UE_LOG(LogHMD,Log,TEXT("Pico XR Vulkan, Cannot Clear Texture"));
 		return;
 	}
 
@@ -1313,13 +1391,6 @@ float FPicoXRHMD::UPxr_GetIPD() const
 
 void FPicoXRHMD::RenderTexture_RenderThread(class FRHICommandListImmediate& RHICmdList, class FRHITexture2D* BackBuffer, class FRHITexture2D* SrcTexture, FVector2D WindowSize) const
 {
-	ExecuteOnRHIThread([this]()
-	{
-		FPicoXRHMD::SubmitViewNumber = this->CurrentFrameValue_RenderThread.ViewNumber;
-		FPicoXRHMD::SubmitOrientation = this->CurrentFrameValue_RenderThread.CurrentOrientation;
-		FPicoXRHMD::SubmitPosition = this->CurrentFrameValue_RenderThread.CurrentPosition;
-		FPicoXRHMD::SubmitTrackingToWorld = this->CurrentFrameValue_RenderThread.TrackingToWorld;
-	});
 }
 
 void FPicoXRHMD::SetupViewFamily(FSceneViewFamily& InViewFamily)
@@ -1336,6 +1407,12 @@ void FPicoXRHMD::SetupView(FSceneViewFamily& InViewFamily, FSceneView& InView)
 
 void FPicoXRHMD::BeginRenderViewFamily(FSceneViewFamily& InViewFamily)
 {
+	check(IsInGameThread());
+	if (NextGameFrameToRender.IsValid())
+	{
+		NextGameFrameToRender->ShowFlags = InViewFamily.EngineShowFlags;
+	}
+	OnRenderFrameBegin_GameThread();
 }
 
 void FPicoXRHMD::PreRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView)
@@ -1344,46 +1421,53 @@ void FPicoXRHMD::PreRenderView_RenderThread(FRHICommandListImmediate& RHICmdList
 
 void FPicoXRHMD::PreRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily)
 {
-#if ENGINE_MINOR_VERSION==24
-	TArray<FPicoLayerPtr> XLayers;
-	XLayers.Empty(LayerMap.Num());
-	for (auto Pair : LayerMap)
+	if (!GameFrame_RenderThread.IsValid())
 	{
-		XLayers.Emplace(Pair.Value->Clone());
+		return;
 	}
-	XLayers.Sort(FPicoXRStereoLayerPtr_ComparePriority());
-	ExecuteOnRHIThread_DoNotWait([this, XLayers]()
-    {
 
-		 Layers_RenderThread = XLayers;
-#else
-	ExecuteOnRHIThread_DoNotWait([this]()
+	if (!InViewFamily.RenderTarget->GetRenderTargetTexture())
 	{
-#endif
-         BeginFrame_RHIThread();
-    });
+		return;
+	}
+
+	OnRHIFrameBegin_RenderThread();
 }
 
 void FPicoXRHMD::PostRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily)
 {
-#if PLATFORM_ANDROID
-	if (IsInRenderingThread())
-	{
-	    if (PicoSplash->IsShown())
-		{
-			if (Pxr_IsRunning() && FrameState == EFrameState::NeedToEndFrame)
-			{
-				SplashShow(RHICmdList);
-			}
-		}
-		FinishRenderFrame_RenderThread(RHICmdList);
-    }
-#endif
+	OnRenderFrameEnd_RenderThread(RHICmdList);
 }
 
 void FPicoXRHMD::PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView)
 {
 }
+
+#if ENGINE_MINOR_VERSION > 26
+bool FPicoXRHMD::LateLatchingEnabled() const
+{
+#if PLATFORM_ANDROID
+	if (RHIString == TEXT("Vulkan") && PicoXRSetting)
+	{
+		return PicoXRSetting->bEnableLateLatching;
+	}
+#endif
+	return false;
+}
+
+void FPicoXRHMD::PreLateLatchingViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily)
+{
+	check(IsInRenderingThread());
+	FPXRGameFrame* CurrentFrame = GameFrame_RenderThread.Get();
+	if (CurrentFrame)
+	{
+		UE_LOG(LogHMD, Log, TEXT("PreLateLatchingViewFamily_RenderThread:%u"), CurrentFrame->FrameNumber);
+		UpdateSensorValue(CurrentFrame);
+		FPicoXRHMD::SubmitPosition = CurrentFrame->Position;
+		FPicoXRHMD::SubmitOrientation = CurrentFrame->Orientation;
+	}
+}
+#endif
 
 #if ENGINE_MINOR_VERSION > 25
 bool FPicoXRHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples)
@@ -1401,23 +1485,22 @@ bool FPicoXRHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 
     {
         PXR_LOGI(PxrUnreal, "AllocateRenderTargetTexture GetLayerState=%d", LayerMap[0]->GetLayerState());
         if (LayerMap[0]->GetLayerState() == EPicoXRLayerState::NeedToCreate)
-        {
-            LayerMap[0]->InitializeLayer_RenderThread(RenderBridge,Format, SizeX, SizeY, bIsMobileMultiViewEnabled ? 2 : 1 , NumMips, NumSamples, Flags, TargetableTextureFlags,MobileMSAAValue);
-            LayerMap[0]->SetLayerState(EPicoXRLayerState::Ready);
-            const FXRSwapChainPtr& SwapChain = LayerMap[0]->GetSwapChain();
-            OutTargetableTexture = OutShaderResourceTexture = SwapChain->GetTexture2DArray() ? SwapChain->GetTexture2DArray() : SwapChain->GetTexture2D();
-            return true;
-        } else if (LayerMap[0]->GetLayerState() == EPicoXRLayerState::NeedToReCreate) {
-             LayerMap[0]->SetEyeLayerParam(RenderBridge,Format, SizeX, SizeY, bIsMobileMultiViewEnabled ? 2 : 1 , NumMips, NumSamples, Flags, TargetableTextureFlags,MobileMSAAValue);
-             LayerMap[0]->ReCreateLayer(RenderBridge);
-             const FXRSwapChainPtr& SwapChain = LayerMap[0]->GetSwapChain();
-             OutTargetableTexture = OutShaderResourceTexture = SwapChain->GetTexture2DArray() ? SwapChain->GetTexture2DArray() : SwapChain->GetTexture2D();
-             return true;
-         } else {
-             const FXRSwapChainPtr& SwapChain = LayerMap[0]->GetSwapChain();
-             OutTargetableTexture = OutShaderResourceTexture = SwapChain->GetTexture2DArray() ? SwapChain->GetTexture2DArray() : SwapChain->GetTexture2D();
-             return true;
-         }
+		{
+			LayerMap[0]->SetEyeLayerParam(RenderBridge,Format, SizeX, SizeY, bIsMobileMultiViewEnabled ? 2 : 1 , NumMips, NumSamples, Flags, TargetableTextureFlags,MobileMSAAValue);
+			LayerMap[0]->CreateLayer(RenderBridge);
+       	}
+		else if (LayerMap[0]->GetLayerState() == EPicoXRLayerState::NeedToReCreate)
+		{
+			LayerMap[0]->SetEyeLayerParam(RenderBridge,Format, SizeX, SizeY, bIsMobileMultiViewEnabled ? 2 : 1 , NumMips, NumSamples, Flags, TargetableTextureFlags,MobileMSAAValue);
+			LayerMap[0]->ReCreateLayer(RenderBridge);
+        } 
+
+		const FXRSwapChainPtr& SwapChain = LayerMap[0]->GetSwapChain();
+		if (SwapChain.IsValid())
+		{
+			OutTargetableTexture = OutShaderResourceTexture = SwapChain->GetTexture2DArray() ? SwapChain->GetTexture2DArray() : SwapChain->GetTexture2D();
+			return true;
+		}
     }
     return false;
 }
@@ -1515,6 +1598,10 @@ bool FPicoXRHMD::NeedReAllocateViewportRenderTarget(const FViewport& Viewport)
 	if (NewSizeX != mRTSize.X || NewSizeY != mRTSize.Y)
 	{
 		PXR_LOGD(PxrUnreal,"NeedReAllocateViewportRenderTarget");
+		if (LayerMap[0].IsValid())
+		{
+			LayerMap[0]->MarkReCreateLayer();
+		}
 		return true;
 	}
 	return false;
@@ -1528,52 +1615,30 @@ FXRRenderBridge* FPicoXRHMD::GetActiveRenderBridge_GameThread(bool bUseSeparateR
 uint32 FPicoXRHMD::CreateLayer(const FLayerDesc& InLayerDesc)
 {
     check(IsInGameThread());
-    const uint32 LayerId = CurrentLayerId++;
-    PXR_LOGD(PxrUnreal, "Layer Create LayerId=%d", LayerId);
+    uint32 LayerId = NextLayerId++;
     LayerMap.Add(LayerId, MakeShareable(new FPicoXRStereoLayer(this, LayerId, InLayerDesc)));
     LayerMap[LayerId]->MarkCreateLayer();
+	PXR_LOGD(PxrUnreal, "Layer Create LayerId=%d", LayerId);
     return LayerId;
 }
 
 void FPicoXRHMD::DestroyLayer(uint32 LayerId)
 {
+	check(IsInGameThread());
     PXR_LOGD(PxrUnreal, "DestroyLayer LayerId=%d", LayerId);
-    if (LayerMap.Find(LayerId))
-    {
-#if ENGINE_MINOR_VERSION==24
-		//Set layer alpha to 0 as hidden state
-		for (auto layer:Layers_RenderThread)
-		{
-			if (layer->GetLayerID()==LayerId)
-			{
-				layer->MarkDestroyLayer();
-			}
-		}
-#endif
-		LayerMap[LayerId]->MarkDestroyLayer();
-    }
-#if ENGINE_MINOR_VERSION==24
 	LayerMap.Remove(LayerId);
-#else
-	ExecuteOnRenderThread([this, LayerId]()
-		{
-			ExecuteOnRHIThread([this, LayerId]()
-				{
-					LayerMap.Remove(LayerId);
-				});
-		});
-#endif
-
 }
 
 void FPicoXRHMD::SetLayerDesc(uint32 LayerId, const FLayerDesc& InLayerDesc)
 {
  	check(IsInGameThread());
  	FPicoLayerPtr* LayerFound = LayerMap.Find(LayerId);
- 	if (LayerFound)
- 	{
- 		LayerFound->Get()->SetLayerDesc(InLayerDesc);
- 	}
+	if (LayerFound)
+	{
+		FPicoXRStereoLayer* Layer = new FPicoXRStereoLayer(**LayerFound);
+		Layer->SetLayerDesc(InLayerDesc);
+		*LayerFound = MakeShareable(Layer);
+	}
 }
 
 bool FPicoXRHMD::GetLayerDesc(uint32 LayerId, IStereoLayers::FLayerDesc& OutLayerDesc)
@@ -1628,30 +1693,25 @@ void FPicoXRHMD::GetAllocatedTexture(uint32 LayerId, FTextureRHIRef& Texture, FT
 
 void FPicoXRHMD::OnBeginPlay(FWorldContext& InWorldContext)
 {
-	if (PicoSplash->IsShown())
+	if (PicoSplash)
 	{
-		PicoSplash->StopTicker();
+		PicoSplash->Hide();//Prevent image resources from being unavailable when Splash is added at the BeginPlay.TODO://it's a bug
 	}
+	bIsSwitchingLevel = false;
 	IConsoleVariable* CVSynsVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.VSync"));
 	CVSynsVar->Set(0.0f);
 	IConsoleVariable* CFCFVar = IConsoleManager::Get().FindConsoleVariable(TEXT("r.FinishCurrentFrame"));
 	CFCFVar->Set(0.0f);
  	PlayerController = InWorldContext.World()->GetFirstPlayerController();
- 	if(EyeTracker)
+ 	if(EyeTracker && PicoXRSetting)
  	{
- 		EyeTracker->OpenEyeTracking();
+ 		EyeTracker->OpenEyeTracking(PicoXRSetting->bEnableEyeTracking);
  		EyeTracker->SetEyeTrackedPlayer(PlayerController);
  	}
- 	FCoreUObjectDelegates::PreLoadMap.AddRaw(this, &FPicoXRHMD::OnPreLoadMap);
- 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddRaw(this, &FPicoXRHMD::OnPostLoadMap);
 }
 
 void FPicoXRHMD::OnEndPlay(FWorldContext& InWorldContext)
 {
-	if (PicoSplash->IsShown())
-	{
-		PicoSplash->HideLoadingScreen();
-	}
 }
 
 #if ENGINE_MINOR_VERSION >25
@@ -1718,6 +1778,11 @@ void FPicoXRHMD::SetRefreshRate()
 		Pxr_SetDisplayRefreshRate(90.0f);
 		break;
 	}
+	case ERefreshRate::RefreshRate120:
+	{
+		Pxr_SetDisplayRefreshRate(120.0f);
+		break;
+	}
 	default:
 		break;
 	}
@@ -1731,3 +1796,228 @@ void FPicoXRHMD::UPxr_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearCol
 	GColorScale = ColorScale;
 	GColorOffset = ColorOffset;
 }
+
+uint32 FPicoXRHMD::CreateMRCStereoLayer(FTextureRHIRef BackgroundRTTexture, FTextureRHIRef ForegroundRTTexture)
+{
+	IStereoLayers::FLayerDesc StereoLayerDesc;
+	StereoLayerDesc.PositionType = IStereoLayers::ELayerType::FaceLocked;
+	StereoLayerDesc.Texture = ForegroundRTTexture;
+	StereoLayerDesc.LeftTexture = BackgroundRTTexture;
+	StereoLayerDesc.Flags = IStereoLayers::ELayerFlags::LAYER_FLAG_TEX_CONTINUOUS_UPDATE | IStereoLayers::ELayerFlags::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO | IStereoLayers::ELayerFlags::LAYER_FLAG_TEX_NO_ALPHA_CHANNEL;
+
+	check(IsInGameThread());
+	if (CurrentMRCLayer)
+	{
+		return CurrentMRCLayer->GetLayerID();
+	}
+	const uint32 LayerId = NextLayerId++;
+	PXR_LOGD(PxrUnreal, "MRC Layer Create LayerId=%d", LayerId);
+	CurrentMRCLayer= MakeShareable(new FPicoXRStereoLayer(this, LayerId, StereoLayerDesc));
+	LayerMap.Add(LayerId, CurrentMRCLayer);
+	LayerMap[LayerId]->bMRCLayer = true;
+	LayerMap[LayerId]->MarkCreateLayer();
+	MRCLayersID.Add(LayerId);
+	return LayerId;
+}
+
+void FPicoXRHMD::DestroyAllMRCLayersOneTime()
+{
+	if (MRCLayersID.Num()>0)
+	{
+		for (int i=0;i<MRCLayersID.Num();i++)
+		{
+			DestroyLayer(MRCLayersID[i]);
+		}
+		MRCLayersID.Empty();
+	}
+}
+
+void FPicoXRHMD::OnLargeSpaceStatusChanged(bool bEnable)
+{
+	PXR_LOGD(PxrUnreal, "OnLargeSpaceStatusChanged:%d", bEnable);
+    bDeviceHasEnableLargeSpace = bEnable;
+}
+
+FString FPicoXRHMD::GetRHIString()
+{
+	return RHIString;
+}
+
+void FPicoXRHMD::OnPreLoadMap(const FString& MapName)
+{
+	PXR_LOGD(PxrUnreal, "OnPreLoadMap:%s", *MapName);
+	bIsSwitchingLevel = true;
+	if (PicoSplash)
+	{
+		PicoSplash->OnPreLoadMap(MapName);
+	}
+	WaitFrame();//When switching levels, since we Wait at the end of the Game, the last frame's Wait cannot be called, so we need to proactively Wait ahead of time
+	if (GameFrame.IsValid())
+	{
+		GameFrame->bIsSwitching = bIsSwitchingLevel;
+		if (!PicoSplash->IsShown())
+		{
+			ExecuteOnRenderThread([this]()
+				{
+					ExecuteOnRHIThread([this]()
+						{
+							BeginFrame_RHIThread();
+							EndFrame_RHIThread();
+						});
+				});
+		}
+	}
+}
+
+void FPicoXRHMD::WaitFrame()
+{
+	check(IsInGameThread());
+	if (GameFrame.IsValid())
+	{
+		PXR_LOGV(PxrUnreal, "WaitFrame %u", GameFrame->FrameNumber);
+		if (!PicoSplash->IsShown() && WaitFrameIndex < GameFrame->FrameNumber)
+		{
+			if (bWaitFrameVersion)
+			{
+#if PLATFORM_ANDROID
+				Pxr_WaitFrame();
+				Pxr_GetPredictedDisplayTime(&PredictedTime);
+#endif
+				GameFrame->predictedDisplayTimeMs = PredictedTime;
+				PXR_LOGV(PxrUnreal, "Pxr_GetPredictedDisplayTime after Pxr_WaitFrame %u,Time:%f", GameFrame->FrameNumber, PredictedTime);
+			}
+			WaitFrameIndex = GameFrame->FrameNumber;
+			PXR_LOGV(PxrUnreal, "WaitFrame Wake Up %u", GameFrame->FrameNumber);
+		}
+		else
+		{
+			PXR_LOGV(PxrUnreal, "WaitFrame not wait! %u", GameFrame->FrameNumber);
+		}
+	}
+ }
+
+ void FPicoXRHMD::OnGameFrameBegin_GameThread()
+{
+	 check(IsInGameThread());
+#if PLATFORM_ANDROID
+	 if (!GameFrame.IsValid() && Pxr_IsRunning())
+	 {
+		 PicoSplash->UpdateLoadingScreen_GameThread();
+		 GameFrame = MakeNewGameFrame();
+		 NextGameFrameToRender = GameFrame;
+		 RefreshStereoRenderingState();
+		 UpdateSensorValue(NextGameFrameToRender.Get());
+	 }
+#endif	
+}
+
+ void FPicoXRHMD::OnGameFrameEnd_GameThread()
+ {
+	 check(IsInGameThread());
+	 WaitFrame();
+	 if (GameFrame.IsValid())
+	 {
+		 PXR_LOGV(PxrUnreal, "OnGameFrameEnd %u", GameFrame->FrameNumber);
+	 }
+	 GameFrame.Reset();
+ }
+
+ void FPicoXRHMD::OnRenderFrameBegin_GameThread()
+ {
+	 check(IsInGameThread());
+	 if (NextGameFrameToRender.IsValid() && NextGameFrameToRender!=LastGameFrameToRender)
+	 {
+		 LastGameFrameToRender = NextGameFrameToRender;
+		 NextGameFrameToRender->Flags.bSplashIsShown = PicoSplash->IsShown();
+
+		 if (NextGameFrameToRender->ShowFlags.Rendering && !NextGameFrameToRender->Flags.bSplashIsShown)
+		 {
+			 NextFrameIndex++;
+		 }
+		 FPXRGameFramePtr Frame = NextGameFrameToRender->Clone();
+		 TArray<FPicoLayerPtr> Layers;
+
+		 Layers.Empty(LayerMap.Num());
+
+		 for (auto Pair : LayerMap)
+		 {
+			 if (!(Pair.Value->GetLayerDesc().Flags & IStereoLayers::LAYER_FLAG_HIDDEN))
+			 {
+				 Layers.Emplace(Pair.Value->Clone());
+			 }
+		 }
+		 Layers.Sort(CompareLayerPriority_PredicateClass());
+
+		 ExecuteOnRenderThread_DoNotWait([this,Frame, Layers](FRHICommandListImmediate& RHICmdList)
+			 {
+				 if (Frame.IsValid())
+				 {
+					 GameFrame_RenderThread = Frame;
+					 Layers_RenderThread = Layers;
+					 UpdateSensorValue(GameFrame_RenderThread.Get());
+				 }
+			 });
+	 }
+ }
+
+ void FPicoXRHMD::OnRenderFrameEnd_RenderThread(FRHICommandListImmediate& RHICmdList)
+ {
+	 check(IsInRenderingThread());
+	 if (GameFrame_RenderThread.IsValid())
+	 {
+		 if (GameFrame_RenderThread->ShowFlags.Rendering)
+		 {
+			 for (int32 LayerIndex = 0; LayerIndex < Layers_RenderThread.Num(); LayerIndex++)
+			 {
+				 Layers_RenderThread[LayerIndex]->RefreshLayers_RenderThread(RenderBridge, RHICmdList);
+			 }
+		 }
+	 }
+	 GameFrame_RenderThread.Reset();
+ }
+
+ void FPicoXRHMD::OnRHIFrameBegin_RenderThread()
+ {
+	 check(IsInRenderingThread());
+	 if (GameFrame_RenderThread.IsValid())
+	 {
+		 FPXRGameFramePtr XFrame = GameFrame_RenderThread->Clone();
+		 TArray<FPicoLayerPtr> XLayers = Layers_RenderThread;
+
+		 for (int32 XLayerIndex = 0; XLayerIndex < XLayers.Num(); XLayerIndex++)
+		 {
+			 XLayers[XLayerIndex] = XLayers[XLayerIndex]->Clone();
+		 }
+		 ExecuteOnRHIThread_DoNotWait([this, XFrame, XLayers]()
+			 {
+				 if (XFrame.IsValid())
+				 {
+					 GameFrame_RHIThread = XFrame;
+					 Layers_RHIThread = XLayers;
+					 FPicoXRHMD::SubmitOrientation = GameFrame_RHIThread->Orientation;
+					 FPicoXRHMD::SubmitPosition = GameFrame_RHIThread->Position;
+					 FPicoXRHMD::SubmitTrackingToWorld = GameFrame_RHIThread->TrackingToWorld;
+					 FPicoXRHMD::SubmitViewNumber = GameFrame_RHIThread->ViewNumber;
+					 PXR_LOGV(PxrUnreal, "BeginFrame %u", GameFrame_RHIThread->FrameNumber);
+					 if (GameFrame_RHIThread->ShowFlags.Rendering && !GameFrame_RHIThread->Flags.bSplashIsShown && !GameFrame_RHIThread->bIsSwitching) 
+					 {
+						 BeginFrame_RHIThread();
+					 }
+				 }
+			 });
+	 }
+ }
+
+ void FPicoXRHMD::OnRHIFrameEnd_RHIThread()
+ {
+	 check(IsInRHIThread()|| IsInRenderingThread());
+	 if (GameFrame_RHIThread.IsValid())
+	 {
+		 PXR_LOGV(PxrUnreal, "EndFrame %u,SubmitViewNum:%d,Rotation:%s,Postion:%s", GameFrame_RHIThread->FrameNumber,SubmitViewNumber,*SubmitOrientation.Rotator().ToString(),*SubmitPosition.ToString());
+		 if (GameFrame_RHIThread->ShowFlags.Rendering && !GameFrame_RHIThread->Flags.bSplashIsShown && !GameFrame_RHIThread->bIsSwitching) 
+		 {
+			 EndFrame_RHIThread();
+		 }
+	 }
+	 GameFrame_RHIThread.Reset();
+ }

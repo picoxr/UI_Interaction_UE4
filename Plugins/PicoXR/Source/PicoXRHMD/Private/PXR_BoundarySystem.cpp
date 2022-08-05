@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_BoundarySystem.h"
 #include "IXRTrackingSystem.h"
@@ -87,42 +87,22 @@ bool UPicoXRBoundarySystem::UPxr_TestNode(int DeviceType, bool bIsPlayArea, bool
 	FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
 #if PLATFORM_ANDROID
-	PxrBoundaryTestNode node;
-	if (DeviceType == 0) {
-		node = PxrBoundaryTestNode::PXR_BOUNDARY_TEST_NODE_HEAD;
-	}
-	else if (DeviceType == 1)
-	{
-		node = PxrBoundaryTestNode::PXR_BOUNDARY_TEST_NODE_LEFT_HAND;
-	}
-	else if (DeviceType == 2)
-	{
-		node = PxrBoundaryTestNode::PXR_BOUNDARY_TEST_NODE_RIGHT_HAND;
-	}
-	else
-	{
-		node = PxrBoundaryTestNode::PXR_BOUNDARY_TEST_NODE_HEAD;
-	}
-	PxrBoundaryTriggerInfo Info;
-	Info.isTriggering = IsTriggering;
-	Info.closestDistance = ClosestDistance;
-	PxrVector3f CPoint;
-	CPoint.x = ClosestPoint.X;
-	CPoint.y = ClosestPoint.Y;
-	CPoint.z = ClosestPoint.Z;
-	PxrVector3f CPointNormal;
-	CPointNormal.x = ClosestPointNormal.X;
-	CPointNormal.y = ClosestPointNormal.Y;
-	CPointNormal.z = ClosestPointNormal.Z;
-	Info.closestPoint = CPoint;
-	Info.closestPointNormal = CPointNormal;
 	bool ret = true;
-	Info.valid = ret;
+	PxrBoundaryTestNode node = static_cast<PxrBoundaryTestNode>(DeviceType);
+	PxrBoundaryTriggerInfo Info;
 
-	Pxr_TestNodeIsInBoundary(node, bIsPlayArea, &Info);
-	ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
-	ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
-	return true;
+	if (!Pxr_TestNodeIsInBoundary(node, bIsPlayArea, &Info))
+	{
+		IsTriggering = Info.isTriggering;
+		ClosestDistance = Info.closestDistance;
+		ClosestPoint = FVector(Info.closestPoint.x, Info.closestPoint.y, Info.closestPoint.z);
+		ClosestPointNormal = FVector(Info.closestPointNormal.x, Info.closestPointNormal.y, Info.closestPointNormal.z);
+		ret = Info.valid;
+
+		ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
+		return true;
+	}
 #endif
 	return false;
 }
@@ -131,31 +111,26 @@ bool UPicoXRBoundarySystem::UPxr_TestPoint(FVector Point, bool bIsPlayArea, bool
 	FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
 #if PLATFORM_ANDROID
-	Point = FPicoXRUtils::ConvertUnrealVectorToXRVector(Point,GEngine->XRSystem->GetWorldToMetersScale());
-
+	Point = FPicoXRUtils::ConvertUnrealVectorToXRVector(Point, GEngine->XRSystem->GetWorldToMetersScale());
+	PxrBoundaryTriggerInfo Info;
+	bool ret = true;
 	PxrVector3f newPoint;
 	newPoint.x = Point.X;
 	newPoint.y = Point.Y;
 	newPoint.z = Point.Z;
-	PxrBoundaryTriggerInfo Info;
-	Info.isTriggering = IsTriggering;
-	Info.closestDistance = ClosestDistance;
-	PxrVector3f CPoint;
-	CPoint.x = ClosestPoint.X;
-	CPoint.y = ClosestPoint.Y;
-	CPoint.z = ClosestPoint.Z;
-	PxrVector3f CPointNormal;
-	CPointNormal.x = ClosestPointNormal.X;
-	CPointNormal.y = ClosestPointNormal.Y;
-	CPointNormal.z = ClosestPointNormal.Z;
-	Info.closestPoint = CPoint;
-	Info.closestPointNormal = CPointNormal;
-	bool ret = false;
-	Info.valid = ret;
-	Pxr_TestPointIsInBoundary(&newPoint, bIsPlayArea, &Info);
-	ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
-	ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
-	return true;
+
+	if (!Pxr_TestPointIsInBoundary(&newPoint, bIsPlayArea, &Info))
+	{
+		IsTriggering = Info.isTriggering;
+		ClosestDistance = Info.closestDistance;
+		ClosestPoint = FVector(Info.closestPoint.x, Info.closestPoint.y, Info.closestPoint.z);
+		ClosestPointNormal = FVector(Info.closestPointNormal.x, Info.closestPointNormal.y, Info.closestPointNormal.z);
+		ret = Info.valid;
+
+		ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
+		return true;
+}
 #endif
 	return false;
 }
@@ -164,16 +139,26 @@ TArray<FVector> UPicoXRBoundarySystem::UPxr_GetGeometry(bool bIsPlayArea)
 {
 	TArray<FVector> BoundaryGeometry; 
 #if PLATFORM_ANDROID
-	uint32_t ret = -1;
-	float * Data = nullptr;
-	if (Pxr_GetBoundaryGeometry2(bIsPlayArea, &Data, &ret) == 0)
+	uint32_t pointsCountOutput = -1;
+	PxrVector3f * outPointsFirst = nullptr;
+	if (Pxr_GetBoundaryGeometry(bIsPlayArea,0,&pointsCountOutput,outPointsFirst) == 0)
 	{
-		for (uint32_t i = 0; i < ret; i++)
+		if (pointsCountOutput <= 0)
 		{
-			FVector TempVector = FVector(Data[i * 3], Data[i * 3 + 1], Data[i * 3 + 2]);
-			TempVector = FPicoXRUtils::ConvertXRVectorToUnrealVector(TempVector, GEngine->XRSystem->GetWorldToMetersScale());
-			BoundaryGeometry.Add(TempVector);
+			return BoundaryGeometry;
 		}
+
+		PxrVector3f * Data = new PxrVector3f[pointsCountOutput];
+		if (Pxr_GetBoundaryGeometry(bIsPlayArea, pointsCountOutput, &pointsCountOutput, Data) == 0)
+		{
+			for (uint32_t i = 0; i < pointsCountOutput; i++)
+			{
+				FVector TempVector = FVector(Data[i].x,Data[i].y,Data[i].z);
+				TempVector = FPicoXRUtils::ConvertXRVectorToUnrealVector(TempVector, GEngine->XRSystem->GetWorldToMetersScale());
+				BoundaryGeometry.Add(TempVector);
+			}
+		}
+		delete[]Data;
 	}	
 #endif
 	return BoundaryGeometry;

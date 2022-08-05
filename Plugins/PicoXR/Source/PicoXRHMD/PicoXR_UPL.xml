@@ -11,7 +11,6 @@
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
 
-    <addPermission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <addPermission android:name="android.permission.CHANGE_CONFIGURATION" />
     <addPermission android:name="android.permission.WRITE_SETTINGS" />
     <setElement result="AuthActivityElement" value="activity"/>
@@ -36,7 +35,7 @@
     <addAttribute tag="activity"  name="android:hardwareAccelerated" value="false" />
     <addElements tag="application">
       <meta-data android:name="pvr.app.type" android:value="vr" />
-	  <meta-data android:name="pvr.sdk.version" android:value="UE4_2.0.2.3" />
+	  <meta-data android:name="pvr.sdk.version" android:value="UE4_2.0.5.4" />
       <meta-data android:name="pxr.sdk.2dloading.flag" android:value="system" />
     </addElements>
 
@@ -109,7 +108,8 @@
     import com.pvr.tobservice.enums.PBS_USBConfigModeEnum;
     import com.pvr.tobservice.enums.PBS_WifiDisplayModel;
     import java.util.List;
- 
+    import com.psmart.aosoperation.MRCCalibration;
+
     <!--import about Content Protect -->
     import com.psmart.aosoperation.SysActivity;
     
@@ -174,38 +174,44 @@
       {
       SysActivity.pxr_DownAudio();
       }
-      
+
       public void SetVolume(int volume)
       {
       SysActivity.pxr_ChangeAudio(volume);
       }
-      
+
       public int GetMaxVolumeNumber()
       {
       int maxV = SysActivity.pxr_GetMaxAudionumber();
       Log.debug("========== PicoXR_UPL: Max system volume:" + maxV+" ==========");
       return maxV;
       }
-      
+
       public int GetCurrentVolume()
       {
       int currentV = SysActivity.pxr_GetAudionumber();
       Log.debug("========== PicoXR_UPL: Current system volume:" + currentV+" ==========");
       return currentV;
       }
-      
+
       public void SetBrightness(int brightness)
       {
       SysActivity.pxr_SetScreen_Brightness(brightness,this.getApplicationContext());
       }
-      
+
       public int GetCurrentBrightness()
       {
       int currentB = SysActivity.pxr_GetScreen_Brightness(this.getApplicationContext());
       Log.debug("========== PicoXR_UPL: Current screen brightness:" + currentB+" ==========");
       return currentB;
       }
-     
+
+      private MRCCalibration mMRCCalibration = null;
+      public float[] MRCGetCalibrationData(String path)
+      {
+      return mMRCCalibration.readCalibrationData(path);
+      }
+
     </insert>
     <insert>
       <!-- The interface about SystemAPI-->
@@ -686,6 +692,44 @@
       ToBServiceHelper.getInstance().pbsImportMaps(ImportMapsCallback,ext);
       }
       
+      float[] GetCpuUsages()
+      {
+      return ToBServiceHelper.getInstance().pbsGetCpuUsages();
+      }
+
+      float[] GetDeviceTemperatures(int inType,int inSource)
+      {
+      return ToBServiceHelper.getInstance().pbsGetDeviceTemperatures(inType,inSource);
+      }
+
+      void Capture()
+      {
+      ToBServiceHelper.getInstance().pbsCapture();
+      }
+
+      void Record()
+      {
+      ToBServiceHelper.getInstance().pbsRecord();
+      }
+
+      public native void JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(int Result);
+      IIntCallback ControlSetAutoConnectWIFIWithErrorCodeCallback = new IIntCallback.Stub()
+      {
+      @Override
+      public void callback(int result) throws RemoteException {
+      JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(result);
+      }
+      };
+      void ControlSetAutoConnectWIFIWithErrorCode(String ssid, String pwd, int ext)
+      {
+      ToBServiceHelper.getInstance().pbsControlSetAutoConnectWIFIWithErrorCodeCallback(ssid, pwd, ext, ControlSetAutoConnectWIFIWithErrorCodeCallback);
+      }
+
+      void AppKeepAlive(String appPackageName, boolean keepAlive, int ext)
+      {
+      ToBServiceHelper.getInstance().pbsAppKeepAlive(appPackageName, keepAlive, ext);
+      }
+
     </insert>
 	</gameActivityClassAdditions>
 
@@ -694,30 +738,15 @@
     <insert>
       Log.debug("========== PicoXR_UPL:gameActivityOnCreateAdditions ==========");
       SysActivity.pxr_InitAudioDevice(this.getApplicationContext());
+      mMRCCalibration = new MRCCalibration();
     </insert>
-    <if condition="bEnablePSensor">
-      <true>
-        <insert>
-          Log.debug("========== PicoXR_UPL: initPsensor! ==========");
-          SysActivity.initPsensor(this);
-        </insert>
-      </true>
-    </if>
-  </gameActivityOnCreateAdditions>
+	</gameActivityOnCreateAdditions>
   
     <!-- optional additions to GameActivity onDestroy in GameActivity.java	-->
     <gameActivityOnDestroyAdditions>
       <insert>
         Log.debug("========== PicoXR_UPL:gameActivityOnDestroyAdditions ==========");
       </insert>
-      <if condition="bEnablePSensor">
-        <true>
-          <insert>
-            Log.debug("========== PicoXR_UPL: unregisterListener! ==========");
-            SysActivity.unregisterListener();
-          </insert>
-        </true>
-      </if>
     </gameActivityOnDestroyAdditions>
 
 	<!-- optional additions to GameActivity onStart in GameActivity.java	-->
@@ -725,6 +754,14 @@
         <insert>
           Log.debug("========== PicoXR_UPL:gameActivityOnStartAdditions ==========");
         </insert>
+		<if condition="bEnablePSensor">
+			<true>
+				<insert>
+					Log.debug("========== PicoXR_UPL: initPsensor! ==========");
+					SysActivity.initPsensor(this);
+				</insert>
+			</true>
+		</if>
 	</gameActivityOnStartAdditions>
 
 	<!-- optional additions to GameActivity onStop in GameActivity.java	-->
@@ -732,6 +769,14 @@
         <insert>
           Log.debug("========== PicoXR_UPL:gameActivityOnStopAdditions ==========");
         </insert>
+		<if condition="bEnablePSensor">
+			<true>
+				<insert>
+					Log.debug("========== PicoXR_UPL: unregisterListener! ==========");
+					SysActivity.unregisterListener();
+				</insert>
+			</true>
+		</if>
 	</gameActivityOnStopAdditions>
 
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->

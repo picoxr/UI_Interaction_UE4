@@ -1,11 +1,5 @@
-//
-// Created by Alex on 2021/4/23.
-// Modified by panda on 2021/6/16.
-// Modified by panda on 2021/6/21.
-//
-
-#ifndef PICOXRPLUGIN_PXRINPUT_H
-#define PICOXRPLUGIN_PXRINPUT_H
+#ifndef PXR_INPUT_H
+#define PXR_INPUT_H
 
 #include "PxrTypes.h"
 #include "PxrEnums.h"
@@ -62,7 +56,14 @@ typedef enum {
     PXR_HB2_Controller = 3,
     PXR_CV2_Controller = 4,
     PXR_CV3_Optics_Controller = 5,
+    PXR_CV3_Phoenix_Controller = 6,
 } PxrControllerType;
+
+
+typedef enum {
+    PXR_NEO3_DEVICE = 1,
+    PXR_PHOENIX_DEVICE = 2,
+} PxrHMDType;
 
 typedef struct PxrControllerTracking_ {
     PxrSensorState localControllerPose;
@@ -87,7 +88,7 @@ typedef struct PxrControllerInputState_ {
     int BYValue;            // 0/1
     int sideValue;          // 0/1
     float gripValue;          // 0-255  --> 0-1
-    int reserved_key_0;
+    int triggerclickValue;    // 0/1
     int reserved_key_1;
     int reserved_key_2;
     int reserved_key_3;
@@ -193,6 +194,141 @@ typedef struct PxrControllerInfo_ {
     char* version;
 } PxrControllerInfo;
 
+//Handtracking data
+typedef enum {
+    pxrNoneActive               = 0,
+    pxrControllerActive         = 1,
+    pxrHandTrackingActive       = 2,
+}PxrActiveInputDeviceType;
+typedef enum{
+    PxrNone = -1,
+    PxrHandLeft = 0,
+    PxrHandRight = 1,
+}PxrHandType;
+typedef enum{
+    PxrSkeletonTypeNone = -1,
+    PxrSkeletonTypeHandLeft = 0,
+    PxrSkeletonTypeHandRight = 1,
+} PxrSkeletonType;
+typedef enum {
+    PxrMeshTypeNone = -1,
+    PxrMeshTypeHandLeft = 0,
+    PxrMeshTypeHandRight = 1,
+} PxrMeshType;
+typedef enum PxrHandTrackingStatus_{
+    PxrHandTracked = (1 << 0),
+    PxrInputStateValid = (1 << 1),
+    PxrSystemGestureInProgress = (1 << 6),
+    PxrDominantHand = (1 << 7),
+    PxrMenuPressed = (1 << 8)
+}PxrHandTrackingStatus;
+typedef struct PxrVector4f_ {
+    float x, y, z, w;
+}PxrVector4f;
+typedef struct PxrVector4s_ {
+    int16_t x, y, z, w;
+}PxrVector4s;
+typedef enum PxrHandBoneIndex_{
+    PxrHandBone_Invalid = -1,
+    PxrHandBone_WristRoot = 0, // root frame of the hand, where the wrist is located
+    PxrHandBone_ForearmStub = 1, // frame for user's forearm
+    PxrHandBone_Thumb0 = 2, // thumb trapezium bone
+    PxrHandBone_Thumb1 = 3, // thumb metacarpal bone
+    PxrHandBone_Thumb2 = 4, // thumb proximal phalange bone
+    PxrHandBone_Thumb3 = 5, // thumb distal phalange bone
+    PxrHandBone_Index1 = 6, // index proximal phalange bone
+    PxrHandBone_Index2 = 7, // index intermediate phalange bone
+    PxrHandBone_Index3 = 8, // index distal phalange bone
+    PxrHandBone_Middle1 = 9, // middle proximal phalange bone
+    PxrHandBone_Middle2 = 10, // middle intermediate phalange bone
+    PxrHandBone_Middle3 = 11, // middle distal phalange bone
+    PxrHandBone_Ring1 = 12, // ring proximal phalange bone
+    PxrHandBone_Ring2 = 13, // ring intermediate phalange bone
+    PxrHandBone_Ring3 = 14, // ring distal phalange bone
+    PxrHandBone_Pinky0 = 15, // pinky metacarpal bone
+    PxrHandBone_Pinky1 = 16, // pinky proximal phalange bone
+    PxrHandBone_Pinky2 = 17, // pinky intermediate phalange bone
+    PxrHandBone_Pinky3 = 18, // pinky distal phalange bone
+    PxrHandBone_MaxSkinnable = 19,
+    // Bone tips are position only. They are not used for skinning but useful for hit-testing.
+    // NOTE: HandBone_ThumbTip == HandBone_MaxSkinnable since the extended tips need to be
+    // contiguous
+
+    PxrHandBone_ThumbTip = PxrHandBone_MaxSkinnable + 0, // tip of the thumb
+    PxrHandBone_IndexTip = PxrHandBone_MaxSkinnable + 1, // tip of the index finger
+    PxrHandBone_MiddleTip = PxrHandBone_MaxSkinnable + 2, // tip of the middle finger
+    PxrHandBone_RingTip = PxrHandBone_MaxSkinnable + 3, // tip of the ring finger
+    PxrHandBone_PinkyTip = PxrHandBone_MaxSkinnable + 4, // tip of the pinky
+    PxrHandBone_Max = PxrHandBone_MaxSkinnable + 5,
+} PxrHandBoneIndex;
+#define PxrHandBoneIndex_max 24
+
+typedef enum {
+    PxrHandPinch_Thumb  = 1 << 0,
+    PxrHandPinch_Index  = 1 << 1,
+    PxrHandPinch_Middle = 1 << 2,
+    PxrHandPinch_Ring   = 1 << 3,
+    PxrHandPinch_Pinky  = 1 << 4,
+} PxrHandFingerPinch;
+#define PxrHandFingerPinch_max 5
+
+typedef enum {
+    PxrTrackingConfidence_LOW,
+    PxrTrackingConfidence_HIGH,
+} PxrTrackingConfidence;
+#define PxrHandFinger_Max 5
+
+typedef struct Pxrhandstate_{
+    int16_t  Status;
+    PxrPosef   RootPose;
+    PxrPosef   BonePose[PxrHandBoneIndex_max];
+    int16_t Pinches;
+    float    PinchStrength[PxrHandFingerPinch_max];
+    float ClickStrength;
+    PxrPosef   PointerPose;
+    float    HandScale;
+    PxrTrackingConfidence  HandConfidence;
+    PxrTrackingConfidence  FingerConfidence[PxrHandFinger_Max];
+    double   RequestedTimeStamp;
+    double   SampleTimeStamp;
+}PxrHandState;
+
+typedef struct PxrBoneCapsule_ {
+    PxrHandBoneIndex BoneIndex;
+    PxrVector3f StartPoint;
+    PxrVector3f EndPoint;
+    float Radius;
+} PxrBoneCapsule;
+
+typedef struct Bone_{
+    PxrPosef  Bones;
+    PxrHandBoneIndex BoneIndices;
+    PxrHandBoneIndex ParentBoneIndices;
+}PxrBone;
+#define PxrBoneCapsule_max 19
+typedef struct PxrSkeleton_{
+    PxrSkeletonType Type;
+    int NumBones;
+    int NumBoneCapsules;
+    PxrBone     Bones[PxrHandBoneIndex_max];
+    PxrBoneCapsule   Capsules[PxrBoneCapsule_max];
+}PxrSkeleton;
+
+typedef int16_t PxrVertexIndex;
+#define PxrHand_MaxVertices 3000
+#define PxrHand_MaxIndices  PxrHand_MaxVertices*6
+typedef struct {
+    int  NumVertices;
+    int  NumIndices;
+    PxrVector3f   VertexPositions[PxrHand_MaxVertices];
+    PxrVertexIndex   Indices[PxrHand_MaxIndices];
+    PxrVector3f    VertexNormals[PxrHand_MaxVertices];
+    PxrVector2f    VertexUV0[PxrHand_MaxVertices];
+    PxrVector4s    BlendIndices[PxrHand_MaxVertices];
+    PxrVector4f    BlendWeights[PxrHand_MaxVertices];
+}PxrHandMesh;
+
+//Handtracking data
 extern "C" {
 
 /*******************************************************************************************************************************************************************
@@ -226,14 +362,15 @@ int Pxr_GetControllerInputEvent(uint32_t deviceID, PxrControllerInputEvent *even
  * set input vibration
  ******************************************************/
 int Pxr_SetControllerVibration(uint32_t deviceID, float strength, int time);
-
+int Pxr_SetControllerVibrationEvent(uint32_t deviceID,int frequency, float strength, int time);
 
 /*******************************************************************************************************************************************************************
 *
 *                                          Controller Manager Feature Function
 *
 *********************************************************************************************************************************************************************/
-
+//set Virtual Key by developer
+int Pxr_SetVirtualKey(int keytype,int keyvalue,int controller);
 //set app can get key value
 int Pxr_SetControllerEnableKey(bool isEnable,PxrControllerKeyMap Key);
 
@@ -259,6 +396,28 @@ int Pxr_SetControllerUpgrade(uint32_t deviceID,int rule,char* station_path_by_ch
  * get input device type/mac/sn addr.
  */
 int Pxr_GetControllerinfo(uint32_t deviceID, PxrControllerInfo *info);
+
+/*
+ * vibrate the controller
+ */
+
+int Pxr_StopControllerVCMotor(int clientId);
+int Pxr_StartControllerVCMotor(char* file,int slot,int slotconfig);
+int Pxr_SetControllerAmp(float mode);
+int Pxr_SetControllerDelay(int delay);
+char*  Pxr_GetVibrateDelayTime(int* length);
+int Pxr_StartVibrateBySharemF(float* data,AudioClipData* parameter);
+int Pxr_StartVibrateBySharemU(uint8_t * data,AudioClipData* parameter);
+int Pxr_StartVibrateByCache(int clicpid);
+int Pxr_ClearVibrateByCache(int clicpid);
+//handtracking function
+int Pxr_SetAppHandTrackingEnabled(bool  bHandTrackingEnabled);
+int Pxr_GetActiveInputDeviceType(PxrActiveInputDeviceType * ActiveInputType);
+int Pxr_GetHandTrackingEnabled(bool * bHandTrackingEnabled);
+int Pxr_GetHandTrackingHandState(PxrHandType  HandID,int16_t coordinateflag,PxrHandState * HandtrackHandState);
+int Pxr_GetHandTrackingSkeleton(PxrSkeletonType Handtrackskeletontype,PxrSkeleton * HandtrackSkeleton);
+int Pxr_GetHandTrackingMesh(PxrMeshType HandtrackMeshType,PxrHandMesh * HandtrackHandMesh);
+//handtracking function
 
 /*******************************************************************************************************************************************************************
 *
@@ -289,4 +448,4 @@ int Pxr_RecenterInputPose(uint32_t deviceID);
 int Pxr_GetHeadSensorData(float *data);
 
 }
-#endif //PICOXRPLUGIN_PXRINPUT_H
+#endif //PXR_INPUT_H

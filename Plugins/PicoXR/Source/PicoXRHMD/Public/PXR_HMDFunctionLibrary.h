@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -113,19 +113,19 @@ struct FPicoXREyeTrackingData
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		int32  CombinedEyePoseStatus;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		FVector  LeftEyeGazePoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		FVector  RightEyeGazePoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		FVector  CombinedEyeGazePoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		FVector  LeftEyeGazeVector;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		FVector  RightEyeGazeVector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
@@ -137,10 +137,10 @@ struct FPicoXREyeTrackingData
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		float  RightEyeOpenness;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		float  LeftEyePupilDilation;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
 		float  RightEyePupilDilation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
@@ -316,7 +316,7 @@ public:
 
 	/**
 	* Set system display frequency.
-	* @param Rate    (In) Display frequency 72/90.
+	* @param Rate    (In) Display frequency 72/90/120.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		static void PXR_SetSystemDisplayFrequency(float Rate);
@@ -329,6 +329,12 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		static void PXR_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers = false);
+
+	/**
+	* Returns true, if the app has focus.
+	*/
+	UFUNCTION(BlueprintPure, Category = "PXR|PXRHMD")
+		static bool GetFocusState();
 
 #pragma region Boundary
 	static class UPicoXRBoundarySystem* GetBoundarySystemInterface();
@@ -479,6 +485,9 @@ public:
 
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		 static bool PXR_GetEyeTrackingPos(FVector &EyeTrackingPos);
+
+	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
+		 static bool PXR_EnableFaceTracking(bool enable);
 	
 #pragma endregion EyeTracking
 
@@ -536,4 +545,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		static void PXR_GetPredictedMainSensorState(FPxrSensorState& sensorState, int& sensorFrameIndex);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
+		static void PXR_SetLargeSpaceEnable(bool bEnable,int ext=0);
 };

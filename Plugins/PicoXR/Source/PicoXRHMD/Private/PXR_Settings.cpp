@@ -1,6 +1,9 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_Settings.h"
+#if WITH_EDITOR
+#include "Editor.h"
+#endif
 #include "Engine/RendererSettings.h"
 
 UPicoXRSettings::UPicoXRSettings(const FObjectInitializer& ObjectInitializer)
@@ -12,22 +15,28 @@ UPicoXRSettings::UPicoXRSettings(const FObjectInitializer& ObjectInitializer)
 	NeckOffset(FVector::ZeroVector),
 	bEnableHomeKey(false),
 	bIsController3Dof(false),
-	bUseHWsRGBEncoding(false),
+	bEnableLateLatching(false),
+	bUseHWsRGBEncoding(true),
 	bUseRecommendedMSAA(false),
 	bEnableFoveation(false),
 	FoveationLevel(EFoveationLevel::Low),
 	bEnableEyeTracking(false),
 	bEnableEyeTrackingMarker(false),
 	bUseAdvanceInterface(false),
+	bEnableLargeSpace(false),
 	bUseContentProtect(false),
-	bSplashScreenAutoShow(false),
+	bSplashScreenAutoShow(true),
 	refreshRate(ERefreshRate::Default)
-{	
+{
+#if WITH_EDITOR
+	ResetsRGBConfig();
+#endif
 }
 
 void UPicoXRSettings::PostInitProperties()
 {
 	Super::PostInitProperties();
+	bUseHWsRGBEncoding = true;
 }
 
 #if WITH_EDITOR
@@ -59,8 +68,15 @@ void UPicoXRSettings::HandlesRGBHWSupport()
 	{
 		MobileUseHWsRGBEncodingCVAR->Set((int)bUseHWsRGBEncoding);
 	}
-
 }
-#endif 
+
+void UPicoXRSettings::ResetsRGBConfig()
+{
+	// To Prevent sRGB from being turned off by AndroidSetting
+	FEditorDelegates::RefreshAllBrowsers.AddUObject(this,&UPicoXRSettings::HandlesRGBHWSupport);
+}
+#endif
+
+
 
 

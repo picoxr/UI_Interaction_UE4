@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -13,6 +13,7 @@
 #include "XRRenderTargetManager.h"
 #include "HeadMountedDisplayBase.h"
 #include "Engine/Public/SceneUtils.h"
+#include "PXR_GameFrame.h"
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
 #include "Android/AndroidJNI.h"
@@ -94,14 +95,6 @@ struct FCurrentFrameValue
 	}
 };
 
-enum EFrameState
-{
-	NeedToBeginFrame,
-	NeedToEndFrame,
-	SplashRenderingNeedToBeginFrame,
-	SplashRenderingNeedToEndFrame
-};
-
 /**
  * PicoXR Head Mounted Display
  */
@@ -123,6 +116,7 @@ public:
 	virtual class TSharedPtr< class IStereoRendering, ESPMode::ThreadSafe > GetStereoRenderingDevice() override;
 	virtual float GetWorldToMetersScale() const override;
 	virtual void OnBeginRendering_GameThread() override;
+	virtual void OnBeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& ViewFamily) override;
 	virtual bool OnStartGameFrame(FWorldContext& WorldContext) override;
 	virtual bool OnEndGameFrame(FWorldContext& WorldContext) override;
 	virtual class IXRLoadingScreen* CreateLoadingScreen() override { return GetSplash().Get(); }
@@ -173,6 +167,10 @@ public:
 	virtual void PostRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override;
 	virtual void PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView) override;
 	virtual int32 GetPriority() const override { return -1; }
+#if ENGINE_MINOR_VERSION >26
+	virtual bool LateLatchingEnabled() const override;
+	virtual void PreLateLatchingViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override;
+#endif
 
 	/** IStereoRenderTargetManager interface */
 	virtual bool ShouldUseSeparateRenderTarget() const override { return true; }
@@ -225,17 +223,10 @@ public:
 	void EndFrame_RHIThread();
 	void RefreshLayers_RHIThread();
 	FPicoXRSplashPtr GetSplash() const {return  PicoSplash;};
-    void FinishRenderFrame_RenderThread(FRHICommandListImmediate& RHICmdList);
 
-	void SetFrameState(EFrameState NewState);
-	EFrameState GetFrameState();
-
-	bool Startup();
-	void Shutdown();
+	bool Initialize();
+	void UnInitialize();
 	void UPxr_EnableFoveation(bool enable);
-
-	void OnPreLoadMap(const FString&);
-	void OnPostLoadMap(UWorld*);
 
 	void UPxr_GetAngularAcceleration(FVector& AngularAcceleration);
 	void UPxr_GetVelocity(FVector& Velocity);
@@ -247,23 +238,61 @@ public:
 	TSharedPtr<FPicoXREyeTracker> UPxr_GetEyeTracker();
 	void ClearTexture_RHIThread(FRHITexture2D* SrcTexture);
 	void UPxr_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers = false);
+	uint32 CreateMRCStereoLayer(FTextureRHIRef BackgroundRTTexture, FTextureRHIRef ForegroundRTTexture);
+	void DestroyAllMRCLayersOneTime();
+
+	void OnLargeSpaceStatusChanged(bool bEnable);
+	FString GetRHIString();
+
+	void OnPreLoadMap(const FString& MapName);
+	FDelegateHandle PreLoadLevelDelegate;
+	bool bIsSwitchingLevel;
+	void WaitFrame();
+	void OnGameFrameBegin_GameThread();
+	void OnGameFrameEnd_GameThread();
+	void OnRenderFrameBegin_GameThread();
+	void OnRenderFrameEnd_RenderThread(FRHICommandListImmediate& RHICmdList);
+	void OnRHIFrameBegin_RenderThread();
+	void OnRHIFrameEnd_RHIThread();
+	FPXRGameFramePtr MakeNewGameFrame() const;
+	void RefreshStereoRenderingState();
+	// Game thread
+	uint32 NextFrameIndex;
+	uint32 WaitFrameIndex;
+	FPXRGameFramePtr GameFrame;
+	FPXRGameFramePtr NextGameFrameToRender;
+	FPXRGameFramePtr LastGameFrameToRender;
+	TMap<uint32, FPicoLayerPtr> LayerMap;
+	FPicoLayerPtr CurrentMRCLayer;
+	TArray<uint32> MRCLayersID;
+	// Render thread
+	FPXRGameFramePtr GameFrame_RenderThread;
+	TArray<FPicoLayerPtr> Layers_RenderThread;
+	// RHI thread
+	FPXRGameFramePtr GameFrame_RHIThread;
+	TArray<FPicoLayerPtr> Layers_RHIThread;
+	double PredictedTime = 0;
+	bool bWaitFrameVersion = false;
+	float CachedWorldToMetersScale = 100.0f;
+
 
 	UPicoXREventManager* EventManager;
-	uint32 CurrentLayerId;
+	uint32 NextLayerId;
 	TMap<FString, FVector> MapToInitPos;
 	FVector InitCamPos;
 	FVector PreCamPos;
-	static bool GIsMapPost;
 	static int32 GMapInitFrame;
-	FCurrentFrameValue CurrentFrameValue_RenderThread;
 	bool MRCEnabled=false;
 	FLinearColor GColorScale = FLinearColor(1.0,1.0,1.0,1.0);
 	FLinearColor GColorOffset = FLinearColor(0.0,0.0,0.0,0.0);
     bool GbApplyToAllLayers = false;
 	bool bNeedReAllocateFoveationTexture_RenderThread = false;
+	bool bUserEnableLargeSpace=false;
+	bool bDeviceHasEnableLargeSpace = false;
+	bool inputFocusState = true;
 
-private:
 	void PollEvent();
+private:
 #if PLATFORM_ANDROID
 	void ProcessEvent(int EventCount, PxrEventDataBuffer** EventData);
 	void ProcessControllerEvent( const PxrEventDataControllerChanged EventData);
@@ -276,7 +305,7 @@ private:
 	void ApplicationPauseDelegate();
 	void ApplicationResumeDelegate();
 	void UpdateNeckOffset();
-	void UpdateSensorValue();
+	void UpdateSensorValue(FPXRGameFrame * InFrame);
 	void EnableContentProtect(bool bEnable );
 	void SetRefreshRate();
 
@@ -284,9 +313,6 @@ private:
 	float PixelDensity;
 	FIntPoint RTSize;
 	int32 MobileMSAAValue;
-	FCurrentFrameValue LastFrameValue_RenderThread;
-	FCurrentFrameValue CurrentFrameValue_GameThread;
-	FCurrentFrameValue LastFrameValue_GameThread;
 	FVector NeckOffset;
 	FPicoXRFrustum LeftFrustum;
 	FPicoXRFrustum RightFrustum;
@@ -298,17 +324,13 @@ private:
 	EHMDTrackingOrigin::Type TrackingOrigin;
 	static float IpdValue;
 	TSharedPtr<FPicoXREyeTracker> EyeTracker;
-	TMap<uint32,FPicoLayerPtr> LayerMap;
-#if ENGINE_MINOR_VERSION==24
-	TArray<FPicoLayerPtr> Layers_RenderThread;
-#endif
 	static int32 SubmitViewNumber;
 	static FVector SubmitPosition;
 	static FQuat SubmitOrientation;
 	static FTransform SubmitTrackingToWorld;
 	APlayerController* PlayerController;
-	EFrameState FrameState;
 	FPicoXRSplashPtr PicoSplash;
 	FString DeviceModel;
+	double DisplayRefreshRate;
 };
 

@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDFunctionLibrary.h"
 #include <list>
@@ -26,7 +26,7 @@ FPicoXRHMD* UPicoXRHMDFunctionLibrary::GetPicoXRHMD()
             }
             if (PicoXRHMD == nullptr)
             {
-				PXR_LOGE(PxrUnreal, "GetPicoXRHMD Failed!");
+                PXR_LOGI(PxrUnreal, "GetPicoXRHMD Failed!");
             }
         } 
     }
@@ -118,7 +118,7 @@ FString UPicoXRHMDFunctionLibrary::PXR_GetDeviceModel()
 
 float UPicoXRHMDFunctionLibrary::PXR_GetCurrentDisplayFrequency()
 {
-    float frequency = 0.f;
+    float frequency = 1.0f;
 #if PLATFORM_ANDROID
     Pxr_GetConfigFloat(PxrConfigType::PXR_DISPLAY_REFRESH_RATE, &frequency);
 #endif
@@ -166,6 +166,16 @@ void UPicoXRHMDFunctionLibrary::PXR_SetColorScaleAndOffset(FLinearColor ColorSca
 #if PLATFORM_ANDROID
     GetPicoXRHMD()->UPxr_SetColorScaleAndOffset(ColorScale,ColorOffset,bApplyToAllLayers);
 #endif
+}
+
+bool UPicoXRHMDFunctionLibrary::GetFocusState()
+{
+    const FPicoXRHMD* const picoXRHMD = GetPicoXRHMD();
+    if (picoXRHMD != nullptr && picoXRHMD->IsHMDEnabled())
+    {
+        return picoXRHMD->inputFocusState;
+    }
+    return false;
 }
 
 UPicoXRBoundarySystem* UPicoXRHMDFunctionLibrary::GetBoundarySystemInterface()
@@ -389,6 +399,19 @@ bool UPicoXRHMDFunctionLibrary::PXR_GetEyeTrackingPos(FVector &EyeTrackingPos)
 	return false;
 }
 
+bool UPicoXRHMDFunctionLibrary::PXR_EnableFaceTracking(bool enable)
+{
+#if PLATFORM_ANDROID
+	const TSharedPtr<FPicoXREyeTracker> eyeTracker = GetPicoXRHMD()->UPxr_GetEyeTracker();
+	if (eyeTracker)
+	{
+		if (eyeTracker->OpenEyeTracking(enable))
+            return true;
+	}
+#endif
+	return false;
+}
+
 bool UPicoXRHMDFunctionLibrary::PXR_AddSplashScreen(UTexture2D* Texture, FVector TranslationInMeters,
     FRotator Rotation, FVector2D SizeInMeters, bool bClearBeforeAdd)
 {
@@ -411,7 +434,7 @@ bool UPicoXRHMDFunctionLibrary::PXR_AddSplashScreen(UTexture2D* Texture, FVector
             }
 		    else
 		    {
-		        UE_LOG(LogHMD, Warning, TEXT("Pxr_UE PXR_AddSplashScreen  the Texture is null"));
+		        UE_LOG(LogHMD, Log, TEXT("Pxr_UE PXR_AddSplashScreen  the Texture is null"));
 		        return false;
 		    }
 		}
@@ -464,17 +487,20 @@ void UPicoXRHMDFunctionLibrary::PXR_GetHFov(float & HFOVInDegrees)
 	GetPicoXRHMD()->GetFieldOfView(HFOVInDegrees, drop);
 }
 
-bool UPicoXRHMDFunctionLibrary::PXR_GetDisplayFrequenciesAvailable(int &Count,TArray<float> &AvailableRates)
+bool UPicoXRHMDFunctionLibrary::PXR_GetDisplayFrequenciesAvailable(int& Count, TArray<float>& AvailableRates)
 {
-	bool result = false;  
+    bool result = false;
 #if PLATFORM_ANDROID
-    float* temp = nullptr; 
-    uint32_t number = (uint32_t)Count;
-    result = Pxr_GetDisplayRefreshRatesAvailable(&number,&temp);
-   for (int32 i = 0;i< number;i++)
-   {
-       AvailableRates.Add(temp[i]);
-   }
+    float* temp = nullptr;
+    uint32_t* number = (uint32_t*)(&Count);
+    if (!Pxr_GetDisplayRefreshRatesAvailable(number, &temp))
+    {
+        if (!Count) { return result; }
+        AvailableRates.Init(0, Count);
+        FMemory::Memcpy(AvailableRates.GetData(), temp, sizeof(float) * Count);
+        result = true;
+    }
+
 #endif
     return result;
 }
@@ -532,4 +558,27 @@ void UPicoXRHMDFunctionLibrary::PXR_GetPredictedMainSensorState(FPxrSensorState&
         sensorState.poseTimeStampNs = sensorState2.poseTimeStampNs;
     }
 #endif
+}
+
+void UPicoXRHMDFunctionLibrary::PXR_SetLargeSpaceEnable(bool bEnable,int ext)
+{
+    UPicoXRSettings *Settings=GetMutableDefault<UPicoXRSettings>();
+    if (Settings && Settings->bUseAdvanceInterface)
+	{
+		if (GetPicoXRHMD())
+		{
+			GetPicoXRHMD()->bUserEnableLargeSpace = bEnable;
+#if PLATFORM_ANDROID
+			if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+			{
+				static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetSwitchLargeSpaceStatus", "(I)V", false);
+				FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, ext);
+            }
+#endif
+        }
+    }
+    else
+    {
+		PXR_LOGW(PxrUnreal, "Set large space enable faild,make sure the bUseAdvanceInterface property has checked on Proejctings->Plugins->PicoXR Settings!");
+    }
 }

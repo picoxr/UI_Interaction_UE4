@@ -1,9 +1,9 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "GenericPlatform/IInputInterface.h"
 #include "XRMotionControllerBase.h"
-#include "InputDevice.h"
+#include "IInputDevice.h"
 #include "IHapticDevice.h"
 #include "PXR_Settings.h"
 #include "PXR_HMD.h"
@@ -26,6 +26,10 @@ struct EPicoButton
 		AorX,
 		BorY,
 		Grip,
+		RockerUp,
+		RockerDown,
+		RockerLeft,
+		RockerRight,
 		ButtonCount
 	};
 };
@@ -98,10 +102,8 @@ public:
 	UFUNCTION()
     void OnControllerConnectChangedDelegate(int32 Handness,int32 State);
 
-	void SetHeadPosition(FVector Position);
-	void SetHeadOrientation(FQuat Orientation);
 	bool UPxr_GetControllerEnableHomeKey();
-	void GetPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const;
+	bool GetPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const;
 	
 	static FVector OriginOffsetL;
 	static FVector OriginOffsetR;
@@ -111,7 +113,7 @@ private:
 	void ProcessButtonEvent();
 	void ProcessButtonAxis();
 	void UpdateConnectState();
-	void GetControllerSensorData(EControllerHand DeviceHand,  float WorldToMetersScale, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const;
+	void GetControllerSensorData(EControllerHand DeviceHand, float WorldToMetersScale, float PredictedTime, FVector SourcePosition, FQuat SourceOrientation, FRotator& OutOrientation, FVector& OutPosition) const;
 
 	FPicoXRHMD* PicoXRHMD;
 	TSharedRef<FGenericApplicationMessageHandler> MessageHandler;
@@ -121,6 +123,8 @@ private:
 	FName TouchButtons[(int32)EPicoXRControllerHandness::ControllerCount][(int32)EPicoTouchButton::ButtonCount];
 	int32 LastLeftControllerButtonState[EPicoButton::ButtonCount] = { 0 };
 	int32 LastRightControllerButtonState[EPicoButton::ButtonCount] = { 0 };
+	int32 LastLeftTouchButtonState[EPicoTouchButton::ButtonCount] = { 0 };
+	int32 LastRightTouchButtonState[EPicoTouchButton::ButtonCount] = { 0 };
 	int32 LeftControllerPower;
 	int32 RightControllerPower;
 	FVector2D LeftControllerTouchPoint;
@@ -130,10 +134,9 @@ private:
 	float LeftControllerGripValue;
 	float RightControllerGripValue;
 	uint32_t MainControllerHandle;
-	FVector SourcePosition;
-	FQuat SourceOrientation;
 	EPicoInputType ControllerType;
 	UPicoXRSettings* Settings;
+	int CurrentVersion;
 };
 
 

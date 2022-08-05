@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_Input.h"
 #include "PXR_InputState.h"
@@ -34,9 +34,8 @@ FPicoXRInput::FPicoXRInput()
 	,LeftControllerGripValue(0.0f)
 	,RightControllerGripValue(0.0f)
 	,MainControllerHandle(-1)
-	,SourcePosition(FVector::ZeroVector)
-	,SourceOrientation(FQuat::Identity)
 	,ControllerType(EPicoInputType::Unknown)
+	,CurrentVersion(0)
 {
 	PicoXRHMD = GetPicoXRHMD();
 #if PLATFORM_ANDROID
@@ -47,6 +46,7 @@ FPicoXRInput::FPicoXRInput()
 	{
 		Pxr_SetControllerEnableKey(Settings->bEnableHomeKey, PxrControllerKeyMap::PXR_CONTROLLER_KEY_HOME);
 	}
+	Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
 #endif
 	RegisterKeys();
 	SetKeyMapping();
@@ -65,6 +65,11 @@ void FPicoXRInput::Tick(float DeltaTime)
 void FPicoXRInput::SendControllerEvents()
 {
 #if PLATFORM_ANDROID
+	if (PicoXRHMD)
+	{
+		PicoXRHMD->PollEvent();
+		PicoXRHMD->OnGameFrameBegin_GameThread();
+	}
 	ProcessButtonEvent();
 	ProcessButtonAxis();
 #endif
@@ -124,14 +129,35 @@ FName FPicoXRInput::GetMotionControllerDeviceTypeName() const
 
 bool FPicoXRInput::GetControllerOrientationAndPosition(const int32 ControllerIndex, const EControllerHand DeviceHand, FRotator& OutOrientation, FVector& OutPosition, float WorldToMetersScale) const
 {
+	double predictedDisplayTimeMs = 0.0;
+	FVector SourcePosition = FVector::ZeroVector;
+	FQuat SourceOrientation = FQuat::Identity;
+	FPXRGameFrame* CurrentFrame = nullptr;
+	if (IsInRenderingThread() && PicoXRHMD)
+	{
+		CurrentFrame = PicoXRHMD->GameFrame_RenderThread.Get();
+	}
+	else if (IsInGameThread() && PicoXRHMD)
+	{
+		CurrentFrame = PicoXRHMD->NextGameFrameToRender.Get();
+	}
+	if (CurrentFrame)
+	{
+		predictedDisplayTimeMs = CurrentFrame->predictedDisplayTimeMs;
+		SourcePosition = CurrentFrame->Position;
+		SourceOrientation = CurrentFrame->Orientation;
+		PXR_LOGV(PxrUnreal, "GetControllerOrientationAndPosition FrameNumber:%d,predictedDisplayTimeMs:%f", CurrentFrame->FrameNumber, predictedDisplayTimeMs);
+	}
+	else
+	{
+		return false;
+	}
 #if PLATFORM_ANDROID
-    double predictedDisplayTimeMs=0.0;
-	Pxr_GetPredictedDisplayTime(&predictedDisplayTimeMs);
 	if (ControllerType == G2)
 	{
 		if (LeftConnectState)
 		{
-			GetControllerSensorData(EControllerHand::Left, WorldToMetersScale, predictedDisplayTimeMs,OutOrientation, OutPosition);
+			GetControllerSensorData(EControllerHand::Left, WorldToMetersScale, predictedDisplayTimeMs, SourcePosition, SourceOrientation, OutOrientation, OutPosition);
 			return true;
 		}
 	}
@@ -139,12 +165,25 @@ bool FPicoXRInput::GetControllerOrientationAndPosition(const int32 ControllerInd
 	{
 		if (LeftConnectState && DeviceHand == EControllerHand::Left)
 		{
-			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs, OutOrientation, OutPosition);
+			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs, SourcePosition, SourceOrientation, OutOrientation, OutPosition);
 			return true;
 		}
 		else if (RightConnectState && DeviceHand == EControllerHand::Right)
 		{
-			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs,OutOrientation, OutPosition);
+			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs, SourcePosition, SourceOrientation, OutOrientation, OutPosition);
+			return true;
+		}
+}
+	else
+	{
+		if (LeftConnectState && DeviceHand == EControllerHand::Left)
+		{
+			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs, SourcePosition, SourceOrientation, OutOrientation, OutPosition);
+			return true;
+		}
+		else if (RightConnectState && DeviceHand == EControllerHand::Right)
+		{
+			GetControllerSensorData(DeviceHand, WorldToMetersScale, predictedDisplayTimeMs, SourcePosition, SourceOrientation, OutOrientation, OutPosition);
 			return true;
 		}
 	}
@@ -152,26 +191,44 @@ bool FPicoXRInput::GetControllerOrientationAndPosition(const int32 ControllerInd
 	return false;
 }
 
-void FPicoXRInput::GetPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const
+bool FPicoXRInput::GetPredictedLocationAndRotation(EControllerHand DeviceHand, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const
 {
 	FVector PredictedLocation; FRotator PredictedRotation;
 	PredictedLocation = FVector::ZeroVector;
 	PredictedRotation = FRotator::ZeroRotator;
-	float WorldToMetersScale=100.0f;
-	if (IsInGameThread() && GWorld != nullptr)
+	float WorldToMetersScale = 100.0f;
+	FVector SourcePosition = FVector::ZeroVector;
+	FQuat SourceOrientation = FQuat::Identity;
+	FPXRGameFrame* CurrentFrame = nullptr;
+	if (IsInRenderingThread() && PicoXRHMD)
 	{
-		WorldToMetersScale= GWorld->GetWorldSettings()->WorldToMeters;
+		CurrentFrame = PicoXRHMD->GameFrame_RenderThread.Get();
+	}
+	else if (IsInGameThread() && PicoXRHMD)
+	{
+		CurrentFrame = PicoXRHMD->NextGameFrameToRender.Get();
+	}
+	if (CurrentFrame)
+	{
+		SourcePosition = CurrentFrame->Position;
+		SourceOrientation = CurrentFrame->Orientation;
+		WorldToMetersScale = CurrentFrame->WorldToMetersScale;
+	}
+	else
+	{
+		return false;
 	}
 	if (LeftConnectState && DeviceHand == EControllerHand::Left)
 	{
-		GetControllerSensorData(DeviceHand, WorldToMetersScale, PredictedTime, PredictedRotation, PredictedLocation);
+		GetControllerSensorData(DeviceHand, WorldToMetersScale, PredictedTime, SourcePosition, SourceOrientation, PredictedRotation, PredictedLocation);
 	}
 	else if (RightConnectState && DeviceHand == EControllerHand::Right)
 	{
-		GetControllerSensorData(DeviceHand, WorldToMetersScale, PredictedTime, PredictedRotation, PredictedLocation);
+		GetControllerSensorData(DeviceHand, WorldToMetersScale, PredictedTime, SourcePosition, SourceOrientation, PredictedRotation, PredictedLocation);
 	}
 	OutPosition = PredictedLocation;
 	OutOrientation = PredictedRotation;
+	return true;
 }
 
 ETrackingStatus FPicoXRInput::GetControllerTrackingStatus(const int32 ControllerIndex, const EControllerHand DeviceHand) const
@@ -241,6 +298,10 @@ int32 FPicoXRInput::UPxr_GetControllerPower(int32 Handness)
 	{
 		return  Handness == 0 ? LeftControllerPower : RightControllerPower;
 	}
+	else
+	{
+		return  Handness == 0 ? LeftControllerPower : RightControllerPower;
+	}
 	return 0;
 }
 
@@ -282,6 +343,11 @@ void FPicoXRInput::SetKeyMapping()
 	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::AorX] = FPicoKeyNames::PicoTouch_Left_X_Click;
 	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::BorY] = FPicoKeyNames::PicoTouch_Left_Y_Click;
 	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::Grip] = FPicoKeyNames::PicoTouch_Left_Grip_Click;
+	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::RockerUp] = FPicoKeyNames::PicoTouch_Left_Thumbstick_Up;
+	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::RockerDown] = FPicoKeyNames::PicoTouch_Left_Thumbstick_Down;
+	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::RockerLeft] = FPicoKeyNames::PicoTouch_Left_Thumbstick_Left;
+	Buttons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoButton::RockerRight] = FPicoKeyNames::PicoTouch_Left_Thumbstick_Right;
+
 	
 	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerX] = FPicoKeyNames::PicoTouch_Right_Thumbstick_X;
 	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerY] = FPicoKeyNames::PicoTouch_Right_Thumbstick_Y;
@@ -294,6 +360,10 @@ void FPicoXRInput::SetKeyMapping()
 	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::AorX] = FPicoKeyNames::PicoTouch_Right_A_Click;
 	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::BorY] = FPicoKeyNames::PicoTouch_Right_B_Click;
 	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::Grip] = FPicoKeyNames::PicoTouch_Right_Grip_Click;
+	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerUp] = FPicoKeyNames::PicoTouch_Right_Thumbstick_Up;
+	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerDown] = FPicoKeyNames::PicoTouch_Right_Thumbstick_Down;
+	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerLeft] = FPicoKeyNames::PicoTouch_Right_Thumbstick_Left;
+	Buttons[(int32)EPicoXRControllerHandness::RightController][(int32)EPicoButton::RockerRight] = FPicoKeyNames::PicoTouch_Right_Thumbstick_Right;
 
 	TouchButtons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoTouchButton::AorX] = FPicoKeyNames::PicoTouch_Left_X_Touch;
 	TouchButtons[(int32)EPicoXRControllerHandness::LeftController][(int32)EPicoTouchButton::BorY] = FPicoKeyNames::PicoTouch_Left_Y_Touch;
@@ -328,7 +398,7 @@ void FPicoXRInput::ProcessButtonEvent()
 
 		for (int32 i = 2; i < EPicoButton::ButtonCount; i++)
 		{
-			if (LeftControllerEvent[i]!= LastLeftControllerButtonState[i] && i != 7 && i != 8 && i!= 11)
+			if (LeftControllerEvent[i]!= LastLeftControllerButtonState[i] && i != 7 && i != 8 && i < 11)
 			{
 				LastLeftControllerButtonState[i] = LeftControllerEvent[i];
 				if (LeftControllerEvent[i] > 0 )
@@ -349,27 +419,97 @@ void FPicoXRInput::ProcessButtonEvent()
 		LeftControllerGripValue = state.gripValue;
 
 		//Trigger Grip Button
-		if (LeftControllerTriggerValue > 0.67f && LastLeftControllerButtonState[7] == 0)
+		if (CurrentVersion >= 0x2000304)
 		{
-			MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
-		}
-		else if (LastLeftControllerButtonState[7] > 0 && LeftControllerTriggerValue <= 0.67f)
-		{
-			MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
-		}
-		LastLeftControllerButtonState[7] = LeftControllerTriggerValue > 0.67f ? 1 : 0;
+			if (state.triggerclickValue == 1 && LastLeftControllerButtonState[7] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
+			}
+			else if (LastLeftControllerButtonState[7] > 0 && state.triggerclickValue == 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
+			}
+			LastLeftControllerButtonState[7] = state.triggerclickValue;
 
-		if (LeftControllerGripValue > 0.67f && LastLeftControllerButtonState[11] == 0)
-		{
-			MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			if (state.sideValue == 1 && LastLeftControllerButtonState[11] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			}
+			else if (LastLeftControllerButtonState[11] > 0 && state.sideValue == 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			}
+			LastLeftControllerButtonState[11] = state.sideValue;
 		}
-		else if (LastLeftControllerButtonState[11] > 0 && LeftControllerGripValue <= 0.67f)
+		else
 		{
-			MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			if (LeftControllerTriggerValue > 0.67f && LastLeftControllerButtonState[7] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
+			}
+			else if (LastLeftControllerButtonState[7] > 0 && LeftControllerTriggerValue <= 0.67f)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][7], 0, false);
+			}
+			LastLeftControllerButtonState[7] = LeftControllerTriggerValue > 0.67f ? 1 : 0;
+
+			if (LeftControllerGripValue > 0.67f && LastLeftControllerButtonState[11] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			}
+			else if (LastLeftControllerButtonState[11] > 0 && LeftControllerGripValue <= 0.67f)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][11], 0, false);
+			}
+			LastLeftControllerButtonState[11] = LeftControllerGripValue > 0.67f ? 1 : 0;
 		}
-		LastLeftControllerButtonState[11] = LeftControllerGripValue > 0.67f ? 1 : 0;
 
 		LeftControllerPower = (LeftControllerEvent[8] < 6 ? LeftControllerEvent[8] : LeftControllerPower);
+
+		//Rocker Up/Down/Left/Right
+		if(ControllerType != G2)
+		{
+			if(LeftControllerTouchPoint.Y > 0.7f && LastLeftControllerButtonState[12] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][12], 0, false);
+			}
+			else if(LeftControllerTouchPoint.Y <= 0.7f && LastLeftControllerButtonState[12] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][12], 0, false);
+			}
+			LastLeftControllerButtonState[12] = LeftControllerTouchPoint.Y > 0.7f ? 1 : 0;
+
+			if (LeftControllerTouchPoint.Y < -0.7f && LastLeftControllerButtonState[13] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][13], 0, false);
+			}
+			else if (LeftControllerTouchPoint.Y >= -0.7f && LastLeftControllerButtonState[13] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][13], 0, false);
+			}
+			LastLeftControllerButtonState[13] = LeftControllerTouchPoint.Y < -0.7f ? 1 : 0;
+
+			if (LeftControllerTouchPoint.X < -0.7f && LastLeftControllerButtonState[14] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][14], 0, false);
+			}
+			else if (LeftControllerTouchPoint.X >= -0.7f && LastLeftControllerButtonState[14] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][14], 0, false);
+			}
+			LastLeftControllerButtonState[14] = LeftControllerTouchPoint.X < -0.7f ? 1 : 0;
+
+			if (LeftControllerTouchPoint.X > 0.7f && LastLeftControllerButtonState[15] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::LeftController][15], 0, false);
+			}
+			else if (LeftControllerTouchPoint.X <= 0.7f && LastLeftControllerButtonState[15] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::LeftController][15], 0, false);
+			}
+			LastLeftControllerButtonState[15] = LeftControllerTouchPoint.X > 0.7f ? 1 : 0;
+		}
+
 		if (ControllerType == Neo3)
 		{
 			int32 TouchArray[5] = {0};
@@ -380,15 +520,38 @@ void FPicoXRInput::ProcessButtonEvent()
 			TouchArray[4] = state.thumbrestTouchValue;
 			for (int32 i = 0;i<EPicoTouchButton::ButtonCount;i++)
 			{
-				if (TouchArray[i] == 1)
+				if (TouchArray[i] == 1&&TouchArray[i]!=LastLeftTouchButtonState[i])
 				{
 					MessageHandler->OnControllerButtonPressed(TouchButtons[EPicoXRControllerHandness::LeftController][i], 0, false);
 				}
-				else if (TouchArray[i] == 0)
+				else if (TouchArray[i] == 0&&TouchArray[i]!=LastLeftTouchButtonState[i])
 				{
 					MessageHandler->OnControllerButtonReleased(TouchButtons[EPicoXRControllerHandness::LeftController][i], 0, false);
 				}
-			}			
+				LastLeftTouchButtonState[i]=TouchArray[i];
+			}
+			
+		}
+		if (ControllerType != Neo3 && ControllerType != Neo2 && ControllerType != G2)
+		{
+			int32 TouchArray[5] = {0};
+			TouchArray[0] = state.AXTouchValue;
+			TouchArray[1] = state.BYTouchValue;
+			TouchArray[2] = state.rockerTouchValue;
+			TouchArray[3] = state.triggerTouchValue;
+			TouchArray[4] = state.thumbrestTouchValue;
+			for (int32 i = 0;i<EPicoTouchButton::ButtonCount;i++)
+			{
+				if (TouchArray[i] == 1&&TouchArray[i]!=LastLeftTouchButtonState[i])
+				{
+					MessageHandler->OnControllerButtonPressed(TouchButtons[EPicoXRControllerHandness::LeftController][i], 0, false);
+				}
+				else if (TouchArray[i] == 0&&TouchArray[i]!=LastLeftTouchButtonState[i])
+				{
+					MessageHandler->OnControllerButtonReleased(TouchButtons[EPicoXRControllerHandness::LeftController][i], 0, false);
+				}
+				LastLeftTouchButtonState[i]=TouchArray[i];
+			}
 		}
 	}
 	if (RightConnectState)
@@ -407,7 +570,7 @@ void FPicoXRInput::ProcessButtonEvent()
 
 		for (int32 i = 2; i < EPicoButton::ButtonCount; i++)
 		{
-			if (RightControllerEvent[i] != LastRightControllerButtonState[i] && i != 7 && i != 8 && i != 11)
+			if (RightControllerEvent[i] != LastRightControllerButtonState[i] && i != 7 && i != 8 && i < 11)
 			{
 				LastRightControllerButtonState[i] = RightControllerEvent[i];
 				if (RightControllerEvent[i] > 0 )
@@ -427,27 +590,97 @@ void FPicoXRInput::ProcessButtonEvent()
 		RightControllerGripValue = state.gripValue;
 
 		//Trigger Grip Button
-		if (RightControllerTriggerValue > 0.67f && LastRightControllerButtonState[7] == 0)
+		if (CurrentVersion >= 0x2000304)
 		{
-			MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
-		}
-		else if (LastRightControllerButtonState[7] > 0 && RightControllerTriggerValue <= 0.67f)
-		{
-			MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
-		}
-		LastRightControllerButtonState[7] = RightControllerTriggerValue > 0.67f ? 1 : 0;
+			if (state.triggerclickValue == 1 && LastRightControllerButtonState[7] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
+			}
+			else if (LastRightControllerButtonState[7] > 0 && state.triggerclickValue == 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
+			}
+			LastRightControllerButtonState[7] = state.triggerclickValue;
 
-		if (RightControllerGripValue > 0.67f && LastRightControllerButtonState[11] == 0)
-		{
-			MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			if (state.sideValue == 1 && LastRightControllerButtonState[11] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			}
+			else if (LastRightControllerButtonState[11] > 0 && state.sideValue == 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			}
+			LastRightControllerButtonState[11] = state.sideValue;
 		}
-		else if (LastRightControllerButtonState[11] > 0 && RightControllerGripValue <= 0.67f)
+		else
 		{
-			MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			if (RightControllerTriggerValue > 0.67f && LastRightControllerButtonState[7] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
+			}
+			else if (LastRightControllerButtonState[7] > 0 && RightControllerTriggerValue <= 0.67f)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][7], 0, false);
+			}
+			LastRightControllerButtonState[7] = RightControllerTriggerValue > 0.67f ? 1 : 0;
+
+			if (RightControllerGripValue > 0.67f && LastRightControllerButtonState[11] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			}
+			else if (LastRightControllerButtonState[11] > 0 && RightControllerGripValue <= 0.67f)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][11], 0, false);
+			}
+			LastRightControllerButtonState[11] = RightControllerGripValue > 0.67f ? 1 : 0;
 		}
-		LastRightControllerButtonState[11] = RightControllerGripValue > 0.67f ? 1 : 0;
 
 		RightControllerPower = (RightControllerEvent[8] < 6 ? RightControllerEvent[8] : RightControllerPower);
+
+		//Rocker Up/Down/Left/Right
+		if (ControllerType != G2)
+		{
+			if (RightControllerTouchPoint.Y > 0.7f && LastRightControllerButtonState[12] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][12], 0, false);
+			}
+			else if (RightControllerTouchPoint.Y <= 0.7f && LastRightControllerButtonState[12] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][12], 0, false);
+			}
+			LastRightControllerButtonState[12] = RightControllerTouchPoint.Y > 0.7f ? 1 : 0;
+
+			if (RightControllerTouchPoint.Y < -0.7f && LastRightControllerButtonState[13] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][13], 0, false);
+			}
+			else if (RightControllerTouchPoint.Y >= -0.7f && LastRightControllerButtonState[13] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][13], 0, false);
+			}
+			LastRightControllerButtonState[13] = RightControllerTouchPoint.Y < -0.7f ? 1 : 0;
+
+			if (RightControllerTouchPoint.X < -0.7f && LastRightControllerButtonState[14] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][14], 0, false);
+			}
+			else if (RightControllerTouchPoint.X >= -0.7f && LastRightControllerButtonState[14] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][14], 0, false);
+			}
+			LastRightControllerButtonState[14] = RightControllerTouchPoint.X < -0.7f ? 1 : 0;
+
+			if (RightControllerTouchPoint.X > 0.7f && LastRightControllerButtonState[15] == 0)
+			{
+				MessageHandler->OnControllerButtonPressed(Buttons[EPicoXRControllerHandness::RightController][15], 0, false);
+			}
+			else if (RightControllerTouchPoint.X <= 0.7f && LastRightControllerButtonState[15] > 0)
+			{
+				MessageHandler->OnControllerButtonReleased(Buttons[EPicoXRControllerHandness::RightController][15], 0, false);
+			}
+			LastRightControllerButtonState[15] = RightControllerTouchPoint.X > 0.7f ? 1 : 0;
+		}
+
 		if (ControllerType == Neo3)
 		{
 			int32 TouchArray[5] = { 0 };
@@ -458,14 +691,36 @@ void FPicoXRInput::ProcessButtonEvent()
 			TouchArray[4] = state.thumbrestTouchValue;
 			for (int32 i = 0; i < EPicoTouchButton::ButtonCount; i++)
 			{
-				if (TouchArray[i] == 1)
+				if (TouchArray[i] == 1&&TouchArray[i]!=LastRightTouchButtonState[i])
 				{
 					MessageHandler->OnControllerButtonPressed(TouchButtons[EPicoXRControllerHandness::RightController][i], 0, false);
 				}
-				else if (TouchArray[i] == 0)
+				else if (TouchArray[i] == 0&&TouchArray[i]!=LastRightTouchButtonState[i])
 				{
 					MessageHandler->OnControllerButtonReleased(TouchButtons[EPicoXRControllerHandness::RightController][i], 0, false);
 				}
+				LastRightTouchButtonState[i]=TouchArray[i];
+			}
+		}
+		if (ControllerType != Neo3 && ControllerType != Neo2 && ControllerType != G2)
+		{
+			int32 TouchArray[5] = {0};
+			TouchArray[0] = state.AXTouchValue;
+			TouchArray[1] = state.BYTouchValue;
+			TouchArray[2] = state.rockerTouchValue;
+			TouchArray[3] = state.triggerTouchValue;
+			TouchArray[4] = state.thumbrestTouchValue;
+			for (int32 i = 0;i<EPicoTouchButton::ButtonCount;i++)
+			{
+				if (TouchArray[i] == 1&&TouchArray[i]!=LastRightTouchButtonState[i])
+				{
+					MessageHandler->OnControllerButtonPressed(TouchButtons[EPicoXRControllerHandness::RightController][i], 0, false);
+				}
+				else if (TouchArray[i] == 0&&TouchArray[i]!=LastRightTouchButtonState[i])
+				{
+					MessageHandler->OnControllerButtonReleased(TouchButtons[EPicoXRControllerHandness::RightController][i], 0, false);
+				}
+				LastRightTouchButtonState[i]=TouchArray[i];
 			}
 		}
 	}
@@ -510,7 +765,7 @@ void FPicoXRInput::UpdateConnectState()
 	PXR_LOGD(PxrUnreal,"FPicoXRInput::UpdateConnectState ControllerType  %d, LeftConnectState %d, RightConnectState %d",ControllerType,LeftConnectState,RightConnectState);
 }
 
-void FPicoXRInput::GetControllerSensorData(EControllerHand DeviceHand, float WorldToMetersScale, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const
+void FPicoXRInput::GetControllerSensorData(EControllerHand DeviceHand, float WorldToMetersScale, float PredictedTime, FVector SourcePosition, FQuat SourceOrientation, FRotator& OutOrientation, FVector& OutPosition) const
 {
 #if PLATFORM_ANDROID
 	FQuat Orientation;
@@ -525,14 +780,28 @@ void FPicoXRInput::GetControllerSensorData(EControllerHand DeviceHand, float Wor
         hand = EPicoXRControllerHandness::RightController;
     }
 	Pxr_GetControllerTrackingState(hand, PredictedTime, HeadSensorData, &tracking);
+	
+	if (PicoXRHMD && PicoXRHMD->bDeviceHasEnableLargeSpace && PicoXRHMD->bUserEnableLargeSpace)
+	{
+		Orientation.X = tracking.globalControllerPose.pose.orientation.x;
+		Orientation.Y = tracking.globalControllerPose.pose.orientation.y;
+		Orientation.Z = tracking.globalControllerPose.pose.orientation.z;
+		Orientation.W = tracking.globalControllerPose.pose.orientation.w;
+		OutPosition.X = tracking.globalControllerPose.pose.position.x;
+		OutPosition.Y = tracking.globalControllerPose.pose.position.y;
+		OutPosition.Z = tracking.globalControllerPose.pose.position.z;
+	}
+	else
+	{
+		Orientation.X = tracking.localControllerPose.pose.orientation.x;
+		Orientation.Y = tracking.localControllerPose.pose.orientation.y;
+		Orientation.Z = tracking.localControllerPose.pose.orientation.z;
+		Orientation.W = tracking.localControllerPose.pose.orientation.w;
+		OutPosition.X = tracking.localControllerPose.pose.position.x;
+		OutPosition.Y = tracking.localControllerPose.pose.position.y;
+		OutPosition.Z = tracking.localControllerPose.pose.position.z;
+	}
 
-    Orientation.X = tracking.localControllerPose.pose.orientation.x;
-    Orientation.Y = tracking.localControllerPose.pose.orientation.y;
-    Orientation.Z = tracking.localControllerPose.pose.orientation.z;
-    Orientation.W = tracking.localControllerPose.pose.orientation.w;
-    OutPosition.X = tracking.localControllerPose.pose.position.x;
-    OutPosition.Y = tracking.localControllerPose.pose.position.y;
-    OutPosition.Z = tracking.localControllerPose.pose.position.z;
 	OutPosition = FVector(-OutPosition.Z * WorldToMetersScale, OutPosition.X * WorldToMetersScale, OutPosition.Y * WorldToMetersScale);
 	Orientation = FQuat(-Orientation.Z, Orientation.X, Orientation.Y, -Orientation.W);
 	OutOrientation = Orientation.Rotator();
@@ -578,16 +847,6 @@ void FPicoXRInput::OnControllerConnectChangedDelegate(int32 Handness, int32 Stat
 	UpdateConnectState();
 }
 
-void FPicoXRInput::SetHeadPosition(FVector Position)
-{
-	SourcePosition = Position;
-}
-
-void FPicoXRInput::SetHeadOrientation(FQuat Orientation)
-{
-	SourceOrientation = Orientation;
-}
-
 bool FPicoXRInput::UPxr_GetControllerEnableHomeKey()
 {
 	bool enable = false;
@@ -626,6 +885,10 @@ void FPicoXRInput::RegisterKeys()
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_VolumeUp_Click, LOCTEXT("PicoTouch_Left_VolumeUp_Click", "Pico Touch (L) Volume Up Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_VolumeDown_Click, LOCTEXT("PicoTouch_Left_VolumeDown_Click", "Pico Touch (L) Volume Down Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_Thumbrest_Touch, LOCTEXT("PicoTouch_Left_Thumbrest_Touch", "Pico Touch (L) Thumbrest Touch"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_Thumbstick_Up, LOCTEXT("PicoTouch_Left_Thumbstick_Up", "Pico Touch (L) Thumbstick Up"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_Thumbstick_Down, LOCTEXT("PicoTouch_Left_Thumbstick_Down", "Pico Touch (L) Thumbstick Down"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_Thumbstick_Left, LOCTEXT("PicoTouch_Left_Thumbstick_Left", "Pico Touch (L) Thumbstick Left"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Left_Thumbstick_Right, LOCTEXT("PicoTouch_Left_Thumbstick_Right", "Pico Touch (L) Thumbstick Right"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_A_Click, LOCTEXT("PicoTouch_Right_A_Click", "Pico Touch (R) A Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_B_Click, LOCTEXT("PicoTouch_Right_B_Click", "Pico Touch (R) B Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
@@ -645,7 +908,10 @@ void FPicoXRInput::RegisterKeys()
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_VolumeUp_Click, LOCTEXT("PicoTouch_Right_VolumeUp_Click", "Pico Touch (R) Volume Up Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_VolumeDown_Click, LOCTEXT("PicoTouch_Right_VolumeDown_Click", "Pico Touch (R) Volume Down Press"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_Thumbrest_Touch, LOCTEXT("PicoTouch_Right_Thumbrest_Touch", "Pico Touch (R) Thumbrest Touch"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
-	
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_Thumbstick_Up, LOCTEXT("PicoTouch_Right_Thumbstick_Up", "Pico Touch (R) Thumbstick Up"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_Thumbstick_Down, LOCTEXT("PicoTouch_Right_Thumbstick_Down", "Pico Touch (R) Thumbstick Down"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_Thumbstick_Left, LOCTEXT("PicoTouch_Right_Thumbstick_Left", "Pico Touch (R) Thumbstick Left"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
+	EKeys::AddKey(FKeyDetails(FPicoTouchKey::PicoTouch_Right_Thumbstick_Right, LOCTEXT("PicoTouch_Right_Thumbstick_Right", "Pico Touch (R) Thumbstick Right"), FKeyDetails::GamepadKey | FKeyDetails::NotBlueprintBindableKey, "PicoTouch"));
 }
 #undef FloatAxis
 #undef LOCTEXT_NAMESPACE

@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_EyeTracker.h"
 #include "DrawDebugHelpers.h"
@@ -83,22 +83,52 @@ void FPicoXREyeTracker::DrawDebug(AHUD* HUD, UCanvas* Canvas, const FDebugDispla
     DrawDebugSphere(HUD->GetWorld(), GazeRay.Origin, 20.0f, 16, FColor::Red);
 }
 
-bool FPicoXREyeTracker::OpenEyeTracking()
+bool FPicoXREyeTracker::OpenEyeTracking(bool enable)
 {
-    if (GetDefault<UPicoXRSettings>()->bEnableEyeTracking)
+    UPicoXRSettings* Settings = GetMutableDefault<UPicoXRSettings>();
+    if (Settings)
     {
-        if(1 /* if device support*/)
+#if PLATFORM_ANDROID
+        uint32 CurrentTrackingMode = PXR_TRACKING_MODE_POSITION_BIT;
+        if (enable)
+        {
+            CurrentTrackingMode |= PXR_TRACKING_MODE_EYE_BIT;
+        }
+        else
+        {
+            CurrentTrackingMode &= ~PXR_TRACKING_MODE_EYE_BIT;
+        }
+		int CurrentVersion = 0;
+		Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
+        if (CurrentVersion >= 0x2000304)
+		{
+			PxrTrackingModeFlags SupportTrackingMode;
+			Pxr_GetTrackingMode(&SupportTrackingMode);
+            if(PXR_TRACKING_MODE_EYE_BIT & SupportTrackingMode)//Detect if current device suppot eyetracking. 
+            {
+				// Open EyeTracking
+				if (Pxr_SetTrackingMode(CurrentTrackingMode) == 0)
+				{
+					bEyeTrackingRun = enable;
+                    Settings->bEnableEyeTracking = enable;
+					return true;
+				}
+            }
+        }
+        else
         {
             // Open EyeTracking
-#if PLATFORM_ANDROID
-			if(Pxr_SetTrackingMode(6) == 0)
+			if(Pxr_SetTrackingMode(CurrentTrackingMode) == 0)
 			{
-				bEyeTrackingRun = true;
+				bEyeTrackingRun = enable;
+                Settings->bEnableEyeTracking = enable;
+                return true;
 			}
-#endif
         }
+#endif
     }
-	return true;
+    Settings->bEnableEyeTracking = false;
+	return false;
 }
 
 bool FPicoXREyeTracker::UPxr_GetEyeTrackingData(FPicoXREyeTrackingData& OutTrackingData)

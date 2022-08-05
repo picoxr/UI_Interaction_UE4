@@ -1,0 +1,3803 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+#include "UObject/GeneratedCppIncludes.h"
+#include "OnlineSubsystemPico/Private/OnlineSubsystemPicoManager.h"
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable : 4883)
+#endif
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+void EmptyLinkFunctionForGeneratedCodeOnlineSubsystemPicoManager() {}
+// Cross Module References
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature();
+	UPackage* Z_Construct_UPackage__Script_OnlineSubsystemPico();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceState();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceError();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcAudioPlaybackDevice();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMuteState();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcUserLeaveReasonType();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcJoinRoomType();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSearch();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSession();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoNamedOnlineSession();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSettings();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoFriend();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
+// End Cross Module References
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomInviteAcceptedNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomInviteAcceptedNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateMembershipLockStatusNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateDataStoreNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateOwnerNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateOwnerNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomKickUserNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomKickUserNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomSetDescriptionNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomSetDescriptionNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomJoin2NotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomJoin2NotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms, RoomID), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData)) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomLeaveNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomLeaveNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnMatchmakingCancel2NotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnMatchmakingCancel2NotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameStateResetNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameStateResetNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms
+		{
+			int32 Result;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Result;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_Result = { "Result", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms, Result), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_Result,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameRequestFailedNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameRequestFailedNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms
+		{
+			int32 Result;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Result;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_Result = { "Result", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms, Result), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_Result,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameConnectionNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameConnectionNotifyDelegate", sizeof(_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			EOnJoinSessionCompleteResultPicoType Type;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_Type;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms, Type), Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms
+		{
+			int32 LocalUserNum;
+			bool bWasSuccessful;
+			FPicoOnlineSessionSearchResult SearchResult;
+		};
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_LocalUserNum;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SearchResult_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_SearchResult;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms, LocalUserNum), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult = { "SearchResult", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms, SearchResult), Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// DECLARE_DELEGATE_ThreeParams(FOnStartMatchmakingComplete, FName /*SessionName*/, const struct FOnlineError& /*ErrorDetails*/, const struct FSessionMatchmakingResults& /*Results*/);\n// DECLARE_MULTICAST_DELEGATE_TwoParams(FOnMatchmakingComplete, FName, bool);\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "DECLARE_DELEGATE_ThreeParams(FOnStartMatchmakingComplete, FName SessionName, const struct FOnlineError& ErrorDetails, const struct FSessionMatchmakingResults& Results);\nDECLARE_MULTICAST_DELEGATE_TwoParams(FOnMatchmakingComplete, FName, bool);" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnFindSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnEndSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnStartSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UE4CodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// Game\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "Game" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms
+		{
+			FString Token;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_Token;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_Token = { "Token", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms, Token), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms, ErrorMessage), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_Token,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerRtcGetTokenDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms, StringMessage), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserStopAudioCaptureDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserStopAudioCaptureDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms, StringMessage), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserStartAudioCaptureDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserStartAudioCaptureDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms, StringMessage), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcConnectStateChangedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcConnectStateChangedDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms
+		{
+			int32 MessageCode;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MessageCode;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::NewProp_MessageCode = { "MessageCode", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms, MessageCode), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::NewProp_MessageCode,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcErrorDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcErrorDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms
+		{
+			int32 MessageCode;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_MessageCode;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::NewProp_MessageCode = { "MessageCode", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms, MessageCode), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::NewProp_MessageCode,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcWarnDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcWarnDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms
+		{
+			int32 TotalRemoteVolume;
+			TArray<int32> Volumes;
+			TArray<FString> RoomIds;
+			TArray<FString> UserIds;
+			TArray<ERtcStreamIndex> StreamIndexs;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_TotalRemoteVolume;
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Volumes_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Volumes_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_Volumes;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomIds_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomIds_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_RoomIds;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserIds_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserIds_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_UserIds;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_StreamIndexs_Inner_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_StreamIndexs_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StreamIndexs_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_StreamIndexs;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_TotalRemoteVolume = { "TotalRemoteVolume", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, TotalRemoteVolume), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner = { "Volumes", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes = { "Volumes", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, Volumes), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_Inner = { "RoomIds", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds = { "RoomIds", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, RoomIds), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_Inner = { "UserIds", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds = { "UserIds", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, UserIds), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner = { "StreamIndexs", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs = { "StreamIndexs", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, StreamIndexs), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_TotalRemoteVolume,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRemoteAudioPropertiesReportDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRemoteAudioPropertiesReportDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms
+		{
+			TArray<ERtcStreamIndex> StreamIndexs;
+			TArray<int32> Volumes;
+		};
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_StreamIndexs_Inner_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_StreamIndexs_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StreamIndexs_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_StreamIndexs;
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Volumes_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Volumes_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_Volumes;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner = { "StreamIndexs", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs = { "StreamIndexs", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms, StreamIndexs), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData)) };
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner = { "Volumes", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes = { "Volumes", nullptr, (EPropertyFlags)0x0010000008000182, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms, Volumes), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcLocalAudioPropertiesReportDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcLocalAudioPropertiesReportDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms
+		{
+			FString DeviceId;
+			ERtcMediaDeviceType MediaDeciveType;
+			ERtcMediaDeviceState MediaDeviceState;
+			ERtcMediaDeviceError MediaDeviceError;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DeviceId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_DeviceId;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_MediaDeciveType_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_MediaDeciveType;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_MediaDeviceState_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_MediaDeviceState;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_MediaDeviceError_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_MediaDeviceError;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId = { "DeviceId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, DeviceId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType = { "MediaDeciveType", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeciveType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceType, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState = { "MediaDeviceState", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeviceState), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceState, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError = { "MediaDeviceError", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeviceError), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceError, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcMediaDeviceChangeInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcMediaDeviceChangeInfoDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms
+		{
+			ERtcAudioPlaybackDevice RtcAudioPlaybackDevice;
+		};
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_RtcAudioPlaybackDevice_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_RtcAudioPlaybackDevice;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice = { "RtcAudioPlaybackDevice", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms, RtcAudioPlaybackDevice), Z_Construct_UEnum_OnlineSubsystemPico_ERtcAudioPlaybackDevice, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcAudioChangePlaybackDeviceDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcAudioChangePlaybackDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms
+		{
+			FString UserId;
+			ERtcMuteState RtcMuteState;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_RtcMuteState_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_RtcMuteState;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms, UserId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState = { "RtcMuteState", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms, RtcMuteState), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMuteState, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomMuteStateDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomMuteStateDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms
+		{
+			int32 Code;
+			FString RoomId;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Code;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_Code = { "Code", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms, Code), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_Code,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomErrorDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomErrorDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms
+		{
+			int32 Code;
+			FString RoomId;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Code;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_Code = { "Code", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms, Code), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_Code,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomWarnDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomWarnDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms
+		{
+			FString UserId;
+			ERtcUserLeaveReasonType RtcUserLeaveReasonType;
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_RtcUserLeaveReasonType_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_RtcUserLeaveReasonType;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, UserId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType = { "RtcUserLeaveReasonType", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, RtcUserLeaveReasonType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcUserLeaveReasonType, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserLeaveInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserLeaveInfoDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms
+		{
+			FString UserId;
+			FString UserExtra;
+			int32 Elapsed;
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserExtra_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserExtra;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Elapsed;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, UserId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra = { "UserExtra", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, UserExtra), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_Elapsed = { "Elapsed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, Elapsed), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_Elapsed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserJoinInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserJoinInfoDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms
+		{
+			int32 TotalDuration;
+			int32 UserCount;
+			FString RoomId;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_TotalDuration;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_UserCount;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_TotalDuration = { "TotalDuration", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, TotalDuration), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_UserCount = { "UserCount", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, UserCount), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_TotalDuration,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_UserCount,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomStateDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomStateDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms
+		{
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcLeaveRoomResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcLeaveRoomResultDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			int32 ErrorCode;
+			int32 Elapsed;
+			ERtcJoinRoomType InJoinRoomType;
+		};
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_ErrorCode;
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_Elapsed;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_InJoinRoomType_Underlying;
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_InJoinRoomType;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, RoomId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, UserId), METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, ErrorCode), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_Elapsed = { "Elapsed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, Elapsed), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType = { "InJoinRoomType", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, InJoinRoomType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcJoinRoomType, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_Elapsed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// RTC\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "RTC" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcJoinRoomResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcJoinRoomResultDelegate", sizeof(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms
+		{
+			int32 LocalUserNum;
+			bool bWasSuccessful;
+			FString ListName;
+			FString ErrorStr;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_LocalUserNum;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ListName_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_ListName;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ErrorStr_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_ErrorStr;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, LocalUserNum), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName = { "ListName", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, ListName), METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr = { "ErrorStr", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, ErrorStr), METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// Friend\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "Friend" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerReadFriendListDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms
+		{
+			int32 LocalUserNum;
+			FString UserId;
+			bool bIsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_LocalUserNum;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static void NewProp_bIsSuccessed_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsSuccessed;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, LocalUserNum), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, UserId), METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData)) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms*)Obj)->bIsSuccessed = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed = { "bIsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed_SetBit, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000082, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, ErrorMessage), METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "// Identity\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "Identity" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLoginCompleteDelegate__DelegateSignature", nullptr, nullptr, sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	static UEnum* EOnlineSessionStatePicoType_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("EOnlineSessionStatePicoType"));
+		}
+		return Singleton;
+	}
+	template<> ONLINESUBSYSTEMPICO_API UEnum* StaticEnum<EOnlineSessionStatePicoType>()
+	{
+		return EOnlineSessionStatePicoType_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EOnlineSessionStatePicoType(EOnlineSessionStatePicoType_StaticEnum, TEXT("/Script/OnlineSubsystemPico"), TEXT("EOnlineSessionStatePicoType"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType_Hash() { return 2370948176U; }
+	UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EOnlineSessionStatePicoType"), 0, Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "EOnlineSessionStatePicoType::NoSession", (int64)EOnlineSessionStatePicoType::NoSession },
+				{ "EOnlineSessionStatePicoType::Creating", (int64)EOnlineSessionStatePicoType::Creating },
+				{ "EOnlineSessionStatePicoType::Pending", (int64)EOnlineSessionStatePicoType::Pending },
+				{ "EOnlineSessionStatePicoType::Starting", (int64)EOnlineSessionStatePicoType::Starting },
+				{ "EOnlineSessionStatePicoType::InProgress", (int64)EOnlineSessionStatePicoType::InProgress },
+				{ "EOnlineSessionStatePicoType::Ending", (int64)EOnlineSessionStatePicoType::Ending },
+				{ "EOnlineSessionStatePicoType::Ended", (int64)EOnlineSessionStatePicoType::Ended },
+				{ "EOnlineSessionStatePicoType::Destroying", (int64)EOnlineSessionStatePicoType::Destroying },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "Creating.Name", "EOnlineSessionStatePicoType::Creating" },
+				{ "Destroying.Name", "EOnlineSessionStatePicoType::Destroying" },
+				{ "Ended.Name", "EOnlineSessionStatePicoType::Ended" },
+				{ "Ending.Name", "EOnlineSessionStatePicoType::Ending" },
+				{ "InProgress.Name", "EOnlineSessionStatePicoType::InProgress" },
+				{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+				{ "NoSession.Name", "EOnlineSessionStatePicoType::NoSession" },
+				{ "Pending.Name", "EOnlineSessionStatePicoType::Pending" },
+				{ "Starting.Name", "EOnlineSessionStatePicoType::Starting" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+				nullptr,
+				"EOnlineSessionStatePicoType",
+				"EOnlineSessionStatePicoType",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
+	static UEnum* EOnJoinSessionCompleteResultPicoType_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("EOnJoinSessionCompleteResultPicoType"));
+		}
+		return Singleton;
+	}
+	template<> ONLINESUBSYSTEMPICO_API UEnum* StaticEnum<EOnJoinSessionCompleteResultPicoType>()
+	{
+		return EOnJoinSessionCompleteResultPicoType_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EOnJoinSessionCompleteResultPicoType(EOnJoinSessionCompleteResultPicoType_StaticEnum, TEXT("/Script/OnlineSubsystemPico"), TEXT("EOnJoinSessionCompleteResultPicoType"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType_Hash() { return 1801523689U; }
+	UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EOnJoinSessionCompleteResultPicoType"), 0, Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "EOnJoinSessionCompleteResultPicoType::Success", (int64)EOnJoinSessionCompleteResultPicoType::Success },
+				{ "EOnJoinSessionCompleteResultPicoType::SessionIsFull", (int64)EOnJoinSessionCompleteResultPicoType::SessionIsFull },
+				{ "EOnJoinSessionCompleteResultPicoType::SessionDoesNotExist", (int64)EOnJoinSessionCompleteResultPicoType::SessionDoesNotExist },
+				{ "EOnJoinSessionCompleteResultPicoType::CouldNotRetrieveAddress", (int64)EOnJoinSessionCompleteResultPicoType::CouldNotRetrieveAddress },
+				{ "EOnJoinSessionCompleteResultPicoType::AlreadyInSession", (int64)EOnJoinSessionCompleteResultPicoType::AlreadyInSession },
+				{ "EOnJoinSessionCompleteResultPicoType::UnknownError", (int64)EOnJoinSessionCompleteResultPicoType::UnknownError },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "AlreadyInSession.Name", "EOnJoinSessionCompleteResultPicoType::AlreadyInSession" },
+				{ "BlueprintType", "true" },
+				{ "CouldNotRetrieveAddress.Name", "EOnJoinSessionCompleteResultPicoType::CouldNotRetrieveAddress" },
+				{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+				{ "SessionDoesNotExist.Name", "EOnJoinSessionCompleteResultPicoType::SessionDoesNotExist" },
+				{ "SessionIsFull.Name", "EOnJoinSessionCompleteResultPicoType::SessionIsFull" },
+				{ "Success.Name", "EOnJoinSessionCompleteResultPicoType::Success" },
+				{ "UnknownError.Name", "EOnJoinSessionCompleteResultPicoType::UnknownError" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+				nullptr,
+				"EOnJoinSessionCompleteResultPicoType",
+				"EOnJoinSessionCompleteResultPicoType",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
+	static UEnum* EOnlineAsyncTaskStatePicoType_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("EOnlineAsyncTaskStatePicoType"));
+		}
+		return Singleton;
+	}
+	template<> ONLINESUBSYSTEMPICO_API UEnum* StaticEnum<EOnlineAsyncTaskStatePicoType>()
+	{
+		return EOnlineAsyncTaskStatePicoType_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EOnlineAsyncTaskStatePicoType(EOnlineAsyncTaskStatePicoType_StaticEnum, TEXT("/Script/OnlineSubsystemPico"), TEXT("EOnlineAsyncTaskStatePicoType"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType_Hash() { return 4174734880U; }
+	UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EOnlineAsyncTaskStatePicoType"), 0, Get_Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "EOnlineAsyncTaskStatePicoType::NotStarted", (int64)EOnlineAsyncTaskStatePicoType::NotStarted },
+				{ "EOnlineAsyncTaskStatePicoType::InProgress", (int64)EOnlineAsyncTaskStatePicoType::InProgress },
+				{ "EOnlineAsyncTaskStatePicoType::Done", (int64)EOnlineAsyncTaskStatePicoType::Done },
+				{ "EOnlineAsyncTaskStatePicoType::Failed", (int64)EOnlineAsyncTaskStatePicoType::Failed },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "Done.Name", "EOnlineAsyncTaskStatePicoType::Done" },
+				{ "Failed.Name", "EOnlineAsyncTaskStatePicoType::Failed" },
+				{ "InProgress.Name", "EOnlineAsyncTaskStatePicoType::InProgress" },
+				{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+				{ "NotStarted.Name", "EOnlineAsyncTaskStatePicoType::NotStarted" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+				nullptr,
+				"EOnlineAsyncTaskStatePicoType",
+				"EOnlineAsyncTaskStatePicoType",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
+	static UEnum* EPresenceStatus_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("EPresenceStatus"));
+		}
+		return Singleton;
+	}
+	template<> ONLINESUBSYSTEMPICO_API UEnum* StaticEnum<EPresenceStatus>()
+	{
+		return EPresenceStatus_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_EPresenceStatus(EPresenceStatus_StaticEnum, TEXT("/Script/OnlineSubsystemPico"), TEXT("EPresenceStatus"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus_Hash() { return 1127306637U; }
+	UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("EPresenceStatus"), 0, Get_Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "EPresenceStatus::Unknow", (int64)EPresenceStatus::Unknow },
+				{ "EPresenceStatus::OnLine", (int64)EPresenceStatus::OnLine },
+				{ "EPresenceStatus::OffLine", (int64)EPresenceStatus::OffLine },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "Comment", "/**\n * \n */" },
+				{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+				{ "OffLine.Comment", "/**\n * \n */" },
+				{ "OffLine.Name", "EPresenceStatus::OffLine" },
+				{ "OnLine.Comment", "/**\n * \n */" },
+				{ "OnLine.Name", "EPresenceStatus::OnLine" },
+				{ "Unknow.Comment", "/**\n * \n */" },
+				{ "Unknow.Name", "EPresenceStatus::Unknow" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+				nullptr,
+				"EPresenceStatus",
+				"EPresenceStatus",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
+class UScriptStruct* FPicoOnlineSessionSearch::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoOnlineSessionSearch"), sizeof(FPicoOnlineSessionSearch), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoOnlineSessionSearch>()
+{
+	return FPicoOnlineSessionSearch::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoOnlineSessionSearch(FPicoOnlineSessionSearch::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoOnlineSessionSearch"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearch
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearch()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoOnlineSessionSearch>(FName(TEXT("PicoOnlineSessionSearch")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearch;
+	struct Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_SearchResults_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SearchResults_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_SearchResults;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_SearchState_Underlying;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SearchState_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_SearchState;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxSearchResults_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_MaxSearchResults;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_QuerySettingsKeyArray_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_QuerySettingsKeyArray_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_QuerySettingsKeyArray;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_QuerySettingsValueArray_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_QuerySettingsValueArray_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_QuerySettingsValueArray;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bIsLanQuery_MetaData[];
+#endif
+		static void NewProp_bIsLanQuery_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bIsLanQuery;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PingBucketSize_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_PingBucketSize;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PlatformHash_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_PlatformHash;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_TimeoutInSeconds_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_TimeoutInSeconds;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoOnlineSessionSearch>();
+	}
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults_Inner = { "SearchResults", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults = { "SearchResults", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, SearchResults), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState = { "SearchState", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, SearchState), Z_Construct_UEnum_OnlineSubsystemPico_EOnlineAsyncTaskStatePicoType, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_MaxSearchResults_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_MaxSearchResults = { "MaxSearchResults", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, MaxSearchResults), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_MaxSearchResults_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_MaxSearchResults_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray_Inner = { "QuerySettingsKeyArray", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray = { "QuerySettingsKeyArray", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, QuerySettingsKeyArray), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray_Inner = { "QuerySettingsValueArray", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray = { "QuerySettingsValueArray", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, QuerySettingsValueArray), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSearch*)Obj)->bIsLanQuery = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery = { "bIsLanQuery", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSearch), &Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PingBucketSize_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PingBucketSize = { "PingBucketSize", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, PingBucketSize), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PingBucketSize_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PingBucketSize_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PlatformHash_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PlatformHash = { "PlatformHash", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, PlatformHash), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PlatformHash_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PlatformHash_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_TimeoutInSeconds_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearch" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_TimeoutInSeconds = { "TimeoutInSeconds", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearch, TimeoutInSeconds), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_TimeoutInSeconds_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_TimeoutInSeconds_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchResults,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_SearchState,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_MaxSearchResults,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsKeyArray,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_QuerySettingsValueArray,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_bIsLanQuery,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PingBucketSize,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_PlatformHash,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::NewProp_TimeoutInSeconds,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoOnlineSessionSearch",
+		sizeof(FPicoOnlineSessionSearch),
+		alignof(FPicoOnlineSessionSearch),
+		Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSearch()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoOnlineSessionSearch"), sizeof(FPicoOnlineSessionSearch), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearch_Hash() { return 460520653U; }
+class UScriptStruct* FPicoOnlineSessionSearchResult::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoOnlineSessionSearchResult"), sizeof(FPicoOnlineSessionSearchResult), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoOnlineSessionSearchResult>()
+{
+	return FPicoOnlineSessionSearchResult::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoOnlineSessionSearchResult(FPicoOnlineSessionSearchResult::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoOnlineSessionSearchResult"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearchResult
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearchResult()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoOnlineSessionSearchResult>(FName(TEXT("PicoOnlineSessionSearchResult")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSearchResult;
+	struct Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Session_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_Session;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PingInMs_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_PingInMs;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "PicoOnlineSessionSearchResult" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoOnlineSessionSearchResult>();
+	}
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_Session_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearchResult" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_Session = { "Session", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearchResult, Session), Z_Construct_UScriptStruct_FPicoOnlineSession, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_Session_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_Session_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_PingInMs_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSearchResult" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_PingInMs = { "PingInMs", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSearchResult, PingInMs), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_PingInMs_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_PingInMs_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_Session,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::NewProp_PingInMs,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoOnlineSessionSearchResult",
+		sizeof(FPicoOnlineSessionSearchResult),
+		alignof(FPicoOnlineSessionSearchResult),
+		Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoOnlineSessionSearchResult"), sizeof(FPicoOnlineSessionSearchResult), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult_Hash() { return 3660466747U; }
+class UScriptStruct* FPicoNamedOnlineSession::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoNamedOnlineSession, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoNamedOnlineSession"), sizeof(FPicoNamedOnlineSession), Get_Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoNamedOnlineSession>()
+{
+	return FPicoNamedOnlineSession::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoNamedOnlineSession(FPicoNamedOnlineSession::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoNamedOnlineSession"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoNamedOnlineSession
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoNamedOnlineSession()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoNamedOnlineSession>(FName(TEXT("PicoNamedOnlineSession")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoNamedOnlineSession;
+	struct Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionName_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SessionName;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HostingPlayerNum_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_HostingPlayerNum;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bHosting_MetaData[];
+#endif
+		static void NewProp_bHosting_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bHosting;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_LocalOwnerId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_LocalOwnerId;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_RegisteredPlayers_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_RegisteredPlayers_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_RegisteredPlayers;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_SessionState_Underlying;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionState_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_SessionState;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OwningUserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_OwningUserId;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OwningUserName_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_OwningUserName;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionSettings_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_SessionSettings;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionInfoRoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SessionInfoRoomID;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumOpenPrivateConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_NumOpenPrivateConnections;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumOpenPublicConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_NumOpenPublicConnections;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoNamedOnlineSession>();
+	}
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionName_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, SessionName), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionName_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionName_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_HostingPlayerNum_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_HostingPlayerNum = { "HostingPlayerNum", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, HostingPlayerNum), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_HostingPlayerNum_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_HostingPlayerNum_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting_SetBit(void* Obj)
+	{
+		((FPicoNamedOnlineSession*)Obj)->bHosting = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting = { "bHosting", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoNamedOnlineSession), &Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_LocalOwnerId_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_LocalOwnerId = { "LocalOwnerId", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, LocalOwnerId), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_LocalOwnerId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_LocalOwnerId_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers_Inner = { "RegisteredPlayers", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers = { "RegisteredPlayers", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, RegisteredPlayers), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState = { "SessionState", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, SessionState), Z_Construct_UEnum_OnlineSubsystemPico_EOnlineSessionStatePicoType, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserId_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserId = { "OwningUserId", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, OwningUserId), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserId_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserName_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserName = { "OwningUserName", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, OwningUserName), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserName_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserName_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionSettings_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionSettings = { "SessionSettings", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, SessionSettings), Z_Construct_UScriptStruct_FPicoOnlineSessionSettings, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionSettings_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionSettings_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionInfoRoomID = { "SessionInfoRoomID", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, SessionInfoRoomID), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPrivateConnections = { "NumOpenPrivateConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, NumOpenPrivateConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData[] = {
+		{ "Category", "PicoNamedOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPublicConnections = { "NumOpenPublicConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoNamedOnlineSession, NumOpenPublicConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_HostingPlayerNum,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_bHosting,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_LocalOwnerId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_RegisteredPlayers,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionState,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_OwningUserName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionSettings,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_SessionInfoRoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPrivateConnections,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::NewProp_NumOpenPublicConnections,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoNamedOnlineSession",
+		sizeof(FPicoNamedOnlineSession),
+		alignof(FPicoNamedOnlineSession),
+		Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoNamedOnlineSession()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoNamedOnlineSession"), sizeof(FPicoNamedOnlineSession), Get_Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoNamedOnlineSession_Hash() { return 3200886883U; }
+class UScriptStruct* FPicoOnlineSession::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSession_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoOnlineSession, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoOnlineSession"), sizeof(FPicoOnlineSession), Get_Z_Construct_UScriptStruct_FPicoOnlineSession_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoOnlineSession>()
+{
+	return FPicoOnlineSession::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoOnlineSession(FPicoOnlineSession::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoOnlineSession"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSession
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSession()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoOnlineSession>(FName(TEXT("PicoOnlineSession")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSession;
+	struct Z_Construct_UScriptStruct_FPicoOnlineSession_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OwningUserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_OwningUserId;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OwningUserName_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_OwningUserName;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionSettings_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_SessionSettings;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SessionInfoRoomID_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_SessionInfoRoomID;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumOpenPrivateConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_NumOpenPrivateConnections;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumOpenPublicConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_NumOpenPublicConnections;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoOnlineSession>();
+	}
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserId_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserId = { "OwningUserId", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, OwningUserId), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserId_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserName_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserName = { "OwningUserName", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, OwningUserName), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserName_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserName_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionSettings_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionSettings = { "SessionSettings", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, SessionSettings), Z_Construct_UScriptStruct_FPicoOnlineSessionSettings, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionSettings_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionSettings_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionInfoRoomID = { "SessionInfoRoomID", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, SessionInfoRoomID), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionInfoRoomID_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPrivateConnections = { "NumOpenPrivateConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, NumOpenPrivateConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPrivateConnections_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData[] = {
+		{ "Category", "PicoOnlineSession" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPublicConnections = { "NumOpenPublicConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSession, NumOpenPublicConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPublicConnections_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_OwningUserName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionSettings,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_SessionInfoRoomID,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPrivateConnections,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::NewProp_NumOpenPublicConnections,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoOnlineSession",
+		sizeof(FPicoOnlineSession),
+		alignof(FPicoOnlineSession),
+		Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSession()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSession_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoOnlineSession"), sizeof(FPicoOnlineSession), Get_Z_Construct_UScriptStruct_FPicoOnlineSession_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoOnlineSession_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSession_Hash() { return 1090438560U; }
+class UScriptStruct* FPicoOnlineSessionSettings::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoOnlineSessionSettings"), sizeof(FPicoOnlineSessionSettings), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoOnlineSessionSettings>()
+{
+	return FPicoOnlineSessionSettings::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoOnlineSessionSettings(FPicoOnlineSessionSettings::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoOnlineSessionSettings"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSettings
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSettings()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoOnlineSessionSettings>(FName(TEXT("PicoOnlineSessionSettings")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoOnlineSessionSettings;
+	struct Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumPublicConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_NumPublicConnections;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_NumPrivateConnections_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_NumPrivateConnections;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bShouldAdvertise_MetaData[];
+#endif
+		static void NewProp_bShouldAdvertise_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bShouldAdvertise;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bAllowInvites_MetaData[];
+#endif
+		static void NewProp_bAllowInvites_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bAllowInvites;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bUsesPresence_MetaData[];
+#endif
+		static void NewProp_bUsesPresence_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bUsesPresence;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bAllowJoinViaPresence_MetaData[];
+#endif
+		static void NewProp_bAllowJoinViaPresence_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bAllowJoinViaPresence;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bAllowJoinViaPresenceFriendsOnly_MetaData[];
+#endif
+		static void NewProp_bAllowJoinViaPresenceFriendsOnly_SetBit(void* Obj);
+		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bAllowJoinViaPresenceFriendsOnly;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BuildUniqueId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_BuildUniqueId;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_KeyArray_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_KeyArray_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_KeyArray;
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_ValueArray_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ValueArray_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_ValueArray;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoOnlineSessionSettings>();
+	}
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPublicConnections_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPublicConnections = { "NumPublicConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSettings, NumPublicConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPublicConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPublicConnections_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPrivateConnections_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPrivateConnections = { "NumPrivateConnections", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSettings, NumPrivateConnections), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPrivateConnections_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPrivateConnections_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSettings*)Obj)->bShouldAdvertise = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise = { "bShouldAdvertise", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSettings), &Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSettings*)Obj)->bAllowInvites = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites = { "bAllowInvites", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSettings), &Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSettings*)Obj)->bUsesPresence = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence = { "bUsesPresence", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSettings), &Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSettings*)Obj)->bAllowJoinViaPresence = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence = { "bAllowJoinViaPresence", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSettings), &Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly_SetBit(void* Obj)
+	{
+		((FPicoOnlineSessionSettings*)Obj)->bAllowJoinViaPresenceFriendsOnly = 1;
+	}
+	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly = { "bAllowJoinViaPresenceFriendsOnly", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(FPicoOnlineSessionSettings), &Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly_SetBit, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_BuildUniqueId_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_BuildUniqueId = { "BuildUniqueId", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSettings, BuildUniqueId), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_BuildUniqueId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_BuildUniqueId_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray_Inner = { "KeyArray", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "Comment", "// Settings\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "Settings" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray = { "KeyArray", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSettings, KeyArray), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray_MetaData)) };
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray_Inner = { "ValueArray", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray_MetaData[] = {
+		{ "Category", "PicoOnlineSessionSettings" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray = { "ValueArray", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoOnlineSessionSettings, ValueArray), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPublicConnections,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_NumPrivateConnections,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bShouldAdvertise,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowInvites,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bUsesPresence,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresence,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_bAllowJoinViaPresenceFriendsOnly,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_BuildUniqueId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_KeyArray,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::NewProp_ValueArray,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoOnlineSessionSettings",
+		sizeof(FPicoOnlineSessionSettings),
+		alignof(FPicoOnlineSessionSettings),
+		Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSettings()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoOnlineSessionSettings"), sizeof(FPicoOnlineSessionSettings), Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoOnlineSessionSettings_Hash() { return 1067515015U; }
+class UScriptStruct* FPicoFriend::StaticStruct()
+{
+	static class UScriptStruct* Singleton = NULL;
+	if (!Singleton)
+	{
+		extern ONLINESUBSYSTEMPICO_API uint32 Get_Z_Construct_UScriptStruct_FPicoFriend_Hash();
+		Singleton = GetStaticStruct(Z_Construct_UScriptStruct_FPicoFriend, Z_Construct_UPackage__Script_OnlineSubsystemPico(), TEXT("PicoFriend"), sizeof(FPicoFriend), Get_Z_Construct_UScriptStruct_FPicoFriend_Hash());
+	}
+	return Singleton;
+}
+template<> ONLINESUBSYSTEMPICO_API UScriptStruct* StaticStruct<FPicoFriend>()
+{
+	return FPicoFriend::StaticStruct();
+}
+static FCompiledInDeferStruct Z_CompiledInDeferStruct_UScriptStruct_FPicoFriend(FPicoFriend::StaticStruct, TEXT("/Script/OnlineSubsystemPico"), TEXT("PicoFriend"), false, nullptr, nullptr);
+static struct FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoFriend
+{
+	FScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoFriend()
+	{
+		UScriptStruct::DeferCppStructOps<FPicoFriend>(FName(TEXT("PicoFriend")));
+	}
+} ScriptStruct_OnlineSubsystemPico_StaticRegisterNativesFPicoFriend;
+	struct Z_Construct_UScriptStruct_FPicoFriend_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DisPlayName_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_DisPlayName;
+		static const UE4CodeGen_Private::FBytePropertyParams NewProp_FriendPresenceStatus_Underlying;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_FriendPresenceStatus_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FEnumPropertyParams NewProp_FriendPresenceStatus;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoFriend_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "DisplayName", "OnlinePicoFriend" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FPicoFriend_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FPicoFriend>();
+	}
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_UserId_MetaData[] = {
+		{ "Category", "OnlinePicoFriend" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoFriend, UserId), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_UserId_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_UserId_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_DisPlayName_MetaData[] = {
+		{ "Category", "OnlinePicoFriend" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_DisPlayName = { "DisPlayName", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoFriend, DisPlayName), METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_DisPlayName_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_DisPlayName_MetaData)) };
+	const UE4CodeGen_Private::FBytePropertyParams Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus_MetaData[] = {
+		{ "Category", "OnlinePicoFriend" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FEnumPropertyParams Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus = { "FriendPresenceStatus", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(FPicoFriend, FriendPresenceStatus), Z_Construct_UEnum_OnlineSubsystemPico_EPresenceStatus, METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FPicoFriend_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_UserId,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_DisPlayName,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus_Underlying,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FPicoFriend_Statics::NewProp_FriendPresenceStatus,
+	};
+	const UE4CodeGen_Private::FStructParams Z_Construct_UScriptStruct_FPicoFriend_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+		nullptr,
+		&NewStructOps,
+		"PicoFriend",
+		sizeof(FPicoFriend),
+		alignof(FPicoFriend),
+		Z_Construct_UScriptStruct_FPicoFriend_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoFriend_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FPicoFriend_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FPicoFriend_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FPicoFriend()
+	{
+#if WITH_HOT_RELOAD
+		extern uint32 Get_Z_Construct_UScriptStruct_FPicoFriend_Hash();
+		UPackage* Outer = Z_Construct_UPackage__Script_OnlineSubsystemPico();
+		static UScriptStruct* ReturnStruct = FindExistingStructIfHotReloadOrDynamic(Outer, TEXT("PicoFriend"), sizeof(FPicoFriend), Get_Z_Construct_UScriptStruct_FPicoFriend_Hash(), false);
+#else
+		static UScriptStruct* ReturnStruct = nullptr;
+#endif
+		if (!ReturnStruct)
+		{
+			UE4CodeGen_Private::ConstructUScriptStruct(ReturnStruct, Z_Construct_UScriptStruct_FPicoFriend_Statics::ReturnStructParams);
+		}
+		return ReturnStruct;
+	}
+	uint32 Get_Z_Construct_UScriptStruct_FPicoFriend_Hash() { return 3090885632U; }
+	void UOnlineSubsystemPicoManager::StaticRegisterNativesUOnlineSubsystemPicoManager()
+	{
+	}
+	UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager_NoRegister()
+	{
+		return UOnlineSubsystemPicoManager::StaticClass();
+	}
+	struct Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics
+	{
+		static UObject* (*const DependentSingletons[])();
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
+#endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcJoinRoomResultDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcJoinRoomResultDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcLeaveRoomResultDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcLeaveRoomResultDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomStateDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomStateDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserJoinInfoDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserJoinInfoDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserLeaveInfoDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserLeaveInfoDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomWarnDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomWarnDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomErrorDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomErrorDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomMuteStateDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomMuteStateDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcAudioChangePlaybackDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcAudioChangePlaybackDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcMediaDeviceChangeInfoDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcLocalAudioPropertiesReportDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRemoteAudioPropertiesReportDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcWarnDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcWarnDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcErrorDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcErrorDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcConnectStateChangedDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcConnectStateChangedDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserStartAudioCaptureDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserStopAudioCaptureDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnGameConnectionNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameConnectionNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnGameRequestFailedNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameRequestFailedNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnGameStateResetNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameStateResetNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnMatchmakingCancel2NotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomLeaveNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomLeaveNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomJoin2NotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomJoin2NotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomSetDescriptionNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomKickUserNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomKickUserNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateOwnerNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateDataStoreNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateNotifyDelegate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomInviteAcceptedNotifyDelegate;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
+		static const UE4CodeGen_Private::FClassParams ClassParams;
+	};
+	UObject* (*const Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::DependentSingletons[])() = {
+		(UObject* (*)())Z_Construct_UClass_UObject,
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams[] = {
+		{ "IncludePath", "OnlineSubsystemPicoManager.h" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "Comment", "// RTC Notification Delegate\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "RTC Notification Delegate" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate = { "OnRtcJoinRoomResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcJoinRoomResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate = { "OnRtcLeaveRoomResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcLeaveRoomResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate = { "OnRtcRoomStateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomStateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate = { "OnRtcUserJoinInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserJoinInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate = { "OnRtcUserLeaveInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserLeaveInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate = { "OnRtcRoomWarnDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomWarnDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate = { "OnRtcRoomErrorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomErrorDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate = { "OnRtcRoomMuteStateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomMuteStateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate = { "OnRtcAudioChangePlaybackDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcAudioChangePlaybackDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate = { "OnRtcMediaDeviceChangeInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcMediaDeviceChangeInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate = { "OnRtcLocalAudioPropertiesReportDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcLocalAudioPropertiesReportDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate = { "OnRtcRemoteAudioPropertiesReportDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRemoteAudioPropertiesReportDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate = { "OnRtcWarnDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcWarnDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate = { "OnRtcErrorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcErrorDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate = { "OnRtcConnectStateChangedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcConnectStateChangedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate = { "OnRtcUserStartAudioCaptureDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserStartAudioCaptureDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate = { "OnRtcUserStopAudioCaptureDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserStopAudioCaptureDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "Comment", "// Game Notification Delegate\n" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+		{ "ToolTip", "Game Notification Delegate" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate = { "OnGameConnectionNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameConnectionNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate = { "OnGameRequestFailedNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameRequestFailedNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate = { "OnGameStateResetNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameStateResetNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate = { "OnMatchmakingCancel2NotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnMatchmakingCancel2NotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate = { "OnRoomLeaveNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomLeaveNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate = { "OnRoomJoin2NotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomJoin2NotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate = { "OnRoomSetDescriptionNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomSetDescriptionNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate = { "OnRoomKickUserNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomKickUserNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate = { "OnRoomUpdateOwnerNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateOwnerNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate = { "OnRoomUpdateDataStoreNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateDataStoreNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate = { "OnRoomUpdateMembershipLockStatusNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateMembershipLockStatusNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate = { "OnRoomUpdateNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Private/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate = { "OnRoomInviteAcceptedNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UE4CodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomInviteAcceptedNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate,
+	};
+	const FCppClassTypeInfoStatic Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UOnlineSubsystemPicoManager>::IsAbstract,
+	};
+	const UE4CodeGen_Private::FClassParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::ClassParams = {
+		&UOnlineSubsystemPicoManager::StaticClass,
+		nullptr,
+		&StaticCppClassTypeInfo,
+		DependentSingletons,
+		nullptr,
+		Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers,
+		nullptr,
+		UE_ARRAY_COUNT(DependentSingletons),
+		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers),
+		0,
+		0x008000A0u,
+		METADATA_PARAMS(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams))
+	};
+	UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager()
+	{
+		static UClass* OuterClass = nullptr;
+		if (!OuterClass)
+		{
+			UE4CodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::ClassParams);
+		}
+		return OuterClass;
+	}
+	IMPLEMENT_CLASS(UOnlineSubsystemPicoManager, 3556565628);
+	template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<UOnlineSubsystemPicoManager>()
+	{
+		return UOnlineSubsystemPicoManager::StaticClass();
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_UOnlineSubsystemPicoManager(Z_Construct_UClass_UOnlineSubsystemPicoManager, &UOnlineSubsystemPicoManager::StaticClass, TEXT("/Script/OnlineSubsystemPico"), TEXT("UOnlineSubsystemPicoManager"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(UOnlineSubsystemPicoManager);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif

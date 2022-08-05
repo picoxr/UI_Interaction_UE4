@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -49,7 +49,7 @@ public:
 	virtual void SetEyeTrackedPlayer(APlayerController* PlayerController) override;
 
 	void DrawDebug(AHUD* HUD, UCanvas* Canvas, const FDebugDisplayInfo& DisplayInfo, float& YL, float& YPos);
-	bool OpenEyeTracking();
+	bool OpenEyeTracking(bool enable);
 	bool UPxr_GetEyeTrackingData(FPicoXREyeTrackingData &TrackingData);
 	bool GetEyeTrackingDataFromDevice(FPicoXREyeTrackingData &TrackingData);
 	bool GetEyeTrackingGazeRay(FPicoXREyeTrackingGazeRay &EyeTrackingGazeRay)const;

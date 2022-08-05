@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "PXR_HMDTypes.h"
@@ -23,7 +23,8 @@ namespace ERefreshRate
 	{
 		Default,
 		RefreshRate72,
-		RefreshRate90
+		RefreshRate90,
+		RefreshRate120
 	};
 }
 
@@ -58,7 +59,10 @@ public:
 		bool bIsController3Dof;
 
 	//Feature
-	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use SRGB Encoding"))
+	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Enable LateLatching",ToolTip = "Only support UE4.27 + Vulkan + Multi-View + Disable Occlusion Culling."))
+		bool bEnableLateLatching;
+
+	UPROPERTY(Config)
 		bool bUseHWsRGBEncoding;
 
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use Recommended MSAA Level"))
@@ -79,6 +83,9 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use Pico Advance Interface"))
 		bool bUseAdvanceInterface;
 
+	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (EditCondition = "bUseAdvanceInterface", DisplayName = "Enable Large Space"))
+		bool bEnableLargeSpace;
+
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use Content Protect"))
 		bool bUseContentProtect;
 
@@ -96,5 +103,8 @@ public:
 #if WITH_EDITOR
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 	void HandlesRGBHWSupport();
-#endif 
+private:
+	void ResetsRGBConfig();
+#endif
+
 };

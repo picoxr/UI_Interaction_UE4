@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDModule.h"
 #include "PXR_HMD.h"
@@ -55,6 +55,8 @@ void FPicoXRHMDModule::StartupModule()
 {
 	IHeadMountedDisplayModule::StartupModule();
 	FCoreDelegates::OnFEngineLoopInitComplete.AddRaw(this,&FPicoXRHMDModule::RegisterSettings);
+	FString PluginShaderDir = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("PicoXR/Shaders"));
+	AddShaderSourceDirectoryMapping(TEXT("/Plugin/PicoXR"), PluginShaderDir);
 }
 
 void FPicoXRHMDModule::ShutdownModule()
@@ -81,7 +83,7 @@ TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > FPicoXRHMDModule::Cre
 {
     PXR_LOGI(PxrUnreal, "CreateTrackingSystem");
 	TSharedPtr< FPicoXRHMD, ESPMode::ThreadSafe > PicoMobileHMD = FSceneViewExtensions::NewExtension<FPicoXRHMD>();
-	if (PicoMobileHMD && PicoMobileHMD->Startup())
+	if (PicoMobileHMD && PicoMobileHMD->Initialize())
 	{
 		return PicoMobileHMD;
 	}

@@ -1,4 +1,4 @@
-// Copyright © 2015-2021 Pico Technology Co., Ltd. All Rights Reserved.
+//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "ProceduralMeshComponent.h"
@@ -12,10 +12,9 @@ enum class EPicoXRLayerState : uint8
 	Unknown,
 	NeedToCreate,
     Ready,
-	NeedToDestroy,
 	NeedToReCreate,
 };
-#if ENGINE_MINOR_VERSION==24
+
 class FPxrLayer : public TSharedFromThis<FPxrLayer, ESPMode::ThreadSafe>
 {
 public:
@@ -27,7 +26,6 @@ protected:
 };
 
 typedef TSharedPtr<FPxrLayer, ESPMode::ThreadSafe> FPxrLayerPtr;
-#endif
 
 struct FEyeLayerParam
 {
@@ -71,7 +69,6 @@ public:
 	EPicoXRLayerState GetLayerState() const { return  LayerState; };
 	void SetLayerState(EPicoXRLayerState NewState);
 	void MarkCreateLayer();
-	void MarkDestroyLayer();
 	void MarkReCreateLayer();
 	void CreateLayer(FPicoXRRenderBridge* RenderBridge);
 	void DestroyLayer();
@@ -89,9 +86,10 @@ public:
     void SetEyeLayerParam(FPicoXRRenderBridge* RenderBridge, uint8 Format, uint32 SizeX, uint32 SizeY,uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, uint32 MSAAValue);
 #endif
     void RefreshLayers_RenderThread(FPicoXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList);
-    void MarkTextureForUpdate() { bUpdateTexture = true; }
+    void MarkTextureForUpdate() { bTextureNeedUpdate = true; }
 
 	bool bSplashLayer = false;
+	bool bMRCLayer = false;
 
 protected:
 	FVector GetLayerLocation() const { return LayerDesc.Transform.GetLocation(); };
@@ -105,7 +103,7 @@ protected:
 	FXRSwapChainPtr FoveationSwapChain;
     FXRSwapChainPtr OverlaySwapChain;
     FXRSwapChainPtr LeftOverlaySwapChain;
-    bool bUpdateTexture;
+    bool bTextureNeedUpdate;
 	FString RHIString;
 	EPicoXRLayerState LayerState;
 	FEyeLayerParam EyeLayerParam;
@@ -114,91 +112,32 @@ protected:
 	UProceduralMeshComponent* UnderlayComponent;
 	AActor* UnderlayActor;
 
-#if ENGINE_MINOR_VERSION==24
 	FPxrLayerPtr PxrLayer;
-#endif
 };
 
 typedef TSharedPtr<FPicoXRStereoLayer, ESPMode::ThreadSafe> FPicoLayerPtr;
 
 //-------------------------------------------------------------------------------------------------
-//FPicoXRStereoLayerPtr_CompareId
-//-------------------------------------------------------------------------------------------------
-
-struct FPicoXRStereoLayerPtr_CompareId
-{
-	FORCEINLINE bool operator()(const FPicoLayerPtr&A,const FPicoLayerPtr&B)const
-	{
-		return A->GetLayerID()<B->GetLayerID();
-	}
-};
-
-//-------------------------------------------------------------------------------------------------
 //FPicoXRStereoLayerPtr_ComparePriority
 //-------------------------------------------------------------------------------------------------
 
-struct FPicoXRStereoLayerPtr_ComparePriority
+struct CompareLayerPriority_PredicateClass
 {
 	FORCEINLINE bool operator()(const FPicoLayerPtr&A,const FPicoLayerPtr&B)const
 	{
-		if(A->GetLayerDesc().Priority<B->GetLayerDesc().Priority)
+		int32 nPriorityA=A->GetLayerDesc().Priority;
+		int32 nPriorityB=B->GetLayerDesc().Priority;
+		if(nPriorityA<nPriorityB)
+		{
 			return true;
-		if(A->GetLayerDesc().Priority>B->GetLayerDesc().Priority)
+		}
+		else if(nPriorityA>nPriorityB)
+		{
 			return false;
-
-		return A->GetLayerID() < B->GetLayerID();
-	}
-};
-
-//-------------------------------------------------------------------------------------------------
-//FPicoXRStereoLayerPtr_CompareTotal
-//-------------------------------------------------------------------------------------------------
-
-struct FPicoXRStereoLayerPtr_CompareTotal
-{
-	FORCEINLINE bool operator()(const FPicoLayerPtr&A,const FPicoLayerPtr&B)const
-	{
-		int32 PassA;
-		int32 PassB;
-		if (A->GetLayerID() == 0) {
-			PassA = 0;
-		}
-		else if (A->IsSupportLayerDepth())
-		{
-			PassA = -1;
 		}
 		else
 		{
-			PassA = 1;
-		}
-
-		if (B->GetLayerID() == 0) {
-			PassB = 0;
-		}
-		else if (B->IsSupportLayerDepth())
-		{
-			PassB = -1;
-		}
-		else
-		{
-			PassB = 1;
-		}
-
-		if(PassA!=PassB)
-			return PassA<PassB;
-
-		const IStereoLayers::FLayerDesc&DescA=A->GetLayerDesc();
-		const IStereoLayers::FLayerDesc&DescB=B->GetLayerDesc();
-
-		bool bLockedA = (DescA.PositionType == IStereoLayers::ELayerType::FaceLocked);
-		bool bLockedB = (DescB.PositionType == IStereoLayers::ELayerType::FaceLocked);
-
-		if (bLockedA != bLockedB)
-			return!bLockedA;
-
-		if(DescA.Priority!=DescB.Priority)
-			return DescA.Priority<DescB.Priority;
-
-		return A->GetLayerID()<B->GetLayerID();
+			return A->GetLayerID() < B->GetLayerID();
+		}	
 	}
 };

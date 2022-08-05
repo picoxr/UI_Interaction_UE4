@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- steps to add to build additions -->
+
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- init section is always evaluated once per architecture -->
+    <init>
+        <log text="PicoSDK init"/>
+        <setBool result="bSupported" value="false"/>
+        <isArch arch="armeabi-v7a">
+            <setBool result="bSupported" value="true"/>
+        </isArch>
+        <isArch arch="arm64-v8a">
+            <setBool result="bSupported" value="true"/>
+        </isArch>
+        <setBoolFromProperty result="bStartTimeEntitlementCheck" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="bStartTimeEntitlementCheck" default="false"/>
+        <setStringFromProperty result="EntitlementCheckAppID" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="EntitlementCheckAppID" default=""/>
+        <setBoolIsEqual result="bAppIdIsEmpty" arg1="$S(EntitlementCheckAppID)" arg2=""/>
+        <setBoolFromProperty result="bIsForeign" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="bIsForeign" default="false"/>
+        <setBoolFromProperty result="bIsGlobal" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="bIsGlobal" default="false"/>
+    </init>
+
+    <!-- optional updates applied to AndroidManifest.xml -->
+    <androidManifestUpdates>
+        <setStringFromProperty result="AppID" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="AppID" default=""/>
+        <setStringFromProperty result="AppKey" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="AppKey" default=""/>
+        <setStringFromProperty result="Scope" ini="Engine" section="/Script/OnlineSubsystemPico.OnlinePicoSettings" property="Scope" default="get_user_info"/>
+        <if condition="bIsGlobal">
+            <false>
+                <if condition="bIsForeign">
+                    <true>
+                        <log text="Copy Pico Platform Infos For Foreign"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_app_id_foreign"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(AppID)"/>
+                        <addElement tag="application" name="metaData"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_app_key_foreign"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(AppKey)"/>
+                        <addElement tag="application" name="metaData"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_scope_foreign"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(Scope)"/>
+                        <addElement tag="application" name="metaData"/>
+                    </true>
+                    <false>
+                        <log text="Copy Pico Platform Infos For China"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_app_id"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(AppID)"/>
+                        <addElement tag="application" name="metaData"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_app_key"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(AppKey)"/>
+                        <addElement tag="application" name="metaData"/>
+                        <setElement result="metaData" value="meta-data"/>
+                        <addAttribute tag="$metaData" name="android:name" value="pico_scope"/>
+                        <addAttribute tag="$metaData" name="android:value" value="$S(Scope)"/>
+                        <addElement tag="application" name="metaData"/>
+                    </false>
+                </if>
+            </false>
+            <true>
+                <log text="Copy Pico Platform Infos For Global"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_app_id"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(AppID)"/>
+                <addElement tag="application" name="metaData"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_app_key"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(AppKey)"/>
+                <addElement tag="application" name="metaData"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_scope"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(Scope)"/>
+                <addElement tag="application" name="metaData"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_app_id_foreign"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(AppID)"/>
+                <addElement tag="application" name="metaData"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_app_key_foreign"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(AppKey)"/>
+                <addElement tag="application" name="metaData"/>
+                <setElement result="metaData" value="meta-data"/>
+                <addAttribute tag="$metaData" name="android:name" value="pico_scope_foreign"/>
+                <addAttribute tag="$metaData" name="android:value" value="$S(Scope)"/>
+                <addElement tag="application" name="metaData"/>
+            </true>
+        </if>
+        <if condition="bStartTimeEntitlementCheck">
+            <false>
+                <addElements tag="application">
+                    <meta-data android:name="enable_entitlementcheck" android:value="0" />
+                </addElements>
+            </false>
+            <true>
+                <if condition="bAppIdIsEmpty">
+                    <false>
+                        <addElements tag="application">
+                            <meta-data android:name="enable_entitlementcheck" android:value="1" />
+                        </addElements>
+                    </false>
+                    <true>
+                        <addElements tag="application">
+                            <meta-data android:name="enable_entitlementcheck" android:value="0" />
+                        </addElements>
+                    </true>
+                </if>
+            </true>
+        </if>
+    </androidManifestUpdates>
+    <!-- optional additions to proguard -->
+    <proguardAdditions>
+        <insert>
+            -keep class com.epicgames.ue4.GameActivity{*;}
+        </insert>
+    </proguardAdditions>
+
+    <!-- optional files or directories to copy to Intermediate/Android/APK -->
+
+    <resourceCopies>
+        <copyFile src="$S(PluginDir)/lib/initServer.jar"
+                  dst="$S(BuildDir)/libs/initServer.jar" />
+        <copyFile src="$S(PluginDir)/lib/PaymentSDK_Android-v1.0.33.jar"
+                  dst="$S(BuildDir)/libs/PaymentSDK_Android-v1.0.33.jar" />
+        <isArch arch="armeabi-v7a">
+            <log text="Copying v7a pxrloader.so"/>
+            <copyFile src="$S(PluginDir)/lib/armeabi-v7a/libpxrplatformloader.so"
+                      dst="$S(BuildDir)/libs/armeabi-v7a/libpxrplatformloader.so" />
+            <!-- <copyFile src="$S(PluginDir)/lib//armeabi-v7a/libpxr_api.so" -->
+                      <!-- dst="$S(BuildDir)/libs/armeabi-v7a/libpxr_api.so" /> -->
+        </isArch>
+        <isArch arch="arm64-v8a">
+            <log text="Copying v8a pxrloader.so"/>
+            <copyFile src="$S(PluginDir)/lib/arm64-v8a/libpxrplatformloader.so"
+                      dst="$S(BuildDir)/libs/arm64-v8a/libpxrplatformloader.so" />
+            <!-- <copyFile src="$S(PluginDir)/lib/arm64-v8a/libpxr_api.so" -->
+                      <!-- dst="$S(BuildDir)/libs/arm64-v8a/libpxr_api.so" /> -->
+        </isArch>
+       <copyFile src="$S(PluginDir)/lib/libpxr_api.jar"
+                 dst="$S(BuildDir)/libs/libpxr_plugin.jar" />
+       <!--<copyFile src="$S(PluginDir)/../Libs/SystemAPI.jar"
+                dst="$S(BuildDir)/libs/SystemAPI.jar" />
+       <copyFile src="$S(PluginDir)/../Libs/pvrjar.jar"
+                 dst="$S(BuildDir)/libs/pvrjar.jar" />-->
+    </resourceCopies>
+
+    <gameActivityImportAdditions>
+        <insert>
+            <!--import about Pay -->
+            import com.pico.loginpaysdk.auth.AccessInfo;
+            import com.pico.loginpaysdk.auth.Callback;
+            import com.pico.loginpaysdk.auth.sso.Login;
+            import com.pico.loginpaysdk.exception.PicoException;
+            import com.pico.loginpaysdk.net.RequestListener;
+            import com.pico.loginpaysdk.utils.PicoAccessTokenKeeper;
+            import com.pico.loginpaysdk.utils.RandomUtil;
+            import android.view.KeyEvent;
+            import android.util.Log;
+            import com.psmart.aosoperation.SysActivity;
+            import com.psmart.aosoperation.VerifyTool;
+            import com.psmart.aosoperation.NativeVerfyInterface;
+        </insert>
+    </gameActivityImportAdditions>
+
+    <gameActivityClassAdditions>
+        <insert>
+            private Login mLogin;
+            private AccessInfo mAccessInfo;
+            public native void nativePicoLogInCallback(boolean isSuccess, String reason);
+            public native void nativePicoLogOutCallback(boolean isSuccess, String reason);
+            public native void nativePicoGetUserInfoCompleteCallback(String info);
+
+            public void Login()
+            {
+            if (mLogin != null)
+            {
+            mLogin.login(new Callback()
+            {
+            @Override
+            public void loginCallback(boolean isSuccess, String reason)
+            {
+            nativePicoLogInCallback(isSuccess,reason);
+            }
+            });
+            }
+            else
+            {
+            Log.debug("OnlineSubsystemPico_APL Login class is not created!");
+            }
+            }
+
+            public void Logout()
+            {
+            if (mLogin != null)
+            {
+            mLogin.logout(this, new Callback()
+            {
+            @Override
+            public void loginCallback(boolean isSuccess, String reason)
+            {
+            nativePicoLogOutCallback(isSuccess,reason);
+            }
+            });
+            }
+            else
+            {
+            Log.debug("OnlineSubsystemPico_APL Login class is not created!");
+            }
+            }
+        </insert>
+        <if condition="bStartTimeEntitlementCheck">
+            <true>
+                <insert>
+                    <!-- About app check -->
+                    VerifyTool mVerifyTool = null;
+                    public native void JavaToCVerifyCallback(int code);
+                    NativeVerfyInterface VerfyInterfaceCallback = new NativeVerfyInterface()
+                    {
+                    @Override
+                    public void bindSuccessCallback()
+                    {
+                    Log.debug("OnlineSubsystemPico_APL bindSuccessCallback");
+                    }
+                    @Override
+                    public void verifyCallback(int Code)
+                    {
+                    Log.debug("OnlineSubsystemPico_APL verifyCallback code = "+Code);
+                    JavaToCVerifyCallback(Code);
+                    }
+                    };
+                    public int AndroidThunkJava_VerifyApp(String appID, String publicKey)
+                    {
+                    return VerifyTool.verifyAPPExt(this.getApplicationContext(),appID,publicKey);
+                    }
+                </insert>
+            </true>
+        </if>
+        <insert>
+            public AccessInfo GetAccessInfo()
+            {
+            return PicoAccessTokenKeeper.readAccessToken(this.getApplicationContext());
+            }
+
+            public String GetOpenID()
+            {
+            return GetAccessInfo().getOpenId();
+            }
+
+            public String OnlineGetDeviceSN( )
+            {
+            return SysActivity.getDeviceSN();
+            }
+        </insert>
+    </gameActivityClassAdditions>
+
+    <gameActivityOnCreateAdditions>
+        <insert>
+            mLogin = new Login(this.getApplicationContext());
+        </insert>
+        <if condition="bStartTimeEntitlementCheck">
+            <true>
+                <insert>
+                    mVerifyTool = new VerifyTool();
+                    VerifyTool.registerCallback(VerfyInterfaceCallback);
+                    mVerifyTool.bindVerifyService(this.getApplicationContext(),null);
+                </insert>
+            </true>
+        </if>
+    </gameActivityOnCreateAdditions>
+
+    <gameActivityOnDestroyAdditions>
+        <if condition="bStartTimeEntitlementCheck">
+            <true>
+                <insert>
+                    VerifyTool.unRegisterCallback(VerfyInterfaceCallback);
+                    mVerifyTool.unbindVerifyService();
+                </insert>
+            </true>
+        </if>
+    </gameActivityOnDestroyAdditions>
+
+    <!-- optional libraries to load in GameActivity.java before libUE4.so -->
+
+    <soLoadLibrary>
+
+        <if condition="bSupported">
+
+            <true>
+
+                <loadLibrary name="pxrplatformloader" failmsg="Failed to load myso library" />
+
+            </true>
+
+        </if>
+
+    </soLoadLibrary>
+
+</root>
