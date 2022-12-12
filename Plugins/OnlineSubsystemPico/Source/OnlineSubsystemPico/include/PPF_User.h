@@ -40,8 +40,6 @@ PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetInviteToken(const ppfUserHandle ob
 
 PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetSmallImageUrl(const ppfUserHandle obj);
 
-PPF_PUBLIC_FUNCTION(const char*) ppf_User_GetPresencePackage(const ppfUserHandle obj);
-
 /// @brief Get the enum value of what the user is currently doing.
 ///
 /// @param  obj the ppfUserHandle object.
@@ -63,5 +61,9 @@ PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetPresenceLobbySessionId(const ppfUs
 PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetPresenceMatchSessionId(const ppfUserHandle obj);
 
 PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetPresencePackage(const ppfUserHandle obj);
+
+PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetPresenceExtra(const ppfUserHandle obj);
+
+PPF_PUBLIC_FUNCTION(const char *) ppf_User_GetStoreRegion(const ppfUserHandle obj);
 #endif
 

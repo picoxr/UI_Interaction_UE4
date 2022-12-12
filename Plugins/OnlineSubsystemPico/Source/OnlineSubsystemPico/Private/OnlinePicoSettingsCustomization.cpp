@@ -125,7 +125,7 @@ class SPicoDeprecationBanner : public SCompoundWidget
 FOnlinePicoSettingsCustomization::FOnlinePicoSettingsCustomization()
     :SavedLayoutBuilder(nullptr),
     bCheckBoxChecked(false),
-    bIsIgnoreShowDialog(false)
+    bIsIgnoreShowDialog(true)
 {
     if (MsgWindow.IsValid())
     {
@@ -156,6 +156,7 @@ void FOnlinePicoSettingsCustomization::CustomizeDetails(IDetailLayoutBuilder& De
 
 void FOnlinePicoSettingsCustomization::ShowDialogWidget()
 {
+    return;
     if (bIsIgnoreShowDialog)
     {
         return;

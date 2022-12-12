@@ -11,15 +11,15 @@
 
 /// @file OnlineSessionInterfacePico.h
 
-/// @brief Used to set the matchmaking pool name.
+// @brief Used to set the matchmaking pool name.
 #define SETTING_PICO_POOL FName(TEXT("PICOPOOL"))
-/// @brief Used to set the pico build unique ID.
+// @brief Used to set the pico build unique ID.
 #define SETTING_PICO_BUILD_UNIQUE_ID FName(TEXT("PICOSESSIONBUILDUNIQUEID"))
-/// @brief Used to set whether to search for moderated rooms.
+// @brief Used to set whether to search for moderated rooms.
 #define SEARCH_PICO_MODERATED_ROOMS_ONLY FName(TEXT("PICOMODERATEDROOMSONLY"))
-/// @brief Used to set the page index when searching for moderated rooms.
+// @brief Used to set the page index when searching for moderated rooms.
 #define GET_MODERATEDROOMS_PAGEINDEX FName(TEXT("GETMODERATEDROOMSPAGEINDEX"))
-/// @brief Used to set the page size when searching for moderated rooms.
+// @brief Used to set the page size when searching for moderated rooms.
 #define GET_MODERATEDROOMS_PAGESIZE FName(TEXT("GETMODERATEDROOMSPAGESIZE"))
 
 class FUniqueNetIdPico;
@@ -40,6 +40,8 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateDataStoreComplete, const FStri
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateMembershipLockStatusComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomInviteAcceptedComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
+DECLARE_MULTICAST_DELEGATE_FourParams(FOnPicoSessionUserInviteAcceptedComplete, const bool /*bWasSuccessful*/, const int32 /*ControllerId*/, const FString& /*UserId*/, const FPicoOnlineSessionSearchResult& /*InviteResult*/);
+
 
 
 /** @addtogroup Function Function
@@ -47,41 +49,47 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomInviteAcceptedComplete, const FStrin
  *  @{
  */
 
-/** @defgroup Session Session
- *  This is the Session group
+/** @defgroup Session Session(OnlineSub)
+ *  This is the Session(OnlineSub) group
  *  @{
  */
 
 
-/// @brief FOnlineSessionPico class inherited from IOnlineSession(Unreal Engine).
+/// <summary>FOnlineSessionPico class inherited from IOnlineSession(Unreal Engine).</summary>
 class FOnlineSessionPico : public IOnlineSession
 {
 private:
 
-	/// @brief Reference to the main Pico subsystem.
+	// <summary>Reference to the main Pico subsystem.</summary>
 	FOnlineSubsystemPico& PicoSubsystem;
 
-	/// @brief Current sessions map.
+	// <summary>Current sessions map.</summary>
 	TMap<FName, TSharedPtr<FNamedOnlineSession>> Sessions;
 
-	/// @brief The SearchSettings for matchmaking.
+	// <summary>The SearchSettings for matchmaking.</summary>
 	TSharedPtr<FOnlineSessionSearch> InProgressMatchmakingSearch;
 
-	/// @brief The SessionName when in matchmaking.
+	// <summary>The SessionName when in matchmaking.</summary>
 	FName InProgressMatchmakingSearchName;
 
-	/// @brief Gets the room ID of the session.
-	/// @param Session The session to get room ID for.
-	/// @return return The room ID of the specified session.
+	/// <summary>Gets the room ID of the session.</summary>
+	/// <param name="Session">The session to get room ID for.</param>
+	/// <returns>The room ID of the specified session.</returns>
 	ppfID GetRoomIDOfSession(const FNamedOnlineSession& Session) const;
 	
-	/// @brief Returns the search results of the sessions where the invitation has been accepted. Supported version: 4.8.0 or later.
+	// <summary>Returns the search results of the sessions where the invitation has been accepted. Supported version: 4.8.0 or later.</summary>
 	TArray<TSharedRef<const FOnlineSessionSearchResult>> InviteAcceptedSessions;
 	
-	/// @brief Gets the build unique ID of a room.
-	/// @param Room The handle of the room.
-	/// @return The build unique ID of the room.
+	
+	TArray<TSharedRef<const FOnlineSessionSearchResult>> PendingInviteAcceptedSessions;
+	ppfID InviteAcceptedRoomID;
+	
+	/// <summary>Gets the build unique ID of a room.</summary>
+	/// <param name="Room">The handle of the room.</param>
+	/// <returns>The build unique ID of the room.</returns>
 	int32 GetRoomBuildUniqueId(const ppfRoomHandle Room);
+
+	static void SaveLog(const ELogVerbosity::Type Verbosity, const FString& Log);
 
 PACKAGE_SCOPE:
 
@@ -105,23 +113,34 @@ PACKAGE_SCOPE:
 	bool CreateMatchmakingSession(FNamedOnlineSession& Session, ppfRoomJoinPolicy JoinPolicy);
 	void OnCreateRoomComplete(ppfMessageHandle Message, bool bIsError, FName SessionName);
 	
-	/// @brief Searches for moderated rooms.
-	/// @param SearchSettings The search settings.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Searches for moderated rooms.</summary>
+	/// <param name="SearchSettings">The search settings.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	bool FindModeratedRoomSessions(const TSharedRef<FOnlineSessionSearch>& SearchSettings);
 	
-	/// @brief Searches for the "browse" type matchmaking rooms.
-	/// @param Pool The name of the matchmaking pool to look in.
-	/// @param SearchSettings The search settings (to set the search results and the searchState).
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Searches for the "browse" type matchmaking rooms.</summary>
+	/// <param name="Pool">The name of the matchmaking pool to look in.</param>
+	/// <param name="SearchSettings">The search settings (to set the search results and the searchState).</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	bool FindMatchmakingSessions(const FString Pool, const TSharedRef<FOnlineSessionSearch>& SearchSettings);
 	
 	bool UpdateRoomDataStore(FName SessionName, FOnlineSessionSettings& UpdatedSessionSettings);
 
+
 public:
 
-	/// @brief The constructor.
-	/// @param InSubsystem A reference to the online subsystem.
+	// <summary>The constructor.</summary>
+	// <param name="InSubsystem">A reference to the online subsystem.</param>
 	FOnlineSessionPico(FOnlineSubsystemPico& InSubsystem);
 	
     /// The default destructor.
@@ -130,110 +149,165 @@ public:
 
 	// Begin IOnlineSession interface
 
-	/// @brief Creates an online session based on the specified settings.
-	/// NOTE: Online session registration is an async process and will not complete
+	/// <summary>Creates an online session based on the specified settings.
+	/// @note Online session registration is an async process and will not complete
 	/// until the `OnCreateSessionComplete` delegate is called.
-	/// @param HostingPlayerNum The index of the player hosting the session.
-	/// @param SessionName The name of the session to create.
-	/// @param NewSessionSettings The settings to use for the new session.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// </summary>
+	/// <param name="HostingPlayerNum">The index of the player hosting the session.</param>
+	/// <param name="SessionName">The name of the session to create.</param>
+	/// <param name="NewSessionSettings">The settings to use for the new session.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool CreateSession(int32 HostingPlayerNum, FName SessionName, const FOnlineSessionSettings& NewSessionSettings) override;
 	virtual bool CreateSession(const FUniqueNetId& HostingPlayerId, FName SessionName, const FOnlineSessionSettings& NewSessionSettings) override;
 	
-	/// @brief Marks an online session as in progress (as opposed to being in lobby or pending).
-	/// @param SessionName The name of session to change state for.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Marks an online session as in progress (as opposed to being in lobby or pending).</summary>
+	/// <param name="SessionName">The name of session to change state for.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool StartSession(FName SessionName) override;
 
-	/// @brief Updates the localized settings/properties for the session in question.
-	/// @param SessionName The name of the session to update.
-	/// @param UpdatedSessionSettings The object to update the session settings with.
-	/// @param bShouldRefreshOnlineData Whether to submit the data to the backend or not.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Updates the localized settings/properties for the session in question.</summary>
+	/// <param name="SessionName">The name of the session to update.</param>
+	/// <param name="UpdatedSessionSettings">The object to update the session settings with.</param>
+	/// <param name="bShouldRefreshOnlineData">Whether to submit the data to the backend or not.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool UpdateSession(FName SessionName, FOnlineSessionSettings& UpdatedSessionSettings, bool bShouldRefreshOnlineData = true) override;
 
-	/// @brief Marks an online session as having been ended.
-	/// @param SessionName The name of the session the to end.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Marks an online session as having been ended.</summary>
+	/// <param name="SessionName">The name of the session to end.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool EndSession(FName SessionName) override;
 
-	/// @brief Destroys the specified online session.
-	/// NOTE: Online session de-registration is an async process and will not complete
+	/// <summary>Destroys the specified online session.
+	/// @note Online session de-registration is an async process and will not complete
 	/// until the `OnDestroySessionComplete` delegate is called.
-	/// @param SessionName The name of the session to destroy.
-	/// @param CompletionDelegate Used when the session destroy request has been completed.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// </summary>
+	/// <param name="SessionName">The name of the session to destroy.</param>
+	/// <param name="CompletionDelegate">Used when the session destroy request has been completed.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool DestroySession(FName SessionName, const FOnDestroySessionCompleteDelegate& CompletionDelegate = FOnDestroySessionCompleteDelegate()) override;
 
-	/// @brief Determines if the player is registered in the specified session.
-	/// @param SessionName The name of the session.
-	/// @param UniqueId The ID of the player to check if in session or not.
-	/// @return Bool: `true`-in session; `false`-not in session.
+	/// <summary>Determines if the player is registered in the specified session.</summary>
+	/// <param name="SessionName">The name of the session.</param>
+	/// <param name="UniqueId">The ID of the player to check if in session or not.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: in session</li>
+	/// <li>`false`: not in session</li>
+	/// </ul>
+	/// </returns>
 	virtual bool IsPlayerInSession(FName SessionName, const FUniqueNetId& UniqueId) override;
 
-	/// @brief Starts cloud-based matchmaking for a session.
-	/// @param LocalPlayers The IDs of all local players that will participate in the match.
-	/// @param SessionName The name of the session to use.
-	/// @param NewSessionSettings The desired settings to match against or create with when forming new sessions. `NumPrivateConnections` needs to be zero.
-	/// @param SearchSettings The desired settings that the matched session will have.
-	/// @return Bool: `true`-success; `false`-failure.
-	virtual bool StartMatchmaking(const TArray< FUniqueNetIdRef >& LocalPlayers, FName SessionName, const FOnlineSessionSettings& NewSessionSettings, TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
+	/// <summary>Starts cloud-based matchmaking for a session.</summary>
+	/// <param name="LocalPlayers">The IDs of all local players that will participate in the match.</param>
+	/// <param name="SessionName">The name of the session to use.</param>
+	/// <param name="NewSessionSettings">The desired settings to match against or create with when forming new sessions. `NumPrivateConnections` needs to be zero.</param>
+	/// <param name="SearchSettings">The desired settings that the matched session will have.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
+	virtual bool StartMatchmaking(const TArray< TSharedRef<const FUniqueNetId> >& LocalPlayers, FName SessionName, const FOnlineSessionSettings& NewSessionSettings, TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
 
-	/// @brief Cancels a matchmaking request for a given session.
-	/// @param SearchingPlayerNum The index of the player canceling the search.
-	/// @param SessionName The name of the session that was passed to `StartMatchmaking` (or `CreateSession`).
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Cancels a matchmaking request for a given session.</summary>
+	/// <param name="SearchingPlayerNum">The index of the player canceling the search.</param>
+	/// <param name="SessionName">The name of the session that was passed to `StartMatchmaking` (or `CreateSession`).</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool CancelMatchmaking(int32 SearchingPlayerNum, FName SessionName) override;
 	virtual bool CancelMatchmaking(const FUniqueNetId& SearchingPlayerId, FName SessionName) override;
 
-	/// @brief Searches for sessions matching the settings specified.
-	/// @param SearchingPlayerNum The index of the player searching for a match.
-	/// @param SearchSettings The desired settings that the returned sessions will have.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Searches for sessions matching the settings specified.</summary>
+	/// <param name="SearchingPlayerNum">The index of the player searching for a match.</param>
+	/// <param name="SearchSettings">The desired settings that the returned sessions will have.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool FindSessions(int32 SearchingPlayerNum, const TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
 	virtual bool FindSessions(const FUniqueNetId& SearchingPlayerId, const TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
 
-	/// @brief Finds a session by session ID.
-	/// @param SearchingUserId The ID of the user initiating the request.
-	/// @param SessionId The session ID to search for
-	/// @param FriendId Not supported. Set it invalid.
-	/// @param CompletionDelegate Will be executed when ppf_Room_Get completes.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Finds a session by session ID.</summary>
+	/// <param name="SearchingUserId">The ID of the user initiating the request.</param>
+	/// <param name="SessionId">The session ID to search for.</param>
+	/// <param name="FriendId">Not supported. Set it invalid.</param>
+	/// <param name="CompletionDelegate">Will be executed when ppf_Room_Get is complete.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool FindSessionById(const FUniqueNetId& SearchingUserId, const FUniqueNetId& SessionId, const FUniqueNetId& FriendId, const FOnSingleSessionResultCompleteDelegate& CompletionDelegate) override;
 	virtual bool CancelFindSessions() override;
 	virtual bool PingSearchResults(const FOnlineSessionSearchResult& SearchResult) override;
 
-	/// @brief Joins the session specified.
-	/// @param PlayerNum The index of the player searching for a match.
-	/// @param SessionName The name of the session to join.
-	/// @param DesiredSession The desired session to join.
-	/// @return Bool: `true`-success; `false`-failure.
+	/// <summary>Joins the session specified.</summary>
+	/// <param name="PlayerNum">The index of the player searching for a match.</param>
+	/// <param name="SessionName">The name of the session to join.</param>
+	/// <param name="DesiredSession">The desired session to join.</param>
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: success</li>
+	/// <li>`false`: failure</li>
+	/// </ul>
+	/// </returns>
 	virtual bool JoinSession(int32 PlayerNum, FName SessionName, const FOnlineSessionSearchResult& DesiredSession) override;
 	virtual bool JoinSession(const FUniqueNetId& PlayerId, FName SessionName, const FOnlineSessionSearchResult& DesiredSession) override;
 
-	/// @brief not supported in version 4.7.0
 	virtual bool FindFriendSession(int32 LocalUserNum, const FUniqueNetId& Friend) override;
 	virtual bool FindFriendSession(const FUniqueNetId& LocalUserId, const FUniqueNetId& Friend) override;
-	virtual bool FindFriendSession(const FUniqueNetId& LocalUserId, const TArray<FUniqueNetIdRef>& FriendList) override;
+	virtual bool FindFriendSession(const FUniqueNetId& LocalUserId, const TArray<TSharedRef<const FUniqueNetId>>& FriendList) override;
 	
-	/// @brief not supported in version 4.7.0
 	virtual bool SendSessionInviteToFriend(int32 LocalUserNum, FName SessionName, const FUniqueNetId& Friend) override;
 	virtual bool SendSessionInviteToFriend(const FUniqueNetId& LocalUserId, FName SessionName, const FUniqueNetId& Friend) override;
-	virtual bool SendSessionInviteToFriends(int32 LocalUserNum, FName SessionName, const TArray< FUniqueNetIdRef >& Friends) override;
-	virtual bool SendSessionInviteToFriends(const FUniqueNetId& LocalUserId, FName SessionName, const TArray< FUniqueNetIdRef >& Friends) override;
+	virtual bool SendSessionInviteToFriends(int32 LocalUserNum, FName SessionName, const TArray< TSharedRef<const FUniqueNetId> >& Friends) override;
+	virtual bool SendSessionInviteToFriends(const FUniqueNetId& LocalUserId, FName SessionName, const TArray< TSharedRef<const FUniqueNetId> >& Friends) override;
 	virtual bool GetResolvedConnectString(FName SessionName, FString& ConnectInfo, FName PortType = NAME_GamePort) override;
 	virtual bool GetResolvedConnectString(const class FOnlineSessionSearchResult& SearchResult, FName PortType, FString& ConnectInfo) override;
 	virtual FOnlineSessionSettings* GetSessionSettings(FName SessionName) override;
 	virtual bool RegisterPlayer(FName SessionName, const FUniqueNetId& PlayerId, bool bWasInvited) override;
-	virtual bool RegisterPlayers(FName SessionName, const TArray< FUniqueNetIdRef >& Players, bool bWasInvited = false) override;
+	virtual bool RegisterPlayers(FName SessionName, const TArray< TSharedRef<const FUniqueNetId> >& Players, bool bWasInvited = false) override;
 	virtual bool UnregisterPlayer(FName SessionName, const FUniqueNetId& PlayerId) override;
-	virtual bool UnregisterPlayers(FName SessionName, const TArray< FUniqueNetIdRef >& Players) override;
+	virtual bool UnregisterPlayers(FName SessionName, const TArray< TSharedRef<const FUniqueNetId> >& Players) override;
 	virtual void RegisterLocalPlayer(const FUniqueNetId& PlayerId, FName SessionName, const FOnRegisterLocalPlayerCompleteDelegate& Delegate) override;
 	virtual void UnregisterLocalPlayer(const FUniqueNetId& PlayerId, FName SessionName, const FOnUnregisterLocalPlayerCompleteDelegate& Delegate) override;
 	virtual int32 GetNumSessions() override;
 	virtual void DumpSessionState() override;
 
-	virtual FUniqueNetIdPtr CreateSessionIdFromString(const FString& SessionIdStr) override;
+	virtual TSharedPtr<const FUniqueNetId> CreateSessionIdFromString(const FString& SessionIdStr) override;
 	FNamedOnlineSession* GetNamedSession(FName SessionName) override;
 	virtual void RemoveNamedSession(FName SessionName) override;
 	virtual EOnlineSessionState::Type GetSessionState(FName SessionName) const override;
@@ -246,11 +320,13 @@ private:
 	FString InitStateErrorMessage = FString("Error: InitSuccess is false");
 	bool InitSuccess = false;
 	bool OnUpdateRoomData(ppfRoomHandle Room, ppfID RoomId);
+	void OnRoomInviteAccepted(ppfID RoomId);
 PACKAGE_SCOPE:
 
 	void OnGetAccessTokenComplete(ppfMessageHandle Message, bool bIsError);
 	void OnGameInitializeComplete(ppfMessageHandle Message, bool bIsError);
 
+	// todo 这些是否可删
 	FDelegateHandle OnNetNotificationConnectionHandle;
 	void OnNetNotificationConnection(ppfMessageHandle Message, bool bIsError);
 
@@ -287,34 +363,50 @@ PACKAGE_SCOPE:
 	void LogRoomData(ppfRoomHandle Room) const;
 
 public:
-	/// @brief Initializes the game module.
+	/// <summary>Initializes the game module.</summary>
 	void Initialize();
 
-	/// @brief Uninitializes the game module.
-	/// @return Always returns `true`.
+	/// <summary>Uninitializes the game module.</summary>
+	/// <returns>Always returns `true`.</returns>
 	bool Uninitialize();
 
-	/// @brief Sets `InitSuccess` for the game module.
-	/// @param State `true` when setting `InitSuccess` to `true` or `false` when setting `InitSuccess` to `false`.
+	/// <summary>Sets `InitSuccess` for the game module.</summary>
+	/// <param name="State">
+	/// <ul>
+	/// <li>`true` when setting `InitSuccess` to `true`</li>
+	/// <li>`false` when setting `InitSuccess` to `false`</li>
+	/// </ul>
+	/// </param>
 	void SetInitState(bool State);
 
-	/// @brief Checks the current state of `InitSuccess`.
-	/// @return The state of `InitSuccess`: `true` or `false`.
+	/// <summary>Checks the current state of `InitSuccess`.</summary>
+	/// <returns>The state of `InitSuccess`:
+	/// <ul>
+	/// <li>`true`</li>
+	/// <li>`false`</li>
+	/// </ul>
+	/// </returns>
 	bool IsInitSuccess() const;
 
-	/// @brief Force cancels matchmaking.
+	/// <summary>Forces to cancel matchmaking.</summary>
 	void OnForcedCancelMatchmaking();
 
-	/// @brief Force leaves the specified room.
-	/// @param RoomID The ID of the room to force leave.
+	/// <summary>Forces to leave the specified room.</summary>
+	/// <param name="RoomID">The ID of the room to force leave.</param>
 	void OnForcedLeaveRoom(ppfID RoomID);
 
-	/// @brief Checks `InProgressMatchmakingSearch` and `SearchState`.
-	/// @return Returns `true` if `InProgressMatchmakingSearch` is `valid` and `SearchState` is `EOnlineAsyncTaskState::InProgress`; `false` otherwise.
+	/// <summary>Checks `InProgressMatchmakingSearch` and `SearchState`.</summary>
+	/// <returns>
+	/// <ul>
+	/// <li>`true` if `InProgressMatchmakingSearch` is `valid` and `SearchState` is `EOnlineAsyncTaskState::InProgress`</li>
+	/// <li>`false`: otherwise</li>
+	/// </ul>
+	/// </returns>
 	bool IsInMatchmakingProgress();
 
 	FOnRoomUpdateComplete RoomUpdateCallback;
-	FOnRoomInviteAcceptedComplete RoomInviteAcceptedCallback;
+	FOnRoomInviteAcceptedComplete RoomInviteAcceptedCallback; // todo 可删
+	FOnPicoSessionUserInviteAcceptedComplete PicoSessionUserInviteAcceptedCallback; // todo 用这个还是用 RoomInviteAcceptedCallback
 
 	FOnGameConnectionComplete GameConnectionCallback;
 	FOnGameRequestFailedComplete GameRequestFailedCallback;
@@ -337,6 +429,6 @@ public:
 	void TestDumpSession(const FOnlineSession* Session) const;
 	void TestDumpSessionSettings(const FOnlineSessionSettings* SessionSettings) const;
 };
-/** @} */ // end of Session
+/** @} */ // end of Session(OnlineSub)
 /** @} */ // end of Function
 typedef TSharedPtr<FOnlineSessionPico, ESPMode::ThreadSafe> FOnlineSessionPicoPtr;

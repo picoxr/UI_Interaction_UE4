@@ -7,137 +7,144 @@
 #include "XRSwapChain.h"
 #include "GameFramework/PlayerController.h"
 
-enum class EPicoXRLayerState : uint8
-{
-	Unknown,
-	NeedToCreate,
-    Ready,
-	NeedToReCreate,
-};
+#if PLATFORM_ANDROID
+#include "Android/AndroidApplication.h"
+#include "Android/AndroidJNI.h"
+#include "PxrApi.h"
+#endif
+
+class FDelayDeleteLayerManager;
+class FPXRGameFrame;
 
 class FPxrLayer : public TSharedFromThis<FPxrLayer, ESPMode::ThreadSafe>
 {
 public:
-	FPxrLayer(uint32 InPxrLayerId);
+	FPxrLayer(uint32 InPxrLayerId,FDelayDeleteLayerManager* InDelayDeletion);
 	~FPxrLayer();
 
 protected:
 	uint32 PxrLayerId;
+private:
+	FDelayDeleteLayerManager* DelayDeletion;
 };
 
 typedef TSharedPtr<FPxrLayer, ESPMode::ThreadSafe> FPxrLayerPtr;
 
-struct FEyeLayerParam
-{
-	FPicoXRRenderBridge* RenderBridge;
-	uint8 Format;
-	uint32 SizeX;
-	uint32 SizeY;
-	uint32 ArraySize;
-	uint32 NumMips;
-	uint32 NumSamples;
-#if ENGINE_MINOR_VERSION > 25
-	ETextureCreateFlags Flags;
-	ETextureCreateFlags TargetableTextureFlags;
-#else
-	uint32 Flags;
-	uint32 TargetableTextureFlags;
-#endif
-	uint32 MSAAValue;
-};
-
-class FPicoXRStereoLayer : public TSharedFromThis<FPicoXRStereoLayer, ESPMode::ThreadSafe>
+class FPICOXRStereoLayer : public TSharedFromThis<FPICOXRStereoLayer, ESPMode::ThreadSafe>
 {
 public:
-	FPicoXRStereoLayer(FPicoXRHMD* InHMDDevice,uint32 InId, const IStereoLayers::FLayerDesc& InDesc);
-	FPicoXRStereoLayer(const FPicoXRStereoLayer& InLayer);
-	~FPicoXRStereoLayer();
+	FPICOXRStereoLayer(FPICOXRHMD* InHMDDevice,uint32 InPXRLayerId, const IStereoLayers::FLayerDesc& InLayerDesc);
+	FPICOXRStereoLayer(const FPICOXRStereoLayer& InPXRLayer);
+	~FPICOXRStereoLayer();
 
-	TSharedPtr<FPicoXRStereoLayer, ESPMode::ThreadSafe> Clone() const;
-	void SetLayerDesc(const IStereoLayers::FLayerDesc& InDesc);
-	const IStereoLayers::FLayerDesc& GetLayerDesc() const { return LayerDesc; }
-	const uint32& GetLayerID()const{return LayerId;}
+	TSharedPtr<FPICOXRStereoLayer, ESPMode::ThreadSafe> CloneMyself() const;
+	void SetPXRLayerDesc(const IStereoLayers::FLayerDesc& InDesc);
+	const IStereoLayers::FLayerDesc& GetPXRLayerDesc() const { return LayerDesc; }
+	const uint32& GetID()const{return ID;}
 
-	bool IsSupportLayerDepth() { return (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_SUPPORT_DEPTH) != 0; }
+	bool IsLayerSupportDepth() { return (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_SUPPORT_DEPTH) != 0; }
 	void ManageUnderlayComponent();
-	void CreateQuadUnderlayMesh(TArray<FVector>& VerticePos, TArray<int32>& TriangleIndics, TArray<FVector2D>& TexUV);
+	void CreateUnderlayMesh(TArray<FVector>& VerticePos, TArray<int32>& TriangleIndics, TArray<FVector2D>& TexUV);
 
 	const FXRSwapChainPtr& GetSwapChain() const { return SwapChain; }
-	const FXRSwapChainPtr& GetOverlaySwapChain() const { return OverlaySwapChain; }
 	const FXRSwapChainPtr& GetLeftSwapChain() const { return LeftSwapChain; }
 	const FXRSwapChainPtr& GetFoveationSwapChain() const { return FoveationSwapChain; }
-	EPicoXRLayerState GetLayerState() const { return  LayerState; };
-	void SetLayerState(EPicoXRLayerState NewState);
-	void MarkCreateLayer();
-	void MarkReCreateLayer();
-	void CreateLayer(FPicoXRRenderBridge* RenderBridge);
-	void DestroyLayer();
-	void ReCreateLayer(FPicoXRRenderBridge* RenderBridge);
-	void IncrementSwapChainIndex_RHIThread(FPicoXRRenderBridge* RenderBridge);
-	void SubmitCompositionLayerRenderMatrix_RHIThread(APlayerController* PlayerController, FQuat& CurrentOrientation, FVector& CurrentPosition, FTransform& CurrentTrackingToWorld);
+	void IncrementSwapChainIndex_RHIThread(FPICOXRRenderBridge* RenderBridge);
+	void SubmitLayer_RHIThread(FPXRGameFrame* Frame);
 	int32 GetShapeType();
+	void SetProjectionLayerParams(uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, FString RHIString);
+    void PXRLayersCopy_RenderThread(FPICOXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList);
+	void MarkTextureForUpdate(bool bUpdate = true) { bTextureNeedUpdate = bUpdate; }
+	bool InitPXRLayer_RenderThread(FPICOXRRenderBridge* CustomPresent, FDelayDeleteLayerManager* DelayDeletion, FRHICommandListImmediate& RHICmdList, const FPICOXRStereoLayer* InLayer = nullptr);
+	bool IfCanReuseLayers(const FPICOXRStereoLayer* InLayer) const;
+	bool IsVisible() { return (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) == 0; }
 
-#if ENGINE_MINOR_VERSION > 25
-	void InitializeLayer_RenderThread(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags,uint32 MSAAValue);
-	void SetEyeLayerParam(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY,
-         uint32 ArraySize,uint32 NumMips,uint32 NumSamples,  ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue);
-#else
-	void InitializeLayer_RenderThread(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags,uint32 MSAAValue);
-    void SetEyeLayerParam(FPicoXRRenderBridge* RenderBridge, uint8 Format, uint32 SizeX, uint32 SizeY,uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, uint32 MSAAValue);
-#endif
-    void RefreshLayers_RenderThread(FPicoXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList);
-    void MarkTextureForUpdate() { bTextureNeedUpdate = true; }
-
-	bool bSplashLayer = false;
-	bool bMRCLayer = false;
+	bool bSplashLayer;
+	bool bSplashBlackProjectionLayer;
+	bool bMRCLayer;
 
 protected:
 	FVector GetLayerLocation() const { return LayerDesc.Transform.GetLocation(); };
 	FQuat GetLayerOrientation() const { return LayerDesc.Transform.GetRotation(); };
 	FVector GetLayerScale() const { return LayerDesc.Transform.GetScale3D(); };
-	FPicoXRHMD* HMDDevice;
-	uint32 LayerId;
+	FPICOXRHMD* HMDDevice;
+	uint32 ID;	
+	uint32 PxrLayerID;
+	static uint32 PxrLayerIDCounter;
 	IStereoLayers::FLayerDesc LayerDesc;
 	FXRSwapChainPtr SwapChain;
 	FXRSwapChainPtr LeftSwapChain;
 	FXRSwapChainPtr FoveationSwapChain;
-    FXRSwapChainPtr OverlaySwapChain;
-    FXRSwapChainPtr LeftOverlaySwapChain;
     bool bTextureNeedUpdate;
-	FString RHIString;
-	EPicoXRLayerState LayerState;
-	FEyeLayerParam EyeLayerParam;
-    bool NeedDestoryRuntimeLayer;
-
-	UProceduralMeshComponent* UnderlayComponent;
+	UProceduralMeshComponent* UnderlayMeshComponent;
 	AActor* UnderlayActor;
 
 	FPxrLayerPtr PxrLayer;
+#if PLATFORM_ANDROID
+	PxrLayerParam PxrLayerCreateParam;
+#endif
+
 };
 
-typedef TSharedPtr<FPicoXRStereoLayer, ESPMode::ThreadSafe> FPicoLayerPtr;
+typedef TSharedPtr<FPICOXRStereoLayer, ESPMode::ThreadSafe> FPICOLayerPtr;
 
-//-------------------------------------------------------------------------------------------------
-//FPicoXRStereoLayerPtr_ComparePriority
-//-------------------------------------------------------------------------------------------------
-
-struct CompareLayerPriority_PredicateClass
+struct FPICOLayerPtr_SortByPriority
 {
-	FORCEINLINE bool operator()(const FPicoLayerPtr&A,const FPicoLayerPtr&B)const
+	FORCEINLINE bool operator()(const FPICOLayerPtr&A,const FPICOLayerPtr&B)const
 	{
-		int32 nPriorityA=A->GetLayerDesc().Priority;
-		int32 nPriorityB=B->GetLayerDesc().Priority;
-		if(nPriorityA<nPriorityB)
+		int32 nPriorityA = A->GetPXRLayerDesc().Priority;
+		int32 nPriorityB = B->GetPXRLayerDesc().Priority;
+		if (nPriorityA < nPriorityB)
 		{
 			return true;
 		}
-		else if(nPriorityA>nPriorityB)
+		else if (nPriorityA > nPriorityB)
 		{
 			return false;
 		}
 		else
 		{
-			return A->GetLayerID() < B->GetLayerID();
-		}	
+			return A->GetID() < B->GetID();
+		}
+	}
+};
+
+struct FPICOLayerPtr_SortById
+{
+	FORCEINLINE bool operator()(const FPICOLayerPtr& A, const FPICOLayerPtr& B) const
+	{
+		return A->GetID() < B->GetID();
+	}
+};
+
+struct FLayerPtr_CompareByAll
+{
+	FORCEINLINE bool operator()(const FPICOLayerPtr& A, const FPICOLayerPtr& B) const
+	{
+		int32 OrderA = (A->GetID() == 0) ? 0 : A->IsLayerSupportDepth() ? -1 : 1;
+		int32 OrderB = (B->GetID() == 0) ? 0 : B->IsLayerSupportDepth() ? -1 : 1;
+
+		if (OrderA != OrderB)
+		{
+			return OrderA < OrderB;
+		}
+
+		const IStereoLayers::FLayerDesc& DescA = A->GetPXRLayerDesc();
+		const IStereoLayers::FLayerDesc& DescB = B->GetPXRLayerDesc();
+
+		bool bFaceLockedA = (DescA.PositionType == IStereoLayers::ELayerType::FaceLocked);
+		bool bFaceLockedB = (DescB.PositionType == IStereoLayers::ELayerType::FaceLocked);
+
+		if (bFaceLockedA != bFaceLockedB)
+		{
+			return bFaceLockedB;
+		}
+
+		if (DescA.Priority != DescB.Priority)
+		{
+			return DescA.Priority < DescB.Priority;
+		}
+
+		return A->GetID() < B->GetID();
 	}
 };

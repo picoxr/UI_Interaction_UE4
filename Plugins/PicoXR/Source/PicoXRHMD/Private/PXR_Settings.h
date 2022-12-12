@@ -27,9 +27,15 @@ namespace ERefreshRate
 		RefreshRate120
 	};
 }
+UENUM()
+enum class EPICOXRHandTrackingSupport : uint8
+{
+	ControllersOnly,
+	ControllersAndHands
+};
 
 UCLASS(config = Engine, defaultconfig)
-class PICOXRHMD_API UPicoXRSettings : public UObject
+class PICOXRHMD_API UPICOXRSettings : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
@@ -57,7 +63,9 @@ public:
 
 	UPROPERTY(Config, EditAnywhere, Category = Controller, Meta = (DisplayName = "Controller Only Tracking Rotation"))
 		bool bIsController3Dof;
-
+	/** Whether controllers and/or hands can be used with the app */
+	UPROPERTY(Config, EditAnywhere, Category = Controller, Meta = (DisplayName = "HandTracking Support"))
+	EPICOXRHandTrackingSupport HandTrackingSupport;
 	//Feature
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Enable LateLatching",ToolTip = "Only support UE4.27 + Vulkan + Multi-View + Disable Occlusion Culling."))
 		bool bEnableLateLatching;
@@ -74,17 +82,14 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (EditCondition = "bEnableFoveation", DisplayName = "Foveation Level"))
 		TEnumAsByte<EFoveationLevel::Type> FoveationLevel;
 
-	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Enable EyeTracking", ToolTip = "Only Neo2 Eye Supports!"))
+	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Enable Eye Tracking", ToolTip = "Enable Eye Tracking"))
 		bool bEnableEyeTracking;
 
-	//UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (EditCondition = "EnableEyeTracking", DisplayName = "Enable EyeTracking Marker", ToolTip = "Only Neo2 Eye Supports!"))
-		bool bEnableEyeTrackingMarker;
+	//UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Face Tracking Mode", ToolTip = "Face Tracking Mode"))
+		EPICOXRFaceTrackingMode FaceTrackingMode;
 
-	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use Pico Advance Interface"))
+	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use PICO Advance Interface"))
 		bool bUseAdvanceInterface;
-
-	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (EditCondition = "bUseAdvanceInterface", DisplayName = "Enable Large Space"))
-		bool bEnableLargeSpace;
 
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Use Content Protect"))
 		bool bUseContentProtect;
@@ -93,7 +98,7 @@ public:
 		bool bSplashScreenAutoShow;
 
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (EditCondition = "bSplashScreenAutoShow", DisplayName = "SplashDescs"))
-		TArray<FPicoSplashDesc> SplashDescs;
+		TArray<FPXRSplashDesc> SplashDescs;
 
 	UPROPERTY(Config, EditAnywhere, Category = Feature, Meta = (DisplayName = "Display Refresh Rates"))
 		TEnumAsByte<ERefreshRate::Type> refreshRate;
@@ -105,6 +110,5 @@ public:
 	void HandlesRGBHWSupport();
 private:
 	void ResetsRGBConfig();
-#endif
-
+#endif 
 };

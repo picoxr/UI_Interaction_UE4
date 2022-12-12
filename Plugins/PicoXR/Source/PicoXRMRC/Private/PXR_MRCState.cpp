@@ -7,5 +7,8 @@ UPXRInGameThirdCamState::UPXRInGameThirdCamState(const FObjectInitializer& Objec
 	: TrackedCamera()
 	,FinalTransform(FTransform::Identity)
 	,ZOffset(0)
+	,CurrentTrackingReference(nullptr)
+	,bUseCustomTrans(false)
 {
+	CustomTrans = FTransform::Identity;
 }

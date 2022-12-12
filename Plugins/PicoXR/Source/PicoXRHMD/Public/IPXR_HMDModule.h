@@ -4,17 +4,17 @@
 #include "Modules/ModuleManager.h"
 #include "IHeadMountedDisplayModule.h"
 
-class IPicoXRHMDModule : public IHeadMountedDisplayModule
+class IPICOXRHMDModule : public IHeadMountedDisplayModule
 {
 public:
 
-	static inline IPicoXRHMDModule& Get()
+	static inline IPICOXRHMDModule& Get()
 	{
-		return FModuleManager::LoadModuleChecked< IPicoXRHMDModule >("PicoXRHMD");
+		return FModuleManager::LoadModuleChecked< IPICOXRHMDModule >("PICOXRHMD");
 	}
 
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded("PicoXRHMD");
+		return FModuleManager::Get().IsModuleLoaded("PICOXRHMD");
 	}
 };

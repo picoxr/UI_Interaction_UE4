@@ -2,14 +2,14 @@
 using UnrealBuildTool;
 using System.IO;
 
-public class PicoXRMRC : ModuleRules
+public class PICOXRMRC : ModuleRules
 {
-	public PicoXRMRC(ReadOnlyTargetRules Target) : base(Target)
+	public PICOXRMRC(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-        string PicoXRLibsDirectory = Path.Combine(ModuleDirectory, @"..\..\Libs");
-        string PicoXRHeaderDirectory = Path.Combine(PicoXRLibsDirectory, @"Include");
-        PicoXRHeaderDirectory = Path.GetFullPath(PicoXRHeaderDirectory);
+        string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, @"..\..\Libs");
+        string PICOXRHeaderDirectory = Path.Combine(PICOXRLibsDirectory, @"Include");
+        PICOXRHeaderDirectory = Path.GetFullPath(PICOXRHeaderDirectory);
         PrivateIncludePathModuleNames.AddRange(
                 new string[]
                 {
@@ -33,15 +33,15 @@ public class PicoXRMRC : ModuleRules
                     "RenderCore",
                     "MediaAssets",
                     "HeadMountedDisplay",
-                    "PicoXRHMD",
-                    "PicoXRInput"
+                    "PICOXRHMD",
+                    "PICOXRInput"
             });
 
         PrivateIncludePaths.AddRange(
             new string[] {
-					"PicoXRHMD/Private",
-                    "PicoXRInput/Private",
-                    PicoXRHeaderDirectory
+					"PICOXRHMD/Private",
+                    "PICOXRInput/Private",
+                    PICOXRHeaderDirectory
             });
         if (Target.Platform == UnrealTargetPlatform.Android)
         {

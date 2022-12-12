@@ -128,88 +128,25 @@
             <log text="Copying v7a pxrloader.so"/>
             <copyFile src="$S(PluginDir)/lib/armeabi-v7a/libpxrplatformloader.so"
                       dst="$S(BuildDir)/libs/armeabi-v7a/libpxrplatformloader.so" />
-            <!-- <copyFile src="$S(PluginDir)/lib//armeabi-v7a/libpxr_api.so" -->
-                      <!-- dst="$S(BuildDir)/libs/armeabi-v7a/libpxr_api.so" /> -->
+            <copyFile src="$S(PluginDir)/lib//armeabi-v7a/libpxr_api.so"
+                      dst="$S(BuildDir)/libs/armeabi-v7a/libpxr_api.so" />
         </isArch>
         <isArch arch="arm64-v8a">
             <log text="Copying v8a pxrloader.so"/>
             <copyFile src="$S(PluginDir)/lib/arm64-v8a/libpxrplatformloader.so"
                       dst="$S(BuildDir)/libs/arm64-v8a/libpxrplatformloader.so" />
-            <!-- <copyFile src="$S(PluginDir)/lib/arm64-v8a/libpxr_api.so" -->
-                      <!-- dst="$S(BuildDir)/libs/arm64-v8a/libpxr_api.so" /> -->
+            <copyFile src="$S(PluginDir)/lib/arm64-v8a/libpxr_api.so"
+                      dst="$S(BuildDir)/libs/arm64-v8a/libpxr_api.so" />
         </isArch>
        <copyFile src="$S(PluginDir)/lib/libpxr_api.jar"
                  dst="$S(BuildDir)/libs/libpxr_plugin.jar" />
-       <!--<copyFile src="$S(PluginDir)/../Libs/SystemAPI.jar"
-                dst="$S(BuildDir)/libs/SystemAPI.jar" />
-       <copyFile src="$S(PluginDir)/../Libs/pvrjar.jar"
-                 dst="$S(BuildDir)/libs/pvrjar.jar" />-->
     </resourceCopies>
-
-    <gameActivityImportAdditions>
+<gameActivityImportAdditions>
         <insert>
-            <!--import about Pay -->
-            import com.pico.loginpaysdk.auth.AccessInfo;
-            import com.pico.loginpaysdk.auth.Callback;
-            import com.pico.loginpaysdk.auth.sso.Login;
-            import com.pico.loginpaysdk.exception.PicoException;
-            import com.pico.loginpaysdk.net.RequestListener;
-            import com.pico.loginpaysdk.utils.PicoAccessTokenKeeper;
-            import com.pico.loginpaysdk.utils.RandomUtil;
-            import android.view.KeyEvent;
-            import android.util.Log;
             import com.psmart.aosoperation.SysActivity;
-            import com.psmart.aosoperation.VerifyTool;
-            import com.psmart.aosoperation.NativeVerfyInterface;
         </insert>
     </gameActivityImportAdditions>
-
     <gameActivityClassAdditions>
-        <insert>
-            private Login mLogin;
-            private AccessInfo mAccessInfo;
-            public native void nativePicoLogInCallback(boolean isSuccess, String reason);
-            public native void nativePicoLogOutCallback(boolean isSuccess, String reason);
-            public native void nativePicoGetUserInfoCompleteCallback(String info);
-
-            public void Login()
-            {
-            if (mLogin != null)
-            {
-            mLogin.login(new Callback()
-            {
-            @Override
-            public void loginCallback(boolean isSuccess, String reason)
-            {
-            nativePicoLogInCallback(isSuccess,reason);
-            }
-            });
-            }
-            else
-            {
-            Log.debug("OnlineSubsystemPico_APL Login class is not created!");
-            }
-            }
-
-            public void Logout()
-            {
-            if (mLogin != null)
-            {
-            mLogin.logout(this, new Callback()
-            {
-            @Override
-            public void loginCallback(boolean isSuccess, String reason)
-            {
-            nativePicoLogOutCallback(isSuccess,reason);
-            }
-            });
-            }
-            else
-            {
-            Log.debug("OnlineSubsystemPico_APL Login class is not created!");
-            }
-            }
-        </insert>
         <if condition="bStartTimeEntitlementCheck">
             <true>
                 <insert>
@@ -238,16 +175,6 @@
             </true>
         </if>
         <insert>
-            public AccessInfo GetAccessInfo()
-            {
-            return PicoAccessTokenKeeper.readAccessToken(this.getApplicationContext());
-            }
-
-            public String GetOpenID()
-            {
-            return GetAccessInfo().getOpenId();
-            }
-
             public String OnlineGetDeviceSN( )
             {
             return SysActivity.getDeviceSN();
@@ -256,9 +183,6 @@
     </gameActivityClassAdditions>
 
     <gameActivityOnCreateAdditions>
-        <insert>
-            mLogin = new Login(this.getApplicationContext());
-        </insert>
         <if condition="bStartTimeEntitlementCheck">
             <true>
                 <insert>

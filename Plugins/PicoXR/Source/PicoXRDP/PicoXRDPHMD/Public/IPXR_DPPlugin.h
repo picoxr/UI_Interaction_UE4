@@ -1,4 +1,5 @@
 //Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+
 #pragma once
 
 #define STEAMVR_SUPPORTED_PLATFORMS (PLATFORM_MAC || (PLATFORM_LINUX && PLATFORM_CPU_X86_FAMILY && PLATFORM_64BITS) || (PLATFORM_WINDOWS && WINVER > 0x0502))
@@ -14,13 +15,13 @@
 /** Up to 8 motion controller devices supported (two VR motion controllers per Unreal controller, one for either the left or right hand.) */
 #define MAX_STEAMVR_CONTROLLER_PAIRS 4
 
-DECLARE_LOG_CATEGORY_EXTERN(LogPicoDP, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogPICODP, Log, All);
 
 /**
  * The public interface to this module.  In most cases, this interface is only public to sibling modules 
  * within this plugin.
  */
-class IPicoDPPlugin : public IHeadMountedDisplayModule
+class IPICODPPlugin : public IHeadMountedDisplayModule
 {
 
 public:
@@ -31,9 +32,9 @@ public:
 	 *
 	 * @return Returns singleton instance, loading the module on demand if needed
 	 */
-	static inline IPicoDPPlugin& Get()
+	static inline IPICODPPlugin& Get()
 	{
-		return FModuleManager::LoadModuleChecked< IPicoDPPlugin >( "PicoDP" );
+		return FModuleManager::LoadModuleChecked< IPICODPPlugin >( "PICODP" );
 	}
 
 	/**
@@ -43,7 +44,7 @@ public:
 	 */
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded( "PicoDP" );
+		return FModuleManager::Get().IsModuleLoaded( "PICODP" );
 	}
 
 #if STEAMVR_SUPPORTED_PLATFORMS

@@ -23,7 +23,7 @@
 /// When the user has made a selection, call ppf_Room_Join2() on one of
 /// the rooms that was returned. If the user stops browsing, call
 /// ppf_Matchmaking_Cancel2().
-/// A message with type ::ppfMessage_Matchmaking_Browse2 will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_Browse2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -40,7 +40,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_Browse2(const char *pool, ppfMat
 /// occurs. Typically triggered when a user gives up waiting. If you don't cancel but
 /// the user goes offline, the user/room will be timed out accord to dashboard setting 'reserve period'.
 ///
-/// A message with type ::ppfMessage_Matchmaking_Cancel2 will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_Cancel2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -54,7 +54,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_Cancel2();
 /// 
 /// Modes: BROWSE, QUICKMATCH (Advanced; Can Users Create Rooms = true)
 ///
-/// A message with type ::ppfMessage_Matchmaking_CreateAndEnqueueRoom2 will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_CreateAndEnqueueRoom2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -74,7 +74,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_CreateAndEnqueueRoom2(const char
 ///
 /// If the user stops waiting, call ppf_Matchmaking_Cancel2().
 ///
-/// A message with type ::ppfMessage_Matchmaking_Enqueue2 will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_Enqueue2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -87,7 +87,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_Enqueue2(const char *pool, ppfMa
 ///
 /// Modes: QUICKMATCH, BROWSE
 ///
-/// A message with type ::ppfMessage_Matchmaking_GetAdminSnapshot will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_GetAdminSnapshot will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -107,7 +107,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_GetAdminSnapshot();
 /// level. The skill level return will be between 1 and maxLevel. The approach
 /// will dictate how should the skill level rise toward the max level.
 ///
-/// A message with type ::ppfMessage_Matchmaking_GetStats will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_GetStats will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -130,7 +130,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_GetStats(const char* pool, unsig
 /// method is insecure because, as a client API, it is susceptible to tampering
 /// and therefore cheating to manipulate skill ratings.
 ///
-/// A message with type ::ppfMessage_Matchmaking_ReportResultInsecure will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_ReportResultInsecure will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -147,7 +147,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Matchmaking_ReportResultInsecure(ppfID roomI
 /// Call after calling ppf_Room_Join2() when the players are present to begin a
 /// rated match for which you plan to report the results (using ppf_Matchmaking_ReportResultInsecure()).
 ///
-/// A message with type ::ppfMessage_Matchmaking_StartMatch will be generated in response.
+/// A message with type ::ppfMessageType_Matchmaking_StartMatch will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///

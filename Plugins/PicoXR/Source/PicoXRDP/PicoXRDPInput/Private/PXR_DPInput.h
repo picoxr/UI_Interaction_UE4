@@ -5,11 +5,11 @@
 #include "XRMotionControllerBase.h"
 #include "InputDevice.h"
 #include "IHapticDevice.h"
-#include "PicoXRDPHMD/Private/PXR_DPHMD.h"
+#include "PICOXRDPHMD/Private/PXR_DPHMD.h"
 
 #define ButtonEventNum 12
 
-struct EPicoButton
+struct EPICOButton
 {
 	enum Type
 	{
@@ -33,7 +33,7 @@ struct EPicoButton
 	};
 };
 
-struct EPicoTouchButton
+struct EPICOTouchButton
 {
 	enum Type
 	{
@@ -46,7 +46,7 @@ struct EPicoTouchButton
     };
 };
 
-struct EPicoXRControllerHandness
+struct EPICOXRControllerHandness
 {
 	enum Type
 	{
@@ -56,7 +56,7 @@ struct EPicoXRControllerHandness
 	};
 };
 
-enum  EPicoInputType:uint8
+enum  EPICOInputType:uint8
 {
 	Unknown = 0,
 	G2      = 3,
@@ -75,12 +75,13 @@ enum  ETouchButtonStatus:uint16
 	KBlankTouch = 4096
 };
 
-//class FPicoXRHMD;
-class FPicoXRDPInput :public IInputDevice,public FXRMotionControllerBase,public IHapticDevice,public TSharedFromThis<FPicoXRDPInput>
+//class FPICOXRHMD;
+class FPICOXRDPInput :public IInputDevice,public FXRMotionControllerBase,public IHapticDevice,public TSharedFromThis<FPICOXRDPInput>
 {
 public:
-	FPicoXRDPInput();
-	virtual ~FPicoXRDPInput();
+	FPICOXRDPInput();
+	virtual ~FPICOXRDPInput();
+
 public: 
 	// IInputDevice overrides
 	virtual void Tick(float DeltaTime) override;
@@ -101,7 +102,7 @@ public:
 	virtual void GetHapticFrequencyRange(float& MinFrequency, float& MaxFrequency) const override;
 	virtual float GetHapticAmplitudeScale() const override;
 
-	/*FPicoXRHMD* GetPicoXRHMD();*/
+	/*FPICOXRHMD* GetPICOXRHMD();*/
 	int32 UPxr_GetControllerPower(int32 Handness);
 	bool UPxr_GetControllerConnectState(int32 Handness);
 	bool UPxr_GetControllerMainInputHandle(int32& Handness);
@@ -121,24 +122,31 @@ public:
 	static FVector OriginOffsetR;
 
 	static void RegisterKeys();
+	static void AddSampleInputs();
+	static void ClearSampleInputs();
 private:
-	
+
 	void SetKeyMapping();
+	
+	static bool AddNewSampleAxisMapping(TArray<FInputAxisKeyMapping> ExistingAxisKeys, UInputSettings* InputSettings, FName ActionName, FKey ActionKey);
+	static bool AddNewSampleActionMapping(TArray<FInputActionKeyMapping> ExistingActionKeys, UInputSettings* InputSettings, FName ActionName, FKey ActionKey);
+	static bool RemoveSampleAxisMapping(TArray<FInputAxisKeyMapping> ExistingAxisKeys, UInputSettings* InputSettings, FName ActionName, FKey ActionKey);
+	static bool RemoveSampleActionMapping(TArray<FInputActionKeyMapping> ExistingActionKeys, UInputSettings* InputSettings, FName ActionName, FKey ActionKey);
 	void ProcessButtonEvent();
 	void ProcessButtonAxis();
 	void UpdateConnectState();
 	void GetControllerSensorData(EControllerHand DeviceHand,  float WorldToMetersScale, float PredictedTime, FRotator& OutOrientation, FVector& OutPosition) const;
 
-	FPicoDirectPreviewHMD* PicoXRHMD=nullptr;
+	FPICODirectPreviewHMD* PICOXRHMD=nullptr;
 	TSharedRef<FGenericApplicationMessageHandler> MessageHandler;
 	bool LeftConnectState;
 	bool RightConnectState;
-	FName Buttons[(int32)EPicoXRControllerHandness::ControllerCount][(int32)EPicoButton::ButtonCount];
-	FName TouchButtons[(int32)EPicoXRControllerHandness::ControllerCount][(int32)EPicoTouchButton::ButtonCount];
-	int32 LastLeftControllerButtonState[EPicoButton::ButtonCount] = { 0 };
-	int32 LastRightControllerButtonState[EPicoButton::ButtonCount] = { 0 };
-	int32 LastLeftTouchButtonState[EPicoTouchButton::ButtonCount] = { 0 };
-	int32 LastRightTouchButtonState[EPicoTouchButton::ButtonCount] = { 0 };
+	FName Buttons[(int32)EPICOXRControllerHandness::ControllerCount][(int32)EPICOButton::ButtonCount];
+	FName TouchButtons[(int32)EPICOXRControllerHandness::ControllerCount][(int32)EPICOTouchButton::ButtonCount];
+	int32 LastLeftControllerButtonState[EPICOButton::ButtonCount] = { 0 };
+	int32 LastRightControllerButtonState[EPICOButton::ButtonCount] = { 0 };
+	int32 LastLeftTouchButtonState[EPICOTouchButton::ButtonCount] = { 0 };
+	int32 LastRightTouchButtonState[EPICOTouchButton::ButtonCount] = { 0 };
 	int32 LeftControllerPower;
 	int32 RightControllerPower;
 	bool bLeftButtonPressed = false;
@@ -152,7 +160,7 @@ private:
 	uint32_t MainControllerHandle;
 	FVector SourcePosition;
 	FQuat SourceOrientation;
-	EPicoInputType ControllerType;
+	EPICOInputType ControllerType;
 };
 
 

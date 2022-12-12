@@ -7,17 +7,17 @@
 #include "PXR_BoundarySystem.generated.h"
 
 UCLASS()
-class UPicoXRBoundarySystem : public UObject
+class UPICOXRBoundarySystem : public UObject
 {
 	GENERATED_BODY()
 public:
-	static UPicoXRBoundarySystem* GetInstance();
+	static UPICOXRBoundarySystem* GetInstance();
 
-	static UPicoXRBoundarySystem* BoundaryInstance;
+	static UPICOXRBoundarySystem* BoundaryInstance;
 
-	UPicoXRBoundarySystem();
+	UPICOXRBoundarySystem();
 
-	~UPicoXRBoundarySystem();
+	~UPICOXRBoundarySystem();
 
 	bool UPxr_GetConfigured();
 

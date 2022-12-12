@@ -14,6 +14,7 @@
 #include "HeadMountedDisplayBase.h"
 #include "Engine/Public/SceneUtils.h"
 #include "PXR_GameFrame.h"
+#include "PXR_DelayDeleteLayer.h"
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
 #include "Android/AndroidJNI.h"
@@ -21,9 +22,10 @@
 #include "PxrApi.h"
 #endif
 
-class FPicoXRRenderBridge;
+class FPICOXRRenderBridge;
+class UPICOContentResourceFinder;
 
-struct FPicoXRFrustum
+struct FPICOXRFrustum
 {
 	float FovLeft;
 	float FovRight;
@@ -32,7 +34,7 @@ struct FPicoXRFrustum
 	float Near;
 	float Far;
 
-	FPicoXRFrustum()
+	FPICOXRFrustum()
 	{
 		FovUp    = 0.88119f;
 		FovDown  = -0.88119f;
@@ -44,14 +46,14 @@ struct FPicoXRFrustum
 	FString ToString() const
 	{
 		return
-			TEXT(" FPicoXRFrustum Left : ") + FString::SanitizeFloat(FovLeft) +
-			TEXT(" FPicoXRFrustum Right : ") + FString::SanitizeFloat(FovRight) +
-			TEXT(" FPicoXRFrustum Up : ") + FString::SanitizeFloat(FovUp) +
-			TEXT(" FPicoXRFrustum Down : ") + FString::SanitizeFloat(FovDown) +
-			TEXT(" FPicoXRFrustum H : ") + FString::SanitizeFloat(FovRight - FovLeft) +
-			TEXT(" FPicoXRFrustum V : ") + FString::SanitizeFloat(FovUp - FovDown )+
-			TEXT(" FPicoXRFrustum Near : ") + FString::SanitizeFloat(Near) +
-            TEXT(" FPicoXRFrustum Far : ") + FString::SanitizeFloat(Far) ;
+			TEXT(" FPICOXRFrustum Left : ") + FString::SanitizeFloat(FovLeft) +
+			TEXT(" FPICOXRFrustum Right : ") + FString::SanitizeFloat(FovRight) +
+			TEXT(" FPICOXRFrustum Up : ") + FString::SanitizeFloat(FovUp) +
+			TEXT(" FPICOXRFrustum Down : ") + FString::SanitizeFloat(FovDown) +
+			TEXT(" FPICOXRFrustum H : ") + FString::SanitizeFloat(FovRight - FovLeft) +
+			TEXT(" FPICOXRFrustum V : ") + FString::SanitizeFloat(FovUp - FovDown )+
+			TEXT(" FPICOXRFrustum Near : ") + FString::SanitizeFloat(Near) +
+            TEXT(" FPICOXRFrustum Far : ") + FString::SanitizeFloat(Far) ;
 	}
 };
 
@@ -96,9 +98,9 @@ struct FCurrentFrameValue
 };
 
 /**
- * PicoXR Head Mounted Display
+ * PICOXR Head Mounted Display
  */
-class FPicoXRHMD : public FHeadMountedDisplayBase, public FXRRenderTargetManager, public FSceneViewExtensionBase , public IStereoLayers
+class FPICOXRHMD : public FHeadMountedDisplayBase, public FXRRenderTargetManager, public FSceneViewExtensionBase , public IStereoLayers
 {
 public:
 	/** IXRTrackingSystem interface */
@@ -123,6 +125,7 @@ public:
 	virtual void OnBeginPlay(FWorldContext& InWorldContext) override;
 	virtual void OnEndPlay(FWorldContext& InWorldContext) override;
 #if ENGINE_MINOR_VERSION >25
+	virtual void GetMotionControllerData(UObject* WorldContext, const EControllerHand Hand, FXRMotionControllerData& MotionControllerData) override;
 	virtual int32 GetXRSystemFlags() const override;
 #endif
 
@@ -143,6 +146,7 @@ public:
 
 	/** FXRTrackingSystemBase interface */
 	virtual bool GetRelativeEyePose(int32 InDeviceId, EStereoscopicPass InEye, FQuat& OutOrientation, FVector& OutPosition) override;
+	virtual	bool GetTrackingSensorProperties(int32 InDeviceId, FQuat& OutOrientation, FVector& OutPosition, FXRSensorProperties& OutSensorProperties) override;
 	virtual void SetTrackingOrigin(EHMDTrackingOrigin::Type NewOrigin) override;
 	virtual EHMDTrackingOrigin::Type GetTrackingOrigin() const override;
 	virtual bool DoesSupportPositionalTracking() const override;
@@ -212,20 +216,18 @@ public:
 	virtual void GetAllocatedTexture(uint32 LayerId, FTextureRHIRef &Texture, FTextureRHIRef &LeftTexture) override;
 	virtual bool ShouldCopyDebugLayersToSpectatorScreen() const override { return true; }
 
-	FPicoXRHMD(const FAutoRegister&);
-	virtual ~FPicoXRHMD();
+	FPICOXRHMD(const FAutoRegister&);
+	virtual ~FPICOXRHMD();
 	void BeginXR();
 	void EndXR();
-	class FPicoXRInput* GetPicoXRInput();
+	class FPICOXRInput* GetPICOXRInput();
 	float UPxr_GetIPD() const;
 
-	void BeginFrame_RHIThread();
-	void EndFrame_RHIThread();
-	void RefreshLayers_RHIThread();
-	FPicoXRSplashPtr GetSplash() const {return  PicoSplash;};
+	FPICOXRSplashPtr GetSplash() const {return  PICOSplash;};
 
 	bool Initialize();
 	void UnInitialize();
+	FPICOXRRenderBridge* GetCustomRenderBridge() const { return RenderBridge; }
 	void UPxr_EnableFoveation(bool enable);
 
 	void UPxr_GetAngularAcceleration(FVector& AngularAcceleration);
@@ -233,21 +235,20 @@ public:
 	void UPxr_GetAcceleration(FVector& Acceleration);
 	void UPxr_GetAngularVelocity(FVector& AngularVelocity);
 	FString UPxr_GetDeviceModel();
-	void SplashShow(FRHICommandListImmediate& RHICmdList);
-	FPicoLayerPtr GetEyeLayerPtr();
-	TSharedPtr<FPicoXREyeTracker> UPxr_GetEyeTracker();
+	TSharedPtr<FPICOXREyeTracker> UPxr_GetEyeTracker();
 	void ClearTexture_RHIThread(FRHITexture2D* SrcTexture);
 	void UPxr_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers = false);
 	uint32 CreateMRCStereoLayer(FTextureRHIRef BackgroundRTTexture, FTextureRHIRef ForegroundRTTexture);
-	void DestroyAllMRCLayersOneTime();
+	void DestroyMRCLayer();
 
-	void OnLargeSpaceStatusChanged(bool bEnable);
 	FString GetRHIString();
+	int32 GetMSAAValue() { return MobileMSAAValue; }
 
 	void OnPreLoadMap(const FString& MapName);
 	FDelegateHandle PreLoadLevelDelegate;
 	bool bIsSwitchingLevel;
 	void WaitFrame();
+	void LateUpdatePose();
 	void OnGameFrameBegin_GameThread();
 	void OnGameFrameEnd_GameThread();
 	void OnRenderFrameBegin_GameThread();
@@ -257,41 +258,46 @@ public:
 	FPXRGameFramePtr MakeNewGameFrame() const;
 	void RefreshStereoRenderingState();
 	// Game thread
-	uint32 NextFrameIndex;
-	uint32 WaitFrameIndex;
-	FPXRGameFramePtr GameFrame;
-	FPXRGameFramePtr NextGameFrameToRender;
-	FPXRGameFramePtr LastGameFrameToRender;
-	TMap<uint32, FPicoLayerPtr> LayerMap;
-	FPicoLayerPtr CurrentMRCLayer;
-	TArray<uint32> MRCLayersID;
+	uint32 NextGameFrameNumber;
+	uint32 WaitedFrameNumber;
+	FPXRGameFramePtr GameFrame_GameThread;
+	FPXRGameFramePtr NextGameFrameToRender_GameThread;
+	FPXRGameFramePtr LastGameFrameToRender_GameThread;
+	TMap<uint32, FPICOLayerPtr> PXRLayerMap;
+	FPICOLayerPtr CurrentMRCLayer;
 	// Render thread
 	FPXRGameFramePtr GameFrame_RenderThread;
-	TArray<FPicoLayerPtr> Layers_RenderThread;
+	TArray<FPICOLayerPtr> PXRLayers_RenderThread;
+	FPICOLayerPtr PXREyeLayer_RenderThread;
 	// RHI thread
 	FPXRGameFramePtr GameFrame_RHIThread;
-	TArray<FPicoLayerPtr> Layers_RHIThread;
-	double PredictedTime = 0;
+	TArray<FPICOLayerPtr> PXRLayers_RHIThread;
+	double CurrentFramePredictedTime = 0;
 	bool bWaitFrameVersion = false;
 	float CachedWorldToMetersScale = 100.0f;
 
 
-	UPicoXREventManager* EventManager;
+	UPICOXREventManager* EventManager;
 	uint32 NextLayerId;
-	TMap<FString, FVector> MapToInitPos;
-	FVector InitCamPos;
-	FVector PreCamPos;
-	static int32 GMapInitFrame;
 	bool MRCEnabled=false;
 	FLinearColor GColorScale = FLinearColor(1.0,1.0,1.0,1.0);
 	FLinearColor GColorOffset = FLinearColor(0.0,0.0,0.0,0.0);
     bool GbApplyToAllLayers = false;
 	bool bNeedReAllocateFoveationTexture_RenderThread = false;
-	bool bUserEnableLargeSpace=false;
-	bool bDeviceHasEnableLargeSpace = false;
+	bool bNeedReAllocateViewportRenderTarget;
 	bool inputFocusState = true;
 
 	void PollEvent();
+	UPICOContentResourceFinder* GetContentResourceFinder(){return ContentResourceFinder;}
+	void AllocateEyeLayer();
+	bool IsMultiviewEnable() { return bIsMobileMultiViewEnabled; }
+
+	FDelayDeleteLayerManager DelayDeletion;
+	void UpdateSensorValue(FPXRGameFrame* InFrame);
+	double DisplayRefreshRate;
+protected:
+	void InitEyeLayer_RenderThread(FRHICommandListImmediate& RHICmdList);
+
 private:
 #if PLATFORM_ANDROID
 	void ProcessEvent(int EventCount, PxrEventDataBuffer** EventData);
@@ -305,7 +311,6 @@ private:
 	void ApplicationPauseDelegate();
 	void ApplicationResumeDelegate();
 	void UpdateNeckOffset();
-	void UpdateSensorValue(FPXRGameFrame * InFrame);
 	void EnableContentProtect(bool bEnable );
 	void SetRefreshRate();
 
@@ -314,23 +319,19 @@ private:
 	FIntPoint RTSize;
 	int32 MobileMSAAValue;
 	FVector NeckOffset;
-	FPicoXRFrustum LeftFrustum;
-	FPicoXRFrustum RightFrustum;
-	TRefCountPtr<FPicoXRRenderBridge> RenderBridge;
-	class UPicoXRSettings* PicoXRSetting;
+	FPICOXRFrustum LeftFrustum;
+	FPICOXRFrustum RightFrustum;
+	TRefCountPtr<FPICOXRRenderBridge> RenderBridge;
+	class UPICOXRSettings* PICOXRSetting;
 	bool bIsBindDelegate;
 	FString RHIString;
 	bool bIsEndGameFrame;
 	EHMDTrackingOrigin::Type TrackingOrigin;
 	static float IpdValue;
-	TSharedPtr<FPicoXREyeTracker> EyeTracker;
-	static int32 SubmitViewNumber;
-	static FVector SubmitPosition;
-	static FQuat SubmitOrientation;
-	static FTransform SubmitTrackingToWorld;
+	TSharedPtr<FPICOXREyeTracker> EyeTracker;
 	APlayerController* PlayerController;
-	FPicoXRSplashPtr PicoSplash;
+	FPICOXRSplashPtr PICOSplash;
 	FString DeviceModel;
-	double DisplayRefreshRate;
+	UPICOContentResourceFinder* ContentResourceFinder;
 };
 

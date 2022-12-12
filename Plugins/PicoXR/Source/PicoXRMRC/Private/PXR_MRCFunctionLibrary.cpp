@@ -4,28 +4,70 @@
 #include "PXR_MRCFunctionLibrary.h"
 #include "PXR_MRCModule.h"
 
-bool UPicoXRMRCFunctionLibrary::IsMrcEnabled()
+bool UPICOXRMRCFunctionLibrary::IsMrcActivated()
 {
-	if (FPicoXRMRCModule::IsAvailable())
+	if (FPICOXRMRCModule::IsAvailable())
 	{
-		return FPicoXRMRCModule::Get().IsMrcEnabled();
+		return FPICOXRMRCModule::Get().IsMrcActivated();
 	}
 	return false;
 }
 
-bool UPicoXRMRCFunctionLibrary::GetInGameThirdCameraRT(UTextureRenderTarget2D* & Background_RT, UTextureRenderTarget2D*& Forgound_RT)
+bool UPICOXRMRCFunctionLibrary::GetInGameThirdCameraRT(UTextureRenderTarget2D* & Background_RT, UTextureRenderTarget2D*& Forgound_RT)
 {
-	if (FPicoXRMRCModule::IsAvailable())
+	if (FPICOXRMRCModule::IsAvailable())
 	{
-		return FPicoXRMRCModule::Get().GetMRCRT(Background_RT,Forgound_RT);
+		return FPICOXRMRCModule::Get().GetMRCRT(Background_RT,Forgound_RT);
 	}
 	return false;
 }
 
-void UPicoXRMRCFunctionLibrary::SimulateEnableMRC(bool enable)
+void UPICOXRMRCFunctionLibrary::SimulateEnableMRC(bool enable)
 {
-	if (FPicoXRMRCModule::IsAvailable())
+	if (FPICOXRMRCModule::IsAvailable())
 	{
-		FPicoXRMRCModule::Get().bSimulateEnableMRC=enable;
+		FPICOXRMRCModule::Get().bSimulateEnableMRC=enable;
+	}
+}
+
+void UPICOXRMRCFunctionLibrary::EnableForegroundMRC(bool enable)
+{
+	if (FPICOXRMRCModule::IsAvailable())
+	{
+		FPICOXRMRCModule::Get().EnableForeground(enable);
+	}
+}
+
+void UPICOXRMRCFunctionLibrary::SetMRCTrackingReference(USceneComponent* TrackingReference)
+{
+	if (FPICOXRMRCModule::IsAvailable())
+	{
+		if (FPICOXRMRCModule::Get().GetMRCState())
+		{
+			FPICOXRMRCModule::Get().GetMRCState()->CurrentTrackingReference = TrackingReference;
+		}
+	}
+}
+
+void UPICOXRMRCFunctionLibrary::SetMRCUseCustomTrans(const FTransform& CustomTrans, bool UseCutomTrans)
+{
+	if (FPICOXRMRCModule::IsAvailable())
+	{
+		if (FPICOXRMRCModule::Get().GetMRCState())
+		{
+			FPICOXRMRCModule::Get().GetMRCState()->bUseCustomTrans = UseCutomTrans;
+			FPICOXRMRCModule::Get().GetMRCState()->CustomTrans = CustomTrans;
+		}
+	}
+}
+
+void UPICOXRMRCFunctionLibrary::GetMRCRelativePose(FTransform& CustomTrans)
+{
+	if (FPICOXRMRCModule::IsAvailable())
+	{
+		if (FPICOXRMRCModule::Get().GetMRCState())
+		{
+			CustomTrans = FPICOXRMRCModule::Get().GetMRCState()->FinalTransform;
+		}
 	}
 }

@@ -3,12 +3,12 @@
 using UnrealBuildTool;
 using System.IO;
 
-public class PicoXRDPInput : ModuleRules
+public class PICOXRDPInput : ModuleRules
 {
-	public PicoXRDPInput(ReadOnlyTargetRules Target) : base(Target)
+	public PICOXRDPInput(ReadOnlyTargetRules Target) : base(Target)
 	{
 		string EnginePath = Path.GetFullPath(Target.RelativeEnginePath);
-		System.Console.WriteLine(" Build the PicoXRDPInput Plugin");
+		System.Console.WriteLine(" Build the PICOXRDPInput Plugin");
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PrivateIncludePathModuleNames.AddRange(
@@ -26,16 +26,16 @@ public class PicoXRDPInput : ModuleRules
 					"CoreUObject",
 					"ApplicationCore",
 					"Engine",
-					"PicoXRHMD",
+					"PICOXRHMD",
 					"InputCore",
 					"HeadMountedDisplay",
-					"PicoXRDPHMD"
+					"PICOXRDPHMD"
 			});
 		PrivateIncludePaths.AddRange(
 				new[] {
-					"PicoXRDP/PicoXRDPInput/Private",
-					"PicoXRDP/PicoXRDPHMD/Private",
-					"PicoXRHMD/Private"
+					"PICOXRDP/PICOXRDPInput/Private",
+					"PICOXRDP/PICOXRDPHMD/Private",
+					"PICOXRHMD/Private"
 				});
 
 		if (Target.bBuildEditor == true)
@@ -87,13 +87,13 @@ public class PicoXRDPInput : ModuleRules
 			}
 
 
-			string PicoXRLibsDirectory = Path.Combine(ModuleDirectory, "../../../Libs");
+			string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, "../../../Libs");
 
-			PublicIncludePaths.Add(Path.Combine(PicoXRLibsDirectory, "Include"));
+			PublicIncludePaths.Add(Path.Combine(PICOXRLibsDirectory, "Include"));
 
-			PublicAdditionalLibraries.Add(Path.Combine(PicoXRLibsDirectory, "Win64", "pxr_turtledove.lib"));
+			PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "Win64", "pxr_turtledove.lib"));
 			PublicDelayLoadDLLs.Add("pxr_turtledove.dll");
-			RuntimeDependencies.Add(Path.Combine(PicoXRLibsDirectory, "Win64", "pxr_turtledove.dll"));
+			RuntimeDependencies.Add(Path.Combine(PICOXRLibsDirectory, "Win64", "pxr_turtledove.dll"));
 		}
 	}
 }

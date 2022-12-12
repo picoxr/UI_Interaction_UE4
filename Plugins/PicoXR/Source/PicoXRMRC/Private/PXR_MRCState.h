@@ -37,4 +37,10 @@ public:
 	FTransform FinalTransform;//Relative to the tracking reference
 
 	float ZOffset;
+
+	class USceneComponent* CurrentTrackingReference;
+
+	bool bUseCustomTrans;
+
+	FTransform CustomTrans;
 };

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--PicoXR plugin additions-->
+<!--PICOXR plugin additions-->
 <root xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- init section is always evaluated once per architecture -->
 	<init>
-    <log text="PicoXRHMD init"/>
-    <setBoolFromProperty result="bUseAdvanceInterface" ini="Engine" section="/Script/PicoXRHMD.PicoXRSettings" property="bUseAdvanceInterface" default="false"/>
-    <setBoolFromProperty result="bEnablePSensor" ini="Engine" section="/Script/PicoXRHMD.PicoXRSettings" property="bEnablePSensor" default="false"/>
-  </init>
+    <log text="PICOXRHMD init"/>
+    <setBoolFromProperty result="bUseAdvanceInterface" ini="Engine" section="/Script/PICOXRHMD.PICOXRSettings" property="bUseAdvanceInterface" default="false"/>
+    <setBoolFromProperty result="bEnablePSensor" ini="Engine" section="/Script/PICOXRHMD.PICOXRSettings" property="bEnablePSensor" default="false"/>
+    <setStringFromProperty result="HandTrackingSupport" ini="Engine" section="/Script/PICOXRHMD.PICOXRSettings" property="HandTrackingSupport" default="ControllersOnly"/>
+
+    </init>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
@@ -35,7 +37,7 @@
     <addAttribute tag="activity"  name="android:hardwareAccelerated" value="false" />
     <addElements tag="application">
       <meta-data android:name="pvr.app.type" android:value="vr" />
-	  <meta-data android:name="pvr.sdk.version" android:value="UE4_2.0.5.4" />
+	  <meta-data android:name="pvr.sdk.version" android:value="UE4_2.1.2.3" />
       <meta-data android:name="pxr.sdk.2dloading.flag" android:value="system" />
     </addElements>
 
@@ -46,7 +48,20 @@
         </addElements>
       </true>
     </if>
-    
+      <!-- Add Hand Tracking Flag -->
+      <setBoolIsEqual result="bEnableHandTracking" arg1="$S(HandTrackingSupport)" arg2="ControllersAndHands"/>
+      <if condition="bEnableHandTracking">
+        <true>
+          <addElements tag="application">
+            <meta-data android:name="handtracking" android:value="1"/>
+          </addElements>
+        </true>
+        <false>
+          <addElements tag="application">
+            <meta-data android:name="handtracking" android:value="0"/>
+          </addElements>
+        </false>
+      </if>
   </androidManifestUpdates>
 
 	<!-- optional additions to proguard -->
@@ -81,683 +96,910 @@
 
 	<!-- optional additions to the GameActivity imports in GameActivity.java	-->
 	<gameActivityImportAdditions>
-	<insert>
-    import com.psmart.aosoperation.VerifyTool;
-    import com.psmart.aosoperation.NativeVerfyInterface;
-    import android.app.Instrumentation;
+	    <insert>
+            import com.psmart.aosoperation.VerifyTool;
+            import com.psmart.aosoperation.NativeVerfyInterface;
+            import android.app.Instrumentation;
 
-    <!--import about SystemAPI -->
-    import android.os.RemoteException;
-    import com.pvr.tobservice.ToBServiceHelper;
-    import com.pvr.tobservice.interfaces.IBoolCallback;
-    import com.pvr.tobservice.interfaces.IStringCallback;
-    import com.pvr.tobservice.interfaces.IIntCallback;
-    import com.pvr.tobservice.interfaces.ILongCallback;
-    import com.pvr.tobservice.interfaces.IWDJsonCallback;
-    import com.pvr.tobservice.interfaces.IWDModelsCallback;
-    import com.pvr.tobservice.enums.PBS_DeviceControlEnum;
-    import com.pvr.tobservice.enums.PBS_HomeEventEnum;
-    import com.pvr.tobservice.enums.PBS_HomeFunctionEnum;
-    import com.pvr.tobservice.enums.PBS_PackageControlEnum;
-    import com.pvr.tobservice.enums.PBS_PowerOnOffLogoEnum;
-    import com.pvr.tobservice.enums.PBS_ScreenOffDelayTimeEnum;
-    import com.pvr.tobservice.enums.PBS_SleepDelayTimeEnum;
-    import com.pvr.tobservice.enums.PBS_SwitchEnum;
-    import com.pvr.tobservice.enums.PBS_SystemFunctionSwitchEnum;
-    import com.pvr.tobservice.enums.PBS_SystemInfoEnum;
-    import com.pvr.tobservice.enums.PBS_USBConfigModeEnum;
-    import com.pvr.tobservice.enums.PBS_WifiDisplayModel;
-    import java.util.List;
-    import com.psmart.aosoperation.MRCCalibration;
+            <!--import about SystemAPI -->
+            import android.os.RemoteException;
+            import com.pvr.tobservice.ToBServiceHelper;
+            import com.pvr.tobservice.interfaces.IBoolCallback;
+            import com.pvr.tobservice.interfaces.IStringCallback;
+            import com.pvr.tobservice.interfaces.IIntCallback;
+            import com.pvr.tobservice.interfaces.ILongCallback;
+            import com.pvr.tobservice.interfaces.IWDJsonCallback;
+            import com.pvr.tobservice.interfaces.IWDModelsCallback;
+			import com.pvr.tobservice.interfaces.IGetControllerPairTimeCallback;
+            import com.pvr.tobservice.enums.PBS_DeviceControlEnum;
+            import com.pvr.tobservice.enums.PBS_HomeEventEnum;
+            import com.pvr.tobservice.enums.PBS_HomeFunctionEnum;
+            import com.pvr.tobservice.enums.PBS_PackageControlEnum;
+            import com.pvr.tobservice.enums.PBS_PowerOnOffLogoEnum;
+            import com.pvr.tobservice.enums.PBS_ScreenOffDelayTimeEnum;
+            import com.pvr.tobservice.enums.PBS_SleepDelayTimeEnum;
+            import com.pvr.tobservice.enums.PBS_SwitchEnum;
+            import com.pvr.tobservice.enums.PBS_SystemFunctionSwitchEnum;
+            import com.pvr.tobservice.enums.PBS_SystemInfoEnum;
+            import com.pvr.tobservice.enums.PBS_USBConfigModeEnum;
+            import com.pvr.tobservice.enums.PBS_WifiDisplayModel;
+            import com.pvr.tobservice.enums.PBS_StartVRSettingsEnum;
+            import com.pvr.tobservice.enums.PBS_ControllerKeyEnum;
+			import com.pvr.tobservice.enums.PBS_PICOCastUrlTypeEnum;
+			import com.pvr.tobservice.enums.PBS_PICOCastOptionOrStatusEnum;
+			import com.pvr.tobservice.enums.PBS_PICOCastOptionValueEnum;
+			import com.pvr.tobservice.enums.PBS_ControllerPairTimeEnum;
+            import java.util.List;
+            import com.psmart.aosoperation.MRCCalibration;
+            import android.content.pm.PackageInfo;
+            import android.content.pm.PackageManager;
 
-    <!--import about Content Protect -->
-    import com.psmart.aosoperation.SysActivity;
-    
-  </insert>
-  </gameActivityImportAdditions>
+            <!--import about Content Protect -->
+            import com.psmart.aosoperation.SysActivity;
+        </insert>
+    </gameActivityImportAdditions>
 
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
-    <insert>
-      public boolean AndroidThunkJava_IsOculusMobileApplication()
-      {
-      return true;
-      }
+        <insert>
+            public boolean AndroidThunkJava_IsOculusMobileApplication()
+            {
+                return true;
+            }
 
-      <!--Override dispatchKeyEvent-->
-      @Override
-      public boolean dispatchKeyEvent(KeyEvent event)
-      {
-      int action = event.getAction();
-      if (event.getKeyCode()==1001)
-      {
-      keyRemappingSendFakeKeyEvent(action , 96);
-      }
-      return super.dispatchKeyEvent(event);
-      }
+            <!--Override dispatchKeyEvent-->
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent event)
+            {
+                int action = event.getAction();
+                if (event.getKeyCode()==1001)
+                {
+                    keyRemappingSendFakeKeyEvent(action , 96);
+                }
+                return super.dispatchKeyEvent(event);
+            }
 
-      <!--Send the input event 96 to unreal engine-->
-      private static void keyRemappingSendFakeKeyEvent(final int action,final int keyCode) {
-      new Thread(new Runnable() {
-      public void run() {
-      try {
-      Instrumentation inst=new Instrumentation();
-      final long eventTime = SystemClock.uptimeMillis();
-      KeyEvent event =new KeyEvent(eventTime - 50, eventTime - 50, action, keyCode, 0, 0, 1001, 0, KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_GAMEPAD);
-      int id = event.getDeviceId();
-      inst.sendKeySync(event);
-      }  catch (Exception e) {
-      }}}).start();
-      }
+            <!--Send the input event 96 to unreal engine-->
+            private static void keyRemappingSendFakeKeyEvent(final int action,final int keyCode) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Instrumentation inst=new Instrumentation();
+                            final long eventTime = SystemClock.uptimeMillis();
+                            KeyEvent event =new KeyEvent(eventTime - 50, eventTime - 50, action, keyCode, 0, 0, 1001, 0, KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_GAMEPAD);
+                            int id = event.getDeviceId();
+                             inst.sendKeySync(event);
+                        }
+						catch (Exception e) {}
+					}
+				}).start();
+            }
 
-      public void EnableContentProtect(boolean bEnable)
-      {
-      SysActivity.SetSecure(this, bEnable);
-      }
+            public void EnableContentProtect(boolean bEnable)
+            {
+                SysActivity.SetSecure(this, bEnable);
+            }
 
-      public String GetDeviceSN( )
-      {
-      return SysActivity.getDeviceSN();
-      }
+            public String GetDeviceSN( )
+            {
+                return SysActivity.getDeviceSN();
+            }
 
-      public int GetPsensorState()
-      {
-      return SysActivity.getPsensorState();
-      }
+            public int GetPsensorState()
+            {
+                return SysActivity.getPsensorState();
+            }
 
-      public void VolumeUp()
-      {
-      SysActivity.pxr_UpAudio();
-      }
+            public void VolumeUp()
+            {
+                SysActivity.pxr_UpAudio();
+            }
 
-      public void VolumeDown()
-      {
-      SysActivity.pxr_DownAudio();
-      }
+            public void VolumeDown()
+            {
+                SysActivity.pxr_DownAudio();
+            }
 
-      public void SetVolume(int volume)
-      {
-      SysActivity.pxr_ChangeAudio(volume);
-      }
+            public void SetVolume(int volume)
+            {
+                SysActivity.pxr_ChangeAudio(volume);
+            }
 
-      public int GetMaxVolumeNumber()
-      {
-      int maxV = SysActivity.pxr_GetMaxAudionumber();
-      Log.debug("========== PicoXR_UPL: Max system volume:" + maxV+" ==========");
-      return maxV;
-      }
+            public int GetMaxVolumeNumber()
+            {
+                int maxV = SysActivity.pxr_GetMaxAudionumber();
+                Log.debug("========== PICOXR_UPL: Max system volume:" + maxV+" ==========");
+                return maxV;
+            }
 
-      public int GetCurrentVolume()
-      {
-      int currentV = SysActivity.pxr_GetAudionumber();
-      Log.debug("========== PicoXR_UPL: Current system volume:" + currentV+" ==========");
-      return currentV;
-      }
+            public int GetCurrentVolume()
+            {
+                int currentV = SysActivity.pxr_GetAudionumber();
+                Log.debug("========== PICOXR_UPL: Current system volume:" + currentV+" ==========");
+                return currentV;
+            }
 
-      public void SetBrightness(int brightness)
-      {
-      SysActivity.pxr_SetScreen_Brightness(brightness,this.getApplicationContext());
-      }
+            public void SetBrightness(int brightness)
+            {
+                SysActivity.pxr_SetScreen_Brightness(brightness,this.getApplicationContext());
+            }
 
-      public int GetCurrentBrightness()
-      {
-      int currentB = SysActivity.pxr_GetScreen_Brightness(this.getApplicationContext());
-      Log.debug("========== PicoXR_UPL: Current screen brightness:" + currentB+" ==========");
-      return currentB;
-      }
+            public int GetCurrentBrightness()
+            {
+                int currentB = SysActivity.pxr_GetScreen_Brightness(this.getApplicationContext());
+                Log.debug("========== PICOXR_UPL: Current screen brightness:" + currentB+" ==========");
+                return currentB;
+            }
 
-      private MRCCalibration mMRCCalibration = null;
-      public float[] MRCGetCalibrationData(String path)
-      {
-      return mMRCCalibration.readCalibrationData(path);
-      }
+            private MRCCalibration mMRCCalibration = null;
+            public float[] MRCGetCalibrationData(String path)
+            {
+                return mMRCCalibration.readCalibrationData(path);
+            }
 
-    </insert>
-    <insert>
-      <!-- The interface about SystemAPI-->
-      public native void JavaToCSetDeviceActionCallBack(int EventType,int Result);
-      public native void JavaToCAPPMangerCallBack(int EventType,String AppPath,int result);
+            public int GetPxrRuntimeVersion()
+            {
+                String packageName="com.pico.xr.openxr_runtime";
+                PackageManager manager = this.getApplicationContext().getPackageManager();
+                int code = 0;
+                try
+                {
+                    PackageInfo info = manager.getPackageInfo(packageName, 0);
+                    if(info ==null)
+					{
+					    return 0;
+					}
+                    code = info.versionCode;
+                }
+                catch (PackageManager.NameNotFoundException e){}
+                return code;
+            }
+        </insert>
+        <insert>
+            <!-- The interface about SystemAPI-->
+            public native void JavaToCSetDeviceActionCallBack(int EventType,int Result);
+            public native void JavaToCAPPMangerCallBack(int EventType,String AppPath,int result);
 
-      public void BindSystemAPIService()
-      {
-      ToBServiceHelper.getInstance().bindTobService(this);
-      }
+            public void BindSystemAPIService()
+            {
+                ToBServiceHelper.getInstance().bindTobService(this);
+            }
 
-      public void UnBindSystemAPIService()
-      {
-      ToBServiceHelper.getInstance().unBindTobService(this);
-      }
+            public void UnBindSystemAPIService()
+            {
+                ToBServiceHelper.getInstance().unBindTobService(this);
+            }
 
-      public String  GetDeviceInfo(int type)
-      {
-      String Result = "";
-      PBS_SystemInfoEnum InfoType = PBS_SystemInfoEnum.values()[type];
-      Result = ToBServiceHelper.getInstance().pbsStateGetDeviceInfo(InfoType,0);
-      return Result;
-      }
+            public String  GetDeviceInfo(int type)
+            {
+                String Result = "";
+                PBS_SystemInfoEnum InfoType = PBS_SystemInfoEnum.values()[type];
+                Result = ToBServiceHelper.getInstance().pbsStateGetDeviceInfo(InfoType,0);
+                return Result;
+            }
 
-      IIntCallback SetDeviceActionCallback_Reboot = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCSetDeviceActionCallBack(0,result);
-      }
-      };
+            IIntCallback SetDeviceActionCallback_Reboot = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+                {
+                    JavaToCSetDeviceActionCallBack(0,result);
+                }
+            };
 
-      IIntCallback SetDeviceActionCallback_ShutDown = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCSetDeviceActionCallBack(1,result);
-      }
-      };
+            IIntCallback SetDeviceActionCallback_ShutDown = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+                {
+                    JavaToCSetDeviceActionCallBack(1,result);
+                }
+            };
 
-      public void SetDeviceAction(int deviceControlEnum)
-      {
-      PBS_DeviceControlEnum DeviceControlEnum = PBS_DeviceControlEnum.values()[deviceControlEnum];
-      if(deviceControlEnum == 0)
-      {
-      ToBServiceHelper.getInstance().pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_Reboot);
-      }else if(deviceControlEnum == 1)
-      {
-      ToBServiceHelper.getInstance().pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_ShutDown);
-      }
-      }
+            public void SetDeviceAction(int deviceControlEnum)
+            {
+                PBS_DeviceControlEnum DeviceControlEnum = PBS_DeviceControlEnum.values()[deviceControlEnum];
+                if(deviceControlEnum == 0)
+                {
+                    ToBServiceHelper.getInstance().pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_Reboot);
+                }
+				else if(deviceControlEnum == 1)
+                {
+                    ToBServiceHelper.getInstance().pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_ShutDown);
+                }
+            }
 
-      public class APPMangerCallBackClass
-      {
-      public APPMangerCallBackClass(int InEventType,String InAppPath)
-      {
-      EventType = InEventType;
-      AppPath = InAppPath;
-      }
-      int EventType;
-      String AppPath;
-      public IIntCallback APPMangerCallback = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCAPPMangerCallBack(EventType,AppPath,result);
-      }
-      };
-      }
+            public class APPMangerCallBackClass
+            {
+                public APPMangerCallBackClass(int InEventType,String InAppPath)
+                {
+                    EventType = InEventType;
+                    AppPath = InAppPath;
+                }
+                int EventType;
+                String AppPath;
+                public IIntCallback APPMangerCallback = new IIntCallback.Stub()
+                {
+                    @Override
+                    public void callback(int result) throws RemoteException
+                    {
+                        JavaToCAPPMangerCallBack(EventType,AppPath,result);
+                    }
+                };
+            }
 
-      public void APPManger(int packageControlEnum,String path,int ext)
-      {
-      APPMangerCallBackClass mAPPMangerCallBack = new APPMangerCallBackClass(packageControlEnum,path);
-      PBS_PackageControlEnum PackageControlEnum = PBS_PackageControlEnum.values()[packageControlEnum];
-      ToBServiceHelper.getInstance().pbsControlAPPManger(PackageControlEnum,path,ext,mAPPMangerCallBack.APPMangerCallback);
-      }
+            public void APPManger(int packageControlEnum,String path,int ext)
+            {
+                APPMangerCallBackClass mAPPMangerCallBack = new APPMangerCallBackClass(packageControlEnum,path);
+                PBS_PackageControlEnum PackageControlEnum = PBS_PackageControlEnum.values()[packageControlEnum];
+                ToBServiceHelper.getInstance().pbsControlAPPManger(PackageControlEnum,path,ext,mAPPMangerCallBack.APPMangerCallback);
+            }
 
-      public native void JavaToCAutoConnectWifiCallBack(boolean result);
-      public IBoolCallback SetAutoConnectWIFICallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCAutoConnectWifiCallBack(result);
-      }
-      };
+            public native void JavaToCAutoConnectWifiCallBack(boolean result);
+            public IBoolCallback SetAutoConnectWIFICallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCAutoConnectWifiCallBack(result);
+                }
+            };
 
-      public void SetAutoConnectWIFI(String ssid, String pwd, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsControlSetAutoConnectWIFI(ssid,pwd,ext,SetAutoConnectWIFICallback);
-      }
+            public void SetAutoConnectWIFI(String ssid, String pwd, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsControlSetAutoConnectWIFI(ssid,pwd,ext,SetAutoConnectWIFICallback);
+            }
 
-      public native void JavaToCClearAutoConnectWifiCallBack(boolean result);
-      IBoolCallback ClearAutoConnectWIFICallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCClearAutoConnectWifiCallBack(result);
-      }
-      };
+            public native void JavaToCClearAutoConnectWifiCallBack(boolean result);
+            IBoolCallback ClearAutoConnectWIFICallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCClearAutoConnectWifiCallBack(result);
+                }
+            };
 
-      public void ClearAutoConnectWIFI()
-      {
-      ToBServiceHelper.getInstance().pbsControlClearAutoConnectWIFI(ClearAutoConnectWIFICallback);
-      }
+            public void ClearAutoConnectWIFI()
+            {
+                ToBServiceHelper.getInstance().pbsControlClearAutoConnectWIFI(ClearAutoConnectWIFICallback);
+            }
 
-      public native void JavaToCSetHomeKeyCallBack(int EventType, int FunctionType,boolean Result);
-      public class SetHomeKayClass
-      {
-      int HomeKeyEvent;
-      int HomeKeyFunction;
-      public SetHomeKayClass(int InHomeKeyEvent,int InHomeKeyFunction)
-      {
-      HomeKeyEvent = InHomeKeyEvent;
-      HomeKeyFunction = InHomeKeyFunction;
-      }
+            public native void JavaToCSetHomeKeyCallBack(int EventType, int FunctionType,boolean Result);
+            public class SetHomeKayClass
+            {
+                int HomeKeyEvent;
+                int HomeKeyFunction;
+                public SetHomeKayClass(int InHomeKeyEvent,int InHomeKeyFunction)
+                {
+                    HomeKeyEvent = InHomeKeyEvent;
+                    HomeKeyFunction = InHomeKeyFunction;
+                }
 
-      public IBoolCallback SetHomeKeyCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCSetHomeKeyCallBack(HomeKeyEvent,HomeKeyFunction,result);
-      }
-      };
-      }
+                public IBoolCallback SetHomeKeyCallback = new IBoolCallback.Stub()
+                {
+                    @Override
+                    public void callBack(boolean result) throws RemoteException
+					{
+                        JavaToCSetHomeKeyCallBack(HomeKeyEvent,HomeKeyFunction,result);
+                    }
+                };
+            }
 
-      public void SetHomeKey(int eventEnum, int functionEnum)
-      {
-      SetHomeKayClass mSetHomeKay = new SetHomeKayClass(eventEnum,functionEnum);
-      PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
-      PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
-      ToBServiceHelper.getInstance().pbsPropertySetHomeKey(EventEnum,FunctionEnum,mSetHomeKay.SetHomeKeyCallback);
-      }
+            public void SetHomeKey(int eventEnum, int functionEnum)
+            {
+                SetHomeKayClass mSetHomeKay = new SetHomeKayClass(eventEnum,functionEnum);
+                PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
+                PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
+                ToBServiceHelper.getInstance().pbsPropertySetHomeKey(EventEnum,FunctionEnum,mSetHomeKay.SetHomeKeyCallback);
+            }
 
-      public native void JavaToCSetHomeKeyAllCallBack(int EventType, int FunctionType,boolean Result);
-      public class SetHomeKayAllClass
-      {
-      int HomeKeyEvent;
-      int HomeKeyFunction;
-      public SetHomeKayAllClass(int InHomeKeyEvent,int InHomeKeyFunction)
-      {
-      HomeKeyEvent = InHomeKeyEvent;
-      HomeKeyFunction = InHomeKeyFunction;
-      }
+            public native void JavaToCSetHomeKeyAllCallBack(int EventType, int FunctionType,boolean Result);
+            public class SetHomeKayAllClass
+            {
+                int HomeKeyEvent;
+                int HomeKeyFunction;
+                public SetHomeKayAllClass(int InHomeKeyEvent,int InHomeKeyFunction)
+                {
+                    HomeKeyEvent = InHomeKeyEvent;
+                    HomeKeyFunction = InHomeKeyFunction;
+                }
 
-      public IBoolCallback SetHomeKeyAllCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCSetHomeKeyAllCallBack(HomeKeyEvent,HomeKeyFunction,result);
-      }
-      };
-      }
+                public IBoolCallback SetHomeKeyAllCallback = new IBoolCallback.Stub()
+                {
+                    @Override
+                    public void callBack(boolean result) throws RemoteException
+					{
+                        JavaToCSetHomeKeyAllCallBack(HomeKeyEvent,HomeKeyFunction,result);
+                    }
+                };
+            }
 
-      public void SetHomeKeyAll(int eventEnum, int functionEnum, int timesetup, String pkg, String className)
-      {
-      SetHomeKayAllClass mSetHomeKayAll = new SetHomeKayAllClass(eventEnum,functionEnum);
-      PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
-      PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
-      ToBServiceHelper.getInstance().pbsPropertySetHomeKeyAll(EventEnum,FunctionEnum,timesetup,pkg,className,mSetHomeKayAll.SetHomeKeyAllCallback);
-      }
+            public void SetHomeKeyAll(int eventEnum, int functionEnum, int timesetup, String pkg, String className)
+            {
+                SetHomeKayAllClass mSetHomeKayAll = new SetHomeKayAllClass(eventEnum,functionEnum);
+                PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
+                PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
+                ToBServiceHelper.getInstance().pbsPropertySetHomeKeyAll(EventEnum,FunctionEnum,timesetup,pkg,className,mSetHomeKayAll.SetHomeKeyAllCallback);
+            }
 
-      public native void JavaToCDisablePowerKeyCallBack(boolean isSingleTap,int Result);
-      IIntCallback DisablePowerKeyCallback_SingleClick = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCDisablePowerKeyCallBack(true,result);
-      }
-      };
+            public native void JavaToCDisablePowerKeyCallBack(boolean isSingleTap,int Result);
+            IIntCallback DisablePowerKeyCallback_SingleClick = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+                {
+                    JavaToCDisablePowerKeyCallBack(true,result);
+                }
+            };
 
-      IIntCallback DisablePowerKeyCallback_DoubleClick = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCDisablePowerKeyCallBack(false,result);
-      }
-      };
+            IIntCallback DisablePowerKeyCallback_DoubleClick = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+                {
+                    JavaToCDisablePowerKeyCallBack(false,result);
+                }
+            };
 
-      public void DisablePowerKey(boolean isSingleTap, boolean enable)
-      {
-      if(isSingleTap == true)
-      {
-      ToBServiceHelper.getInstance().pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_SingleClick);
-      }else
-      {
-      ToBServiceHelper.getInstance().pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_DoubleClick);
-      }
-      }
+            public void DisablePowerKey(boolean isSingleTap, boolean enable)
+            {
+                if(isSingleTap == true)
+                {
+                    ToBServiceHelper.getInstance().pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_SingleClick);
+                }
+				else
+                {
+                    ToBServiceHelper.getInstance().pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_DoubleClick);
+                }
+            }
 
-      public void SetSleepDelay(int timeEnum)
-      {
-      ToBServiceHelper.getInstance().pbsPropertySetSleepDelay(PBS_SleepDelayTimeEnum.values()[timeEnum]);
-      }
+            public void SetSleepDelay(int timeEnum)
+            {
+                ToBServiceHelper.getInstance().pbsPropertySetSleepDelay(PBS_SleepDelayTimeEnum.values()[timeEnum]);
+            }
 
-      public native void JavaToCSetScreenOffDelayCallBack(int Result);
-      public class SetScreenOffDelayClass
-      {
-      int timeIndex;
-      public SetScreenOffDelayClass(int IntimeIndex)
-      {
-      timeIndex = IntimeIndex;
-      }
+            public native void JavaToCSetScreenOffDelayCallBack(int Result);
+            public class SetScreenOffDelayClass
+            {
+                int timeIndex;
+                public SetScreenOffDelayClass(int IntimeIndex)
+                {
+                    timeIndex = IntimeIndex;
+                }
 
-      IIntCallback SetScreenOffDelayCallback = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException
-      {
-      JavaToCSetScreenOffDelayCallBack(result);
-      }
-      };
-      }
+                IIntCallback SetScreenOffDelayCallback = new IIntCallback.Stub()
+                {
+                    @Override
+                    public void callback(int result) throws RemoteException
+                    {
+                        JavaToCSetScreenOffDelayCallBack(result);
+                    }
+                };
+            }
       
-      public void SetScreenOffDelay(int timeEnum)
-      {
-      SetScreenOffDelayClass mSetScreenOffDelay = new SetScreenOffDelayClass(timeEnum);
-      ToBServiceHelper.getInstance().pbsPropertySetScreenOffDelay(PBS_ScreenOffDelayTimeEnum.values()[timeEnum],mSetScreenOffDelay.SetScreenOffDelayCallback);
-      }
+            public void SetScreenOffDelay(int timeEnum)
+            {
+                SetScreenOffDelayClass mSetScreenOffDelay = new SetScreenOffDelayClass(timeEnum);
+                ToBServiceHelper.getInstance().pbsPropertySetScreenOffDelay(PBS_ScreenOffDelayTimeEnum.values()[timeEnum],mSetScreenOffDelay.SetScreenOffDelayCallback);
+            }
 
-      public void SystemFunction(int systemFunction, int switchEnum, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsSwitchSystemFunction(PBS_SystemFunctionSwitchEnum.values()[systemFunction], PBS_SwitchEnum.values()[switchEnum],ext);
-      }
+            public void SystemFunction(int systemFunction, int switchEnum, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsSwitchSystemFunction(PBS_SystemFunctionSwitchEnum.values()[systemFunction], PBS_SwitchEnum.values()[switchEnum],ext);
+            }
 
-      public void SetUsbConfigurationOption(int uSBConfigModeEnum, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsSwitchSetUsbConfigurationOption(PBS_USBConfigModeEnum.values()[uSBConfigModeEnum], ext);
-      }
+            public void SetUsbConfigurationOption(int uSBConfigModeEnum, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsSwitchSetUsbConfigurationOption(PBS_USBConfigModeEnum.values()[uSBConfigModeEnum], ext);
+            }
       
-      public void ScreenOn()
-      {
-      ToBServiceHelper.getInstance().pbsScreenOn();
-      }
+            public void ScreenOn()
+            {
+                ToBServiceHelper.getInstance().pbsScreenOn();
+            }
 
-      public void ScreenOff()
-      {
-      ToBServiceHelper.getInstance().pbsScreenOff();
-      }
+            public void ScreenOff()
+            {
+                ToBServiceHelper.getInstance().pbsScreenOff();
+            }
 
-      public void AcquireWakeLock()
-      {
-      ToBServiceHelper.getInstance().pbsAcquireWakeLock();
-      }
+            public void AcquireWakeLock()
+            {
+                ToBServiceHelper.getInstance().pbsAcquireWakeLock();
+            }
 
-      public void ReleaseWakeLock()
-      {
-      ToBServiceHelper.getInstance().pbsReleaseWakeLock();
-      }
+            public void ReleaseWakeLock()
+            {
+                ToBServiceHelper.getInstance().pbsReleaseWakeLock();
+            }
       
-      public native void JavaToCWriteConfigFileToDataLocalCallback(boolean result);
-      public IBoolCallback WriteConfigFileToDataLocalCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCWriteConfigFileToDataLocalCallback(result);
-      }
-      };
+            public native void JavaToCWriteConfigFileToDataLocalCallback(boolean result);
+            public IBoolCallback WriteConfigFileToDataLocalCallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCWriteConfigFileToDataLocalCallback(result);
+                }
+            };
 
-      public void WriteConfigFileToDataLocal(String path, String content)
-      {
-      ToBServiceHelper.getInstance().pbsWriteConfigFileToDataLocal(path,content,WriteConfigFileToDataLocalCallback);
-      }
+            public void WriteConfigFileToDataLocal(String path, String content)
+            {
+                ToBServiceHelper.getInstance().pbsWriteConfigFileToDataLocal(path,content,WriteConfigFileToDataLocalCallback);
+            }
 
-      public native void JavaToCResetAllKeyToDefaultCallback(boolean Result);
-      public IBoolCallback ResetAllKeyToDefaultCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCResetAllKeyToDefaultCallback(result);
-      }
-      };
+            public native void JavaToCResetAllKeyToDefaultCallback(boolean Result);
+            public IBoolCallback ResetAllKeyToDefaultCallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCResetAllKeyToDefaultCallback(result);
+                }
+            };
 
-      public void ResetAllKeyToDefault()
-      {
-      ToBServiceHelper.getInstance().pbsResetAllKeyToDefault(ResetAllKeyToDefaultCallback);
-      }
+            public void ResetAllKeyToDefault()
+            {
+                ToBServiceHelper.getInstance().pbsResetAllKeyToDefault(ResetAllKeyToDefaultCallback);
+            }
 
-      public void EnableEnterKey()
-      {
-      ToBServiceHelper.getInstance().pbsEnableEnterKey();
-      }
+            public void EnableEnterKey()
+            {
+                ToBServiceHelper.getInstance().pbsEnableEnterKey();
+            }
 
-      public void DisableEnterKey()
-      {
-      ToBServiceHelper.getInstance().pbsDisableEnterKey();
-      }
+            public void DisableEnterKey()
+            {
+                ToBServiceHelper.getInstance().pbsDisableEnterKey();
+            }
 
-      public void EnableVolumeKey()
-      {
-      ToBServiceHelper.getInstance().pbsEnableVolumeKey();
-      }
+            public void EnableVolumeKey()
+            {
+                ToBServiceHelper.getInstance().pbsEnableVolumeKey();
+            }
 
-      public void DisableVolumeKey()
-      {
-      ToBServiceHelper.getInstance().pbsDisableVolumeKey();
-      }
+            public void DisableVolumeKey()
+            {
+                ToBServiceHelper.getInstance().pbsDisableVolumeKey();
+            }
 
-      public void EnableBackKey()
-      {
-      ToBServiceHelper.getInstance().pbsEnableBackKey();
-      }
+            public void EnableBackKey()
+            {
+                ToBServiceHelper.getInstance().pbsEnableBackKey();
+            }
 
-      public void DisableBackKey()
-      {
-      ToBServiceHelper.getInstance().pbsDisableBackKey();
-      }
+            public void DisableBackKey()
+            {
+                ToBServiceHelper.getInstance().pbsDisableBackKey();
+            }
 
-      public void FreezeScreen(boolean freeze)
-      {
-      ToBServiceHelper.getInstance().pbsFreezeScreen(freeze);
-      }
+            public void FreezeScreen(boolean freeze)
+            {
+                ToBServiceHelper.getInstance().pbsFreezeScreen(freeze);
+            }
 
-      public void KillAppsByPidOrPackageName(int[] pids, String[] packageNames, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsKillAppsByPidOrPackageName(pids,packageNames,ext);
-      }
+            public void KillAppsByPidOrPackageName(int[] pids, String[] packageNames, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsKillAppsByPidOrPackageName(pids,packageNames,ext);
+            }
 
-      public void KillBackgroundAppsWithWhiteList(String[] packageNames, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsKillBackgroundAppsWithWhiteList(packageNames,ext);
-      }
+            public void KillBackgroundAppsWithWhiteList(String[] packageNames, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsKillBackgroundAppsWithWhiteList(packageNames,ext);
+            }
 
-      public void OpenMiracast()
-      {
-      ToBServiceHelper.getInstance().pbsOpenMiracast();
-      }
+            public void OpenMiracast()
+            {
+                ToBServiceHelper.getInstance().pbsOpenMiracast();
+            }
 
-      public boolean IsMiracastOn()
-      {
-      return ToBServiceHelper.getInstance().pbsIsMiracastOn();
-      }
+            public boolean IsMiracastOn()
+            {
+                return ToBServiceHelper.getInstance().pbsIsMiracastOn();
+            }
 
-      public void CloseMiracast()
-      {
-      ToBServiceHelper.getInstance().pbsCloseMiracast();
-      }
+            public void CloseMiracast()
+            {
+                ToBServiceHelper.getInstance().pbsCloseMiracast();
+            }
 
-      public void StartScan()
-      {
-      ToBServiceHelper.getInstance().pbsStartScan();
-      }
+            public void StartScan()
+            {
+                ToBServiceHelper.getInstance().pbsStartScan();
+            }
 
-      public void StopScan()
-      {
-      ToBServiceHelper.getInstance().pbsStopScan();
-      }
+            public void StopScan()
+            {
+                ToBServiceHelper.getInstance().pbsStopScan();
+            }
 
-      public void ConnectWifiDisplay(String deviceAddress2,String deviceName2,boolean isAvailable2,boolean canConnect2,boolean isRemembered2,int statusCode2,String status2,String description2)
-      {
-      PBS_WifiDisplayModel WifiDisplayModel=new PBS_WifiDisplayModel(deviceAddress2,deviceName2,isAvailable2,canConnect2,isRemembered2,statusCode2,status2,description2);
-      ToBServiceHelper.getInstance().pbsConnectWifiDisplay(WifiDisplayModel);
-      }
+            public void ConnectWifiDisplay(String deviceAddress2,String deviceName2,boolean isAvailable2,boolean canConnect2,boolean isRemembered2,int statusCode2,String status2,String description2)
+            {
+                PBS_WifiDisplayModel WifiDisplayModel=new PBS_WifiDisplayModel(deviceAddress2,deviceName2,isAvailable2,canConnect2,isRemembered2,statusCode2,status2,description2);
+                ToBServiceHelper.getInstance().pbsConnectWifiDisplay(WifiDisplayModel);
+            }
 
-      public void DisConnectWifiDisplay()
-      {
-      ToBServiceHelper.getInstance().pbsDisConnectWifiDisplay();
-      }
-      void ForgetWifiDisplay(String address)
-      {
-      ToBServiceHelper.getInstance().pbsForgetWifiDisplay(address);
-      }
+            public void DisConnectWifiDisplay()
+            {
+                ToBServiceHelper.getInstance().pbsDisConnectWifiDisplay();
+            }
+            void ForgetWifiDisplay(String address)
+            {
+                ToBServiceHelper.getInstance().pbsForgetWifiDisplay(address);
+            }
 
-      public void RenameWifiDisplay(String address, String newName)
-      {
-      ToBServiceHelper.getInstance().pbsRenameWifiDisplay(address,newName);
-      }
+            public void RenameWifiDisplay(String address, String newName)
+            {
+                ToBServiceHelper.getInstance().pbsRenameWifiDisplay(address,newName);
+            }
 
-      public void UpdateWifiDisplays()
-      {
-      ToBServiceHelper.getInstance().pbsUpdateWifiDisplays();
-      }
+            public void UpdateWifiDisplays()
+            {
+                ToBServiceHelper.getInstance().pbsUpdateWifiDisplays();
+            }
 
-      public String GetConnectedWD()
-      {
-      PBS_WifiDisplayModel WifiDisplayModel= ToBServiceHelper.getInstance().pbsGetConnectedWD();
-      if(WifiDisplayModel!=null)
-      {
-      return WifiDisplayModel.toString();
-      }
-      else
-      {
-      return "";
-      }
-      }
+            public String GetConnectedWD()
+            {
+                PBS_WifiDisplayModel WifiDisplayModel= ToBServiceHelper.getInstance().pbsGetConnectedWD();
+                if(WifiDisplayModel!=null)
+                {
+                    return WifiDisplayModel.toString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
 
-      public native void JavaToCSetWDJsonCallback(String Result);
-      public IWDJsonCallback SetWDJsonCallback = new IWDJsonCallback.Stub()
-      {
-      @Override
-      public void callback(String result) throws RemoteException {
-      JavaToCSetWDJsonCallback(result);
-      }
-      };
+            public native void JavaToCSetWDJsonCallback(String Result);
+            public IWDJsonCallback SetWDJsonCallback = new IWDJsonCallback.Stub()
+            {
+                @Override
+                public void callback(String result) throws RemoteException
+				{
+                    JavaToCSetWDJsonCallback(result);
+                }
+            };
       
-      public void SetWDJson()
-      {
-      ToBServiceHelper.getInstance().pbsSetWDJsonCallback(SetWDJsonCallback);
-      }
+            public void SetWDJson()
+            {
+                ToBServiceHelper.getInstance().pbsSetWDJsonCallback(SetWDJsonCallback);
+            }
 
-      public native void JavaToCSetWDModelsCallback(String Result);
-      public IWDModelsCallback SetWDModelsCallback = new IWDModelsCallback.Stub()
-      {
-      String result;
-      @Override
-      public void callback(List&lt;PBS_WifiDisplayModel&gt; models) throws RemoteException {
-      for(PBS_WifiDisplayModel member : models)
-      {
-      result=result+member.toString()+"SPC";
-      }
-      JavaToCSetWDModelsCallback(result);
-      }
-      };
+            public native void JavaToCSetWDModelsCallback(String Result);
+            public IWDModelsCallback SetWDModelsCallback = new IWDModelsCallback.Stub()
+            {
+                String result;
+                @Override
+                public void callback(List&lt;PBS_WifiDisplayModel&gt; models) throws RemoteException
+				{
+                    for(PBS_WifiDisplayModel member : models)
+                    {
+                        result=result+member.toString()+"SPC";
+                    }
+                    JavaToCSetWDModelsCallback(result);
+                }
+            };
       
-      public void SetWDModels()
-      {
-      ToBServiceHelper.getInstance().pbsSetWDModelsCallback(SetWDModelsCallback);
-      }
+            public void SetWDModels()
+            {
+                ToBServiceHelper.getInstance().pbsSetWDModelsCallback(SetWDModelsCallback);
+            }
 
-      public native void JavaToCSwitchLargeSpaceSceneCallback(boolean Result);
-      public IBoolCallback SwitchLargeSpaceSceneCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCSwitchLargeSpaceSceneCallback(result);
-      }
-      };
-      void SwitchLargeSpaceScene(boolean open, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsSwitchLargeSpaceScene(SwitchLargeSpaceSceneCallback,open,ext);
-      }
+            public native void JavaToCSwitchLargeSpaceSceneCallback(boolean Result);
+            public IBoolCallback SwitchLargeSpaceSceneCallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCSwitchLargeSpaceSceneCallback(result);
+                }
+            };
+            void SwitchLargeSpaceScene(boolean open, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsSwitchLargeSpaceScene(SwitchLargeSpaceSceneCallback,open,ext);
+            }
 
-      public native void JavaToCLargeSpaceStatusCallback(String Result);
-      public IStringCallback LargeSpaceStatusCallback = new IStringCallback.Stub()
-      {
-      @Override
-      public void callback(String result) throws RemoteException {
-      JavaToCLargeSpaceStatusCallback(result);
-      }
-      };
-      void GetSwitchLargeSpaceStatus(int ext)
-      {
-      ToBServiceHelper.getInstance().pbsGetSwitchLargeSpaceStatus(LargeSpaceStatusCallback,ext);
-      }
+            public native void JavaToCLargeSpaceStatusCallback(String Result);
+            public IStringCallback LargeSpaceStatusCallback = new IStringCallback.Stub()
+            {
+                @Override
+                public void callback(String result) throws RemoteException
+				{
+                    JavaToCLargeSpaceStatusCallback(result);
+                }
+            };
+            void GetSwitchLargeSpaceStatus(int ext)
+            {
+                ToBServiceHelper.getInstance().pbsGetSwitchLargeSpaceStatus(LargeSpaceStatusCallback,ext);
+            }
       
-      boolean SaveLargeSpaceMaps(int ext)
-      {
-      return ToBServiceHelper.getInstance().pbsSaveLargeSpaceMaps(ext);
-      }
+            boolean SaveLargeSpaceMaps(int ext)
+            {
+                return ToBServiceHelper.getInstance().pbsSaveLargeSpaceMaps(ext);
+            }
       
-      public native void JavaToCExportMapsCallback(boolean Result);
-      public IBoolCallback ExportMapsCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCExportMapsCallback(result);
-      }
-      };
-      void ExportMaps(int ext)
-      {
-      ToBServiceHelper.getInstance().pbsExportMaps(ExportMapsCallback,ext);
-      }
+            public native void JavaToCExportMapsCallback(boolean Result);
+            public IBoolCallback ExportMapsCallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCExportMapsCallback(result);
+                }
+            };
+            void ExportMaps(int ext)
+            {
+                ToBServiceHelper.getInstance().pbsExportMaps(ExportMapsCallback,ext);
+            }
       
-      public native void JavaToCImportMapsCallback(boolean Result);
-      public IBoolCallback ImportMapsCallback = new IBoolCallback.Stub()
-      {
-      @Override
-      public void callBack(boolean result) throws RemoteException {
-      JavaToCImportMapsCallback(result);
-      }
-      };
-      void ImportMaps(int ext)
-      {
-      ToBServiceHelper.getInstance().pbsImportMaps(ImportMapsCallback,ext);
-      }
+            public native void JavaToCImportMapsCallback(boolean Result);
+            public IBoolCallback ImportMapsCallback = new IBoolCallback.Stub()
+            {
+                @Override
+                public void callBack(boolean result) throws RemoteException
+				{
+                    JavaToCImportMapsCallback(result);
+                }
+            };
+            void ImportMaps(int ext)
+            {
+                ToBServiceHelper.getInstance().pbsImportMaps(ImportMapsCallback,ext);
+            }
       
-      float[] GetCpuUsages()
-      {
-      return ToBServiceHelper.getInstance().pbsGetCpuUsages();
-      }
+            float[] GetCpuUsages()
+            {
+                return ToBServiceHelper.getInstance().pbsGetCpuUsages();
+            }
 
-      float[] GetDeviceTemperatures(int inType,int inSource)
-      {
-      return ToBServiceHelper.getInstance().pbsGetDeviceTemperatures(inType,inSource);
-      }
+            float[] GetDeviceTemperatures(int inType,int inSource)
+            {
+                return ToBServiceHelper.getInstance().pbsGetDeviceTemperatures(inType,inSource);
+            }
 
-      void Capture()
-      {
-      ToBServiceHelper.getInstance().pbsCapture();
-      }
+            void Capture()
+            {
+                ToBServiceHelper.getInstance().pbsCapture();
+            }
 
-      void Record()
-      {
-      ToBServiceHelper.getInstance().pbsRecord();
-      }
+            void Record()
+            {
+                ToBServiceHelper.getInstance().pbsRecord();
+            }
 
-      public native void JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(int Result);
-      IIntCallback ControlSetAutoConnectWIFIWithErrorCodeCallback = new IIntCallback.Stub()
-      {
-      @Override
-      public void callback(int result) throws RemoteException {
-      JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(result);
-      }
-      };
-      void ControlSetAutoConnectWIFIWithErrorCode(String ssid, String pwd, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsControlSetAutoConnectWIFIWithErrorCodeCallback(ssid, pwd, ext, ControlSetAutoConnectWIFIWithErrorCodeCallback);
-      }
+            public native void JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(int Result);
+            IIntCallback ControlSetAutoConnectWIFIWithErrorCodeCallback = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+				{
+                    JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(result);
+                }
+            };
+            void ControlSetAutoConnectWIFIWithErrorCode(String ssid, String pwd, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsControlSetAutoConnectWIFIWithErrorCodeCallback(ssid, pwd, ext, ControlSetAutoConnectWIFIWithErrorCodeCallback);
+            }
 
-      void AppKeepAlive(String appPackageName, boolean keepAlive, int ext)
-      {
-      ToBServiceHelper.getInstance().pbsAppKeepAlive(appPackageName, keepAlive, ext);
-      }
+            void AppKeepAlive(String appPackageName, boolean keepAlive, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsAppKeepAlive(appPackageName, keepAlive, ext);
+            }
 
-    </insert>
+            void TimingStartup(int year, int month, int day, int hour, int minute, boolean open)
+            {
+                ToBServiceHelper.getInstance().pbsTimingStartup( year,  month,  day,  hour,  minute,  open);
+            }
+
+            void TimingShutdown(int year, int month, int day, int hour, int minute, boolean open)
+            {
+                ToBServiceHelper.getInstance().pbsTimingShutdown( year,  month,  day,  hour,  minute,  open);
+            }
+
+            void StartVrSettingsItem(int vrSettingsEnum, boolean hideOtherItem, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsStartVrSettingsItem(PBS_StartVRSettingsEnum.values()[vrSettingsEnum],  hideOtherItem,  ext);
+            }
+
+            void SwitchVolumeToHomeAndEnter(int switchEnum, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsSwitchVolumeToHomeAndEnter(PBS_SwitchEnum.values()[switchEnum],  ext);
+            }
+
+            int IsVolumeChangeToHomeAndEnter()
+            {
+                return ToBServiceHelper.getInstance().pbsIsVolumeChangeToHomeAndEnter();
+            }
+			
+			int InstallOTAPackage(String otaPackagePath, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsInstallOTAPackage(otaPackagePath, ext);
+			}
+			
+			String GetAutoConnectWiFiConfig(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetAutoConnectWiFiConfig(ext);
+			}
+			
+			String GetTimingStartupStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetTimingStartupStatus(ext);
+			}
+			
+			String GetTimingShutdownStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetTimingShutdownStatus(ext);
+			}
+			
+			int GetControllerKeyState(int controllerKeyEnum, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetControllerKeyState(PBS_ControllerKeyEnum.values()[controllerKeyEnum], ext);
+			}
+			
+			int GetPowerOffWithUSBCable(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsControlGetPowerOffWithUSBCable(ext);
+			}
+			
+			int GetScreenOffDelay(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPropertyGetScreenOffDelay(ext);
+			}
+			
+			int GetSleepDelay(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPropertyGetSleepDelay(ext);
+			}
+			
+			String GetPowerKeyStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPropertyGetPowerKeyStatus(ext);
+			}
+			
+			int GetEnterKeyStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetEnterKeyStatus(ext);
+			}
+			
+			int GetVolumeKeyStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetVolumeKeyStatus(ext);
+			}
+			
+			int GetBackKeyStatus(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetBackKeyStatus(ext);
+			}
+			
+			String GetHomeKeyStatus(int homeEventEnum, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPropertyGetHomKeyStatus(PBS_HomeEventEnum.values()[homeEventEnum], ext);
+			}
+			
+			String GetUsbConfigurationOption(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsSwitchGetUsbConfigurationOption(ext);
+			}
+			
+			String GetCurrentLauncher(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsGetCurrentLauncher(ext);
+			}
+			
+			public native void JavaToCGetSwitchSystemFunctionStatusCallback(int Result);
+            IIntCallback GetSwitchSystemFunctionStatusCallback = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+				{
+                    JavaToCGetSwitchSystemFunctionStatusCallback(result);
+                }
+            };
+            void GetSwitchSystemFunctionStatus(int systemFunctionSwitchEnum, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsGetSwitchSystemFunctionStatus(PBS_SystemFunctionSwitchEnum.values()[systemFunctionSwitchEnum], GetSwitchSystemFunctionStatusCallback, ext);
+            }
+			
+			public native void JavaToCPICOCastInitCallback(int Result);
+            IIntCallback PICOCastInitCallback = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+				{
+                    JavaToCPICOCastInitCallback(result);
+                }
+            };
+            int PICOCastInit(int ext)
+            {
+                return ToBServiceHelper.getInstance().pbsPicoCastInit(PICOCastInitCallback, ext);
+            }
+			
+			int PICOCastSetShowAuthorization(int authZ, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastSetShowAuthorization(authZ, ext);
+			}
+			
+			int PICOCastGetShowAuthorization(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastGetShowAuthorization(ext);
+			}
+			
+			String PICOCastGetUrl(int urlType, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastGetUrl(PBS_PICOCastUrlTypeEnum.values()[urlType], ext);
+			}
+			
+			int PICOCastStopCast(int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastStopCast(ext);
+			}
+			
+			int PICOCastSetOption(int optionEnum, int optionValue, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastSetOption(PBS_PICOCastOptionOrStatusEnum.values()[optionEnum], PBS_PICOCastOptionValueEnum.values()[optionValue], ext);
+			}
+			
+			int PICOCastGetOptionOrStatus(int castEnum, int ext)
+			{
+			    return ToBServiceHelper.getInstance().pbsPicoCastGetOptionOrStatus(PBS_PICOCastOptionOrStatusEnum.values()[castEnum], ext);
+			}
+			
+			public native void JavaToCSetControllerPairTimeCallback(int Result);
+            IIntCallback SetControllerPairTimeCallback = new IIntCallback.Stub()
+            {
+                @Override
+                public void callback(int result) throws RemoteException
+				{
+                    JavaToCSetControllerPairTimeCallback(result);
+                }
+            };
+            void SetControllerPairTime(int timeEnum, int ext)
+            {
+                ToBServiceHelper.getInstance().pbsSetControllerPairTime(PBS_ControllerPairTimeEnum.values()[timeEnum], SetControllerPairTimeCallback, ext);
+            }
+			
+			public native void JavaToCGetControllerPairTimeCallback(int Result);
+            IGetControllerPairTimeCallback GetControllerPairTimeCallback = new IGetControllerPairTimeCallback.Stub()
+            {
+                @Override
+                public void callBack(PBS_ControllerPairTimeEnum result) throws RemoteException
+				{
+                    JavaToCGetControllerPairTimeCallback(result.ordinal());
+                }
+            };
+            void GetControllerPairTime(int ext)
+            {
+                ToBServiceHelper.getInstance().pbsGetControllerPairTime(GetControllerPairTimeCallback, ext);
+            }
+        </insert>
 	</gameActivityClassAdditions>
 
 	<!-- optional additions to GameActivity onCreate in GameActivity.java	-->
 	<gameActivityOnCreateAdditions>
-    <insert>
-      Log.debug("========== PicoXR_UPL:gameActivityOnCreateAdditions ==========");
-      SysActivity.pxr_InitAudioDevice(this.getApplicationContext());
-      mMRCCalibration = new MRCCalibration();
-    </insert>
+        <insert>
+            Log.debug("========== PICOXR_UPL:gameActivityOnCreateAdditions ==========");
+            SysActivity.pxr_InitAudioDevice(this.getApplicationContext());
+            mMRCCalibration = new MRCCalibration();
+        </insert>
 	</gameActivityOnCreateAdditions>
   
     <!-- optional additions to GameActivity onDestroy in GameActivity.java	-->
     <gameActivityOnDestroyAdditions>
-      <insert>
-        Log.debug("========== PicoXR_UPL:gameActivityOnDestroyAdditions ==========");
-      </insert>
+        <insert>
+            Log.debug("========== PICOXR_UPL:gameActivityOnDestroyAdditions ==========");
+        </insert>
     </gameActivityOnDestroyAdditions>
 
 	<!-- optional additions to GameActivity onStart in GameActivity.java	-->
 	<gameActivityOnStartAdditions>
         <insert>
-          Log.debug("========== PicoXR_UPL:gameActivityOnStartAdditions ==========");
+            Log.debug("========== PICOXR_UPL:gameActivityOnStartAdditions ==========");
         </insert>
 		<if condition="bEnablePSensor">
 			<true>
 				<insert>
-					Log.debug("========== PicoXR_UPL: initPsensor! ==========");
+					Log.debug("========== PICOXR_UPL: initPsensor! ==========");
 					SysActivity.initPsensor(this);
 				</insert>
 			</true>
@@ -767,12 +1009,12 @@
 	<!-- optional additions to GameActivity onStop in GameActivity.java	-->
 	<gameActivityOnStopAdditions>
         <insert>
-          Log.debug("========== PicoXR_UPL:gameActivityOnStopAdditions ==========");
+            Log.debug("========== PICOXR_UPL:gameActivityOnStopAdditions ==========");
         </insert>
 		<if condition="bEnablePSensor">
 			<true>
 				<insert>
-					Log.debug("========== PicoXR_UPL: unregisterListener! ==========");
+					Log.debug("========== PICOXR_UPL: unregisterListener! ==========");
 					SysActivity.unregisterListener();
 				</insert>
 			</true>
@@ -782,21 +1024,21 @@
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
         <insert>
-            Log.debug("========== PicoXR_UPL:gameActivityOnPauseAdditions ==========");
+            Log.debug("========== PICOXR_UPL:gameActivityOnPauseAdditions ==========");
         </insert>
 	</gameActivityOnPauseAdditions>
 
 	<!-- optional additions to GameActivity onResume in GameActivity.java	-->
 	<gameActivityOnResumeAdditions>
         <insert>
-          Log.debug("========== PicoXR_UPL:gameActivityOnResumeAdditions ==========");
+            Log.debug("========== PICOXR_UPL:gameActivityOnResumeAdditions ==========");
         </insert>
 	</gameActivityOnResumeAdditions>
 
 	<!-- optional additions to GameActivity onActivityResult in GameActivity.java	-->
 	<gameActivityOnActivityResultAdditions>
         <insert>
-          Log.debug("========== PicoXR_UPL:gameActivityOnActivityResultAdditions ==========");
+            Log.debug("========== PICOXR_UPL:gameActivityOnActivityResultAdditions ==========");
         </insert>
 	</gameActivityOnActivityResultAdditions>
 

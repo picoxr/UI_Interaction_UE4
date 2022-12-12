@@ -8,151 +8,154 @@
 #include "OnlineSubsystemPico.h"
 #include "OnlineSubsystemPicoPackage.h"
 #include "OnlineSubsystemPicoNames.h"
+#include <string>
+
+using namespace std;
+const string HEX = "0123456789abcdef";
 
 /// @file RTCPicoUserInterface.h
 
 DECLARE_LOG_CATEGORY_EXTERN(RtcInterface, Log, All);
 
-/// @brief Rtc engine privilege enum.
+// <summary>Rtc engine privilege enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcPrivilege : uint8
 {
-    None,
     PublishStream,
     PublishAudioStream,
     PublishVideoStream,
-    SubscribeStream
+    SubscribeStream,
+    None
 };
 
-/// @brief Rtc engine init result enum.
+// <summary>Rtc engine init result enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcEngineInitResult : uint8
 {
-    None,
     Unknow,
     AlreadyInitialized,
     InvalidConfig,
-    Success
+    Success,
+    None
 };
 
-/// @brief Rtc engine room profile type enum.
+// <summary>Rtc engine room profile type enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcRoomProfileType : uint8
 {
-    None,
     Communication,
     LiveBroadcasting,
     Game,
     CloundGame,
-    LowLatency
+    LowLatency,
+    None
 };
 
-/// @brief Rtc mute state enum.
+// <summary>Rtc mute state enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcMuteState : uint8
 {
-    None,
     Off,
-    On
+    On,
+    None
 };
 
-/// @brief Rtc pause or resume media type enum.
+// <summary>Rtc pause or resume media type enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcPauseResumeMediaType : uint8
 {
-    None,
     Audio,
     Video,
-    AudioAndVideo
+    AudioAndVideo,
+    None
 };
 
-/// @brief Rtc audio playback device enum.
+// <summary>Rtc audio playback device enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcAudioPlaybackDevice : uint8
 {
-    None,
     Headset,
     EarPiece,
     SpeakerPhone,
     HeadsetBlueTooth,
-    HeadsetUsb
+    HeadsetUsb,
+    None
 };
 
-/// @brief Rtc audio scenario type enum.
+// <summary>Rtc audio scenario type enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcAudioScenarioType : uint8
 {
-    None,
     Music,
     HighQualityCommunication,
     Communication,
     Media,
-    GameStreaming
+    GameStreaming,
+    None
 };
 
-/// @brief Rtc audio stream index enum.
+// <summary>Rtc audio stream index enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcStreamIndex : uint8
 {
-    None,
     Main,
-    Screen
+    Screen,
+    None
 };
 
-/// @brief Rtc ear monitor mode enum.
+// <summary>Rtc ear monitor mode enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcEarMonitorMode : uint8
 {
-    None,
     Off,
-    On
+    On,
+    None
 };
 
-/// @brief Rtc join room type enum.
+// <summary>Rtc join room type enum.</summary>
 UENUM(BlueprintType)
 enum class ERtcJoinRoomType : uint8
 {
-    None,
     First,
-    Reconnected
+    Reconnected,
+    None
 };
 
-/// @brief Rtc user leave reason type.
+// <summary>Rtc user leave reason type.</summary>
 UENUM(BlueprintType)
 enum class ERtcUserLeaveReasonType : uint8
 {
-    None,
     Quit,
-    Dropped
+    Dropped,
+    None
 };
 
-/// @brief Rtc media device type.
+// <summary>Rtc media device type.</summary>
 UENUM(BlueprintType)
 enum class ERtcMediaDeviceType : uint8
 {
-    None,
     AudioUnknown,
     AudioRenderDevice,
-    AudioCaptureDevice
+    AudioCaptureDevice,
+    None
 };
 
-/// @brief Rtc media device state.
+// <summary>Rtc media device state.</summary>
 UENUM(BlueprintType)
 enum class ERtcMediaDeviceState : uint8
 {
-    None,
     Started,
     Stopped,
     RuntimeError,
     Added,
-    Removed
+    Removed,
+    None
 };
 
-/// @brief Rtc media device error type.
+// <summary>Rtc media device error type.</summary>
 UENUM(BlueprintType)
 enum class ERtcMediaDeviceError : uint8
 {
-    None,
     Ok,
     NoPermission,
     DeviceBusy,
@@ -160,11 +163,39 @@ enum class ERtcMediaDeviceError : uint8
     DeviceNotFound,
     DeviceDisconnected,
     DeviceNoCallback,
-    UnSupporttedFormat
+    UnSupporttedFormat,
+    None
 };
 
+UENUM(BlueprintType)
+enum class ERtcSyncInfoStreamType : uint8
+{
+    Audio,
+    None
+};
+
+UENUM(BlueprintType)
+enum class ERtcMediaStreamType : uint8
+{
+    Audio,
+    Video,
+    Both,
+    None
+};
+
+UENUM(BlueprintType)
+enum class ERtcStreamRemoveReason : uint8
+{
+    Unpublish,
+    PublishFailed,
+    KeepLiveFailed,
+    ClientDisconnected,
+    Republish,
+    Other,
+    None
+};
 // Request
-DECLARE_DELEGATE_ThreeParams(FOnGetTokenComplete, const FString& /*String Token*/, bool /*IsError*/, const FString& /*Error Message*/);
+DECLARE_DELEGATE_ThreeParams(FOnGetTokenComplete, const FString& /*String Token*/, bool /*IsSuccessed*/, const FString& /*Error Message*/);
 
 // Notification
 DECLARE_MULTICAST_DELEGATE_FiveParams(FRtcJoinRoomResult, const FString& /*RoomId*/, const FString& /*UserId*/, int /*ErrorCode*/, int /*Elapsed*/, ERtcJoinRoomType /*JoinRoomType*/);
@@ -182,259 +213,524 @@ DECLARE_MULTICAST_DELEGATE_FiveParams(FRtcRemoteAudioPropertiesReport, int /*Tot
 DECLARE_MULTICAST_DELEGATE_OneParam(FRtcStringResult, const FString& /*MessageString*/);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRtcIntResult, int /*MessageCode*/);
 
-
+//V2
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcUserPublishInfo, const FString& /*RoomId*/, const FString& /*UserId*/, ERtcMediaStreamType /*MediaStreamType*/)
+DECLARE_MULTICAST_DELEGATE_FourParams(FRtcUserUnPublishInfo, const FString& /*RoomId*/, const FString& /*UserId*/, ERtcMediaStreamType /*MediaStreamType*/, ERtcStreamRemoveReason /*Reason*/)
+DECLARE_MULTICAST_DELEGATE_FiveParams(FGetRtcStreamSyncInfo, const FString& /*RoomId*/, const FString& /*UserId*/, ERtcStreamIndex /*StreamIndex*/, ERtcSyncInfoStreamType /*RtcSyncInfoStreamType*/, const FString& /*Info*/)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcMessageSendResult, int64 /*MessageId*/, int32 /*Error*/, const FString& /*RoomId*/)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcBinaryMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Info*/)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcRoomMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Message*/)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcUserMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Message*/)
 /** @addtogroup Function Function
  *  This is the Function group
  *  @{
  */
 
-/** @defgroup RTC RTC
- *  This is the RTC group
- *  @{
- */
+ /** @defgroup RTC RTC
+  *  This is the RTC group
+  *  @{
+  */
 
-/// @brief Pico RTC interface class.
+  /// <summary>Pico RTC interface class.</summary>
 class ONLINESUBSYSTEMPICO_API FRTCPicoUserInterface
 {
 private:
 
-	FOnlineSubsystemPico& PicoSubsystem;
+    FOnlineSubsystemPico& PicoSubsystem;
 
-	
+
 public:
-	FRTCPicoUserInterface(FOnlineSubsystemPico& InSubsystem);
-	~FRTCPicoUserInterface();
+    FRTCPicoUserInterface(FOnlineSubsystemPico& InSubsystem);
+    ~FRTCPicoUserInterface();
 
-	// Rtc Function
-
-
-    /// @brief Initializes the RTC engine.
-    /// @return The initialization result.
-	ERtcEngineInitResult RtcEngineInit();
+    // Rtc Function
 
 
-    /// @brief Joins a user to a room.
-    /// @param RoomId Room ID.
-    /// @param UserId User ID.
-    /// @param Token Room token.
-    /// @param UserExtra Extra information added by the user.
-    /// @param InRoomProfileType Room type: `0`-communication room; `1`-live broadcasting room; `2`-game room; `3`-cloud game room; `4`-low-latency room.
-    /// @param bIsAutoSubscribeAudio Whether to automatically subscribe to the audio of the room: `true`-yes; `false`-no.
-    /// @return Int: `0` indicates success, and other values indicate failure.
-	int RtcJoinRoom(const FString& RoomId, const FString& UserId, const FString& Token, const FString& UserExtra, ERtcRoomProfileType InRoomProfileType, bool bIsAutoSubscribeAudio);
-	
+    /// <summary>Initializes the RTC engine.</summary>
+    /// <returns>The initialization result.</returns>
+    ERtcEngineInitResult RtcEngineInit();
 
-    /// @brief Destroys a room.
-    /// @param RoomId Room ID.
-    /// @return Int: `0` indicates success, and other values indicate failure.
+    /// <summary>Joins a user to a room.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="UserId">User ID.</param>
+    /// <param name="Token">Room token.</param>
+    /// <param name="UserExtra">Extra information added by the user.</param>
+    /// <param name="InRoomProfileType">Type of the room to join the user in:
+    /// <ul>
+    /// <li>`0`: communication room</li>
+    /// <li>`1`: live broadcasting room</li> 
+    /// <li>`2`: game room</li>
+    /// <li>`3`: cloud game room</li>
+    /// <li>`4`: low-latency room</li>
+    /// </ul>
+    /// </param>
+    /// <param name="bIsAutoSubscribeAudio">Whether to automatically subscribe to the audio of the room: 
+    /// <ul>
+    /// <li>`true`: yes</li>
+    /// <li>`false`: no</li>
+    /// </ul>
+    /// </param>
+    /// <returns>Int:
+    /// <ul>
+    /// <li>`0`: success</li> 
+    /// <li>Other values: failure</li>
+    /// </ul>
+    /// </returns>
+    int RtcJoinRoom(const FString& RoomId, const FString& UserId, const FString& Token, const FString& UserExtra, ERtcRoomProfileType InRoomProfileType, bool bIsAutoSubscribeAudio);
+
+    /// <summary>Destroys a room.</summary>
+    /// <param name="RoomId">The ID of the room to be destroyed.</param>
+    /// <returns>Int:
+    /// <ul>
+    /// <li>`0`: success</li> 
+    /// <li>Other values: failure</li>
+    /// </ul>
+    /// </returns>
     int RtcDestroyRoom(const FString& RoomId);
 
+    /// <summary>Enables audio properties report. When this switch is turned on, you will regularly receive a statistical report of audio data.</summary>
+    /// <param name="Interval">The interval (in milliseconds) between one report and the next. 
+    /// You can set this parameter to `0` or any negative integer to stop receiving audio properties report. 
+    /// For any integer between (0, 100), the SDK will regard it as invalid and automatically set this parameter to `100`; 
+    /// Any integer equals to or greater than `100` is valid.
+    /// </param>
+    void RtcEnableAudioPropertiesReport(int Interval);
 
-    /// @brief Enables audio properties report. When this switch is turned on, you will regularly receive a statistical report of audio data.
-    /// @param Interval The interval (in milliseconds) between one report and the next. You can set this parameter to `0` or any negative integer to stop receiving audio properties report. For any integer between (0, 100), the SDK will regard it as invalid and automatically set this parameter to `100`; any integer equal to or greater than `100` is valid.
-	void RtcEnableAudioPropertiesReport(int Interval);
+    /// <summary>Leaves a room.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <returns>Int:
+    /// <ul>
+    /// <li>`0`: success</li> 
+    /// <li>Other values: failure</li>
+    /// </ul>
+    /// </returns>
+    int RtcLeaveRoom(const FString& RoomId);
 
+    /// <summary>Mutes local audio to make one's voice cannot be heard by other users in the same room.</summary>
+    /// <param name="InRtcMuteState">The state of local audio: 
+    /// <ul>
+    /// <li>`0`: off</li>
+    /// <li>`1`: on</li>
+    /// </ul>
+    /// </param>
+    void RtcMuteLocalAudio(ERtcMuteState InRtcMuteState);
 
-    /// @brief Leave a room.
-    /// @param RoomId Room ID.
-    /// @return Int: `0` indicates success, and other values indicate failure.
-	int RtcLeaveRoom(const FString& RoomId);
+    /// <summary>Publishes local audio stream to a room so that the voice can be heard by other users in the same room.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    void RtcPublishRoom(const FString& RoomId);
 
+    /// <summary>Pauses all subscribed streams of a room. Once paused, the voice of users in the room is blocked so nothing can be heard from this room.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="InPauseResumeMediaType">Media type.</param>
+    void RtcRoomPauseAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType);
 
-    /// @brief Mutes local audio to make one's voice unable to be heard be others in the same room.
-    /// @param InRtcMuteState The state of local audio: `0`-off; `1`-on.
-	void RtcMuteLocalAudio(ERtcMuteState InRtcMuteState);
+    /// <summary>Resumes all subscribed streams of a room. Once resumed, the voice of users in the room can be heard again.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="InPauseResumeMediaType">Media type.</param>
+    void RtcRoomResumeAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType);
 
+    /// <summary>Sets the audio playback device.</summary>
+    /// <param name="InRtcAudioPlaybackDevice">Device type:
+    /// <ul>
+    /// <li>`1`: Headset</li>
+    /// <li>`2`: EarPiece</li>
+    /// <li>`3`: SpeakerPhone</li>
+    /// <li>`4`: HeadsetBlueTooth</li>
+    /// <li>`5`: HeadsetUsb</li>
+    /// </ul>
+    /// </param>
+    void RtcSetAudioPlaybackDevice(ERtcAudioPlaybackDevice InRtcAudioPlaybackDevice);
 
-    /// @brief Publishes local audio stream to a room, thereby making the voice heard be others in the same room.
-    /// @param RoomId Room ID.
-	void RtcPublishRoom(const FString& RoomId);
+    /// <summary>Sets audio scenario type.</summary>
+    /// <param name="InRtcAudioScenarioType">Audio scenario type: 
+    /// <ul>
+    /// <li>`0`: Music</li> 
+    /// <li>`1`: HighQualityCommunication</li> 
+    /// <li>`2`: Communication</li> 
+    /// <li>`3`: Media</li>
+    /// <li>`4`: GameStreaming</li>
+    /// </ul>
+    /// </param>
+    void RtcSetAudioScenario(ERtcAudioScenarioType InRtcAudioScenarioType);
 
+    /// <summary>Sets volume for audio capturing.</summary>
+    /// <param name="InRtcStreamIndex">Stream index main/screen.</param>
+    /// <param name="InVolume">The volume. 
+    /// The valid value ranges from `0` to `400`. 
+    /// `100` indicates keeping the original volume.
+    /// </param>
+    void RtcSetCaptureVolume(ERtcStreamIndex InRtcStreamIndex, int InVolume);
 
-    /// @brief Pauses all subscribed streams of a room. Once paused, the voice of users in the room is blocked so nothing can be heard from this room.
-    /// @param RoomId Room id.
-    /// @param InPauseResumeMediaType Media type.
-	void RtcRoomPauseAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType);
+    /// <summary>Sets the in-ear monitoring mode.</summary>
+    /// <param name="InRtcEarMonitorMode">The state of in-ear monitoring mode:
+    /// <ul>
+    /// <li>`0`: off</li>
+    /// <li>`1`: on</li>
+    /// </ul>
+    /// </param>
+    void RtcSetEarMonitorMode(ERtcEarMonitorMode InRtcEarMonitorMode);
 
+    /// <summary>Sets volume for in-ear monitoring.</summary>
+    /// <param name="InVolume">The volume. 
+    /// The valid value ranges from `0` to `400`. 
+    /// `100` indicates keeping the original volume.
+    /// </param>
+    void RtcSetEarMonitorVolume(int InVolume);
 
-    /// @brief Resumes all subscribed streams of a room. Once resumed, the voice of users in the room can be heard again.
-    /// @param RoomId Room ID.
-    /// @param InPauseResumeMediaType Media type.
-	void RtcRoomResumeAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType);
+    /// <summary>Sets the playback volume.</summary>
+    /// <param name="InVolume">The volume. 
+    /// The valid value ranges from `0` to `400`. 
+    /// `100` indicates keeping the original volume.
+    /// </param>
+    void RtcSetPlaybackVolume(int InVolume);
 
+    /// <summary>Starts audio capturing.</summary>
+    void RtcStartAudioCapture();
 
-    /// @brief Sets the audio playback device.
-	/// @param InRtcAudioPlaybackDevice Device type: `1`-Headset; `2`-EarPiece; `3`-SpeakerPhone; `4`-HeadsetBlueTooth; `5`-HeadsetUsb.
-	void RtcSetAudioPlaybackDevice(ERtcAudioPlaybackDevice InRtcAudioPlaybackDevice);
+    /// <summary>Stops audio capturing.</summary>
+    void RtcStopAudioCatpure();
 
+    /// <summary>Stops publishing local audio stream to a room so that the other users in the same room cannot hear the voice.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    void RtcUnPublishRoom(const FString& RoomId);
 
-    /// @brief Sets audio scenario type.
-    /// @param InRtcAudioScenarioType Audio scenario type: `0`-Music; `1`-HighQualityCommunication; `2`-Communication; `3`-Media; `4`-GameStreaming.
-	void RtcSetAudioScenario(ERtcAudioScenarioType InRtcAudioScenarioType);
-
-
-    /// @brief Sets volume for audio capture.
-    /// @param InRtcStreamIndex Stream index main/screen.
-    /// @param InVolume The volume. The valid value ranges from `0` to `400`. `100` indicates keeping the original volume.
-	void RtcSetCaptureVolume(ERtcStreamIndex InRtcStreamIndex, int InVolume);
-
-
-    /// @brief Sets the in-ear monitoring mode.
-    /// @param InRtcEarMonitorMode The state of in-ear monitoring mode: `0`-off; `1`-on.
-	void RtcSetEarMonitorMode(ERtcEarMonitorMode InRtcEarMonitorMode);
-
-
-    /// @brief Sets volume for in-ear monitoring.
-    /// @param InVolume The volume. The valid value ranges from `0` to `400`. `100` indicates keeping the original volume.
-	void RtcSetEarMonitorVolume(int InVolume);
-
-
-    /// @brief Sets the playback volume.
-    /// @param InVolume The volume. The valid value ranges from `0` to `400`. `100` indicates keeping the original volume.
-	void RtcSetPlaybackVolume(int InVolume);
-
-
-    /// @brief Starts audio capture.
-	void RtcStartAudioCapture();
-
-
-    /// @brief Stops audio capture.
-	void RtcStopAudioCatpure();
-
-
-    /// @brief Stops publishing local audio stream to a room, so others in the same room cannot hear the voice.
-    /// @param RoomId Room ID.
-	void RtcUnPublishRoom(const FString& RoomId);
-
-
-    /// @brief Updates room token.
-    /// @param RoomId Room ID.
-    /// @param Token The new token.
-	void RtcUpdateToken(const FString& RoomId, const FString& Token);
+    /// <summary>Updates room token.</summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="Token">The new token.</param>
+    void RtcUpdateToken(const FString& RoomId, const FString& Token);
 
     //Request
 
-    /// @brief Gets the token.
-    /// @param UserId User id.
-    /// @param RoomId Room id.
-    /// @param Ttl Effective duration of room (s).
-    /// @param InValue Channel effective time (s).
-    /// @param InRtcGetTokenDelegate Callback function proxy.
+    /// <summary>Gets the token.</summary>
+    /// <param name="UserId">User ID.</param>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="Ttl">The effective duration (in seconds) of room.</param>
+    /// <param name="InValue">Channel effective time (in seconds).</param>
+    /// <param name="Delegate">Callback function proxy.</param>
     void GetToken(const FString& UserId, const FString& RoomId, int Ttl, int InValue, const FOnGetTokenComplete& Delegate = FOnGetTokenComplete());
+
+    // V2
+
+    /// <summary>
+    /// Sends stream sync info. The sync info data will be sent in the same packet with the audio data. Users who subscribe to this audio stream will receive the stream sync info message.
+    /// </summary>
+    /// <param name="Info">The stream sync info.</param>
+    /// <param name="InStreamIndex">The stream index:
+    /// <ul>
+    /// <li> `0`: Main</li>
+    /// <li> `1`: Screen</li>
+    /// <li> `2`: None</li>
+    /// </ul>
+    /// </param>
+    /// <param name="RepeatCount">The stream sync info will be sent repeatedly for the times set in `repeatCount`.
+    /// It's designed to avoid losing package and ensuring that the sync info can be sent successfully.
+    /// However, if `repeatCount` is too large, it will cause the sync info to pile up in the queue.
+    /// It is recommended to set this parameter to `1`.
+    /// </param>
+    /// <param name="InSyncInfoStreamType">The sync info stream type:
+    /// <ul>
+    /// <li>`0`: Audio</li>
+    /// <li>`1`: None</li>
+    /// </ul>
+    /// </param>
+    /// <returns>Any code which equals to or below `0` indicates success, and other codes indicate failure. 
+    /// | Code | Description|
+    /// |---|---|
+    /// |>=0|Send successfully. Indicates the times sent successfully.|
+    /// |-1|Send Failed. Message length exceeded 255B.|
+    /// |-2|Send Failed. The data is empty.|
+    /// |-3|Send Failed. Send sync info with a un-publish screen stream.|
+    /// |-4|Send Failed. Send sync info with a un-publish audio stream.|
+    /// </returns>
+    int32 RtcSendStreamSyncInfo(int32 Info, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType);
+
+    /// <summary>
+    /// Publishes the local audio stream to a room so that the local user's voice can be heard by other users in the same room.
+    /// @note
+    /// * A user can only publish the local audio stream to one room at the same time.
+    /// * If a user wants to publish the local audio stream to another room, 
+    /// `UnPublishRoom(oldRoomId)` should be called first to stop publishing the local audio stream to the current room and then `Publish(newRoomId)` should be called.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room that the local audio stream is published to.</param>
+    /// <param name="InRtcMediaStreamType">The media stream type:
+    /// * `0`: Audio
+    /// * `1`: Video
+    /// * `2`: Both
+    /// * `3`: None
+    /// </param>
+    void RtcRoomPublishStream(const FString& RoomId, ERtcMediaStreamType InRtcMediaStreamType);
+
+    /// <summary>
+    /// Sets the volume for a remote user in a room.
+    /// </summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="UserId">The ID of the remote user.</param>
+    /// <param name="Volume">The volume to set for the remote user, which ranges from `0` to `400`. `100` indicates the default volume.</param>
+    void RtcRoomSetRemoteAudioPlaybackVolume(const FString& RoomId, const FString& UserId, int32 Volume);
+
+    /// <summary>
+    /// Subscribes to the audio stream of a specific user in a room.
+    /// </summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="UserId">The ID of the user in the room.</param>
+    /// <param name="InRtcMediaStreamType">The media stream type:
+    /// * `0`: Audio
+    /// * `1`: Video
+    /// * `2`: Both
+    /// * `3`: None
+    /// </param>
+    void RtcRoomSubscribeStream(const FString& RoomId, const FString& UserId, ERtcMediaStreamType InRtcMediaStreamType);
+
+    /// <summary>
+    /// Stops publishing the local audio stream to a room so that the other in-room users cannot hear the local user's voice.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room to stop publishing the local audio stream to.</param>
+    /// <param name="InRtcMediaStreamType">The media stream type:
+    /// * `0`: Audio
+    /// * `1`: Video
+    /// * `2`: Both
+    /// * `3`: None
+    /// </param>
+    void RtcRoomUnPublishStream(const FString& RoomId, ERtcMediaStreamType InRtcMediaStreamType);
+
+    /// <summary>
+    /// Unsubscribes from the audio stream of a specific user in a room.
+    /// </summary>
+    /// <param name="RoomId">Room ID.</param>
+    /// <param name="UserId">The ID of the user in the room.</param>
+    /// <param name="InRtcMediaStreamType">The media stream type:
+    /// * `0`: Audio
+    /// * `1`: Video
+    /// * `2`: Both
+    /// * `3`: None
+    /// </param>
+    void RtcRoomUnsubscribeStream(const FString& RoomId, const FString& UserId, ERtcMediaStreamType InRtcMediaStreamType);
+
+    /// <summary>
+    /// Sends a binary message to a room. All in-room users will receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room to which the binary message is to be sent.</param>
+    /// <param name="MessageInfo">The binary message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendRoomBinaryMessage(const FString& RoomId, const FString& MessageInfo);
+
+    /// <summary>
+    /// Sends a text message to a room. All in-room users will receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room to which the text message is to be sent.</param>
+    /// <param name="Message">The text message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendRoomMessage(const FString& RoomId, const FString& Message);
+
+    /// <summary>
+    /// Sends a binary message to a user. Only the user can receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room the user is in.</param>
+    /// <param name="UserId">The ID of the user to whom the binary message is to be sent.</param>
+    /// <param name="MessageInfo">The binary message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendUserBinaryMessage(const FString& RoomId, const FString& UserId, const FString& MessageInfo);
+
+    /// <summary>
+    /// Sends a text message to a user. Only the user can receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room the user is in.</param>
+    /// <param name="UserId">The ID of the user to whom the text message is to be sent.</param>
+    /// <param name="Message">The text message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendUserMessage(const FString& RoomId, const FString& UserId, const FString& Message);
+
+private:
+    TArray<uint8> GetBytesByInt(int32 Inint);
+
 
 PACKAGE_SCOPE:
 
 
-	void OnQueryGetTokenComplete(ppfMessageHandle Message, bool bIsError, const FOnGetTokenComplete& Delegate);
+    void OnQueryGetTokenComplete(ppfMessageHandle Message, bool bIsError, const FOnGetTokenComplete& Delegate);
 
 
-	// Notification
+    // Notification
 
-	FDelegateHandle OnJoinRoomNotificationResultHandle;
-	void OnJoinRoomResult(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnJoinRoomNotificationResultHandle;
+    void OnJoinRoomResult(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnLeaveRoomNotificationResultHandle;
-	void OnLeaveRoomResult(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnLeaveRoomNotificationResultHandle;
+    void OnLeaveRoomResult(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnUserJoinRoomNotificationResultHandle;
-	void OnUserJoinRoomResult(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnUserJoinRoomNotificationResultHandle;
+    void OnUserJoinRoomResult(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnUserLeaveRoomNotificationResultHandle;
-	void OnUserLeaveRoomResult(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnUserLeaveRoomNotificationResultHandle;
+    void OnUserLeaveRoomResult(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnRoomStatsNotificationHandle;
-	void OnRoomStatsNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnRoomStatsNotificationHandle;
+    void OnRoomStatsNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnWarnNotificationHandle;
-	void OnWarnNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnWarnNotificationHandle;
+    void OnWarnNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnErrorNotificationHandle;
-	void OnErrorNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnErrorNotificationHandle;
+    void OnErrorNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnRoomWarnNotificationHandle;
-	void OnRoomWarnNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnRoomWarnNotificationHandle;
+    void OnRoomWarnNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnRoomErrorNotificationHandle;
-	void OnRoomErrorNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnRoomErrorNotificationHandle;
+    void OnRoomErrorNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnConnectionStateChangeNotificationHandle;
-	void OnConnectionStateChangeNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnConnectionStateChangeNotificationHandle;
+    void OnConnectionStateChangeNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnUserStartAudioCaptureNotificationHandle;
-	void OnUserStartAudioCaptureNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnUserStartAudioCaptureNotificationHandle;
+    void OnUserStartAudioCaptureNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnUserStopAudioCaptureNotificationHandle;
-	void OnUserStopAudioCaptureNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnUserStopAudioCaptureNotificationHandle;
+    void OnUserStopAudioCaptureNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnAudioPlaybackDeviceChangedNotificationHandle;
-	void OnAudioPlaybackDeviceChangeNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnAudioPlaybackDeviceChangedNotificationHandle;
+    void OnAudioPlaybackDeviceChangeNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnRemoteAudioPropertiesReportNotificationHandle;
-	void OnRemoteAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnRemoteAudioPropertiesReportNotificationHandle;
+    void OnRemoteAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnLocalAudioPropertiesReportNotificationHandle;
-	void OnLocalAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnLocalAudioPropertiesReportNotificationHandle;
+    void OnLocalAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnUserMuteAudioNotificationHandle;
-	void OnUserMuteAudioNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnUserMuteAudioNotificationHandle;
+    void OnUserMuteAudioNotification(ppfMessageHandle Message, bool bIsError);
 
-	FDelegateHandle OnMediaDeviceStateChangedNotificationHandle;
-	void OnMediaDeviceStateChangedNotification(ppfMessageHandle Message, bool bIsError);
+    FDelegateHandle OnMediaDeviceStateChangedNotificationHandle;
+    void OnMediaDeviceStateChangedNotification(ppfMessageHandle Message, bool bIsError);
 
+    FDelegateHandle OnRtcUserPublishInfoNotificationHandle;
+    void OnRtcUserPublishInfoNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcUserUnPublishInfoNotificationHandle;
+    void OnRtcUserUnPublishInfoNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnGetRtcStreamSyncInfoNotificationHandle;
+    void OnGetRtcStreamSyncInfoNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcUserMessageSendResultNotificationHandle;
+    FDelegateHandle OnRtcRoomMessageSendResultNotificationHandle;
+    void OnRtcMessageSendResultNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcUserBinaryMessageReceivedNotificationHandle;
+    FDelegateHandle OnRtcRoomBinaryMessageReceivedNotificationHandle;
+    void OnRtcBinaryMessageReceivedNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcRoomMessageReceivedNotificationHandle;
+    void OnRtcRoomMessageReceivedNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcUserMessageReceivedNotificationHandle;
+    void OnRtcUserMessageReceivedNotification(ppfMessageHandle Message, bool bIsError);
+
+    FDelegateHandle OnRtcTokenWilExpireNotificationHandle;
+    void OnRtcTokenWilExpireNotification(ppfMessageHandle Message, bool bIsError);
 
 public:
 
-    /// @brief Gets notified after the user has joined the room.
-	FRtcJoinRoomResult RtcJoinRoomCallback;
+    /// <summary>Gets notified after the user has joined the room.</summary>
+    FRtcJoinRoomResult RtcJoinRoomCallback;
 
-    /// @brief Gets notified after the user has left the room.
-	FRtcLeaveRoomReault RtcLeaveRoomCallback;
+    /// <summary>Gets notified after the user has left the room.</summary>
+    FRtcLeaveRoomReault RtcLeaveRoomCallback;
 
-    /// @brief Gets notified when other users have joined the room.
-	FRtcUserJoinInfo RtcUserJoinInfoCallback;
+    /// <summary>Gets notified when other users have joined the room.</summary>
+    FRtcUserJoinInfo RtcUserJoinInfoCallback;
 
-    /// @brief Gets notified when other users have left the room.
-	FRtcUserLeaveInfo RtcUserLeaveInfoCallback;
+    /// <summary>Gets notified when other users have left the room.</summary>
+    FRtcUserLeaveInfo RtcUserLeaveInfoCallback;
 
-    /// @brief Gets notified of room information.
-	FRtcRoomState RtcRoomStateCallback;
+    /// <summary>Gets notified of room information.</summary>
+    FRtcRoomState RtcRoomStateCallback;
 
-    /// @brief Gets the warning from the room.
-	FRtcRoomWarn RtcRoomWarnCallback;
+    /// <summary>Gets the warning from the room.</summary>
+    FRtcRoomWarn RtcRoomWarnCallback;
 
-    /// @brief Gets the error occurred in the room.
-	FRtcRoomError RtcRoomErrorCallback;
+    /// <summary>Gets the error occurred in the room.</summary>
+    FRtcRoomError RtcRoomErrorCallback;
 
-    /// @brief Gets notified when the audio playback device has been changed.
-	FRtcAudioChangePlaybackDevice RtcAudioPlaybackDeviceChangeCallback;
+    /// <summary>Gets notified when the audio playback device has been changed.</summary>
+    FRtcAudioChangePlaybackDevice RtcAudioPlaybackDeviceChangeCallback;
 
-    /// @brief Gets the volume of each user's voice.
-	FRtcRemoteAudioPropertiesReport RtcRemoteAudioPropertiesReportCallback;
+    /// <summary>Gets the volume of each user's voice.</summary>
+    FRtcRemoteAudioPropertiesReport RtcRemoteAudioPropertiesReportCallback;
 
-    /// @brief Gets the volume of the current user's voice.
-	FRtcLocalAudioPropertiesReport RtcLocalAudioPropertiesReportCallback;
+    /// <summary>Gets the volume of the current user's voice.</summary>
+    FRtcLocalAudioPropertiesReport RtcLocalAudioPropertiesReportCallback;
 
-    /// @brief Gets notified when the user has been muted.
-	FRtcUserMuteAudioInfo RtcUserMuteAudioInfoCallback;
+    /// <summary>Gets notified when the user has been muted.</summary>
+    FRtcUserMuteAudioInfo RtcUserMuteAudioInfoCallback;
 
-    /// @brief Gets notified by the media device has been changed.
-	FRtcMediaDeviceChangeInfo RtcMediaDeviceChangeInfoCallback;
+    /// <summary>Gets notified when the media device has been changed.</summary>
+    FRtcMediaDeviceChangeInfo RtcMediaDeviceChangeInfoCallback;
 
-    /// @brief Gets the warning from the RTC engine.
+    /// <summary>Gets the warning from the RTC engine.</summary>
     FRtcIntResult RtcWarnCallback;
 
-    /// @brief Gets the error from the RTC engine.
+    /// <summary>Gets the error from the RTC engine.</summary>
     FRtcIntResult RtcErrorCallback;
 
-    /// @brief Gets notified when the network connection status has changed.
+    /// <summary>Gets notified when the network connection status has changed.</summary>
     FRtcStringResult RtcConnectStateChangedCallback;
 
-    /// @brief Gets notified when the user has turned on audio capture.
+    /// <summary>Gets notified when the user has turned on audio capturing.</summary>
     FRtcStringResult RtcUserStartAudioCaptureCallback;
 
-    /// @brief Gets notified when the user has turned off audio capture.
+    /// <summary>Gets notified when the user has turned off audio capturing.</summary>
     FRtcStringResult RtcUserStopAudioCaptureCallback;
 
+
+    // V2
+
+    /// <summary>
+    /// Sets the callback to get notified when a remote user publishes audio stream.
+    /// </summary>
+    FRtcUserPublishInfo RtcUserPublishInfoCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when a remote user cancels publishing audio stream.
+    /// </summary>
+    FRtcUserUnPublishInfo RtcUserUnPublishInfoCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when the stream sync info is received.
+    /// </summary>
+    FGetRtcStreamSyncInfo RtcStreamSyncInfoCallback;
+
+    /// <summary>
+    /// Sets the callback to get whether the to-room or to-user message is sent successfully.
+    /// </summary>
+    FRtcMessageSendResult RtcMessageSendResultCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when a to-room binary message is received.
+    /// </summary>
+    FRtcBinaryMessageReceived RtcBinaryMessageReceivedCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when a to-room message is received.
+    /// </summary>
+    FRtcRoomMessageReceived RtcRoomMessageReceivedCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when a to-user message is received.
+    /// </summary>
+    FRtcUserMessageReceived RtcUserMessageReceivedCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when the token is about to expire.
+    /// @note The token will expire in 30 seconds after you receive this notification.
+    /// <ul>
+    /// <li>If you still want to stay in the room, you can get a new token by calling `UpdateToken`.</li>
+    /// <li>If you do not update the token after receiving this notification, you will be kicked out of the room in 30 seconds.</li>
+    /// </ul>
+    /// </summary>
+    FRtcStringResult RtcTokenWillExpireCallback;
 };
 /** @} */ // end of RTC
 /** @} */ // end of Function
+
+

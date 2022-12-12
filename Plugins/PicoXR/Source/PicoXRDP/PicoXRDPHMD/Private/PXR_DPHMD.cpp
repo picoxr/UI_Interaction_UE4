@@ -33,7 +33,9 @@
 #define ARRAYSIZE( a ) ( sizeof( ( a ) ) / sizeof( ( a )[ 0 ] ) )
 #endif
 
-DEFINE_LOG_CATEGORY(LogPicoDP);
+static constexpr float DirectPreviewFov = 101.f;
+
+DEFINE_LOG_CATEGORY(LogPICODP);
 /** Helper function for acquiring the appropriate FSceneViewport */
 FSceneViewport* FindSceneViewport()
 {
@@ -67,21 +69,21 @@ FSceneViewport* FindSceneViewport()
 	return nullptr;
 }
 //---------------------------------------------------
-// PicoDP Plugin Implementation
+// PICODP Plugin Implementation
 //---------------------------------------------------
 
-class FPicoDPPlugin : public IPicoDPPlugin
+class FPICODPPlugin : public IPICODPPlugin
 {
 	/** IHeadMountedDisplayModule implementation */
 	virtual TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > CreateTrackingSystem() override;
 
 	FString GetModuleKeyName() const
 	{
-		return FString(TEXT("PicoDP"));
+		return FString(TEXT("PICODP"));
 	}
 
 public:
-	FPicoDPPlugin()
+	FPICODPPlugin()
 	{
 	}
 	virtual void StartupModule() override
@@ -148,46 +150,50 @@ public:
 private:
 	TSharedPtr< IHeadMountedDisplayVulkanExtensions, ESPMode::ThreadSafe > VulkanExtensions;
 };
-IMPLEMENT_MODULE(FPicoDPPlugin, PicoXRDPHMD)
+IMPLEMENT_MODULE(FPICODPPlugin, PICOXRDPHMD)
 
-TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > FPicoDPPlugin::CreateTrackingSystem()
+TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > FPICODPPlugin::CreateTrackingSystem()
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP Start CreateTrackingSystem!");
 #if STEAMVR_SUPPORTED_PLATFORMS
-
-	TSharedPtr< FPicoDirectPreviewHMD, ESPMode::ThreadSafe > PicoDPHMD = FSceneViewExtensions::NewExtension<FPicoDirectPreviewHMD>(this);
-	if (PicoDPHMD)
+	FString RHIModuleName=GetSelectedDynamicRHIModuleName(true);
+	if (RHIModuleName=="D3D11RHI")
 	{
-		return PicoDPHMD;
+		TSharedPtr< FPICODirectPreviewHMD, ESPMode::ThreadSafe > PICODPHMD = FSceneViewExtensions::NewExtension<FPICODirectPreviewHMD>(this);
+		if (PICODPHMD)
+		{
+			return PICODPHMD;
+		}
 	}
+	
 #endif//STEAMVR_SUPPORTED_PLATFORMS
 	return nullptr;
 }
 
 
 //---------------------------------------------------
-// PicoDP IHeadMountedDisplay Implementation
+// PICODP IHeadMountedDisplay Implementation
 //---------------------------------------------------
 
 #if STEAMVR_SUPPORTED_PLATFORMS
 
 
-bool FPicoDirectPreviewHMD::IsHMDConnected()
+bool FPICODirectPreviewHMD::IsHMDConnected()
 {
-	return PicoDPPlugin->IsHMDConnected();
+	return PICODPPlugin->IsHMDConnected();
 }
 
-bool FPicoDirectPreviewHMD::IsHMDEnabled() const
+bool FPICODirectPreviewHMD::IsHMDEnabled() const
 {
 	return bHmdEnabled;
 }
 
-EHMDWornState::Type FPicoDirectPreviewHMD::GetHMDWornState()
+EHMDWornState::Type FPICODirectPreviewHMD::GetHMDWornState()
 {
 	return HmdWornState;
 }
 
-void FPicoDirectPreviewHMD::EnableHMD(bool enable)
+void FPICODirectPreviewHMD::EnableHMD(bool enable)
 {
 	bHmdEnabled = enable;
 
@@ -197,7 +203,7 @@ void FPicoDirectPreviewHMD::EnableHMD(bool enable)
 	}
 }
 
-bool FPicoDirectPreviewHMD::GetHMDMonitorInfo(MonitorInfo& MonitorDesc)
+bool FPICODirectPreviewHMD::GetHMDMonitorInfo(MonitorInfo& MonitorDesc)
 {
 	MonitorDesc.MonitorName = "";
 	MonitorDesc.MonitorId = 0;
@@ -205,23 +211,23 @@ bool FPicoDirectPreviewHMD::GetHMDMonitorInfo(MonitorInfo& MonitorDesc)
 	return false;
 }
 
-void FPicoDirectPreviewHMD::GetFieldOfView(float& OutHFOVInDegrees, float& OutVFOVInDegrees) const
+void FPICODirectPreviewHMD::GetFieldOfView(float& OutHFOVInDegrees, float& OutVFOVInDegrees) const
 {
 	OutHFOVInDegrees = 0.0f;
 	OutVFOVInDegrees = 0.0f;
 }
 
-bool FPicoDirectPreviewHMD::DoesSupportPositionalTracking() const
+bool FPICODirectPreviewHMD::DoesSupportPositionalTracking() const
 {
 	return true;
 }
 
-bool FPicoDirectPreviewHMD::HasValidTrackingPosition()
+bool FPICODirectPreviewHMD::HasValidTrackingPosition()
 {
 	return true;
 }
 
-bool FPicoDirectPreviewHMD::GetTrackingSensorProperties(int32 SensorId, FQuat& OutOrientation, FVector& OutOrigin, FXRSensorProperties& OutSensorProperties)
+bool FPICODirectPreviewHMD::GetTrackingSensorProperties(int32 SensorId, FQuat& OutOrientation, FVector& OutOrigin, FXRSensorProperties& OutSensorProperties)
 {
 	OutOrigin = FVector::ZeroVector;
 	OutOrientation = FQuat::Identity;
@@ -229,21 +235,21 @@ bool FPicoDirectPreviewHMD::GetTrackingSensorProperties(int32 SensorId, FQuat& O
 	return true;
 }
 #if ENGINE_MINOR_VERSION >25
-FString FPicoDirectPreviewHMD::GetTrackedDevicePropertySerialNumber(int32 DeviceId)
+FString FPICODirectPreviewHMD::GetTrackedDevicePropertySerialNumber(int32 DeviceId)
 {
 	return FString();
 }
 #endif
-void FPicoDirectPreviewHMD::SetInterpupillaryDistance(float NewInterpupillaryDistance)
+void FPICODirectPreviewHMD::SetInterpupillaryDistance(float NewInterpupillaryDistance)
 {
 }
 
-float FPicoDirectPreviewHMD::GetInterpupillaryDistance() const
+float FPICODirectPreviewHMD::GetInterpupillaryDistance() const
 {
 	return 0.064f;
 }
 
-bool FPicoDirectPreviewHMD::GetCurrentPose(int32 DeviceId, FQuat& CurrentOrientation, FVector& CurrentPosition)
+bool FPICODirectPreviewHMD::GetCurrentPose(int32 DeviceId, FQuat& CurrentOrientation, FVector& CurrentPosition)
 {
 	FQuat tempCurrentOrientation = FQuat::Identity;
 
@@ -261,22 +267,22 @@ bool FPicoDirectPreviewHMD::GetCurrentPose(int32 DeviceId, FQuat& CurrentOrienta
 	return true;
 }
 
-void FPicoDirectPreviewHMD::SetTrackingOrigin(EHMDTrackingOrigin::Type NewOrigin)
+void FPICODirectPreviewHMD::SetTrackingOrigin(EHMDTrackingOrigin::Type NewOrigin)
 {
 }
 
-EHMDTrackingOrigin::Type FPicoDirectPreviewHMD::GetTrackingOrigin() const
+EHMDTrackingOrigin::Type FPICODirectPreviewHMD::GetTrackingOrigin() const
 {
 	return EHMDTrackingOrigin::Floor;
 }
 
-bool FPicoDirectPreviewHMD::GetFloorToEyeTrackingTransform(FTransform& OutStandingToSeatedTransform) const
+bool FPICODirectPreviewHMD::GetFloorToEyeTrackingTransform(FTransform& OutStandingToSeatedTransform) const
 {
 	bool bSuccess = false;
 	return bSuccess;
 }
 #if ENGINE_MINOR_VERSION >26
-FVector2D FPicoDirectPreviewHMD::GetPlayAreaBounds(EHMDTrackingOrigin::Type Origin) const
+FVector2D FPICODirectPreviewHMD::GetPlayAreaBounds(EHMDTrackingOrigin::Type Origin) const
 {
 	FVector2D Bounds;
 	if (Origin == EHMDTrackingOrigin::Stage)
@@ -287,17 +293,17 @@ FVector2D FPicoDirectPreviewHMD::GetPlayAreaBounds(EHMDTrackingOrigin::Type Orig
 	return FVector2D::ZeroVector;
 }
 #endif
-void FPicoDirectPreviewHMD::RecordAnalytics()
+void FPICODirectPreviewHMD::RecordAnalytics()
 {
 }
 
-float FPicoDirectPreviewHMD::GetWorldToMetersScale() const
+float FPICODirectPreviewHMD::GetWorldToMetersScale() const
 {
 	return 100.0f;
 }
 
 
-bool FPicoDirectPreviewHMD::EnumerateTrackedDevices(TArray<int32>& TrackedIds, EXRTrackedDeviceType DeviceType)
+bool FPICODirectPreviewHMD::EnumerateTrackedDevices(TArray<int32>& TrackedIds, EXRTrackedDeviceType DeviceType)
 {
 	TrackedIds.Empty();
 	if (DeviceType == EXRTrackedDeviceType::Any || DeviceType == EXRTrackedDeviceType::HeadMountedDisplay)
@@ -309,17 +315,17 @@ bool FPicoDirectPreviewHMD::EnumerateTrackedDevices(TArray<int32>& TrackedIds, E
 }
 
 
-bool FPicoDirectPreviewHMD::IsTracking(int32 DeviceId)
+bool FPICODirectPreviewHMD::IsTracking(int32 DeviceId)
 {
 	return true;
 }
 
-bool FPicoDirectPreviewHMD::IsChromaAbCorrectionEnabled() const
+bool FPICODirectPreviewHMD::IsChromaAbCorrectionEnabled() const
 {
 	return false;
 }
 
-void FPicoDirectPreviewHMD::OnBeginPlay(FWorldContext& InWorldContext)
+void FPICODirectPreviewHMD::OnBeginPlay(FWorldContext& InWorldContext)
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP OnBeginPlay!");
 	if (CurrentDirectPreview)
@@ -335,7 +341,7 @@ void FPicoDirectPreviewHMD::OnBeginPlay(FWorldContext& InWorldContext)
 	GEngine->FixedFrameRate = 72;
 }
 
-void FPicoDirectPreviewHMD::OnEndPlay(FWorldContext& InWorldContext)
+void FPICODirectPreviewHMD::OnEndPlay(FWorldContext& InWorldContext)
 {
 	if (!GEnableVREditorHacks)
 	{
@@ -346,14 +352,14 @@ void FPicoDirectPreviewHMD::OnEndPlay(FWorldContext& InWorldContext)
 	GEngine->FixedFrameRate = 30;
 }
 
-const FName FPicoDirectPreviewHMD::SystemName(TEXT("PicoDP"));
+const FName FPICODirectPreviewHMD::SystemName(TEXT("PICODP"));
 
-FString FPicoDirectPreviewHMD::GetVersionString() const
+FString FPICODirectPreviewHMD::GetVersionString() const
 {
 	return FString();
 }
 
-bool FPicoDirectPreviewHMD::OnStartGameFrame(FWorldContext& WorldContext)
+bool FPICODirectPreviewHMD::OnStartGameFrame(FWorldContext& WorldContext)
 {
 	if (bStereoEnabled != bStereoDesired)
 	{
@@ -362,56 +368,56 @@ bool FPicoDirectPreviewHMD::OnStartGameFrame(FWorldContext& WorldContext)
 	return true;
 }
 
-void FPicoDirectPreviewHMD::ResetOrientationAndPosition(float yaw)
+void FPICODirectPreviewHMD::ResetOrientationAndPosition(float yaw)
 {
 	ResetOrientation(yaw);
 	ResetPosition();
 }
 
-void FPicoDirectPreviewHMD::ResetOrientation(float Yaw)
+void FPICODirectPreviewHMD::ResetOrientation(float Yaw)
 {
 	BaseOrientation = FQuat::Identity;
 }
-void FPicoDirectPreviewHMD::ResetPosition()
+void FPICODirectPreviewHMD::ResetPosition()
 {
 	BaseOffset = FVector();
 }
 
-void FPicoDirectPreviewHMD::SetBaseRotation(const FRotator& BaseRot)
+void FPICODirectPreviewHMD::SetBaseRotation(const FRotator& BaseRot)
 {
 	BaseOrientation = BaseRot.Quaternion();
 }
-FRotator FPicoDirectPreviewHMD::GetBaseRotation() const
+FRotator FPICODirectPreviewHMD::GetBaseRotation() const
 {
 	return FRotator::ZeroRotator;
 }
 
-void FPicoDirectPreviewHMD::SetBaseOrientation(const FQuat& BaseOrient)
+void FPICODirectPreviewHMD::SetBaseOrientation(const FQuat& BaseOrient)
 {
 	BaseOrientation = BaseOrient;
 }
 
-FQuat FPicoDirectPreviewHMD::GetBaseOrientation() const
+FQuat FPICODirectPreviewHMD::GetBaseOrientation() const
 {
 	return BaseOrientation;
 }
 
-void FPicoDirectPreviewHMD::SetBasePosition(const FVector& BasePosition)
+void FPICODirectPreviewHMD::SetBasePosition(const FVector& BasePosition)
 {
 	BaseOffset = BasePosition;
 }
 
-FVector FPicoDirectPreviewHMD::GetBasePosition() const
+FVector FPICODirectPreviewHMD::GetBasePosition() const
 {
 	return BaseOffset;
 }
 
-bool FPicoDirectPreviewHMD::IsStereoEnabled() const
+bool FPICODirectPreviewHMD::IsStereoEnabled() const
 {
 	return  bStereoEnabled && bHmdEnabled;
 }
 
-bool FPicoDirectPreviewHMD::EnableStereo(bool bStereo)
+bool FPICODirectPreviewHMD::EnableStereo(bool bStereo)
 {
 	if (bStereoEnabled == bStereo)
 	{
@@ -472,7 +478,7 @@ bool FPicoDirectPreviewHMD::EnableStereo(bool bStereo)
 	return bStereoEnabled;
 }
 
-void FPicoDirectPreviewHMD::AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const
+void FPICODirectPreviewHMD::AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const
 {
 	SizeX = FMath::CeilToInt(IdealRenderTargetSize.X * PixelDensity);
 	SizeY = FMath::CeilToInt(IdealRenderTargetSize.Y * PixelDensity);
@@ -484,7 +490,7 @@ void FPicoDirectPreviewHMD::AdjustViewRect(EStereoscopicPass StereoPass, int32& 
 	}
 }
 
-bool FPicoDirectPreviewHMD::GetRelativeEyePose(int32 DeviceId, EStereoscopicPass Eye, FQuat& OutOrientation, FVector& OutPosition)
+bool FPICODirectPreviewHMD::GetRelativeEyePose(int32 DeviceId, EStereoscopicPass Eye, FQuat& OutOrientation, FVector& OutPosition)
 {
 	OutOrientation = FQuat::Identity;
 	OutPosition = FVector::ZeroVector;
@@ -499,7 +505,7 @@ bool FPicoDirectPreviewHMD::GetRelativeEyePose(int32 DeviceId, EStereoscopicPass
 	}
 }
 
-void FPicoDirectPreviewHMD::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
+void FPICODirectPreviewHMD::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
 {
 	// Needed to transform world locked stereo layers
 	PlayerLocation = ViewLocation;
@@ -508,20 +514,25 @@ void FPicoDirectPreviewHMD::CalculateStereoViewOffset(const enum EStereoscopicPa
 	FHeadMountedDisplayBase::CalculateStereoViewOffset(StereoPassType, ViewRotation, WorldToMeters, ViewLocation);
 }
 
-FMatrix FPicoDirectPreviewHMD::GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const
+FMatrix FPICODirectPreviewHMD::GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const
 {
 	check(IsStereoEnabled() || IsHeadTrackingEnforced());
-	
-	FPicoXRFrustumDP Frustum = (StereoPassType == eSSP_LEFT_EYE) ? LeftFrustum : RightFrustum;
+
+	FPICOXRFrustumDP Frustum = (StereoPassType == eSSP_LEFT_EYE) ? LeftFrustum : RightFrustum;
 	const float ProjectionCenterOffset = 0;// 0.151976421f;
 	const float PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
 	// correct far and near planes for reversed-Z projection matrix
 	const float WorldScale = GetWorldToMetersScale() * (1.0 / 100.0f); // physical scale is 100 UUs/meter
 	float ZNear = GNearClippingPlane * WorldScale;
-	Frustum.FovUp = tan(Frustum.FovUp);
-	Frustum.FovDown = tan(Frustum.FovDown);
-	Frustum.FovLeft = tan(Frustum.FovLeft);
-	Frustum.FovRight = tan(Frustum.FovRight);
+
+	const float HalfHFov = FMath::DegreesToRadians(DirectPreviewFov) / 2.f;
+	const float HalfVFov = FMath::DegreesToRadians(DirectPreviewFov) / 2.f;
+
+	Frustum.FovUp = FPlatformMath::Tan(HalfVFov);
+	Frustum.FovDown = -FPlatformMath::Tan(HalfVFov);
+	Frustum.FovLeft = -FPlatformMath::Tan(HalfHFov);
+	Frustum.FovRight =FPlatformMath::Tan(HalfHFov);
+
 	float SumRL = (Frustum.FovRight + Frustum.FovLeft);
 	float SumTB = (Frustum.FovUp + Frustum.FovDown);
 	float InvRL = (1.0f / (Frustum.FovRight - Frustum.FovLeft));
@@ -535,7 +546,7 @@ FMatrix FPicoDirectPreviewHMD::GetStereoProjectionMatrix(const enum EStereoscopi
 
 }
 
-void FPicoDirectPreviewHMD::GetEyeRenderParams_RenderThread(const FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
+void FPICODirectPreviewHMD::GetEyeRenderParams_RenderThread(const FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
 {
 	if (Context.View.StereoPass == eSSP_LEFT_EYE)
 	{
@@ -555,18 +566,18 @@ void FPicoDirectPreviewHMD::GetEyeRenderParams_RenderThread(const FRenderingComp
 	}
 }
 
-bool FPicoDirectPreviewHMD::GetHMDDistortionEnabled(EShadingPath /* ShadingPath */) const
+bool FPICODirectPreviewHMD::GetHMDDistortionEnabled(EShadingPath /* ShadingPath */) const
 {
 	return false;
 }
 
-void FPicoDirectPreviewHMD::OnBeginRendering_GameThread()
+void FPICODirectPreviewHMD::OnBeginRendering_GameThread()
 {
 	check(IsInGameThread());
 	SpectatorScreenController->BeginRenderViewFamily();
 }
 
-void FPicoDirectPreviewHMD::OnBeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& ViewFamily)
+void FPICODirectPreviewHMD::OnBeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& ViewFamily)
 {
 	check(IsInRenderingThread());
 	//UpdatePoses();
@@ -583,14 +594,14 @@ void FPicoDirectPreviewHMD::OnBeginRendering_RenderThread(FRHICommandListImmedia
 	PlayerOrientation = ViewOrientation * MainView->BaseHmdOrientation.Inverse();
 }
 
-FXRRenderBridge* FPicoDirectPreviewHMD::GetActiveRenderBridge_GameThread(bool /* bUseSeparateRenderTarget */)
+FXRRenderBridge* FPICODirectPreviewHMD::GetActiveRenderBridge_GameThread(bool /* bUseSeparateRenderTarget */)
 {
 	check(IsInGameThread());
 
 	return pBridge;
 }
 
-void FPicoDirectPreviewHMD::CalculateRenderTargetSize(const class FViewport& Viewport, uint32& InOutSizeX, uint32& InOutSizeY)
+void FPICODirectPreviewHMD::CalculateRenderTargetSize(const class FViewport& Viewport, uint32& InOutSizeX, uint32& InOutSizeY)
 {
 	check(IsInGameThread());
 
@@ -605,7 +616,7 @@ void FPicoDirectPreviewHMD::CalculateRenderTargetSize(const class FViewport& Vie
 	check(InOutSizeX != 0 && InOutSizeY != 0);
 }
 
-bool FPicoDirectPreviewHMD::NeedReAllocateViewportRenderTarget(const FViewport& Viewport)
+bool FPICODirectPreviewHMD::NeedReAllocateViewportRenderTarget(const FViewport& Viewport)
 {
 	check(IsInGameThread());
 
@@ -623,11 +634,11 @@ bool FPicoDirectPreviewHMD::NeedReAllocateViewportRenderTarget(const FViewport& 
 	}
 	return false;
 }
-static const uint32 PicoDPSwapChainLength = 1;
+static const uint32 PICODPSwapChainLength = 1;
 #if ENGINE_MINOR_VERSION > 25
-bool FPicoDirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples)
+bool FPICODirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples)
 #else
-bool FPicoDirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, uint32 Flags, uint32 TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples /*= 1*/)
+bool FPICODirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, uint32 Flags, uint32 TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples /*= 1*/)
 #endif
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP AllocatedRT!");
@@ -646,7 +657,7 @@ bool FPicoDirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 Siz
 		return true;
 	}
 
-	for (uint32 SwapChainIter = 0; SwapChainIter < PicoDPSwapChainLength; ++SwapChainIter)
+	for (uint32 SwapChainIter = 0; SwapChainIter < PICODPSwapChainLength; ++SwapChainIter)
 	{
 		FRHIResourceCreateInfo CreateInfo;
 		FTexture2DRHIRef TargetableTexture, ShaderResourceTexture;
@@ -676,7 +687,7 @@ bool FPicoDirectPreviewHMD::AllocateRenderTargetTexture(uint32 Index, uint32 Siz
 	return true;
 }
 
-FPicoDirectPreviewHMD::FPicoDirectPreviewHMD(const FAutoRegister& AutoRegister, IPicoDPPlugin* InPicoDPPlugin) :
+FPICODirectPreviewHMD::FPICODirectPreviewHMD(const FAutoRegister& AutoRegister, IPICODPPlugin* InPICODPPlugin) :
 	FHeadMountedDisplayBase(nullptr),
 	FSceneViewExtensionBase(AutoRegister),
 	bHmdEnabled(true),
@@ -695,22 +706,22 @@ FPicoDirectPreviewHMD::FPicoDirectPreviewHMD(const FAutoRegister& AutoRegister, 
 	QuitTimestamp(),
 	bShouldCheckHMDPosition(false),
 	RendererModule(nullptr),
-	PicoDPPlugin(InPicoDPPlugin)
+	PICODPPlugin(InPICODPPlugin)
 {
 	Startup();
 }
 
-FPicoDirectPreviewHMD::~FPicoDirectPreviewHMD()
+FPICODirectPreviewHMD::~FPICODirectPreviewHMD()
 {
 	Shutdown();
 }
 
-bool FPicoDirectPreviewHMD::IsInitialized() const
+bool FPICODirectPreviewHMD::IsInitialized() const
 {
 	return true;
 }
 
-bool FPicoDirectPreviewHMD::Startup()
+bool FPICODirectPreviewHMD::Startup()
 {
 	// grab a pointer to the renderer module for displaying our mirror window
 	static const FName RendererModuleName("Renderer");
@@ -734,9 +745,9 @@ bool FPicoDirectPreviewHMD::Startup()
 #if PLATFORM_WINDOWS
 
 		{
-			auto level = FPicoDPPlugin::GetD3DApiLevel();
+			auto level = FPICODPPlugin::GetD3DApiLevel();
 
-			if (level == FPicoDPPlugin::D3DApiLevel::Direct3D11)
+			if (level == FPICODPPlugin::D3DApiLevel::Direct3D11)
 			{
 				pBridge = new D3D11Bridge(this);
 			}
@@ -757,12 +768,12 @@ bool FPicoDirectPreviewHMD::Startup()
 }
 
 
-void FPicoDirectPreviewHMD::Shutdown()
+void FPICODirectPreviewHMD::Shutdown()
 {
 
 }
 
-const FPicoDirectPreviewHMD::FTrackingFrame& FPicoDirectPreviewHMD::GetTrackingFrame() const
+const FPICODirectPreviewHMD::FTrackingFrame& FPICODirectPreviewHMD::GetTrackingFrame() const
 {
 	if (IsInRenderingThread())
 	{

@@ -4,17 +4,17 @@
 #include "Modules/ModuleManager.h"
 #include "IInputDeviceModule.h"
 
-class IPicoXRInputModule : public IInputDeviceModule
+class IPICOXRInputModule : public IInputDeviceModule
 {
 public:
-	static inline IPicoXRInputModule& Get()
+	static inline IPICOXRInputModule& Get()
 	{
-		return FModuleManager::LoadModuleChecked< IPicoXRInputModule >( "PicoXRInput" );
+		return FModuleManager::LoadModuleChecked< IPICOXRInputModule >( "PICOXRInput" );
 	}
 
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded( "PicoXRInput" );
+		return FModuleManager::Get().IsModuleLoaded( "PICOXRInput" );
 	}
 };
 

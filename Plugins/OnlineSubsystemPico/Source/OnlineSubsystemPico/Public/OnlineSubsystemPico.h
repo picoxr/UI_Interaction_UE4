@@ -27,14 +27,26 @@ typedef TSharedPtr<class FOnlineFriendsPico, ESPMode::ThreadSafe> FOnlineFriends
 
 class FOnlineSessionPico;
 typedef TSharedPtr<class FOnlineSessionPico, ESPMode::ThreadSafe> FOnlineSessionPicoPtr;
+class FOnlineLeaderboardPico;
+typedef TSharedPtr<class FOnlineLeaderboardPico, ESPMode::ThreadSafe> FOnlineLeaderboardPicoPtr;
 
 class FRTCPicoUserInterface;
+class FPicoApplicationInterface;
+class FPicoPresenceInterface;
+class FApplicationLifecycleInterface;
+class FPicoIAPInterface;
+class FPicoUserInterface;
+class FPicoAssetFileInterface;
+class FPicoSportInterface;
+class FPicoLeaderboardsInterface;
+class FPicoAchievementsInterface;
+class FPicoChallengesInterface;
 
 /// @brief OnlineSubsystemPico class inherited from FOnlineSubsystemImpl(Unreal Engine)
 class ONLINESUBSYSTEMPICO_API FOnlineSubsystemPico : public FOnlineSubsystemImpl
 {
 public:
-	virtual ~FOnlineSubsystemPico() = default;
+    virtual ~FOnlineSubsystemPico() = default;
 
     virtual IOnlineSessionPtr GetSessionInterface() const override;
 
@@ -81,16 +93,38 @@ public:
 
     /// @brief Get RTC interface of Pico
     TSharedPtr<FRTCPicoUserInterface> GetRtcUserInterface() const;
-    // FOnlineSubsystemPico
+
+    TSharedPtr<FPicoApplicationInterface> GetApplicationInterface() const;
+
+    TSharedPtr<FApplicationLifecycleInterface> GetApplicationLifecycleInterface() const;
+
+    TSharedPtr<FPicoIAPInterface> GetPicoIAPInterface() const;
+
+    TSharedPtr<FPicoUserInterface> GetPicoUserInterface() const;
+
+    TSharedPtr<FPicoPresenceInterface> GetPicoPresenceInterface() const;
+
+    TSharedPtr<FPicoAssetFileInterface> GetPicoAssetFileInterface() const;
+
+    TSharedPtr<FPicoSportInterface> GetPicoSportInterface() const;
 
     // Game
     FOnlineSessionPicoPtr GetGameSessionInterface() const;
 
+    TSharedPtr<FPicoAchievementsInterface> GetPicoAchievementsInterface() const;
 
+    TSharedPtr<FPicoLeaderboardsInterface> GetPicoLeaderboardsInterface() const;
+
+    TSharedPtr<FPicoChallengesInterface> GetPicoChallengesInterface() const;
+
+    /**
+     * Allows for the PicoSDK calls to be used directly with the Delegates in the Pico PSS
+     */
     void AddAsyncTask(ppfRequest RequestId, FPicoMessageOnCompleteDelegate Delegate);
 
-    FPicoMulticastMessageOnCompleteDelegate& GetOrAddNotify(ppfMessageType MessageType) const;
+    //    void AddAsyncTask(ppfRequest RequestId, FPicoMessageOnCompleteDelegate Delegate);
 
+    FPicoMulticastMessageOnCompleteDelegate& GetOrAddNotify(ppfMessageType MessageType) const;
     void RemoveNotifyDelegate(ppfMessageType MessageType, const FDelegateHandle& Delegate) const;
 
 PACKAGE_SCOPE:
@@ -110,6 +144,8 @@ private:
 
 #if PLATFORM_WINDOWS
     bool InitWithWindowsPlatform() const;
+
+    bool GetWindowsDebugInfo(FString& OutJsonString, FString& OutLogPath) const;
 #elif PLATFORM_ANDROID
     bool InitWithAndroidPlatform();
 #endif
@@ -122,13 +158,32 @@ private:
 
     TSharedPtr<FRTCPicoUserInterface> RtcPicoUserInterface;
 
+    TSharedPtr<FPicoApplicationInterface> PicoApplicationInterface;
+
+    TSharedPtr<FPicoPresenceInterface> PicoPresenceInterface;
+
+    TSharedPtr<FApplicationLifecycleInterface> PicoApplicationLifecycleInterface;
+
+    TSharedPtr<FPicoIAPInterface> PicoIAPInterface;
+
+    TSharedPtr<FPicoUserInterface> PicoUserInterface;
+
+    TSharedPtr<FPicoAssetFileInterface> PicoAssetFileInterface;
+
+    TSharedPtr<FPicoSportInterface> PicoSportInterface;
+
     FOnlineSessionPicoPtr GameSessionInterface;
+
+    FOnlineLeaderboardPicoPtr LeaderboardInterface;
+
+    TSharedPtr<FPicoLeaderboardsInterface> PicoLeaderboardsInterface;
+
+    TSharedPtr<FPicoAchievementsInterface> PicoAchievementsInterface;
+
+    TSharedPtr<FPicoChallengesInterface> PicoChallengesInterface;
 
     /** Online async task runnable */
     class FOnlineAsyncTaskManagerPico* OnlineAsyncTaskThreadRunnable;
-
-    /** Online async task thread */
-    class FRunnableThread* OnlineAsyncTaskThread;
 
 };
 namespace FNetworkProtocolTypes

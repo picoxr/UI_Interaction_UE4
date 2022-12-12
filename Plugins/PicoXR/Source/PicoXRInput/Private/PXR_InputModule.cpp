@@ -4,34 +4,34 @@
 #include "IPXR_HMDModule.h"
 #include "PXR_Input.h"
 
-#define LOCTEXT_NAMESPACE "FPicoXRInputModule"
+#define LOCTEXT_NAMESPACE "FPICOXRInputModule"
 
-FPicoXRInputModule::FPicoXRInputModule()
+FPICOXRInputModule::FPICOXRInputModule()
 	:InputDevice(nullptr)
 {
 }
 
-FPicoXRInputModule::~FPicoXRInputModule()
+FPICOXRInputModule::~FPICOXRInputModule()
 {
 }
 
-void FPicoXRInputModule::StartupModule()
+void FPICOXRInputModule::StartupModule()
 {
 	IInputDeviceModule::StartupModule();
 }
 
-void FPicoXRInputModule::ShutdownModule()
+void FPICOXRInputModule::ShutdownModule()
 {
 	IInputDeviceModule::ShutdownModule();
 }
 
-TSharedPtr< class IInputDevice > FPicoXRInputModule::CreateInputDevice(const TSharedRef< FGenericApplicationMessageHandler >& InMessageHandler)
+TSharedPtr< class IInputDevice > FPICOXRInputModule::CreateInputDevice(const TSharedRef< FGenericApplicationMessageHandler >& InMessageHandler)
 {
-	if (IPicoXRHMDModule::IsAvailable())
+	if (IPICOXRHMDModule::IsAvailable())
 	{
-		if (UPicoXRHMDFunctionLibrary::GetPicoXRHMD())
+		if (UPICOXRHMDFunctionLibrary::GetPICOXRHMD())
 		{
-			InputDevice = MakeShared<FPicoXRInput>();
+			InputDevice = MakeShared<FPICOXRInput>();
 			if (InputDevice)
 			{
 				InputDevice->SetMessageHandler(InMessageHandler);
@@ -42,6 +42,6 @@ TSharedPtr< class IInputDevice > FPicoXRInputModule::CreateInputDevice(const TSh
 	return nullptr;
 }
 
-IMPLEMENT_MODULE(FPicoXRInputModule, PicoXRInput)
+IMPLEMENT_MODULE(FPICOXRInputModule, PICOXRInput)
 #undef LOCTEXT_NAMESPACE
 

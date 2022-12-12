@@ -16,7 +16,7 @@ extern "C" {
 
 typedef uint64_t ppfID;
 typedef uint64_t ppfRequest;
-
+typedef uint8_t* UInt8Array;
 /// @brief Represents an RequestID that can used as a default.
 /// We guarantee that no valid Request ID will equal invalidRequestID
 const uint64_t invalidRequestID = 0;

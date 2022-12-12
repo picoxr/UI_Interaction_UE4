@@ -4,18 +4,18 @@
 
 #define PICO_MRC_SUPPORTED_PLATFORMS PLATFORM_ANDROID
 
-class IPicoXRMRCModule : public IModuleInterface
+class IPICOXRMRCModule : public IModuleInterface
 {
 
 public:
 
-	static inline IPicoXRMRCModule& Get()
+	static inline IPICOXRMRCModule& Get()
 	{
-		return FModuleManager::GetModuleChecked< IPicoXRMRCModule >("PicoXRMRC");
+		return FModuleManager::GetModuleChecked< IPICOXRMRCModule >("PICOXRMRC");
 	}
 
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded("PicoXRMRC");
+		return FModuleManager::Get().IsModuleLoaded("PICOXRMRC");
 	}
 };

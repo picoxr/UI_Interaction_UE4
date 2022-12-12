@@ -1,0 +1,40 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.6.1.20221025",
+	"FriendlyName": "PicoSpatialAudio",
+	"Description": "Provide sound spatialization and environmental acoustics simulation for developers",
+	"Category": "Audio",
+	"CreatedBy": "Pico Interactive",
+	"CreatedByURL": "https://developer.pico-interactive.com/sdk/index?device_id=1&platform_id=2",
+	"DocsURL": "https://developer.pico-interactive.com/document/doc",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "PicoSpatialAudio",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Android",
+				"Mac",
+				"Win64"
+			]
+		},
+		{
+			"Name": "PicoSpatialAudioEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"WhitelistPlatforms": [
+				"Android",
+				"Mac",
+				"Win64"
+			]
+		}
+	]
+}

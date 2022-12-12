@@ -12,13 +12,4 @@ typedef enum ppfLaunchType_ {
     ppfLaunchType_Deeplink,
 } ppfLaunchType;
 
-/// @brief Converts an ppfLaunchType enum value to a string
-/// The returned string does not need to be freed
-PPF_PUBLIC_FUNCTION(const char*) ppfLaunchType_ToString(ppfLaunchType value);
-
-/// @brief Converts a string representing an ppfLaunchType enum value to an enum value
-///
-PPF_PUBLIC_FUNCTION(ppfLaunchType) ppfLaunchType_FromString(const char* str);
-
-
 #endif //MATRIX_PPF_LAUNCHTYPE_H

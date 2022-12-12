@@ -1,19 +1,27 @@
-// This file is generated automatically. Please don't edit it.
+
 
 #ifndef PPF_FUNCTIONS_RTC_H
 #define PPF_FUNCTIONS_RTC_H
 
 #include "PPF_Types.h"
 #include "PPF_Platform_Defs.h"
-#include "PPF_RtcEarMonitorMode.h"
-#include "PPF_RtcAudioScenarioType.h"
+#include "PPF_RtcMuteState.h"
 #include "PPF_RtcPauseResumeMediaType.h"
+#include "PPF_RtcMediaStreamType.h"
+#include "PPF_RtcEngineInitResult.h"
+#include "PPF_RtcEarMonitorMode.h"
+#include "PPF_RtcAudioPropertyOptions.h"
+#include "PPF_RtcStreamSyncInfoOptions.h"
+#include "PPF_RtcScreenMediaType.h"
+#include "PPF_RtcAudioScenarioType.h"
 #include "PPF_RtcAudioPlaybackDevice.h"
 #include "PPF_RtcRoomOptions.h"
-#include "PPF_RtcEngineInitResult.h"
+#include "PPF_RtcAudioSourceType.h"
 #include "PPF_RtcStreamIndex.h"
-#include "PPF_RtcMuteState.h"
-#include "PPF_RtcAudioPropertyOptions.h"
+#include "PPF_RtcVideoEncoderOptions.h"
+#include "PPF_RtcVideoSourceType.h"
+#include "PPF_RtcAudioFrameOptions.h"
+#include "PPF_RtcVideoFrameOptions.h"
 
 /// @file PPF_Functions_Rtc.h
 /// @ingroup RTC
@@ -123,6 +131,86 @@ PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StartAudioCapture();
 ///
 PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StopAudioCapture();
 
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_PublishScreen(const char* roomId,ppfRtcMediaStreamType streamType);
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_RoomPublishStream(const char* roomId,ppfRtcMediaStreamType streamType);
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_RoomSetRemoteAudioPlaybackVolume(const char* roomId,const char*userId,int volume);
+
+// v3
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_RoomSubscribeStream(const char* roomId,const char* userId,ppfRtcMediaStreamType mediaType);
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_RoomUnPublishStream(const char* roomId,ppfRtcMediaStreamType streamType);
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_RoomUnsubscribeStream(const char* roomId,const char* userId,ppfRtcMediaStreamType mediaType);
+
+
+PPF_PUBLIC_FUNCTION(int64_t) ppf_Rtc_SendRoomBinaryMessage(const char* roomId,UInt8Array message,int length);
+
+
+PPF_PUBLIC_FUNCTION(int64_t) ppf_Rtc_SendRoomMessage(const char* roomId,const char* message);
+
+// engine 8个
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_SendStreamSyncInfo(UInt8Array data,int length,ppfRtcStreamSyncInfoOptionsHandle config);
+
+
+PPF_PUBLIC_FUNCTION(int64_t) ppf_Rtc_SendUserBinaryMessage(const char* roomId,const char* userId,UInt8Array message,int length);
+
+
+PPF_PUBLIC_FUNCTION(int64_t) ppf_Rtc_SendUserMessage(const char* roomId,const char* userId,const char* message);
+
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_SetAudioSourceType(ppfRtcAudioSourceType type);
+
+
+// 视频相关
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_SetScreenAudioSourceType(ppfRtcAudioSourceType sourceType);
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_SetScreenAudioStreamIndex(ppfRtcStreamIndex index);
+
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_SetScreenVideoEncoderConfig(ppfRtcVideoEncoderOptionsHandle config);
+
+/*
+i32 PushScreenAudioFrame(1:AudioFrame audioFrame);
+i32 PushScreenFrame(1:VideoFrame videoFrame);
+i32 PushExternalAudioFrame(1:AudioFrame audioFrame);
+i32 PushExternalVideoFrame(1:VideoFrame videoFrame);
+*/
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_SetVideoEncoderConfig(ppfRtcVideoEncoderOptionsHandle config);
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_SetVideoSourceType(ppfRtcStreamIndex streamIndex,ppfRtcVideoSourceType type);
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StartScreenCapture(ppfRtcScreenMediaType mediaType,void* context);
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StartVideoCapture();
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StopScreenCapture();
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_StopVideoCapture();
+
+
+PPF_PUBLIC_FUNCTION(void) ppf_Rtc_UnPublishScreen(const char* roomId,ppfRtcMediaStreamType streamType);
+
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_PushExternalAudioFrame(ppfRtcAudioFrameOptionsHandle audioFrame);
+
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_PushExternalVideoFrame(ppfRtcVideoFrameOptionsHandle videoFrame);
+
+// 自定义视频流和音频流
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_PushScreenAudioFrame(ppfRtcAudioFrameOptionsHandle audioFrame);
+
+
+PPF_PUBLIC_FUNCTION(int) ppf_Rtc_PushScreenVideoFrame(ppfRtcVideoFrameOptionsHandle videoFrame);
 
 #endif
 

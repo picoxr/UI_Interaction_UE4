@@ -3,16 +3,16 @@
 using UnrealBuildTool;
 using System.IO;
 
-public class PicoXRInput : ModuleRules
+public class PICOXRInput : ModuleRules
 {
-	public PicoXRInput(ReadOnlyTargetRules Target) : base(Target)
+	public PICOXRInput(ReadOnlyTargetRules Target) : base(Target)
 	{
-        System.Console.WriteLine(" Build the PicoXRInput Plugin");
+        System.Console.WriteLine(" Build the PICOXRInput Plugin");
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        string PicoXRLibsDirectory = Path.Combine(ModuleDirectory, @"..\..\Libs");
-        string PicoXRHeaderDirectory = Path.Combine(PicoXRLibsDirectory, @"Include");
-        PicoXRHeaderDirectory = Path.GetFullPath(PicoXRHeaderDirectory);
+        string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, @"..\..\Libs");
+        string PICOXRHeaderDirectory = Path.Combine(PICOXRLibsDirectory, @"Include");
+        PICOXRHeaderDirectory = Path.GetFullPath(PICOXRHeaderDirectory);
 
         PrivateIncludePathModuleNames.AddRange(
                 new []
@@ -31,13 +31,13 @@ public class PicoXRInput : ModuleRules
                     "Engine",
                     "InputCore",
                     "HeadMountedDisplay",
-                    "PicoXRHMD"
+                    "PICOXRHMD"
             });
         PrivateIncludePaths.AddRange(
                 new [] {
-					"PicoXRInput/Private",
-                    "PicoXRHMD/Private",
-                    PicoXRHeaderDirectory,
+					"PICOXRInput/Private",
+                    "PICOXRHMD/Private",
+                    PICOXRHeaderDirectory,
                 });
 
     }

@@ -14,7 +14,7 @@
 /// @param  userID User ID retrieved with this application.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ovrMessage_User_Get will be generated in response.
+/// A message with type ::ppfMessageType_User_Get will be generated in response.
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 /// If no error occurred, the message will contain a payload of type ::ppfUserHandle.
 /// Extract the payload from the message handle with ::ppf_Message_GetUser().
@@ -79,6 +79,12 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_User_GetLoggedInUserFriendsAndRooms();
 
 
 PPF_PUBLIC_FUNCTION(ppfRequest) ppf_User_GetNextUserAndRoomArrayPage(const char* param);
+
+
+PPF_PUBLIC_FUNCTION(ppfRequest) ppf_User_GetAuthorizedPermissions();
+
+PPF_PUBLIC_FUNCTION(ppfRequest) ppf_User_RequestUserPermissions(const char** permissions, int size);
+
 
 #endif
 

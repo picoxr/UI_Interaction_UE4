@@ -5,20 +5,21 @@
 #include <array>
 #include "HeadMountedDisplayTypes.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "PXR_HMDTypes.h"
 #include "PXR_HMDFunctionLibrary.generated.h"
 
 class UTexture2D;
 
 /* Boundary boundary types*/
 UENUM(BlueprintType)
-enum class EPicoXRBoundaryType : uint8
+enum class EPICOXRBoundaryType : uint8
 {
 	Outer	    UMETA(DisplayName = "The Outer Boundary"),
     PlayArea	UMETA(DisplayName = "The Play Area Boundary"),
 };
 
 UENUM(BlueprintType)
-enum class EPicoXRBoundaryState :uint8
+enum class EPICOXRBoundaryState :uint8
 {
 	GobackDialog,
 	ToofarDialog,
@@ -39,7 +40,7 @@ enum class EPicoXRBoundaryState :uint8
 };
 
 UENUM(BlueprintType)
-enum class EPicoXRTrackedDeviceType : uint8
+enum class EPICOXRTrackedDeviceType : uint8
 {
 	None    UMETA(DisplayName = "No Devices"),
     HMD     UMETA(DisplayName = "HMD"),
@@ -50,7 +51,7 @@ enum class EPicoXRTrackedDeviceType : uint8
 };
 
 UENUM(BlueprintType)
-enum class EPicoXRNodeType : uint8
+enum class EPICOXRNodeType : uint8
 {
 	LeftHand,
     RightHand,
@@ -58,19 +59,30 @@ enum class EPicoXRNodeType : uint8
 };
 
 UENUM(BlueprintType)
-enum class EPicoXRCameraType :uint8
+enum class EPICOXRCameraType :uint8
 {
 	Left   UMETA(DisplayName = "Left Camera"),
     Right  UMETA(DisplayName = "Right Camera")
 };
 
 UENUM(BlueprintType)
-enum class EPicoXRFoveationLevel :uint8 
+enum class EPICOXRFoveationLevel :uint8 
 {
 	Low,
     Medium,
     High,
 	TopHigh
+};
+
+UENUM(BlueprintType)
+enum class EPICOXRDeviceAbilities :uint8 
+{
+	TRACKING_MODE_ROTATION_BIT UMETA(DisplayName = "SupportRotationTracking"),
+	TRACKING_MODE_POSITION_BIT UMETA(DisplayName = "SupportPositionTracking"),
+	TRACKING_MODE_EYE_BIT UMETA(DisplayName = "SupportEyeTracking"),
+	TRACKING_MODE_FACE_BIT UMETA(DisplayName = "SupportFaceTracking"),
+	TRACKING_MODE_VCMOTOR_BIT UMETA(DisplayName = "SupportBroadBandMotor"),
+	TRACKING_MODE_HAND_BIT UMETA(DisplayName = "SupportHandTracking")
 };
 
 USTRUCT(BlueprintType)
@@ -99,75 +111,75 @@ struct FPxrSensorState {
 		int poseTimeStampNs;
 };
 
-USTRUCT(BlueprintType, meta = (DisplayName = "PicoXREyeTrackingData"))
-struct FPicoXREyeTrackingData
+USTRUCT(BlueprintType, meta = (DisplayName = "PICOXREyeTrackingData"))
+struct FPICOXREyeTrackingData
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		int32  LeftEyePoseStatus;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		int32  RightEyePoseStatus;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		int32  CombinedEyePoseStatus;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  LeftEyeGazePoint;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  RightEyeGazePoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  CombinedEyeGazePoint;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  LeftEyeGazeVector;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  RightEyeGazeVector;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector  CombinedEyeGazeVector;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		float  LeftEyeOpenness;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		float  RightEyeOpenness;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		float  LeftEyePupilDilation;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		float  RightEyePupilDilation;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector   LeftEyePositionGuide;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector   RightEyePositionGuide;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		FVector   FoveatedGazeDirection;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PicoXREyeTrackingData")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PICOXREyeTrackingData")
 		int32     FoveatedGazeTrackingState;
 };
 
-DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoXRIPDChangedDelegate, float, Ipd);
+DECLARE_DYNAMIC_DELEGATE_OneParam(FPICOXRIPDChangedDelegate, float, Ipd);
 UCLASS()
-class PICOXRHMD_API UPicoXRHMDFunctionLibrary : public UBlueprintFunctionLibrary
+class PICOXRHMD_API UPICOXRHMDFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:
-	static FPicoXRIPDChangedDelegate PicoXRIPDChangedCallback;
+	static FPICOXRIPDChangedDelegate PICOXRIPDChangedCallback;
 
-	UPicoXRHMDFunctionLibrary();
+	UPICOXRHMDFunctionLibrary();
 
-	static class FPicoXRHMD* PicoXRHMD;
-	static FPicoXRHMD* GetPicoXRHMD();
+	static class FPICOXRHMD* PICOXRHMD;
+	static FPICOXRHMD* GetPICOXRHMD();
 	/**
 	* Get HMD devices current orientation.
 	* @return  devices current orientation.
@@ -265,17 +277,17 @@ public:
 
 	/**
 	* Set IPD changed delegate.
-	* @param OnPicoXRIPDChanged  (In) FPicoXRIPDChangedDelegate.
+	* @param OnPICOXRIPDChanged  (In) FPICOXRIPDChangedDelegate.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static void PXR_IPDChangedDelegates(FPicoXRIPDChangedDelegate OnPicoXRIPDChanged);
+		static void PXR_IPDChangedDelegates(FPICOXRIPDChangedDelegate OnPICOXRIPDChanged);
 
 	/**
 	* Get event manager.
-	* @return UPicoXREventManager class reference.
+	* @return UPICOXREventManager class reference.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-    static class UPicoXREventManager* PXR_GetEventManager();
+    static class UPICOXREventManager* PXR_GetEventManager();
 
 	/**
     * Get device series number.
@@ -337,7 +349,7 @@ public:
 		static bool GetFocusState();
 
 #pragma region Boundary
-	static class UPicoXRBoundarySystem* GetBoundarySystemInterface();
+	static class UPICOXRBoundarySystem* GetBoundarySystemInterface();
 	/**
 	* Whether an effective Boundary exists
 	* @return true:Exist,false: No exit.
@@ -376,7 +388,7 @@ public:
 	* @param ClosestPointNormal     (out) Normal of closest point
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static bool PXR_BoundaryTestNode(EPicoXRNodeType DeviceType, EPicoXRBoundaryType BoundaryType, bool &IsTriggering, float &ClosestDistance, FVector &ClosestPoint, FVector &ClosestPointNormal);
+		static bool PXR_BoundaryTestNode(EPICOXRNodeType DeviceType, EPICOXRBoundaryType BoundaryType, bool &IsTriggering, float &ClosestDistance, FVector &ClosestPoint, FVector &ClosestPointNormal);
 
 	/**
 	* Get the intersection result between a UE4 coordinate and a Boundary boundary
@@ -388,7 +400,7 @@ public:
 	* @param ClosestPointNormal     (out) Normal of closest point
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static bool PXR_BoundaryTestPoint(FVector Point, EPicoXRBoundaryType BoundaryType, bool &IsTriggering, float &ClosestDistance, FVector &ClosestPoint, FVector &ClosestPointNormal);
+		static bool PXR_BoundaryTestPoint(FVector Point, EPICOXRBoundaryType BoundaryType, bool &IsTriggering, float &ClosestDistance, FVector &ClosestPoint, FVector &ClosestPointNormal);
 	
 	/**
 	* Returns the list of points in UE world space of the requested Boundary Type 
@@ -396,14 +408,14 @@ public:
 	* @return The array of points in UE world space of the requested Boundary Type .
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static TArray<FVector> PXR_GetBoundaryGeometry(EPicoXRBoundaryType BoundaryType);
+		static TArray<FVector> PXR_GetBoundaryGeometry(EPICOXRBoundaryType BoundaryType);
 
 	/**
 	* Returns the dimensions in UE world space of the requested Boundary Type
 	* @param BoundaryType			(in) An enum representing the boundary type requested, either Outer Boundary (exact Boundary bounds) or PlayArea (rectangle inside the Outer Boundary)
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static FVector PXR_GetBoundaryDimensions(EPicoXRBoundaryType BoundaryType);
+		static FVector PXR_GetBoundaryDimensions(EPICOXRBoundaryType BoundaryType);
 
 	/**
 	* Get an image of the device's camera.
@@ -411,7 +423,7 @@ public:
 	* @param CameraImage        (out) The image of the device's camera.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static bool PXR_GetBoundarySeeThroughData(EPicoXRCameraType CameraType,UTexture2D* &CameraImage);
+		static bool PXR_GetBoundarySeeThroughData(EPICOXRCameraType CameraType,UTexture2D* &CameraImage);
 
 	/**
 	* Set the size of the image of the device's camera.
@@ -430,7 +442,7 @@ public:
 	* Get dialog state.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static void PXR_GetDialogState(EPicoXRBoundaryState & State);
+		static void PXR_GetDialogState(EPICOXRBoundaryState & State);
 
 #pragma  endregion Boundary
 
@@ -446,14 +458,14 @@ public:
 	* @return  Foveation rendering level.
 	*/
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		 static bool PXR_GetFoveationLevel(EPicoXRFoveationLevel &FoveationLevel);
+		 static bool PXR_GetFoveationLevel(EPICOXRFoveationLevel &FoveationLevel);
 
 	/**
 	* Set  Foveation rendering level.
 	* @param Level   rendering level.
 	*/
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		 static bool PXR_SetFoveationLevel(EPicoXRFoveationLevel Level);
+		 static bool PXR_SetFoveationLevel(EPICOXRFoveationLevel Level);
 
 	/**
 	* Set  Foveation rendering parameter.
@@ -464,7 +476,7 @@ public:
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		 static bool PXR_SetFoveationParameter(FVector2D FoveationGainValue, float FoveationAreaValue, float FoveationMinimumValue);
 
-#pragma region Eyetracking
+#pragma region FaceOrEyetracking
 	/**
 	* Get EyeTracking gaze ray.
 	* @param Origin     The starting point of an eye-tracking ray.
@@ -478,45 +490,21 @@ public:
 	* @return  EyeTracking data.
 	*/
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		 static FPicoXREyeTrackingData PXR_GetEyeTrackingData();
-	
-     UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-         static void PXR_EnableEyeTrackingMarker(bool Enable);
+		 static FPICOXREyeTrackingData PXR_GetEyeTrackingData();
 
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		 static bool PXR_GetEyeTrackingPos(FVector &EyeTrackingPos);
 
+	 //UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
+		 static bool PXR_GetFaceTrackingData(int64 InTimeStamp, int64& OutTimeStamp, TArray<float>& BlendShapeWeight, TArray<float>& VideoInputValid, float &LaughingProb, TArray<float>& EmotionProb, TArray<float>& Reserved);
+
 	 UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		 static bool PXR_EnableFaceTracking(bool enable);
-	
-#pragma endregion EyeTracking
+		 static bool PXR_EnableEyeTracking(bool enable);
 
-#pragma region SplashScreen
-	/**
-	 * Adds loading splash screen with parameters.
-	 * @param Texture			  (in) A texture asset to be used for the splash. Gear VR uses it as a path for loading icon; all other params are currently ignored by Gear VR.
-	 * @param TranslationInMeters (in) Initial translation of the center of the splash screen (in meters).
-	 * @param Rotation			  (in) Initial rotation of the splash screen, with the origin at the center of the splash screen.
-	 * @param SizeInMeters		  (in) Size, in meters, of the quad with the splash screen.
-	 * @param DeltaRotation		  (in) Incremental rotation, that is added each 2nd frame to the quad transform. The quad is rotated around the center of the quad.
-	 * @param bClearBeforeAdd	  (in) If true, clears splashes before adding a new one.
-	 */
-	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-	static bool PXR_AddSplashScreen(class UTexture2D* Texture, FVector TranslationInMeters, FRotator Rotation, FVector2D SizeInMeters = FVector2D(1.0f, 1.0f), bool bClearBeforeAdd = false);
+	 //UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
+		 static bool PXR_EnableFaceTracking(EPICOXRFaceTrackingMode FaceTrackingMode);
 
-	/**
-	 * Removes all the splash screens.
-	 */
-	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-	static void PXR_ClearLoadingSplashScreens();
-
-	/**
-	 * Enable auto show splash screen.
-	 */
-	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-	static void PXR_EnableAutoShowSplashScreen(bool Enable);
-
-#pragma  endregion SplashScreen
+#pragma endregion FaceOrEyeTracking
 	
 	/**
 	* Set sensor lost custom mode.
@@ -546,6 +534,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
 		static void PXR_GetPredictedMainSensorState(FPxrSensorState& sensorState, int& sensorFrameIndex);
 
+	/**
+	* Query Abilities of Device.
+	*/
+	UFUNCTION(BlueprintCallable,Category= "PXR|PXRHMD")
+	    static bool PXR_QueryDeviceAbilities(EPICOXRDeviceAbilities DeviceAbility);
+
 	UFUNCTION(BlueprintCallable, Category = "PXR|PXRHMD")
-		static void PXR_SetLargeSpaceEnable(bool bEnable,int ext=0);
+	static void PXR_SetLateLatchingEnable(bool Value);
+	
 };

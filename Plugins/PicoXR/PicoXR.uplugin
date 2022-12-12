@@ -1,13 +1,13 @@
 {
   "FileVersion": 3,
   "Version": 1,
-  "VersionName": "2.0.5.4",
-  "FriendlyName": "PicoXR",
+  "VersionName": "2.1.2.3",
+  "FriendlyName": "PICO XR",
   "Description": "",
   "Category": "Virtual Reality",
-  "CreatedBy": "Pico Technology Co., Ltd",
-  "CreatedByURL": "https://www.pico-interactive.com/",
-  "DocsURL": "http://sdk.picovr.com/docs/UnrealSDK/cn/index.html",
+  "CreatedBy": "PICO Technology Co., Ltd",
+  "CreatedByURL": "https://www.picoxr.com/",
+  "DocsURL": "https://developer-global.pico-interactive.com/document/ue4",
   "MarketplaceURL": "",
   "SupportURL": "",
   "EnabledByDefault": true,
@@ -20,7 +20,7 @@
   ],
   "Modules": [
     {
-      "Name": "PicoXRHMD",
+      "Name": "PICOXRHMD",
       "Type": "Runtime",
       "LoadingPhase": "PostConfigInit",
       "WhitelistPlatforms": [
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "Name": "PicoXRInput",
+      "Name": "PICOXRInput",
       "Type": "Runtime",
       "LoadingPhase": "PostEngineInit",
       "WhitelistPlatforms": [
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "Name": "PicoXRDPInput",
+      "Name": "PICOXRDPInput",
       "Type": "Runtime",
       "LoadingPhase": "Default",
       "WhitelistPlatforms": [
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "Name": "PicoXRMRC",
+      "Name": "PICOXRMRC",
       "Type": "Runtime",
       "LoadingPhase": "PostEngineInit",
       "WhitelistPlatforms": [
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "Name": "PicoXRDPHMD",
+      "Name": "PICOXRDPHMD",
       "Type": "Runtime",
       "LoadingPhase": "PostConfigInit",
       "WhitelistPlatforms": [

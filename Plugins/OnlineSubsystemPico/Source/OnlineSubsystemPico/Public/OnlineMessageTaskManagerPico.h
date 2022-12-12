@@ -7,9 +7,11 @@
 #include "CoreMinimal.h"
 #include "PPF_Platform.h"
 #include "OnlineAsyncTaskManager.h"
+#include "OnlineSubsystemPicoNames.h"
 
 DECLARE_DELEGATE_TwoParams(FPicoMessageOnCompleteDelegate, ppfMessageHandle, bool /*bIsTimeOut or bIsError*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FPicoMulticastMessageOnCompleteDelegate, ppfMessageHandle, bool);
+
 
 class FOnlineAsyncTaskPico : public FOnlineAsyncTaskBasic<class FOnlineSubsystemPico>
 {
@@ -117,13 +119,11 @@ public:
 
     virtual void TriggerDelegates() override
     {
-#if PLATFORM_ANDROID
         if (MessageHandle)
         {
             Delegate.Broadcast(MessageHandle, bIsError);
             ppf_FreeMessage(MessageHandle);
         }
-#endif
     }
 };
 
@@ -133,7 +133,7 @@ class FOnlineAsyncTaskManagerPico : public FOnlineAsyncTaskManager
 private:
     TMap<ppfMessageType, FPicoMulticastMessageOnCompleteDelegate> NotificationMap;
 
-    TMap<ppfRequest, FOnlineAsyncTaskPico*> RequestTaskMap;
+    TMap<uint64, FOnlineAsyncTaskPico*> RequestTaskMap;
 
 protected:
 
@@ -151,6 +151,8 @@ public:
 
     // FOnlineAsyncTaskManager
     virtual void OnlineTick() override;
+
+    void TickTask();
 
     void CollectedRequestTask(ppfRequest Request, FOnlineAsyncTaskPico* InTask);
 

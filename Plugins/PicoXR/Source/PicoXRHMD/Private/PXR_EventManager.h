@@ -7,8 +7,9 @@
 #include "PXR_EventManager.generated.h"
 
 //ControllerDelegate
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPXRDeviceMainChangedDelegage,int32,Handness);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPXRDeviceConnectChangedDelegage,int32,Handness,int32,State);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPXRDeviceMainChangedDelegate,int32,Handness);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FPXRDeviceConnectChangedDelegate,int32,Handness,int32,State);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPXRInputDeviceChangedDelegate,int32,State);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPXRLongHomeKey);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPXRResume);
 //HMDDelegate
@@ -16,18 +17,18 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPXRIpdChanged,float,NewIpd);
 //SystemDisplayRateDelegate
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPXRRefreshRateChanged, float, NewRate);
 UCLASS()
-class UPicoXREventManager : public UObject
+class UPICOXREventManager : public UObject
 {
 	GENERATED_BODY()
 public:
 	
-	static UPicoXREventManager* GetInstance();
+	static UPICOXREventManager* GetInstance();
 	
 	UPROPERTY(BlueprintAssignable)
-	FPXRDeviceMainChangedDelegage DeviceMainChangedDelegate;
+	FPXRDeviceMainChangedDelegate DeviceMainChangedDelegate;
 	
 	UPROPERTY(BlueprintAssignable)
-	FPXRDeviceConnectChangedDelegage DeviceConnectChangedDelegate;
+	FPXRDeviceConnectChangedDelegate DeviceConnectChangedDelegate;
 
 	UPROPERTY(BlueprintAssignable)
 	FPXRIpdChanged IpdChangedDelegate;
@@ -40,4 +41,7 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FPXRRefreshRateChanged RefreshRateChangedDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FPXRInputDeviceChangedDelegate InputDeviceChangedDelegate;
 };

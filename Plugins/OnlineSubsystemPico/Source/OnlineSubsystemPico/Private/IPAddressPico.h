@@ -15,10 +15,18 @@
 /**
 * Fake an internet ip address but in reality using an ppfID
 */
+
 class FInternetAddrPico : public FInternetAddr
 {
 PACKAGE_SCOPE:
+
+#if ENGINE_MAJOR_VERSION > 4
 	FUniqueNetIdPicoRef PicoId;
+#elif ENGINE_MINOR_VERSION > 26
+	FUniqueNetIdPicoRef PicoId;
+#elif ENGINE_MINOR_VERSION > 24
+	FUniqueNetIdPico PicoId;
+#endif
 
 	/**
 	* Copy Constructor
@@ -28,18 +36,58 @@ PACKAGE_SCOPE:
 	{
 	}
 
+
 public:
 	/**
 	* Constructor. Sets address to default state
 	*/
+
+
+#if ENGINE_MAJOR_VERSION > 4
 	FInternetAddrPico() :
 		PicoId(FUniqueNetIdPico::EmptyId())
 	{
 	}
 
 	/**
+* Constructor
+*/
+	explicit FInternetAddrPico(const FUniqueNetIdPico& InPicoId) :
+		PicoId(InPicoId.AsShared())
+	{
+	}
+
+	/**
 	* Constructor
 	*/
+	explicit FInternetAddrPico(ppfID InPicoId) :
+		PicoId(FUniqueNetIdPico::Create(InPicoId))
+	{
+	}
+	explicit FInternetAddrPico(const FString& UserId) :
+		PicoId(FUniqueNetIdPico::Create(UserId))
+	{
+	}
+
+	static FInternetAddrPico FromUrl(const FURL& ConnectURL)
+	{
+		FString Host = ConnectURL.Host;
+		// Parse the URL: unreal://<pico_id>.pico or unreal://<pico_id>
+		int32 DotIndex;
+		FString PicoStringID = (Host.FindChar('.', DotIndex)) ? Host.Left(DotIndex) : Host;
+		uint64 PicoUintId = strtoull(TCHAR_TO_ANSI(*PicoStringID), nullptr, 10);
+		const FUniqueNetIdPicoRef PicoNetId = FUniqueNetIdPico::Create(PicoUintId);
+		return FInternetAddrPico(*PicoNetId);
+	}
+#elif ENGINE_MINOR_VERSION > 26
+	FInternetAddrPico() :
+		PicoId(FUniqueNetIdPico::EmptyId())
+	{
+	}
+
+	/**
+* Constructor
+*/
 	explicit FInternetAddrPico(const FUniqueNetIdPico& InPicoId) :
 		PicoId(InPicoId.AsShared())
 	{
@@ -68,6 +116,45 @@ public:
 		return FInternetAddrPico(*PicoNetId);
 	}
 
+#elif ENGINE_MINOR_VERSION > 24
+	FInternetAddrPico() :
+		PicoId(0ull)
+	{
+	}
+
+	/**
+	* Constructor
+	*/
+	explicit FInternetAddrPico(const FUniqueNetIdPico& InPicoId) :
+		PicoId(InPicoId)
+	{
+	}
+
+	/**
+	* Constructor
+	*/
+	explicit FInternetAddrPico(ppfID InPicoId) :
+		PicoId(FUniqueNetIdPico(InPicoId))
+	{
+	}
+	explicit FInternetAddrPico(const FString& UserId) :
+		PicoId(FUniqueNetIdPico(UserId))
+	{
+	}
+
+	explicit FInternetAddrPico(const FURL& ConnectURL)
+	{
+		auto Host = ConnectURL.Host;
+
+		// Parse the URL: unreal://<oculus_id>.oculus or unreal://<oculus_id>
+		int32 DotIndex;
+		auto PicoStringID = (Host.FindChar('.', DotIndex)) ? Host.Left(DotIndex) : Host;
+		PicoId = strtoull(TCHAR_TO_ANSI(*PicoStringID), nullptr, 10);
+	}
+#endif
+
+
+#if ENGINE_MAJOR_VERSION > 4
 	ppfID GetID() const
 	{
 		return PicoId->GetID();
@@ -76,9 +163,29 @@ public:
 	{
 		return PicoId->GetStringID();
 	}
+#elif ENGINE_MINOR_VERSION > 26
+	ppfID GetID() const
+	{
+		return PicoId->GetID();
+	}
+	FString GetStrID() const
+	{
+		return PicoId->GetStringID();
+	}
+#elif ENGINE_MINOR_VERSION > 24
+	ppfID GetID() const
+	{
+		return PicoId.GetID();
+	}
+	FString GetStrID() const
+	{
+		return PicoId.GetStringID();
+	}
+#endif
 
 	virtual TArray<uint8> GetRawIp() const override
 	{
+#if ENGINE_MAJOR_VERSION > 4
 		TArray<uint8> RawAddressArray;
 		const uint8* PicoIdWalk = PicoId->GetBytes();
 		while (RawAddressArray.Num() < PicoId->GetSize())
@@ -86,6 +193,25 @@ public:
 			RawAddressArray.Add(*PicoIdWalk);
 			++PicoIdWalk;
 		}
+#elif ENGINE_MINOR_VERSION > 26
+		TArray<uint8> RawAddressArray;
+		const uint8* PicoIdWalk = PicoId->GetBytes();
+		while (RawAddressArray.Num() < PicoId->GetSize())
+		{
+			RawAddressArray.Add(*PicoIdWalk);
+			++PicoIdWalk;
+		}
+
+#elif ENGINE_MINOR_VERSION > 24
+		TArray<uint8> RawAddressArray;
+		const uint8* PicoIdWalk = PicoId.GetBytes();
+		while (RawAddressArray.Num() < PicoId.GetSize())
+		{
+			RawAddressArray.Add(*PicoIdWalk);
+			++PicoIdWalk;
+		}
+#endif
+
 
 		// We want to make sure that these arrays are in big endian format.
 #if PLATFORM_LITTLE_ENDIAN
@@ -112,7 +238,15 @@ public:
 			NewId |= (ppfID)WorkingArray[i] << (i * 8);
 		}
 
+#if ENGINE_MAJOR_VERSION > 4
 		PicoId = FUniqueNetIdPico::Create(NewId);
+#elif ENGINE_MINOR_VERSION > 26
+		PicoId = FUniqueNetIdPico::Create(NewId);
+#elif ENGINE_MINOR_VERSION > 24
+		PicoId = FUniqueNetIdPico(NewId);
+#endif
+
+
 	}
 
 	/**
@@ -199,7 +333,14 @@ public:
 	*/
 	FString ToString(bool bAppendPort) const override
 	{
+#if ENGINE_MAJOR_VERSION > 4
 		return PicoId->ToString();
+#elif ENGINE_MINOR_VERSION > 26
+		return PicoId->ToString();
+#elif ENGINE_MINOR_VERSION > 24
+		return PicoId.ToString();
+#endif
+
 	}
 
 	/**
@@ -235,7 +376,14 @@ public:
 	*/
 	virtual bool IsValid() const override
 	{
+#if ENGINE_MAJOR_VERSION > 4
 		return PicoId->IsValid();
+#elif ENGINE_MINOR_VERSION > 26
+		return PicoId->IsValid();
+#elif ENGINE_MINOR_VERSION > 24
+		return PicoId.IsValid();
+#endif
+
 	}
 
 	virtual TSharedRef<FInternetAddr> Clone() const override

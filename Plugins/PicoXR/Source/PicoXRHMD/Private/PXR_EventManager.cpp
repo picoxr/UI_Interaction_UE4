@@ -2,12 +2,12 @@
 
 #include "PXR_EventManager.h"
 
-static UPicoXREventManager* EventManagerInstance = nullptr;
-UPicoXREventManager* UPicoXREventManager::GetInstance() 
+static UPICOXREventManager* EventManagerInstance = nullptr;
+UPICOXREventManager* UPICOXREventManager::GetInstance() 
 {
 	if (EventManagerInstance == nullptr)
     {
-		EventManagerInstance = NewObject<UPicoXREventManager>();
+		EventManagerInstance = NewObject<UPICOXREventManager>();
 		EventManagerInstance->AddToRoot();
 	}
 	return EventManagerInstance;

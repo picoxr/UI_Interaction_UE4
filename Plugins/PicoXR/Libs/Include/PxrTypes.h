@@ -19,7 +19,8 @@ static const PxrTrackingModeFlags PXR_TRACKING_MODE_ROTATION_BIT = 0x00000001;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_POSITION_BIT = 0x00000002;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_EYE_BIT = 0x00000004;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_FACE_BIT = 0x00000008;
-static const PxrTrackingModeFlags PXR_TRACKING_MODE_PHOENIX_BIT = 0x00000010;
+static const PxrTrackingModeFlags PXR_TRACKING_MODE_FACE_LIBSYNC = 0x2000;
+static const PxrTrackingModeFlags PXR_TRACKING_MODE_VCMOTOR_BIT = 0x00000010;
 static const PxrTrackingModeFlags PXR_TRACKING_MODE_HAND_BIT = 0x00000020;
 typedef struct PxrVulkanBinding_ {
     VkInstance instance;
@@ -54,11 +55,23 @@ typedef struct PxrQuaternionf_ {
     float    w;
 } PxrQuaternionf;
 
+typedef struct PxrVector2f_ {
+    float    x;
+    float    y;
+} PxrVector2f;
+
 typedef struct PxrVector3f_ {
     float    x;
     float    y;
     float    z;
 } PxrVector3f;
+
+typedef struct PxrVector4f_ {
+    float    x;
+    float    y;
+    float    z;
+    float    w;
+}PxrVector4f;
 
 typedef struct PxrRecti_ {
     int x;
@@ -172,13 +185,7 @@ enum BlendShapeIndex {
     TongueOut = 51,
 };
 
-#define BLEND_SHAPE_NUMS 52
 
-typedef struct PXrFaceTrackingData{
-    int64_t timestamp;                         // us​
-    float blendShapeWeight[BLEND_SHAPE_NUMS];   //52（51+1）表情分量权重系​
-    float reserved[16];
-} PxrFaceTrackingData;
 typedef struct PxrLayerHeader_ {
     int              layerId;
     uint32_t         layerFlags;
@@ -189,6 +196,70 @@ typedef struct PxrLayerHeader_ {
     int              imageIndex;
     PxrPosef         headPose;
 } PxrLayerHeader;
+
+typedef struct PxrLayerBlend_ {
+    PxrBlendFactor srcColor;
+    PxrBlendFactor dstColor;
+    PxrBlendFactor srcAlpha;
+    PxrBlendFactor dstAlpha;
+}PxrLayerBlend;
+
+typedef struct PxrLayerHeader2_ {
+    int              layerId;
+    uint32_t         layerFlags;
+    float            colorScale[4];
+    float            colorBias[4];
+    int              compositionDepth;
+    int              sensorFrameIndex;
+    int              imageIndex;
+    PxrPosef         headPose;
+    PxrLayerShape    layerShape;
+    uint32_t         useLayerBlend;
+    PxrLayerBlend    layerBlend;
+    uint32_t         useImageRect;
+    PxrRecti         imageRect[2];
+    uint64_t         reserved[4];
+} PxrLayerHeader2;
+
+typedef struct PxrLayerProjection2_ {
+    PxrLayerHeader2   header;
+    float             depth;
+    PxrVector4f       motionVectorScale;
+    PxrVector4f       motionVectorOffset;
+    PxrPosef          deltaPose;
+    float             minDepth;
+    float             maxDepth;
+    float             nearZ;
+    float             farZ;
+} PxrLayerProjection2;
+
+typedef struct PxrLayerQuad2_ {
+    PxrLayerHeader2   header;
+    PxrPosef          pose[2];
+    PxrVector2f       size[2];
+} PxrLayerQuad2;
+
+typedef struct PxrLayerCylinder2_ {
+    PxrLayerHeader2   header;
+    PxrPosef          pose[2];
+    float             radius[2];
+    float             centralAngle[2];
+    float             height[2];
+} PxrLayerCylinder2;
+
+typedef struct PxrLayerEquirect2_ {
+    PxrLayerHeader2   header;
+    PxrPosef          pose[2];
+    float             radius[2];
+    float             centralHorizontalAngle[2];
+    float             upperVerticalAngle[2];
+    float             lowerVerticalAngle[2];
+} PxrLayerEquirect2;
+
+typedef struct PxrLayerCube2_ {
+    PxrLayerHeader2    header;
+    PxrPosef           pose[2];
+} PxrLayerCube2;
 
 typedef struct PxrLayerProjection_ {
     PxrLayerHeader    header;
@@ -210,12 +281,13 @@ typedef struct PxrLayerCylinder_ {
 } PxrLayerCylinder;
 
 typedef struct PxrLayerEquirect_ {
-    PxrLayerHeader    header;
-    PxrPosef          pose;
-    float             radius;
-    float             centralHorizontalAngle;
-    float             upperVerticalAngle;
-    float             lowerVerticalAngle;
+    PxrLayerHeader2   header;
+    PxrPosef          pose[2];
+    float             radius[2];
+    float             scaleX[2];
+    float             scaleY[2];
+    float             biasX[2];
+    float             biasY[2];
 } PxrLayerEquirect;
 
 typedef struct PxrEventDataBaseHeader_ {
@@ -384,19 +456,24 @@ typedef struct PxrSeeThoughData_ {
     int64_t               startTimeOfExposure;
     bool                  valid;
 }PxrSeeThoughData;
-typedef struct AudioClipData_{
-    uint32_t delaytag;
-    uint32_t slot;
-    uint32_t buffersize;
-    uint32_t sampleRate;
-    uint32_t channelMask;
-    uint32_t bitrate;
-    uint32_t slotConfig;
-    uint32_t datatype;
-    uint32_t isCache;
-    uint32_t clicpId;
-} AudioClipData;
 
+typedef struct
+{
+    uint32_t slot;
+    uint32_t reversal;
+    float amp;
+}PxrVibrate_info;
+
+typedef struct
+{
+    int slot;
+    uint64_t buffersize;
+    int sampleRate;
+    int channelCounts;
+    int bitrate;
+    int reversal;
+    int isCache;
+} PxrVibrate_config;
 typedef enum XrTrackingMode
 {
     XR_TRACKING_MODE_ROTATION = 0x1,
@@ -404,4 +481,19 @@ typedef enum XrTrackingMode
     XR_TRACKING_MODE_EYE = 0x4,
     XR_TRACKING_MODE_FACE = 0x8
 }XrTrackingMode;
+#define BLEND_SHAPE_NUMS 72
+typedef struct {
+    int64_t timestamp;
+    float blendShapeWeight[BLEND_SHAPE_NUMS];
+    float videoInputValid[10];
+    float laughingProb;
+    float emotionProb[10];
+    float reserved[128];
+} PxrFTInfo;
+enum GetDataType {
+    PXR_GET_FACE_DATA_DEFAULT = 0,
+    PXR_GET_FACE_DATA = 3,        // FT
+    PXR_GET_LIP_DATA = 4,        // Lipsync
+    PXR_GET_FACELIP_DATA = 5,        // FT|Lipsync
+};
 #endif  // PXR_TYPES_H

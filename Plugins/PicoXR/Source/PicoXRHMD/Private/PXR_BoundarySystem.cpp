@@ -15,18 +15,18 @@
 #include "PxrTypes.h"
 #endif
 
-UPicoXRBoundarySystem* UPicoXRBoundarySystem::BoundaryInstance = nullptr;
-UPicoXRBoundarySystem* UPicoXRBoundarySystem::GetInstance()
+UPICOXRBoundarySystem* UPICOXRBoundarySystem::BoundaryInstance = nullptr;
+UPICOXRBoundarySystem* UPICOXRBoundarySystem::GetInstance()
 {
 	if (BoundaryInstance == nullptr)
 	{
-		BoundaryInstance = NewObject<UPicoXRBoundarySystem>();
+		BoundaryInstance = NewObject<UPICOXRBoundarySystem>();
 		BoundaryInstance->AddToRoot();
 	}
 	return BoundaryInstance;
 }
 
-UPicoXRBoundarySystem::UPicoXRBoundarySystem()
+UPICOXRBoundarySystem::UPICOXRBoundarySystem()
 	:bIsStartCamera(false)
 	,CurrentImageSize(FIntPoint(640,640))
 	,CameraTextureLeft(nullptr)
@@ -36,7 +36,7 @@ UPicoXRBoundarySystem::UPicoXRBoundarySystem()
 {
 }
 
-UPicoXRBoundarySystem::~UPicoXRBoundarySystem()
+UPICOXRBoundarySystem::~UPICOXRBoundarySystem()
 {
 #if PLATFORM_ANDROID
 	if (bIsStartCamera)
@@ -46,7 +46,7 @@ UPicoXRBoundarySystem::~UPicoXRBoundarySystem()
 #endif
 }
 
-bool UPicoXRBoundarySystem::UPxr_GetConfigured()
+bool UPICOXRBoundarySystem::UPxr_GetConfigured()
 {
 #if PLATFORM_ANDROID
 	bool ReturnValue = false;
@@ -56,7 +56,7 @@ bool UPicoXRBoundarySystem::UPxr_GetConfigured()
 	return  false;
 }
 
-bool UPicoXRBoundarySystem::UPxr_GetEnabled()
+bool UPICOXRBoundarySystem::UPxr_GetEnabled()
 {
 #if PLATFORM_ANDROID
 	bool ReturnValue = false;
@@ -66,14 +66,14 @@ bool UPicoXRBoundarySystem::UPxr_GetEnabled()
 	return  false;
 }
 
-void UPicoXRBoundarySystem::UPxr_SetVisible(bool NewVisible)
+void UPICOXRBoundarySystem::UPxr_SetVisible(bool NewVisible)
 {
 #if PLATFORM_ANDROID
 	Pxr_SetBoundaryVisible(NewVisible);
 #endif
 }
 
-bool UPicoXRBoundarySystem::UPxr_GetVisible()
+bool UPICOXRBoundarySystem::UPxr_GetVisible()
 {
 #if PLATFORM_ANDROID
 	bool ReturnValue = false;
@@ -83,7 +83,7 @@ bool UPicoXRBoundarySystem::UPxr_GetVisible()
 	return  false;
 }
 
-bool UPicoXRBoundarySystem::UPxr_TestNode(int DeviceType, bool bIsPlayArea, bool& IsTriggering, float& ClosestDistance,
+bool UPICOXRBoundarySystem::UPxr_TestNode(int DeviceType, bool bIsPlayArea, bool& IsTriggering, float& ClosestDistance,
 	FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
 #if PLATFORM_ANDROID
@@ -99,19 +99,19 @@ bool UPicoXRBoundarySystem::UPxr_TestNode(int DeviceType, bool bIsPlayArea, bool
 		ClosestPointNormal = FVector(Info.closestPointNormal.x, Info.closestPointNormal.y, Info.closestPointNormal.z);
 		ret = Info.valid;
 
-		ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
-		ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPoint = FPICOXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPointNormal = FPICOXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
 		return true;
 	}
 #endif
 	return false;
 }
 
-bool UPicoXRBoundarySystem::UPxr_TestPoint(FVector Point, bool bIsPlayArea, bool& IsTriggering, float& ClosestDistance,
+bool UPICOXRBoundarySystem::UPxr_TestPoint(FVector Point, bool bIsPlayArea, bool& IsTriggering, float& ClosestDistance,
 	FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
 #if PLATFORM_ANDROID
-	Point = FPicoXRUtils::ConvertUnrealVectorToXRVector(Point, GEngine->XRSystem->GetWorldToMetersScale());
+	Point = FPICOXRUtils::ConvertUnrealVectorToXRVector(Point, GEngine->XRSystem->GetWorldToMetersScale());
 	PxrBoundaryTriggerInfo Info;
 	bool ret = true;
 	PxrVector3f newPoint;
@@ -127,15 +127,15 @@ bool UPicoXRBoundarySystem::UPxr_TestPoint(FVector Point, bool bIsPlayArea, bool
 		ClosestPointNormal = FVector(Info.closestPointNormal.x, Info.closestPointNormal.y, Info.closestPointNormal.z);
 		ret = Info.valid;
 
-		ClosestPoint = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
-		ClosestPointNormal = FPicoXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPoint = FPICOXRUtils::ConvertXRVectorToUnrealVector(ClosestPoint, GEngine->XRSystem->GetWorldToMetersScale());
+		ClosestPointNormal = FPICOXRUtils::ConvertXRVectorToUnrealVector(ClosestPointNormal, GEngine->XRSystem->GetWorldToMetersScale());
 		return true;
 }
 #endif
 	return false;
 }
 
-TArray<FVector> UPicoXRBoundarySystem::UPxr_GetGeometry(bool bIsPlayArea)
+TArray<FVector> UPICOXRBoundarySystem::UPxr_GetGeometry(bool bIsPlayArea)
 {
 	TArray<FVector> BoundaryGeometry; 
 #if PLATFORM_ANDROID
@@ -154,7 +154,7 @@ TArray<FVector> UPicoXRBoundarySystem::UPxr_GetGeometry(bool bIsPlayArea)
 			for (uint32_t i = 0; i < pointsCountOutput; i++)
 			{
 				FVector TempVector = FVector(Data[i].x,Data[i].y,Data[i].z);
-				TempVector = FPicoXRUtils::ConvertXRVectorToUnrealVector(TempVector, GEngine->XRSystem->GetWorldToMetersScale());
+				TempVector = FPICOXRUtils::ConvertXRVectorToUnrealVector(TempVector, GEngine->XRSystem->GetWorldToMetersScale());
 				BoundaryGeometry.Add(TempVector);
 			}
 		}
@@ -164,7 +164,7 @@ TArray<FVector> UPicoXRBoundarySystem::UPxr_GetGeometry(bool bIsPlayArea)
 	return BoundaryGeometry;
 }
 
-FVector UPicoXRBoundarySystem::UPxr_GetDimensions(bool bIsPlayArea)
+FVector UPICOXRBoundarySystem::UPxr_GetDimensions(bool bIsPlayArea)
 {
 	FVector Dimensions = FVector::ZeroVector;
 #if PLATFORM_ANDROID
@@ -173,12 +173,12 @@ FVector UPicoXRBoundarySystem::UPxr_GetDimensions(bool bIsPlayArea)
 	Dimensions.X = NewDimensions.x;
 	Dimensions.Y = NewDimensions.y;
 	Dimensions.Z = NewDimensions.z;
-	Dimensions = FPicoXRUtils::ConvertXRVectorToUnrealVector(Dimensions, GEngine->XRSystem->GetWorldToMetersScale());
+	Dimensions = FPICOXRUtils::ConvertXRVectorToUnrealVector(Dimensions, GEngine->XRSystem->GetWorldToMetersScale());
 #endif
 	return Dimensions;
 }
 
-bool UPicoXRBoundarySystem::UPxr_GetSeeThroughData(int CameraType, UTexture2D*& CameraImage)
+bool UPICOXRBoundarySystem::UPxr_GetSeeThroughData(int CameraType, UTexture2D*& CameraImage)
 {
 #if PLATFORM_ANDROID
 	if(bIsStartCamera == false)
@@ -355,7 +355,7 @@ bool UPicoXRBoundarySystem::UPxr_GetSeeThroughData(int CameraType, UTexture2D*& 
 	return  false;
 }
 
-bool UPicoXRBoundarySystem::UPxr_SetCameraImageSize(FIntPoint ImageSize)
+bool UPICOXRBoundarySystem::UPxr_SetCameraImageSize(FIntPoint ImageSize)
 {
 #if PLATFORM_ANDROID
 	uint32_t width = (uint32_t)ImageSize.X;
@@ -367,7 +367,7 @@ bool UPicoXRBoundarySystem::UPxr_SetCameraImageSize(FIntPoint ImageSize)
 	return false;
 }
 
-int UPicoXRBoundarySystem::UPxr_SetSeeThroughBackground(bool Value)
+int UPICOXRBoundarySystem::UPxr_SetSeeThroughBackground(bool Value)
 {
 #if PLATFORM_ANDROID
 	return Pxr_SetSeeThroughBackground(Value);

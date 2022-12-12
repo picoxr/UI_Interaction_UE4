@@ -1,4 +1,5 @@
 //Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+
 #include "PXR_DPStereoLayers.h"
 #include "CoreMinimal.h"
 #include "PXR_DPPrivate.h"
@@ -12,7 +13,7 @@
 #if STEAMVR_SUPPORTED_PLATFORMS
 
 //=============================================================================
-void SetLayerDescMember(FPicoDPLayer& Layer, const IStereoLayers::FLayerDesc& InLayerDesc)
+void SetLayerDescMember(FPICODPLayer& Layer, const IStereoLayers::FLayerDesc& InLayerDesc)
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP SetLayerDescMember Layer ID:%d",InLayerDesc.Id);
 	if (InLayerDesc.Texture != Layer.LayerDesc.Texture)
@@ -23,7 +24,7 @@ void SetLayerDescMember(FPicoDPLayer& Layer, const IStereoLayers::FLayerDesc& In
 }
 
 //=============================================================================
-bool GetLayerDescMember(const FPicoDPLayer& Layer, IStereoLayers::FLayerDesc& OutLayerDesc)
+bool GetLayerDescMember(const FPICODPLayer& Layer, IStereoLayers::FLayerDesc& OutLayerDesc)
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP GetLayerDescMember Layer ID:%d",Layer.GetLayerId());
 	OutLayerDesc = Layer.LayerDesc;
@@ -31,7 +32,7 @@ bool GetLayerDescMember(const FPicoDPLayer& Layer, IStereoLayers::FLayerDesc& Ou
 }
 
 //=============================================================================
-void MarkLayerTextureForUpdate(FPicoDPLayer& Layer)
+void MarkLayerTextureForUpdate(FPICODPLayer& Layer)
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP MarkLayerTextureForUpdate Layer ID:%d", Layer.GetLayerId());
 	Layer.bUpdateTexture = true;

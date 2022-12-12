@@ -5,70 +5,79 @@
 
 Texture2D InTexture;
 SamplerState InTextureSampler;
-int MipLevel;
 
-void Main(
-	FScreenVertexOutput Input,
-	out float4 OutColor : SV_Target0
+/////////////////////////////////////////////
+
+void MainVertexShader(
+	float4 InPosition : ATTRIBUTE0,
+	float2 InUV : ATTRIBUTE1,
+	out float2 OutUV : TEXCOORD0,
+	out float4 OutPosition : SV_POSITION
 	)
 {
-	OutColor = Texture2DSample(InTexture, InTextureSampler,float2(Input.UV.x,1-Input.UV.y));
-	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+	OutPosition = InPosition;
+	OutUV = InUV;
 }
 
-void MainInvertAlpha(
-	FScreenVertexOutput Input,
+Texture2D<uint> TextureParameter;
+ 
+void MainWhiteShader(
 	out float4 OutColor : SV_Target0
 	)
 {
-	OutColor = Texture2DSample(InTexture, InTextureSampler, Input.UV);
-	OutColor.a = 1.f - OutColor.a;
+	OutColor = float4(1, 1, 1, 1);
 }
 
-void MainsRGBSource(
-	FScreenVertexOutput Input,
+void MainBlackShader(
 	out float4 OutColor : SV_Target0
 	)
 {
-	OutColor = Texture2DSample(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y));
-	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
-	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+	OutColor = float4(0, 0, 0, 0);
 }
 
-void MainMipLevel(
-	FScreenVertexOutput Input,
+TextureCube InTextureCube;
+
+void MainAlphaInverseShader(
+	in float2 uv : TEXCOORD0,
 	out float4 OutColor : SV_Target0
 	)
 {
-	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
-	OutColor.rgb = OutColor.a != 1 ? float3(0,1,0) : OutColor.rgb;
+	float InverseAlpha = 1 - Texture2DSample(InTexture, InTextureSampler, uv).a;
+	OutColor = float4(0, 0, 0, InverseAlpha);
 }
 
-void MainsRGBSourceMipLevel(
-	FScreenVertexOutput Input,
-	out float4 OutColor : SV_Target0
-	)
-{
-	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
-	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
-	OutColor.rgb = OutColor.a != 1 ? float3(0,1,0) : OutColor.rgb;
-}
+int CubeFaceIndex;
 
-void MainMipLevel425(
+void MainForCubemap(
 	FScreenVertexOutput Input,
 	out float4 OutColor : SV_Target0
 	)
 {
-	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
-	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
-}
+	float u = Input.UV.x * 2. - 1.0;
+	float v = Input.UV.y * 2. - 1.0;
 
-void MainsRGBSourceMipLevel425(
-	FScreenVertexOutput Input,
-	out float4 OutColor : SV_Target0
-	)
-{
-	OutColor = Texture2DSampleLevel(InTexture, InTextureSampler, float2(Input.UV.x,1-Input.UV.y), MipLevel);
-	OutColor.rgb = pow( OutColor.rgb, 1.0f / 2.2f );
-	OutColor.rgb = OutColor.a != 0 ? float3(0,1,0) : OutColor.rgb;
+	if(CubeFaceIndex == 0)
+	{
+	    OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(1., v, u));
+	}
+	else if(CubeFaceIndex == 1)
+	{
+		OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(-1., v, -u));
+	}
+	else if(CubeFaceIndex == 2)
+	{
+		OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(u, 1., v));
+	}
+	else if(CubeFaceIndex == 3)
+	{
+		OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(u, -1., -v));
+	}
+	else if(CubeFaceIndex == 5)
+	{
+		OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(-u,v,1.));
+	}
+	else if(CubeFaceIndex == 4)
+	{
+		OutColor = TextureCubeSample(InTextureCube, InTextureSampler, float3(u,v,-1.));
+	}
 }

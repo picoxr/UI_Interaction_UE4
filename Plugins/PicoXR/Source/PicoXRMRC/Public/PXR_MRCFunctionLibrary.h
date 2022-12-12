@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PicoXRMRC/Private/PXR_MRCState.h"
+#include "PICOXRMRC/Private/PXR_MRCState.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "PXR_MRCFunctionLibrary.generated.h"
 
@@ -12,17 +12,29 @@ struct FPXRTrackedCamera;
 class UMaterialInstanceDynamic;
 
 UCLASS()
-class PICOXRMRC_API UPicoXRMRCFunctionLibrary : public UBlueprintFunctionLibrary
+class PICOXRMRC_API UPICOXRMRCFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
 public:
-    //UFUNCTION(BlueprintCallable,Category="PXR|PXRMRC")
-	static bool IsMrcEnabled();
+    UFUNCTION(BlueprintCallable,Category="PXR|PXRMRC")
+	static bool IsMrcActivated();
 
-	//UFUNCTION(BlueprintCallable,Category= "PXR|PXRMRC")
+	UFUNCTION(BlueprintCallable,Category= "PXR|PXRMRC")
 	static bool GetInGameThirdCameraRT(UTextureRenderTarget2D* &Background_RT, UTextureRenderTarget2D*& Forgound_RT);
 
 	//UFUNCTION(BlueprintCallable, Category = "PXR|PXRMRC")
 	static void SimulateEnableMRC(bool enable);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRMRC")
+	static void EnableForegroundMRC(bool enable);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRMRC")
+	static void SetMRCTrackingReference(USceneComponent* TrackingReference);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRMRC")
+	static void SetMRCUseCustomTrans(const FTransform& CustomTrans, bool UseCutomTrans);
+
+	UFUNCTION(BlueprintCallable, Category = "PXR|PXRMRC")
+	static void GetMRCRelativePose(FTransform& CustomTrans);
 };

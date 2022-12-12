@@ -13,17 +13,21 @@
 #include "PxrApi.h"
 #endif
 
-FPicoXREyeTracker::FPicoXREyeTracker()
+FPICOXREyeTracker::FPICOXREyeTracker()
     :bEyeTrackingRun(false)
+    ,bFaceTrackingRun(false)
 {
     FMemory::Memzero(TrackerData);
+#if PLATFORM_ANDROID
+	FMemory::Memzero(faceTrackingData);
+#endif
 }
 
-FPicoXREyeTracker::~FPicoXREyeTracker()
+FPICOXREyeTracker::~FPICOXREyeTracker()
 {
 }
 
-bool FPicoXREyeTracker::Tick(float DeltaTime)
+bool FPICOXREyeTracker::Tick(float DeltaTime)
 {
     if (bEyeTrackingRun)
     {
@@ -33,19 +37,19 @@ bool FPicoXREyeTracker::Tick(float DeltaTime)
 }
 
 
-bool FPicoXREyeTracker::GetEyeTrackerGazeData(FEyeTrackerGazeData& OutGazeData) const
+bool FPICOXREyeTracker::GetEyeTrackerGazeData(FEyeTrackerGazeData& OutGazeData) const
 {
     //TODO: return  GazeData
     return false;
 }
 
-bool FPicoXREyeTracker::GetEyeTrackerStereoGazeData(FEyeTrackerStereoGazeData& OutGazeData) const
+bool FPICOXREyeTracker::GetEyeTrackerStereoGazeData(FEyeTrackerStereoGazeData& OutGazeData) const
 {
     //TODO: return Left/Right GazeData
     return false;
 }
 
-EEyeTrackerStatus FPicoXREyeTracker::GetEyeTrackerStatus() const
+EEyeTrackerStatus FPICOXREyeTracker::GetEyeTrackerStatus() const
 {
     if (bEyeTrackingRun)
     {
@@ -62,12 +66,12 @@ EEyeTrackerStatus FPicoXREyeTracker::GetEyeTrackerStatus() const
     return EEyeTrackerStatus::NotConnected;
 }
 
-bool FPicoXREyeTracker::IsStereoGazeDataAvailable() const
+bool FPICOXREyeTracker::IsStereoGazeDataAvailable() const
 {
     return false;
 }
 
-void FPicoXREyeTracker::SetEyeTrackedPlayer(APlayerController* InPlayerController)
+void FPICOXREyeTracker::SetEyeTrackedPlayer(APlayerController* InPlayerController)
 {
 	if(InPlayerController && InPlayerController != ActivePlayerController)
 	{
@@ -75,63 +79,15 @@ void FPicoXREyeTracker::SetEyeTrackedPlayer(APlayerController* InPlayerControlle
 	}
 }
 
-void FPicoXREyeTracker::DrawDebug(AHUD* HUD, UCanvas* Canvas, const FDebugDisplayInfo& DisplayInfo, float& YL,
+void FPICOXREyeTracker::DrawDebug(AHUD* HUD, UCanvas* Canvas, const FDebugDisplayInfo& DisplayInfo, float& YL,
                                   float& YPos)
 {
-	FPicoXREyeTrackingGazeRay GazeRay;
+	FPICOXREyeTrackingGazeRay GazeRay;
 	GetEyeTrackingGazeRay(GazeRay);
     DrawDebugSphere(HUD->GetWorld(), GazeRay.Origin, 20.0f, 16, FColor::Red);
 }
 
-bool FPicoXREyeTracker::OpenEyeTracking(bool enable)
-{
-    UPicoXRSettings* Settings = GetMutableDefault<UPicoXRSettings>();
-    if (Settings)
-    {
-#if PLATFORM_ANDROID
-        uint32 CurrentTrackingMode = PXR_TRACKING_MODE_POSITION_BIT;
-        if (enable)
-        {
-            CurrentTrackingMode |= PXR_TRACKING_MODE_EYE_BIT;
-        }
-        else
-        {
-            CurrentTrackingMode &= ~PXR_TRACKING_MODE_EYE_BIT;
-        }
-		int CurrentVersion = 0;
-		Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
-        if (CurrentVersion >= 0x2000304)
-		{
-			PxrTrackingModeFlags SupportTrackingMode;
-			Pxr_GetTrackingMode(&SupportTrackingMode);
-            if(PXR_TRACKING_MODE_EYE_BIT & SupportTrackingMode)//Detect if current device suppot eyetracking. 
-            {
-				// Open EyeTracking
-				if (Pxr_SetTrackingMode(CurrentTrackingMode) == 0)
-				{
-					bEyeTrackingRun = enable;
-                    Settings->bEnableEyeTracking = enable;
-					return true;
-				}
-            }
-        }
-        else
-        {
-            // Open EyeTracking
-			if(Pxr_SetTrackingMode(CurrentTrackingMode) == 0)
-			{
-				bEyeTrackingRun = enable;
-                Settings->bEnableEyeTracking = enable;
-                return true;
-			}
-        }
-#endif
-    }
-    Settings->bEnableEyeTracking = false;
-	return false;
-}
-
-bool FPicoXREyeTracker::UPxr_GetEyeTrackingData(FPicoXREyeTrackingData& OutTrackingData)
+bool FPICOXREyeTracker::UPxr_GetEyeTrackingData(FPICOXREyeTrackingData& OutTrackingData)
 {
     if (bEyeTrackingRun)
     {
@@ -141,7 +97,7 @@ bool FPicoXREyeTracker::UPxr_GetEyeTrackingData(FPicoXREyeTrackingData& OutTrack
     return false;
 }
 
-bool FPicoXREyeTracker::GetEyeTrackingDataFromDevice(FPicoXREyeTrackingData& TrackingData)
+bool FPICOXREyeTracker::GetEyeTrackingDataFromDevice(FPICOXREyeTrackingData& TrackingData)
 {
     if (bEyeTrackingRun)
     {
@@ -189,7 +145,7 @@ bool FPicoXREyeTracker::GetEyeTrackingDataFromDevice(FPicoXREyeTrackingData& Tra
 	return true;
 }
 
-bool FPicoXREyeTracker::GetEyeTrackingGazeRay(FPicoXREyeTrackingGazeRay& EyeTrackingGazeRay) const
+bool FPICOXREyeTracker::GetEyeTrackingGazeRay(FPICOXREyeTrackingGazeRay& EyeTrackingGazeRay) const
 {
     EyeTrackingGazeRay.Direction = TrackerData.CombinedEyeGazeVector;
 	EyeTrackingGazeRay.Origin = TrackerData.CombinedEyeGazePoint;
@@ -215,11 +171,11 @@ bool FPicoXREyeTracker::GetEyeTrackingGazeRay(FPicoXREyeTrackingGazeRay& EyeTrac
 	return false;
 }
 
-bool FPicoXREyeTracker::GetEyeDirectionToFoveationRendering(FVector& OutDirection) const
+bool FPICOXREyeTracker::GetEyeDirectionToFoveationRendering(FVector& OutDirection) const
 {
     if (bEyeTrackingRun)
 	{
-		FPicoXREyeTrackingData TempTrackingData;
+		FPICOXREyeTrackingData TempTrackingData;
 		TempTrackingData = TrackerData;
 		FVector FocusPoints[2] = { FVector::ZeroVector,FVector::ZeroVector };
 		if (bEyeTrackingRun)
@@ -261,6 +217,159 @@ bool FPicoXREyeTracker::GetEyeDirectionToFoveationRendering(FVector& OutDirectio
 		OutDirection.X = FocusPoints[0].X;
 		OutDirection.Y = FocusPoints[0].Y;
 		return true;
+	}
+	return false;
+}
+
+bool FPICOXREyeTracker::GetFaceTrackingData(int64 inTimeStamp, int64& outTimeStamp, TArray<float>& blendShapeWeight, TArray<float>& videoInputValid, float &laughingProb, TArray<float>& emotionProb, TArray<float>& reserved)
+{
+	UPICOXRSettings* Settings = GetMutableDefault<UPICOXRSettings>();
+	if (Settings && bFaceTrackingRun)
+	{
+		int64_t pxrTs = inTimeStamp;
+		int pxrFlags = 0;
+		int BSN = 72;
+#if PLATFORM_ANDROID
+		BSN = BLEND_SHAPE_NUMS;
+		switch (Settings->FaceTrackingMode)
+		{
+		case EPICOXRFaceTrackingMode::Disable:
+			pxrFlags = GetDataType::PXR_GET_FACE_DATA_DEFAULT;
+			break;
+		case EPICOXRFaceTrackingMode::FaceOnly:
+			pxrFlags = GetDataType::PXR_GET_FACE_DATA;
+			break;
+		case EPICOXRFaceTrackingMode::LipsOnly:
+			pxrFlags = GetDataType::PXR_GET_LIP_DATA;
+			break;
+		case EPICOXRFaceTrackingMode::FaceAndLips:
+			pxrFlags = GetDataType::PXR_GET_FACELIP_DATA;
+			break;
+		default:
+			break;
+		}
+#endif
+		blendShapeWeight.SetNum(BSN);
+        videoInputValid.SetNum(10);
+        emotionProb.SetNum(10);
+		reserved.SetNum(128);
+#if PLATFORM_ANDROID
+		Pxr_GetFaceTrackingData(pxrTs, pxrFlags, &faceTrackingData);
+        outTimeStamp = faceTrackingData.timestamp;
+		laughingProb = faceTrackingData.laughingProb;
+		FMemory::Memcpy(blendShapeWeight.GetData(), faceTrackingData.blendShapeWeight, sizeof(float) * BSN);
+		FMemory::Memcpy(videoInputValid.GetData(), faceTrackingData.videoInputValid, sizeof(float) * 10);
+		FMemory::Memcpy(emotionProb.GetData(), faceTrackingData.emotionProb, sizeof(float) * 10);
+		FMemory::Memcpy(reserved.GetData(), faceTrackingData.reserved, sizeof(float) * 128);
+#endif
+		return true;
+	}
+	return false;
+}
+
+bool FPICOXREyeTracker::EnableEyeTracking(bool enable)
+{
+	UPICOXRSettings* Settings = GetMutableDefault<UPICOXRSettings>();
+    if (Settings)
+    {
+#if PLATFORM_ANDROID  
+        uint32 TargetTrackingMode = CurrentTrackingMode;
+        if (enable)
+        {
+            TargetTrackingMode |= PXR_TRACKING_MODE_EYE_BIT;
+        }
+        else
+        {
+            TargetTrackingMode &= ~PXR_TRACKING_MODE_EYE_BIT;
+        }
+        int CurrentVersion = 0;
+        Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
+        if (CurrentVersion >= 0x2000304)
+        {
+    		PxrTrackingModeFlags SupportTrackingMode;
+    		Pxr_GetTrackingMode(&SupportTrackingMode);
+    		if (PXR_TRACKING_MODE_EYE_BIT & SupportTrackingMode)//Detect support EyeTracking
+    		{
+    			// Open EyeTracking
+    			if (Pxr_SetTrackingMode(TargetTrackingMode) == 0)
+    			{
+    				bEyeTrackingRun = enable;
+                    CurrentTrackingMode = TargetTrackingMode;
+                    Settings->bEnableEyeTracking = enable;
+    				FString EyeTrackingLog=enable? "Enable Succeeded!": "Disable Succeeded!";
+    				UE_LOG(LogHMD, Log, TEXT("EyeTracking:%s"),*EyeTrackingLog);
+                    return true;
+    			}
+    		}
+        }
+        else
+        {
+    		if (Pxr_SetTrackingMode(TargetTrackingMode) == 0)
+    		{
+    			bEyeTrackingRun = enable;
+                CurrentTrackingMode = TargetTrackingMode;
+                Settings->bEnableEyeTracking = enable;
+    			FString EyeTrackingLog=enable? "Enable Succeeded!": "Disable Succeeded!";
+    			UE_LOG(LogHMD, Log, TEXT("EyeTracking:%s"),*EyeTrackingLog);
+                return true;
+    		}
+        }
+#endif
+    }
+    Settings->bEnableEyeTracking = false;
+	FString EyeTrackingLog=enable? "Enable Failed!": "Disable Failed!";
+	UE_LOG(LogHMD, Log, TEXT("EyeTracking:%s"),*EyeTrackingLog);
+    return false;
+}
+
+bool FPICOXREyeTracker::EnableFaceTracking(EPICOXRFaceTrackingMode mode)
+{
+	UPICOXRSettings* Settings = GetMutableDefault<UPICOXRSettings>();
+	if (Settings)
+	{
+#if PLATFORM_ANDROID
+		uint32 TargetTrackingMode = CurrentTrackingMode;
+        switch (mode)
+        {
+        case EPICOXRFaceTrackingMode::Disable:
+			TargetTrackingMode &= ~PXR_TRACKING_MODE_FACE_BIT;
+			TargetTrackingMode &= ~PXR_TRACKING_MODE_FACE_LIBSYNC;
+            break;
+        case EPICOXRFaceTrackingMode::FaceOnly:
+            TargetTrackingMode |= PXR_TRACKING_MODE_FACE_BIT;
+            TargetTrackingMode &= ~PXR_TRACKING_MODE_FACE_LIBSYNC;
+            break;
+        case EPICOXRFaceTrackingMode::LipsOnly:
+            TargetTrackingMode &= ~PXR_TRACKING_MODE_FACE_BIT;
+            TargetTrackingMode |= PXR_TRACKING_MODE_FACE_LIBSYNC;
+            break;
+        case EPICOXRFaceTrackingMode::FaceAndLips:
+            TargetTrackingMode |= PXR_TRACKING_MODE_FACE_BIT;
+			TargetTrackingMode |= PXR_TRACKING_MODE_FACE_LIBSYNC;
+            break;
+        default:
+            break;
+        }
+		int CurrentVersion = 0;
+		Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
+        if (CurrentVersion >= 0x2000305)
+        {
+            if (Pxr_SetTrackingMode(TargetTrackingMode) == 0)
+			{
+				if (mode==EPICOXRFaceTrackingMode::Disable)
+				{
+                    bFaceTrackingRun = false;
+                }
+                else
+                {
+                    bFaceTrackingRun = true;
+                }
+				CurrentTrackingMode = TargetTrackingMode;
+				UE_LOG(LogHMD, Log, TEXT("Face Tracking Mode:%u"), CurrentTrackingMode);
+                return true;
+            }
+        }
+#endif
 	}
 	return false;
 }

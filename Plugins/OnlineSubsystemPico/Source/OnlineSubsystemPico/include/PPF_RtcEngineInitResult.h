@@ -12,6 +12,7 @@ typedef enum {
     ppfRtcEngineInitResult_Unknown = -999,
     ppfRtcEngineInitResult_AlreadyInitialized = -1,
     ppfRtcEngineInitResult_InvalidConfig = -2,
+    ppfRtcEngineInitResult_SdkNotInitialized = -3,
     ppfRtcEngineInitResult_Success = 0
 } ppfRtcEngineInitResult;
 #endif

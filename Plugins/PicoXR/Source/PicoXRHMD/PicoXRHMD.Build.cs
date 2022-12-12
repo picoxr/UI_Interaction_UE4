@@ -3,11 +3,11 @@
 using UnrealBuildTool;
 using System.IO;
 
-public class PicoXRHMD : ModuleRules
+public class PICOXRHMD : ModuleRules
 {
-	public PicoXRHMD(ReadOnlyTargetRules Target) : base(Target)
+	public PICOXRHMD(ReadOnlyTargetRules Target) : base(Target)
 	{
-        System.Console.WriteLine(" Build the PicoXRHMD Plugin");
+        System.Console.WriteLine(" Build the PICOXRHMD Plugin");
        
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         string EngineDir = Path.GetFullPath(Target.RelativeEnginePath);
@@ -15,19 +15,19 @@ public class PicoXRHMD : ModuleRules
         string OpenGlDrvPrivatePath = Path.Combine(EngineDir, "Source/Runtime/OpenGLDrv/Private");
         string VulkanRhiPrivatePath = Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private");
         string VulkanRhiPrivateAndroidPath = Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private/Android");
-        string PicoXRLibsDirectory = Path.Combine(ModuleDirectory, "../../Libs");
-        string PicoXRHeaderDirectory = Path.Combine(PicoXRLibsDirectory, "Include");
-        PicoXRHeaderDirectory = Path.GetFullPath(PicoXRHeaderDirectory);
+        string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, "../../Libs");
+        string PICOXRHeaderDirectory = Path.Combine(PICOXRLibsDirectory, "Include");
+        PICOXRHeaderDirectory = Path.GetFullPath(PICOXRHeaderDirectory);
 
         PrivateIncludePaths.AddRange(
                 new [] {
-                   "PicoXRHMD/Private",
+                   "PICOXRHMD/Private",
                    RendererPrivatePath,
                    OpenGlDrvPrivatePath,
                    VulkanRhiPrivatePath,
                    VulkanRhiPrivateAndroidPath,
-                   PicoXRHeaderDirectory,
-                   "PicoXRInput/Private"
+                   PICOXRHeaderDirectory,
+                   "PICOXRInput/Private"
                 });
 
         PublicIncludePathModuleNames.AddRange(
@@ -82,10 +82,10 @@ public class PicoXRHMD : ModuleRules
         {
 	        // Vulkan
             AddEngineThirdPartyPrivateStaticDependencies(Target, "Vulkan");
-            PublicAdditionalLibraries.Add(Path.Combine(PicoXRLibsDirectory, "armeabi-v7a", "libpxr_api.so"));
-            PublicAdditionalLibraries.Add(Path.Combine(PicoXRLibsDirectory, "arm64-v8a", "libpxr_api.so"));
+            PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "armeabi-v7a", "libpxr_api.so"));
+            PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "arm64-v8a", "libpxr_api.so"));
             string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
-            AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(PluginPath, "PicoXR_UPL.xml"));
+            AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(PluginPath, "PICOXR_UPL.xml"));
            
         }
     }

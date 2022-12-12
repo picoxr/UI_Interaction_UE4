@@ -14,6 +14,7 @@ PPF_PUBLIC_FUNCTION(void) ppf_ApplicationByPresenceOptions_SetDestinationApiName
 PPF_PUBLIC_FUNCTION(void) ppf_ApplicationByPresenceOptions_SetLobbySessionId(ppfApplicationByPresenceOptionsHandle handle, const char * value);
 PPF_PUBLIC_FUNCTION(void) ppf_ApplicationByPresenceOptions_SetMatchSessionId(ppfApplicationByPresenceOptionsHandle handle, const char * value);
 PPF_PUBLIC_FUNCTION(void) ppf_ApplicationByPresenceOptions_SetTrackingId(ppfApplicationByPresenceOptionsHandle handle, const char * value);
+PPF_PUBLIC_FUNCTION(void) ppf_ApplicationByPresenceOptions_SetExtra(ppfApplicationByPresenceOptionsHandle handle, const char * value);
 
 
 #endif //MATRIX_PPF_APPLICATIONBYPRESENCEOPTIONS_H

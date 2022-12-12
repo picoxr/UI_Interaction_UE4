@@ -4,25 +4,25 @@
 #include "CoreMinimal.h"
 #include "XRSwapChain.h"
 
-class FPicoXRHMD;
+class FPICOXRHMD;
 
-class FPicoXRSwapChain : public FXRSwapChain
+class FPICOXRSwapChain : public FXRSwapChain
 {
 public:
-	FPicoXRSwapChain(TArray<FTextureRHIRef>&& InRHITextureSwapChain, const FTextureRHIRef & InRHITexture,FPicoXRHMD* InXRHMD);
-	virtual ~FPicoXRSwapChain() {}
+	FPICOXRSwapChain(TArray<FTextureRHIRef>&& InRHITextureSwapChain, const FTextureRHIRef & InRHITexture,FPICOXRHMD* InXRHMD);
+	virtual ~FPICOXRSwapChain() {}
 protected:
-	FPicoXRHMD* PicoXRHMD;
+	FPICOXRHMD* PICOXRHMD;
 };
 
 #if ENGINE_MINOR_VERSION>25
-FXRSwapChainPtr CreateSwapChain_OpenGL(uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FPicoXRHMD* InXRHMD, uint32 MSAAValue);
+FXRSwapChainPtr CreateSwapChain_OpenGL(uint32 LayerID, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FPICOXRHMD* InXRHMD, uint32 MSAAValue);
 #else
-FXRSwapChainPtr CreateSwapChain_OpenGL(uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, FPicoXRHMD* InHMD, uint32 MASSValue);
+FXRSwapChainPtr CreateSwapChain_OpenGL(uint32 LayerID, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, FPICOXRHMD* InHMD, uint32 MASSValue);
 #endif
 
 #if ENGINE_MINOR_VERSION>25
-FXRSwapChainPtr CreateSwapChain_Vulkan(uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FPicoXRHMD* InXRHMD, uint32 MSAAValue);
+FXRSwapChainPtr CreateSwapChain_Vulkan(uint32 LayerID, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FPICOXRHMD* InXRHMD, uint32 MSAAValue);
 #else
-FXRSwapChainPtr CreateSwapChain_Vulkan(uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, FPicoXRHMD* InHMD, uint32 MASSValue);
+FXRSwapChainPtr CreateSwapChain_Vulkan(uint32 LayerID, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, FPICOXRHMD* InHMD, uint32 MASSValue);
 #endif

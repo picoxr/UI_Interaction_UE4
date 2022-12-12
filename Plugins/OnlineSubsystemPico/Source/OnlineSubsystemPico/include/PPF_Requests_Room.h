@@ -23,7 +23,7 @@
 /// friends, as they're primarially discoverable by examining which rooms your
 /// friends are in.
 ///
-/// A message with type ::ppfMessage_Room_CreateAndJoinPrivate2 will be generated in response.
+/// A message with type ::ppfMessageType_Room_CreateAndJoinPrivate2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -35,7 +35,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_CreateAndJoinPrivate2(ppfRoomJoinPolicy
 /// @param roomID The room to load.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_Get will be generated in response.
+/// A message with type ::ppfMessageType_Room_Get will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -50,7 +50,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_Get(ppfID roomID);
 /// updates on your current room (by using subscribeToUpdates), you can use
 /// this to refresh the data.
 ///
-/// A message with type ::ppfMessage_Room_GetCurrent will be generated in response.
+/// A message with type ::ppfMessageType_Room_GetCurrent will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -66,7 +66,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_GetCurrent();
 /// Because of this, it's often possible to load the users in a room, but not to take
 /// those users and load their room.
 ///
-/// A message with type ::ppfMessage_Room_GetCurrentForUser will be generated in response.
+/// A message with type ::ppfMessageType_Room_GetCurrentForUser will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -108,7 +108,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_GetCurrentForUser(const char* userID);
 ///   ppf_Room_GetInvitableUsers2(roomOptions);
 ///   ppf_RoomOptions_Destroy(roomOptions);
 ///
-/// A message with type ::ppfMessage_Room_GetInvitableUsers2 will be generated in response.
+/// A message with type ::ppfMessageType_Room_GetInvitableUsers2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -121,7 +121,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_GetInvitableUsers2(ppfRoomOptionsHandle
 /// @param page_size page entry number in response (should range in [5,20])
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_GetModeratedRooms will be generated in response.
+/// A message with type ::ppfMessageType_Room_GetModeratedRooms will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -137,7 +137,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_GetModeratedRooms(int32_t page_idx, int
 /// The invitee will receive a notification via ppfNotification_Room_InviteReceived, and/or they
 /// can poll for room invites using ppf_Notification_GetRoomInvites().
 ///
-/// A message with type ::ppfMessage_Room_InviteUser will be generated in response.
+/// A message with type ::ppfMessageType_Room_InviteUser will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -150,7 +150,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_InviteUser(ppfID roomID, const char *in
 /// @param roomOptions Additional room configuration for this request. Optional.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_Join2 will be generated in response.
+/// A message with type ::ppfMessageType_Room_Join2 will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -164,7 +164,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_Join2(ppfID roomID, ppfRoomOptionsHandl
 /// @param kickDurationSeconds Length of the ban, in seconds.
 /// @return The request ID of this async function.
 /// 
-/// A message with type ::ppfMessage_Room_KickUser will be generated in response.
+/// A message with type ::ppfMessageType_Room_KickUser will be generated in response.
 ///
 /// First call ::ppf_Room_Leavef_Message_IsError() to check if an error occurred.
 ///
@@ -180,7 +180,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_KickUser(ppfID roomID, const char* user
 /// build out their own Invite UI although it has the same rules as if you
 /// build it yourself.
 ///
-/// A message with type ::ppfMessage_Room_LaunchInvitableUserFlow will be generated in response.
+/// A message with type ::ppfMessageType_Room_LaunchInvitableUserFlow will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -191,7 +191,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_LaunchInvitableUserFlow(ppfID roomID);
 /// @param roomID The room you're currently in.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_Leave will be generated in response.
+/// A message with type ::ppfMessageType_Room_Leave will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -204,7 +204,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_Leave(ppfID roomID);
 /// @param description The new name of the room.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_SetDescription will be generated in response.
+/// A message with type ::ppfMessageType_Room_SetDescription will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -221,7 +221,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_SetDescription(ppfID roomID, const char
 /// NOTE: Room datastores only allow string values, and Max key length is 32 bytes, and max value length is 64 bytes.
 /// If you provide illegal values, this returns an error. 
 ///
-/// A message with type ::ppfMessage_Room_UpdateDataStore will be generated in response.
+/// A message with type ::ppfMessageType_Room_UpdateDataStore will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -238,7 +238,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_UpdateDataStore(ppfID roomID, ppfKeyVal
 /// joins from ppf_Room_Join2(), invites, etc. Users that are
 /// in the room at the time of lockdown will be able to rejoin.
 ///
-/// A message with type ::ppfMessage_Room_UpdateMembershipLockStatus will be generated in response.
+/// A message with type ::ppfMessageType_Room_UpdateMembershipLockStatus will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -251,7 +251,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_UpdateMembershipLockStatus(ppfID roomID
 /// @param userID The new user to make an owner; the user must be in the room.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_UpdateOwner will be generated in response.
+/// A message with type ::ppfMessageType_Room_UpdateOwner will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///
@@ -263,7 +263,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Room_UpdateOwner(ppfID roomID, const char* u
 /// @param newJoinPolicy The new join policy for the room.
 /// @return The request ID of this async function.
 ///
-/// A message with type ::ppfMessage_Room_UpdatePrivateRoomJoinPolicy will be generated in response.
+/// A message with type ::ppfMessageType_Room_UpdatePrivateRoomJoinPolicy will be generated in response.
 ///
 /// First call ::ppf_Message_IsError() to check if an error occurred.
 ///

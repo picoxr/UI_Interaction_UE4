@@ -1,4 +1,5 @@
 //Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+
 #include "CoreMinimal.h"
 #include "PXR_DPPrivate.h"
 #include "XRThreadUtils.h"
@@ -31,12 +32,12 @@
 #endif
 
 static TAutoConsoleVariable<int> CVarEnableDepthSubmission(
-	TEXT("vr.EnablePicoDPDepthSubmission"),
+	TEXT("vr.EnablePICODPDepthSubmission"),
 	0,
-	TEXT("By default, depth is not passed through in PicoDP for devices that support depth. Set this flag to 1 to enable depth submission, 0 to disable."),
+	TEXT("By default, depth is not passed through in PICODP for devices that support depth. Set this flag to 1 to enable depth submission, 0 to disable."),
 	ECVF_Default);
 
-void FPicoDirectPreviewHMD::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const
+void FPICODirectPreviewHMD::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const
 {
 	check(IsInRenderingThread());
 
@@ -54,26 +55,26 @@ void FPicoDirectPreviewHMD::RenderTexture_RenderThread(FRHICommandListImmediate&
 	SpectatorScreenController->RenderSpectatorScreen_RenderThread(RHICmdList, BackBuffer, SrcTexture, WindowSize);
 }
 
-void FPicoDirectPreviewHMD::PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView)
+void FPICODirectPreviewHMD::PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView)
 {
 }
 #if ENGINE_MINOR_VERSION >26
-bool FPicoDirectPreviewHMD::IsActiveThisFrame_Internal(const FSceneViewExtensionContext& Context) const
+bool FPICODirectPreviewHMD::IsActiveThisFrame_Internal(const FSceneViewExtensionContext& Context) const
 {
 	return GEngine && GEngine->IsStereoscopic3D(Context.Viewport);
 }
 #endif
 
 
-void FPicoDirectPreviewHMD::BridgeBaseImpl::BeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList)
+void FPICODirectPreviewHMD::BridgeBaseImpl::BeginRendering_RenderThread(FRHICommandListImmediate& RHICmdList)
 {}
 
-void FPicoDirectPreviewHMD::BridgeBaseImpl::BeginRendering_RHI()
+void FPICODirectPreviewHMD::BridgeBaseImpl::BeginRendering_RHI()
 {
 	check(!IsRunningRHIInSeparateThread() || IsInRHIThread());
 }
 
-void FPicoDirectPreviewHMD::BridgeBaseImpl::CreateSwapChain(const FTextureRHIRef& BindingTexture, TArray<FTextureRHIRef>&& SwapChainTextures)
+void FPICODirectPreviewHMD::BridgeBaseImpl::CreateSwapChain(const FTextureRHIRef& BindingTexture, TArray<FTextureRHIRef>&& SwapChainTextures)
 {
 	PXR_LOGD(PxrUnreal,"PXR_DP CreateSwapChain!");
 	check(IsInRenderingThread());
@@ -81,7 +82,7 @@ void FPicoDirectPreviewHMD::BridgeBaseImpl::CreateSwapChain(const FTextureRHIRef
 	SwapChain = CreateXRSwapChain(MoveTemp(SwapChainTextures), BindingTexture);
 }
 
-bool FPicoDirectPreviewHMD::BridgeBaseImpl::Present(int& SyncInterval)
+bool FPICODirectPreviewHMD::BridgeBaseImpl::Present(int& SyncInterval)
 {
 	//This  must return true。
 	check(IsRunningRHIInSeparateThread() ? IsInRHIThread() : IsInRenderingThread());
@@ -97,22 +98,22 @@ bool FPicoDirectPreviewHMD::BridgeBaseImpl::Present(int& SyncInterval)
 	return true;
 }
 
-bool FPicoDirectPreviewHMD::BridgeBaseImpl::NeedsNativePresent()
+bool FPICODirectPreviewHMD::BridgeBaseImpl::NeedsNativePresent()
 {
 	//This return value does not affect the PC display
 	return true;
 }
 
-void FPicoDirectPreviewHMD::BridgeBaseImpl::PostPresent()
+void FPICODirectPreviewHMD::BridgeBaseImpl::PostPresent()
 {}
 
 #if PLATFORM_WINDOWS
-FPicoDirectPreviewHMD::D3D11Bridge::D3D11Bridge(FPicoDirectPreviewHMD* plugin)
+FPICODirectPreviewHMD::D3D11Bridge::D3D11Bridge(FPICODirectPreviewHMD* plugin)
 	: BridgeBaseImpl(plugin)
 {}
 
 //necessary, brush the RT to steam
-void FPicoDirectPreviewHMD::D3D11Bridge::FinishRendering()
+void FPICODirectPreviewHMD::D3D11Bridge::FinishRendering()
 {	
 	FTexture2DRHIRef Texture2DRHI= SwapChain->GetTextureRef()->GetTexture2D();
 	if (Texture2DRHI)
@@ -123,7 +124,7 @@ void FPicoDirectPreviewHMD::D3D11Bridge::FinishRendering()
 		{
 			if (GEngine->XRSystem.IsValid())
 			{
-				FPicoDirectPreviewHMD* HMD = static_cast<FPicoDirectPreviewHMD*>(GEngine->XRSystem.Get());
+				FPICODirectPreviewHMD* HMD = static_cast<FPICODirectPreviewHMD*>(GEngine->XRSystem.Get());
 				ID3D11Device* D3D11Device = static_cast<ID3D11Device*>(GDynamicRHI->RHIGetNativeDevice());
 				ID3D11DeviceContext* D3D11DeviceContext = nullptr;
 
@@ -141,10 +142,10 @@ void FPicoDirectPreviewHMD::D3D11Bridge::FinishRendering()
 }
 
 
-void FPicoDirectPreviewHMD::D3D11Bridge::Reset()
+void FPICODirectPreviewHMD::D3D11Bridge::Reset()
 {}
 
-void FPicoDirectPreviewHMD::D3D11Bridge::UpdateViewport(const FViewport& Viewport, FRHIViewport* InViewportRHI)
+void FPICODirectPreviewHMD::D3D11Bridge::UpdateViewport(const FViewport& Viewport, FRHIViewport* InViewportRHI)
 {}
 
 #endif // PLATFORM_WINDOWS

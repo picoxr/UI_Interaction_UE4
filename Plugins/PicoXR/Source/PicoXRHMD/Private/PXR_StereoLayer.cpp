@@ -10,19 +10,18 @@
 #include "Materials/Material.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "XRThreadUtils.h"
+#include "PXR_GameFrame.h"
 
 #if PLATFORM_ANDROID
-#include "Android/AndroidApplication.h"
-#include "Android/AndroidJNI.h"
-#include "PxrApi.h"
 #include "OpenGLDrvPrivate.h"
 #include "OpenGLResources.h"
 #include "VulkanRHIPrivate.h"
 #include "VulkanResources.h"
 #endif
 
-FPxrLayer::FPxrLayer(uint32 InPxrLayerId) :
-	PxrLayerId(InPxrLayerId)
+FPxrLayer::FPxrLayer(uint32 InPxrLayerId,FDelayDeleteLayerManager* InDelayDeletion) :
+	PxrLayerId(InPxrLayerId),
+	DelayDeletion(InDelayDeletion)
 {
 }
 
@@ -30,100 +29,91 @@ FPxrLayer::~FPxrLayer()
 {
 	if (IsInGameThread())
 	{
-		ExecuteOnRenderThread([this]()
-			{
-				ExecuteOnRHIThread_DoNotWait([this]()
-					{
-#if PLATFORM_ANDROID
-                        PXR_LOGD(PxrUnreal, "~FPxrLayer()a DestroyLayer %d", PxrLayerId);
-						Pxr_DestroyLayer(PxrLayerId);
-#endif
-					});
-			});
+		ExecuteOnRenderThread([PxrLayerId = this->PxrLayerId, DelayDeletion = this->DelayDeletion]()
+		{
+			DelayDeletion->AddPxrLayerToDeferredDeletionQueue(PxrLayerId);
+		});
 	}
 	else
 	{
-		ExecuteOnRHIThread_DoNotWait([this]()
-			{
-#if PLATFORM_ANDROID
-                PXR_LOGD(PxrUnreal, "~FPxrLayer()b DestroyLayer %d", PxrLayerId);
-				Pxr_DestroyLayer(PxrLayerId);
-#endif
-			});
+		DelayDeletion->AddPxrLayerToDeferredDeletionQueue(PxrLayerId);
 	}
 }
 
 uint64_t OverlayImages[2] = {};
 uint64_t OverlayNativeImages[2][3] = {};
 
-FPicoXRStereoLayer::FPicoXRStereoLayer(FPicoXRHMD* InHMDDevice, uint32 InId, const IStereoLayers::FLayerDesc& InDesc)
-    : bMRCLayer(false)
+uint32 FPICOXRStereoLayer::PxrLayerIDCounter = 0;
+
+FPICOXRStereoLayer::FPICOXRStereoLayer(FPICOXRHMD* InHMDDevice, uint32 InPXRLayerId, const IStereoLayers::FLayerDesc& InDesc)
+	: bSplashLayer(false)
+	, bSplashBlackProjectionLayer(false)
+	, bMRCLayer(false)
     , HMDDevice(InHMDDevice)
-    , LayerId(InId)
+	, ID(InPXRLayerId)
+	, PxrLayerID(0)
     , bTextureNeedUpdate(false)
-    , LayerState(EPicoXRLayerState::Unknown)
-    , NeedDestoryRuntimeLayer(true)
-    , UnderlayComponent(NULL)
+    , UnderlayMeshComponent(NULL)
     , UnderlayActor(NULL)
     , PxrLayer(nullptr)
 {
-    PXR_LOGD(PxrUnreal, "FPicoXRStereoLayer with LayerId=%d", LayerId);
-    const FString HardwareDetails = FHardwareInfo::GetHardwareDetailsString();
-    const FString RHILookup = NAME_RHI.ToString() + TEXT("=");
-    FParse::Value(*HardwareDetails, *RHILookup, RHIString);
-    SetLayerDesc(InDesc);
+    PXR_LOGD(PxrUnreal, "FPICOXRStereoLayer with ID=%d", ID);
+
+#if PLATFORM_ANDROID
+	FMemory::Memzero(PxrLayerCreateParam);
+#endif
+
+    SetPXRLayerDesc(InDesc);
 }
 
-FPicoXRStereoLayer::FPicoXRStereoLayer(const FPicoXRStereoLayer& InLayer)
-    : bMRCLayer(InLayer.bMRCLayer)
-    , HMDDevice(InLayer.HMDDevice)
-    , LayerId(InLayer.LayerId)
-    , LayerDesc(InLayer.LayerDesc)
-    , SwapChain(InLayer.SwapChain)
-    , LeftSwapChain(InLayer.LeftSwapChain)
-    , OverlaySwapChain(InLayer.OverlaySwapChain)
-    , LeftOverlaySwapChain(InLayer.LeftOverlaySwapChain)
-    , bTextureNeedUpdate(InLayer.bTextureNeedUpdate)
-    , RHIString(InLayer.RHIString)
-    , LayerState(InLayer.LayerState)
-    , EyeLayerParam(InLayer.EyeLayerParam)
-	, NeedDestoryRuntimeLayer(false)
-    , UnderlayComponent(InLayer.UnderlayComponent)
-    , UnderlayActor(InLayer.UnderlayActor)
-    , PxrLayer(InLayer.PxrLayer)
+FPICOXRStereoLayer::FPICOXRStereoLayer(const FPICOXRStereoLayer& InPXRLayer)
+    : bSplashLayer(InPXRLayer.bSplashLayer)
+	, bSplashBlackProjectionLayer(InPXRLayer.bSplashBlackProjectionLayer)
+    , bMRCLayer(InPXRLayer.bMRCLayer)
+    , HMDDevice(InPXRLayer.HMDDevice)
+	, ID(InPXRLayer.ID)
+	, PxrLayerID(InPXRLayer.PxrLayerID)
+    , LayerDesc(InPXRLayer.LayerDesc)
+    , SwapChain(InPXRLayer.SwapChain)
+    , LeftSwapChain(InPXRLayer.LeftSwapChain)
+    , FoveationSwapChain(InPXRLayer.FoveationSwapChain)
+    , bTextureNeedUpdate(InPXRLayer.bTextureNeedUpdate)
+    , UnderlayMeshComponent(InPXRLayer.UnderlayMeshComponent)
+    , UnderlayActor(InPXRLayer.UnderlayActor)
+    , PxrLayer(InPXRLayer.PxrLayer)
+{
+#if PLATFORM_ANDROID
+	FMemory::Memcpy(&PxrLayerCreateParam, &InPXRLayer.PxrLayerCreateParam, sizeof(PxrLayerCreateParam));
+#endif
+}
+
+FPICOXRStereoLayer::~FPICOXRStereoLayer()
 {
 }
 
-FPicoXRStereoLayer::~FPicoXRStereoLayer()
+TSharedPtr<FPICOXRStereoLayer, ESPMode::ThreadSafe> FPICOXRStereoLayer::CloneMyself() const
 {
+	return MakeShareable(new FPICOXRStereoLayer(*this));
 }
 
-TSharedPtr<FPicoXRStereoLayer, ESPMode::ThreadSafe> FPicoXRStereoLayer::Clone() const
-{
-	return MakeShareable(new FPicoXRStereoLayer(*this));
-}
-
-void FPicoXRStereoLayer::SetLayerDesc(const IStereoLayers::FLayerDesc& InDesc)
+void FPICOXRStereoLayer::SetPXRLayerDesc(const IStereoLayers::FLayerDesc& InDesc)
 {
 	if (LayerDesc.Texture != InDesc.Texture || LayerDesc.LeftTexture != InDesc.LeftTexture)
 	{
-		if (LayerId != 0)
-		{
-			LayerState = EPicoXRLayerState::NeedToReCreate;
-		}
+		bTextureNeedUpdate = true;
 	}
 	LayerDesc = InDesc;
 
 	ManageUnderlayComponent();
 }
 
-void FPicoXRStereoLayer::ManageUnderlayComponent()
+void FPICOXRStereoLayer::ManageUnderlayComponent()
 {
-	if (IsSupportLayerDepth())
+	if (IsLayerSupportDepth())
 	{
-		const FString UnderlayNameStr = FString::Printf(TEXT("PicoUnderlay_%d"), LayerId);
+		const FString UnderlayNameStr = FString::Printf(TEXT("PICOUnderlay_%d"), ID);
 		const FName UnderlayComponentName(*UnderlayNameStr);
-		if (UnderlayComponent == NULL)
+		if (UnderlayMeshComponent == NULL)
 		{
 			UWorld* World = NULL;
 			for (const FWorldContext& Context : GEngine->GetWorldContexts())
@@ -138,8 +128,8 @@ void FPicoXRStereoLayer::ManageUnderlayComponent()
 				return;
 			}
 			UnderlayActor = World->SpawnActor<AActor>();
-			UnderlayComponent = NewObject<UProceduralMeshComponent>(UnderlayActor, UnderlayComponentName);
-			UnderlayComponent->RegisterComponent();
+			UnderlayMeshComponent = NewObject<UProceduralMeshComponent>(UnderlayActor, UnderlayComponentName);
+			UnderlayMeshComponent->RegisterComponent();
 
 			TArray<FVector> VerticePos;
 			TArray<int32> TriangleIndics;
@@ -148,563 +138,779 @@ void FPicoXRStereoLayer::ManageUnderlayComponent()
 			TArray<FLinearColor> VertexColors;
 			TArray<FProcMeshTangent> Tangents;
 
-			CreateQuadUnderlayMesh(VerticePos, TriangleIndics, TexUV);
-			UnderlayComponent->CreateMeshSection_LinearColor(0, VerticePos, TriangleIndics, Normals, TexUV, VertexColors, Tangents, false);
+			CreateUnderlayMesh(VerticePos, TriangleIndics, TexUV);
+			UnderlayMeshComponent->CreateMeshSection_LinearColor(0, VerticePos, TriangleIndics, Normals, TexUV, VertexColors, Tangents, false);
 
-			UMaterial* UnderlayMaterial = Cast<UMaterial>(StaticLoadObject(UMaterial::StaticClass(), NULL, TEXT("Material'/PicoXR/Materials/UnderlayMaterial.UnderlayMaterial'")));
-			UMaterialInstanceDynamic* DynamicMaterialInstance = UMaterialInstanceDynamic::Create(UnderlayMaterial, NULL);
-			UnderlayComponent->SetMaterial(0, DynamicMaterialInstance);
+			if (HMDDevice && HMDDevice->GetContentResourceFinder())
+			{
+				UMaterialInstanceDynamic* DynamicMaterialInstance = UMaterialInstanceDynamic::Create(HMDDevice->GetContentResourceFinder()->StereoLayerDepthMat, NULL);
+				UnderlayMeshComponent->SetMaterial(0, DynamicMaterialInstance);
+			}
 		}
-		UnderlayComponent->SetWorldTransform(LayerDesc.Transform);
+		UnderlayMeshComponent->SetWorldTransform(LayerDesc.Transform);
+	}
+	else
+	{
+		if (UnderlayActor)
+		{
+			if (UnderlayMeshComponent)
+			{
+				UnderlayMeshComponent->DestroyComponent();
+				UnderlayMeshComponent = nullptr;
+			}
+			UnderlayActor->Destroy();
+			UnderlayActor = nullptr;
+		}
 	}
 	return;
 }
 
-void FPicoXRStereoLayer::CreateQuadUnderlayMesh(TArray<FVector>& VerticePos, TArray<int32>& TriangleIndics, TArray<FVector2D>& TexUV)
+static void AddFaceIndices(const int v0, const int v1, const int v2, const int v3, TArray<int32>& Triangles, bool inverse)
+{
+	if (inverse)
+	{
+		Triangles.Add(v0);
+		Triangles.Add(v2);
+		Triangles.Add(v1);
+		Triangles.Add(v0);
+		Triangles.Add(v3);
+		Triangles.Add(v2);
+	}
+	else
+	{
+		Triangles.Add(v0);
+		Triangles.Add(v1);
+		Triangles.Add(v2);
+		Triangles.Add(v0);
+		Triangles.Add(v2);
+		Triangles.Add(v3);
+	}
+}
+
+void FPICOXRStereoLayer::CreateUnderlayMesh(TArray<FVector>& Vertices, TArray<int32>& Triangles, TArray<FVector2D>& UV0)
 {
 #if ENGINE_MINOR_VERSION > 24
 	if (LayerDesc.HasShape<FQuadLayer>())
 #else
-	if (LayerDesc.ShapeType==IStereoLayers::QuadLayer)
+	if (LayerDesc.ShapeType == IStereoLayers::QuadLayer)
 #endif
 	{
-		FIntPoint TextureSize = LayerDesc.Texture.IsValid() ? LayerDesc.Texture->GetTexture2D()->GetSizeXY() : LayerDesc.LayerSize;
-		float Aspect = 1.0f;
-		if (TextureSize.X > 0)
-			Aspect = (float)TextureSize.Y / (float)TextureSize.X;
+		const float QuadScale = 0.99;
+
+		FIntPoint TexSize = LayerDesc.Texture.IsValid() ? LayerDesc.Texture->GetTexture2D()->GetSizeXY() : LayerDesc.LayerSize;
+		float AspectRatio = TexSize.X ? (float)TexSize.Y / (float)TexSize.X : 3.0f / 4.0f;
 
 		float QuadSizeX = LayerDesc.QuadSize.X;
-		float QuadSizeY = LayerDesc.QuadSize.Y;
-		if (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO)
+		float QuadSizeY = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? LayerDesc.QuadSize.X * AspectRatio : LayerDesc.QuadSize.Y;
+
+		Vertices.Init(FVector::ZeroVector, 4);
+		Vertices[0] = FVector(0.0, -QuadSizeX / 2, -QuadSizeY / 2) * QuadScale;
+		Vertices[1] = FVector(0.0, QuadSizeX / 2, -QuadSizeY / 2) * QuadScale;
+		Vertices[2] = FVector(0.0, QuadSizeX / 2, QuadSizeY / 2) * QuadScale;
+		Vertices[3] = FVector(0.0, -QuadSizeX / 2, QuadSizeY / 2) * QuadScale;
+
+		UV0.Init(FVector2D::ZeroVector, 4);
+		UV0[0] = FVector2D(1, 0);
+		UV0[1] = FVector2D(1, 1);
+		UV0[2] = FVector2D(0, 0);
+		UV0[3] = FVector2D(0, 1);
+
+		Triangles.Reserve(6);
+		AddFaceIndices(0, 1, 2, 3, Triangles, false);
+	}
+#if ENGINE_MINOR_VERSION > 24
+	else if (LayerDesc.HasShape<FCylinderLayer>())
+#else
+	else if (LayerDesc.ShapeType == IStereoLayers::CylinderLayer)
+#endif	
+	{
+		float Arc, Radius, Height;
+#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >= 25
+		const FCylinderLayer& CylinderProps = LayerDesc.GetShape<FCylinderLayer>();
+		Arc = CylinderProps.OverlayArc;
+		Radius = CylinderProps.Radius;
+		Height = CylinderProps.Height;
+#else
+		Arc = LayerDesc.CylinderOverlayArc;
+		Radius = LayerDesc.CylinderRadius;
+		Height = LayerDesc.CylinderHeight;
+#endif
+		const float CylinderScale = 0.99;
+
+		FIntPoint TexSize = LayerDesc.Texture.IsValid() ? LayerDesc.Texture->GetTexture2D()->GetSizeXY() : LayerDesc.LayerSize;
+		float AspectRatio = TexSize.X ? (float)TexSize.Y / (float)TexSize.X : 3.0f / 4.0f;
+
+		float CylinderHeight = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? Arc * AspectRatio : Height;
+
+		const FVector XAxis = FVector(1, 0, 0);
+		const FVector YAxis = FVector(0, 1, 0);
+		const FVector HalfHeight = FVector(0, 0, CylinderHeight / 2);
+
+		const float ArcAngle = Arc / Radius;
+		const int Sides = (int)((ArcAngle * 180) / (PI * 5));
+		Vertices.Init(FVector::ZeroVector, 2 * (Sides + 1));
+		UV0.Init(FVector2D::ZeroVector, 2 * (Sides + 1));
+		Triangles.Init(0, Sides * 6);
+
+		float CurrentAngle = -ArcAngle / 2;
+		const float AngleStep = ArcAngle / Sides;
+
+
+		for (int Side = 0; Side < Sides + 1; Side++)
 		{
-			QuadSizeY = QuadSizeX * Aspect;
+			FVector MidVertex = Radius * (FMath::Cos(CurrentAngle) * XAxis + FMath::Sin(CurrentAngle) * YAxis);
+			Vertices[2 * Side] = (MidVertex - HalfHeight) * CylinderScale;
+			Vertices[(2 * Side) + 1] = (MidVertex + HalfHeight) * CylinderScale;
+
+			UV0[2 * Side] = FVector2D(1 - (Side / (float)Sides), 0);
+			UV0[(2 * Side) + 1] = FVector2D(1 - (Side / (float)Sides), 1);
+
+			CurrentAngle += AngleStep;
+
+			if (Side < Sides)
+			{
+				Triangles[6 * Side + 0] = 2 * Side;
+				Triangles[6 * Side + 2] = 2 * Side + 1;
+				Triangles[6 * Side + 1] = 2 * (Side + 1) + 1;
+				Triangles[6 * Side + 3] = 2 * Side;
+				Triangles[6 * Side + 5] = 2 * (Side + 1) + 1;
+				Triangles[6 * Side + 4] = 2 * (Side + 1);
+			}
 		}
+	}
+#if ENGINE_MINOR_VERSION > 24
+	else if (LayerDesc.HasShape<FCubemapLayer>())
+#else
+	else if (LayerDesc.ShapeType == IStereoLayers::CubemapLayer)
+#endif	
+	{
+		const float CubemapScale = 1000;
+		Vertices.Init(FVector::ZeroVector, 8);
+		Vertices[0] = FVector(-1.0, -1.0, -1.0) * CubemapScale;
+		Vertices[1] = FVector(-1.0, -1.0, 1.0) * CubemapScale;
+		Vertices[2] = FVector(-1.0, 1.0, -1.0) * CubemapScale;
+		Vertices[3] = FVector(-1.0, 1.0, 1.0) * CubemapScale;
+		Vertices[4] = FVector(1.0, -1.0, -1.0) * CubemapScale;
+		Vertices[5] = FVector(1.0, -1.0, 1.0) * CubemapScale;
+		Vertices[6] = FVector(1.0, 1.0, -1.0) * CubemapScale;
+		Vertices[7] = FVector(1.0, 1.0, 1.0) * CubemapScale;
 
-		VerticePos.Init(FVector::ZeroVector, 4);
-		VerticePos[0] = FVector(0.0, -QuadSizeX / 2, -QuadSizeY / 2);
-		VerticePos[1] = FVector(0.0, QuadSizeX / 2, -QuadSizeY / 2);
-		VerticePos[2] = FVector(0.0, QuadSizeX / 2, QuadSizeY / 2);
-		VerticePos[3] = FVector(0.0, -QuadSizeX / 2, QuadSizeY / 2);
-
-		TexUV.Init(FVector2D::ZeroVector, 4);
-		TexUV[0] = FVector2D(1, 0);
-		TexUV[1] = FVector2D(1, 1);
-		TexUV[2] = FVector2D(0, 0);
-		TexUV[3] = FVector2D(0, 1);
-
-		TriangleIndics.Reserve(6);
-		TriangleIndics.Add(0);
-		TriangleIndics.Add(1);
-		TriangleIndics.Add(2);
-		TriangleIndics.Add(0);
-		TriangleIndics.Add(2);
-		TriangleIndics.Add(3);
+		Triangles.Reserve(24);
+		AddFaceIndices(0, 1, 3, 2, Triangles, false);
+		AddFaceIndices(4, 5, 7, 6, Triangles, true);
+		AddFaceIndices(0, 1, 5, 4, Triangles, true);
+		AddFaceIndices(2, 3, 7, 6, Triangles, false);
+		AddFaceIndices(0, 2, 6, 4, Triangles, false);
+		AddFaceIndices(1, 3, 7, 5, Triangles, true);
 	}
 }
 
-#if ENGINE_MINOR_VERSION > 25
-void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags,uint32 MSAAValue)
-#else
-void FPicoXRStereoLayer::InitializeLayer_RenderThread(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags,uint32 MSAAValue)
-#endif
+void FPICOXRStereoLayer::PXRLayersCopy_RenderThread(FPICOXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList)
 {
-    if (!PxrLayer)
+	check(IsInRenderingThread());
+
+	PXR_LOGV(PxrUnreal, "ID=%d, bTextureNeedUpdate=%d, IsVisible:%d, SwapChain.IsValid=%d, LayerDesc.Texture.IsValid=%d", ID, bTextureNeedUpdate, IsVisible(), SwapChain.IsValid(), LayerDesc.Texture.IsValid());
+
+	if (bTextureNeedUpdate && IsVisible())
 	{
-		PxrLayer = MakeShareable<FPxrLayer>(new FPxrLayer(LayerId));
-    }
-#if PLATFORM_ANDROID
-    if (LayerId == 0) { // EyeBuffer
-        SwapChain = RenderBridge->CreateSwapChain(Format, SizeX, SizeY, ArraySize, NumMips, NumSamples, Flags, TargetableTextureFlags, MSAAValue);
-        if (RHIString == TEXT("Vulkan"))
-        {
-            uint64_t FoveationImage;
-            uint32_t FoveationWidth;
-            uint32_t FoveationHeight;
-            Pxr_GetLayerFoveationImage(0, PXR_EYE_LEFT, &FoveationImage, &FoveationWidth, &FoveationHeight);
-
-            TArray<FTextureRHIRef> TextureChain;
-            FVulkanDynamicRHI* DynamicRHI = static_cast<FVulkanDynamicRHI*>(GDynamicRHI);
-            if (ArraySize == 2)
-            {
-                TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DArrayFromResource(PF_R8G8, FoveationWidth, FoveationHeight, 2, NumMips, 1, (VkImage)FoveationImage, (ETextureCreateFlags)0)));
-            }
-            else
-            {
-                TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8, FoveationWidth, FoveationHeight, NumMips, 1, (VkImage)FoveationImage, (ETextureCreateFlags)0)));
-            }
-            FTextureRHIRef ChainTarget;
-            ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
-            FoveationSwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-			if (FoveationSwapChain)
-			{
-				HMDDevice->bNeedReAllocateFoveationTexture_RenderThread = true;
-			}
-        }
-    } else { // Overlay Underlay
-        bool bTextureState = LayerDesc.Texture.IsValid();
-        bool bLeftTextureState = LayerDesc.LeftTexture.IsValid();
-        if (!bTextureState)
-            return;
-        PxrLayerParam layerParam = {};
-        layerParam.layerId = LayerId;
-        layerParam.layerShape = static_cast<PxrLayerShape>(GetShapeType());
-        if(IsSupportLayerDepth()) {
-            layerParam.layerType = PXR_UNDERLAY;
-        } else {
-            layerParam.layerType = PXR_OVERLAY;
-        }
-
-        if (RHIString == TEXT("OpenGL")) {
-            layerParam.format = GL_RGBA8;
-        } else if (RHIString == TEXT("Vulkan")) {
-            layerParam.format = IsMobileColorsRGB() ? VK_FORMAT_R8G8B8A8_SRGB : VK_FORMAT_R8G8B8A8_UNORM;
-        }
-
-        layerParam.width = LayerDesc.Texture->GetSizeXYZ().X;
-        layerParam.height = LayerDesc.Texture->GetSizeXYZ().Y;
-        layerParam.sampleCount = LayerDesc.Texture->GetNumSamples();
-        layerParam.faceCount = 1;
-        layerParam.arraySize = 1;
-        layerParam.mipmapCount = LayerDesc.Texture->GetNumMips();
-		if (!(LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE))
+		// Copy textures
+		if (LayerDesc.Texture.IsValid() && SwapChain.IsValid())
 		{
-            layerParam.layerFlags |= PXR_LAYER_FLAG_STATIC_IMAGE;
-		}
-        //layerParam.layerFlags = PXR_LAYER_FLAG_USE_EXTERNAL_IMAGES;
-        //layerParam.externalImageCount = 1;
-
-        if (bTextureState) {
-            if (bLeftTextureState) {
-                layerParam.layerLayout = PXR_LAYER_LAYOUT_STEREO;
-            } else {
-                layerParam.layerLayout = PXR_LAYER_LAYOUT_MONO;
-            }
-        }
-        Pxr_CreateLayer(&layerParam);
-
-		uint32_t leftImageCounts = 0;
-        uint32_t rightImageCounts = 0;
-        if (bTextureState)
-        {
-            Pxr_GetLayerImageCount(LayerId, PXR_EYE_RIGHT, &rightImageCounts);
-            PXR_LOGI(PxrUnreal, "Pxr_GetLayerImageCount right:%d", rightImageCounts);
-            for (int j = 0; j < rightImageCounts; j++)
-            {
-                Pxr_GetLayerImage(LayerId, PXR_EYE_RIGHT, j, &OverlayNativeImages[0][j]);
-                PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage OverlayNativeImages[0][%d]=u_%u", j, (uint32_t)OverlayNativeImages[0][j]);
-            }
-        }
-        if (bLeftTextureState)
-        {
-            Pxr_GetLayerImageCount(LayerId, PXR_EYE_LEFT, &leftImageCounts);
-            PXR_LOGI(PxrUnreal, "Pxr_GetLayerImageCount left:%d", leftImageCounts);
-            for (int j = 0; j < leftImageCounts; j++)
-            {
-                Pxr_GetLayerImage(LayerId, PXR_EYE_LEFT, j, &OverlayNativeImages[1][j]);
-                PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage OverlayNativeImages[1][%d]=u_%u", j, (uint32_t)OverlayNativeImages[1][j]);
-            }
-        }
-
-        if (RHIString == TEXT("OpenGL")) {
-            if (bTextureState) {
-                if (bLeftTextureState) {  //PXR_LAYER_LAYOUT_STEREO
-                    TArray<FTextureRHIRef> TextureChain;
-                    FOpenGLDynamicRHI* DynamicRHI = static_cast<FOpenGLDynamicRHI*>(GDynamicRHI);
-					for (int j = 0; j < leftImageCounts; j++)
-					{
-						TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1][j], TargetableTextureFlags)));
-                    }
-                    FTextureRHIRef ChainTarget = nullptr;
-                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[1][0], TargetableTextureFlags));
-                    LeftOverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-                } 
-                //PXR_LAYER_LAYOUT_MONO
-                    TArray<FTextureRHIRef> TextureChain;
-                    FOpenGLDynamicRHI* DynamicRHI = static_cast<FOpenGLDynamicRHI*>(GDynamicRHI);
-					for (int j = 0; j < rightImageCounts; j++)
-					{
-                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0][j], TargetableTextureFlags)));
-                    }
-                    FTextureRHIRef ChainTarget = nullptr;
-                    ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, MSAAValue, FClearValueBinding::Black, (uint32)OverlayNativeImages[0][0], TargetableTextureFlags));
-                    OverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-                }
-           
-        } else if (RHIString == TEXT("Vulkan")) {
-            if (bTextureState) {
-                if (bLeftTextureState) {  //PXR_LAYER_LAYOUT_STEREO
-                    TArray<FTextureRHIRef> TextureChain;
-                    FVulkanDynamicRHI* DynamicRHI = static_cast<FVulkanDynamicRHI*>(GDynamicRHI);
-
-                    TargetableTextureFlags |= TexCreate_ShaderResource | TexCreate_RenderTargetable;
-                    if (IsMobileColorsRGB()) {
-                        TargetableTextureFlags |= TexCreate_SRGB;
-                    }
-                    for (int j = 0; j < leftImageCounts; j++)
-                    {
-                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1][j], TargetableTextureFlags)));
-                    }
-                    FTextureRHIRef ChainTarget = nullptr;
-                    if (ENGINE_MINOR_VERSION < 25) {
-                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[1][0], TargetableTextureFlags));
-                    } else {
-                        ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
-                    }
-                    LeftOverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-                } 
-                    //PXR_LAYER_LAYOUT_MONO
-                    TArray<FTextureRHIRef> TextureChain;
-                    FVulkanDynamicRHI* DynamicRHI = static_cast<FVulkanDynamicRHI*>(GDynamicRHI);
-
-                    TargetableTextureFlags |= TexCreate_ShaderResource | TexCreate_RenderTargetable;
-                    if (IsMobileColorsRGB()) {
-                        TargetableTextureFlags |= TexCreate_SRGB;
-                    }
-                    for (int j = 0; j < rightImageCounts; j++)
-                    {
-                        TextureChain.Add(static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0][j], TargetableTextureFlags)));
-                    }
-                    FTextureRHIRef ChainTarget = nullptr;
-                    if (ENGINE_MINOR_VERSION < 25) {
-                        ChainTarget = static_cast<FTextureRHIRef>(DynamicRHI->RHICreateTexture2DFromResource(PF_R8G8B8A8, layerParam.width, layerParam.height, layerParam.mipmapCount, layerParam.sampleCount, (VkImage)OverlayNativeImages[0][0], TargetableTextureFlags));
-                    } else {
-                        ChainTarget = static_cast<FTextureRHIRef>(GDynamicRHI->RHICreateAliasedTexture((FTextureRHIRef&)TextureChain[0]));
-                    }
-                    OverlaySwapChain = CreateXRSwapChain(MoveTemp(TextureChain), ChainTarget);
-            }
-        }
-
-        bTextureNeedUpdate = true;
-    }
-    LayerState = EPicoXRLayerState::Ready;
-#endif
-}
-
-void FPicoXRStereoLayer::RefreshLayers_RenderThread(FPicoXRRenderBridge* RenderBridge, FRHICommandListImmediate& RHICmdList)
-{
-    check(IsInRenderingThread());
-    if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN)!=0 || LayerState!=EPicoXRLayerState::Ready)
-    {
-        return;
-    }
-    PXR_LOGD(PxrUnreal, "LayerId=%d, bUpdateTexture=%d, OverlaySwapChain_Valid=%d, LayerDesc.Texture.IsValid()=%d, LayerState=%d", LayerId, bTextureNeedUpdate, OverlaySwapChain.IsValid(), LayerDesc.Texture.IsValid(), LayerState);
-
-    if (bTextureNeedUpdate && LayerState == EPicoXRLayerState::Ready)
-    {
-        // Copy textures
-        if (LayerDesc.Texture.IsValid() && OverlaySwapChain.IsValid())
-        {
-            bool bNoAlpha = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_NO_ALPHA_CHANNEL) != 0;
-
-            // Mono
-            FRHITexture* SrcTexture = LayerDesc.Texture;
-            FRHITexture* DstTexture = OverlaySwapChain->GetTexture();
-            RenderBridge->TransferImage_RenderThread(RHICmdList, DstTexture, SrcTexture, FIntRect(), FIntRect(), false, bNoAlpha, bMRCLayer);
-
-            // Stereo
-            if (LayerDesc.LeftTexture.IsValid() && LeftOverlaySwapChain.IsValid())
-            {
-                FRHITexture* LeftSrcTexture = LayerDesc.LeftTexture;
-                FRHITexture* LeftDstTexture = LeftOverlaySwapChain->GetTexture();
-                RenderBridge->TransferImage_RenderThread(RHICmdList, LeftDstTexture, LeftSrcTexture, FIntRect(), FIntRect(), false, bNoAlpha, bMRCLayer);
-            }
-
-            if (!(LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE))
-            {
-                bTextureNeedUpdate = false;
-            }
-        }
-    }
-}
-
-void FPicoXRStereoLayer::SetLayerState(EPicoXRLayerState NewState)
-{
-	LayerState = NewState;
-}
-
-void FPicoXRStereoLayer::MarkCreateLayer()
-{
-	PXR_LOGD(PxrUnreal,"Layer MarkCreateLayer %d",LayerId);
-	LayerState = EPicoXRLayerState::NeedToCreate;
-}
-
-void FPicoXRStereoLayer::MarkReCreateLayer()
-{
-	PXR_LOGD(PxrUnreal, "Layer MarkReCreateLayer %d", LayerId);
-	LayerState = EPicoXRLayerState::NeedToReCreate;
-}
-
-void FPicoXRStereoLayer::CreateLayer(FPicoXRRenderBridge* RenderBridge)
-{
-    PXR_LOGD(PxrUnreal, "Layer Create RenderBridge LayerId=%d", LayerId);
-    if (LayerId == 0) {
-        InitializeLayer_RenderThread(RenderBridge,EyeLayerParam.Format,EyeLayerParam.SizeX, EyeLayerParam.SizeY, EyeLayerParam.ArraySize, EyeLayerParam.NumMips, EyeLayerParam.NumSamples, EyeLayerParam.Flags, EyeLayerParam.TargetableTextureFlags,EyeLayerParam.MSAAValue);
-    } else {
-#if ENGINE_MINOR_VERSION > 25
-        InitializeLayer_RenderThread(RenderBridge, 0, 0, 0, 1, 0, 0, ETextureCreateFlags::TexCreate_None, ETextureCreateFlags::TexCreate_None, 0);
+			bool bNoAlpha = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_NO_ALPHA_CHANNEL) != 0;
+#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
+			bool bInvertY = bMRCLayer || LayerDesc.HasShape<FCubemapLayer>() ? true : false;
 #else
-        InitializeLayer_RenderThread(RenderBridge, 0, 0, 0, 1, 0, 0, 0, 0, 0);
+			bool bInvertY = bMRCLayer || LayerDesc.ShapeType == IStereoLayers::CubemapLayer ? true : false;
 #endif
-    }
-}
+			// Mono
+			FRHITexture* SrcTexture = LayerDesc.Texture;
+			FRHITexture* DstTexture = SwapChain->GetTexture();
 
-void FPicoXRStereoLayer::DestroyLayer()
-{
-    PXR_LOGD(PxrUnreal, "Layer DestroyLayer %d", LayerId);
-}
-
-void FPicoXRStereoLayer::ReCreateLayer(FPicoXRRenderBridge* RenderBridge)
-{
-	PXR_LOGD(PxrUnreal, "Layer ReCreateLayer=%d", LayerId);
+			FIntRect DstRect, SrcRect;
 #if PLATFORM_ANDROID
-	Pxr_DestroyLayer(LayerId);
+			DstRect = SrcRect = FIntRect(LayerDesc.UVRect.Min.X * (float)PxrLayerCreateParam.width, LayerDesc.UVRect.Min.Y * (float)PxrLayerCreateParam.height,
+				LayerDesc.UVRect.Max.X * (float)PxrLayerCreateParam.width, LayerDesc.UVRect.Max.Y * (float)PxrLayerCreateParam.height);
+#else
+			DstRect = SrcRect = FIntRect();
 #endif
-	CreateLayer(RenderBridge);
+
+			RenderBridge->TransferImage_RenderThread(RHICmdList, DstTexture, SrcTexture, DstRect, SrcRect, true, bNoAlpha, bMRCLayer, bInvertY);
+
+			// Stereo
+			if (LayerDesc.LeftTexture.IsValid() && LeftSwapChain.IsValid())
+			{
+				FRHITexture* LeftSrcTexture = LayerDesc.LeftTexture;
+				FRHITexture* LeftDstTexture = LeftSwapChain->GetTexture();
+				RenderBridge->TransferImage_RenderThread(RHICmdList, LeftDstTexture, LeftSrcTexture, DstRect, SrcRect, true, bNoAlpha, false/*BG*/, bInvertY);
+			}
+
+			bTextureNeedUpdate = false;
+		}
+		else
+		{
+			if (UnderlayActor)
+			{
+				if (UnderlayMeshComponent)
+				{
+					UnderlayMeshComponent->DestroyComponent();
+					UnderlayMeshComponent = nullptr;
+				}
+				UnderlayActor->Destroy();
+				UnderlayActor = nullptr;
+			}
+		}
+	}
 }
 
-void FPicoXRStereoLayer::IncrementSwapChainIndex_RHIThread(FPicoXRRenderBridge* RenderBridge)
+bool FPICOXRStereoLayer::InitPXRLayer_RenderThread(FPICOXRRenderBridge* CustomPresent, FDelayDeleteLayerManager* DelayDeletion, FRHICommandListImmediate& RHICmdList, const FPICOXRStereoLayer* InLayer)
 {
-	if ((static_cast<int32>(LayerState) < 2)||((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0))
+	check(IsInRenderingThread());
+
+	int32 MSAAValue = 1;
+	bool bNeedFFRSwapChain = false;
+	if (ID == 0)
+	{
+		if (HMDDevice)
+		{
+			MSAAValue = HMDDevice->GetMSAAValue();
+		}
+
+		if (CustomPresent->RHIString == TEXT("Vulkan"))
+		{
+			bNeedFFRSwapChain = true;
+		}
+	}
+	else if (!bSplashBlackProjectionLayer)
+	{
+		MSAAValue = 1;
+#if PLATFORM_ANDROID
+		PxrLayerCreateParam.layerShape = static_cast<PxrLayerShape>(GetShapeType());
+		PxrLayerCreateParam.layerType = IsLayerSupportDepth() ? PXR_UNDERLAY : PXR_OVERLAY;
+
+		if (LayerDesc.Texture.IsValid())
+		{
+			FRHITexture2D* Texture2D = LayerDesc.Texture->GetTexture2D();
+			FRHITextureCube* TextureCube = LayerDesc.Texture->GetTextureCube();
+			if (Texture2D)
+			{
+				PxrLayerCreateParam.width = Texture2D->GetSizeX();
+				PxrLayerCreateParam.height = Texture2D->GetSizeY();
+				PxrLayerCreateParam.sampleCount = Texture2D->GetNumSamples();
+#if ENGINE_MINOR_VERSION > 24
+				PxrLayerCreateParam.mipmapCount = Texture2D->GetNumMips();
+#else
+				PxrLayerCreateParam.mipmapCount = 1;
+#endif
+			}
+			else if (TextureCube)
+			{
+				PxrLayerCreateParam.width = PxrLayerCreateParam.height = TextureCube->GetSize();
+				PxrLayerCreateParam.sampleCount = 1;
+				PxrLayerCreateParam.mipmapCount = 1;
+			}
+
+		}
+		else
+		{
+			PxrLayerCreateParam.width = LayerDesc.QuadSize.X;
+			PxrLayerCreateParam.height = LayerDesc.QuadSize.Y;
+			PxrLayerCreateParam.sampleCount = 1;
+			PxrLayerCreateParam.mipmapCount = 1;
+		}
+
+		if (PxrLayerCreateParam.width == 0 || PxrLayerCreateParam.height == 0)
+		{
+			return false;
+		}
+
+		if (PxrLayerCreateParam.layerShape == PxrLayerShape::PXR_LAYER_CUBE)
+		{
+			PxrLayerCreateParam.faceCount = 6;
+		}
+		else
+		{
+			PxrLayerCreateParam.faceCount = 1;
+		}
+		PxrLayerCreateParam.arraySize = 1;
+
+		//TODO:if bSplashLayer,create swapchain count=1,to avoid flicker between color and black.
+		if ((bSplashLayer && CustomPresent->RHIString == TEXT("Vulkan")) || !(LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE))
+		{
+			PxrLayerCreateParam.layerFlags |= PXR_LAYER_FLAG_STATIC_IMAGE;
+		}
+		else
+		{
+			PxrLayerCreateParam.layerFlags &= ~PXR_LAYER_FLAG_STATIC_IMAGE;
+		}
+
+		PxrLayerCreateParam.layerLayout = LayerDesc.LeftTexture.IsValid() ? PXR_LAYER_LAYOUT_STEREO : PXR_LAYER_LAYOUT_MONO;
+
+		if (CustomPresent->RHIString == TEXT("OpenGL"))
+		{
+			PxrLayerCreateParam.format = IsMobileColorsRGB() ? GL_SRGB8_ALPHA8 : GL_RGBA8;
+		}
+		else if (CustomPresent->RHIString == TEXT("Vulkan"))
+		{
+			PxrLayerCreateParam.format = IsMobileColorsRGB() ? VK_FORMAT_R8G8B8A8_SRGB : VK_FORMAT_R8G8B8A8_UNORM;
+		}
+#endif
+	}
+
+	if (IfCanReuseLayers(InLayer))
+	{
+		//GameThread = RenderThread
+		PxrLayerID = InLayer->PxrLayerID;
+		PxrLayer = InLayer->PxrLayer;
+		SwapChain = InLayer->SwapChain;
+		LeftSwapChain = InLayer->LeftSwapChain;
+        FoveationSwapChain =InLayer->FoveationSwapChain;
+		bTextureNeedUpdate |= InLayer->bTextureNeedUpdate;
+	}
+    else
+	{
+		TArray<uint64> TextureResources;
+		TArray<uint64> LeftTextureResources;
+		TArray<uint64> FFRTextureResources;
+		uint32_t FoveationWidth = 0;
+		uint32_t FoveationHeight = 0;
+		TextureResources.Empty();
+		LeftTextureResources.Empty();
+		FFRTextureResources.Empty();
+		bool bNativeTextureCreated = false;
+#if PLATFORM_ANDROID
+		ExecuteOnRHIThread([&]()
+			{
+				PxrLayerCreateParam.layerId = PxrLayerID = PxrLayerIDCounter;
+				if (Pxr_IsInitialized() && (Pxr_CreateLayer(&PxrLayerCreateParam) == 0))
+				{
+					PxrLayerIDCounter++;
+					uint32_t ImageCounts = 0;
+					uint64_t LayerImages[2][3] = {};
+					Pxr_GetLayerImageCount(PxrLayerID, PXR_EYE_RIGHT, &ImageCounts);
+					ensure(ImageCounts != 0);
+					for (uint32_t i = 0; i < ImageCounts; i++)
+					{
+						Pxr_GetLayerImage(PxrLayerID, PXR_EYE_RIGHT, i, &LayerImages[1][i]);
+						PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage Right LayerImages[1][%d]=u_%u", i, (uint32_t)LayerImages[1][i]);
+						TextureResources.Add(LayerImages[1][i]);
+					}
+
+					if (PxrLayerCreateParam.layerLayout == PXR_LAYER_LAYOUT_STEREO)
+					{
+						Pxr_GetLayerImageCount(PxrLayerID, PXR_EYE_LEFT, &ImageCounts);
+						ensure(ImageCounts != 0);
+						for (uint32_t i = 0; i < ImageCounts; i++)
+						{
+							Pxr_GetLayerImage(PxrLayerID, PXR_EYE_LEFT, i, &LayerImages[0][i]);
+							PXR_LOGI(PxrUnreal, "Pxr_GetLayerImage Left LayerImages[0][%d]=u_%u", i, (uint32_t)LayerImages[0][i]);
+							LeftTextureResources.Add(LayerImages[0][i]);
+						}
+					}
+
+					if (bNeedFFRSwapChain)
+					{
+						uint64_t FoveationImage;
+						Pxr_GetLayerFoveationImage(PxrLayerID, PXR_EYE_RIGHT, &FoveationImage, &FoveationWidth, &FoveationHeight);
+						FFRTextureResources.Add(FoveationImage);
+					}
+
+					bNativeTextureCreated = true;
+				}
+				else
+				{
+					PXR_LOGE(PxrUnreal, "Create native texture failed!");
+				}
+			});
+
+		if (bNativeTextureCreated)
+		{
+			PxrLayer = MakeShareable<FPxrLayer>(new FPxrLayer(PxrLayerID, DelayDeletion));
+
+			ERHIResourceType ResourceType;
+			if (PxrLayerCreateParam.layerShape == PxrLayerShape::PXR_LAYER_CUBE)
+			{
+				ResourceType = RRT_TextureCube;
+			}
+			else if (PxrLayerCreateParam.arraySize == 2)
+			{
+				ResourceType = RRT_Texture2DArray;
+			}
+			else
+			{
+				ResourceType = RRT_Texture2D;
+			}
+
+#if ENGINE_MINOR_VERSION > 25
+			ETextureCreateFlags Flags;
+			ETextureCreateFlags TargetableTextureFlags;
+			Flags = TargetableTextureFlags = ETextureCreateFlags::TexCreate_None;
+#else
+			uint32 Flags;
+			uint32 TargetableTextureFlags;
+			Flags = TargetableTextureFlags = 0;
+#endif
+			Flags = TargetableTextureFlags |= ETextureCreateFlags::TexCreate_RenderTargetable | ETextureCreateFlags::TexCreate_ShaderResource | (IsMobileColorsRGB() ? TexCreate_SRGB : TexCreate_None);
+
+			SwapChain = CustomPresent->CreateSwapChain_RenderThread(PxrLayerID, ResourceType, TextureResources, PF_R8G8B8A8, PxrLayerCreateParam.width, PxrLayerCreateParam.height, PxrLayerCreateParam.arraySize, PxrLayerCreateParam.mipmapCount, PxrLayerCreateParam.sampleCount, Flags, TargetableTextureFlags, MSAAValue);
+			if (PxrLayerCreateParam.layerLayout == PXR_LAYER_LAYOUT_STEREO)
+			{
+				LeftSwapChain = CustomPresent->CreateSwapChain_RenderThread(PxrLayerID, ResourceType, LeftTextureResources, PF_R8G8B8A8, PxrLayerCreateParam.width, PxrLayerCreateParam.height, PxrLayerCreateParam.arraySize, PxrLayerCreateParam.mipmapCount, PxrLayerCreateParam.sampleCount, Flags, TargetableTextureFlags, MSAAValue);
+			}
+
+			if (bNeedFFRSwapChain)
+			{
+#if ENGINE_MINOR_VERSION > 25
+				ETextureCreateFlags	TCF = ETextureCreateFlags::TexCreate_Foveation;
+#else
+				ETextureCreateFlags	TCF = ETextureCreateFlags::TexCreate_None;
+#endif
+				FoveationSwapChain = CustomPresent->CreateSwapChain_RenderThread(PxrLayerID, ResourceType, FFRTextureResources, PF_R8G8, FoveationWidth, FoveationHeight, PxrLayerCreateParam.arraySize, 1, 1, Flags, TCF, 1);
+			}	
+			bTextureNeedUpdate = true;
+		}
+		else
+		{
+			PXR_LOGE(PxrUnreal, "Create SwapChain failed!");
+			return false;
+		}
+#endif
+	}            
+	if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE) && LayerDesc.Texture.IsValid() && IsVisible())
+	{
+		bTextureNeedUpdate = true;
+	}
+    return true;
+}
+
+bool FPICOXRStereoLayer::IfCanReuseLayers(const FPICOXRStereoLayer* InLayer) const
+{
+	if (!InLayer || !InLayer->PxrLayer.IsValid())
+	{
+		return false;
+	}
+
+#if PLATFORM_ANDROID
+	if (PxrLayerCreateParam.width != InLayer->PxrLayerCreateParam.width				||
+		PxrLayerCreateParam.height != InLayer->PxrLayerCreateParam.height			||
+		PxrLayerCreateParam.layerShape != InLayer->PxrLayerCreateParam.layerShape   ||
+		PxrLayerCreateParam.layerLayout != InLayer->PxrLayerCreateParam.layerLayout ||
+		PxrLayerCreateParam.mipmapCount != InLayer->PxrLayerCreateParam.mipmapCount ||
+		PxrLayerCreateParam.sampleCount != InLayer->PxrLayerCreateParam.sampleCount ||
+		PxrLayerCreateParam.format != InLayer->PxrLayerCreateParam.format			||
+		PxrLayerCreateParam.layerFlags != InLayer->PxrLayerCreateParam.layerFlags   ||
+		PxrLayerCreateParam.layerType != InLayer->PxrLayerCreateParam.layerType)
+	{
+		return false;
+	}
+#endif
+
+	return true;
+}
+
+void FPICOXRStereoLayer::IncrementSwapChainIndex_RHIThread(FPICOXRRenderBridge* RenderBridge)
+{
+    if ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0)
 	{
 		return;
 	}
-    if (LayerId == 0)
-	{
-		if (SwapChain && SwapChain.IsValid())
-		{
-			int32 index = 0;
-#if PLATFORM_ANDROID
-			Pxr_GetLayerNextImageIndex(0, &index);
-#endif
-			while (index != SwapChain->GetSwapChainIndex_RHIThread())
-			{
-#if ENGINE_MINOR_VERSION > 26
-				SwapChain->IncrementSwapChainIndex_RHIThread();
-#else
-				SwapChain->IncrementSwapChainIndex_RHIThread(0);
-#endif
-			}
-		}
-    }
-    else
+
+	if (SwapChain && SwapChain.IsValid())
 	{
 		int32 index = 0;
 #if PLATFORM_ANDROID
-		Pxr_GetLayerNextImageIndex(LayerId, &index);
+		Pxr_GetLayerNextImageIndex(PxrLayerID, &index);
 #endif
-		if (OverlaySwapChain && OverlaySwapChain.IsValid())
+		while (index != SwapChain->GetSwapChainIndex_RHIThread())
 		{
-			while (index != OverlaySwapChain->GetSwapChainIndex_RHIThread())
+#if ENGINE_MINOR_VERSION > 26
+			SwapChain->IncrementSwapChainIndex_RHIThread();
+#else
+			SwapChain->IncrementSwapChainIndex_RHIThread(0);
+#endif
+		}
+
+		if (LeftSwapChain && LeftSwapChain.IsValid())
+		{
+			while (index != LeftSwapChain->GetSwapChainIndex_RHIThread())
 			{
 #if ENGINE_MINOR_VERSION > 26
-				OverlaySwapChain->IncrementSwapChainIndex_RHIThread();
+				LeftSwapChain->IncrementSwapChainIndex_RHIThread();
 #else
-				OverlaySwapChain->IncrementSwapChainIndex_RHIThread(0);
+				LeftSwapChain->IncrementSwapChainIndex_RHIThread(0);
 #endif
-			}
-		}
-		if (LeftOverlaySwapChain && LeftOverlaySwapChain.IsValid())
-		{
-			while (index != LeftOverlaySwapChain->GetSwapChainIndex_RHIThread())
-			{
-#if ENGINE_MINOR_VERSION > 26
-				LeftOverlaySwapChain->IncrementSwapChainIndex_RHIThread();
-#else
-				LeftOverlaySwapChain->IncrementSwapChainIndex_RHIThread(0);
-#endif
-			}
-		}
-    }
-}
-
-void FPicoXRStereoLayer::SubmitCompositionLayerRenderMatrix_RHIThread(APlayerController* PlayerController, FQuat& CurrentOrientation, FVector& CurrentPosition, FTransform& CurrentTrackingToWorld)
-{
-#if PLATFORM_ANDROID
-    if (LayerId == 0 || LayerState!=EPicoXRLayerState::Ready || ((LayerDesc.Flags & IStereoLayers::LAYER_FLAG_HIDDEN) != 0))
-    {
-        return;
-    }
-	PXR_LOGD(PxrUnreal, "Layer Submit=%d", LayerId);
-	int32 ShapeType = GetShapeType();
-	FQuat CameraRotation = FQuat::Identity;
-	FVector CameraLocation = FVector::ZeroVector;
-	FTransform TrackingToWorld =  FTransform::Identity;
-
-	if (LayerDesc.PositionType != IStereoLayers::ELayerType::FaceLocked)
-	{
-		CameraLocation = CurrentPosition;
-		CameraRotation = CurrentOrientation;
-		TrackingToWorld = CurrentTrackingToWorld;
-		if (PlayerController)
-		{
-			if (PlayerController->PlayerCameraManager)
-			{
-				CameraLocation += HMDDevice->InitCamPos;
 			}
 		}
 	}
+}
 
-	FVector LayerPosition = GetLayerLocation();
-	LayerPosition = TrackingToWorld.InverseTransformPosition(LayerPosition);
-	LayerPosition = FPicoXRUtils::ConvertUnrealVectorToXRVector(LayerPosition,GEngine->XRSystem->GetWorldToMetersScale());
-	float ModuleTranslation[3] = { LayerPosition.X,LayerPosition.Y,LayerPosition.Z };
-	FQuat LayerOrientation = GetLayerOrientation();
-	FRotator LayerRotation = TrackingToWorld.InverseTransformRotation(LayerOrientation).Rotator();
+void FPICOXRStereoLayer::SubmitLayer_RHIThread(FPXRGameFrame* Frame)
+{
+	PXR_LOGV(PxrUnreal, "Submit Layer:%u", ID);
+#if PLATFORM_ANDROID
+	if (ID == 0)
+	{
+		PxrLayerProjection layerProjection = {};
+		layerProjection.header.layerId = PxrLayerID;
+		layerProjection.header.layerFlags = 0;
+		layerProjection.header.sensorFrameIndex = Frame->ViewNumber;
+		bool bDrawBlackEye = HMDDevice->bIsSwitchingLevel;
+		layerProjection.header.colorScale[0] = bDrawBlackEye ? 0.0f : HMDDevice->GColorScale.R;
+		layerProjection.header.colorScale[1] = bDrawBlackEye ? 0.0f : HMDDevice->GColorScale.G;
+		layerProjection.header.colorScale[2] = bDrawBlackEye ? 0.0f : HMDDevice->GColorScale.B;
+		layerProjection.header.colorScale[3] = bDrawBlackEye ? 0.0f : HMDDevice->GColorScale.A;
+		layerProjection.header.colorBias[0] = bDrawBlackEye ? 0.0f : HMDDevice->GColorOffset.R;
+		layerProjection.header.colorBias[1] = bDrawBlackEye ? 0.0f : HMDDevice->GColorOffset.G;
+		layerProjection.header.colorBias[2] = bDrawBlackEye ? 0.0f : HMDDevice->GColorOffset.B;
+		layerProjection.header.colorBias[3] = bDrawBlackEye ? 0.0f : HMDDevice->GColorOffset.A;
+		Pxr_SubmitLayer((PxrLayerHeader*)&layerProjection);
+	}
+	else if (bSplashBlackProjectionLayer)
+	{
+		PxrLayerProjection layerProjection = {};
+		layerProjection.header.layerId = PxrLayerID;
+		layerProjection.header.layerFlags = 0;
+		layerProjection.header.sensorFrameIndex = Frame->ViewNumber;
+		layerProjection.header.colorScale[0] = 0.0f;
+		layerProjection.header.colorScale[1] = 0.0f;
+		layerProjection.header.colorScale[2] = 0.0f;
+		layerProjection.header.colorScale[3] = 0.0f;
+		Pxr_SubmitLayer((PxrLayerHeader*)&layerProjection);
+	}
+	else
+	{
+		FTransform BaseTransform = FTransform::Identity;
+		uint32 Flags = 0;
+		Flags |= bMRCLayer ? (1 << 30) : 0;
+		switch (LayerDesc.PositionType)
+		{
+		case IStereoLayers::WorldLocked:
+			BaseTransform.SetRotation(Frame->TrackingToWorld.GetRotation());
+			BaseTransform.SetLocation(Frame->TrackingToWorld.GetTranslation());
+			break;
 
-	LayerOrientation = LayerRotation.Quaternion();
-	LayerOrientation = FPicoXRUtils::ConvertUnrealQuatToXRQuat(LayerOrientation);
-	float ModuleOrientation[4] = { LayerOrientation.X,LayerOrientation.Y,LayerOrientation.Z,LayerOrientation.W };
-	FIntPoint TextureSize = LayerDesc.Texture.IsValid() ? LayerDesc.Texture->GetTexture2D()->GetSizeXY() : LayerDesc.LayerSize;
-	float Aspect = 1.0f;
-	if (TextureSize.X > 0)
-		Aspect = (float)TextureSize.Y / (float)TextureSize.X;
+		case IStereoLayers::TrackerLocked:
+			break;
 
-	CameraRotation = FPicoXRUtils::ConvertUnrealQuatToXRQuat(CameraRotation);
-	float CameraOrientation[4] = { CameraRotation.X,CameraRotation.Y,CameraRotation.Z,CameraRotation.W };
-	CameraLocation = FPicoXRUtils::ConvertUnrealVectorToXRVector(CameraLocation,GEngine->XRSystem->GetWorldToMetersScale());
-	float CameraTranslation[3] = { CameraLocation.X,CameraLocation.Y,CameraLocation.Z };
+		case IStereoLayers::FaceLocked:
+			Flags |= PXR_LAYER_FLAG_HEAD_LOCKED;
+			break;
+		}
 
-    if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_QUAD) {
-        PxrLayerQuad layerSubmit = {};
-        layerSubmit.header.layerId = LayerId;
-        if (LayerDesc.PositionType != IStereoLayers::ELayerType::FaceLocked)
-            layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_USE_EXTERNAL_HEAD_POSE;
-        else
-            layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_HEAD_LOCKED;
-		
-        if (bMRCLayer)
-        {
-            layerSubmit.header.layerFlags |= 1 << 30;
-        }
+		FVector LayerPosition = GetLayerLocation();
+		LayerPosition = BaseTransform.InverseTransformPosition(LayerPosition);
+		LayerPosition = FPICOXRUtils::ConvertUnrealVectorToXRVector(LayerPosition, Frame->WorldToMetersScale);
 
-    	if (HMDDevice->GbApplyToAllLayers && !bSplashLayer)
-    	{
-    		layerSubmit.header.colorScale[0] = HMDDevice->GColorScale.R;
-    		layerSubmit.header.colorScale[1] = HMDDevice->GColorScale.G;
-    		layerSubmit.header.colorScale[2] = HMDDevice->GColorScale.B;
-    		layerSubmit.header.colorScale[3] = HMDDevice->GColorScale.A;
+		FQuat LayerOrientation = GetLayerOrientation();
+		LayerOrientation = BaseTransform.InverseTransformRotation(LayerOrientation);
+		LayerOrientation = FPICOXRUtils::ConvertUnrealQuatToXRQuat(LayerOrientation);
 
-    		layerSubmit.header.colorBias[0] = HMDDevice->GColorOffset.R;
-    		layerSubmit.header.colorBias[1] = HMDDevice->GColorOffset.G;
-    		layerSubmit.header.colorBias[2] = HMDDevice->GColorOffset.B;
-    		layerSubmit.header.colorBias[3] = HMDDevice->GColorOffset.A;
-    	}
-    	else
-    	{
-    		layerSubmit.header.colorScale[0] = 1.0f;
-    		layerSubmit.header.colorScale[1] = 1.0f;
-    		layerSubmit.header.colorScale[2] = 1.0f;
-    		layerSubmit.header.colorScale[3] = 1.0f;
-    		layerSubmit.header.colorBias[0] = 0.0f;
-    		layerSubmit.header.colorBias[1]  = 0.0f;
-    		layerSubmit.header.colorBias[2] = 0.0f;
-    		layerSubmit.header.colorBias[3]  = 0.0f;
-    	}
+		int SizeX = PxrLayerCreateParam.width;
+		int SizeY = PxrLayerCreateParam.height;
+		float AspectRatio = SizeX ? (float)SizeY / (float)SizeX : 3.0f / 4.0f;
+		FVector Scale = FPICOXRUtils::ConvertUnrealVectorToXRVector(LayerDesc.Transform.GetScale3D(), Frame->WorldToMetersScale);
 
+		bool bAdjustLayersColor = HMDDevice->GbApplyToAllLayers && (!bSplashLayer);
 
-        layerSubmit.header.compositionDepth = 0;
-        layerSubmit.header.headPose.orientation.x = CameraRotation.X;
-        layerSubmit.header.headPose.orientation.y = CameraRotation.Y;
-        layerSubmit.header.headPose.orientation.z = CameraRotation.Z;
-        layerSubmit.header.headPose.orientation.w = CameraRotation.W;
-        layerSubmit.header.headPose.position.x = CameraLocation.X;
-        layerSubmit.header.headPose.position.y = CameraLocation.Y;
-        layerSubmit.header.headPose.position.z = CameraLocation.Z;
+		int32 ShapeType = GetShapeType();
+		if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_QUAD)
+		{
+			PxrLayerQuad layerSubmit = {};
+			layerSubmit.header.layerId = PxrLayerID;
+			layerSubmit.header.compositionDepth = 0;
+			layerSubmit.header.sensorFrameIndex = Frame->ViewNumber;
+			layerSubmit.header.layerFlags = Flags;
 
-        layerSubmit.pose.orientation.x = LayerOrientation.X;
-        layerSubmit.pose.orientation.y = LayerOrientation.Y;
-        layerSubmit.pose.orientation.z = LayerOrientation.Z;
-        layerSubmit.pose.orientation.w = LayerOrientation.W;
-        layerSubmit.pose.position.x = LayerPosition.X;
-        layerSubmit.pose.position.y = LayerPosition.Y;
-        layerSubmit.pose.position.z = LayerPosition.Z;
+			layerSubmit.header.colorScale[0] = bAdjustLayersColor ? HMDDevice->GColorScale.R : 1.0f;
+			layerSubmit.header.colorScale[1] = bAdjustLayersColor ? HMDDevice->GColorScale.G : 1.0f;
+			layerSubmit.header.colorScale[2] = bAdjustLayersColor ? HMDDevice->GColorScale.B : 1.0f;
+			layerSubmit.header.colorScale[3] = bAdjustLayersColor ? HMDDevice->GColorScale.A : 1.0f;
 
-        float QuadSizeX = LayerDesc.QuadSize.X;
-        float QuadSizeY = LayerDesc.QuadSize.Y;
-        if (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO)
-        {
-            QuadSizeY = QuadSizeX * Aspect;
-        }
-        FVector QuadScale = GetLayerScale();
-        FVector QuadSize = FVector(-GEngine->XRSystem->GetWorldToMetersScale(), QuadSizeX, QuadSizeY);
-        FVector Scale = QuadScale * QuadSize;
-        Scale = FPicoXRUtils::ConvertUnrealVectorToXRVector(Scale, GEngine->XRSystem->GetWorldToMetersScale());
-        layerSubmit.size[0] = (float)Scale.X;
-        layerSubmit.size[1] = (float)Scale.Y;
+			layerSubmit.header.colorBias[0] = bAdjustLayersColor ? HMDDevice->GColorOffset.R : 0.0f;
+			layerSubmit.header.colorBias[1] = bAdjustLayersColor ? HMDDevice->GColorOffset.G : 0.0f;
+			layerSubmit.header.colorBias[2] = bAdjustLayersColor ? HMDDevice->GColorOffset.B : 0.0f;
+			layerSubmit.header.colorBias[3] = bAdjustLayersColor ? HMDDevice->GColorOffset.A : 0.0f;
 
-        Pxr_SubmitLayer((PxrLayerHeader*)&layerSubmit);
-    }
-    else if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_CYLINDER) {
-        PxrLayerCylinder layerSubmit = {};
-        layerSubmit.header.layerId = LayerId;
-        if (LayerDesc.PositionType != IStereoLayers::ELayerType::FaceLocked)
-            layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_USE_EXTERNAL_HEAD_POSE;
-        else
-            layerSubmit.header.layerFlags = PXR_LAYER_FLAG_LAYER_POSE_NOT_IN_TRACKING_SPACE | PXR_LAYER_FLAG_HEAD_LOCKED;
+			layerSubmit.pose.orientation.x = LayerOrientation.X;
+			layerSubmit.pose.orientation.y = LayerOrientation.Y;
+			layerSubmit.pose.orientation.z = LayerOrientation.Z;
+			layerSubmit.pose.orientation.w = LayerOrientation.W;
+			layerSubmit.pose.position.x = LayerPosition.X;
+			layerSubmit.pose.position.y = LayerPosition.Y;
+			layerSubmit.pose.position.z = LayerPosition.Z;
 
-        if (HMDDevice->GbApplyToAllLayers && !bSplashLayer)
-        {
-            layerSubmit.header.colorScale[0] = HMDDevice->GColorScale.R;
-            layerSubmit.header.colorScale[1] = HMDDevice->GColorScale.G;
-            layerSubmit.header.colorScale[2] = HMDDevice->GColorScale.B;
-            layerSubmit.header.colorScale[3] = HMDDevice->GColorScale.A;
+			float QuadSizeY = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? LayerDesc.QuadSize.X * AspectRatio : LayerDesc.QuadSize.Y;
+			layerSubmit.size[0] = (float)(LayerDesc.QuadSize.X * Scale.X);
+			layerSubmit.size[1] = (float)(QuadSizeY * Scale.Y);
 
-            layerSubmit.header.colorBias[0] = HMDDevice->GColorOffset.R;
-            layerSubmit.header.colorBias[1] = HMDDevice->GColorOffset.G;
-            layerSubmit.header.colorBias[2] = HMDDevice->GColorOffset.B;
-            layerSubmit.header.colorBias[3] = HMDDevice->GColorOffset.A;
-        }
-        else
-        {
-            layerSubmit.header.colorScale[0] = 1.0f;
-            layerSubmit.header.colorScale[1] = 1.0f;
-            layerSubmit.header.colorScale[2] = 1.0f;
-            layerSubmit.header.colorScale[3] = 1.0f;
-            layerSubmit.header.colorBias[0] = 0.0f;
-            layerSubmit.header.colorBias[1] = 0.0f;
-            layerSubmit.header.colorBias[2] = 0.0f;
-            layerSubmit.header.colorBias[3] = 0.0f;
-        }
+			Pxr_SubmitLayer((PxrLayerHeader*)&layerSubmit);
+		}
+		else if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_CYLINDER)
+		{
+			PxrLayerCylinder layerSubmit = {};
+			layerSubmit.header.layerId = PxrLayerID;
+			layerSubmit.header.compositionDepth = 0;
+			layerSubmit.header.sensorFrameIndex = Frame->ViewNumber;
+			layerSubmit.header.layerFlags = Flags;
 
-        layerSubmit.header.compositionDepth = 0;
-        layerSubmit.header.headPose.orientation.x = CameraRotation.X;
-        layerSubmit.header.headPose.orientation.y = CameraRotation.Y;
-        layerSubmit.header.headPose.orientation.z = CameraRotation.Z;
-        layerSubmit.header.headPose.orientation.w = CameraRotation.W;
-        layerSubmit.header.headPose.position.x = CameraLocation.X;
-        layerSubmit.header.headPose.position.y = CameraLocation.Y;
-        layerSubmit.header.headPose.position.z = CameraLocation.Z;
+			layerSubmit.header.colorScale[0] = bAdjustLayersColor ? HMDDevice->GColorScale.R : 1.0f;
+			layerSubmit.header.colorScale[1] = bAdjustLayersColor ? HMDDevice->GColorScale.G : 1.0f;
+			layerSubmit.header.colorScale[2] = bAdjustLayersColor ? HMDDevice->GColorScale.B : 1.0f;
+			layerSubmit.header.colorScale[3] = bAdjustLayersColor ? HMDDevice->GColorScale.A : 1.0f;
 
-        layerSubmit.pose.orientation.x = LayerOrientation.X;
-        layerSubmit.pose.orientation.y = LayerOrientation.Y;
-        layerSubmit.pose.orientation.z = LayerOrientation.Z;
-        layerSubmit.pose.orientation.w = LayerOrientation.W;
-        layerSubmit.pose.position.x = LayerPosition.X;
-        layerSubmit.pose.position.y = LayerPosition.Y;
-        layerSubmit.pose.position.z = LayerPosition.Z;
+			layerSubmit.header.colorBias[0] = bAdjustLayersColor ? HMDDevice->GColorOffset.R : 0.0f;
+			layerSubmit.header.colorBias[1] = bAdjustLayersColor ? HMDDevice->GColorOffset.G : 0.0f;
+			layerSubmit.header.colorBias[2] = bAdjustLayersColor ? HMDDevice->GColorOffset.B : 0.0f;
+			layerSubmit.header.colorBias[3] = bAdjustLayersColor ? HMDDevice->GColorOffset.A : 0.0f;
 
-        FVector Scale;
+			layerSubmit.pose.orientation.x = LayerOrientation.X;
+			layerSubmit.pose.orientation.y = LayerOrientation.Y;
+			layerSubmit.pose.orientation.z = LayerOrientation.Z;
+			layerSubmit.pose.orientation.w = LayerOrientation.W;
+			layerSubmit.pose.position.x = LayerPosition.X;
+			layerSubmit.pose.position.y = LayerPosition.Y;
+			layerSubmit.pose.position.z = LayerPosition.Z;
+
 #if ENGINE_MINOR_VERSION > 24
-        const FCylinderLayer& CylinderProps = LayerDesc.GetShape<FCylinderLayer>();
-        Scale.X = CylinderProps.OverlayArc;
-        Scale.Y = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? CylinderProps.OverlayArc * Aspect : CylinderProps.Height;
-        Scale.Z = CylinderProps.Radius;
+			const FCylinderLayer& CylinderProps = LayerDesc.GetShape<FCylinderLayer>();
+			float CylinderHeight = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? CylinderProps.OverlayArc * AspectRatio : CylinderProps.Height;
+			layerSubmit.centralAngle = CylinderProps.OverlayArc / CylinderProps.Radius;
+			layerSubmit.height = CylinderHeight * Scale.X;
+			layerSubmit.radius = CylinderProps.Radius * Scale.X;
 #else
-        Scale.X = LayerDesc.CylinderOverlayArc;
-        Scale.Y = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? LayerDesc.CylinderOverlayArc * Aspect : LayerDesc.CylinderHeight;
-        Scale.Z = LayerDesc.CylinderRadius;
+			float CylinderHeight = (LayerDesc.Flags & IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO) ? LayerDesc.CylinderOverlayArc * AspectRatio : LayerDesc.CylinderHeight;
+			layerSubmit.centralAngle = LayerDesc.CylinderOverlayArc / LayerDesc.CylinderRadius;
+			layerSubmit.height = CylinderHeight * Scale.X;
+			layerSubmit.radius = LayerDesc.CylinderRadius * Scale.X;
 #endif
-        Scale = Scale / GEngine->XRSystem->GetWorldToMetersScale();
-        layerSubmit.centralAngle = Scale.X / Scale.Z;
-        layerSubmit.height = Scale.Y;
-        layerSubmit.radius = Scale.Z;
+			Pxr_SubmitLayer((PxrLayerHeader*)&layerSubmit);
+		}
+		else if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_EQUIRECT)
+		{
+			PxrLayerEquirect layerSubmit = {};
+			layerSubmit.header.layerId = PxrLayerID;
+			layerSubmit.header.compositionDepth = 0;
+			layerSubmit.header.sensorFrameIndex = Frame->ViewNumber;
+			layerSubmit.header.layerFlags = Flags;
+			layerSubmit.header.layerShape = PxrLayerShape::PXR_LAYER_EQUIRECT;
+			layerSubmit.header.useImageRect = 1;
 
-        Pxr_SubmitLayer((PxrLayerHeader*)&layerSubmit);
-    }
+			layerSubmit.header.colorScale[0] = bAdjustLayersColor ? HMDDevice->GColorScale.R : 1.0f;
+			layerSubmit.header.colorScale[1] = bAdjustLayersColor ? HMDDevice->GColorScale.G : 1.0f;
+			layerSubmit.header.colorScale[2] = bAdjustLayersColor ? HMDDevice->GColorScale.B : 1.0f;
+			layerSubmit.header.colorScale[3] = bAdjustLayersColor ? HMDDevice->GColorScale.A : 1.0f;
+
+			layerSubmit.header.colorBias[0] = bAdjustLayersColor ? HMDDevice->GColorOffset.R : 0.0f;
+			layerSubmit.header.colorBias[1] = bAdjustLayersColor ? HMDDevice->GColorOffset.G : 0.0f;
+			layerSubmit.header.colorBias[2] = bAdjustLayersColor ? HMDDevice->GColorOffset.B : 0.0f;
+			layerSubmit.header.colorBias[3] = bAdjustLayersColor ? HMDDevice->GColorOffset.A : 0.0f;
+
+#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
+			const FEquirectLayer& EquirectProps = LayerDesc.GetShape<FEquirectLayer>();
+#else
+			const IStereoLayers::FEquirectProps& EquirectProps = LayerDesc.EquirectProps;
+#endif
+			float ScaleX[2], ScaleY[2], BiasX[2], BiasY[2], imagerectx[2], imagerecty[2], imagerectwidth[2], imagerectheight[2], umax[2], umin[2], vmax[2], vmin[2];
+			umax[0] = EquirectProps.LeftUVRect.Max.X;
+			umin[0] = EquirectProps.LeftUVRect.Min.X;
+			vmax[0] = EquirectProps.LeftUVRect.Max.Y;
+			vmin[0] = EquirectProps.LeftUVRect.Min.Y;
+			umax[1] = EquirectProps.RightUVRect.Max.X;
+			umin[1] = EquirectProps.RightUVRect.Min.X;
+			vmax[1] = EquirectProps.RightUVRect.Max.Y;
+			vmin[1] = EquirectProps.RightUVRect.Min.Y;
+			//Scale is not currently used
+			ScaleX[0] = EquirectProps.LeftScale.X;
+			ScaleY[0] = EquirectProps.LeftScale.Y;
+			ScaleX[1] = EquirectProps.RightScale.X;
+			ScaleY[1] = EquirectProps.RightScale.Y;
+			//Bias not currently used
+			BiasX[0] = EquirectProps.LeftBias.X;
+			BiasY[0] = EquirectProps.LeftBias.Y;
+			BiasX[1] = EquirectProps.RightBias.X;
+			BiasY[1] = EquirectProps.RightBias.Y;
+
+			for (int32 EyeIndex = 0; EyeIndex < 2; EyeIndex++)
+			{
+				//The UV far point of the engine is in the upper left corner
+				float temp = vmin[EyeIndex];
+				vmin[EyeIndex] = 1 - vmax[EyeIndex];
+				vmax[EyeIndex] = 1 - temp;
+				//Sphere radius
+				layerSubmit.radius[EyeIndex] = 100.0f;
+				//Layer pose
+				layerSubmit.pose[EyeIndex].orientation.x = LayerOrientation.X;
+				layerSubmit.pose[EyeIndex].orientation.y = LayerOrientation.Y;
+				layerSubmit.pose[EyeIndex].orientation.z = LayerOrientation.Z;
+				layerSubmit.pose[EyeIndex].orientation.w = LayerOrientation.W;
+				layerSubmit.pose[EyeIndex].position.x = LayerPosition.X;
+				layerSubmit.pose[EyeIndex].position.y = LayerPosition.Y;
+				layerSubmit.pose[EyeIndex].position.z = LayerPosition.Z;
+				//SrcRect
+				imagerectx[EyeIndex] = (int)(umin[EyeIndex] * PxrLayerCreateParam.width);
+				imagerecty[EyeIndex] = (int)(vmin[EyeIndex] * PxrLayerCreateParam.height);
+				imagerectwidth[EyeIndex] = PxrLayerCreateParam.width * (umax[EyeIndex] - umin[EyeIndex]);
+				imagerectheight[EyeIndex] = PxrLayerCreateParam.height * (vmax[EyeIndex] - vmin[EyeIndex]);
+				layerSubmit.header.imageRect[EyeIndex] = { (int)imagerectx[EyeIndex], (int)imagerecty[EyeIndex], (int)imagerectwidth[EyeIndex],(int)imagerectheight[EyeIndex] };
+				//DstRect
+				BiasX[EyeIndex] = -umin[EyeIndex] / (umax[EyeIndex] - umin[EyeIndex]);
+				BiasY[EyeIndex] = (vmax[EyeIndex] - 1) / (vmax[EyeIndex] - vmin[EyeIndex]);
+				ScaleX[EyeIndex] = 1 / (umax[EyeIndex] - umin[EyeIndex]);
+				ScaleY[EyeIndex] = 1 / (vmax[EyeIndex] - vmin[EyeIndex]);
+				layerSubmit.scaleX[EyeIndex] = ScaleX[EyeIndex];
+				layerSubmit.scaleY[EyeIndex] = ScaleY[EyeIndex];
+				layerSubmit.biasX[EyeIndex] = BiasX[EyeIndex];
+				layerSubmit.biasY[EyeIndex] = BiasY[EyeIndex];
+				PXR_LOGV(PxrUnreal, "EyeIndex:%d,ScaleX:%f,ScaleY:%f，BiasX:%f，BiasY:%f，imagerectx:%f，imagerecty:%f,imagerectwidth:%f,imagerectheight:%f",
+					EyeIndex, ScaleX[EyeIndex], ScaleY[EyeIndex], BiasX[EyeIndex], BiasY[EyeIndex], imagerectx[EyeIndex], imagerecty[EyeIndex], imagerectwidth[EyeIndex], imagerectheight[EyeIndex]);
+			}
+			int result;
+			result = Pxr_SubmitLayer2((PxrLayerHeader2*)&layerSubmit);
+			if (result != (int)PxrReturnStatus::PXR_RET_SUCCESS)
+			{
+				PXR_LOGE(PxrUnreal, "Submit Layer:%d PxrLayerEquirect Failed!:%d", PxrLayerID, result);
+			}
+		}
+		else if (ShapeType == (int32)PxrLayerShape::PXR_LAYER_CUBE)
+		{
+			PxrLayerCube2 layerSubmit = {};
+			layerSubmit.header.layerId = PxrLayerID;
+			layerSubmit.header.compositionDepth = 0;
+			layerSubmit.header.sensorFrameIndex = Frame->ViewNumber;
+			layerSubmit.header.layerFlags = Flags;
+			layerSubmit.header.layerShape = PxrLayerShape::PXR_LAYER_CUBE;
+
+			layerSubmit.header.colorScale[0] = bAdjustLayersColor ? HMDDevice->GColorScale.R : 1.0f;
+			layerSubmit.header.colorScale[1] = bAdjustLayersColor ? HMDDevice->GColorScale.G : 1.0f;
+			layerSubmit.header.colorScale[2] = bAdjustLayersColor ? HMDDevice->GColorScale.B : 1.0f;
+			layerSubmit.header.colorScale[3] = bAdjustLayersColor ? HMDDevice->GColorScale.A : 1.0f;
+
+			layerSubmit.header.colorBias[0] = bAdjustLayersColor ? HMDDevice->GColorOffset.R : 0.0f;
+			layerSubmit.header.colorBias[1] = bAdjustLayersColor ? HMDDevice->GColorOffset.G : 0.0f;
+			layerSubmit.header.colorBias[2] = bAdjustLayersColor ? HMDDevice->GColorOffset.B : 0.0f;
+			layerSubmit.header.colorBias[3] = bAdjustLayersColor ? HMDDevice->GColorOffset.A : 0.0f;
+
+			for (int32 EyeIndex = 0; EyeIndex < 2; EyeIndex++)
+			{
+				layerSubmit.pose[EyeIndex].orientation.x = LayerOrientation.X;
+				layerSubmit.pose[EyeIndex].orientation.y = LayerOrientation.Y;
+				layerSubmit.pose[EyeIndex].orientation.z = LayerOrientation.Z;
+				layerSubmit.pose[EyeIndex].orientation.w = LayerOrientation.W;
+				layerSubmit.pose[EyeIndex].position.x = LayerPosition.X;
+				layerSubmit.pose[EyeIndex].position.y = LayerPosition.Y;
+				layerSubmit.pose[EyeIndex].position.z = LayerPosition.Z;
+			}
+			int result;
+			result = Pxr_SubmitLayer2((PxrLayerHeader2*)&layerSubmit);
+			if (result != (int)PxrReturnStatus::PXR_RET_SUCCESS)
+			{
+				PXR_LOGE(PxrUnreal, "Submit Layer:%d PxrLayerCube2 Failed!:%d", PxrLayerID, result);
+			}
+		}
+	}
 #endif
 }
 
-int32 FPicoXRStereoLayer::GetShapeType()
+int32 FPICOXRStereoLayer::GetShapeType()
 {
 	int32 ShapeType = 0;
 #if PLATFORM_ANDROID
@@ -717,15 +923,14 @@ int32 FPicoXRStereoLayer::GetShapeType()
 	{
 		ShapeType = 2;
 	}
-	else if (LayerDesc.HasShape<FCubemapLayer>())
-	{
-		ShapeType = 4;
-	}
 	else if (LayerDesc.HasShape<FEquirectLayer>())
 	{
 		ShapeType = 3;
 	}
-
+	else if (LayerDesc.HasShape<FCubemapLayer>())
+	{
+		ShapeType = 5;
+	}
 #else
 	switch (LayerDesc.ShapeType)
 	{
@@ -735,8 +940,11 @@ int32 FPicoXRStereoLayer::GetShapeType()
 	case IStereoLayers::CylinderLayer:
 		ShapeType = 2;
 		break;
+	case IStereoLayers::EquirectLayer:
+		ShapeType = 3;
+		break;
 	case IStereoLayers::CubemapLayer:
-		ShapeType = 4;
+		ShapeType = 5;
 		break;
 	default:
 		ShapeType = 0;
@@ -747,24 +955,29 @@ int32 FPicoXRStereoLayer::GetShapeType()
 	return ShapeType;
 }
 
-#if ENGINE_MINOR_VERSION > 25
-void FPicoXRStereoLayer::SetEyeLayerParam(FPicoXRRenderBridge* RenderBridge,uint8 Format, uint32 SizeX, uint32 SizeY,
-	uint32 ArraySize,uint32 NumMips,uint32 NumSamples,  ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue)
-#else
-void FPicoXRStereoLayer::SetEyeLayerParam(FPicoXRRenderBridge* RenderBridge, uint8 Format, uint32 SizeX, uint32 SizeY,
-	uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, uint32 MSAAValue)
-#endif
+void FPICOXRStereoLayer::SetProjectionLayerParams(uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, FString RHIString)
 {
-	check(LayerId == 0);
-	EyeLayerParam.RenderBridge = RenderBridge;
-	EyeLayerParam.Format = Format;
-	EyeLayerParam.SizeX = SizeX;
-	EyeLayerParam.SizeY = SizeY;
-	EyeLayerParam.ArraySize = ArraySize;
-	EyeLayerParam.NumMips = NumMips;
-	EyeLayerParam.NumSamples = NumSamples;
-	EyeLayerParam.Flags = Flags;
-	EyeLayerParam.TargetableTextureFlags = TargetableTextureFlags;
-	EyeLayerParam.MSAAValue = MSAAValue;
+#if PLATFORM_ANDROID
+	PxrLayerCreateParam.layerShape = PXR_LAYER_PROJECTION;
+	PxrLayerCreateParam.width = SizeX;
+	PxrLayerCreateParam.height = SizeY;
+	PxrLayerCreateParam.faceCount = 1;
+	PxrLayerCreateParam.mipmapCount = NumMips;
+	PxrLayerCreateParam.sampleCount = NumSamples;
+	PxrLayerCreateParam.arraySize = ArraySize;
+	PxrLayerCreateParam.layerLayout = (ArraySize == 2 ? PXR_LAYER_LAYOUT_ARRAY : PXR_LAYER_LAYOUT_DOUBLE_WIDE);
+	if (RHIString == TEXT("OpenGL"))
+	{
+		PxrLayerCreateParam.format = IsMobileColorsRGB() ? GL_SRGB8_ALPHA8 : GL_RGBA8;
+	}
+	else if (RHIString == TEXT("Vulkan"))
+	{
+		PxrLayerCreateParam.format = IsMobileColorsRGB() ? VK_FORMAT_R8G8B8A8_SRGB : VK_FORMAT_R8G8B8A8_UNORM;
+	}
+	if (bSplashBlackProjectionLayer)
+	{
+		PxrLayerCreateParam.layerFlags |= PXR_LAYER_FLAG_STATIC_IMAGE;
+	}
+#endif
 }
 

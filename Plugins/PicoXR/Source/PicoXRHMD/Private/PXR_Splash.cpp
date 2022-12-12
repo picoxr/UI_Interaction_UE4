@@ -3,394 +3,543 @@
 #include "PXR_Splash.h"
 #include "PXR_HMD.h"
 #include "Misc/ScopeLock.h"
-#include "RenderingThread.h"
-#include "Engine/Classes/Kismet//StereoLayerFunctionLibrary.h"
+#include "Kismet/StereoLayerFunctionLibrary.h"
 #include "Runtime/HeadMountedDisplay/Public/XRThreadUtils.h"
-#include "PXR_HMDFunctionLibrary.h"
 #include "PXR_Log.h"
 
-FPicoXRSplash::FPicoXRSplash( FPicoXRHMD* InPicoXRHMD)
-	:bInitialized(false)
-	,PicoXRHMD(InPicoXRHMD)
-	,bTickerStarted(false)
-    ,bShown(false)
+FPXRSplash::FPXRSplash(FPICOXRHMD* InPICOXRHMD)
+	: SplashTicker(nullptr)
+	, bInitialized(false)
+	, PICOXRHMD(InPICOXRHMD)
+	, CustomRenderBridge(InPICOXRHMD->GetCustomRenderBridge())
+	, PICOSettings(nullptr)
+	, PXRFrame(nullptr)
+	, bIsShown(false)
+	, bSplashNeedUpdateActiveState(false)
+	, bSplashShouldToShow(false)
+	, FramesOutstanding(0)
 {
-	PXR_LOGI(PxrUnreal, "Splash FPicoXRSplash() Construct!");
-}
+	AddedPXRSplashLayers.Reset();
+	PXRLayers_RenderThread_Entry.Reset();
+	PXRLayers_RenderThread.Reset();
+	PXRLayers_RHIThread.Reset();
 
-FPicoXRSplash::~FPicoXRSplash()
-{
-	UnInitialize();
-	check(!Ticker.IsValid());	
-}
-
-void FPicoXRSplash::SplashTick_RenderThread(float DeltaTime)
-{
-	check(IsInRenderingThread())
-	const double TimeInSeconds = FPlatformTime::Seconds();
-	const double DeltaTimeInSeconds = TimeInSeconds - LastTimeInSeconds;
-
-	if (DeltaTimeInSeconds > 2.f * SystemDisplayInterval && Layers_RenderThread_DeltaRotation.Num() > 0)
 	{
-		FScopeLock ScopeLock(&RenderThreadLock);
-		//TODO:Splash rotation
-		LastTimeInSeconds = TimeInSeconds;
+		IStereoLayers::FLayerDesc LayerDesc;
+		LayerDesc.QuadSize = FVector2D(0.01f, 0.01f);
+		LayerDesc.Priority = 0;
+		LayerDesc.PositionType = IStereoLayers::TrackerLocked;
+		LayerDesc.Texture = GBlackTexture->TextureRHI;
+		BlackLayer = MakeShareable(new FPICOXRStereoLayer(InPICOXRHMD, InPICOXRHMD->NextLayerId++, LayerDesc));
+		BlackLayer->bSplashLayer = true;
+		BlackLayer->bSplashBlackProjectionLayer = true;
+		uint32 SizeX = 1;
+		uint32 SizeY = 1;
+		if (LayerDesc.Texture.IsValid())
+		{
+			FRHITexture2D* Texture2D = LayerDesc.Texture->GetTexture2D();
+			if (Texture2D)
+			{
+				SizeX = Texture2D->GetSizeX();
+				SizeY = Texture2D->GetSizeY();
+			}
+		}
+		BlackLayer->SetProjectionLayerParams(SizeX, SizeY, InPICOXRHMD->IsMultiviewEnable() ? 2 : 1, 1, 1, InPICOXRHMD->GetRHIString());
 	}
 
-	RenderFrame_RenderThread(FRHICommandListExecutor::GetImmediateCommandList());
+	PXR_LOGI(PxrUnreal, "Splash FPXRSplash() Construct!");
 }
 
-void FPicoXRSplash::Initialize()
+FPXRSplash::~FPXRSplash()
+{
+	check(!SplashTicker.IsValid());
+	PXR_LOGI(PxrUnreal, "Splash FPXRSplash() Destruct!");
+}
+
+void FPXRSplash::ShowLoadingScreen()
+{
+	PXR_LOGI(PxrUnreal, "Splash ShowLoadingScreen!");
+	bSplashShouldToShow = true;
+	bSplashNeedUpdateActiveState = !bIsShown;
+}
+
+void FPXRSplash::HideLoadingScreen()
+{
+	PXR_LOGI(PxrUnreal, "Splash HideLoadingScreen!");
+	bSplashShouldToShow = false;
+	bSplashNeedUpdateActiveState = bIsShown;
+}
+
+void FPXRSplash::ClearSplashes()
+{
+	check(IsInGameThread());
+	FScopeLock ScopeLock(&RenderThreadLock);
+	AddedPXRSplashLayers.Reset();
+}
+
+void FPXRSplash::AddSplash(const FSplashDesc& InSplashDesc)
+{
+	FPXRSplashDesc PXRSplashDesc;
+	PXRSplashDesc.SplashTransform = InSplashDesc.Transform;
+	PXRSplashDesc.SplashQuadSize = InSplashDesc.QuadSize;
+	PXRSplashDesc.bNoAlpha = InSplashDesc.bIgnoreAlpha;
+	PXRSplashDesc.bIsLiveUpdate = InSplashDesc.bIsDynamic || InSplashDesc.bIsExternal;
+	PXRSplashDesc.SplashTextureOffset = InSplashDesc.UVRect.Min;
+	PXRSplashDesc.SplashTextureScale = InSplashDesc.UVRect.Max;
+	PXRSplashDesc.LoadedTextureRef = InSplashDesc.Texture;
+	AddPXRSplashLayers(PXRSplashDesc);
+}
+
+void FPXRSplash::InitSplash()
 {
 	check(IsInGameThread());
 	if (!bInitialized)
 	{
-		Frame = PicoXRHMD->MakeNewGameFrame();
-
-		SystemDisplayInterval = 1.0f / UPicoXRHMDFunctionLibrary::PXR_GetCurrentDisplayFrequency();
-		LoadSettings();
+		PXRFrame = PICOXRHMD->MakeNewGameFrame();
+		AddSplashFromPXRSettings();
 		bInitialized = true;
 	}
 }
 
-void FPicoXRSplash::LoadSettings()
+void FPXRSplash::ShutDownSplash()
 {
-	PicoSettings = GetMutableDefault<UPicoXRSettings>();
-	check(PicoSettings);
-	ClearSplashes();
-	for(const FPicoSplashDesc& SplashDesc : PicoSettings->SplashDescs)
-	{
-		if (SplashDesc.TexturePath !=nullptr)
-		{
-			AddSplash(SplashDesc);
-		}
-		else
-		{
-			UE_LOG(LogHMD, Log, TEXT("Pxr_UE FPicoXRSplash::LoadSettings()  the TexturePath is null"));
-		}		
-	}
+	check(IsInGameThread());
 
-	UStereoLayerFunctionLibrary::EnableAutoLoadingSplashScreen(PicoSettings->bSplashScreenAutoShow);
-	if (PicoSettings->bSplashScreenAutoShow)
+	if (bInitialized)
 	{
-		if (!PostLoadLevelDelegate.IsValid())
-		{
-			PostLoadLevelDelegate = FCoreUObjectDelegates::PostLoadMapWithWorld.AddSP(this, &FPicoXRSplash::OnPostLoadMap);
-		}
-	}
-	else
-	{
+		ExecuteOnRenderThread([this]()
+			{
+				if (SplashTicker)
+				{
+					SplashTicker->Unregister();
+					SplashTicker = nullptr;
+				}
+
+				ExecuteOnRHIThread([this]()
+					{
+						AddedPXRSplashLayers.Reset();
+						PXRLayers_RenderThread_Entry.Reset();
+						PXRLayers_RenderThread.Reset();
+						PXRLayers_RHIThread.Reset();
+					});
+			});
+
 		if (PostLoadLevelDelegate.IsValid())
 		{
 			FCoreUObjectDelegates::PostLoadMapWithWorld.Remove(PostLoadLevelDelegate);
 			PostLoadLevelDelegate.Reset();
 		}
-	}
 
-
-}
-
-void FPicoXRSplash::UnInitialize()
-{
-	check(IsInGameThread());
-	if (bInitialized)
-	{
-		ExecuteOnRenderThread([this]()
-		{
-			if (Ticker)
-			{
-				Ticker->Unregister();
-				Ticker = nullptr;
-			}
-			ExecuteOnRHIThread([this]()
-            {
-                SplashLayers.Reset();
-            });
-		});
-		SplashLayersMap.Reset();
 		bInitialized = false;
 	}
 }
 
-void FPicoXRSplash::OnPreLoadMap(const FString&)
+void FPXRSplash::SplashTick_RenderThread(float DeltaTime)
 {
-	if (PicoSettings->bSplashScreenAutoShow)
+	check(IsInRenderingThread());
+
+#if PLATFORM_ANDROID
+	if (!Pxr_IsRunning())
 	{
-		PXR_LOGI(PxrUnreal, "Splash OnPreLoadMap!");
-		if (!bShown)
-		{
-			Show();
-		}	
-	}	
+		PXR_LOGV(PxrUnreal, "Splash Pxr_IsRunning == false!");
+		return;
+	}
+#endif
+
+	if (FramesOutstanding > 0)
+	{
+		PXR_LOGV(PxrUnreal, "Splash skipping frame; too many frames outstanding");
+		return;
+	}
+
+	RenderSplashFrame_RenderThread(FRHICommandListExecutor::GetImmediateCommandList());
 }
 
-void FPicoXRSplash::OnPostLoadMap(UWorld*)
+void FPXRSplash::AddSplashFromPXRSettings()
 {
-	if (!bSplashShouldShow)
+	PICOSettings = GetMutableDefault<UPICOXRSettings>();
+	check(PICOSettings);
+	ClearSplashes();
+	for (const FPXRSplashDesc& SplashDesc : PICOSettings->SplashDescs)
+	{
+		if (SplashDesc.SplashTexturePath.IsValid())
+		{
+			AddPXRSplashLayers(SplashDesc);
+		}
+		else
+		{
+			PXR_LOGI(PxrUnreal, "Splash AddSplashFromPXRSettings() the TexturePath is null!");
+		}
+	}
+
+	if (!PostLoadLevelDelegate.IsValid())
+	{
+		PostLoadLevelDelegate = FCoreUObjectDelegates::PostLoadMapWithWorld.AddSP(this, &FPXRSplash::OnPostLoadMap);
+	}
+}
+
+void FPXRSplash::OnPreLoadMap(const FString& MapName)
+{
+	if (PICOSettings->bSplashScreenAutoShow)
+	{
+		PXR_LOGI(PxrUnreal, "Splash OnPreLoadMap:%s", PLATFORM_CHAR(*MapName));
+		if (!bIsShown)
+		{
+			ToShow();
+		}
+	}
+}
+
+void FPXRSplash::OnPostLoadMap(UWorld*)
+{
+	if (PICOSettings->bSplashScreenAutoShow)
 	{
 		PXR_LOGI(PxrUnreal, "Splash OnPostLoadMap!");
-		HideLoadingScreen();
+		if (!bSplashShouldToShow)
+		{
+			HideLoadingScreen();
+		}
 	}
 }
 
-void FPicoXRSplash::StartTicker()
+void FPXRSplash::BeginTicker()
 {
 	check(IsInGameThread());
-	if (!Ticker.IsValid())
+	if (!SplashTicker.IsValid())
 	{
-		Ticker = MakeShareable(new FTicker(this));
+		SplashTicker = MakeShareable(new FSplashTicker_RenderThread(this));
 		ExecuteOnRenderThread([this]()
-        {
-			LastTimeInSeconds = FPlatformTime::Seconds();
-            Ticker->Register();		
-			bTickerStarted = true;
-			PXR_LOGI(PxrUnreal, "Splash StartTicker!");
-        });	
+			{
+				SplashTicker->Register();
+				PXR_LOGI(PxrUnreal, "Splash StartTicker!");
+			});
 	}
 }
 
-void FPicoXRSplash::StopTicker()
+void FPXRSplash::EndTicker()
 {
 	ExecuteOnRenderThread([this]()
-	{
-		if (Ticker.IsValid())
 		{
-            Ticker->Unregister();
-            Ticker = nullptr;
-			bTickerStarted = false;
-			bShown = false;
-			PXR_LOGI(PxrUnreal, "Splash StopTicker!");
-        }
-	});	
-	ReleaseTextures();
+			if (SplashTicker.IsValid())
+			{
+				SplashTicker->Unregister();
+				SplashTicker = nullptr;
+				PXR_LOGI(PxrUnreal, "Splash StopTicker!");
+			}
+		});
 }
 
-void FPicoXRSplash::Show()
+void FPXRSplash::ToShow()
 {
 	check(IsInGameThread());
-	ReleaseTextures();
+	ReleaseAllTextures();
+
+	for (int32 i = 0; i < AddedPXRSplashLayers.Num(); ++i)
 	{
-		for (int32 SplashLayerIndex = 0; SplashLayerIndex < SplashLayers.Num(); ++SplashLayerIndex)
+		FPXRSplashLayer& SplashLayer = AddedPXRSplashLayers[i];
+		if (SplashLayer.Desc.SplashTexturePath.IsValid())
 		{
-			FPicoSplashLayer& SplashLayer =  SplashLayers[SplashLayerIndex];;
-			if (SplashLayer.Desc.TexturePath.IsValid())
-			{
-				LoadTexture(SplashLayer);
-			}
-			if (SplashLayer.Desc.LoadingTexture && SplashLayer.Desc.LoadingTexture->IsValidLowLevel())
-			{
-				SplashLayer.Desc.LoadingTexture->UpdateResource();
-			}
+			LoadTexture(SplashLayer);
 		}
-		FlushRenderingCommands();
-	}
-	for (int32 SplashLayerIndex = 0; SplashLayerIndex < SplashLayers.Num(); ++SplashLayerIndex)
-	{
-		FPicoSplashLayer& SplashLayer = SplashLayers[SplashLayerIndex];
-		if (SplashLayer.Desc.LoadingTexture->IsValidLowLevel())
+		if (SplashLayer.Desc.LoadingTextureFromPath && SplashLayer.Desc.LoadingTextureFromPath->IsValidLowLevel())
 		{
-			if (SplashLayer.Desc.LoadingTexture->Resource && SplashLayer.Desc.LoadingTexture->Resource->TextureRHI)
+			SplashLayer.Desc.LoadingTextureFromPath->UpdateResource();
+		}
+	}
+	FlushRenderingCommands();
+
+	for (int32 i = 0; i < AddedPXRSplashLayers.Num(); ++i)
+	{
+		FPXRSplashLayer& SplashLayer = AddedPXRSplashLayers[i];
+		if (SplashLayer.Desc.LoadingTextureFromPath->IsValidLowLevel())
+		{
+			if (SplashLayer.Desc.LoadingTextureFromPath->Resource && SplashLayer.Desc.LoadingTextureFromPath->Resource->TextureRHI)
 			{
-				SplashLayer.Desc.LoadedTexture = SplashLayer.Desc.LoadingTexture->Resource->TextureRHI;
+				SplashLayer.Desc.LoadedTextureRef = SplashLayer.Desc.LoadingTextureFromPath->Resource->TextureRHI;
 			}
 			else
 			{
-				UE_LOG(LogHMD, Log, TEXT("Splash, %s - no Resource"), *SplashLayer.Desc.LoadingTexture->GetDesc());
+				PXR_LOGI(PxrUnreal, "Splash %s - no Resource!", PLATFORM_CHAR(*SplashLayer.Desc.LoadingTextureFromPath->GetDesc()));
 			}
 		}
-		
-		if (SplashLayer.Desc.LoadedTexture)
+
+		if (SplashLayer.Desc.LoadedTextureRef)
 		{
-			const int32 LayerID = PicoXRHMD->NextLayerId++;
-			SplashLayer.Layer = MakeShareable(new FPicoXRStereoLayer(PicoXRHMD,LayerID,StereoLayerDescFromPicoSplashDesc(SplashLayer.Desc)));
+			const int32 PXRLayerID = PICOXRHMD->NextLayerId++;
+			SplashLayer.Layer = MakeShareable(new FPICOXRStereoLayer(PICOXRHMD, PXRLayerID, CreateStereoLayerDescFromPXRSplashDesc(SplashLayer.Desc)));
+			SplashLayer.Layer->bSplashLayer = true;
 		}
-		SplashLayer.Layer->bSplashLayer = true;
 	}
 
-	SplashLayersMap.Empty( SplashLayers.Num());
-	for (int32 SplashLayerIndex = 0; SplashLayerIndex < SplashLayers.Num(); ++SplashLayerIndex)
 	{
-		SplashLayers[SplashLayerIndex].Layer->MarkCreateLayer();
-		SplashLayersMap.Add(SplashLayers[SplashLayerIndex].Layer->GetLayerID(),SplashLayers[SplashLayerIndex].Layer);
+		FScopeLock ScopeLock(&RenderThreadLock);
+		PXRLayers_RenderThread_Entry.Reset();
+		for (int32 i = 0; i < AddedPXRSplashLayers.Num(); i++)
+		{
+			const FPXRSplashLayer& SplashLayer = AddedPXRSplashLayers[i];
+
+			if (SplashLayer.Layer.IsValid())
+			{
+				FPICOLayerPtr ClonedLayer = SplashLayer.Layer->CloneMyself();
+				PXRLayers_RenderThread_Entry.Add(ClonedLayer);
+			}
+		}
+		if (PXRLayers_RenderThread_Entry.Num() > 0)
+		{
+			PXRLayers_RenderThread_Entry.Add(BlackLayer->CloneMyself());
+		}
+		PXRLayers_RenderThread_Entry.Sort(FPICOLayerPtr_SortById());
 	}
 
-	if (SplashLayersMap.Num()>0)
+	if (PXRLayers_RenderThread_Entry.Num() > 0)
 	{
-		StartTicker();
-		bShown = true;
+		BeginTicker();
+		bIsShown = true;
+	}
+	else
+	{
+		PXR_LOGI(PxrUnreal, "No splash layers show!");
 	}
 }
 
-void FPicoXRSplash::Hide()
+void FPXRSplash::ToHide()
 {
 	check(IsInGameThread());
 	PXR_LOGI(PxrUnreal, "Splash Hide!");
-	bShown = false;
-	StopTicker();
+	bIsShown = false;
+	EndTicker();
+	ReleaseAllTextures();
 }
 
-void FPicoXRSplash::AutoShow(bool AutoShowSplash)
+void FPXRSplash::AutoShow(bool AutoShowSplash)
 {
 	check(IsInGameThread());
-	PicoSettings->bSplashScreenAutoShow =AutoShowSplash;
+	PICOSettings->bSplashScreenAutoShow = AutoShowSplash;
 }
 
-void FPicoXRSplash::AddSplash(const FPicoSplashDesc& Desc)
+void FPXRSplash::AddPXRSplashLayers(const FPXRSplashDesc& Desc)
 {
 	check(IsInGameThread());
 	PXR_LOGI(PxrUnreal, "Splash AddSplash!");
 	FScopeLock ScopeLock(&RenderThreadLock);
-	SplashLayers.Add(FPicoSplashLayer(Desc));
+	AddedPXRSplashLayers.Add(FPXRSplashLayer(Desc));
 }
 
-void FPicoXRSplash::ShowLoadingScreen()
+void FPXRSplash::SwitchActiveSplash_GameThread()
 {
-	PXR_LOGI(PxrUnreal, "Splash ShowLoadingScreen!");
-	bSplashShouldShow = true;
-	bSplashNeedUpdate = true;
-}
-
-void FPicoXRSplash::HideLoadingScreen()
-{
-	PXR_LOGI(PxrUnreal, "Splash HideLoadingScreen!");
-	bSplashShouldShow = false;
-	bSplashNeedUpdate = bShown;
-}
-
-void FPicoXRSplash::ClearSplashes()
-{
-	check(IsInGameThread());
-	FScopeLock ScopeLock(&RenderThreadLock);
-	SplashLayers.Reset();
-}
-
-void FPicoXRSplash::AddSplash(const FSplashDesc& Splash)
-{
-	FPicoSplashDesc SplashDesc;
-	SplashDesc.TransformInMeters = Splash.Transform;
-	SplashDesc.QuadSizeInMeters = Splash.QuadSize;
-	SplashDesc.DeltaRotation = Splash.DeltaRotation;
-	SplashDesc.bNoAlphaChannel = Splash.bIgnoreAlpha;
-	SplashDesc.bIsDynamic = Splash.bIsDynamic || Splash.bIsExternal;
-	SplashDesc.TextureOffset = Splash.UVRect.Min;
-	SplashDesc.TextureScale = Splash.UVRect.Max;
-	SplashDesc.LoadedTexture = Splash.Texture;
-	AddSplash(SplashDesc);
-}
-
-void FPicoXRSplash::UpdateLoadingScreen_GameThread()
-{
-	if (bSplashNeedUpdate)
+	if (bSplashNeedUpdateActiveState)
 	{
-		if (bSplashShouldShow)
+		if (bSplashShouldToShow)
 		{
-			Show();
+			if (!bIsShown)
+			{
+				ToShow();
+			}
 		}
 		else
 		{
-			Hide();
+			if (bIsShown)
+			{
+				ToHide();
+			}
 		}
-
-		bSplashNeedUpdate = false;
+		bSplashNeedUpdateActiveState = false;
 	}
 }
 
-void FPicoXRSplash::ReleaseTextures()
+void FPXRSplash::ReleaseAllTextures()
 {
 	FScopeLock ScopeLock(&RenderThreadLock);
-	for (int32 SplashLayerIndex = 0; SplashLayerIndex < SplashLayers.Num(); ++SplashLayerIndex)
+	for (int32 i = 0; i < AddedPXRSplashLayers.Num(); ++i)
 	{
-		if (SplashLayers[SplashLayerIndex].Desc.TexturePath.IsValid())
+		if (AddedPXRSplashLayers[i].Desc.SplashTexturePath.IsValid())
 		{
-			ReleaseTexture(SplashLayers[SplashLayerIndex]);
+			ReleaseTexture(AddedPXRSplashLayers[i]);
 		}
 	}
 }
 
-void FPicoXRSplash::ReleaseTexture(FPicoSplashLayer& InSplashLayer)
+void FPXRSplash::ReleaseTexture(FPXRSplashLayer& InSplashLayer)
 {
 	check(IsInGameThread());
-	InSplashLayer.Desc.LoadingTexture = nullptr;
-	InSplashLayer.Desc.LoadedTexture = nullptr;
+	InSplashLayer.Desc.LoadingTextureFromPath = nullptr;
+	InSplashLayer.Desc.LoadedTextureRef = nullptr;
 	InSplashLayer.Layer.Reset();
 }
 
-void FPicoXRSplash::LoadTexture(FPicoSplashLayer& InSplashLayer)
+void FPXRSplash::LoadTexture(FPXRSplashLayer& InSplashLayer)
 {
 	check(IsInGameThread());
-	if (InSplashLayer.Desc.LoadingTexture && InSplashLayer.Desc.LoadingTexture->IsValidLowLevel())
-	{
-		InSplashLayer.Desc.LoadingTexture = nullptr;
-	}
-	InSplashLayer.Desc.LoadedTexture = nullptr;
-	InSplashLayer.Layer.Reset();
-	InSplashLayer.Desc.LoadingTexture = Cast<UTexture>(InSplashLayer.Desc.TexturePath.TryLoad());
-	InSplashLayer.Desc.LoadedTexture = nullptr;
+	ReleaseTexture(InSplashLayer);
+	InSplashLayer.Desc.LoadingTextureFromPath = Cast<UTexture>(InSplashLayer.Desc.SplashTexturePath.TryLoad());
+	InSplashLayer.Desc.LoadedTextureRef = nullptr;
 	InSplashLayer.Layer.Reset();
 }
 
-void FPicoXRSplash::RenderFrame_RenderThread(FRHICommandListImmediate& RHICmdList)
+void FPXRSplash::RenderSplashFrame_RenderThread(FRHICommandListImmediate& RHICmdList)
 {
 	check(IsInRenderingThread());
 	FScopeLock ScopeLock(&RenderThreadLock);
-	FPXRGameFramePtr XFrame = Frame->Clone();
-	XFrame->FrameNumber = PicoXRHMD->NextFrameIndex;
-	XFrame->ShowFlags.Rendering = true;
+	FPXRGameFramePtr SplashFrame = PXRFrame->CloneMyself();
+	SplashFrame->FrameNumber = PICOXRHMD->NextGameFrameNumber;
+	SplashFrame->predictedDisplayTimeMs = PICOXRHMD->CurrentFramePredictedTime + 1000.0f / PICOXRHMD->DisplayRefreshRate;
+	SplashFrame->ShowFlags.Rendering = true;
+	TArray<FPICOLayerPtr> SplashEntryLayers = PXRLayers_RenderThread_Entry;
 #if PLATFORM_ANDROID
-	if (Pxr_IsRunning() && PicoXRHMD->WaitFrameIndex < XFrame->FrameNumber)
+	if (Pxr_IsRunning() && PICOXRHMD->WaitedFrameNumber < SplashFrame->FrameNumber)
 	{
-		PXR_LOGV(PxrUnreal, "Splash WaitToBeginFrame %u", XFrame->FrameNumber);
-		int CurrentVersion = 0;
-		Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
-		if (PicoXRHMD->bWaitFrameVersion)
+		PXR_LOGV(PxrUnreal, "Splash WaitToBeginFrame %u", SplashFrame->FrameNumber);
+		if (PICOXRHMD->bWaitFrameVersion)
 		{
 			Pxr_WaitFrame();
+			Pxr_GetPredictedDisplayTime(&(PICOXRHMD->CurrentFramePredictedTime));
+			PXR_LOGV(PxrUnreal, "Splash Pxr_GetPredictedDisplayTime after Pxr_WaitFrame:%f", PICOXRHMD->CurrentFramePredictedTime);
 		}
-		PicoXRHMD->WaitFrameIndex = XFrame->FrameNumber;
-		PicoXRHMD->NextFrameIndex = XFrame->FrameNumber + 1;
+		PICOXRHMD->WaitedFrameNumber = SplashFrame->FrameNumber;
+		PICOXRHMD->NextGameFrameNumber = SplashFrame->FrameNumber + 1;
+		FPlatformAtomics::InterlockedIncrement(&FramesOutstanding);
 	}
 	else
 	{
-		XFrame->ShowFlags.Rendering = false;
+		SplashFrame->ShowFlags.Rendering = false;
 	}
 #endif
-	PicoXRHMD->SplashShow(RHICmdList);
 
-	ExecuteOnRHIThread([this,XFrame]()
+	if (SplashFrame->ShowFlags.Rendering)
+	{
+		PICOXRHMD->UpdateSensorValue(SplashFrame.Get());
+	}
+
+	{
+		int32 EntryLayer_i = 0;
+		int32 Layer_j_RenderThread = 0;
+
+		while (EntryLayer_i < SplashEntryLayers.Num() && Layer_j_RenderThread < PXRLayers_RenderThread.Num())
 		{
-			if (XFrame->ShowFlags.Rendering)
+			uint32 LayerIdX = SplashEntryLayers[EntryLayer_i]->GetID();
+			uint32 LayerIdY = PXRLayers_RenderThread[Layer_j_RenderThread]->GetID();
+
+			if (LayerIdX < LayerIdY)
 			{
-				PXR_LOGV(PxrUnreal, "Splash BeginFrame %u", XFrame->FrameNumber);
-				PicoXRHMD->BeginFrame_RHIThread();
+				SplashEntryLayers[EntryLayer_i++]->InitPXRLayer_RenderThread(CustomRenderBridge, &PICOXRHMD->DelayDeletion, RHICmdList);
 			}
-		});
-	
-	ExecuteOnRHIThread([this, XFrame]()
-		{
-			if (XFrame->ShowFlags.Rendering)
+			else if (LayerIdX > LayerIdY)
 			{
-				PXR_LOGV(PxrUnreal, "Splash EndFrame %u", XFrame->FrameNumber);
-				PicoXRHMD->EndFrame_RHIThread();
-			}		
+				PICOXRHMD->DelayDeletion.AddLayerToDeferredDeletionQueue(PXRLayers_RenderThread[Layer_j_RenderThread++]);
+			}
+			else
+			{
+				SplashEntryLayers[EntryLayer_i++]->InitPXRLayer_RenderThread(CustomRenderBridge, &PICOXRHMD->DelayDeletion, RHICmdList, PXRLayers_RenderThread[Layer_j_RenderThread++].Get());
+			}
+		}
+
+		while (EntryLayer_i < SplashEntryLayers.Num())
+		{
+			SplashEntryLayers[EntryLayer_i++]->InitPXRLayer_RenderThread(CustomRenderBridge, &PICOXRHMD->DelayDeletion, RHICmdList);
+		}
+
+		while (Layer_j_RenderThread < PXRLayers_RenderThread.Num())
+		{
+			PICOXRHMD->DelayDeletion.AddLayerToDeferredDeletionQueue(PXRLayers_RenderThread[Layer_j_RenderThread++]);
+		}
+	}
+
+	PXRLayers_RenderThread = SplashEntryLayers;
+
+	for (auto Splash : PXRLayers_RenderThread)
+	{
+		if (!Splash->bSplashBlackProjectionLayer)
+		{
+			Splash->PXRLayersCopy_RenderThread(CustomRenderBridge, RHICmdList);
+		}
+	}
+
+	CustomRenderBridge->SubmitGPUCommands_RenderThread(RHICmdList);
+
+	for (int32 i = 0; i < SplashEntryLayers.Num(); i++)
+	{
+		SplashEntryLayers[i] = SplashEntryLayers[i]->CloneMyself();
+	}
+
+	ExecuteOnRHIThread_DoNotWait([this, SplashFrame, SplashEntryLayers]()
+		{
+			PXRLayers_RHIThread = SplashEntryLayers;
+			if (SplashFrame->ShowFlags.Rendering)
+			{
+				PXR_LOGV(PxrUnreal, "Splash BeginFrame %u", SplashFrame->FrameNumber);
+#if PLATFORM_ANDROID
+				if (Pxr_IsRunning())
+				{
+					Pxr_BeginFrame();
+					if (!PICOXRHMD->bWaitFrameVersion)
+					{
+						Pxr_GetPredictedDisplayTime(&(PICOXRHMD->CurrentFramePredictedTime));
+						PXR_LOGV(PxrUnreal, "Splash Pxr_GetPredictedDisplayTime after Pxr_BeginFrame:%f", PICOXRHMD->CurrentFramePredictedTime);
+					}
+					for (int32 LayerIndex = 0; LayerIndex < PXRLayers_RHIThread.Num(); LayerIndex++)
+					{
+						PXRLayers_RHIThread[LayerIndex]->IncrementSwapChainIndex_RHIThread(CustomRenderBridge);
+					}
+				}
+				else
+				{
+					PXR_LOGE(PxrUnreal, "Splash Pxr Is Not Running!!!");
+				}
+#endif
+				FPlatformAtomics::InterlockedDecrement(&FramesOutstanding);
+			}
+
+			PXRLayers_RHIThread.Sort(FPICOLayerPtr_SortByPriority());
+
+			if (SplashFrame->ShowFlags.Rendering)
+			{
+				PXR_LOGV(PxrUnreal, "Splash EndFrame %u", SplashFrame->FrameNumber);
+#if PLATFORM_ANDROID
+				if (Pxr_IsRunning())
+				{
+					for (int32 LayerIndex = 0; LayerIndex < PXRLayers_RHIThread.Num(); LayerIndex++)
+					{
+						PXRLayers_RHIThread[LayerIndex]->SubmitLayer_RHIThread(SplashFrame.Get());
+					}
+					Pxr_EndFrame();
+				}
+				else
+				{
+					PXR_LOGE(PxrUnreal, "Splash Pxr Is Not Running!!!");
+				}
+#endif
+			}
 		});
 }
 
-IStereoLayers::FLayerDesc FPicoXRSplash::StereoLayerDescFromPicoSplashDesc(FPicoSplashDesc PicoDesc)
+IStereoLayers::FLayerDesc FPXRSplash::CreateStereoLayerDescFromPXRSplashDesc(FPXRSplashDesc PXRSplashDesc)
 {
 	IStereoLayers::FLayerDesc LayerDesc;
-#if ENGINE_MINOR_VERSION > 24
-	LayerDesc.SetShape<FQuadLayer>();
+	if (PXRSplashDesc.LoadedTextureRef->GetTextureCube() != nullptr)
+	{
+#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >= 25
+		LayerDesc.SetShape<FCubemapLayer>();
 #else
-	LayerDesc.ShapeType = IStereoLayers::QuadLayer;
+		LayerDesc.ShapeType = IStereoLayers::CubemapLayer;
 #endif
-	LayerDesc.Transform = PicoDesc.TransformInMeters;
-	LayerDesc.QuadSize = PicoDesc.QuadSizeInMeters;
-	LayerDesc.UVRect = FBox2D(PicoDesc.TextureOffset, PicoDesc.TextureOffset + PicoDesc.TextureScale);
-	LayerDesc.Priority = INT32_MAX - (int32)(PicoDesc.TransformInMeters.GetTranslation().X * 1000.f);
-	LayerDesc.PositionType = IStereoLayers::FaceLocked;
-	LayerDesc.Texture = PicoDesc.LoadedTexture;
+	}
+	else
+	{
+#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >= 25
+		LayerDesc.SetShape<FQuadLayer>();
+#else
+		LayerDesc.ShapeType = IStereoLayers::QuadLayer;
+#endif
+	}
+
+	LayerDesc.Transform = PXRSplashDesc.SplashTransform;
+	LayerDesc.QuadSize = PXRSplashDesc.SplashQuadSize;
+	LayerDesc.UVRect = FBox2D(PXRSplashDesc.SplashTextureOffset, PXRSplashDesc.SplashTextureOffset + PXRSplashDesc.SplashTextureScale);
+	LayerDesc.Priority = INT32_MAX - (int32)(PXRSplashDesc.SplashTransform.GetTranslation().X * 1000.f);
+	LayerDesc.PositionType = IStereoLayers::TrackerLocked;
+	LayerDesc.Texture = PXRSplashDesc.LoadedTextureRef;
 	LayerDesc.Flags = IStereoLayers::LAYER_FLAG_QUAD_PRESERVE_TEX_RATIO |
-		(PicoDesc.bNoAlphaChannel ? IStereoLayers::LAYER_FLAG_TEX_NO_ALPHA_CHANNEL : 0) |
-		(PicoDesc.bIsDynamic ? IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE : 0);
+		(PXRSplashDesc.bNoAlpha ? IStereoLayers::LAYER_FLAG_TEX_NO_ALPHA_CHANNEL : 0) |
+		(PXRSplashDesc.bIsLiveUpdate ? IStereoLayers::LAYER_FLAG_TEX_CONTINUOUS_UPDATE : 0);
 	return LayerDesc;
 }

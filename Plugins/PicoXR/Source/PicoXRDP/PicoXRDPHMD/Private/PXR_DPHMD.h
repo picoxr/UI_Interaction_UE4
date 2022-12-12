@@ -19,7 +19,7 @@
 
 class IRendererModule;
 
-struct FPicoXRFrustumDP
+struct FPICOXRFrustumDP
 {
 	float FovLeft;
 	float FovRight;
@@ -28,7 +28,7 @@ struct FPicoXRFrustumDP
 	float Near;
 	float Far;
 
-	FPicoXRFrustumDP()
+	FPICOXRFrustumDP()
 	{
 		FovUp = 0.829031f;
 		FovDown = -0.829031;
@@ -40,14 +40,14 @@ struct FPicoXRFrustumDP
 	FString ToString() const
 	{
 		return
-			TEXT(" FPicoXRFrustum Left : ") + FString::SanitizeFloat(FovLeft) +
-			TEXT(" FPicoXRFrustum Right : ") + FString::SanitizeFloat(FovRight) +
-			TEXT(" FPicoXRFrustum Up : ") + FString::SanitizeFloat(FovUp) +
-			TEXT(" FPicoXRFrustum Down : ") + FString::SanitizeFloat(FovDown) +
-			TEXT(" FPicoXRFrustum H : ") + FString::SanitizeFloat(FovRight - FovLeft) +
-			TEXT(" FPicoXRFrustum V : ") + FString::SanitizeFloat(FovUp - FovDown) +
-			TEXT(" FPicoXRFrustum Near : ") + FString::SanitizeFloat(Near) +
-			TEXT(" FPicoXRFrustum Far : ") + FString::SanitizeFloat(Far);
+			TEXT(" FPICOXRFrustum Left : ") + FString::SanitizeFloat(FovLeft) +
+			TEXT(" FPICOXRFrustum Right : ") + FString::SanitizeFloat(FovRight) +
+			TEXT(" FPICOXRFrustum Up : ") + FString::SanitizeFloat(FovUp) +
+			TEXT(" FPICOXRFrustum Down : ") + FString::SanitizeFloat(FovDown) +
+			TEXT(" FPICOXRFrustum H : ") + FString::SanitizeFloat(FovRight - FovLeft) +
+			TEXT(" FPICOXRFrustum V : ") + FString::SanitizeFloat(FovUp - FovDown) +
+			TEXT(" FPICOXRFrustum Near : ") + FString::SanitizeFloat(Near) +
+			TEXT(" FPICOXRFrustum Far : ") + FString::SanitizeFloat(Far);
 	}
 };
 
@@ -64,14 +64,14 @@ typedef void* (VR_CALLTYPE* pVRGetGenericInterface)(const char* pchInterfaceVers
 /**
  * Struct for managing stereo layer data.
  */
-struct FPicoDPLayer
+struct FPICODPLayer
 {
 	typedef IStereoLayers::FLayerDesc FLayerDesc;
 	FLayerDesc	          LayerDesc;
 	vr::VROverlayHandle_t OverlayHandle;
 	bool				  bUpdateTexture;
 
-	FPicoDPLayer(const FLayerDesc& InLayerDesc)
+	FPICODPLayer(const FLayerDesc& InLayerDesc)
 		: LayerDesc(InLayerDesc)
 		, OverlayHandle(vr::k_ulOverlayHandleInvalid)
 		, bUpdateTexture(false)
@@ -80,15 +80,15 @@ struct FPicoDPLayer
 	// Required by TStereoLayerManager:
 	void SetLayerId(uint32 InId) { LayerDesc.SetLayerId(InId); }
 	uint32 GetLayerId() const { return LayerDesc.GetLayerId(); }
-	friend bool GetLayerDescMember(const FPicoDPLayer& Layer, FLayerDesc& OutLayerDesc);
-	friend void SetLayerDescMember(FPicoDPLayer& Layer, const FLayerDesc& InLayerDesc);
-	friend void MarkLayerTextureForUpdate(FPicoDPLayer& Layer);
+	friend bool GetLayerDescMember(const FPICODPLayer& Layer, FLayerDesc& OutLayerDesc);
+	friend void SetLayerDescMember(FPICODPLayer& Layer, const FLayerDesc& InLayerDesc);
+	friend void MarkLayerTextureForUpdate(FPICODPLayer& Layer);
 };
 
 /**
- * PicoDP Head Mounted Display public FPicoDPAssetManager,
+ * PICODP Head Mounted Display public FPICODPAssetManager,
  */
-class FPicoDirectPreviewHMD : public FHeadMountedDisplayBase, public FXRRenderTargetManager, public TStereoLayerManager<FPicoDPLayer>, public FSceneViewExtensionBase
+class FPICODirectPreviewHMD : public FHeadMountedDisplayBase, public FXRRenderTargetManager, public TStereoLayerManager<FPICODPLayer>, public FSceneViewExtensionBase
 {
 public:
 	static const FName SystemName;
@@ -178,14 +178,14 @@ public:
 	virtual void SetPixelDensity(const float NewDensity) override { PixelDensity = 1; }
 	virtual FIntPoint GetIdealRenderTargetSize() const override { return IdealRenderTargetSize; }
 
-	//Pico Direct Preview++++++++++++++++++++++
+	//PICO Direct Preview++++++++++++++++++++++
 	/** IStereoRendering interface */
 	virtual bool IsStereoEnabled() const override;
 	virtual bool EnableStereo(bool stereo = true) override;
 	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
 	virtual void CalculateStereoViewOffset(const EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float MetersToWorld, FVector& ViewLocation) override;
-	FPicoXRFrustumDP LeftFrustum;
-	FPicoXRFrustumDP RightFrustum;
+	FPICOXRFrustumDP LeftFrustum;
+	FPICOXRFrustumDP RightFrustum;
 	virtual FMatrix GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const override;
 	virtual void RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const override;
 	virtual void GetEyeRenderParams_RenderThread(const FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const override;
@@ -207,7 +207,7 @@ public:
 	virtual bool AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, uint32 Flags, uint32 TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples = 1) override;
 #endif
 	virtual bool ShouldCopyDebugLayersToSpectatorScreen() const override { return true; }
-	//Pico Direct Preview-----------------------
+	//PICO Direct Preview-----------------------
 	// ISceneViewExtension interface
 	virtual void SetupViewFamily(FSceneViewFamily& InViewFamily) override {};
 	virtual void SetupView(FSceneViewFamily& InViewFamily, FSceneView& InView) override {}
@@ -215,24 +215,24 @@ public:
 	virtual void PreRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView) override {}
 	virtual void PreRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override {};
 	virtual void PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView) override;
-	//Pico Direct Preview ！！！
+	//PICO Direct Preview ！！！
 #if ENGINE_MINOR_VERSION >26
 	virtual bool IsActiveThisFrame_Internal(const FSceneViewExtensionContext& Context) const override;
 #endif
 	FDP CurrentDirectPreview = NULL;
 	// SpectatorScreen
-	//Pico Direct Preview++++++++++++++++++++++++
+	//PICO Direct Preview++++++++++++++++++++++++
 private:
 	void CreateSpectatorScreenController();
 public:
 	virtual FIntRect GetFullFlatEyeRect_RenderThread(FTexture2DRHIRef EyeTexture) const override;
 	virtual void CopyTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bClearBlack, bool bNoAlpha) const override;
 	virtual void TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bLeft, bool bNoAlpha) const;
-	//Pico Direct Preview-------------------
+	//PICO Direct Preview-------------------
 	class BridgeBaseImpl : public FXRRenderBridge
 	{
 	public:
-		BridgeBaseImpl(FPicoDirectPreviewHMD* plugin)
+		BridgeBaseImpl(FPICODirectPreviewHMD* plugin)
 			: Plugin(plugin)
 			, bInitialized(false)
 			, bUseExplicitTimingMode(false)
@@ -270,7 +270,7 @@ public:
 
 	protected:
 		
-		FPicoDirectPreviewHMD* Plugin;
+		FPICODirectPreviewHMD* Plugin;
 		FXRSwapChainPtr			SwapChain;
 		FXRSwapChainPtr			DepthSwapChain;
 
@@ -285,7 +285,7 @@ public:
 	class D3D11Bridge : public BridgeBaseImpl
 	{
 	public:
-		D3D11Bridge(FPicoDirectPreviewHMD* plugin);
+		D3D11Bridge(FPICODirectPreviewHMD* plugin);
 		/// <summary>
 		/// Brush the RT to the runtime of steam
 		virtual void FinishRendering() override;
@@ -300,10 +300,10 @@ public:
 
 public:
 	/** Constructor */
-	FPicoDirectPreviewHMD(const FAutoRegister&, IPicoDPPlugin*);
+	FPICODirectPreviewHMD(const FAutoRegister&, IPICODPPlugin*);
 
 	/** Destructor */
-	virtual ~FPicoDirectPreviewHMD();
+	virtual ~FPICODirectPreviewHMD();
 
 	/** @return	True if the API was initialized OK */
 	bool IsInitialized() const;
@@ -453,7 +453,7 @@ private:
 
 	const FTrackingFrame& GetTrackingFrame() const;
 
-	/** Coverts a PicoDP-space vector to an Unreal-space vector.  Does not handle scaling, only axes conversion */
+	/** Coverts a PICODP-space vector to an Unreal-space vector.  Does not handle scaling, only axes conversion */
 	FORCEINLINE static FVector CONVERT_STEAMVECTOR_TO_FVECTOR(const vr::HmdVector3_t InVector)
 	{
 		return FVector(-InVector.v[2], InVector.v[0], InVector.v[1]);
@@ -493,7 +493,7 @@ private:
 	bool					bShouldCheckHMDPosition;
 
 	IRendererModule* RendererModule;
-	IPicoDPPlugin* PicoDPPlugin;
+	IPICODPPlugin* PICODPPlugin;
 
 	FString DisplayId;
 

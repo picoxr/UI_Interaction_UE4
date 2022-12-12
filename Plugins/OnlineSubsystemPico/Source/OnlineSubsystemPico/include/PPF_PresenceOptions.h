@@ -24,7 +24,7 @@ PPF_PUBLIC_FUNCTION(void) ppf_PresenceOptions_SetIsJoinable(ppfPresenceOptionsHa
 /// is expected that all users with the same lobby session id can see or hear
 /// each other. Users with the same lobby session id in their group presence
 /// will show up in the roster and will show up as "Recently Played With" for
-/// future invites if they aren't already Oculus friends. This must be set in
+/// future invites if they aren't already friends. This must be set in
 /// addition to is_joinable being true for a user to use invites.
 PPF_PUBLIC_FUNCTION(void) ppf_PresenceOptions_SetLobbySessionId(ppfPresenceOptionsHandle handle, const char * value);
 
@@ -35,6 +35,9 @@ PPF_PUBLIC_FUNCTION(void) ppf_PresenceOptions_SetLobbySessionId(ppfPresenceOptio
 /// session id in their group presence will not show up in the Roster, but will
 /// show up as "Recently Played with" for future invites.
 PPF_PUBLIC_FUNCTION(void) ppf_PresenceOptions_SetMatchSessionId(ppfPresenceOptionsHandle handle, const char * value);
+
+/// @brief This is a session that represents custom param.
+PPF_PUBLIC_FUNCTION(void) ppf_PresenceOptions_SetExtra(ppfPresenceOptionsHandle handle, const char * value);
 
 
 #endif //MATRIX_PPF_PRESENCEOPTIONS_H

@@ -1,4 +1,5 @@
 //Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+
 #include "CoreMinimal.h"
 #include "PXR_DPPrivate.h"
 
@@ -21,19 +22,19 @@
 #endif
 
 //necessary, brush the rt on the Spectator screen, which is the window on the PC side
-void FPicoDirectPreviewHMD::CreateSpectatorScreenController()
+void FPICODirectPreviewHMD::CreateSpectatorScreenController()
 {
 	SpectatorScreenController = MakeUnique<FDefaultSpectatorScreenController>(this);
 }
 
-FIntRect FPicoDirectPreviewHMD::GetFullFlatEyeRect_RenderThread(FTexture2DRHIRef EyeTexture) const
+FIntRect FPICODirectPreviewHMD::GetFullFlatEyeRect_RenderThread(FTexture2DRHIRef EyeTexture) const
 {
 	static FVector2D SrcNormRectMin(0.05f, 0.2f);
 	static FVector2D SrcNormRectMax(0.45f, 0.8f);
 	return FIntRect(EyeTexture->GetSizeX() * SrcNormRectMin.X, EyeTexture->GetSizeY() * SrcNormRectMin.Y, EyeTexture->GetSizeX() * SrcNormRectMax.X, EyeTexture->GetSizeY() * SrcNormRectMax.Y);
 }
 
-void FPicoDirectPreviewHMD::CopyTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bClearBlack, bool bNoAlpha) const
+void FPICODirectPreviewHMD::CopyTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bClearBlack, bool bNoAlpha) const
 {
 	check(IsInRenderingThread());
 	const uint32 ViewportWidth = DstRect.Width();
@@ -153,7 +154,7 @@ void FPicoDirectPreviewHMD::CopyTexture_RenderThread(FRHICommandListImmediate& R
 	}
 }
 
-void FPicoDirectPreviewHMD::TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bLeft, bool bNoAlpha) const
+void FPICODirectPreviewHMD::TransferImage_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* SrcTexture, FIntRect SrcRect, FRHITexture2D* DstTexture, FIntRect DstRect, bool bLeft, bool bNoAlpha) const
 {
 	check(IsInRenderingThread());
 	bool sRGBSource = false;

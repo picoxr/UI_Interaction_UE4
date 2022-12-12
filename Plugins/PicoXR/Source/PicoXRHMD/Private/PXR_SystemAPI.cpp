@@ -5,26 +5,30 @@
 #include "Android/AndroidJNI.h"
 #endif
 
-TMap<EDeviceControlEnum,FPicoSetDeviceActionDelegate> UPicoXRSystemAPI::SetDeviceActionDelegates;
-TMap<FAppManagerStruct,FPicoAppManagerDelegate> UPicoXRSystemAPI::AppManagerDelegates;
-FPicoSetAutoConnectWifiDelegate UPicoXRSystemAPI::SetAutoConnectWifiDelegate;
-FPicoClearAutoConnectWifiDelegate UPicoXRSystemAPI::ClearAutoConnectWifiDelegate;
-TMap<EHomeEventEnum,FPicoSetHomeKeyDelegate> UPicoXRSystemAPI::SetHomeKeyDelegates;
-TMap<EHomeEventEnum,FPicoSetHomeKeyAllDelegate> UPicoXRSystemAPI::SetHomeKeyAllDelegates;
-TMap<bool,FPicoDisablePowerKeyDelegate> UPicoXRSystemAPI::DisablePowerKeyDelegates;
-FPicoSetScreenOffDelayDelegate UPicoXRSystemAPI::SetScreenOffDelayDelegate;
-FPicoWriteConfigFileToDataLocalDelegate UPicoXRSystemAPI::WriteConfigDelegate;
-FPicoResetAllKeyToDefaultDelegate UPicoXRSystemAPI::ResetAllKeyDelegate;
-FPicoSetWDJsonDelegate UPicoXRSystemAPI::SetWDJsonDelegate;
-FPicoSetWDModelsDelegate UPicoXRSystemAPI::SetWDModelsDelegate;
+TMap<EDeviceControlEnum,FPICOSetDeviceActionDelegate> UPICOXRSystemAPI::SetDeviceActionDelegates;
+TMap<FAppManagerStruct,FPICOAppManagerDelegate> UPICOXRSystemAPI::AppManagerDelegates;
+FPICOSetAutoConnectWifiDelegate UPICOXRSystemAPI::SetAutoConnectWifiDelegate;
+FPICOClearAutoConnectWifiDelegate UPICOXRSystemAPI::ClearAutoConnectWifiDelegate;
+TMap<EHomeEventEnum,FPICOSetHomeKeyDelegate> UPICOXRSystemAPI::SetHomeKeyDelegates;
+TMap<EHomeEventEnum,FPICOSetHomeKeyAllDelegate> UPICOXRSystemAPI::SetHomeKeyAllDelegates;
+TMap<bool,FPICODisablePowerKeyDelegate> UPICOXRSystemAPI::DisablePowerKeyDelegates;
+FPICOSetScreenOffDelayDelegate UPICOXRSystemAPI::SetScreenOffDelayDelegate;
+FPICOWriteConfigFileToDataLocalDelegate UPICOXRSystemAPI::WriteConfigDelegate;
+FPICOResetAllKeyToDefaultDelegate UPICOXRSystemAPI::ResetAllKeyDelegate;
+FPICOSetWDJsonDelegate UPICOXRSystemAPI::SetWDJsonDelegate;
+FPICOSetWDModelsDelegate UPICOXRSystemAPI::SetWDModelsDelegate;
 
-FPicoEnableLargeSpaceDelegate UPicoXRSystemAPI::EnableLargeSpaceDelegate;
-FPicoSwitchLargeSpaceStatusDelegate UPicoXRSystemAPI::SwitchLargeSpaceStatusDelegate;
-FPicoExportMapsDelegate UPicoXRSystemAPI::ExportMapsDelegate;
-FPicoImportMapsDelegate UPicoXRSystemAPI::ImportMapsDelegate;
-FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate UPicoXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate;
+FPICOEnableLargeSpaceDelegate UPICOXRSystemAPI::EnableLargeSpaceDelegate;
+FPICOSwitchLargeSpaceStatusDelegate UPICOXRSystemAPI::SwitchLargeSpaceStatusDelegate;
+FPICOExportMapsDelegate UPICOXRSystemAPI::ExportMapsDelegate;
+FPICOImportMapsDelegate UPICOXRSystemAPI::ImportMapsDelegate;
+FPICOControlSetAutoConnectWIFIWithErrorCodeDelegate UPICOXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate;
+FPICOGetSwitchSystemFunctionStatusDelegate UPICOXRSystemAPI::GetSwitchSystemFunctionStatusDelegate;
+FPICOCastInitDelegate UPICOXRSystemAPI::PICOCastInitDelegate;
+FPICOSetControllerPairTimeDelegate UPICOXRSystemAPI::SetControllerPairTimeDelegate;
+FPICOGetControllerPairTimeDelegate UPICOXRSystemAPI::GetControllerPairTimeDelegate;
 // Sets default values for this component's properties
-UPicoXRSystemAPI::UPicoXRSystemAPI()
+UPICOXRSystemAPI::UPICOXRSystemAPI()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -33,7 +37,7 @@ UPicoXRSystemAPI::UPicoXRSystemAPI()
 
 
 // Called when the game starts
-void UPicoXRSystemAPI::BeginPlay()
+void UPICOXRSystemAPI::BeginPlay()
 {
 	Super::BeginPlay();
 #if PLATFORM_ANDROID
@@ -45,7 +49,7 @@ void UPicoXRSystemAPI::BeginPlay()
 #endif
 }
 
-void UPicoXRSystemAPI::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void UPICOXRSystemAPI::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 #if PLATFORM_ANDROID
@@ -58,14 +62,14 @@ void UPicoXRSystemAPI::EndPlay(const EEndPlayReason::Type EndPlayReason)
 }
 
 // Called every frame
-void UPicoXRSystemAPI::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UPICOXRSystemAPI::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
 }
 
-FString UPicoXRSystemAPI::PXR_GetDeviceInfo(ESystemInfoEnum InfoEnum)
+FString UPICOXRSystemAPI::PXR_GetDeviceInfo(ESystemInfoEnum InfoEnum)
 {
 	FString Result = FString("");
 #if PLATFORM_ANDROID
@@ -85,7 +89,7 @@ FString UPicoXRSystemAPI::PXR_GetDeviceInfo(ESystemInfoEnum InfoEnum)
 	return  Result;
 }
 
-void UPicoXRSystemAPI::PXR_SetDeviceAction(EDeviceControlEnum DeviceControlEnum,FPicoSetDeviceActionDelegate SetDeviceActionDelegate)
+void UPICOXRSystemAPI::PXR_SetDeviceAction(EDeviceControlEnum DeviceControlEnum,FPICOSetDeviceActionDelegate SetDeviceActionDelegate)
 {
 	SetDeviceActionDelegates.Add(DeviceControlEnum,SetDeviceActionDelegate);
 #if PLATFORM_ANDROID
@@ -97,7 +101,7 @@ void UPicoXRSystemAPI::PXR_SetDeviceAction(EDeviceControlEnum DeviceControlEnum,
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_AppManager(EPackageControlEnum PackageControlEnum, FString Path, int32 Ext,	FPicoAppManagerDelegate AppManagerDelegate)
+void UPICOXRSystemAPI::PXR_AppManager(EPackageControlEnum PackageControlEnum, FString Path, int32 Ext,	FPICOAppManagerDelegate AppManagerDelegate)
 {	
 	FAppManagerStruct AppManagerStruct;
 	AppManagerStruct.PackageControl = PackageControlEnum;
@@ -114,7 +118,7 @@ void UPicoXRSystemAPI::PXR_AppManager(EPackageControlEnum PackageControlEnum, FS
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetAutoConnectWifi(FString WifiName, FString WifiPSD, int32 Ext,FPicoSetAutoConnectWifiDelegate InSetAutoConnectWifiDelegate)
+void UPICOXRSystemAPI::PXR_SetAutoConnectWifi(FString WifiName, FString WifiPSD, int32 Ext,FPICOSetAutoConnectWifiDelegate InSetAutoConnectWifiDelegate)
 {
 	SetAutoConnectWifiDelegate = InSetAutoConnectWifiDelegate;
 #if PLATFORM_ANDROID
@@ -130,7 +134,7 @@ void UPicoXRSystemAPI::PXR_SetAutoConnectWifi(FString WifiName, FString WifiPSD,
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ClearAutoConnectWifi(FPicoClearAutoConnectWifiDelegate InClearAutoConnectWifiDelegate)
+void UPICOXRSystemAPI::PXR_ClearAutoConnectWifi(FPICOClearAutoConnectWifiDelegate InClearAutoConnectWifiDelegate)
 {
 	ClearAutoConnectWifiDelegate = InClearAutoConnectWifiDelegate;
 #if PLATFORM_ANDROID
@@ -142,7 +146,7 @@ void UPicoXRSystemAPI::PXR_ClearAutoConnectWifi(FPicoClearAutoConnectWifiDelegat
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetHomeKey(EHomeEventEnum EventEnum, EHomeFunctionEnum FunctionEnum,FPicoSetHomeKeyDelegate SetHomeKeyDelegate)
+void UPICOXRSystemAPI::PXR_SetHomeKey(EHomeEventEnum EventEnum, EHomeFunctionEnum FunctionEnum,FPICOSetHomeKeyDelegate SetHomeKeyDelegate)
 {
 	SetHomeKeyDelegates.Add(EventEnum,SetHomeKeyDelegate);
 #if PLATFORM_ANDROID
@@ -154,7 +158,7 @@ void UPicoXRSystemAPI::PXR_SetHomeKey(EHomeEventEnum EventEnum, EHomeFunctionEnu
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetHomeKeyAll(EHomeEventEnum EventEnum, EHomeFunctionEnum FunctionEnum, int32 TimeSetup,FString Package, FString ClassName, FPicoSetHomeKeyAllDelegate SetHomeKeyAllDelegate)
+void UPICOXRSystemAPI::PXR_SetHomeKeyAll(EHomeEventEnum EventEnum, EHomeFunctionEnum FunctionEnum, int32 TimeSetup,FString Package, FString ClassName, FPICOSetHomeKeyAllDelegate SetHomeKeyAllDelegate)
 {
 	SetHomeKeyAllDelegates.Add(EventEnum,SetHomeKeyAllDelegate);
 #if PLATFORM_ANDROID
@@ -170,7 +174,7 @@ void UPicoXRSystemAPI::PXR_SetHomeKeyAll(EHomeEventEnum EventEnum, EHomeFunction
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_DisablePowerKey(bool bIsSingleTap, bool bEnable,FPicoDisablePowerKeyDelegate InDisablePowerKeyDelegate)
+void UPICOXRSystemAPI::PXR_DisablePowerKey(bool bIsSingleTap, bool bEnable,FPICODisablePowerKeyDelegate InDisablePowerKeyDelegate)
 {
 	
 	DisablePowerKeyDelegates.Add(bIsSingleTap,InDisablePowerKeyDelegate);
@@ -183,10 +187,8 @@ void UPicoXRSystemAPI::PXR_DisablePowerKey(bool bIsSingleTap, bool bEnable,FPico
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetSleepDelay(EScreenOffDelayTimeEnum TimeEnum,	FPicoSetScreenOffDelayDelegate InSetScreenOffDelayDelegate)
+void UPICOXRSystemAPI::PXR_SetSleepDelay(ESleepDelayTimeEnum TimeEnum)
 {
-
-	SetScreenOffDelayDelegate = InSetScreenOffDelayDelegate;
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
@@ -196,8 +198,9 @@ void UPicoXRSystemAPI::PXR_SetSleepDelay(EScreenOffDelayTimeEnum TimeEnum,	FPico
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetScreenOffDelay(ESleepDelayTimeEnum TimeEnum)
+void UPICOXRSystemAPI::PXR_SetScreenOffDelay(EScreenOffDelayTimeEnum TimeEnum,	FPICOSetScreenOffDelayDelegate InSetScreenOffDelayDelegate)
 {
+	SetScreenOffDelayDelegate = InSetScreenOffDelayDelegate;
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
@@ -207,7 +210,7 @@ void UPicoXRSystemAPI::PXR_SetScreenOffDelay(ESleepDelayTimeEnum TimeEnum)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SwitchSystemFunction(ESystemFunctionSwitchEnum SystemFunction, ESwitchEnum SwitchEnum, int32 Ext)
+void UPICOXRSystemAPI::PXR_SwitchSystemFunction(ESystemFunctionSwitchEnum SystemFunction, ESwitchEnum SwitchEnum, int32 Ext)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -218,7 +221,7 @@ void UPicoXRSystemAPI::PXR_SwitchSystemFunction(ESystemFunctionSwitchEnum System
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetUsbConfigurationOption(EUSBConfigModeEnum UsbConfigModeEnum, int32 Ext)
+void UPICOXRSystemAPI::PXR_SetUsbConfigurationOption(EUSBConfigModeEnum UsbConfigModeEnum, int32 Ext)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -229,7 +232,7 @@ void UPicoXRSystemAPI::PXR_SetUsbConfigurationOption(EUSBConfigModeEnum UsbConfi
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ScreenOn()
+void UPICOXRSystemAPI::PXR_ScreenOn()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -240,7 +243,7 @@ void UPicoXRSystemAPI::PXR_ScreenOn()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ScreenOff()
+void UPICOXRSystemAPI::PXR_ScreenOff()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -251,7 +254,7 @@ void UPicoXRSystemAPI::PXR_ScreenOff()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_AcquireWakeLock()
+void UPICOXRSystemAPI::PXR_AcquireWakeLock()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -262,7 +265,7 @@ void UPicoXRSystemAPI::PXR_AcquireWakeLock()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ReleaseWakeLock()
+void UPICOXRSystemAPI::PXR_ReleaseWakeLock()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -273,7 +276,7 @@ void UPicoXRSystemAPI::PXR_ReleaseWakeLock()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_WriteConfigFileToDataLocal(FString Path, FString Content, FPicoWriteConfigFileToDataLocalDelegate InWriteConfigDelegate)
+void UPICOXRSystemAPI::PXR_WriteConfigFileToDataLocal(FString Path, FString Content, FPICOWriteConfigFileToDataLocalDelegate InWriteConfigDelegate)
 {
 	WriteConfigDelegate = InWriteConfigDelegate;
 #if PLATFORM_ANDROID
@@ -289,7 +292,7 @@ void UPicoXRSystemAPI::PXR_WriteConfigFileToDataLocal(FString Path, FString Cont
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ResetAllKeyToDefault(FPicoResetAllKeyToDefaultDelegate InResetAllKeyDelegate)
+void UPICOXRSystemAPI::PXR_ResetAllKeyToDefault(FPICOResetAllKeyToDefaultDelegate InResetAllKeyDelegate)
 {
 	ResetAllKeyDelegate = InResetAllKeyDelegate;
 #if PLATFORM_ANDROID
@@ -301,7 +304,7 @@ void UPicoXRSystemAPI::PXR_ResetAllKeyToDefault(FPicoResetAllKeyToDefaultDelegat
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_EnableEnterKey()
+void UPICOXRSystemAPI::PXR_EnableEnterKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -312,7 +315,7 @@ void UPicoXRSystemAPI::PXR_EnableEnterKey()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_DisableEnterKey()
+void UPICOXRSystemAPI::PXR_DisableEnterKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -323,7 +326,7 @@ void UPicoXRSystemAPI::PXR_DisableEnterKey()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_EnableVolumeKey()
+void UPICOXRSystemAPI::PXR_EnableVolumeKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -334,7 +337,7 @@ void UPicoXRSystemAPI::PXR_EnableVolumeKey()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_DisableVolumeKey()
+void UPICOXRSystemAPI::PXR_DisableVolumeKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -345,7 +348,7 @@ void UPicoXRSystemAPI::PXR_DisableVolumeKey()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_EnableBackKey()
+void UPICOXRSystemAPI::PXR_EnableBackKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -356,7 +359,7 @@ void UPicoXRSystemAPI::PXR_EnableBackKey()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_DisableBackKey()
+void UPICOXRSystemAPI::PXR_DisableBackKey()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -367,7 +370,7 @@ void UPicoXRSystemAPI::PXR_DisableBackKey()
 #endif
 }
 
-int32 UPicoXRSystemAPI::PXR_GetCurrentBrightness()
+int32 UPICOXRSystemAPI::PXR_GetCurrentBrightness()
 {
 	int32 currentBrightness = -1;
 #if PLATFORM_ANDROID
@@ -380,7 +383,7 @@ int32 UPicoXRSystemAPI::PXR_GetCurrentBrightness()
 	return currentBrightness;
 }
 
-void UPicoXRSystemAPI::PXR_SetBrightness(int32 Brightness)
+void UPICOXRSystemAPI::PXR_SetBrightness(int32 Brightness)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -391,7 +394,7 @@ void UPicoXRSystemAPI::PXR_SetBrightness(int32 Brightness)
 #endif
 }
 
-int32 UPicoXRSystemAPI::PXR_GetCurrentVolume()
+int32 UPICOXRSystemAPI::PXR_GetCurrentVolume()
 {
 	int32 currentVolume = -1;
 #if PLATFORM_ANDROID
@@ -405,7 +408,7 @@ int32 UPicoXRSystemAPI::PXR_GetCurrentVolume()
 	return currentVolume;
 }
 
-int32 UPicoXRSystemAPI::PXR_GetMaxVolume()
+int32 UPICOXRSystemAPI::PXR_GetMaxVolume()
 {
 	int32 maxVolume = -1;
 #if PLATFORM_ANDROID
@@ -418,7 +421,7 @@ int32 UPicoXRSystemAPI::PXR_GetMaxVolume()
 	return maxVolume;
 }
 
-void UPicoXRSystemAPI::PXR_SetVolume(int32 Volume)
+void UPICOXRSystemAPI::PXR_SetVolume(int32 Volume)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv *Env =FAndroidApplication::GetJavaEnv())
@@ -430,7 +433,7 @@ void UPicoXRSystemAPI::PXR_SetVolume(int32 Volume)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_VolumeUp()
+void UPICOXRSystemAPI::PXR_VolumeUp()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -441,7 +444,7 @@ void UPicoXRSystemAPI::PXR_VolumeUp()
 #endif	
 }
 
-void UPicoXRSystemAPI::PXR_VolumeDown()
+void UPICOXRSystemAPI::PXR_VolumeDown()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env=FAndroidApplication::GetJavaEnv())
@@ -453,7 +456,7 @@ void UPicoXRSystemAPI::PXR_VolumeDown()
 }
 
 
-FString UPicoXRSystemAPI::PXR_GetDeviceSN()
+FString UPICOXRSystemAPI::PXR_GetDeviceSN()
 {
 	ESystemInfoEnum systemInfo = ESystemInfoEnum::EQUIPMENT_SN;
 	FString result = FString("");
@@ -474,7 +477,7 @@ FString UPicoXRSystemAPI::PXR_GetDeviceSN()
 	return result;
 }
 
-void UPicoXRSystemAPI::PXR_FreezeScreen(bool freeze)
+void UPICOXRSystemAPI::PXR_FreezeScreen(bool freeze)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -485,7 +488,7 @@ void UPicoXRSystemAPI::PXR_FreezeScreen(bool freeze)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_KillAppsByPidOrPackageName(TArray<int> pids, TArray<FString> packageNames, int ext)
+void UPICOXRSystemAPI::PXR_KillAppsByPidOrPackageName(TArray<int> pids, TArray<FString> packageNames, int ext)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -509,7 +512,7 @@ void UPicoXRSystemAPI::PXR_KillAppsByPidOrPackageName(TArray<int> pids, TArray<F
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_KillBackgroundAppsWithWhiteList(TArray<FString> packageNames, int ext)
+void UPICOXRSystemAPI::PXR_KillBackgroundAppsWithWhiteList(TArray<FString> packageNames, int ext)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -526,7 +529,7 @@ void UPicoXRSystemAPI::PXR_KillBackgroundAppsWithWhiteList(TArray<FString> packa
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_OpenMiracast()
+void UPICOXRSystemAPI::PXR_OpenMiracast()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -537,7 +540,7 @@ void UPicoXRSystemAPI::PXR_OpenMiracast()
 #endif
 }
 
-bool UPicoXRSystemAPI::PXR_IsMiracastOn()
+bool UPICOXRSystemAPI::PXR_IsMiracastOn()
 {
 	bool result=false;
 #if PLATFORM_ANDROID
@@ -550,7 +553,7 @@ bool UPicoXRSystemAPI::PXR_IsMiracastOn()
 	return result;
 }
 
-void UPicoXRSystemAPI::PXR_CloseMiracast()
+void UPICOXRSystemAPI::PXR_CloseMiracast()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -561,7 +564,7 @@ void UPicoXRSystemAPI::PXR_CloseMiracast()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_StartScan()
+void UPICOXRSystemAPI::PXR_StartScan()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -572,7 +575,7 @@ void UPicoXRSystemAPI::PXR_StartScan()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_StopScan()
+void UPICOXRSystemAPI::PXR_StopScan()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -583,7 +586,7 @@ void UPicoXRSystemAPI::PXR_StopScan()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ConnectWifiDisplay(const FWifiDisplayModel &Model)
+void UPICOXRSystemAPI::PXR_ConnectWifiDisplay(const FWifiDisplayModel &Model)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -603,7 +606,7 @@ void UPicoXRSystemAPI::PXR_ConnectWifiDisplay(const FWifiDisplayModel &Model)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_DisConnectWifiDisplay()
+void UPICOXRSystemAPI::PXR_DisConnectWifiDisplay()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -614,7 +617,7 @@ void UPicoXRSystemAPI::PXR_DisConnectWifiDisplay()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ForgetWifiDisplay(FString Address)
+void UPICOXRSystemAPI::PXR_ForgetWifiDisplay(FString Address)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -626,7 +629,7 @@ void UPicoXRSystemAPI::PXR_ForgetWifiDisplay(FString Address)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_RenameWifiDisplay(FString Address, FString NewName)
+void UPICOXRSystemAPI::PXR_RenameWifiDisplay(FString Address, FString NewName)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -639,7 +642,7 @@ void UPicoXRSystemAPI::PXR_RenameWifiDisplay(FString Address, FString NewName)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_UpdateWifiDisplays()
+void UPICOXRSystemAPI::PXR_UpdateWifiDisplays()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -650,7 +653,7 @@ void UPicoXRSystemAPI::PXR_UpdateWifiDisplays()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_GetConnectedWD(FWifiDisplayModel& Model)
+void UPICOXRSystemAPI::PXR_GetConnectedWD(FWifiDisplayModel& Model)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -688,7 +691,7 @@ void UPicoXRSystemAPI::PXR_GetConnectedWD(FWifiDisplayModel& Model)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetWDJson(FPicoSetWDJsonDelegate InSetWDJsonDelegate)
+void UPICOXRSystemAPI::PXR_SetWDJson(FPICOSetWDJsonDelegate InSetWDJsonDelegate)
 {
 	SetWDJsonDelegate = InSetWDJsonDelegate;
 #if PLATFORM_ANDROID
@@ -700,7 +703,7 @@ void UPicoXRSystemAPI::PXR_SetWDJson(FPicoSetWDJsonDelegate InSetWDJsonDelegate)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_SetWDModels(FPicoSetWDModelsDelegate InSetWDModelsDelegate)
+void UPICOXRSystemAPI::PXR_SetWDModels(FPICOSetWDModelsDelegate InSetWDModelsDelegate)
 {
 	SetWDModelsDelegate = InSetWDModelsDelegate;
 #if PLATFORM_ANDROID
@@ -713,7 +716,7 @@ void UPicoXRSystemAPI::PXR_SetWDModels(FPicoSetWDModelsDelegate InSetWDModelsDel
 }
 
 
-void UPicoXRSystemAPI::PXR_SwitchLargeSpaceScene(FPicoEnableLargeSpaceDelegate InEnableLargeSpaceDelegate, bool open, int ext)
+void UPICOXRSystemAPI::PXR_SwitchLargeSpaceScene(FPICOEnableLargeSpaceDelegate InEnableLargeSpaceDelegate, bool open, int ext)
 {
 	EnableLargeSpaceDelegate = InEnableLargeSpaceDelegate;
 #if PLATFORM_ANDROID
@@ -723,16 +726,9 @@ void UPicoXRSystemAPI::PXR_SwitchLargeSpaceScene(FPicoEnableLargeSpaceDelegate I
 		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, open, ext);
 	}
 #endif
-#if PLATFORM_ANDROID
-	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
-	{
-		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetSwitchLargeSpaceStatus", "(I)V", false);
-		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, ext);
-	}
-#endif
 }
 
-void UPicoXRSystemAPI::PXR_GetSwitchLargeSpaceStatus(FPicoSwitchLargeSpaceStatusDelegate InSwitchLargeSpaceStatusDelegate, int ext)
+void UPICOXRSystemAPI::PXR_GetSwitchLargeSpaceStatus(FPICOSwitchLargeSpaceStatusDelegate InSwitchLargeSpaceStatusDelegate, int ext)
 {
 	SwitchLargeSpaceStatusDelegate = InSwitchLargeSpaceStatusDelegate;
 #if PLATFORM_ANDROID
@@ -744,7 +740,7 @@ void UPicoXRSystemAPI::PXR_GetSwitchLargeSpaceStatus(FPicoSwitchLargeSpaceStatus
 #endif
 }
 
-bool UPicoXRSystemAPI::PXR_SaveLargeSpaceMaps(int ext)
+bool UPICOXRSystemAPI::PXR_SaveLargeSpaceMaps(int ext)
 {
 	bool result=false;
 #if PLATFORM_ANDROID
@@ -757,7 +753,7 @@ bool UPicoXRSystemAPI::PXR_SaveLargeSpaceMaps(int ext)
 	return result;
 }
 
-void UPicoXRSystemAPI::PXR_ExportMaps(FPicoExportMapsDelegate InExportMapsDelegate, int ext)
+void UPICOXRSystemAPI::PXR_ExportMaps(FPICOExportMapsDelegate InExportMapsDelegate, int ext)
 {
 	ExportMapsDelegate = InExportMapsDelegate;
 #if PLATFORM_ANDROID
@@ -769,7 +765,7 @@ void UPicoXRSystemAPI::PXR_ExportMaps(FPicoExportMapsDelegate InExportMapsDelega
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ImportMaps(FPicoImportMapsDelegate InImportMapsDelegate, int ext)
+void UPICOXRSystemAPI::PXR_ImportMaps(FPICOImportMapsDelegate InImportMapsDelegate, int ext)
 {
 	ImportMapsDelegate = InImportMapsDelegate;
 #if PLATFORM_ANDROID
@@ -781,7 +777,7 @@ void UPicoXRSystemAPI::PXR_ImportMaps(FPicoImportMapsDelegate InImportMapsDelega
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_GetCpuUsages(TArray<float>& OutData)
+void UPICOXRSystemAPI::PXR_GetCpuUsages(TArray<float>& OutData)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -800,7 +796,7 @@ void UPicoXRSystemAPI::PXR_GetCpuUsages(TArray<float>& OutData)
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_GetDeviceTemperatures(int inType, int inSource, TArray<float>& OutData)
+void UPICOXRSystemAPI::PXR_GetDeviceTemperatures(int inType, int inSource, TArray<float>& OutData)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -819,7 +815,7 @@ void UPicoXRSystemAPI::PXR_GetDeviceTemperatures(int inType, int inSource, TArra
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_Capture()
+void UPICOXRSystemAPI::PXR_Capture()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -830,7 +826,7 @@ void UPicoXRSystemAPI::PXR_Capture()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_Record()
+void UPICOXRSystemAPI::PXR_Record()
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -841,7 +837,7 @@ void UPicoXRSystemAPI::PXR_Record()
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_ControlSetAutoConnectWIFIWithErrorCode(FPicoControlSetAutoConnectWIFIWithErrorCodeDelegate InControlSetAutoConnectWIFIWithErrorCodeDelegate, FString ssid, FString pwd, int ext)
+void UPICOXRSystemAPI::PXR_ControlSetAutoConnectWIFIWithErrorCode(FPICOControlSetAutoConnectWIFIWithErrorCodeDelegate InControlSetAutoConnectWIFIWithErrorCodeDelegate, FString ssid, FString pwd, int ext)
 {
 	ControlSetAutoConnectWIFIWithErrorCodeDelegate = InControlSetAutoConnectWIFIWithErrorCodeDelegate;
 #if PLATFORM_ANDROID
@@ -855,7 +851,7 @@ void UPicoXRSystemAPI::PXR_ControlSetAutoConnectWIFIWithErrorCode(FPicoControlSe
 #endif
 }
 
-void UPicoXRSystemAPI::PXR_AppKeepAlive(FString appPackageName, bool keepAlive, int ext)
+void UPICOXRSystemAPI::PXR_AppKeepAlive(FString appPackageName, bool keepAlive, int ext)
 {
 #if PLATFORM_ANDROID
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -867,22 +863,473 @@ void UPicoXRSystemAPI::PXR_AppKeepAlive(FString appPackageName, bool keepAlive, 
 #endif
 }
 
+void UPICOXRSystemAPI::PXR_TimingStartup(int year, int month, int day, int hour, int minute, bool open)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "TimingStartup", "(IIIIIZ)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method,  year,  month,  day,  hour,  minute,  open);
+	}
+#endif
+}
+
+void UPICOXRSystemAPI::PXR_TimingShutdown(int year, int month, int day, int hour, int minute, bool open)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "TimingShutdown", "(IIIIIZ)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, year, month, day, hour, minute, open);
+	}
+#endif
+}
+
+void UPICOXRSystemAPI::PXR_StartVrSettingsItem(int vrSettingsEnum, bool hideOtherItem, int ext)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "StartVrSettingsItem", "(IZI)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method,  vrSettingsEnum,  hideOtherItem,  ext);
+	}
+#endif
+}
+
+void UPICOXRSystemAPI::PXR_SwitchVolumeToHomeAndEnter(ESwitchEnum switchEnum, int ext)
+{
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "SwitchVolumeToHomeAndEnter", "(II)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)switchEnum, ext);
+	}
+#endif
+}
+
+ESwitchEnum UPICOXRSystemAPI::PXR_IsVolumeChangeToHomeAndEnter()
+{
+	int i = 0;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "IsVolumeChangeToHomeAndEnter", "()I", false);
+		i = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method);
+	}
+#endif
+	return ESwitchEnum(i);
+}
+
+EInstallOTAReturnCode UPICOXRSystemAPI::PXR_InstallOTAPackage(const FString& OtaPackagePath, int32 Ext)
+{
+	EInstallOTAReturnCode Result = EInstallOTAReturnCode::SUCCESS;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		auto jOtaPackagePath = FJavaHelper::ToJavaString(Env, OtaPackagePath);
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "InstallOTAPackage", "(Ljava/lang/String;I)I", false);
+		int32 ResultCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, *jOtaPackagePath, Ext);
+		Result = (EInstallOTAReturnCode)ResultCode;
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetAutoConnectWiFiConfig(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetAutoConnectWiFiConfig", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetTimingStartupStatus(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetTimingStartupStatus", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetTimingShutdownStatus(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetTimingShutdownStatus", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+EKeyState UPICOXRSystemAPI::PXR_GetControllerKeyState(EControllerKeyEnum ControllerKeyEnum, int32 Ext)
+{
+	EKeyState State = EKeyState::DISABLE;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetControllerKeyState", "(II)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)ControllerKeyEnum, Ext);
+		State = (EKeyState)ReturnCode;
+	}
+#endif
+	return State;
+}
+
+ESwitchEnum UPICOXRSystemAPI::PXR_GetPowerOffWithUSBCable(int32 Ext)
+{
+	ESwitchEnum Result = ESwitchEnum::S_OFF;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetPowerOffWithUSBCable", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (ESwitchEnum)ReturnCode;
+	}
+#endif
+	return Result;
+}
+
+EScreenOffDelayTimeEnum UPICOXRSystemAPI::PXR_GetScreenOffDelay(int32 Ext)
+{
+	EScreenOffDelayTimeEnum Result = EScreenOffDelayTimeEnum::NEVER;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetScreenOffDelay", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (EScreenOffDelayTimeEnum)ReturnCode;
+	}
+#endif
+	return Result;
+}
+
+ESleepDelayTimeEnum UPICOXRSystemAPI::PXR_GetSleepDelay(int32 Ext)
+{
+	ESleepDelayTimeEnum Result = ESleepDelayTimeEnum::NEVER;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetSleepDelay", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (ESleepDelayTimeEnum)ReturnCode;
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetPowerKeyStatus(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetPowerKeyStatus", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+EKeyState UPICOXRSystemAPI::PXR_GetEnterKeyStatus(int32 Ext)
+{
+	EKeyState State = EKeyState::DISABLE;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetEnterKeyStatus", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		State = (EKeyState)ReturnCode;
+	}
+#endif
+	return State;
+}
+
+EKeyState UPICOXRSystemAPI::PXR_GetVolumeKeyStatus(int32 Ext)
+{
+	EKeyState State = EKeyState::DISABLE;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetVolumeKeyStatus", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		State = (EKeyState)ReturnCode;
+	}
+#endif
+	return State;
+}
+
+EKeyState UPICOXRSystemAPI::PXR_GetBackKeyStatus(int32 Ext)
+{
+	EKeyState State = EKeyState::DISABLE;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetBackKeyStatus", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		State = (EKeyState)ReturnCode;
+	}
+#endif
+	return State;
+}
+
+FString UPICOXRSystemAPI::PXR_GetHomeKeyStatus(EHomeEventEnum HomeEventEnum, int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetHomeKeyStatus", "(II)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)HomeEventEnum, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetUsbConfigurationOption(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetUsbConfigurationOption", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_GetCurrentLauncher(int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetCurrentLauncher", "(I)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return Result;
+}
+
+void UPICOXRSystemAPI::PXR_GetSwitchSystemFunctionStatus(FPICOGetSwitchSystemFunctionStatusDelegate InGetSwitchSystemFunctionStatusDelegate, ESystemFunctionSwitchEnum SystemFunctionSwitchEnum, int32 Ext)
+{
+	GetSwitchSystemFunctionStatusDelegate = InGetSwitchSystemFunctionStatusDelegate;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetSwitchSystemFunctionStatus", "(II)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)SystemFunctionSwitchEnum, Ext);
+	}
+#endif
+}
+
+ECastReturnCode UPICOXRSystemAPI::PXR_PICOCastInit(FPICOCastInitDelegate InPICOCastInitDelegate, int32 Ext)
+{
+	PICOCastInitDelegate = InPICOCastInitDelegate;
+	ECastReturnCode Result = ECastReturnCode::FAIL;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastInit", "(I)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (ECastReturnCode)ReturnCode;
+	}
+#endif
+	return Result;
+}
+
+ECastReturnCode UPICOXRSystemAPI::PXR_PICOCastSetShowAuthorization(EPICOCastAuthorization Authorization, int32 Ext)
+{
+	ECastReturnCode Result = ECastReturnCode::SUCCESS;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastSetShowAuthorization", "(II)I", false);
+		int32 ReturnCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)Authorization, Ext);
+		Result = (ECastReturnCode)ReturnCode;
+	}
+#endif
+	return Result;
+}
+
+EPICOCastAuthorization UPICOXRSystemAPI::PXR_PICOCastGetShowAuthorization(int32 Ext)
+{
+	EPICOCastAuthorization Result = EPICOCastAuthorization::ASK_EVERY_TIME;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastGetShowAuthorization", "(I)I", false);
+		int32 ResultCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (EPICOCastAuthorization)ResultCode;
+	}
+#endif
+	return Result;
+}
+
+FString UPICOXRSystemAPI::PXR_PICOCastGetUrl(EPICOCastUrlTypeEnum UrlType, int32 Ext)
+{
+	FString Result;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastGetUrl", "(II)Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)UrlType, Ext);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			Result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+}
+#endif
+	return Result;
+}
+
+ECastReturnCode UPICOXRSystemAPI::PXR_PICOCastStopCast(int32 Ext)
+{
+	ECastReturnCode Result = ECastReturnCode::SUCCESS;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastStopCast", "(I)I", false);
+		int32 ResultCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+		Result = (ECastReturnCode)ResultCode;
+}
+#endif
+	return Result;
+}
+
+ECastReturnCode UPICOXRSystemAPI::PXR_PICOCastSetOption(EPICOCastOptionOrStatusEnum OptionEnum, EPICOCastOptionValueEnum ValueEnum, int32 Ext)
+{
+	ECastReturnCode Result = ECastReturnCode::SUCCESS;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastSetOption", "(III)I", false);
+		int32 ResultCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)OptionEnum, (int)ValueEnum, Ext);
+		Result = (ECastReturnCode)ResultCode;
+	}
+#endif
+	return Result;
+}
+
+EPICOCastOptionValueEnum UPICOXRSystemAPI::PXR_PICOCastGetOptionOrStatus(EPICOCastOptionOrStatusEnum OptionEnum, int32 Ext)
+{
+	EPICOCastOptionValueEnum Result = EPICOCastOptionValueEnum::OPTION_VALUE_RESOLUTION_AUTO;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "PICOCastGetOptionOrStatus", "(II)I", false);
+		int32 ResultCode = FJavaWrapper::CallIntMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)OptionEnum, Ext);
+		Result = (EPICOCastOptionValueEnum)ResultCode;
+	}
+#endif
+	return Result;
+}
+
+void UPICOXRSystemAPI::PXR_SetControllerPairTime(FPICOSetControllerPairTimeDelegate InSetControllerPairTimeDelegate, EControllerPairTimeEnum TimeEnum, int32 Ext)
+{
+	SetControllerPairTimeDelegate = InSetControllerPairTimeDelegate;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "SetControllerPairTime", "(II)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, (int)TimeEnum, Ext);
+	}
+#endif
+}
+
+void UPICOXRSystemAPI::PXR_GetControllerPairTime(FPICOGetControllerPairTimeDelegate InGetControllerPairTimeDelegate, int32 Ext)
+{
+	GetControllerPairTimeDelegate = InGetControllerPairTimeDelegate;
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "GetControllerPairTime", "(I)V", false);
+		FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, Ext);
+	}
+#endif
+}
+
 #if PLATFORM_ANDROID
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSetDeviceActionCallBack(JNIEnv * env, jclass clazz,int EventType, int Result)
 {
 	if (EventType == 0)
 	{
-		if (UPicoXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_REBOOT))
+		if (UPICOXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_REBOOT))
 		{
-			UPicoXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_REBOOT)->ExecuteIfBound(Result);
-			UPicoXRSystemAPI::SetDeviceActionDelegates.Remove(EDeviceControlEnum::DEVICE_CONTROL_REBOOT);
+			UPICOXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_REBOOT)->ExecuteIfBound(Result);
+			UPICOXRSystemAPI::SetDeviceActionDelegates.Remove(EDeviceControlEnum::DEVICE_CONTROL_REBOOT);
 		}
 	}else if (EventType == 1)
 	{
-		if (UPicoXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN))
+		if (UPICOXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN))
 		{
-			UPicoXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN)->ExecuteIfBound(Result);
-			UPicoXRSystemAPI::SetDeviceActionDelegates.Remove(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN);
+			UPICOXRSystemAPI::SetDeviceActionDelegates.Find(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN)->ExecuteIfBound(Result);
+			UPICOXRSystemAPI::SetDeviceActionDelegates.Remove(EDeviceControlEnum::DEVICE_CONTROL_SHUTDOWN);
 		}
 	}
 }
@@ -892,10 +1339,10 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCAP
 	FAppManagerStruct ManagerStruct;
 	ManagerStruct.AppPath = FJavaHelper::FStringFromParam(env, AppPath);
 	ManagerStruct.PackageControl = static_cast<EPackageControlEnum>(EventType);
-	if(UPicoXRSystemAPI::AppManagerDelegates.Find(ManagerStruct))
+	if(UPICOXRSystemAPI::AppManagerDelegates.Find(ManagerStruct))
 	{
-		UPicoXRSystemAPI::AppManagerDelegates.Find(ManagerStruct)->ExecuteIfBound(Result);
-		UPicoXRSystemAPI::AppManagerDelegates.Remove(ManagerStruct);
+		UPICOXRSystemAPI::AppManagerDelegates.Find(ManagerStruct)->ExecuteIfBound(Result);
+		UPICOXRSystemAPI::AppManagerDelegates.Remove(ManagerStruct);
 	}
 }
 
@@ -903,10 +1350,10 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCAu
 {
 	if(Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::SetAutoConnectWifiDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::SetAutoConnectWifiDelegate.ExecuteIfBound(true);
 	}else
 	{
-		UPicoXRSystemAPI::SetAutoConnectWifiDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::SetAutoConnectWifiDelegate.ExecuteIfBound(false);
 	}
 }
 
@@ -914,10 +1361,10 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCCl
 {
 	if(Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::ClearAutoConnectWifiDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::ClearAutoConnectWifiDelegate.ExecuteIfBound(true);
 	}else
 	{
-		UPicoXRSystemAPI::ClearAutoConnectWifiDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::ClearAutoConnectWifiDelegate.ExecuteIfBound(false);
 	}
 }
 
@@ -925,17 +1372,17 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSe
 {
 	if(Result == JNI_TRUE)
 	{
-		if(UPicoXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
+		if(UPICOXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
 		{
-			UPicoXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(true);
-			UPicoXRSystemAPI::SetHomeKeyDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
+			UPICOXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(true);
+			UPICOXRSystemAPI::SetHomeKeyDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
 		}
 	}else
 	{
-		if(UPicoXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
+		if(UPICOXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
 		{
-			UPicoXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(false);
-			UPicoXRSystemAPI::SetHomeKeyDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
+			UPICOXRSystemAPI::SetHomeKeyDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(false);
+			UPICOXRSystemAPI::SetHomeKeyDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
 		}
 	}
 }
@@ -944,17 +1391,17 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSe
 {
 	if(Result == JNI_TRUE)
 	{
-		if(UPicoXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
+		if(UPICOXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
 		{
-			UPicoXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(true);
-			UPicoXRSystemAPI::SetHomeKeyAllDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
+			UPICOXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(true);
+			UPICOXRSystemAPI::SetHomeKeyAllDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
 		}
 	}else
 	{
-		if(UPicoXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
+		if(UPICOXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType)))
 		{
-			UPicoXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(false);
-			UPicoXRSystemAPI::SetHomeKeyAllDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
+			UPICOXRSystemAPI::SetHomeKeyAllDelegates.Find(static_cast<EHomeEventEnum>(EventType))->ExecuteIfBound(false);
+			UPICOXRSystemAPI::SetHomeKeyAllDelegates.Remove(static_cast<EHomeEventEnum>(EventType));
 		}
 	}
 }
@@ -963,41 +1410,41 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCDi
 {
 	if(isSingleTap == JNI_TRUE)
 	{
-		if(UPicoXRSystemAPI::DisablePowerKeyDelegates.Find(true))
+		if(UPICOXRSystemAPI::DisablePowerKeyDelegates.Find(true))
 		{
-			UPicoXRSystemAPI::DisablePowerKeyDelegates.Find(true)->ExecuteIfBound(Result);
-			UPicoXRSystemAPI::DisablePowerKeyDelegates.Remove(true);
+			UPICOXRSystemAPI::DisablePowerKeyDelegates.Find(true)->ExecuteIfBound(Result);
+			UPICOXRSystemAPI::DisablePowerKeyDelegates.Remove(true);
 		}
 	}else
 	{
-		if(UPicoXRSystemAPI::DisablePowerKeyDelegates.Find(false))
+		if(UPICOXRSystemAPI::DisablePowerKeyDelegates.Find(false))
 		{
-			UPicoXRSystemAPI::DisablePowerKeyDelegates.Find(false)->ExecuteIfBound(Result);
-			UPicoXRSystemAPI::DisablePowerKeyDelegates.Remove(false);
+			UPICOXRSystemAPI::DisablePowerKeyDelegates.Find(false)->ExecuteIfBound(Result);
+			UPICOXRSystemAPI::DisablePowerKeyDelegates.Remove(false);
 		}
 	}
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSetScreenOffDelayCallBack(JNIEnv * env, jclass clazz,int Result)
 {
-	UPicoXRSystemAPI::SetScreenOffDelayDelegate.ExecuteIfBound(Result);
+	UPICOXRSystemAPI::SetScreenOffDelayDelegate.ExecuteIfBound(Result);
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCWriteConfigFileToDataLocalCallback(JNIEnv * env, jclass clazz, jboolean Result)
 {
 	if (Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::WriteConfigDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::WriteConfigDelegate.ExecuteIfBound(true);
 	}
 	else
 	{
-		UPicoXRSystemAPI::WriteConfigDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::WriteConfigDelegate.ExecuteIfBound(false);
 	}
 }
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSetWDJsonCallback(JNIEnv * env, jclass clazz, jstring Result)
 {
 	FString result = FJavaHelper::FStringFromLocalRef(env, Result);
-	UPicoXRSystemAPI::SetWDJsonDelegate.ExecuteIfBound(result);
+	UPICOXRSystemAPI::SetWDJsonDelegate.ExecuteIfBound(result);
 }
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSetWDModelsCallback(JNIEnv * env, jclass clazz, jstring Result)
 {
@@ -1036,41 +1483,36 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSe
 		models.Add(model);
 	}
 
-	UPicoXRSystemAPI::SetWDModelsDelegate.ExecuteIfBound(models);
+	UPICOXRSystemAPI::SetWDModelsDelegate.ExecuteIfBound(models);
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSwitchLargeSpaceSceneCallback(JNIEnv * env, jclass clazz, jboolean Result)
 {
 	if (Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::EnableLargeSpaceDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::EnableLargeSpaceDelegate.ExecuteIfBound(true);
 	}
 	else
 	{
-		UPicoXRSystemAPI::EnableLargeSpaceDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::EnableLargeSpaceDelegate.ExecuteIfBound(false);
 	}
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCLargeSpaceStatusCallback(JNIEnv * env, jclass clazz, jstring Result)
 {
 	FString result = FJavaHelper::FStringFromLocalRef(env, Result);
-	UPicoXRSystemAPI::SwitchLargeSpaceStatusDelegate.ExecuteIfBound(result);
-
-	if (GEngine && GEngine->XRSystem.IsValid())
-	{
-		static_cast<FPicoXRHMD*>(GEngine->XRSystem.Get())->OnLargeSpaceStatusChanged(result == "1" ? true : false);
-	}
+	UPICOXRSystemAPI::SwitchLargeSpaceStatusDelegate.ExecuteIfBound(result);
 }
 
 extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCExportMapsCallback(JNIEnv * env, jclass clazz, jboolean Result)
 {
 	if (Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::ExportMapsDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::ExportMapsDelegate.ExecuteIfBound(true);
 	}
 	else
 	{
-		UPicoXRSystemAPI::ExportMapsDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::ExportMapsDelegate.ExecuteIfBound(false);
 	}
 }
 
@@ -1078,17 +1520,37 @@ extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCIm
 {
 	if (Result == JNI_TRUE)
 	{
-		UPicoXRSystemAPI::ImportMapsDelegate.ExecuteIfBound(true);
+		UPICOXRSystemAPI::ImportMapsDelegate.ExecuteIfBound(true);
 	}
 	else
 	{
-		UPicoXRSystemAPI::ImportMapsDelegate.ExecuteIfBound(false);
+		UPICOXRSystemAPI::ImportMapsDelegate.ExecuteIfBound(false);
 	}
 }
 
-extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(JNIEnv * env, int Result)
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(JNIEnv * env, jclass clazz, int Result)
 {
-	UPicoXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate.ExecuteIfBound(Result);
+	UPICOXRSystemAPI::ControlSetAutoConnectWIFIWithErrorCodeDelegate.ExecuteIfBound(Result);
+}
+
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCGetSwitchSystemFunctionStatusCallback(JNIEnv * env, jclass clazz, int Result)
+{
+	UPICOXRSystemAPI::GetSwitchSystemFunctionStatusDelegate.ExecuteIfBound(Result);
+}
+
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCPICOCastInitCallback(JNIEnv * env, jclass clazz, int Result)
+{
+	UPICOXRSystemAPI::PICOCastInitDelegate.ExecuteIfBound((ECastInitResult)Result);
+}
+
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCSetControllerPairTimeCallback(JNIEnv * env, jclass clazz, int Result)
+{
+	UPICOXRSystemAPI::SetControllerPairTimeDelegate.ExecuteIfBound(Result);
+}
+
+extern "C" JNIEXPORT void  JNICALL Java_com_epicgames_ue4_GameActivity_JavaToCGetControllerPairTimeCallback(JNIEnv * env, jclass clazz, int Result)
+{
+	UPICOXRSystemAPI::GetControllerPairTimeDelegate.ExecuteIfBound((EControllerPairTimeEnum)Result);
 }
 
 #endif

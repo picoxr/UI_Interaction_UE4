@@ -17,97 +17,97 @@
 #include "ISettingsSection.h"
 #endif
 
-#define LOCTEXT_NAMESPACE "FPicoXRModule"
+#define LOCTEXT_NAMESPACE "FPICOXRModule"
 
 //-------------------------------------------------------------------------------------------------
-// FPicoXRHMDModule
+// FPICOXRHMDModule
 //-------------------------------------------------------------------------------------------------
-FPicoXRHMDModule::FPicoXRHMDModule()
+FPICOXRHMDModule::FPICOXRHMDModule()
 {
 }
 
-void FPicoXRHMDModule::RegisterSettings()
+void FPICOXRHMDModule::RegisterSettings()
 {
 #if WITH_EDITOR
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{
-		SettingsModule->RegisterSettings("Project", "Plugins", "PicoXRSetting",
-		LOCTEXT("PicoXRSettingsName", "PicoXR Settings"),
-		LOCTEXT("PicoXRSettingsDescription", "Configure the PicoXR plug-in."),
-		GetMutableDefault<UPicoXRSettings>());
-		UPicoXRSettings* const Settings= GetMutableDefault<UPicoXRSettings>();
+		SettingsModule->RegisterSettings("Project", "Plugins", "PICOXRSetting",
+		LOCTEXT("PICOXRSettingsName", "PICOXR Settings"),
+		LOCTEXT("PICOXRSettingsDescription", "Configure the PICOXR plug-in."),
+		GetMutableDefault<UPICOXRSettings>());
+		UPICOXRSettings* const Settings= GetMutableDefault<UPICOXRSettings>();
 		Settings->HandlesRGBHWSupport();
 	}
 #endif
 }
 
-void FPicoXRHMDModule::UnregisterSettings()
+void FPICOXRHMDModule::UnregisterSettings()
 {
 #if WITH_EDITOR
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{
-		SettingsModule->UnregisterSettings("Project", "Plugins", "PicoXRSetting");
+		SettingsModule->UnregisterSettings("Project", "Plugins", "PICOXRSetting");
 	}
 #endif
 }
 
-void FPicoXRHMDModule::StartupModule()
+void FPICOXRHMDModule::StartupModule()
 {
 	IHeadMountedDisplayModule::StartupModule();
-	FCoreDelegates::OnFEngineLoopInitComplete.AddRaw(this,&FPicoXRHMDModule::RegisterSettings);
-	FString PluginShaderDir = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("PicoXR/Shaders"));
-	AddShaderSourceDirectoryMapping(TEXT("/Plugin/PicoXR"), PluginShaderDir);
+	FCoreDelegates::OnFEngineLoopInitComplete.AddRaw(this,&FPICOXRHMDModule::RegisterSettings);
+	FString PluginShaderDir = FPaths::Combine(FPaths::ProjectPluginsDir(), TEXT("PICOXR/Shaders"));
+	AddShaderSourceDirectoryMapping(TEXT("/Plugin/PICOXR"), PluginShaderDir);
 }
 
-void FPicoXRHMDModule::ShutdownModule()
+void FPICOXRHMDModule::ShutdownModule()
 {
 	IHeadMountedDisplayModule::ShutdownModule();
 	UnregisterSettings();
 }
 
-FString FPicoXRHMDModule::GetModuleKeyName() const
+FString FPICOXRHMDModule::GetModuleKeyName() const
 {
-	return FString(TEXT("PicoXRHMD"));
+	return FString(TEXT("PICOXRHMD"));
 }
 
-void FPicoXRHMDModule::GetModuleAliases(TArray<FString>& AliasesOut) const
+void FPICOXRHMDModule::GetModuleAliases(TArray<FString>& AliasesOut) const
 {	
 }
 
-bool FPicoXRHMDModule::IsHMDConnected()
+bool FPICOXRHMDModule::IsHMDConnected()
 {
 	return true;
 }
 
-TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > FPicoXRHMDModule::CreateTrackingSystem()
+TSharedPtr< class IXRTrackingSystem, ESPMode::ThreadSafe > FPICOXRHMDModule::CreateTrackingSystem()
 {
     PXR_LOGI(PxrUnreal, "CreateTrackingSystem");
-	TSharedPtr< FPicoXRHMD, ESPMode::ThreadSafe > PicoMobileHMD = FSceneViewExtensions::NewExtension<FPicoXRHMD>();
-	if (PicoMobileHMD && PicoMobileHMD->Initialize())
+	TSharedPtr< FPICOXRHMD, ESPMode::ThreadSafe > PICOMobileHMD = FSceneViewExtensions::NewExtension<FPICOXRHMD>();
+	if (PICOMobileHMD && PICOMobileHMD->Initialize())
 	{
-		return PicoMobileHMD;
+		return PICOMobileHMD;
 	}
 	return nullptr;
 }
 
-IMPLEMENT_MODULE(FPicoXRHMDModule, PicoXRHMD)
+IMPLEMENT_MODULE(FPICOXRHMDModule, PICOXRHMD)
 
-TSharedPtr< IHeadMountedDisplayVulkanExtensions, ESPMode::ThreadSafe > FPicoXRHMDModule::GetVulkanExtensions()
+TSharedPtr< IHeadMountedDisplayVulkanExtensions, ESPMode::ThreadSafe > FPICOXRHMDModule::GetVulkanExtensions()
 {
     PXR_LOGI(PxrUnreal, "GetVulkanExtensions");
 	if (!VulkanExtensions.IsValid())
 	{
-		PXR_LOGD(PxrUnreal,"FPicoXRHMDModule new FVulkanExtensions");
+		PXR_LOGD(PxrUnreal,"FPICOXRHMDModule new FVulkanExtensions");
 		VulkanExtensions = MakeShareable(new FVulkanExtensions());
 	}
 	return VulkanExtensions;
 }
 
 #if ENGINE_MINOR_VERSION>26
-bool FPicoXRHMDModule::IsStandaloneStereoOnlyDevice()
+bool FPICOXRHMDModule::IsStandaloneStereoOnlyDevice()
 {
 #if PLATFORM_ANDROID
-	return FAndroidMisc::GetDeviceMake() == FString("Pico");
+	return FAndroidMisc::GetDeviceMake().ToUpper() == FString(TEXT("PICO"));
 #else
 	return false;
 #endif

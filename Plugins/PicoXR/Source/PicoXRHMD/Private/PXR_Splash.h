@@ -3,90 +3,89 @@
 #pragma once
 #include "IXRLoadingScreen.h"
 #include "TickableObjectRenderThread.h"
-#include "GameFramework/PlayerController.h"
-#include "Engine/Engine.h"
 #include "PXR_StereoLayer.h"
 #include "PXR_HMDTypes.h"
 #include "PXR_Settings.h"
 #include "PXR_GameFrame.h"
 
-struct FPicoSplashLayer
+struct FPXRSplashLayer
 {
-	FPicoSplashDesc Desc;
-	FPicoLayerPtr Layer;
+	FPXRSplashDesc Desc;
+	FPICOLayerPtr Layer;
 
 public:
-	FPicoSplashLayer() {}
-	FPicoSplashLayer(const FPicoSplashDesc& InDesc) : Desc(InDesc) {}
-	FPicoSplashLayer(const FPicoSplashLayer& InSplashLayer) : Desc(InSplashLayer.Desc), Layer(InSplashLayer.Layer) {}
+	FPXRSplashLayer(const FPXRSplashDesc& InSplashDesc) : Desc(InSplashDesc) {}
+	FPXRSplashLayer(const FPXRSplashLayer& InSplashLayer) : Desc(InSplashLayer.Desc), Layer(InSplashLayer.Layer) {}
 };
 
-class FPicoXRSplash : public IXRLoadingScreen,public TSharedFromThis<FPicoXRSplash>
+class FPXRSplash : public IXRLoadingScreen, public TSharedFromThis<FPXRSplash>
 {
 protected:
-	class FTicker : public FTickableObjectRenderThread, public TSharedFromThis<FTicker>
+	class FSplashTicker_RenderThread : public FTickableObjectRenderThread, public TSharedFromThis<FSplashTicker_RenderThread>
 	{
 	public:
-		FTicker(FPicoXRSplash* InSplash) : FTickableObjectRenderThread(false, true), Splash(InSplash) {}
+		FSplashTicker_RenderThread(FPXRSplash* InSplash) : FTickableObjectRenderThread(false, true), PXRSplash(InSplash) {}
 
-		virtual void Tick(float DeltaTime) override 
+		virtual void Tick(float DeltaTime) override
 		{
-			Splash->SplashTick_RenderThread(DeltaTime);
+			PXRSplash->SplashTick_RenderThread(DeltaTime);
 		}
-		virtual TStatId GetStatId() const override { RETURN_QUICK_DECLARE_CYCLE_STAT(FPicoVRSplash, STATGROUP_Tickables); }
+		virtual TStatId GetStatId() const override { RETURN_QUICK_DECLARE_CYCLE_STAT(FPXRSplash, STATGROUP_Tickables); }
 		virtual bool IsTickable() const override { return true; }
 
 	protected:
-		FPicoXRSplash* Splash;
+		FPXRSplash* PXRSplash;
 	};
 
 public:
-	FPicoXRSplash( FPicoXRHMD* InPicoXRHMD);
-	virtual ~FPicoXRSplash();
+	FPXRSplash(FPICOXRHMD* InPICOXRHMD);
+	virtual ~FPXRSplash();
 	virtual void ShowLoadingScreen() override;
 	virtual void HideLoadingScreen() override;
 	virtual void ClearSplashes() override;
-	virtual void AddSplash(const FSplashDesc& Splash) override;
-	virtual bool IsShown() const override { return bShown; }
+	virtual void AddSplash(const FSplashDesc& InSplashDesc) override;
+	virtual bool IsShown() const override { return bIsShown; }
 
-	void Initialize();
-	void UnInitialize();
-	void LoadSettings();
-	void SplashTick_RenderThread(float DeltaTime);
-	void OnPreLoadMap(const FString&);
-	void OnPostLoadMap(UWorld*);
-	void StartTicker();
-	void StopTicker();
-	void Show();
-	void Hide();
+	void InitSplash();
+	void ShutDownSplash();
+
+	void OnPreLoadMap(const FString& MapName);
 	void AutoShow(bool AutoShowSplash);
-	void AddSplash(const FPicoSplashDesc& Splash);
-	
-	TArray<FPicoSplashLayer> SplashLayers;
-	TMap<uint32,FPicoLayerPtr> SplashLayersMap;
-
-	void UpdateLoadingScreen_GameThread();
+	void AddPXRSplashLayers(const FPXRSplashDesc& Splash);
+	void SwitchActiveSplash_GameThread();
+	TArray<FPICOLayerPtr> PXRLayers_RHIThread;
+	FPICOLayerPtr BlackLayer;
 
 protected:
-	void ReleaseTextures();
-	void ReleaseTexture(FPicoSplashLayer& InSplashLayer);
-	void LoadTexture(FPicoSplashLayer& InSplashLayer);
-	void RenderFrame_RenderThread(FRHICommandListImmediate& RHICmdList);
-	IStereoLayers::FLayerDesc StereoLayerDescFromPicoSplashDesc(FPicoSplashDesc PicoDesc);
-	TSharedPtr<FTicker> Ticker;
-	FCriticalSection RenderThreadLock;
+	void SplashTick_RenderThread(float DeltaTime);
+	void AddSplashFromPXRSettings();
+	void OnPostLoadMap(UWorld*);
+	void BeginTicker();
+	void EndTicker();
+	void ToShow();
+	void ToHide();
+	void ReleaseAllTextures();
+	void ReleaseTexture(FPXRSplashLayer& InSplashLayer);
+	void LoadTexture(FPXRSplashLayer& InSplashLayer);
+	void RenderSplashFrame_RenderThread(FRHICommandListImmediate& RHICmdList);
+	IStereoLayers::FLayerDesc CreateStereoLayerDescFromPXRSplashDesc(FPXRSplashDesc PXRSplashDesc);
 
+	TSharedPtr<FSplashTicker_RenderThread> SplashTicker;
+	FCriticalSection RenderThreadLock;
 	bool bInitialized;
-	FPicoXRHMD* PicoXRHMD;
-	bool bTickerStarted;
-	bool bSplashNeedUpdate = false;
+	FPICOXRHMD* PICOXRHMD;
+	FPICOXRRenderBridge* CustomRenderBridge;
 	FDelegateHandle PostLoadLevelDelegate;
-	UPicoXRSettings* PicoSettings;
-	double LastTimeInSeconds;
-	TArray<TTuple<FPicoLayerPtr, FQuat>> Layers_RenderThread_DeltaRotation;
-	float SystemDisplayInterval;
-	FPXRGameFramePtr Frame;
-	bool bShown;
-	bool bSplashShouldShow = false;
+	UPICOXRSettings* PICOSettings;
+	FPXRGameFramePtr PXRFrame;
+	bool bIsShown;
+	bool bSplashNeedUpdateActiveState;
+	bool bSplashShouldToShow;
+
+	TArray<FPXRSplashLayer> AddedPXRSplashLayers;
+	TArray<FPICOLayerPtr> PXRLayers_RenderThread_Entry;
+	TArray<FPICOLayerPtr> PXRLayers_RenderThread;
+
+	int32 FramesOutstanding;
 };
-typedef TSharedPtr<FPicoXRSplash> FPicoXRSplashPtr;
+typedef TSharedPtr<FPXRSplash> FPICOXRSplashPtr;

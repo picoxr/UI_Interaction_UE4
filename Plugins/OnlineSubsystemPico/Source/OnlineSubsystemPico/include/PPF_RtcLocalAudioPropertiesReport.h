@@ -23,4 +23,3 @@ PPF_PUBLIC_FUNCTION(size_t) ppf_RtcLocalAudioPropertiesReport_GetAudioProperties
 
 
 #endif
-

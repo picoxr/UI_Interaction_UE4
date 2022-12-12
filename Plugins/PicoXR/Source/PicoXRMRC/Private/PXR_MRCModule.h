@@ -13,9 +13,9 @@
 const int MRCSupportVersion = 0x2000300;
 
 class UTextureRenderTarget2D;
-class FPicoXRHMD;
+class FPICOXRHMD;
 class UPXRInGameThirdCamState;
-class APicoXRMRC_CastingCameraActor;
+class APICOXRMRC_CastingCameraActor;
 struct FPXRTrackedCamera;
 
 struct FRawCameraDataFromXML
@@ -29,28 +29,30 @@ struct FRawCameraDataFromXML
 	}
 };
 
-class FPicoXRMRCModule : public IPicoXRMRCModule
+class FPICOXRMRCModule : public IPICOXRMRCModule
 {
 public:
 
-	FPicoXRMRCModule();
-	~FPicoXRMRCModule();
+	FPICOXRMRCModule();
+	~FPICOXRMRCModule();
 
-	static inline FPicoXRMRCModule& Get()
+	static inline FPICOXRMRCModule& Get()
 	{
-		return FModuleManager::GetModuleChecked< FPicoXRMRCModule >("PicoXRMRC");
+		return FModuleManager::GetModuleChecked< FPICOXRMRCModule >("PICOXRMRC");
 	}
 
 	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 
-	static class FPicoXRHMD* PicoXRHMD;
-	static FPicoXRHMD* GetPicoXRHMD();
+	static class FPICOXRHMD* PICOXRHMD;
+	static FPICOXRHMD* GetPICOXRHMD();
 
 public:
-	/** Check whether MRC is enabled by PicoHomeAPP */
+	/** Check whether MRC is enabled by PICOHomeAPP */
 	bool IsMrcEnabled();
+
+	bool IsMrcActivated();
 
 	/** Obtain calibration data */
 	bool GetMRCCalibrationData(FPXRTrackedCamera & CameraState);
@@ -61,11 +63,11 @@ public:
 
 	bool bSimulateEnableMRC;
 
-	int SpawnTimes;
+	UPXRInGameThirdCamState* GetMRCState();
 
 private:
 	UPXRInGameThirdCamState* InGameThirdCamState;
-	APicoXRMRC_CastingCameraActor* InGameThirdCam;
+	APICOXRMRC_CastingCameraActor* InGameThirdCam;
 	UWorld* CurrentWorld;
 	FDelegateHandle WorldAddedDelegate;
 	FDelegateHandle WorldDestroyedDelegate;
@@ -83,9 +85,8 @@ private:
 	void OnWorldDestroyed(UWorld* NewWorld);
 	bool ReadCameraRawDataFromXML();
 
-#if PLATFORM_ANDROID
 	bool bCpture2DActorActivated;
-
+#if PLATFORM_ANDROID
 	FDelegateHandle InitialWorldAddedDelegate;
 	FDelegateHandle InitialWorldLoadDelegate;
 	FDelegateHandle PreWorldTickDelegate;

@@ -52,6 +52,7 @@ int Pxr_ResetSensor(PxrResetSensorOption option);
 int Pxr_WaitFrame();
 int Pxr_BeginFrame();
 int Pxr_SubmitLayer(const PxrLayerHeader* layer);
+int Pxr_SubmitLayer2(const PxrLayerHeader2* layer);
 int Pxr_EndFrame();
 
 // Event
@@ -86,7 +87,7 @@ int Pxr_GetTrackingMode(PxrTrackingModeFlags* trackingMode);
 int Pxr_GetEyeTrackingData(PxrEyeTrackingData* eyeTrackingData);
 
 //Face tracking
-int Pxr_GetFaceTrackingData(int64_t ts, int flags, uint64_t* timestamp,float** blendShapeWeight,float** reserved);
+int Pxr_GetFaceTrackingData(int64_t ts, int flags, PxrFTInfo *data);
 int Pxr_GetPupilDistance(float* ipd);
 int Pxr_StartEyeTracking();
 int Pxr_StopEyeTracking(int mode);
@@ -97,6 +98,7 @@ int Pxr_GetTrackingOrigin(PxrTrackingOrigin* trackingOrigin);
 // IPD
 float Pxr_GetIPD();
 
+int Pxr_GetEyeOrientation(int eyeIndex,PxrQuaternionf *orientation);
 // AppFocus
 bool Pxr_GetAppHasFocus();
 
@@ -142,13 +144,14 @@ int Pxr_GetBoundaryGeometry2(bool isPlayArea, float ** outPointsFloat, uint32_t 
 int Pxr_GetBoundaryDimensions(bool isPlayArea, PxrVector3f* dimension);
 int Pxr_SetSeeThroughImageExtent(uint32_t width, uint32_t height);
 int Pxr_GetSeeThroughData(PxrSeeThoughData* data);
-
+void Pxr_SetOriginOfLargeSpace(float*pose);
 // Multiview
 bool Pxr_EnableMultiview(bool enable);
 
 // Mrc extended api
 int Pxr_GetMrcPose(PxrPosef* pose);
 int Pxr_SetMrcPose(const PxrPosef* pose);
+int Pxr_SetIsSupportMovingMrc(bool support);
 bool Pxr_GetMrcStatus();
 
 int Pxr_SetSensorLostCustomMode(bool value);
@@ -164,6 +167,9 @@ bool Pxr_SetExtraLatencyMode(int mode);
 void Pxr_InitPsensor(jobject activity);
 int Pxr_getPsensorState();
 void Pxr_UnregisterPsensor();
+
+int Pxr_GetStringMetaFromApplication(const char* keyname,char* value);
+int  Pxr_GetIntMetaFromApplication(const char* keyname,int * value);
 #if defined(__cplusplus)
 } // extern "C"
 #endif

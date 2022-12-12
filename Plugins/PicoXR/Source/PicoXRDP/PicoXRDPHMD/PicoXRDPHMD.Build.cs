@@ -4,16 +4,16 @@ using System.IO;
 
 namespace UnrealBuildTool.Rules
 {
-	public class PicoXRDPHMD : ModuleRules
+	public class PICOXRDPHMD : ModuleRules
 	{
-		public PicoXRDPHMD(ReadOnlyTargetRules Target) : base(Target)
+		public PICOXRDPHMD(ReadOnlyTargetRules Target) : base(Target)
 		{
 			string EnginePath = Path.GetFullPath(Target.RelativeEnginePath);
 			PrivateIncludePaths.AddRange(
 				new string[] {
-					"PicoXRDP/PicoXRDPHMD/Private",
-					"PicoXRDP/PicoXRDPHMD/Public",
-					"PicoXRHMD/Private",
+					"PICOXRDP/PICOXRDPHMD/Private",
+					"PICOXRDP/PICOXRDPHMD/Public",
+					"PICOXRHMD/Private",
 					EnginePath+"Source/Runtime/Renderer/Private",
 					// ... add other private include paths required here ...
 				}
@@ -31,7 +31,7 @@ namespace UnrealBuildTool.Rules
                     "InputCore",
 					"InputDevice",
 					"HeadMountedDisplay",
-					"PicoXRHMD",
+					"PICOXRHMD",
 					"Slate",
 					"SlateCore",
 					"ProceduralMeshComponent",
@@ -83,13 +83,13 @@ namespace UnrealBuildTool.Rules
 					AddEngineThirdPartyPrivateStaticDependencies(Target, "IntelExtensionsFramework");
 				}
 
-                string PicoXRLibsDirectory = Path.Combine(ModuleDirectory, "../../../Libs");
+                string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, "../../../Libs");
 
-				PublicIncludePaths.Add(Path.Combine(PicoXRLibsDirectory, "Include"));
+				PublicIncludePaths.Add(Path.Combine(PICOXRLibsDirectory, "Include"));
 
-				PublicAdditionalLibraries.Add(Path.Combine(PicoXRLibsDirectory, "Win64", "pxr_turtledove.lib"));
+				PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "Win64", "pxr_turtledove.lib"));
 				PublicDelayLoadDLLs.Add("pxr_turtledove.dll");
-				RuntimeDependencies.Add(Path.Combine(PicoXRLibsDirectory, "Win64", "pxr_turtledove.dll"));
+				RuntimeDependencies.Add(Path.Combine(PICOXRLibsDirectory, "Win64", "pxr_turtledove.dll"));
 			}
 		}
 	}

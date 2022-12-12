@@ -7,40 +7,17 @@
 #include "CoreMinimal.h"
 #include "OnlineSubsystemPico.h"
 #include "Interfaces/OnlineIdentityInterface.h"
-#include "OnlineSubsystemPicoTypes.h"
 #include "PPF_Platform.h"
+#include "OnlineSubsystemPicoNames.h"
+#include "Pico_User.h"
+#include "OnlineFriendsInterfacePico.h"
+#include "OnlineSubsystemPicoTypes.h"
+
 /**
-/// 
+///
  */
 
  /// @file OnlineIdentityPico.h
-
-/// @brief User gender.
-enum class EUserGender : uint8
-{
-    Unknow,
-    Male,
-    Female
-};
-
-/// @brief User presence state.
-enum class EUserPresenceStatus : uint8
-{
-    Unknow,
-    OnLine,
-    OffLine
-};
-
-/// @brief User information including user ID, image URL, display name, gender, and presence state.
-struct FUserInformation  
-{
-    EUserGender Gender;
-    FString UserId;
-    FString ImageUrl;
-    FString DisplayName;
-    EUserPresenceStatus UserPresenceStatus;
-};
-
 DECLARE_DELEGATE_ThreeParams(FOnGetUserAndRoomDelegate, const FString& /**/, bool /*IsError*/, const FString& /*Error Message*/);
 
 /// @brief UserOnlineAccountPico class inherited from FUserOnlineAccount(Unreal Engine).
@@ -48,8 +25,13 @@ class FUserOnlineAccountPico : public FUserOnlineAccount
 {
 public:
 
-
+#if ENGINE_MAJOR_VERSION > 4
     FUserOnlineAccountPico(const FUniqueNetIdRef& InUserId, const FString& InName)
+#elif ENGINE_MINOR_VERSION > 26
+    FUserOnlineAccountPico(const FUniqueNetIdRef& InUserId, const FString& InName)
+#elif ENGINE_MINOR_VERSION > 24
+    FUserOnlineAccountPico(const TSharedRef<const FUniqueNetId>& InUserId, const FString& InName)
+#endif
         : UserId(InUserId),
         Name(InName)
     { }
@@ -60,8 +42,13 @@ public:
 
 
     /** User Id represented as a FUniqueNetId */
+#if ENGINE_MAJOR_VERSION > 4
     FUniqueNetIdRef UserId;
-
+#elif ENGINE_MINOR_VERSION > 26
+    FUniqueNetIdRef UserId;
+#elif ENGINE_MINOR_VERSION > 24
+    TSharedRef<const FUniqueNetId> UserId;
+#endif
     /** Additional key/value pair data related to auth */
     TMap<FString, FString> AdditionalAuthData;
     /** Additional key/value pair data related to user attribution */
@@ -72,8 +59,13 @@ public:
 
 
     // @return The ID associated with the user account provided by the online service during registration.
+#if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdRef GetUserId() const override { return UserId; };
-
+#elif ENGINE_MINOR_VERSION > 26
+    virtual FUniqueNetIdRef GetUserId() const override { return UserId; };
+#elif ENGINE_MINOR_VERSION > 24
+    virtual TSharedRef<const FUniqueNetId> GetUserId() const override { return UserId; }
+#endif
     // @return The real name for the user if known.
     virtual FString GetRealName() const override { return Name; }
 
@@ -110,77 +102,127 @@ private:
  *  @{
  */
 
-/** @defgroup Identity Identity
- *  This is the Identity group
- *  @{
- */
+ /** @defgroup Identity Identity(OnlineSub)
+  *  This is the Identity(OnlineSub) group
+  *  @{
+  */
 
-/// @brief OnlineIdentityPico class inherited from IOnlineIdentity(Unreal Engine)
+  /// @brief OnlineIdentityPico class inherited from IOnlineIdentity(Unreal Engine)
 class FOnlineIdentityPico : public IOnlineIdentity
 {
 public:
 
-    /// @brief Gets the account login information for the current device.
-    /// Will call `OnLoginComplete()` delegate when async task completes.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @param AccountCredentials The user account credentials needed to sign in to the online service.
-    /// @return Bool: `true` if login task was started, `false` otherwise.
+    /// <summary>Gets the account login information for a user.
+    /// @note Will call the `OnLoginComplete()` delegate when the async task is complete.
+    /// </summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <param name="AccountCredentials">Should pass `null`.</param>
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: the account login information has been found</li>
+    /// <li>`false`: otherwise</li>
+    /// </ul>
+    /// </returns>
     virtual bool Login(int32 LocalUserNum, const FOnlineAccountCredentials& AccountCredentials) override;
 
-    /// @brief Signs the player out of the online service.
-    /// Will call the `OnLogoutComplete()` delegate when async task completes.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @return Bool: `true` if logout task was started, `false` otherwise.
+    /// <summary>Clears the account login information for a user.
+    /// @note Will call the `OnLogoutComplete()` delegate when the async task is complete.
+    /// </summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: the account login information has been cleared</li>
+    /// <li>`false`: otherwise</li>
+    /// </ul>
+    /// </returns>
     virtual bool Logout(int32 LocalUserNum) override;
 
-    /// @brief Auto login.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @return Bool: `true`-success; `false`-failure.
+    /// <summary>Logs a user in to the online service.</summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: success</li>
+    /// <li>`false`: failure</li>
+    /// </ul>
+    /// </returns>
     virtual bool AutoLogin(int32 LocalUserNum) override;
 
-    /// @brief Obtains online account info for a user that has been registered.
-    /// @param UserId The ID of the user to search for.
-    /// @return The info about the user if found, `NULL` otherwise.
+    /// <summary>Gets the account information of a registered user.</summary>
+    /// <param name="UserId">The ID of the user to search for.</param>
+    /// <returns>
+    /// The user's account information if found, `NULL` otherwise.
+    /// </returns>
     virtual TSharedPtr<FUserOnlineAccount> GetUserAccount(const FUniqueNetId& UserId) const override;
 
-    /// @brief Obtains the list of all known/registered user accounts.
-    /// @return The info about the users if found, `NULL` otherwise.
+    /// <summary>Gets the account information of all known/registered users.</summary>
+    /// <returns>
+    /// The account information of all known/registered users if found, `NULL` otherwise.
+    /// <ul>
+    /// <li></li>
+    /// <li>`NULL`: otherwise</li>
+    /// </ul>
+    /// </returns>
     virtual TArray<TSharedPtr<FUserOnlineAccount> > GetAllUserAccounts() const override;
 
-    /// @brief Gets the platform-specific unique ID for the specified player.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @return The valid player ID object if the call succeeded, `NULL` otherwise.
+    /// <summary>Gets the platform-specific unique ID for a user.</summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <returns>
+    /// The valid user ID object if the call succeeds, `NULL` otherwise.
+    /// </returns>
+#if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr GetUniquePlayerId(int32 LocalUserNum) const override;
+#elif ENGINE_MINOR_VERSION > 26
+    virtual FUniqueNetIdPtr GetUniquePlayerId(int32 LocalUserNum) const override;
+#elif ENGINE_MINOR_VERSION > 24
+    virtual TSharedPtr<const FUniqueNetId> GetUniquePlayerId(int32 LocalUserNum) const override;
+#endif
 
-    /// @brief Creates a unique ID from binary data (used during replication).
-    /// @param Bytes The opaque data from the appropriate platform.
-    /// @param Size The size of opaque data.
-    /// @return The unique ID from the given data, `NULL` otherwise.
+    /// <summary>Creates a unique ID from binary data (used during replication).</summary>
+    /// <param name="Bytes">The opaque data from the appropriate platform.</param>
+    /// <param name="Size">The size of opaque data.</param>
+    /// <returns>
+    /// The unique ID from the given data, `NULL` otherwise.
+    /// </returns>
+#if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
+#elif ENGINE_MINOR_VERSION > 26
+    virtual FUniqueNetIdPtr CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
+#elif ENGINE_MINOR_VERSION > 24
+    virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
+#endif
 
-    /// @brief Creates a unique ID from string.
-    /// @param Str The string that holds the textual representation of an ID.
-    /// @return The unique ID from the given data, `NULL` otherwise.
+    /// <summary>Creates a unique ID from string.</summary>
+    /// <param name="Str">The string that holds the textual representation of an ID.</param>
+    /// <returns>
+    /// The unique ID from the given data, `NULL` otherwise.
+    /// </returns>
+#if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr CreateUniquePlayerId(const FString& Str) override;
+#elif ENGINE_MINOR_VERSION > 26
+    virtual FUniqueNetIdPtr CreateUniquePlayerId(const FString& Str) override;
+#elif ENGINE_MINOR_VERSION > 24
+    virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(const FString& Str) override;
+#endif
 
-    /// @brief Gets the login status for a given player.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @return The enum value of that player's status.
+
+    /// <summary>Gets a user's login status by controller number.</summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <returns>The enum value of that user's login status.</returns>
     virtual ELoginStatus::Type GetLoginStatus(int32 LocalUserNum) const override;
 
-    /// @brief Gets the login status for a given player.
-    /// @param UserId The unique net ID of the associated user.
-    /// @return The enum value of the player's status.
+    /// <summary>Gets a user's login status by unique net ID.</summary>
+    /// <param name="UserId">The unique net ID of the associated user.</param>
+    /// <returns>The enum value of the user's login status.</returns>
     virtual ELoginStatus::Type GetLoginStatus(const FUniqueNetId& UserId) const override;
 
-    /// @brief Reads the player's nickname from the online service.
-    /// @param LocalUserNum The controller number of the associated user.
-    /// @return A string containing the player's nickname.
+    /// <summary>Gets a users's nickname from the online service by controller number.</summary>
+    /// <param name="LocalUserNum">The controller number of the associated user.</param>
+    /// <returns>A string containing the user's nickname.</returns>
     virtual FString GetPlayerNickname(int32 LocalUserNum) const override;
 
-    /// @brief Reads the player's nickname from the online service.
-    /// @param UserId The unique net ID of the associated user.
-    /// @return A string containing the player's nickname.
+    /// <summary>Gets a user's nickname from the online service by unique net ID.</summary>
+    /// <param name="UserId">The unique net ID of the associated user.</param>
+    /// <returns>A string containing the user's nickname.</returns>
     virtual FString GetPlayerNickname(const FUniqueNetId& UserId) const override;
 
     // Not Supported
@@ -192,23 +234,24 @@ public:
 
     // Not Supported
     virtual void GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate) override;
-    
+
     // Not Supported
     virtual FPlatformUserId GetPlatformUserIdFromUniqueNetId(const FUniqueNetId& UniqueNetId) const override;
 
-    /// @brief Gets the auth type associated with accounts for this platform.
-    /// @return The auth type associated with accounts for this platform.
+    /// <summary>Gets the auth type associated with accounts for this platform.</summary>
+    /// <returns>The auth type associated with accounts for this platform.</returns>
     virtual FString GetAuthType() const override;
 
+    UPico_User* GetLoginPicoUser(int32 LocalUserNum);
 
 
     // FOnlineIdentityPico
 
-    /// @brief The constructor.
-    /// @param InSubsystem The online subsystem being used.
+    // <summary>The constructor.</summary>
+    // <param name="InSubsystem">The online subsystem being used.</param>
     FOnlineIdentityPico(FOnlineSubsystemPico& InSubsystem);
 
-    /// The default destructor.
+    // The default destructor.
     virtual ~FOnlineIdentityPico() = default;
 
 PACKAGE_SCOPE:
@@ -221,22 +264,29 @@ PACKAGE_SCOPE:
 
 private:
 
-    /// @brief Reference to the main Pico subsystem.
+    // @brief Reference to the main Pico subsystem.
     FOnlineSubsystemPico& PicoSubsystem;
 
-    /// @brief IDs mapped to locally registered users.
+    // @brief IDs mapped to locally registered users.
+#if ENGINE_MAJOR_VERSION > 4
     TMap<int32, FUniqueNetIdRef> UserIds;
-
-
+#elif ENGINE_MINOR_VERSION > 26
+    TMap<int32, FUniqueNetIdRef> UserIds;
+#elif ENGINE_MINOR_VERSION > 24
+    TMap<int32, TSharedPtr<const FUniqueNetId>> UserIds;
+#endif
+    TMap<int32, UPico_User*> LoginPicoUserMap;
 
     /// @brief IDs mapped to locally registered user accounts.
+#if ENGINE_MAJOR_VERSION > 4
     TUniqueNetIdMap<TSharedRef<FUserOnlineAccountPico>> UserAccounts;
+#elif ENGINE_MINOR_VERSION > 26
+    TUniqueNetIdMap<TSharedRef<FUserOnlineAccountPico>> UserAccounts;
+#elif ENGINE_MINOR_VERSION > 24
+    TMap<FUniqueNetIdPico, TSharedRef<FUserOnlineAccountPico>> UserAccounts;
+#endif
 
-public:
-
-    /// @brief User information map.
-    TMap<int32, FUserInformation> UserInfos;
 };
-/** @} */ // end of Identity
+/** @} */ // end of Identity(OnlineSub)
 /** @} */ // end of Function
 typedef TSharedPtr<FOnlineIdentityPico, ESPMode::ThreadSafe> FOnlineIdentityPicoPtr;

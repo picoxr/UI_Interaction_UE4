@@ -39,7 +39,7 @@ PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Notification_GetNextRoomInviteNotificationAr
 ///
 /// If no error occurred, the message will contain a payload of type ::ppfRoomInviteNotificationArrayHandle.
 /// Extract the payload from the message handle with ::ppf_Message_GetRoomInviteNotificationArray().
-PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Notification_GetRoomInvites();
+PPF_PUBLIC_FUNCTION(ppfRequest) ppf_Notification_GetRoomInvites(int pageIdx, int pageSize);
 
 /// Mark a notification as read. This causes it to disappear from the Universal
 /// Menu, the Pico App, Pico Home, and in-app retrieval.

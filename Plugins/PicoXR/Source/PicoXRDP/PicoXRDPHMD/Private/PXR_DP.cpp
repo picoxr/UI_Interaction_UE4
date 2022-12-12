@@ -25,7 +25,7 @@ DP::~DP()
 
 bool DP::ConnectServer()
 {
-	FString StreamerDLLDir = FPaths::ProjectPluginsDir() / FString::Printf(TEXT("PicoXR/Libs/Win64/"));
+	FString StreamerDLLDir = FPaths::ProjectPluginsDir() / FString::Printf(TEXT("PICOXR/Libs/Win64/"));
 	FPlatformProcess::PushDllDirectory(*StreamerDLLDir);
 	FPlatformProcess::GetDllHandle(*(StreamerDLLDir + "pxr_turtledove.dll"));
 	FPlatformProcess::PopDllDirectory(*StreamerDLLDir);
@@ -33,7 +33,7 @@ bool DP::ConnectServer()
 	PXR_LOGD(PxrUnreal,"PXR_DP DLL Path:%s", *StreamerDLLDir)
 
 		terminal_ = RegisterAsTerminal();
-	bool ConnectToPicoRuntimeOk = false;
+	bool ConnectToPICORuntimeOk = false;
 	while (count < 2)
 	{
 		count++;
@@ -44,13 +44,13 @@ bool DP::ConnectServer()
 		}
 		else
 		{
-			PXR_LOGD(PxrUnreal,"PXR_DP Connect to Pico Runtime OK 127.0.0.1:50051");
-			ConnectToPicoRuntimeOk = true;
+			PXR_LOGD(PxrUnreal,"PXR_DP Connect to PICO Runtime OK 127.0.0.1:50051");
+			ConnectToPICORuntimeOk = true;
 			count = 0;
 			break;
 		}
 	}
-	return ConnectToPicoRuntimeOk;
+	return ConnectToPICORuntimeOk;
 }
 
 void DP::DisConnectServer()

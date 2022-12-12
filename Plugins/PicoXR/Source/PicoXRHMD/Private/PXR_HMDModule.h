@@ -10,15 +10,15 @@
 #include "PXR_Log.h"
 
 //-------------------------------------------------------------------------------------------------
-// FPicoXRHMDModule
+// FPICOXRHMDModule
 //-------------------------------------------------------------------------------------------------
-class FPicoXRHMDModule : public IPicoXRHMDModule
+class FPICOXRHMDModule : public IPICOXRHMDModule
 {
 public:
-	FPicoXRHMDModule();
-	static inline FPicoXRHMDModule& Get()
+	FPICOXRHMDModule();
+	static inline FPICOXRHMDModule& Get()
 	{
-		return FModuleManager::LoadModuleChecked< FPicoXRHMDModule >("PicoXRHMD");
+		return FModuleManager::LoadModuleChecked< FPICOXRHMDModule >("PICOXRHMD");
 	}
 
 	// IModuleInterface

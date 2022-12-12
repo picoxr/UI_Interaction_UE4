@@ -6,15 +6,15 @@
 #include "Templates/SharedPointer.h"
 #include "PXR_HMD.h"
 
-class FPicoXRInputModule : public IPicoXRInputModule
+class FPICOXRInputModule : public IPICOXRInputModule
 {
 public:
-	FPicoXRInputModule();
-	virtual ~FPicoXRInputModule();
+	FPICOXRInputModule();
+	virtual ~FPICOXRInputModule();
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	virtual TSharedPtr< class IInputDevice > CreateInputDevice(const TSharedRef< FGenericApplicationMessageHandler >& InMessageHandler) override;
 private:
-	TSharedPtr<class FPicoXRInput> InputDevice;
+	TSharedPtr<class FPICOXRInput> InputDevice;
 };
 
