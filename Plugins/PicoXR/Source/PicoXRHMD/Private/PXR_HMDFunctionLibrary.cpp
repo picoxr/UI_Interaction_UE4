@@ -1,107 +1,152 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDFunctionLibrary.h"
 #include <list>
 #include "PXR_HMD.h"
 #include "PXR_Log.h"
-#include "PXR_Settings.h"
+#include "PXR_HMDRuntimeSettings.h"
 #include "PXR_BoundarySystem.h"
+#include "PXR_Utils.h"
 
 FPICOXRIPDChangedDelegate UPICOXRHMDFunctionLibrary::PICOXRIPDChangedCallback;
 FPICOXRHMD* UPICOXRHMDFunctionLibrary::PICOXRHMD = nullptr;
+
 UPICOXRHMDFunctionLibrary::UPICOXRHMDFunctionLibrary()
 {
 }
 
 FPICOXRHMD* UPICOXRHMDFunctionLibrary::GetPICOXRHMD()
 {
-    if (!PICOXRHMD)
-    {
-        static FName SystemName(TEXT("PICOXRHMD"));
-        if (GEngine)
-        {
-            if (GEngine->XRSystem.IsValid() && (GEngine->XRSystem->GetSystemName() == SystemName))
-            {
-                PICOXRHMD =  static_cast<FPICOXRHMD*>(GEngine->XRSystem.Get());  
-            }
-            if (PICOXRHMD == nullptr)
-            {
-                PXR_LOGI(PxrUnreal, "GetPICOXRHMD Failed!");
-            }
-        } 
-    }
-    return PICOXRHMD;
+	if (!PICOXRHMD)
+	{
+		static FName SystemName(TEXT("PICOXRHMD"));
+		if (GEngine)
+		{
+			if (GEngine->XRSystem.IsValid() && (GEngine->XRSystem->GetSystemName() == SystemName))
+			{
+				PICOXRHMD = static_cast<FPICOXRHMD*>(GEngine->XRSystem.Get());
+			}
+			if (PICOXRHMD == nullptr)
+			{
+				PXR_LOGI(PxrUnreal, "GetPICOXRHMD Failed!");
+			}
+		}
+	}
+	return PICOXRHMD;
 }
 
 FQuat UPICOXRHMDFunctionLibrary::PXR_GetCurrentOrientation()
 {
-    FVector Position;
-    FQuat Orientation;
-    GetPICOXRHMD()->GetCurrentPose(IXRTrackingSystem::HMDDeviceId,Orientation,Position);
-    return  Orientation;
+#if PLATFORM_ANDROID
+	FVector Position;
+	FQuat Orientation;
+	GetPICOXRHMD()->GetCurrentPose(IXRTrackingSystem::HMDDeviceId, Orientation, Position);
+	return Orientation;
+#endif
+	return FQuat();
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetCurrentPosition()
 {
-    FVector Position;
-    FQuat Orientation;
-    GetPICOXRHMD()->GetCurrentPose(IXRTrackingSystem::HMDDeviceId,Orientation,Position);
-    return  Position;
+#if PLATFORM_ANDROID
+	FVector Position;
+	FQuat Orientation;
+	GetPICOXRHMD()->GetCurrentPose(IXRTrackingSystem::HMDDeviceId, Orientation, Position);
+	return Position;
+#endif
+	return FVector();
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_DoesSupportPositionalTracking()
-{  
-    return  GetPICOXRHMD()->DoesSupportPositionalTracking();
+{
+#if PLATFORM_ANDROID
+	return GetPICOXRHMD()->DoesSupportPositionalTracking();
+#endif
+	return false;
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetAngularVelocity()
 {
-    FVector AngularVelocity;
-    GetPICOXRHMD()->UPxr_GetAngularVelocity(AngularVelocity);
-    return AngularVelocity;
+#if PLATFORM_ANDROID
+	FVector AngularVelocity;
+	GetPICOXRHMD()->UPxr_GetAngularVelocity(AngularVelocity);
+	return AngularVelocity;
+#endif
+	return FVector();
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetAcceleration()
 {
-    FVector Acceleration;
-    GetPICOXRHMD()->UPxr_GetAcceleration(Acceleration);
-    return Acceleration;
+#if PLATFORM_ANDROID
+	FVector Acceleration;
+	GetPICOXRHMD()->UPxr_GetAcceleration(Acceleration);
+	return Acceleration;
+#endif
+	return FVector();
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetVelocity()
 {
-    FVector Velocity;
-    GetPICOXRHMD()->UPxr_GetVelocity(Velocity);
-    return Velocity;
+#if PLATFORM_ANDROID
+	FVector Velocity;
+	GetPICOXRHMD()->UPxr_GetVelocity(Velocity);
+	return Velocity;
+#endif
+	return FVector();
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetAngularAcceleration()
 {
-    FVector AngularAcceleration;
-    GetPICOXRHMD()->UPxr_GetAngularAcceleration(AngularAcceleration);
-    return AngularAcceleration;
+#if PLATFORM_ANDROID
+	FVector AngularAcceleration;
+	GetPICOXRHMD()->UPxr_GetAngularAcceleration(AngularAcceleration);
+	return AngularAcceleration;
+#endif
+	return FVector();
 }
 
 EHMDWornState::Type UPICOXRHMDFunctionLibrary::PXR_GetHMDWornState()
-{  
-    return GetPICOXRHMD()->GetHMDWornState();
+{
+#if PLATFORM_ANDROID
+	return GetPICOXRHMD()->GetHMDWornState();
+#endif
+	return EHMDWornState::Type::Unknown;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_ResetHMDSensor()
 {
-    GetPICOXRHMD()->ResetOrientationAndPosition(0);
-    return true;
+#if PLATFORM_ANDROID
+	GetPICOXRHMD()->ResetOrientationAndPosition(0);
+	return true;
+#endif
+	return false;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetFieldOfView(float& HFOVInDegrees, float& VFOVInDegrees)
 {
-    GetPICOXRHMD()->GetFieldOfView(HFOVInDegrees,VFOVInDegrees);
-    return true;
+#if PLATFORM_ANDROID
+	GetPICOXRHMD()->GetFieldOfView(HFOVInDegrees, VFOVInDegrees);
+	return true;
+#endif
+	return false;
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_SetFieldOfView(EPICOXREyeType Eye, float FovLeftInDegrees, float FovRightInDegrees, float FovUpInDegrees, float FovDownInDegrees)
+{
+#if PLATFORM_ANDROID
+	return GetPICOXRHMD()->UPxr_SetFieldOfView(Eye, FovLeftInDegrees, FovRightInDegrees, FovUpInDegrees, FovDownInDegrees) ? false : true;
+#endif
+	return false;
 }
 
 float UPICOXRHMDFunctionLibrary::PXR_GetIPD()
 {
-    return GetPICOXRHMD()->UPxr_GetIPD();
+#if PLATFORM_ANDROID
+	return GetPICOXRHMD()->UPxr_GetIPD();
+#endif
+	return 0;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_IPDChangedDelegates(FPICOXRIPDChangedDelegate OnPICOXRIPDChanged)
@@ -113,32 +158,81 @@ void UPICOXRHMDFunctionLibrary::PXR_IPDChangedDelegates(FPICOXRIPDChangedDelegat
 
 FString UPICOXRHMDFunctionLibrary::PXR_GetDeviceModel()
 {
-    return GetPICOXRHMD()->UPxr_GetDeviceModel();
+#if PLATFORM_ANDROID
+	return GetPICOXRHMD()->UPxr_GetDeviceModel();
+#endif
+	return "";
 }
 
 float UPICOXRHMDFunctionLibrary::PXR_GetCurrentDisplayFrequency()
 {
-    float frequency = 1.0f;
+	float frequency = 1.0f;
 #if PLATFORM_ANDROID
-    Pxr_GetConfigFloat(PxrConfigType::PXR_DISPLAY_REFRESH_RATE, &frequency);
+    FPICOXRHMDModule::GetPluginWrapper().GetConfigFloat(PxrConfigType::PXR_DISPLAY_REFRESH_RATE, &frequency);
 #endif
-    return  frequency;
+	return frequency;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_SetCPUAndGPULevels(int32 CPULevel, int32 GPULevel)
 {
 #if PLATFORM_ANDROID
-    Pxr_SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_CPU,CPULevel);
-    Pxr_SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_GPU,GPULevel);
+    FPICOXRHMDModule::GetPluginWrapper().SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_CPU,CPULevel);
+    FPICOXRHMDModule::GetPluginWrapper().SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_GPU,GPULevel);
 #endif
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_SetPerformanceLevel(EPerformanceSettingTypes SettingType, EPerfSettingsLevel Level)
+{
+#if PLATFORM_ANDROID
+	const int32 SettingLevel = static_cast<int32>(Level);
+	switch (SettingType)
+	{
+	case EPerformanceSettingTypes::CPULevel:
+		{
+			return FPICOXRHMDModule::GetPluginWrapper().SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_CPU, SettingLevel) ? false : true;
+		}
+	case EPerformanceSettingTypes::GPULevel:
+		{
+			return FPICOXRHMDModule::GetPluginWrapper().SetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_GPU, SettingLevel) ? false : true;
+		}
+	default:
+		return false;
+	}
+#endif
+	return false;
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_GetPerformanceLevel(EPerformanceSettingTypes SettingType, EPerfSettingsLevel& Level)
+{
+#if PLATFORM_ANDROID
+	int32 SettingLevel;
+	switch (SettingType)
+	{
+	case EPerformanceSettingTypes::CPULevel:
+		{
+			bool result = FPICOXRHMDModule::GetPluginWrapper().GetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_CPU, &SettingLevel) ? false : true;
+			Level = static_cast<EPerfSettingsLevel>(SettingLevel);
+			return result;
+		}
+	case EPerformanceSettingTypes::GPULevel:
+		{
+			bool result = FPICOXRHMDModule::GetPluginWrapper().GetPerformanceLevels(PxrPerfSettings::PXR_PERF_SETTINGS_GPU, &SettingLevel) ? false : true;
+			Level = static_cast<EPerfSettingsLevel>(SettingLevel);
+			return result;
+		}
+	default:
+		return false;
+	}
+#endif
+	return false;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_GetCPUAndGPULevels(int32& CPULevel, int32& GPULevel)
 {
 #if PLATFORM_ANDROID
     int32 cpuLevel, gpuLevel = -1;
-    Pxr_GetPerformanceLevels(PXR_PERF_SETTINGS_CPU, &cpuLevel);
-    Pxr_GetPerformanceLevels(PXR_PERF_SETTINGS_GPU, &gpuLevel);
+    FPICOXRHMDModule::GetPluginWrapper().GetPerformanceLevels(PXR_PERF_SETTINGS_CPU, &cpuLevel);
+    FPICOXRHMDModule::GetPluginWrapper().GetPerformanceLevels(PXR_PERF_SETTINGS_GPU, &gpuLevel);
 
     CPULevel = cpuLevel;
     GPULevel = gpuLevel;
@@ -149,351 +243,264 @@ float UPICOXRHMDFunctionLibrary::PXR_GetSystemDisplayFrequency()
 {
 	float frequency = 0.f;
 #if PLATFORM_ANDROID
-	Pxr_GetConfigFloat(PxrConfigType::PXR_GET_DISPLAY_RATE, &frequency);
+    FPICOXRHMDModule::GetPluginWrapper().GetConfigFloat(PxrConfigType::PXR_GET_DISPLAY_RATE, &frequency);
 #endif
-	return  frequency;
+	return frequency;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_SetSystemDisplayFrequency(float Rate)
 {
 #if PLATFORM_ANDROID
-    Pxr_SetDisplayRefreshRate(Rate);
+    FPICOXRHMDModule::GetPluginWrapper().SetDisplayRefreshRate(Rate);
 #endif
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers)
 {
 #if PLATFORM_ANDROID
-    GetPICOXRHMD()->UPxr_SetColorScaleAndOffset(ColorScale,ColorOffset,bApplyToAllLayers);
+    GetPICOXRHMD()->SetColorScaleAndOffset(ColorScale,ColorOffset,bApplyToAllLayers);
 #endif
 }
 
 bool UPICOXRHMDFunctionLibrary::GetFocusState()
 {
-    const FPICOXRHMD* const PICOXRHMDInstance = GetPICOXRHMD();
-    if (PICOXRHMDInstance != nullptr && PICOXRHMDInstance->IsHMDEnabled())
-    {
-        return PICOXRHMDInstance->inputFocusState;
-    }
-    return false;
+#if PLATFORM_ANDROID
+	const FPICOXRHMD* const PICOXRHMDInstance = GetPICOXRHMD();
+	if (PICOXRHMDInstance != nullptr && PICOXRHMDInstance->IsHMDEnabled())
+	{
+		return PICOXRHMDInstance->inputFocusState;
+	}
+#endif
+	return false;
 }
 
 UPICOXRBoundarySystem* UPICOXRHMDFunctionLibrary::GetBoundarySystemInterface()
 {
-    return UPICOXRBoundarySystem::GetInstance();
+	return UPICOXRBoundarySystem::GetInstance();
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetBoundaryConfigured()
 {
-    return GetBoundarySystemInterface()->UPxr_GetConfigured();
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_GetConfigured();
+#endif
+	return false;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetBoundaryEnabled()
 {
-    return GetBoundarySystemInterface()->UPxr_GetEnabled();
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_GetEnabled();
+#endif
+	return false;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_SetBoundaryVisible(bool NewVisible)
 {
-    GetBoundarySystemInterface()->UPxr_SetVisible(NewVisible);
+#if PLATFORM_ANDROID
+	GetBoundarySystemInterface()->UPxr_SetVisible(NewVisible);
+#endif
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetBoundaryVisible()
 {
-    return GetBoundarySystemInterface()->UPxr_GetVisible();
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_GetVisible();
+#endif
+	return false;
 }
 
-bool UPICOXRHMDFunctionLibrary::PXR_BoundaryTestNode(EPICOXRNodeType DeviceType,
-    EPICOXRBoundaryType BoundaryType, bool& IsTriggering, float& ClosestDistance, FVector& ClosestPoint,
-    FVector& ClosestPointNormal)
+bool UPICOXRHMDFunctionLibrary::PXR_BoundaryTestNode(EPICOXRNodeType DeviceType, EPICOXRBoundaryType BoundaryType, bool& IsTriggering, float& ClosestDistance, FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
-    return GetBoundarySystemInterface()->UPxr_TestNode(static_cast<int32>(DeviceType),BoundaryType == EPICOXRBoundaryType::PlayArea,IsTriggering,ClosestDistance,ClosestPoint,ClosestPointNormal);
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_TestNode(static_cast<int32>(DeviceType), BoundaryType == EPICOXRBoundaryType::PlayArea, IsTriggering, ClosestDistance, ClosestPoint, ClosestPointNormal);
+#endif
+	return false;
 }
 
-bool UPICOXRHMDFunctionLibrary::PXR_BoundaryTestPoint(FVector Point, EPICOXRBoundaryType BoundaryType,
-    bool& IsTriggering, float& ClosestDistance, FVector& ClosestPoint, FVector& ClosestPointNormal)
+bool UPICOXRHMDFunctionLibrary::PXR_BoundaryTestPoint(FVector Point, EPICOXRBoundaryType BoundaryType, bool& IsTriggering, float& ClosestDistance, FVector& ClosestPoint, FVector& ClosestPointNormal)
 {
-    return GetBoundarySystemInterface()->UPxr_TestPoint(Point,BoundaryType == EPICOXRBoundaryType::PlayArea,IsTriggering,ClosestDistance,ClosestPoint,ClosestPointNormal);
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_TestPoint(Point, BoundaryType == EPICOXRBoundaryType::PlayArea, IsTriggering, ClosestDistance, ClosestPoint, ClosestPointNormal);
+#endif
+	return false;
 }
 
 TArray<FVector> UPICOXRHMDFunctionLibrary::PXR_GetBoundaryGeometry(EPICOXRBoundaryType BoundaryType)
 {
-   return GetBoundarySystemInterface()->UPxr_GetGeometry(BoundaryType == EPICOXRBoundaryType::PlayArea);
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_GetGeometry(BoundaryType == EPICOXRBoundaryType::PlayArea);
+#endif
+	return TArray<FVector>();
 }
 
 FVector UPICOXRHMDFunctionLibrary::PXR_GetBoundaryDimensions(EPICOXRBoundaryType BoundaryType)
 {
-    return GetBoundarySystemInterface()->UPxr_GetDimensions(BoundaryType == EPICOXRBoundaryType::PlayArea);
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_GetBoundarySeeThroughData(EPICOXRCameraType CameraType, UTexture2D*& CameraImage)
-{
-    return GetBoundarySystemInterface()->UPxr_GetSeeThroughData(static_cast<int32>(CameraType),CameraImage);
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_SetBoundaryCameraImageSize(FIntPoint ImageSize)
-{
-    return GetBoundarySystemInterface()->UPxr_SetCameraImageSize(ImageSize);
+#if PLATFORM_ANDROID
+	return GetBoundarySystemInterface()->UPxr_GetDimensions(BoundaryType == EPICOXRBoundaryType::PlayArea);
+#endif
+	return FVector();
 }
 
 int UPICOXRHMDFunctionLibrary::PXR_SetSeeThroughBackground(bool Value)
 {
-    return GetBoundarySystemInterface()->UPxr_SetSeeThroughBackground(Value);
-}
-
-void UPICOXRHMDFunctionLibrary::PXR_GetDialogState(EPICOXRBoundaryState& State)
-{
-    int result = 1;
 #if PLATFORM_ANDROID
-    result=Pxr_GetDialogState();
-    switch (result)
-    {
-    case -2:
-        State = EPICOXRBoundaryState::LostNoDialog;
-        break;
-	case -1:
-        State = EPICOXRBoundaryState::NothingDialog;
-		break;
-    default:
-        State = EPICOXRBoundaryState((uint8)result);
-        break;
-     }
+	return GetBoundarySystemInterface()->UPxr_SetSeeThroughBackground(Value);
 #endif
-}
-
-void UPICOXRHMDFunctionLibrary::PXR_EnableFoveation(bool Enable)
-{
-#if PLATFORM_ANDROID
-    GetPICOXRHMD()->UPxr_EnableFoveation(Enable);
-#endif
+	return false;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetFoveationLevel(EPICOXRFoveationLevel &FoveationLevel)
 {
-    int32 Foveation = -1;
-    if (GetMutableDefault<UPICOXRSettings>()->bEnableFoveation)
-    {
 #if PLATFORM_ANDROID
-    Foveation = (int32)Pxr_GetFoveationLevel();
+	int32 Foveation = -1;
+	Foveation = (int32)FPICOXRHMDModule::GetPluginWrapper().GetFoveationLevel();
+	switch (Foveation)
+	{
+	case -1:
+		FoveationLevel = EPICOXRFoveationLevel::None;
+		PXR_LOGI(PxrUnreal, "Foveation disabled!");
+		return false;
+	case 0:
+		FoveationLevel = EPICOXRFoveationLevel::Low;
+		return true;
+	case 1:
+		FoveationLevel = EPICOXRFoveationLevel::Medium;
+		return true;
+	case 2:
+		FoveationLevel = EPICOXRFoveationLevel::High;
+		return true;
+	case 3:
+		FoveationLevel = EPICOXRFoveationLevel::TopHigh;
+		return true;
+	default:
+		return false;
+		break;
+	}
 #endif
-    switch (Foveation)
-      {
-    case 0:
-        FoveationLevel = EPICOXRFoveationLevel::Low;
-        return true;
-    case 1:
-        FoveationLevel = EPICOXRFoveationLevel::Medium;
-        return true;
-    case 2:
-        FoveationLevel = EPICOXRFoveationLevel::High;
-        return true;
-    case 3:
-        FoveationLevel = EPICOXRFoveationLevel::TopHigh;
-        return true;
-     default:
-         return false;
-         break;
-      }
-    }
-    else
-    {
-        PXR_LOGI(PxrUnreal, "Foveation disabled!");
-        return false;
-    }
+	return false;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_SetFoveationLevel(EPICOXRFoveationLevel InLevel)
-{ 
-    if (GetMutableDefault<UPICOXRSettings>()->bEnableFoveation)
-    {
+{
 #if PLATFORM_ANDROID
-		PxrFoveationLevel Level = static_cast<PxrFoveationLevel>(InLevel);
-		if (Pxr_SetFoveationLevel(Level) == 0)
-		{
-			return true;
-		}
-#endif
-        return false;
-    }
-    else 
+	PxrFoveationLevel Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_NONE;
+	switch (InLevel)
 	{
-		PXR_LOGI(PxrUnreal, "Foveation disabled!");
-        return false;
-    }
+	case EPICOXRFoveationLevel::None:
+		Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_NONE;
+		break;
+	case EPICOXRFoveationLevel::Low:
+		Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_LOW;
+		break;
+	case EPICOXRFoveationLevel::Medium:
+		Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_MID;
+		break;
+	case EPICOXRFoveationLevel::High:
+		Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_HIGH;
+		break;
+	case EPICOXRFoveationLevel::TopHigh:
+		Level = PxrFoveationLevel::PXR_FOVEATION_LEVEL_TOP_HIGH;
+		break;
+	default:
+		break;
+	}
+	if (FPICOXRHMDModule::GetPluginWrapper().SetFoveationLevel(Level) == 0)
+	{
+		FPICOXRHMD* PICOHMD = GetPICOXRHMD();
+		PICOHMD->GameSettings->FoveatedRenderingLevel = Level;
+		return true;
+	}
+#endif
+	return false;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_SetFoveationParameter(FVector2D FoveationGainValue, float FoveationAreaValue, float FoveationMinimumValue)
 {
 #if PLATFORM_ANDROID
-    if (GetMutableDefault<UPICOXRSettings>()->bEnableFoveation)
-    {
-        PxrFoveationParams FoveationParams;
-        FoveationParams.foveationGainX = FoveationGainValue.X;
-        FoveationParams.foveationGainY = FoveationGainValue.Y;
-        FoveationParams.foveationArea = FoveationAreaValue;
-        FoveationParams.foveationMinimum = FoveationMinimumValue;
-        if (Pxr_SetFoveationParams(FoveationParams)==0)
-        {
-			return true;
-        }
-        return false;
-    }
-    else
+	PxrFoveationParams FoveationParams;
+	FoveationParams.foveationGainX = FoveationGainValue.X;
+	FoveationParams.foveationGainY = FoveationGainValue.Y;
+	FoveationParams.foveationArea = FoveationAreaValue;
+	FoveationParams.foveationMinimum = FoveationMinimumValue;
+	if (FPICOXRHMDModule::GetPluginWrapper().SetFoveationParams(FoveationParams) == 0)
 	{
-		PXR_LOGI(PxrUnreal, "Foveation disabled!");
-		return false;
-    }
-#endif
-    return false;
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_GetEyeTrackingGazeRay(FVector& Origin, FVector& Direction)
-{
-    bool ReturnValue = false;
-    if (GetMutableDefault<UPICOXRSettings>()->bEnableEyeTracking )
-    { 
-        const TSharedPtr<FPICOXREyeTracker> EyeTracker =GetPICOXRHMD()->UPxr_GetEyeTracker();
-        FPICOXREyeTrackingGazeRay EyeTrackingGazeRay;
-        ReturnValue = EyeTracker->GetEyeTrackingGazeRay(EyeTrackingGazeRay);
-        Origin = EyeTrackingGazeRay.Origin;
-        Direction = EyeTrackingGazeRay.Direction;
-    }
-    return ReturnValue;
-}
-
-FPICOXREyeTrackingData UPICOXRHMDFunctionLibrary::PXR_GetEyeTrackingData()
-{
-    FPICOXREyeTrackingData EyeTrackingData ;
-    if (GetMutableDefault<UPICOXRSettings>()->bEnableEyeTracking )
-    {
-        const TSharedPtr<FPICOXREyeTracker> EyeTracker =GetPICOXRHMD()->UPxr_GetEyeTracker();
-        EyeTracker->UPxr_GetEyeTrackingData(EyeTrackingData);
-    }
-    return EyeTrackingData;
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_GetEyeTrackingPos(FVector &EyeTrackingPos)
-{
-#if PLATFORM_ANDROID
-	if (GetMutableDefault<UPICOXRSettings>()->bEnableEyeTracking)
-	{
-		const TSharedPtr<FPICOXREyeTracker> eyeTracker = GetPICOXRHMD()->UPxr_GetEyeTracker();
-		if (eyeTracker)
-		{
-			if (eyeTracker->GetEyeDirectionToFoveationRendering(EyeTrackingPos))
-				return true;
-		}
+		return true;
 	}
 #endif
-	return false;
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_GetFaceTrackingData(int64 InTimeStamp, int64& OutTimeStamp, TArray<float>& BlendShapeWeight, TArray<float>& VideoInputValid, float &LaughingProb, TArray<float>& EmotionProb, TArray<float>& Reserved)
-{
-#if PLATFORM_ANDROID
-	if (GetMutableDefault<UPICOXRSettings>()->FaceTrackingMode != EPICOXRFaceTrackingMode::Disable)
-	{
-		const TSharedPtr<FPICOXREyeTracker> FaceOrTracker = GetPICOXRHMD()->UPxr_GetEyeTracker();
-		if (FaceOrTracker)
-		{
-			return FaceOrTracker->GetFaceTrackingData(InTimeStamp, OutTimeStamp, BlendShapeWeight, VideoInputValid, LaughingProb, EmotionProb, Reserved);
-		}
-	}
-#endif
-    return false;
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_EnableEyeTracking(bool enable)
-{
-#if PLATFORM_ANDROID
-	const TSharedPtr<FPICOXREyeTracker> FaceOrEyeTracker = GetPICOXRHMD()->UPxr_GetEyeTracker();
-	if (FaceOrEyeTracker)
-	{
-		return FaceOrEyeTracker->EnableEyeTracking(enable);
-	}
-#endif
-	return false;
-}
-
-bool UPICOXRHMDFunctionLibrary::PXR_EnableFaceTracking(EPICOXRFaceTrackingMode FaceTrackingMode)
-{
-	const TSharedPtr<FPICOXREyeTracker> FaceOrEyeTracker = GetPICOXRHMD()->UPxr_GetEyeTracker();
-	if (FaceOrEyeTracker)
-	{
-		return FaceOrEyeTracker->EnableFaceTracking(FaceTrackingMode);
-	}
 	return false;
 }
 
 int UPICOXRHMDFunctionLibrary::PXR_SetSensorLostCustomMode(bool Value)
 {
 #if PLATFORM_ANDROID
-    return Pxr_SetSensorLostCustomMode(Value);
+    return FPICOXRHMDModule::GetPluginWrapper().SetSensorLostCustomMode(Value);
 #endif
-    return 0;
+	return 0;
 }
 
 int UPICOXRHMDFunctionLibrary::PXR_SetSensorLostCMST(bool Value)
 {
 #if PLATFORM_ANDROID
-    return Pxr_SetSensorLostCMST(Value);
+    return FPICOXRHMDModule::GetPluginWrapper().SetSensorLostCMST(Value);
 #endif
-    return 0;
+	return 0;
 }
 
-void UPICOXRHMDFunctionLibrary::PXR_GetVFov(float & VFOVInDegrees)
+void UPICOXRHMDFunctionLibrary::PXR_GetVFov(float& VFOVInDegrees)
 {
+#if PLATFORM_ANDROID
 	float drop;
 	GetPICOXRHMD()->GetFieldOfView(drop, VFOVInDegrees);
+#endif
 }
 
-void UPICOXRHMDFunctionLibrary::PXR_GetHFov(float & HFOVInDegrees)
+void UPICOXRHMDFunctionLibrary::PXR_GetHFov(float& HFOVInDegrees)
 {
+#if PLATFORM_ANDROID
 	float drop;
 	GetPICOXRHMD()->GetFieldOfView(HFOVInDegrees, drop);
+#endif
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_GetDisplayFrequenciesAvailable(int& Count, TArray<float>& AvailableRates)
 {
-    bool result = false;
+	bool result = false;
 #if PLATFORM_ANDROID
     float* temp = nullptr;
     uint32_t* number = (uint32_t*)(&Count);
-    if (!Pxr_GetDisplayRefreshRatesAvailable(number, &temp))
+    if (!FPICOXRHMDModule::GetPluginWrapper().GetDisplayRefreshRatesAvailable(number, &temp))
     {
         if (!Count) { return result; }
         AvailableRates.Init(0, Count);
         FMemory::Memcpy(AvailableRates.GetData(), temp, sizeof(float) * Count);
         result = true;
     }
-
 #endif
-    return result;
+	return result;
 }
 
 bool UPICOXRHMDFunctionLibrary::PXR_SetExtraLatencyMode(int Mode)
 {
 #if PLATFORM_ANDROID
-    return Pxr_SetExtraLatencyMode(Mode);
+    return FPICOXRHMDModule::GetPluginWrapper().SetExtraLatencyMode(Mode);
 #endif
-    return false;
+	return false;
 }
 
 UPICOXREventManager* UPICOXRHMDFunctionLibrary::PXR_GetEventManager()
 {
-    return UPICOXREventManager::GetInstance();
+	return UPICOXREventManager::GetInstance();
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_GetPredictedMainSensorState(FPxrSensorState& sensorState, int& sensorFrameIndex) {
 #if PLATFORM_ANDROID
-
-    int SdkVersion = 0;
-    Pxr_GetConfigInt(PXR_API_VERSION, &SdkVersion);
-    if (SdkVersion >= 0x2000201) {
+	if (FPICOXRVersionHelper::IsThisVersionOrGreater(0x2000201))
+	{
         double predictTimeMs = 0.0;
-        Pxr_GetPredictedDisplayTime(&predictTimeMs);
+        FPICOXRHMDModule::GetPluginWrapper().GetPredictedDisplayTime(&predictTimeMs);
         PxrSensorState2 sensorState2;
-        Pxr_GetPredictedMainSensorState2(predictTimeMs, &sensorState2, &sensorFrameIndex);
+        FPICOXRHMDModule::GetPluginWrapper().GetPredictedMainSensorState2(predictTimeMs, &sensorState2, &sensorFrameIndex);
         sensorState.status = sensorState2.status;
         sensorState.poseQuat.X = sensorState2.pose.orientation.x;
         sensorState.poseQuat.Y = sensorState2.pose.orientation.y;
@@ -529,12 +536,10 @@ void UPICOXRHMDFunctionLibrary::PXR_GetPredictedMainSensorState(FPxrSensorState&
 bool UPICOXRHMDFunctionLibrary::PXR_QueryDeviceAbilities(EPICOXRDeviceAbilities DeviceAbility)
 {
 #if PLATFORM_ANDROID
-    int CurrentVersion = 0;
-    Pxr_GetConfigInt(PxrConfigType::PXR_API_VERSION, &CurrentVersion);
-    if (CurrentVersion >= 0x2000304)
+	if (FPICOXRVersionHelper::IsThisVersionOrGreater(0x2000304))
     {
         PxrTrackingModeFlags SupportTrackingMode;
-        Pxr_GetTrackingMode(&SupportTrackingMode);
+        FPICOXRHMDModule::GetPluginWrapper().GetTrackingMode(&SupportTrackingMode);
         switch (DeviceAbility)
         {
         case EPICOXRDeviceAbilities::TRACKING_MODE_ROTATION_BIT:
@@ -573,7 +578,7 @@ bool UPICOXRHMDFunctionLibrary::PXR_QueryDeviceAbilities(EPICOXRDeviceAbilities 
     }
 #endif
 
-    return false;
+	return false;
 }
 
 void UPICOXRHMDFunctionLibrary::PXR_SetLateLatchingEnable(bool Value)
@@ -583,4 +588,113 @@ void UPICOXRHMDFunctionLibrary::PXR_SetLateLatchingEnable(bool Value)
     {
         Variable->Set(Value ? 1 : 0);
     }
+}
+
+void UPICOXRHMDFunctionLibrary::PXR_SetBaseRotationAndBaseOffsetInMeters(FRotator Rotation, FVector BaseOffsetInMeters, EOrientPositionSelector::Type Options)
+{
+#if PLATFORM_ANDROID
+	FPICOXRHMD* PICOHMD = GetPICOXRHMD();
+	if (PICOHMD != nullptr)
+	{
+		if ((Options == EOrientPositionSelector::Orientation) || (Options == EOrientPositionSelector::OrientationAndPosition))
+		{
+			PICOHMD->SetBaseRotation(Rotation);
+		}
+		if ((Options == EOrientPositionSelector::Position) || (Options == EOrientPositionSelector::OrientationAndPosition))
+		{
+			PICOHMD->SetBaseOffsetInMeters(BaseOffsetInMeters);
+		}
+	}
+#endif // PICO_HMD_SUPPORTED_PLATFORMS
+}
+
+void UPICOXRHMDFunctionLibrary::PXR_GetBaseRotationAndBaseOffsetInMeters(FRotator& OutRotation, FVector& OutBaseOffsetInMeters)
+{
+#if PLATFORM_ANDROID
+	FPICOXRHMD* PICOHMD = GetPICOXRHMD();
+	if (PICOHMD != nullptr)
+	{
+		OutRotation = PICOHMD->GetBaseRotation();
+		OutBaseOffsetInMeters = PICOHMD->GetBaseOffsetInMeters();
+	}
+	else
+	{
+		OutRotation = FRotator::ZeroRotator;
+		OutBaseOffsetInMeters = FVector::ZeroVector;
+	}
+#endif // PICO_HMD_SUPPORTED_PLATFORMS
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_GetHmdBatteryLevel(int32 &Battery)
+{
+#if PLATFORM_ANDROID
+	FPICOXRHMD* PICOHMD = GetPICOXRHMD();
+	if (PICOHMD == nullptr)
+	{
+		return false;
+	}
+	if (FPICOXRVersionHelper::IsThisVersionOrGreater(0x200030B))
+	{
+		return PICOHMD->UpdateHMDBatteryLevelFromPollEvent(Battery);
+	}
+	else
+	{
+		return PICOHMD->UpdateHMDBatteryLevelFromJava(Battery);
+	}
+#endif
+	return false;
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_SelectCoordinateSpace(const EPICOXRCoordinateType CoordinateType)
+{
+	FPICOXRHMD* PICOHMD = GetPICOXRHMD();
+	if (PICOHMD != nullptr)
+	{
+		return PICOHMD->SetCurrentCoordinateType(CoordinateType);
+	}
+	return true;
+}
+
+bool UPICOXRHMDFunctionLibrary::PXR_SetFoveatedRenderingMode(EFoveationRenderingMode Mode)
+{
+#ifdef PICO_CUSTOM_ENGINE
+	GetPICOXRHMD()->SetFoveationRenderingMode(Mode);
+	return FPICOXRHMDModule::GetPluginWrapper().SetEyeTrackingFoveationRenderingState(Mode == EFoveationRenderingMode::EyeTrackingFoveationRendering ? true : false) >= 0;
+#else
+	return false;
+#endif
+}
+
+float UPICOXRHMDFunctionLibrary::PXR_GetToDeltaSensorY()
+{
+    float ToDeltaSensorY = 0.0f;
+    FPICOXRHMDModule::GetPluginWrapper().GetConfigFloat(PxrConfigType::PXR_TO_DELTA_SENSOR_Y, &ToDeltaSensorY);
+    return ToDeltaSensorY;
+}
+
+float UPICOXRHMDFunctionLibrary::PXR_GetPredictedDisplayTime()
+{
+    double PredictTimeMs = 0.0f;
+    FPICOXRHMDModule::GetPluginWrapper().GetPredictedDisplayTime(&PredictTimeMs);
+    return PredictTimeMs;
+}
+
+FString UPICOXRHMDFunctionLibrary::PXR_GetDeviceName()
+{
+	FString result = FString("");
+#if PLATFORM_ANDROID
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+	{
+		static jmethodID Method = FJavaWrapper::FindMethod(Env, FJavaWrapper::GameActivityClassID, "getPXRProductName", "()Ljava/lang/String;", false);
+		jstring JavaString = (jstring)FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+		if (JavaString != NULL)
+		{
+			const char* JavaChars = Env->GetStringUTFChars(JavaString, 0);
+			result = FString(UTF8_TO_TCHAR(JavaChars));
+			Env->ReleaseStringUTFChars(JavaString, JavaChars);
+			Env->DeleteLocalRef(JavaString);
+		}
+	}
+#endif
+	return result;
 }

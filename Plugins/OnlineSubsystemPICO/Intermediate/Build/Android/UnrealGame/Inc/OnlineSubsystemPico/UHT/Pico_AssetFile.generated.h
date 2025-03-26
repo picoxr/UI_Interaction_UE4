@@ -1,0 +1,527 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Pico_AssetFile.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UObject;
+class UPico_AssetDetails;
+class UPico_AssetDetailsArray;
+class UPico_AssetFileDeleteResult;
+class UPico_AssetFileDownloadCancelResult;
+class UPico_AssetFileDownloadResult;
+class UPico_AssetStatus;
+enum class EAssetFileDownloadCompleteStatus : uint8;
+#ifdef ONLINESUBSYSTEMPICO_Pico_AssetFile_generated_h
+#error "Pico_AssetFile.generated.h already included, missing '#pragma once' in Pico_AssetFile.h"
+#endif
+#define ONLINESUBSYSTEMPICO_Pico_AssetFile_generated_h
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_20_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FAssetFileDeleteResult_DelegateWrapper(const FScriptDelegate& AssetFileDeleteResult, bool bIsError, const FString& ErrorMessage, UPico_AssetFileDeleteResult* DeleteResult);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_21_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FAssetFileDownloadResult_DelegateWrapper(const FScriptDelegate& AssetFileDownloadResult, bool bIsError, const FString& ErrorMessage, UPico_AssetFileDownloadResult* DownloadResult);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_22_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FAssetFileDownloadCancelResult_DelegateWrapper(const FScriptDelegate& AssetFileDownloadCancelResult, bool bIsError, const FString& ErrorMessage, UPico_AssetFileDownloadCancelResult* DownloadCancelResult);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_23_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetAssetFileStatus_DelegateWrapper(const FScriptDelegate& GetAssetFileStatus, bool bIsError, const FString& ErrorMessage, UPico_AssetStatus* AssetFileStatus);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_24_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetAssetFileList_DelegateWrapper(const FScriptDelegate& GetAssetFileList, bool bIsError, const FString& ErrorMessage, UPico_AssetDetailsArray* AssetDetailsArray);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetAssetFileStatusByName); \
+	DECLARE_FUNCTION(execGetAssetFileStatusById); \
+	DECLARE_FUNCTION(execGetNextAssetDetailsArrayPage); \
+	DECLARE_FUNCTION(execGetAssetFileList); \
+	DECLARE_FUNCTION(execDownloadCancelByName); \
+	DECLARE_FUNCTION(execDownloadCancelById); \
+	DECLARE_FUNCTION(execDownloadByName); \
+	DECLARE_FUNCTION(execDownloadById); \
+	DECLARE_FUNCTION(execDeleteByName); \
+	DECLARE_FUNCTION(execDeleteByID);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUOnlinePicoAssetFileFunction(); \
+	friend struct Z_Construct_UClass_UOnlinePicoAssetFileFunction_Statics; \
+public: \
+	DECLARE_CLASS(UOnlinePicoAssetFileFunction, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UOnlinePicoAssetFileFunction)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UOnlinePicoAssetFileFunction(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UOnlinePicoAssetFileFunction(UOnlinePicoAssetFileFunction&&); \
+	NO_API UOnlinePicoAssetFileFunction(const UOnlinePicoAssetFileFunction&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UOnlinePicoAssetFileFunction); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UOnlinePicoAssetFileFunction); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UOnlinePicoAssetFileFunction) \
+	NO_API virtual ~UOnlinePicoAssetFileFunction();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_241_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_244_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UOnlinePicoAssetFileFunction>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetSuccess); \
+	DECLARE_FUNCTION(execGetFilePath); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetFileDeleteResult(); \
+	friend struct Z_Construct_UClass_UPico_AssetFileDeleteResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetFileDeleteResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetFileDeleteResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetFileDeleteResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetFileDeleteResult(UPico_AssetFileDeleteResult&&); \
+	NO_API UPico_AssetFileDeleteResult(const UPico_AssetFileDeleteResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetFileDeleteResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetFileDeleteResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetFileDeleteResult) \
+	NO_API virtual ~UPico_AssetFileDeleteResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_417_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_421_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetFileDeleteResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetIapIconUrl); \
+	DECLARE_FUNCTION(execGetIapDescription); \
+	DECLARE_FUNCTION(execGetIapCurrency); \
+	DECLARE_FUNCTION(execGetIapPrice); \
+	DECLARE_FUNCTION(execGetIapName); \
+	DECLARE_FUNCTION(execGetIapSku); \
+	DECLARE_FUNCTION(execGetVersion); \
+	DECLARE_FUNCTION(execGetFilename); \
+	DECLARE_FUNCTION(execGetMetadata); \
+	DECLARE_FUNCTION(execGetIapStatus); \
+	DECLARE_FUNCTION(execGetDownloadStatus); \
+	DECLARE_FUNCTION(execGetAssetType); \
+	DECLARE_FUNCTION(execGetFilePath); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetDetails(); \
+	friend struct Z_Construct_UClass_UPico_AssetDetails_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetDetails, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetDetails)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetDetails(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetDetails(UPico_AssetDetails&&); \
+	NO_API UPico_AssetDetails(const UPico_AssetDetails&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetDetails); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetDetails); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetDetails) \
+	NO_API virtual ~UPico_AssetDetails();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_450_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_454_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetDetails>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetNextPageParam); \
+	DECLARE_FUNCTION(execGetHasNextPage); \
+	DECLARE_FUNCTION(execGetSize); \
+	DECLARE_FUNCTION(execGetElement);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetDetailsArray(); \
+	friend struct Z_Construct_UClass_UPico_AssetDetailsArray_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetDetailsArray, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetDetailsArray)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetDetailsArray(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetDetailsArray(UPico_AssetDetailsArray&&); \
+	NO_API UPico_AssetDetailsArray(const UPico_AssetDetailsArray&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetDetailsArray); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetDetailsArray); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetDetailsArray) \
+	NO_API virtual ~UPico_AssetDetailsArray();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_539_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_543_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetDetailsArray>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetSuccess); \
+	DECLARE_FUNCTION(execGetFilePath); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetFileDownloadCancelResult(); \
+	friend struct Z_Construct_UClass_UPico_AssetFileDownloadCancelResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetFileDownloadCancelResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetFileDownloadCancelResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetFileDownloadCancelResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetFileDownloadCancelResult(UPico_AssetFileDownloadCancelResult&&); \
+	NO_API UPico_AssetFileDownloadCancelResult(const UPico_AssetFileDownloadCancelResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetFileDownloadCancelResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetFileDownloadCancelResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetFileDownloadCancelResult) \
+	NO_API virtual ~UPico_AssetFileDownloadCancelResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_576_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_580_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetFileDownloadCancelResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetCompleteStatus); \
+	DECLARE_FUNCTION(execGetBytesTransferred); \
+	DECLARE_FUNCTION(execGetBytesTotal); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetFileDownloadUpdate(); \
+	friend struct Z_Construct_UClass_UPico_AssetFileDownloadUpdate_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetFileDownloadUpdate, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetFileDownloadUpdate)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetFileDownloadUpdate(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetFileDownloadUpdate(UPico_AssetFileDownloadUpdate&&); \
+	NO_API UPico_AssetFileDownloadUpdate(const UPico_AssetFileDownloadUpdate&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetFileDownloadUpdate); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetFileDownloadUpdate); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetFileDownloadUpdate) \
+	NO_API virtual ~UPico_AssetFileDownloadUpdate();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_608_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_612_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetFileDownloadUpdate>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetFilePath); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetFileDownloadResult(); \
+	friend struct Z_Construct_UClass_UPico_AssetFileDownloadResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetFileDownloadResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetFileDownloadResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetFileDownloadResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetFileDownloadResult(UPico_AssetFileDownloadResult&&); \
+	NO_API UPico_AssetFileDownloadResult(const UPico_AssetFileDownloadResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetFileDownloadResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetFileDownloadResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetFileDownloadResult) \
+	NO_API virtual ~UPico_AssetFileDownloadResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_646_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_650_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetFileDownloadResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetDownloadStatus); \
+	DECLARE_FUNCTION(execGetFileName); \
+	DECLARE_FUNCTION(execGetFilePath); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetStatus(); \
+	friend struct Z_Construct_UClass_UPico_AssetStatus_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetStatus, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetStatus)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetStatus(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetStatus(UPico_AssetStatus&&); \
+	NO_API UPico_AssetStatus(const UPico_AssetStatus&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetStatus); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetStatus); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetStatus) \
+	NO_API virtual ~UPico_AssetStatus();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_674_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_678_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetStatus>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetReason); \
+	DECLARE_FUNCTION(execGetAssetId);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_AssetFileDeleteForSafety(); \
+	friend struct Z_Construct_UClass_UPico_AssetFileDeleteForSafety_Statics; \
+public: \
+	DECLARE_CLASS(UPico_AssetFileDeleteForSafety, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_AssetFileDeleteForSafety)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_AssetFileDeleteForSafety(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_AssetFileDeleteForSafety(UPico_AssetFileDeleteForSafety&&); \
+	NO_API UPico_AssetFileDeleteForSafety(const UPico_AssetFileDeleteForSafety&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_AssetFileDeleteForSafety); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_AssetFileDeleteForSafety); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_AssetFileDeleteForSafety) \
+	NO_API virtual ~UPico_AssetFileDeleteForSafety();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_712_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h_716_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_AssetFileDeleteForSafety>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_AssetFile_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

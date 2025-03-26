@@ -133,6 +133,7 @@ typedef enum {
     PASP_MATERIAL_WoodThick,
     PASP_MATERIAL_WoodFloor,
     PASP_MATERIAL_WoodOnConcrete,
+    PASP_MATERIAL_Custom,
 } PxrAudioSpatializer_AcousticsMaterial;
 
 /*! \enum PxrAudioSpatializer_AmbisonicNormalizationType
@@ -183,25 +184,92 @@ typedef enum { PASP_SN3D, PASP_N3D } PxrAudioSpatializer_AmbisonicNormalizationT
  *
  */
 typedef struct PxrAudioSpatializer_SourceConfig {
-    PxrAudioSpatializer_SourceMode mode = PASP_SOURCE_SPATIALIZE;  ///< Renderering mode of this source
+    /// Source mode
+    PxrAudioSpatializer_SourceMode mode = PASP_SOURCE_SPATIALIZE;
+
+    /// Source pose
     float position[3] = {0.f, 0.f, 0.f};
     float front[3] = {0.f, 0.f, 1.f};
     float up[3] = {0.f, 1.f, 0.f};
+
+    /// Directivity pattern
+    float directivity_alpha = 0.0f;  ///< Weighting balance between figure of eight pattern and circular pattern for
+                                     ///< source emission in range [0, 1].
+                                     ///< A value of 0 results in a circular pattern.
+                                     ///< A value of 0.5 results in a cardioid pattern.
+                                     ///< A value of 1 results in a figure of eight pattern.
+    float directivity_order = 1.0f;  ///< Order applied to computed directivity. Higher values will result in narrower
+                                     ///< and sharper directivity patterns. Range [1, inf).
+
+    /// Volumetric Source
     float radius = 0.1f;
-    float directivity_alpha = 0.0f;  // Weighting balance between figure of eight pattern and circular pattern for
-    // source emission in range [0, 1].
-    // A value of 0 results in a circular pattern.
-    // A value of 0.5 results in a cardioid pattern.
-    // A value of 1 results in a figure of eight pattern.
-    float directivity_order = 1.0f;  // Order applied to computed directivity. Higher values will result in narrower and
-    // sharper directivity patterns. Range [1, inf).
     bool use_direct_path_spread = false;
-    float direct_path_spread = 0.0f;  // Alternatively, we could use spread param directly.
-    // This is useful when audio middleware specifies spread value by itself.
-    float source_gain = 1.0f;         // Master gain of sound source.
-    float reflection_gain = 1.0f;     // Reflection gain relative to default (master gain).
+    float direct_path_spread = 0.0f;  ///< Alternatively, we could use spread param directly.
+                                      ///< This is useful when audio middleware specifies spread value by itself.
+
+    /// Mix control
+    float source_gain = 1.0f;      ///< Master gain of sound source.
+    float reflection_gain = 1.0f;  ///< Reflection gain relative to default (master gain).
+
+    /// Doppler effect
     bool enable_doppler = false;
+
+    /// Attenuation Function
+    PxrAudioSpatializer_SourceAttenuationMode attenuation_mode = PASP_SOURCE_ATTENUATION_MODE_INVERSE_SQUARE;
+    DistanceAttenuationCallback direct_distance_attenuation_callback = nullptr;
+    DistanceAttenuationCallback indirect_distance_attenuation_callback = nullptr;
+
+    /// Attenuation range
+    float range_min = 0.25;  ///< When distance < range_min, no attenuation.
+    float range_max = 250;   ///< When distance > range_max, attenuation = AttenuationFunc(range_max).
 } PxrAudioSpatializer_SourceConfig;
+
+enum PxrAudioSpatializer_SourceProperty {
+    PASP_SourceProperty_Mode = 1u,
+    PASP_SourceProperty_Position = (1u << 1),     ///< float[3]
+    PASP_SourceProperty_Orientation = (1u << 2),  ///< float[6]
+    PASP_SourceProperty_Directivity = (1u << 3),  ///< float[2], directivity alpha and directivity order
+    PASP_SourceProperty_VolumetricRadius = (1u << 4),
+    PASP_SourceProperty_VolumetricSpread = (1u << 5),
+    PASP_SourceProperty_SourceGain = (1u << 6),
+    PASP_SourceProperty_ReflectionGain = (1u << 7),
+    PASP_SourceProperty_DopplerOnOff = (1u << 8),
+    PASP_SourceProperty_AttenuationMode =
+        (1u << 9),  ///< Only after setting AttenuationMode will AttenuationCallback be applied
+    PASP_SourceProperty_DirectAttenuationCallback = (1u << 10),
+    PASP_SourceProperty_IndirectAttenuationCallback = (1u << 11),
+    PASP_SourceProperty_RangeMin = (1u << 12),
+    PASP_SourceProperty_RangeMax = (1u << 13),
+    PASP_SourceProperty_All = ~0u,
+    PASP_SourceProperty_None = 0u,
+};
+
+typedef struct PxrAudioSpatializer_AcousticMeshConfig {
+    bool enabled = true;
+    PxrAudioSpatializer_AcousticsMaterial material_type =
+        PASP_MATERIAL_AcousticTile;  ///< Material preset; If this equal to YGG_MATERIAL_Custom, the absorption,
+                                     ///< scattering, and transmission coefficients below will be used
+    float absorption[4] = {1.0f, 1.0f, 1.0f, 1.0f};  ///< Absorption of 4 bands
+    float scattering = 0.f;                          ///< Wide-band scattering
+    float transmission = 0.f;                        ///< Wide-band transmission
+    float to_world_transform[16] = {
+        1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};  ///< Column-major 4x4 to-world transform matrix of this mesh, which
+                                                    ///< describes the position, rotation, and scale of it's default to
+                                                    ///< identity matrix, which represents a scene mesh positioned at
+                                                    ///< world origin, with no rotation and no scaling what's so ever
+} PxrAudioSpatializer_AcousticMeshConfig;
+
+enum PxrAudioSpatializer_AcousticMeshProperty {
+    PASP_MeshProperty_Enabled = 1u,
+    PASP_MeshProperty_Material = (1u << 1),
+    PASP_MeshProperty_Absorption = (1u << 2),
+    PASP_MeshProperty_Scattering = (1u << 3),
+    PASP_MeshProperty_Transmission = (1u << 4),
+    PASP_MeshProperty_ToWorldTransform = (1u << 5),
+    PASP_MeshProperty_All = ~0u,
+    PASP_MeshProperty_None = 0u,
+};
 
 #ifdef __cplusplus
 }

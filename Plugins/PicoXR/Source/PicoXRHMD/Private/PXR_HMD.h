@@ -1,29 +1,40 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #pragma once
+#include "PXR_HMDModule.h"
+#include "PXR_HMDSettings.h"
 #include "CoreMinimal.h"
 #include "PXR_Splash.h"
 #include "IStereoLayers.h"
 #include "XRRenderBridge.h"
-#include "PXR_EyeTracker.h"
 #include "PXR_StereoLayer.h"
 #include "SceneViewExtension.h"
 #include "PXR_EventManager.h"
 #include "XRTrackingSystemBase.h"
 #include "XRRenderTargetManager.h"
 #include "HeadMountedDisplayBase.h"
-#include "Engine/Public/SceneUtils.h"
+#include "SceneUtils.h"
 #include "PXR_GameFrame.h"
+#include "StereoLayerManager.h"
 #include "PXR_DelayDeleteLayer.h"
-#if PLATFORM_ANDROID
-#include "Android/AndroidApplication.h"
-#include "Android/AndroidJNI.h"
-#include "Android/AndroidPlatformMisc.h"
-#include "PxrApi.h"
-#endif
+#include "PXR_FoveatedRendering.h"
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FPICOPollEventDelegate, PxrEventDataBuffer* /*EventData*/);
+DECLARE_MULTICAST_DELEGATE(FPICOPollFutureFromHMDDelegate);
 
 class FPICOXRRenderBridge;
 class UPICOContentResourceFinder;
+
+#ifdef PICO_CUSTOM_ENGINE
+enum FHomeResetTypes
+{
+	HomeResetOrientation = 0x1,
+	HomeResetPosition = 0x2,
+	HomeResetOrientationAndPosition = 0x3
+};
+#endif
 
 struct FPICOXRFrustum
 {
@@ -124,81 +135,78 @@ public:
 	virtual class IXRLoadingScreen* CreateLoadingScreen() override { return GetSplash().Get(); }
 	virtual void OnBeginPlay(FWorldContext& InWorldContext) override;
 	virtual void OnEndPlay(FWorldContext& InWorldContext) override;
-#if ENGINE_MINOR_VERSION >25
 	virtual void GetMotionControllerData(UObject* WorldContext, const EControllerHand Hand, FXRMotionControllerData& MotionControllerData) override;
 	virtual int32 GetXRSystemFlags() const override;
-#endif
 
 	/** IHeadMountedDisplay interface */
 	virtual void SetInterpupillaryDistance(float NewInterpupillaryDistance) override;
 	virtual float GetInterpupillaryDistance() const override;
-	virtual bool IsHMDConnected() override { return true; }
+	virtual bool IsHMDConnected() override;
 	virtual bool IsHMDEnabled() const override;
 	virtual void EnableHMD(bool allow = true) override;
 	virtual bool GetHMDMonitorInfo(MonitorInfo &MonitorDesc) override;
 	virtual void GetFieldOfView(float& OutHFOVInDegrees, float& OutVFOVInDegrees) const override;
 	virtual bool IsChromaAbCorrectionEnabled() const override;
 	virtual FIntPoint GetIdealRenderTargetSize() const override;
-	virtual void GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const override;
+	virtual void GetEyeRenderParams_RenderThread(const FHeadMountedDisplayPassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const override;
 	virtual EHMDWornState::Type GetHMDWornState() override;
 	virtual float GetPixelDenity() const override;
 	virtual void SetPixelDensity(const float NewPixelDensity) override;
 
 	/** FXRTrackingSystemBase interface */
-	virtual bool GetRelativeEyePose(int32 InDeviceId, EStereoscopicPass InEye, FQuat& OutOrientation, FVector& OutPosition) override;
+	virtual bool GetRelativeEyePose(int32 InDeviceId, int32 ViewIndex,FQuat& OutOrientation, FVector& OutPosition) override;
 	virtual	bool GetTrackingSensorProperties(int32 InDeviceId, FQuat& OutOrientation, FVector& OutPosition, FXRSensorProperties& OutSensorProperties) override;
 	virtual void SetTrackingOrigin(EHMDTrackingOrigin::Type NewOrigin) override;
 	virtual EHMDTrackingOrigin::Type GetTrackingOrigin() const override;
 	virtual bool DoesSupportPositionalTracking() const override;
-
+	virtual bool IsHeadTrackingAllowed() const override;
+	
+	/** FHMDSceneViewExtension interface */
+	virtual bool IsActiveThisFrame_Internal(const FSceneViewExtensionContext& Context) const override;
 	/** FHeadMountedDisplayBase interface */
 	virtual bool GetHMDDistortionEnabled(EShadingPath ShadingPath) const override { return false; }
 
 	/** IStereoRendering interface */
 	virtual bool IsStereoEnabled() const override;
 	virtual bool EnableStereo(bool stereo = true) override;
-	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
-	virtual FMatrix GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const override;
+	virtual void AdjustViewRect(int32 ViewIndex, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const  override;
+	virtual FMatrix GetStereoProjectionMatrix(int32 ViewIndex) const override;
+	virtual void SetFinalViewRect(FRHICommandListImmediate& RHICmdList, const int32 ViewIndex, const FIntRect& FinalViewRect) override;
+	virtual int32 AcquireColorTexture() override final;
+
+
 	virtual IStereoRenderTargetManager* GetRenderTargetManager() override { return this; }
-	virtual void RenderTexture_RenderThread(class FRHICommandListImmediate& RHICmdList, class FRHITexture2D* BackBuffer, class FRHITexture2D* SrcTexture, FVector2D WindowSize) const override;
+	//virtual void RenderTexture_RenderThread(class FRHICommandListImmediate& RHICmdList, class FRHITexture2D* BackBuffer, class FRHITexture2D* SrcTexture, FVector2D WindowSize) const override;
+	virtual void RenderTexture_RenderThread(class FRHICommandListImmediate& RHICmdList, class FRHITexture* BackBuffer, class FRHITexture* SrcTexture, FVector2D WindowSize) const override;
 
 	/** ISceneViewExtension interface */
 	virtual void SetupViewFamily(FSceneViewFamily& InViewFamily) override;
 	virtual void SetupView(FSceneViewFamily& InViewFamily, FSceneView& InView) override;
 	virtual void BeginRenderViewFamily(FSceneViewFamily& InViewFamily) override;
-	virtual void PreRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView) override;
-	virtual void PreRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override;
-	virtual void PostRenderViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override;
+	virtual void PreRenderViewFamily_RenderThread(FRDGBuilder& GraphBuilder, FSceneViewFamily& InViewFamily) override;
+	virtual void PreRenderView_RenderThread(FRDGBuilder& GraphBuilder, FSceneView& InView) override;
+	virtual void PostRenderViewFamily_RenderThread(FRDGBuilder& GraphBuilder, FSceneViewFamily& InViewFamily) override;
 	virtual void PostRenderView_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneView& InView) override;
+#ifdef PICO_CUSTOM_ENGINE
+	virtual void PostRenderBasePassMobile_RenderThread(FRHICommandList& RHICmdList, FSceneView& InView) override;
+	virtual void PostSceneColorRenderingMobile_RenderThread(FRHICommandList& RHICmdList, FSceneView& InView) override;
+#endif
 	virtual int32 GetPriority() const override { return -1; }
-#if ENGINE_MINOR_VERSION >26
+
+#ifdef PICO_CUSTOM_ENGINE
 	virtual bool LateLatchingEnabled() const override;
-	virtual void PreLateLatchingViewFamily_RenderThread(FRHICommandListImmediate& RHICmdList, FSceneViewFamily& InViewFamily) override;
+	virtual void PreLateLatchingViewFamily_RenderThread(FRDGBuilder& GraphBuilder, FSceneViewFamily& InViewFamily) override;
 #endif
 
 	/** IStereoRenderTargetManager interface */
 	virtual bool ShouldUseSeparateRenderTarget() const override { return true; }
-#if ENGINE_MINOR_VERSION >25
+#ifdef PICO_CUSTOM_ENGINE
+	virtual bool NeedReAllocateMotionVectorTexture(const TRefCountPtr<IPooledRenderTarget>& MotionVectorTarget, const TRefCountPtr<IPooledRenderTarget>& MotionVectorDepthTarget) override;
+	virtual bool AllocateMotionVectorTexture(uint32 Index, uint8 Format, uint32 NumMips, ETextureCreateFlags InTexFlags, ETextureCreateFlags InTargetableTextureFlags, FTexture2DRHIRef& OutTexture, FIntPoint& OutTextureSize, FTexture2DRHIRef& OutDepthTexture, FIntPoint& OutDepthTextureSize) override;
+#endif	
 	virtual bool AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags InTexFlags, ETextureCreateFlags InTargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples = 1) override;
-#else
-	virtual bool AllocateRenderTargetTexture(uint32 Index, uint32 SizeX, uint32 SizeY, uint8 Format, uint32 NumMips, uint32 Flags, uint32 TargetableTextureFlags, FTexture2DRHIRef& OutTargetableTexture, FTexture2DRHIRef& OutShaderResourceTexture, uint32 NumSamples = 1) override;
-#endif
-
-#if ENGINE_MINOR_VERSION <27
-	virtual bool NeedReAllocateFoveationTexture(const TRefCountPtr<IPooledRenderTarget>& FoveationTarget) override;
-#else
 	virtual bool NeedReAllocateShadingRateTexture(const TRefCountPtr<IPooledRenderTarget>& FoveationTarget) override;
-#endif
-
-#if ENGINE_MINOR_VERSION <27
-#if ENGINE_MINOR_VERSION >25
-	virtual bool AllocateFoveationTexture(uint32 Index, uint32 RenderSizeX, uint32 RenderSizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags InTexFlags, ETextureCreateFlags InTargetableTextureFlags, FTexture2DRHIRef& OutTexture, FIntPoint& OutTextureSize) override;
-#else
-	virtual bool AllocateFoveationTexture(uint32 Index, uint32 RenderSizeX, uint32 RenderSizeY, uint8 Format, uint32 NumMips, uint32 InTexFlags, uint32 InTargetableTextureFlags, FTexture2DRHIRef& OutTexture, FIntPoint& OutTextureSize) override;
-#endif
-#else
 	virtual bool AllocateShadingRateTexture(uint32 Index, uint32 RenderSizeX, uint32 RenderSizeY, uint8 Format, uint32 NumMips, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, FTexture2DRHIRef& OutTexture, FIntPoint& OutTextureSize) override;
-#endif
 
   /** FXRRenderTargetManager interface */
 	virtual void CalculateRenderTargetSize(const class FViewport& Viewport, uint32& InOutSizeX, uint32& InOutSizeY)override;
@@ -215,6 +223,7 @@ public:
 	virtual FLayerDesc GetDebugCanvasLayerDesc(FTextureRHIRef Texture) override;
 	virtual void GetAllocatedTexture(uint32 LayerId, FTextureRHIRef &Texture, FTextureRHIRef &LeftTexture) override;
 	virtual bool ShouldCopyDebugLayersToSpectatorScreen() const override { return true; }
+	virtual bool IsStandaloneStereoOnlyDevice() const override { return true; }
 
 	FPICOXRHMD(const FAutoRegister&);
 	virtual ~FPICOXRHMD();
@@ -225,39 +234,52 @@ public:
 
 	FPICOXRSplashPtr GetSplash() const {return  PICOSplash;};
 
-	bool Initialize();
-	void UnInitialize();
+	bool Startup();
+	void Shutdown();
+	bool InitializeSession();
+	void DoSessionShutdown();
+	void ShutdownSession();
+	bool InitDevice();
+	void ReleaseDevice();
+	void LoadFromSettings();
 	FPICOXRRenderBridge* GetCustomRenderBridge() const { return RenderBridge; }
-	void UPxr_EnableFoveation(bool enable);
 
 	void UPxr_GetAngularAcceleration(FVector& AngularAcceleration);
 	void UPxr_GetVelocity(FVector& Velocity);
 	void UPxr_GetAcceleration(FVector& Acceleration);
 	void UPxr_GetAngularVelocity(FVector& AngularVelocity);
+	int32 UPxr_SetFieldOfView(EPICOXREyeType Eye, float FovLeftInDegrees, float FovRightInDegrees, float FovUpInDegrees, float FovDownInDegrees);
+
 	FString UPxr_GetDeviceModel();
-	TSharedPtr<FPICOXREyeTracker> UPxr_GetEyeTracker();
 	void ClearTexture_RHIThread(FRHITexture2D* SrcTexture);
-	void UPxr_SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers = false);
+	void SetColorScaleAndOffset(FLinearColor ColorScale, FLinearColor ColorOffset, bool bApplyToAllLayers = false);
 	uint32 CreateMRCStereoLayer(FTextureRHIRef BackgroundRTTexture, FTextureRHIRef ForegroundRTTexture);
 	void DestroyMRCLayer();
 
 	FString GetRHIString();
-	int32 GetMSAAValue() { return MobileMSAAValue; }
-
+#ifdef PICO_CUSTOM_ENGINE
+	bool IsSupportsSpaceWarp() const;
+#endif
 	void OnPreLoadMap(const FString& MapName);
 	FDelegateHandle PreLoadLevelDelegate;
-	bool bIsSwitchingLevel;
+	bool bNeedDrawBlackEye;
 	void WaitFrame();
 	void LateUpdatePose();
 	void OnGameFrameBegin_GameThread();
 	void OnGameFrameEnd_GameThread();
 	void OnRenderFrameBegin_GameThread();
-	void OnRenderFrameEnd_RenderThread(FRHICommandListImmediate& RHICmdList);
+	void OnRenderFrameEnd_RenderThread(FRDGBuilder& RDGBuilder);
 	void OnRHIFrameBegin_RenderThread();
 	void OnRHIFrameEnd_RHIThread();
+	FSettingsPtr CreateNewSettings() const;
 	FPXRGameFramePtr MakeNewGameFrame() const;
-	void RefreshStereoRenderingState();
+	void UpdateStereoRenderingParams();
+	bool UpdateHMDBatteryLevelFromJava(int32& BatteryLevel);
+	bool UpdateHMDBatteryLevelFromPollEvent(int32& BatteryLevel);
+	bool SetCurrentCoordinateType(EPICOXRCoordinateType InCoordinateType);
+	
 	// Game thread
+	FSettingsPtr GameSettings;
 	uint32 NextGameFrameNumber;
 	uint32 WaitedFrameNumber;
 	FPXRGameFramePtr GameFrame_GameThread;
@@ -266,10 +288,12 @@ public:
 	TMap<uint32, FPICOLayerPtr> PXRLayerMap;
 	FPICOLayerPtr CurrentMRCLayer;
 	// Render thread
+	FSettingsPtr GameSettings_RenderThread;
 	FPXRGameFramePtr GameFrame_RenderThread;
 	TArray<FPICOLayerPtr> PXRLayers_RenderThread;
 	FPICOLayerPtr PXREyeLayer_RenderThread;
 	// RHI thread
+	FSettingsPtr GameSettings_RHIThread;
 	FPXRGameFramePtr GameFrame_RHIThread;
 	TArray<FPICOLayerPtr> PXRLayers_RHIThread;
 	double CurrentFramePredictedTime = 0;
@@ -280,58 +304,111 @@ public:
 	UPICOXREventManager* EventManager;
 	uint32 NextLayerId;
 	bool MRCEnabled=false;
-	FLinearColor GColorScale = FLinearColor(1.0,1.0,1.0,1.0);
-	FLinearColor GColorOffset = FLinearColor(0.0,0.0,0.0,0.0);
-    bool GbApplyToAllLayers = false;
-	bool bNeedReAllocateFoveationTexture_RenderThread = false;
-	bool bNeedReAllocateViewportRenderTarget;
-	bool inputFocusState = true;
+	
+	UPROPERTY()
+	class AMRCSceneCapture2DPICO* MRCCamera = nullptr;
 
-	void PollEvent();
+	bool bNeedReAllocateFoveationTexture_RenderThread = false;
+	bool bNeedReAllocateViewportRenderTarget = false;
+#ifdef PICO_CUSTOM_ENGINE
+	bool bNeedReAllocateMotionVectorTexture_RenderThread = false;
+	bool bIsMobileToneMapping=false;
+#endif
+	bool inputFocusState = true;
+#if !UE_VERSION_OLDER_THAN(5, 3, 0)
+	TSharedPtr<FPICOXRFoveatedRenderingImageGenerator, ESPMode::ThreadSafe> FoveationImageGenerator;
+#endif // !UE_VERSION_OLDER_THAN(5, 3, 0)
+
+	PICOXRHMD_API void PollEvent();
 	UPICOContentResourceFinder* GetContentResourceFinder(){return ContentResourceFinder;}
 	void AllocateEyeLayer();
-	bool IsMultiviewEnable() { return bIsMobileMultiViewEnabled; }
+	bool IsUsingMobileMultiView() { return bIsUsingMobileMultiView; }
 
 	FDelayDeleteLayerManager DelayDeletion;
-	void UpdateSensorValue(FPXRGameFrame* InFrame);
+	void UpdateSensorValue(const FGameSettings* InSettings, FPXRGameFrame* InFrame);
 	double DisplayRefreshRate;
+
+	void SetBaseOffsetInMeters(const FVector& BaseOffset);
+	PICOXRHMD_API FVector GetBaseOffsetInMeters() const;
+
+	PICOXRHMD_API FPICOPollEventDelegate& OnPollEventDelegate()
+	{
+		return PollEventDelegate;
+	}
+
+	PICOXRHMD_API FPICOPollFutureFromHMDDelegate& OnPollFutureDelegate()
+	{
+		return PollFutureDelegate;
+	}
+
+	PICOXRHMD_API bool ConvertPose(const PxrPosef& InPose, FPose& OutPose) const;
+	PICOXRHMD_API bool ConvertPose(const FPose& InPose, PxrPosef& OutPose) const;
+	PICOXRHMD_API static bool ConvertPose_Internal(const PxrPosef& InPose, FPose& OutPose, const FGameSettings* Settings, float WorldToMetersScale = 100.0f);
+	PICOXRHMD_API static bool ConvertPose_Internal(const FPose& InPose, PxrPosef& OutPose, const FGameSettings* Settings, float WorldToMetersScale = 100.0f);
+
+	void SetFoveationRenderingMode(EFoveationRenderingMode Mode)
+	{
+		PICOXRSetting->FoveationRenderingMode = Mode;
+	}
+
 protected:
+	void Recenter(PxrRecenterTypes RecenterType, float Yaw);
 	void InitEyeLayer_RenderThread(FRHICommandListImmediate& RHICmdList);
+#ifdef PICO_CUSTOM_ENGINE
+	void UpdateFoveationOffsets_RenderThread();
+#endif
+	union
+	{
+		struct
+		{
+			uint64 NeedSetTrackingOrigin : 1;
+			uint64 AppIsPaused : 1;
+		};
+		uint64 Raw;
+	} PICOFlags;
 
 private:
-#if PLATFORM_ANDROID
+	void OnHomeKeyRecentered();
+
+	void MakeAllStereolayerComponentsUpdate();
+	void MakeAllStereoLayerComponentsDirty();
+
+#ifdef PICO_CUSTOM_ENGINE
+	// Stores TrackingToWorld from previous frame
+	FTransform LastTrackingToWorld;
+#endif
+
 	void ProcessEvent(int EventCount, PxrEventDataBuffer** EventData);
 	void ProcessControllerEvent( const PxrEventDataControllerChanged EventData);
-#endif
-	void OnSeeThroughStateChange(int32 SeeThroughState);
+	void OnSeeThroughStateChange(int SeeThroughState);
 	void OnFoveationLevelChange(int32 FoveationLevel);
 	void OnFrustumStateChange();
 	void OnRenderTextureChange(int32 Width,int32 Height);
 	void OnTargetFrameRateChange(int32 NewFrameRate);
 	void ApplicationPauseDelegate();
 	void ApplicationResumeDelegate();
-	void UpdateNeckOffset();
 	void EnableContentProtect(bool bEnable );
 	void SetRefreshRate();
-
-	bool bIsMobileMultiViewEnabled;
-	float PixelDensity;
+	int32 CurrentHMDBatteryLevel;
+	bool bSeeThroughIsShown;
+	bool bIsUsingMobileMultiView;
+	EPICOXRCoordinateType CurrentCoordinateType;
 	FIntPoint RTSize;
-	int32 MobileMSAAValue;
-	FVector NeckOffset;
 	FPICOXRFrustum LeftFrustum;
 	FPICOXRFrustum RightFrustum;
 	TRefCountPtr<FPICOXRRenderBridge> RenderBridge;
 	class UPICOXRSettings* PICOXRSetting;
-	bool bIsBindDelegate;
 	FString RHIString;
 	bool bIsEndGameFrame;
 	EHMDTrackingOrigin::Type TrackingOrigin;
 	static float IpdValue;
-	TSharedPtr<FPICOXREyeTracker> EyeTracker;
 	APlayerController* PlayerController;
 	FPICOXRSplashPtr PICOSplash;
 	FString DeviceModel;
 	UPICOContentResourceFinder* ContentResourceFinder;
+	bool bShutdownRequestQueued;
+
+	FPICOPollEventDelegate PollEventDelegate;
+	FPICOPollFutureFromHMDDelegate PollFutureDelegate;
 };
 

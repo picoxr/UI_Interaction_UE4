@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -13,6 +11,8 @@ DECLARE_LOG_CATEGORY_EXTERN(DataStore, Log, All);
 /**
  * 
  */
+
+ /// @brief UPico_DataStore class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_DataStore : public UObject
 {
@@ -29,15 +29,19 @@ private:
 public:
 	void InitParams(ppfDataStore* InppfDataStoreHandle);
 
+	/** @brief With UserId as the key, find its index in the DataStoreMap data structure.*/
 	UFUNCTION(BlueprintPure, Category = "Pico Platform|Misc|Data Store")
 	int32 Contains(FString Key);
 
+	/** @brief Find the user ID in the corresponding KeyArray through the index.*/
 	UFUNCTION(BlueprintPure, Category = "Pico Platform|Misc|Data Store")
 	FString GetKey(int32 Index);
 
+	/** @brief Get the size of DataStoreMap .*/
 	UFUNCTION(BlueprintPure, Category = "Pico Platform|Misc|Data Store")
 	int32 GetNumKeys();
 
+	/** @brief With UserId as the key, find its value in the DataStoreMap data structure.*/
 	UFUNCTION(BlueprintPure, Category = "Pico Platform|Misc|Data Store")
 	FString GetValue(FString Key);
 };

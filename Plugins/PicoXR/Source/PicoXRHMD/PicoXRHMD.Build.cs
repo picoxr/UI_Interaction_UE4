@@ -1,92 +1,123 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 using UnrealBuildTool;
 using System.IO;
 
 public class PICOXRHMD : ModuleRules
 {
-	public PICOXRHMD(ReadOnlyTargetRules Target) : base(Target)
-	{
-        System.Console.WriteLine(" Build the PICOXRHMD Plugin");
-       
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-        string EngineDir = Path.GetFullPath(Target.RelativeEnginePath);
-        string RendererPrivatePath = Path.Combine(EngineDir, "Source/Runtime/Renderer/Private");
-        string OpenGlDrvPrivatePath = Path.Combine(EngineDir, "Source/Runtime/OpenGLDrv/Private");
-        string VulkanRhiPrivatePath = Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private");
-        string VulkanRhiPrivateAndroidPath = Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private/Android");
-        string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, "../../Libs");
-        string PICOXRHeaderDirectory = Path.Combine(PICOXRLibsDirectory, "Include");
-        PICOXRHeaderDirectory = Path.GetFullPath(PICOXRHeaderDirectory);
+    public PICOXRHMD(ReadOnlyTargetRules Target) : base(Target)
+    {
+        var EngineDir = Path.GetFullPath(Target.RelativeEnginePath);
 
         PrivateIncludePaths.AddRange(
-                new [] {
-                   "PICOXRHMD/Private",
-                   RendererPrivatePath,
-                   OpenGlDrvPrivatePath,
-                   VulkanRhiPrivatePath,
-                   VulkanRhiPrivateAndroidPath,
-                   PICOXRHeaderDirectory,
-                   "PICOXRInput/Private"
+                new[] {
+                    Path.Combine(EngineDir, "Source/Runtime/Renderer/Private"),
+                    Path.Combine(EngineDir, "Source/Runtime/Renderer/Private"),
+                    Path.Combine(EngineDir, "Source/Runtime/OpenGLDrv/Private"),
+                    Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private"),
+                    Path.Combine(EngineDir, "Source/Runtime/Engine/Classes/Components"),
+                    Path.Combine(EngineDir, "Source/Runtime/Engine/Classes/Kismet"),
+                });
+
+        PrivateIncludePaths.AddRange(
+                new[] {
+                    "PICOXRInput/Private",
                 });
 
         PublicIncludePathModuleNames.AddRange(
-	        new [] {
-		        "Launch",
-		        "ProceduralMeshComponent",
-	        });		
-      
-		
-		PrivateDependencyModuleNames.AddRange(
-			new []
-			{
-                "Core",
-                "CoreUObject",
-				"Engine",
-                "InputCore",
-                "RHI",
-                "RenderCore",
-                "Renderer",
-                "OpenGLDrv",
-                "OpenGL",
-                "InputDevice",
-				"VulkanRHI",
-				"ProceduralMeshComponent",
-				// ... add private dependencies that you statically link with here ...	
-			}
-			);
+            new[] {
+                    "Launch",
+                    "ProceduralMeshComponent",
+                    "AndroidPermission",
+                    "XRBase"
+            });
+
+        if (Target.Platform != UnrealTargetPlatform.Win64)
+        {
+            PrivateIncludePaths.Add(Path.Combine(EngineDir, "Source/Runtime/VulkanRHI/Private/") + Target.Platform);
+        }
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                    "Core",
+                    "CoreUObject",
+                    "Engine",
+                    "InputCore",
+                    "RHI",
+                    "RenderCore",
+                    "Renderer",
+                    "Slate",
+                    "SlateCore",
+                    "ImageWrapper",
+                    "MediaAssets",
+                    "Analytics",
+                    "OpenGLDrv",
+                    "InputDevice",
+                    "VulkanRHI",
+                    "PXRPlugin",
+                    "ProceduralMeshComponent",
+                    "Projects",
+                    "DeveloperSettings",
+                    "XRBase"
+            }
+            );
+
         PublicDependencyModuleNames.AddRange(
-	        new []
+            new[]
            {
                 "HeadMountedDisplay",
-                "EyeTracker"
+                "EyeTracker"//
            });
-        if (Target.Type == TargetRules.TargetType.Editor)
+
+        if (Target.bBuildEditor == true)
         {
-	        PrivateDependencyModuleNames.AddRange(
-		        new string[]
-		        {
-			        "UnrealEd",
-			        "Slate",
-			        "SlateCore",
-			        "EditorStyle",
-			        "EditorWidgets",
-			        "DesktopWidgets",
-			        "PropertyEditor",
-			        "SharedSettingsWidgets",
-			        "SequencerWidgets"
-		        }
-	        );
+            PrivateDependencyModuleNames.Add("UnrealEd");
         }
-        if (Target.Platform == UnrealTargetPlatform.Android)
+
+        AddEngineThirdPartyPrivateStaticDependencies(Target, "OpenGL");
+
+        if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-	        // Vulkan
+            // D3D
+            {
+                PrivateDependencyModuleNames.AddRange(
+                    new string[]
+                    {
+                            "D3D11RHI",
+                            "D3D12RHI",
+                    });
+
+                PublicIncludePaths.AddRange(
+                    new string[]
+                    {
+                            Path.Combine(EngineDir,"Source/Runtime/Windows/D3D11RHI/Private"),
+                            Path.Combine(EngineDir,"Source/Runtime/Windows/D3D11RHI/Private/Windows"),
+                            Path.Combine(EngineDir,"Source/Runtime/D3D12RHI/Private"),
+                            Path.Combine(EngineDir,"Source/Runtime/D3D12RHI/Private/Windows"),
+                    });
+
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "DX11");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "DX12");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "NVAPI");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "DX11Audio");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "DirectSound");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "NVAftermath");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "IntelMetricsDiscovery");
+                AddEngineThirdPartyPrivateStaticDependencies(Target, "IntelExtensionsFramework");
+            }
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Android)
+        {
+            // Vulkan
             AddEngineThirdPartyPrivateStaticDependencies(Target, "Vulkan");
-            PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "armeabi-v7a", "libpxr_api.so"));
-            PublicAdditionalLibraries.Add(Path.Combine(PICOXRLibsDirectory, "arm64-v8a", "libpxr_api.so"));
-            string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
-            AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(PluginPath, "PICOXR_UPL.xml"));
-           
+            
+            {
+                string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
+                AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(PluginPath, "PICOXR_UPL.xml"));
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -27,6 +25,7 @@ class FOnlineSessionInfoPico;
 
 
 // Notifications
+DECLARE_MULTICAST_DELEGATE_FourParams(FOnGameInitializeComplete, bool /*bWasSuccessful*/, int, /*ErrorCode,*/ const FString& /*ErrorMessage*/, int /*Result*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnGameConnectionComplete, int /*Result*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnGameRequestFailedComplete, int /*Result*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnGameStateResetComplete, bool /*bWasSuccessful*/);
@@ -38,10 +37,11 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomKickUserComplete, const FString& /*R
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnRoomUpdateOwnerComplete, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateDataStoreComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateMembershipLockStatusComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomUpdateComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnRoomInviteAcceptedComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/);
 DECLARE_MULTICAST_DELEGATE_FourParams(FOnPicoSessionUserInviteAcceptedComplete, const bool /*bWasSuccessful*/, const int32 /*ControllerId*/, const FString& /*UserId*/, const FPicoOnlineSessionSearchResult& /*InviteResult*/);
 
+DECLARE_MULTICAST_DELEGATE_FourParams(FOnRoomUpdateComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/, int, /*ErrorCode,*/ const FString& /*ErrorMessage*/);
+DECLARE_MULTICAST_DELEGATE_FourParams(FOnMatchmakingFoundComplete, const FString& /*RoomID*/, bool /*bWasSuccessful*/, int, /*ErrorCode,*/ const FString& /*ErrorMessage*/);
 
 
 /** @addtogroup Function Function
@@ -117,8 +117,8 @@ PACKAGE_SCOPE:
 	/// <param name="SearchSettings">The search settings.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	bool FindModeratedRoomSessions(const TSharedRef<FOnlineSessionSearch>& SearchSettings);
@@ -128,8 +128,8 @@ PACKAGE_SCOPE:
 	/// <param name="SearchSettings">The search settings (to set the search results and the searchState).</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	bool FindMatchmakingSessions(const FString Pool, const TSharedRef<FOnlineSessionSearch>& SearchSettings);
@@ -158,8 +158,8 @@ public:
 	/// <param name="NewSessionSettings">The settings to use for the new session.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool CreateSession(int32 HostingPlayerNum, FName SessionName, const FOnlineSessionSettings& NewSessionSettings) override;
@@ -169,8 +169,8 @@ public:
 	/// <param name="SessionName">The name of session to change state for.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool StartSession(FName SessionName) override;
@@ -181,8 +181,8 @@ public:
 	/// <param name="bShouldRefreshOnlineData">Whether to submit the data to the backend or not.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool UpdateSession(FName SessionName, FOnlineSessionSettings& UpdatedSessionSettings, bool bShouldRefreshOnlineData = true) override;
@@ -191,8 +191,8 @@ public:
 	/// <param name="SessionName">The name of the session to end.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool EndSession(FName SessionName) override;
@@ -205,8 +205,8 @@ public:
 	/// <param name="CompletionDelegate">Used when the session destroy request has been completed.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool DestroySession(FName SessionName, const FOnDestroySessionCompleteDelegate& CompletionDelegate = FOnDestroySessionCompleteDelegate()) override;
@@ -229,8 +229,8 @@ public:
 	/// <param name="SearchSettings">The desired settings that the matched session will have.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool StartMatchmaking(const TArray< TSharedRef<const FUniqueNetId> >& LocalPlayers, FName SessionName, const FOnlineSessionSettings& NewSessionSettings, TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
@@ -240,8 +240,8 @@ public:
 	/// <param name="SessionName">The name of the session that was passed to `StartMatchmaking` (or `CreateSession`).</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool CancelMatchmaking(int32 SearchingPlayerNum, FName SessionName) override;
@@ -252,8 +252,8 @@ public:
 	/// <param name="SearchSettings">The desired settings that the returned sessions will have.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool FindSessions(int32 SearchingPlayerNum, const TSharedRef<FOnlineSessionSearch>& SearchSettings) override;
@@ -266,8 +266,8 @@ public:
 	/// <param name="CompletionDelegate">Will be executed when ppf_Room_Get is complete.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool FindSessionById(const FUniqueNetId& SearchingUserId, const FUniqueNetId& SessionId, const FUniqueNetId& FriendId, const FOnSingleSessionResultCompleteDelegate& CompletionDelegate) override;
@@ -280,8 +280,8 @@ public:
 	/// <param name="DesiredSession">The desired session to join.</param>
 	/// <returns>Bool: 
 	/// <ul>
-	/// <li>`true`: success</li>
-	/// <li>`false`: failure</li>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
 	/// </ul>
 	/// </returns>
 	virtual bool JoinSession(int32 PlayerNum, FName SessionName, const FOnlineSessionSearchResult& DesiredSession) override;
@@ -326,7 +326,6 @@ PACKAGE_SCOPE:
 	void OnGetAccessTokenComplete(ppfMessageHandle Message, bool bIsError);
 	void OnGameInitializeComplete(ppfMessageHandle Message, bool bIsError);
 
-	// todo 这些是否可删
 	FDelegateHandle OnNetNotificationConnectionHandle;
 	void OnNetNotificationConnection(ppfMessageHandle Message, bool bIsError);
 
@@ -404,19 +403,23 @@ public:
 	/// </returns>
 	bool IsInMatchmakingProgress();
 
+	FOnMatchmakingFoundComplete MatchmakingFoundCallback;
 	FOnRoomUpdateComplete RoomUpdateCallback;
-	FOnRoomInviteAcceptedComplete RoomInviteAcceptedCallback; // todo 可删
-	FOnPicoSessionUserInviteAcceptedComplete PicoSessionUserInviteAcceptedCallback; // todo 用这个还是用 RoomInviteAcceptedCallback
+	
+	FOnRoomInviteAcceptedComplete RoomInviteAcceptedCallback;
+	FOnPicoSessionUserInviteAcceptedComplete PicoSessionUserInviteAcceptedCallback;
 
+	FOnGameInitializeComplete GameInitializeCompleteCallback;
 	FOnGameConnectionComplete GameConnectionCallback;
 	FOnGameRequestFailedComplete GameRequestFailedCallback;
 	FOnGameStateResetComplete GameStateResetCallback;
 	FOnMatchmakingCancel2Complete MatchmakingCancel2Callback;
 	FOnRoomLeaveComplete RoomLeaveCallback;
 	FOnRoomJoin2Complete RoomJoin2Callback;
+	FOnRoomUpdateOwnerComplete RoomUpdateOwnerCallback;
+	// Not Used
 	FOnRoomSetDescriptionComplete RoomSetDescriptionCallback;
 	FOnRoomKickUserComplete RoomKickUserCallback;
-	FOnRoomUpdateOwnerComplete RoomUpdateOwnerCallback;
 	FOnRoomUpdateDataStoreComplete RoomUpdateDataStoreCallback;
 	FOnRoomUpdateMembershipLockStatusComplete RoomUpdateMembershipLockStatusCallback;
 

@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerContextSingleton.h"
 
 namespace Pxr_Audio
@@ -79,9 +81,32 @@ namespace Pxr_Audio
 			                                        AbsorptionFactor, ScatteringFactor, TransmissionFactor, GeometryId);
 		}
 
+		PxrAudioSpatializer_Result FContextSingleton::SubmitMeshWithConfig(
+			const float* Vertices,
+			int VerticesCount,
+			const int* Indices,
+			int IndicesCount,
+			const PxrAudioSpatializer_AcousticMeshConfig* Config,
+			int* GeometryId) const
+		{
+			return Api->SubmitMeshWithConfig(Vertices, VerticesCount, Indices, IndicesCount, Config, GeometryId);
+		}
+
 		PxrAudioSpatializer_Result FContextSingleton::RemoveMesh(int GeometryId) const
 		{
 			return Api->RemoveMesh(GeometryId);
+		}
+
+		PxrAudioSpatializer_Result FContextSingleton::SetMeshEnable(int GeometryId, bool Enable) const
+		{
+			return Api->SetMeshEnable(GeometryId, Enable);
+		}
+
+		PxrAudioSpatializer_Result FContextSingleton::SetMeshConfig(int GeometryId,
+		                                                            const PxrAudioSpatializer_AcousticMeshConfig*
+		                                                            Config, unsigned PropertyMask) const
+		{
+			return Api->SetMeshConfig(GeometryId, Config, PropertyMask);
 		}
 
 		PxrAudioSpatializer_Result FContextSingleton::GetAbsorptionFactor(
@@ -135,6 +160,20 @@ namespace Pxr_Audio
 			int* SourceId, bool bIsAsync) const
 		{
 			return Api->AddSourceWithConfig(SourceConfig, SourceId, bIsAsync);
+		}
+
+		PxrAudioSpatializer_Result FContextSingleton::SetSourceConfig(const int SourceId,
+		                                                              const PxrAudioSpatializer_SourceConfig*
+		                                                              SourceConfig,
+		                                                              unsigned PropertyMask) const
+		{
+			return Api->SetSourceConfig(SourceId, SourceConfig, PropertyMask);
+		}
+
+		PxrAudioSpatializer_Result FContextSingleton::GetSourceConfig(const int SourceId,
+			PxrAudioSpatializer_SourceConfig* SourceConfig) const
+		{
+			return Api->GetSourceConfig(SourceId, SourceConfig);
 		}
 
 		PxrAudioSpatializer_Result FContextSingleton::SetSourceAttenuationMode(
@@ -222,8 +261,10 @@ namespace Pxr_Audio
 			return Api->GetPlanarLoudspeakersBuffer(OutputBufferPtr, NumFrames);
 		}
 
+		DECLARE_CYCLE_STAT(TEXT("FContextSingleton::UpdateScene"), STAT_FContextSingleton_UpdateScene, STATGROUP_PicoSpatialAudio)
 		PxrAudioSpatializer_Result FContextSingleton::UpdateScene() const
 		{
+			SCOPE_CYCLE_COUNTER(STAT_FContextSingleton_UpdateScene)
 			return Api->UpdateScene();
 		}
 

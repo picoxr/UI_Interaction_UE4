@@ -1,0 +1,570 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+// IWYU pragma: private, include "Pico_User.h"
+#include "UObject/ObjectMacros.h"
+#include "UObject/ScriptMacros.h"
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UObject;
+class UPico_EntitlementCheckResult;
+class UPico_OrgScopedID;
+class UPico_PermissionResult;
+class UPico_Room;
+class UPico_User;
+class UPico_UserAndRoom;
+class UPico_UserAndRoomArray;
+class UPico_UserArray;
+class UPico_UserRelationResult;
+enum class EUserGender : uint8;
+enum class EUserPresenceStatus : uint8;
+enum class EUserRelationType : uint8;
+#ifdef ONLINESUBSYSTEMPICO_Pico_User_generated_h
+#error "Pico_User.generated.h already included, missing '#pragma once' in Pico_User.h"
+#endif
+#define ONLINESUBSYSTEMPICO_Pico_User_generated_h
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_22_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetLoggedInUserFriendsAndRooms_DelegateWrapper(const FScriptDelegate& GetLoggedInUserFriendsAndRooms, bool bIsError, const FString& ErrorMessage, UPico_UserAndRoomArray* UserAndRoomArray);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_23_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetNextUserAndRoomArrayPage_DelegateWrapper(const FScriptDelegate& GetNextUserAndRoomArrayPage, bool bIsError, const FString& ErrorMessage, UPico_UserAndRoomArray* UserAndRoomArray);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_24_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetLoggedInUserFriends_DelegateWrapper(const FScriptDelegate& GetLoggedInUserFriends, bool bIsError, const FString& ErrorMessage, UPico_UserArray* UserArray);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_25_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetNextUserPage_DelegateWrapper(const FScriptDelegate& GetNextUserPage, bool bIsError, const FString& ErrorMessage, UPico_UserArray* UserArray);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_26_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetLoginUser_DelegateWrapper(const FScriptDelegate& GetLoginUser, bool bIsError, const FString& ErrorMessage, UPico_User* User);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_27_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetUserInfo_DelegateWrapper(const FScriptDelegate& GetUserInfo, bool bIsError, const FString& ErrorMessage, UPico_User* User);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_28_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetPermissionResult_DelegateWrapper(const FScriptDelegate& GetPermissionResult, bool bIsError, const FString& ErrorMessage, UPico_PermissionResult* PermissionResult);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_29_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetAccessTokenResult_DelegateWrapper(const FScriptDelegate& GetAccessTokenResult, bool bIsError, const FString& ErrorMessage, const FString& AccessToken);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_30_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FLaunchFriendRequestResult_DelegateWrapper(const FScriptDelegate& LaunchFriendRequestResult, bool bIsError, const FString& ErrorMessage, bool bDidCancel, bool bDidSendRequest);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_31_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetUserRelationResult_DelegateWrapper(const FScriptDelegate& GetUserRelationResult, bool bIsError, const FString& ErrorMessage, UPico_UserRelationResult* UserRelationResult);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_32_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FEntitlementCheckResult_DelegateWrapper(const FScriptDelegate& EntitlementCheckResult, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, UPico_EntitlementCheckResult* EntitlementCheck);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_33_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetIDToken_DelegateWrapper(const FScriptDelegate& GetIDToken, bool bIsError, const FString& ErrorMessage, const FString& IDToken);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_34_DELEGATE \
+ONLINESUBSYSTEMPICO_API void FGetOrgScopedID_DelegateWrapper(const FScriptDelegate& GetOrgScopedID, bool bIsError, const FString& ErrorMessage, UPico_OrgScopedID* OrgScopedID);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetOrgScopedID); \
+	DECLARE_FUNCTION(execGetIDToken); \
+	DECLARE_FUNCTION(execEntitlementCheck); \
+	DECLARE_FUNCTION(execGetRelations); \
+	DECLARE_FUNCTION(execGetAccessToken); \
+	DECLARE_FUNCTION(execLaunchFriendRequestFlow); \
+	DECLARE_FUNCTION(execRequestUserPermissions); \
+	DECLARE_FUNCTION(execGetAuthorizePermissions); \
+	DECLARE_FUNCTION(execGetPicoUserInfo); \
+	DECLARE_FUNCTION(execGetLoginUser); \
+	DECLARE_FUNCTION(execPicoGetNextUserPage); \
+	DECLARE_FUNCTION(execPicoGetUserFriends); \
+	DECLARE_FUNCTION(execPicoGetNextUserAndRoomArrayPage); \
+	DECLARE_FUNCTION(execPicoGetLoggedInUserAndRoom);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUOnlinePicoUserFunction(); \
+	friend struct Z_Construct_UClass_UOnlinePicoUserFunction_Statics; \
+public: \
+	DECLARE_CLASS(UOnlinePicoUserFunction, UBlueprintFunctionLibrary, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UOnlinePicoUserFunction)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UOnlinePicoUserFunction(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UOnlinePicoUserFunction(UOnlinePicoUserFunction&&); \
+	NO_API UOnlinePicoUserFunction(const UOnlinePicoUserFunction&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UOnlinePicoUserFunction); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UOnlinePicoUserFunction); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UOnlinePicoUserFunction) \
+	NO_API virtual ~UOnlinePicoUserFunction();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_283_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_286_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UOnlinePicoUserFunction>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetPresenceIsJoinable); \
+	DECLARE_FUNCTION(execGetStoreRegion); \
+	DECLARE_FUNCTION(execGetPresenceExtra); \
+	DECLARE_FUNCTION(execGetPresenceMatchSessionId); \
+	DECLARE_FUNCTION(execGetPresenceLobbySessionId); \
+	DECLARE_FUNCTION(execGetPresenceDestinationApiName); \
+	DECLARE_FUNCTION(execGetPresenceDeeplinkMessage); \
+	DECLARE_FUNCTION(execGetPresence); \
+	DECLARE_FUNCTION(execGetGender); \
+	DECLARE_FUNCTION(execGetUserPresenceStatus); \
+	DECLARE_FUNCTION(execGetPresencePackage); \
+	DECLARE_FUNCTION(execGetSmallImageUrl); \
+	DECLARE_FUNCTION(execGetInviteToken); \
+	DECLARE_FUNCTION(execGetID); \
+	DECLARE_FUNCTION(execGetImageURL); \
+	DECLARE_FUNCTION(execGetDisplayName);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_User(); \
+	friend struct Z_Construct_UClass_UPico_User_Statics; \
+public: \
+	DECLARE_CLASS(UPico_User, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_User)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_User(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_User(UPico_User&&); \
+	NO_API UPico_User(const UPico_User&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_User); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_User); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_User) \
+	NO_API virtual ~UPico_User();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_522_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_525_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_User>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execHasNextPage); \
+	DECLARE_FUNCTION(execGetSize); \
+	DECLARE_FUNCTION(execGetNextPageParam); \
+	DECLARE_FUNCTION(execGetElement);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_UserArray(); \
+	friend struct Z_Construct_UClass_UPico_UserArray_Statics; \
+public: \
+	DECLARE_CLASS(UPico_UserArray, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_UserArray)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_UserArray(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_UserArray(UPico_UserArray&&); \
+	NO_API UPico_UserArray(const UPico_UserArray&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_UserArray); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_UserArray); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_UserArray) \
+	NO_API virtual ~UPico_UserArray();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_615_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_619_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_UserArray>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetUser); \
+	DECLARE_FUNCTION(execGetRoom);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_UserAndRoom(); \
+	friend struct Z_Construct_UClass_UPico_UserAndRoom_Statics; \
+public: \
+	DECLARE_CLASS(UPico_UserAndRoom, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_UserAndRoom)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_UserAndRoom(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_UserAndRoom(UPico_UserAndRoom&&); \
+	NO_API UPico_UserAndRoom(const UPico_UserAndRoom&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_UserAndRoom); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_UserAndRoom); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_UserAndRoom) \
+	NO_API virtual ~UPico_UserAndRoom();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_651_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_655_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_UserAndRoom>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execHasNextPage); \
+	DECLARE_FUNCTION(execGetSize); \
+	DECLARE_FUNCTION(execGetNextPageParam); \
+	DECLARE_FUNCTION(execGetElement);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_UserAndRoomArray(); \
+	friend struct Z_Construct_UClass_UPico_UserAndRoomArray_Statics; \
+public: \
+	DECLARE_CLASS(UPico_UserAndRoomArray, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_UserAndRoomArray)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_UserAndRoomArray(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_UserAndRoomArray(UPico_UserAndRoomArray&&); \
+	NO_API UPico_UserAndRoomArray(const UPico_UserAndRoomArray&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_UserAndRoomArray); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_UserAndRoomArray); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_UserAndRoomArray) \
+	NO_API virtual ~UPico_UserAndRoomArray();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_675_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_679_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_UserAndRoomArray>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetUserID); \
+	DECLARE_FUNCTION(execGetAccessToken); \
+	DECLARE_FUNCTION(execGetSize); \
+	DECLARE_FUNCTION(execGetAuthorizedPermission);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_PermissionResult(); \
+	friend struct Z_Construct_UClass_UPico_PermissionResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_PermissionResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_PermissionResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_PermissionResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_PermissionResult(UPico_PermissionResult&&); \
+	NO_API UPico_PermissionResult(const UPico_PermissionResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_PermissionResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_PermissionResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_PermissionResult) \
+	NO_API virtual ~UPico_PermissionResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_708_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_711_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_PermissionResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetRelationTypeValue); \
+	DECLARE_FUNCTION(execGetRelationMapSize); \
+	DECLARE_FUNCTION(execGetUserID); \
+	DECLARE_FUNCTION(execContains);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_UserRelationResult(); \
+	friend struct Z_Construct_UClass_UPico_UserRelationResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_UserRelationResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_UserRelationResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_UserRelationResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_UserRelationResult(UPico_UserRelationResult&&); \
+	NO_API UPico_UserRelationResult(const UPico_UserRelationResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_UserRelationResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_UserRelationResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_UserRelationResult) \
+	NO_API virtual ~UPico_UserRelationResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_740_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_743_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_UserRelationResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetStatusMessage); \
+	DECLARE_FUNCTION(execGetStatusCode); \
+	DECLARE_FUNCTION(execGetHasEntitlement);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_EntitlementCheckResult(); \
+	friend struct Z_Construct_UClass_UPico_EntitlementCheckResult_Statics; \
+public: \
+	DECLARE_CLASS(UPico_EntitlementCheckResult, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_EntitlementCheckResult)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_EntitlementCheckResult(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_EntitlementCheckResult(UPico_EntitlementCheckResult&&); \
+	NO_API UPico_EntitlementCheckResult(const UPico_EntitlementCheckResult&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_EntitlementCheckResult); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_EntitlementCheckResult); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_EntitlementCheckResult) \
+	NO_API virtual ~UPico_EntitlementCheckResult();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_776_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_779_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_EntitlementCheckResult>();
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_SPARSE_DATA
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execGetID);
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_ACCESSORS
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_INCLASS_NO_PURE_DECLS \
+private: \
+	static void StaticRegisterNativesUPico_OrgScopedID(); \
+	friend struct Z_Construct_UClass_UPico_OrgScopedID_Statics; \
+public: \
+	DECLARE_CLASS(UPico_OrgScopedID, UObject, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/OnlineSubsystemPico"), NO_API) \
+	DECLARE_SERIALIZER(UPico_OrgScopedID)
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UPico_OrgScopedID(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+private: \
+	/** Private move- and copy-constructors, should never be used */ \
+	NO_API UPico_OrgScopedID(UPico_OrgScopedID&&); \
+	NO_API UPico_OrgScopedID(const UPico_OrgScopedID&); \
+public: \
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPico_OrgScopedID); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPico_OrgScopedID); \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPico_OrgScopedID) \
+	NO_API virtual ~UPico_OrgScopedID();
+
+
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_805_PROLOG
+#define FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_SPARSE_DATA \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_ACCESSORS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_INCLASS_NO_PURE_DECLS \
+	FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_808_ENHANCED_CONSTRUCTORS \
+private: \
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+
+
+template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<class UPico_OrgScopedID>();
+
+#undef CURRENT_FILE_ID
+#define CURRENT_FILE_ID FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h
+
+
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

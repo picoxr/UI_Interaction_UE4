@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 
 #include "OnlineSubsystemPicoManager.h"
@@ -14,6 +12,8 @@
 #include "OnlineIdentityPico.h"
 #include "OnlineSessionInterfacePico.h"
 #include "OnlineLeaderboardInterfacePico.h"
+#include "Pico_Challenges.h"
+#include "Pico_Matchmaking.h"
 
 
 // Friends
@@ -60,6 +60,7 @@ FOnlineManagerLaunchOtherAppDelegate UOnlineSubsystemPicoManager::LaunchOtherApp
 FOnlineManagerLaunchOtherAppByAppIdDelegate UOnlineSubsystemPicoManager::LaunchOtherAppByAppIdDelegate;
 FOnlineManagerLaunchOtherAppByPresenceDelegate UOnlineSubsystemPicoManager::LaunchOtherAppByPresenceDelegate;
 FOnlineManagerGetVersionDelegate UOnlineSubsystemPicoManager::GetVersionDelegate;
+FOnlineManagerLaunchStoreDelegate UOnlineSubsystemPicoManager::LaunchStoreDelegate;
 
 // ApplicationLifecycle
 FOnlineManagerApplicationLifecycleReadDetailsDelegate UOnlineSubsystemPicoManager::ApplicationLifecycleReadDetailsDelegate;
@@ -67,7 +68,6 @@ FOnlineManagerApplicationLifecycleReadDetailsDelegate UOnlineSubsystemPicoManage
 UOnlineSubsystemPicoManager::UOnlineSubsystemPicoManager()
 {
     FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(this, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
-
     if (Subsystem)
     {
         RtcInterface = Subsystem->GetRtcUserInterface();
@@ -97,6 +97,7 @@ UOnlineSubsystemPicoManager::UOnlineSubsystemPicoManager()
             RtcInterface->RtcStreamSyncInfoCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnGetRtcStreamSyncInfo);
             RtcInterface->RtcMessageSendResultCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcMessageSendResult);
             RtcInterface->RtcBinaryMessageReceivedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcBinaryMessageReceived);
+            RtcInterface->RtcBinaryArrayMessageReceivedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcBinaryArrayMessageReceived);
             RtcInterface->RtcRoomMessageReceivedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcRoomMessageReceived);
             RtcInterface->RtcUserMessageReceivedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcUserMessageReceived);
             RtcInterface->RtcTokenWillExpireCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRtcTokenWilExpire);
@@ -104,11 +105,12 @@ UOnlineSubsystemPicoManager::UOnlineSubsystemPicoManager()
         GameInterface = Subsystem->GetGameSessionInterface();
         if (GameInterface)
         {
+            GameInterface->GameInitializeCompleteCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnGameInitializeCallback);
             GameInterface->GameConnectionCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnGameConnectionNotification);
             GameInterface->GameRequestFailedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnGameRequestFailedNotification);
             GameInterface->GameStateResetCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnGameStateResetNotification);
             GameInterface->MatchmakingCancel2Callback.AddUObject(this, &UOnlineSubsystemPicoManager::OnMatchmakingCancel2Notification);
-            GameInterface->RoomLeaveCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomLeaveNotification);
+            GameInterface->RoomLeaveCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnSessionLeaveNotification);
             GameInterface->RoomJoin2Callback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomJoin2Notification);
             GameInterface->RoomSetDescriptionCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomSetDescriptionNotification);
             GameInterface->RoomKickUserCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomKickUserNotification);
@@ -117,6 +119,8 @@ UOnlineSubsystemPicoManager::UOnlineSubsystemPicoManager()
             GameInterface->RoomUpdateMembershipLockStatusCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomUpdateMembershipLockStatusNotification);
             GameInterface->RoomInviteAcceptedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomInviteAcceptedComplete);
             GameInterface->PicoSessionUserInviteAcceptedCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnSessionUserInviteAccepted);
+            GameInterface->RoomUpdateCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnRoomUpdateComplete);
+            GameInterface->MatchmakingFoundCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnMatchmakingFoundComplete);
         }
         PresenceInterface = Subsystem->GetPicoPresenceInterface();
         if (PresenceInterface)
@@ -134,10 +138,94 @@ UOnlineSubsystemPicoManager::UOnlineSubsystemPicoManager()
             PicoAssetFileInterface->AssetFileDownloadUpdateCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnAssetFileDownloadUpdate);
             PicoAssetFileInterface->AssetFileDeleteForSafetyCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnAssetFileDeleteForSafety);
         }
+        PicoHighlightInterface = Subsystem->GetPicoHighlightInterface();
+        if (PicoHighlightInterface)
+        {
+            PicoHighlightInterface->HighlightRecordStopCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnHighlightRecordStop);
+        }
+
+        // Pico_Room Notification
+        PicoRoomInterface = Subsystem->GetPicoRoomInterface();
+        if (PicoRoomInterface)
+        {
+            PicoRoomInterface->RoomUpdateNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoRoomUpdateNotification);
+            PicoRoomInterface->RoomUpdateOwnerNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoRoomUpdateOwnerNotification);
+            PicoRoomInterface->RoomJoinNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoRoomJoinNotification);
+            PicoRoomInterface->RoomLeaveNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoRoomLeaveNotification);
+            PicoRoomInterface->RoomInviteAcceptedNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoRoomInviteAcceptedNotification);
+        }
+        // Pico_Matchmaking Notification
+        PicoMatchmakingInterface = Subsystem->GetPicoMatchmakingInterface();
+        if (PicoMatchmakingInterface)
+        {
+            PicoMatchmakingInterface->MatchmakingCancelNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoMatchmakingCancelNotification);
+            PicoMatchmakingInterface->MatchmakingMatchFoundNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoMatchmakingMatchFoundNotification);
+        }
+        // Pico_Challenges Notification
+        PicoChallengesInterface = Subsystem->GetPicoChallengesInterface();
+        if (PicoChallengesInterface)
+        {
+            PicoChallengesInterface->ChallengeInviteAcceptedOrLaunchAppNotify.AddUObject(this, &UOnlineSubsystemPicoManager::OnPicoChallengeInviteAcceptedOrLaunchAppNotification);
+        }
+        PicoSpeechInterface = Subsystem->GetPicoSpeechInterface();
+        if (PicoSpeechInterface)
+        {
+            PicoSpeechInterface->SpeechAsrResultCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnSpeechAsrResult);
+            PicoSpeechInterface->SpeechErrorCallback.AddUObject(this, &UOnlineSubsystemPicoManager::OnSpeechError);
+        }
     }
 }
+/*
+ * Pico_Room Notification begin
+ */
+void UOnlineSubsystemPicoManager::OnPicoRoomUpdateNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+    OnPicoRoomUpdateNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, Room);
+}
+void UOnlineSubsystemPicoManager::OnPicoRoomUpdateOwnerNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage)
+{
+    OnPicoRoomUpdateOwnerNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage);
+}
+void UOnlineSubsystemPicoManager::OnPicoRoomJoinNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+    OnPicoRoomLeaveNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, Room);
+}
+void UOnlineSubsystemPicoManager::OnPicoRoomLeaveNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+    OnPicoRoomJoinNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, Room);
+}
+void UOnlineSubsystemPicoManager::OnPicoRoomInviteAcceptedNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, const FString& RoomID)
+{
+    OnPicoRoomInviteAcceptedNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, RoomID);
+}
+/*
+ * Pico_Room Notification end
+ */
 
-
+/*
+ * Pico_Matchmaking Notification begin
+ */
+void UOnlineSubsystemPicoManager::OnPicoMatchmakingCancelNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage)
+{
+    OnPicoMatchmakingCancelNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage);
+}
+void UOnlineSubsystemPicoManager::OnPicoMatchmakingMatchFoundNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+    OnPicoMatchmakingMatchFoundNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, Room);
+}
+/*
+ * Pico_Matchmaking Notification end
+ */
+/*
+ * Pico_Challenges Notification begin
+ */
+void UOnlineSubsystemPicoManager::OnPicoChallengeInviteAcceptedOrLaunchAppNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, const FString& ChallengeID)
+{
+    OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate.Broadcast(bIsError, ErrorCode, ErrorMessage, ChallengeID);
+}
+/*
+ * Pico_Challenges Notification end
+ */
 
 UOnlineSubsystemPicoManager::~UOnlineSubsystemPicoManager()
 {   
@@ -197,7 +285,7 @@ void UOnlineSubsystemPicoManager::OnLoginComplete(int LocalUserNum, bool bWasSuc
 
 void UOnlineSubsystemPicoManager::PicoReadFriendList(UObject* WorldContextObject, int32 LocalUserNum, const FString& ListName, FOnlineManagerReadFriendListDelegate InReadFriendListDelegate)
 {
-    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(WorldContextObject->GetWorld(), PICO_SUBSYSTEM));
     if (Subsystem && Subsystem->GetFriendsInterface())
     {
         UOnlineSubsystemPicoManager::ReadFrendListDelegate = InReadFriendListDelegate;
@@ -214,7 +302,6 @@ void UOnlineSubsystemPicoManager::OnReadListComplete(int32 InLocalUserNum/*Local
         UOnlineSubsystemPicoManager::ReadFrendListDelegate.Execute(InLocalUserNum, bWasSuccessful, ListName, ErrorStr);
         UOnlineSubsystemPicoManager::ReadFrendListDelegate.Unbind();
     }
-
 }
 
 void UOnlineSubsystemPicoManager::PicoGetFriendList(UObject* WorldContextObject, int32 InLocalUserNum, const FString& ListName, TArray<FPicoUserInfo>& OutFriendList)
@@ -606,6 +693,11 @@ void UOnlineSubsystemPicoManager::OnRtcBinaryMessageReceived(const FString& Room
     OnRtcBinaryMessageReceivedDelegate.Broadcast(RoomId, UserId, Info);
 }
 
+void UOnlineSubsystemPicoManager::OnRtcBinaryArrayMessageReceived(const FString& RoomId, const FString& UserId, TArray<uint8> BinaryArray)
+{
+    OnRtcBinaryArrayMessageReceivedDelegate.Broadcast(RoomId, UserId, BinaryArray);
+}
+
 void UOnlineSubsystemPicoManager::OnRtcRoomMessageReceived(const FString& RoomId, const FString& UserId, const FString& Message)
 {
     OnRtcRoomMessageReceivedDelegateDelegate.Broadcast(RoomId, UserId, Message);
@@ -623,9 +715,9 @@ void UOnlineSubsystemPicoManager::OnRtcTokenWilExpire(const FString& Message)
 }
 
 
-void UOnlineSubsystemPicoManager::OnPresenceJoinIntentReceivedResult(const FString& DeeplinkMessage, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId)
+void UOnlineSubsystemPicoManager::OnPresenceJoinIntentReceivedResult(const FString& DeeplinkMessage, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId, const FString& Extra)
 {
-    OnPresenceJoinIntentReceivedDelegate.Broadcast(DeeplinkMessage, DestinationApiName, LobbySessionId, MatchSessionId);
+    OnPresenceJoinIntentReceivedDelegate.Broadcast(DeeplinkMessage, DestinationApiName, LobbySessionId, MatchSessionId, Extra);
 }
 
 void UOnlineSubsystemPicoManager::OnPresenceLeavententReceivedResult(const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId)
@@ -639,6 +731,38 @@ void UOnlineSubsystemPicoManager::OnLaunchIntentChangedResult(const FString& Mes
 }
 
 // Game IOnlineSession
+bool UOnlineSubsystemPicoManager::IsGameInitSuccess(UObject* WorldContextObject)
+{
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    if (Subsystem && Subsystem->GetGameSessionInterface())
+    {
+        return Subsystem->GetGameSessionInterface()->IsInitSuccess();
+    }
+    return false;
+}
+
+bool UOnlineSubsystemPicoManager::GameInitialize(UObject* WorldContextObject)
+{
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    if (Subsystem && Subsystem->GetGameSessionInterface())
+    {
+        Subsystem->GetGameSessionInterface()->Initialize();
+        return true;
+    }
+    return false;
+}
+
+bool UOnlineSubsystemPicoManager::GameUninitialize(UObject* WorldContextObject)
+{
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    if (Subsystem && Subsystem->GetGameSessionInterface())
+    {
+        Subsystem->GetGameSessionInterface()->Uninitialize();
+        return true;
+    }
+    return false;
+}
+
 bool UOnlineSubsystemPicoManager::CreateSession(UObject* WorldContextObject, int32 HostingPlayerNum, FName SessionName, const FOnlineSessionSettings& NewSessionSettings, FPicoManagerOnCreateSessionCompleteDelegate OnCompleteDelegate)
 {
     FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
@@ -699,7 +823,7 @@ bool UOnlineSubsystemPicoManager::DestroySession(UObject* WorldContextObject, FN
         UOnlineSubsystemPicoManager::OnDestroySessionCompleteDelegate = OnCompleteDelegate;
         Subsystem->GetGameSessionInterface()->AddOnDestroySessionCompleteDelegate_Handle(
             FOnDestroySessionCompleteDelegate::CreateUObject(this, &UOnlineSubsystemPicoManager::OnDestroySessionComplete));
-        return (Subsystem->GetGameSessionInterface())->DestroySession(SessionName); // todo
+        return (Subsystem->GetGameSessionInterface())->DestroySession(SessionName);
     }
     return false;
 }
@@ -899,7 +1023,7 @@ void UOnlineSubsystemPicoManager::SetOnlineSessionSearch(const FPicoOnlineSessio
         newResult.Session.OwningUserName = newSession.OwningUserName;
         ppfID RoomID = FCString::Strtoui64(*newSession.SessionInfoRoomID, NULL, 10);
         newResult.Session.SessionInfo = MakeShareable(new FOnlineSessionInfoPico(RoomID));
-        SetOnlineSessionSettings(newSession.SessionSettings); // todo 
+        SetOnlineSessionSettings(newSession.SessionSettings); 
         newResult.Session.SessionSettings = SessionSettings;
         newResult.Session.NumOpenPrivateConnections = newSession.NumOpenPrivateConnections;
         newResult.Session.NumOpenPublicConnections = newSession.NumOpenPublicConnections;
@@ -950,7 +1074,7 @@ void UOnlineSubsystemPicoManager::SetOnlineSessionSettings(const FPicoOnlineSess
     }
 }
 
-// FOnlineSessionSettings -> FPicoOnlineSessionSettings // todo
+// FOnlineSessionSettings -> FPicoOnlineSessionSettings
 FPicoOnlineSessionSettings UOnlineSubsystemPicoManager::GetPicoOnlineSessionSettings(const FOnlineSessionSettings& UpdatedSessionSettings)
 {
     FPicoOnlineSessionSettings PicoSessionSettings;
@@ -1002,7 +1126,6 @@ bool UOnlineSubsystemPicoManager::FindSessionById(UObject* WorldContextObject, c
     FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
     if (Subsystem && Subsystem->GetGameSessionInterface())
     {
-        // todo 这里直接传了delegate进去，而不是用trigger的形式
         UOnlineSubsystemPicoManager::OnSingleSessionResultCompleteDelegate = CompletionDelegate;
         return Subsystem->GetGameSessionInterface()->FindSessionById(SearchingUserId, SessionId, FriendId, FOnSingleSessionResultCompleteDelegate::CreateUObject(this, &UOnlineSubsystemPicoManager::OnFindSessionByIdComplete));
     }
@@ -1218,6 +1341,11 @@ void UOnlineSubsystemPicoManager::OnJoinSessionComplete(FName SessionName, EOnJo
     }
 }
 
+void UOnlineSubsystemPicoManager::OnGameInitializeCallback(bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage, int Result)
+{
+    OnGameInitializeCallbackDelegate.Broadcast(bWasSuccessful, ErrorCode, ErrorMessage, Result);
+}
+
 void UOnlineSubsystemPicoManager::OnGameConnectionNotification(int Result, bool bWasSuccessful)
 {
     OnGameConnectionNotifyDelegate.Broadcast(Result, bWasSuccessful);
@@ -1238,7 +1366,7 @@ void UOnlineSubsystemPicoManager::OnMatchmakingCancel2Notification(bool bWasSucc
     OnMatchmakingCancel2NotifyDelegate.Broadcast(bWasSuccessful);
 }
 
-void UOnlineSubsystemPicoManager::OnRoomLeaveNotification(const FString& RoomID, bool bWasSuccessful)
+void UOnlineSubsystemPicoManager::OnSessionLeaveNotification(const FString& RoomID, bool bWasSuccessful)
 {
     OnRoomLeaveNotifyDelegate.Broadcast(RoomID, bWasSuccessful);
 }
@@ -1273,14 +1401,20 @@ void UOnlineSubsystemPicoManager::OnRoomUpdateMembershipLockStatusNotification(c
     OnRoomUpdateMembershipLockStatusNotifyDelegate.Broadcast(RoomID, bWasSuccessful);
 }
 
-void UOnlineSubsystemPicoManager::OnRoomUpdateComplete(const FString& RoomID, bool bWasSuccessful)
+void UOnlineSubsystemPicoManager::OnRoomUpdateComplete(const FString& RoomID, bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage)
 {
-    OnRoomUpdateNotifyDelegate.Broadcast(RoomID, bWasSuccessful);
+    UE_LOG(LogTemp, Log, TEXT("OnRoomUpdateComplete OnRoomUpdateNotifyDelegate.Broadcast"));
+    OnRoomUpdateNotifyDelegate.Broadcast(RoomID, bWasSuccessful, ErrorCode, ErrorMessage);
 }
 
 void UOnlineSubsystemPicoManager::OnRoomInviteAcceptedComplete(const FString& RoomID, bool bWasSuccessful)
 {
     OnRoomInviteAcceptedNotifyDelegate.Broadcast(RoomID, bWasSuccessful);
+}
+void UOnlineSubsystemPicoManager::OnMatchmakingFoundComplete(const FString& RoomID, bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage)
+{
+    UE_LOG(LogTemp, Log, TEXT("OnMatchmakingFoundComplete OnMatchmakingFoundNotifyDelegate.Broadcast"));
+    OnMatchmakingFoundNotifyDelegate.Broadcast(RoomID, bWasSuccessful, ErrorCode, ErrorMessage);
 }
 void UOnlineSubsystemPicoManager::OnSessionUserInviteAccepted(const bool bWasSuccessful, const int32 ControllerId,
                                                     const FString& UserId,
@@ -1650,7 +1784,7 @@ void UOnlineSubsystemPicoManager::OnLaunchOtherAppComplete(const FString& Messag
     LaunchOtherAppCompleteDelegate.Unbind();
     if (UOnlineSubsystemPicoManager::LaunchOtherAppDelegate.IsBound())
     {
-        UOnlineSubsystemPicoManager::LaunchOtherAppDelegate.Execute(FString(), bIsSuccessed, ErrorMessage);
+        UOnlineSubsystemPicoManager::LaunchOtherAppDelegate.Execute(Message, bIsSuccessed, ErrorMessage);
         UOnlineSubsystemPicoManager::LaunchOtherAppDelegate.Unbind();
     }
 }
@@ -1673,7 +1807,7 @@ void UOnlineSubsystemPicoManager::OnLaunchOtherAppByAppIdComplete(const FString&
     LaunchOtherAppByAppIdCompleteDelegate.Unbind();
     if (UOnlineSubsystemPicoManager::LaunchOtherAppByAppIdDelegate.IsBound())
     {
-        UOnlineSubsystemPicoManager::LaunchOtherAppByAppIdDelegate.Execute(FString(), bIsSuccessed, ErrorMessage);
+        UOnlineSubsystemPicoManager::LaunchOtherAppByAppIdDelegate.Execute(Message, bIsSuccessed, ErrorMessage);
         UOnlineSubsystemPicoManager::LaunchOtherAppByAppIdDelegate.Unbind();
     }
 }
@@ -1691,12 +1825,12 @@ bool UOnlineSubsystemPicoManager::GetVersion(UObject* WorldContextObject, FOnlin
     return false;
 }
 
-void UOnlineSubsystemPicoManager::OnGetVersionComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage)
+void UOnlineSubsystemPicoManager::OnGetVersionComplete(int64 CurrentCode, const FString& CurrentName, int64 LatestCode, const FString& LatestName, bool bIsSuccessed, const FString& ErrorMessage)
 {
     GetVersionCompleteDelegate.Unbind();
     if (UOnlineSubsystemPicoManager::GetVersionDelegate.IsBound())
     {
-        UOnlineSubsystemPicoManager::GetVersionDelegate.Execute(FString(), bIsSuccessed, ErrorMessage);
+        UOnlineSubsystemPicoManager::GetVersionDelegate.Execute(CurrentCode, CurrentName, LatestCode, LatestName, bIsSuccessed, ErrorMessage);
         UOnlineSubsystemPicoManager::GetVersionDelegate.Unbind();
     }
 }
@@ -1719,33 +1853,34 @@ void UOnlineSubsystemPicoManager::OnLaunchOtherAppByPresenceComplete(const FStri
     LaunchOtherAppByPresenceCompleteDelegate.Unbind();
     if (UOnlineSubsystemPicoManager::LaunchOtherAppByPresenceDelegate.IsBound())
     {
-        UOnlineSubsystemPicoManager::LaunchOtherAppByPresenceDelegate.Execute(FString(), bIsSuccessed, ErrorMessage);
+        UOnlineSubsystemPicoManager::LaunchOtherAppByPresenceDelegate.Execute(Message, bIsSuccessed, ErrorMessage);
         UOnlineSubsystemPicoManager::LaunchOtherAppByPresenceDelegate.Unbind();
     }
 }
 
-//bool UOnlineSubsystemPicoManager::ReadLaunchDetails(UObject* WorldContextObject, FOnlineManagerApplicationLifecycleReadDetailsDelegate InApplicationLifecycleReadDetailsDelegate)
-//{
-//    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
-//    if (Subsystem && Subsystem->GetApplicationLifecycleInterface())
-//    {
-//        UOnlineSubsystemPicoManager::ApplicationLifecycleReadDetailsDelegate = InApplicationLifecycleReadDetailsDelegate;
-//        ApplicationLifecycleReadDetailsCompleteDelegate.BindUObject(this, &UOnlineSubsystemPicoManager::OnReadLaunchDetailsComplete);
-//        Subsystem->GetApplicationLifecycleInterface()->ReadLaunchDetails(ApplicationLifecycleReadDetailsCompleteDelegate);
-//        return true;
-//    }
-//    return false;
-//}
-//
-//void UOnlineSubsystemPicoManager::OnReadLaunchDetailsComplete(bool bIsSuccessed, const FString& ErrorMessage)
-//{
-//    ApplicationLifecycleReadDetailsCompleteDelegate.Unbind();
-//    if (UOnlineSubsystemPicoManager::ApplicationLifecycleReadDetailsDelegate.IsBound())
-//    {
-//        UOnlineSubsystemPicoManager::ApplicationLifecycleReadDetailsDelegate.Execute(bIsSuccessed, ErrorMessage);
-//        UOnlineSubsystemPicoManager::ApplicationLifecycleReadDetailsDelegate.Unbind();
-//    }
-//}
+bool UOnlineSubsystemPicoManager::LaunchStore(UObject* WorldContextObject, FOnlineManagerLaunchStoreDelegate InLaunchStoreDelegate)
+{
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    if (Subsystem && Subsystem->GetApplicationInterface())
+    {
+        UOnlineSubsystemPicoManager::LaunchStoreDelegate = InLaunchStoreDelegate;
+        LaunchStoreCompleteDelegate.BindUObject(this, &UOnlineSubsystemPicoManager::OnLaunchStoreComplete);
+        Subsystem->GetApplicationInterface()->LaunchStore(LaunchStoreCompleteDelegate);
+        return true;
+    }
+    return false;
+}
+
+void UOnlineSubsystemPicoManager::OnLaunchStoreComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage)
+{
+    LaunchStoreCompleteDelegate.Unbind();
+    if (UOnlineSubsystemPicoManager::LaunchStoreDelegate.IsBound())
+    {
+        UOnlineSubsystemPicoManager::LaunchStoreDelegate.Execute(Message, bIsSuccessed, ErrorMessage);
+        UOnlineSubsystemPicoManager::LaunchStoreDelegate.Unbind();
+    }
+}
+
 
 bool UOnlineSubsystemPicoManager::GetLaunchDetails(UObject* WorldContextObject, FLaunchDetails& OutLaunchDetails)
 {
@@ -1769,6 +1904,17 @@ bool UOnlineSubsystemPicoManager::LogDeeplinkResult(UObject* WorldContextObject,
     return false;
 }
 
+bool UOnlineSubsystemPicoManager::GetSystemInfo(UObject* WorldContextObject, FPicoSystemInfo& SystemInfo)
+{
+    FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+    if (Subsystem && Subsystem->GetApplicationLifecycleInterface())
+    {
+        Subsystem->GetApplicationLifecycleInterface()->GetSystemInfo(SystemInfo);
+        return true;
+    }
+    return false;
+}
+
 void UOnlineSubsystemPicoManager::OnAssetFileDownloadUpdate(UPico_AssetFileDownloadUpdate* AssetFileDownloadUpdateObj)
 {
     OnAssetFileDownloadUpdateDelegate.Broadcast(AssetFileDownloadUpdateObj);
@@ -1780,6 +1926,20 @@ void UOnlineSubsystemPicoManager::OnAssetFileDeleteForSafety(UPico_AssetFileDele
 }
 
 
+void UOnlineSubsystemPicoManager::OnSpeechAsrResult(UPico_AsrResult* AsrResultObj)
+{
+    OnSpeechAsrResultDelegate.Broadcast(AsrResultObj);
+}
+
+void UOnlineSubsystemPicoManager::OnSpeechError(UPico_SpeechError* SpeechErrorObj)
+{
+    OnSpeechErrorDelegate.Broadcast(SpeechErrorObj);
+}
+
+void UOnlineSubsystemPicoManager::OnHighlightRecordStop(UPico_RecordInfo* RecordInfoObj)
+{
+    OnHighlightRecordStopDelegate.Broadcast(RecordInfoObj);
+}
 // Leaderboard
 void UOnlineSubsystemPicoManager::SetOnlineLeaderboardRead(const FPicoOnlineLeaderboardRead& PicoLeaderboardReadObject)
 {
@@ -1829,7 +1989,7 @@ void UOnlineSubsystemPicoManager::RefreshPicoOnlineLeaderboardRead()
                 item.Value.GetValue(Int64Result);
                 Value.Value = FString::FromInt(Int64Result);
                 break;
-            default: // todo
+            default: 
                 break;
             }
             Row.Columns.Add(item.Key, Value);

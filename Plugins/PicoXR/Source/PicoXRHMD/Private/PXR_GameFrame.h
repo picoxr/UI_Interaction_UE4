@@ -1,4 +1,6 @@
-﻿//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+﻿// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 #pragma once
 
 #include "CoreMinimal.h"
@@ -12,6 +14,9 @@ public:
 	double predictedDisplayTimeMs;
 	float WorldToMetersScale;
 	FTransform TrackingToWorld;
+#ifdef PICO_CUSTOM_ENGINE
+	FTransform LastTrackingToWorld;
+#endif
 	FVector Position;
 	FQuat Orientation;
 	FVector AngularVelocity;
@@ -19,13 +24,14 @@ public:
 	FVector AngularAcceleration;
 	FVector Velocity;
 	FEngineShowFlags ShowFlags;
-	bool    bHasWaited;
 	union
 	{
 		struct
 		{
 			uint64			bSplashIsShown : 1;
+			uint64			bSeeThroughIsShown : 1;
 			uint64			bLateUpdateOK : 1;
+			uint64			bHasWaited : 1;
 		};
 		uint64 Raw;
 	} Flags;

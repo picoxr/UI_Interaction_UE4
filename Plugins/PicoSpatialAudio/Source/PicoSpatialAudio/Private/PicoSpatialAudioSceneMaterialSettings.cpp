@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PicoSpatialAudioSceneMaterialSettings.h"
 
 UPicoSpatialAudioSceneMaterialSettings::UPicoSpatialAudioSceneMaterialSettings()

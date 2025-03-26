@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "PicoFindSessionsCallbackProxy.h"
 #include "OnlineSubsystemPicoPrivate.h"

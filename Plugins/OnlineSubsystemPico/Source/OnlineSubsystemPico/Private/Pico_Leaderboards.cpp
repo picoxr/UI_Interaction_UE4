@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "Pico_Leaderboards.h"
 #include "Pico_User.h"
@@ -35,7 +33,9 @@ bool FPicoLeaderboardsInterface::Get(const FString& LeaderboardName, FGet InGetD
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("Get return failed:%s"), *ErrorMessage);
 				this->GetDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
 				InGetDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -65,7 +65,9 @@ bool FPicoLeaderboardsInterface::GetEntries(const FString& LeaderboardName, int 
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("GetEntries return failed:%s"), *ErrorMessage);
 				this->GetEntriesDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
 				InGetEntriesDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -95,7 +97,9 @@ bool FPicoLeaderboardsInterface::GetEntriesAfterRank(const FString& LeaderboardN
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("GetEntriesAfterRank return failed:%s"), *ErrorMessage);
 				this->GetEntriesAfterRankDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
 				InGetEntriesAfterRankDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -137,7 +141,9 @@ bool FPicoLeaderboardsInterface::GetEntriesByIds(const FString& LeaderboardName,
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("GetEntriesByIds return failed:%s"), *ErrorMessage);
 				this->GetEntriesByIdsDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
 				InGetEntriesByIdsDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -174,7 +180,9 @@ bool FPicoLeaderboardsInterface::WriteEntry(const FString& LeaderboardName, cons
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("WriteEntry return failed:%s"), *ErrorMessage);
 				this->WriteEntryDelegate.ExecuteIfBound(true, ErrorMessage, false);
 				InWriteEntryDelegate.ExecuteIfBound(true, ErrorMessage, false);
@@ -212,7 +220,9 @@ bool FPicoLeaderboardsInterface::WriteEntryWithSupplementaryMetric(const FString
 			if (bIsError)
 			{
 				auto Error = ppf_Message_GetError(Message);
-				FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
 				UE_LOG(PicoLeaderboards, Log, TEXT("WriteEntryWithSupplementaryMetric return failed:%s"), *ErrorMessage);
 				this->WriteEntryWithSupplementaryMetricDelegate.ExecuteIfBound(true, ErrorMessage, false);
 				InWriteEntryWithSupplementaryMetricDelegate.ExecuteIfBound(true, ErrorMessage, false);
@@ -360,7 +370,7 @@ void UPico_LeaderboardEntry::InitParams(ppfLeaderboardEntryHandle ppfLeaderboard
 	Timestamp = ppf_LeaderboardEntry_GetTimestamp(ppfLeaderboardEntryHandle);
 	if (User == nullptr)
 	{
-		User = NewObject<UPico_User>();
+		User = NewObject<UPico_User>(this);
 	}
 	User->InitParams(ppf_LeaderboardEntry_GetUser(ppfLeaderboardEntryHandle));
 	// ExtraData
@@ -374,7 +384,7 @@ void UPico_LeaderboardEntry::InitParams(ppfLeaderboardEntryHandle ppfLeaderboard
 	if (SupplementaryMetricHandle != nullptr)
 	{
 		SupplementaryMetricOptional.ID = FString::Printf(TEXT("%llu"), ppf_SupplementaryMetric_GetID(SupplementaryMetricHandle));
-		SupplementaryMetricOptional.Metric = FString::Printf(TEXT("%llu"), ppf_SupplementaryMetric_GetMetric(SupplementaryMetricHandle));
+		SupplementaryMetricOptional.Metric = FString::Printf(TEXT("%lld"), ppf_SupplementaryMetric_GetMetric(SupplementaryMetricHandle));
 	}
 }
 
@@ -471,11 +481,12 @@ void UPico_LeaderboardEntryArray::InitParams(ppfLeaderboardEntryArrayHandle Inpp
 	UE_LOG(PicoLeaderboards, Log, TEXT("UPico_LeaderboardEntryArray::InitParams ppf_LeaderboardEntryArray_GetSize: %d"), Size);
 	for (int32 i = 0; i < Size; i++)
 	{
-		UPico_LeaderboardEntry* ThisElement = NewObject<UPico_LeaderboardEntry>();
+		UPico_LeaderboardEntry* ThisElement = NewObject<UPico_LeaderboardEntry>(this);
 		ThisElement->InitParams(ppf_LeaderboardEntryArray_GetElement(InppfLeaderboardEntryArrayHandle, i));
 		LeaderboardEntryArray.Add(ThisElement);
 	}
 	bHasNextPage = ppf_LeaderboardEntryArray_HasNextPage(InppfLeaderboardEntryArrayHandle);
+	bHasPreviousPage = ppf_LeaderboardEntryArray_HasPreviousPage(InppfLeaderboardEntryArrayHandle);
 	TotalSize = ppf_LeaderboardEntryArray_GetTotalCount(InppfLeaderboardEntryArrayHandle);
 }
 
@@ -487,11 +498,6 @@ UPico_LeaderboardEntry* UPico_LeaderboardEntryArray::GetElement(int32 Index)
 		return LeaderboardEntryArray[Index];
 	}
 	return nullptr;
-}
-
-FString UPico_LeaderboardEntryArray::GetNextPageParam()
-{
-	return NextPageParam;
 }
 
 int32 UPico_LeaderboardEntryArray::GetSize()
@@ -509,6 +515,19 @@ bool UPico_LeaderboardEntryArray::HasNextPage()
 	return bHasNextPage;
 }
 
+bool UPico_LeaderboardEntryArray::HasPreviousPage()
+{
+	return bHasPreviousPage;
+}
+
+FString UPico_LeaderboardEntryArray::GetDebugString()
+{
+	FString Log;
+	Log.Append(FString::Printf(TEXT("LeaderboardEntryArray DebugString:\nTotalSize: %d\nSize: %d\nbHasNextPage: %s\nbHasPreviousPage: %s\n"), GetTotalSize(), GetSize(), bHasNextPage?TEXT("true"):TEXT("false")
+		, bHasPreviousPage?TEXT("true"):TEXT("false")));
+	
+	return Log;
+}
 
 
 
@@ -523,11 +542,12 @@ void UPico_LeaderboardArray::InitParams(ppfLeaderboardArrayHandle InppfLeaderboa
 	UE_LOG(PicoLeaderboards, Log, TEXT("UPico_LeaderboardArray::InitParams ppf_LeaderboardArray_GetSize: %d"), Size);
 	for (int32 i = 0; i < Size; i++)
 	{
-		UPico_Leaderboard* ThisElement = NewObject<UPico_Leaderboard>();
+		UPico_Leaderboard* ThisElement = NewObject<UPico_Leaderboard>(this);
 		ThisElement->InitParams(ppf_LeaderboardArray_GetElement(InppfLeaderboardArrayHandle, i));
 		LeaderboardArray.Add(ThisElement);
 	}
 	bHasNextPage = ppf_LeaderboardArray_HasNextPage(InppfLeaderboardArrayHandle);
+	TotalSize = ppf_LeaderboardArray_GetTotalCount(InppfLeaderboardArrayHandle);
 }
 
 UPico_Leaderboard* UPico_LeaderboardArray::GetElement(int32 Index)
@@ -540,17 +560,25 @@ UPico_Leaderboard* UPico_LeaderboardArray::GetElement(int32 Index)
 	return nullptr;
 }
 
-FString UPico_LeaderboardArray::GetNextPageParam()
-{
-	return NextPageParam;
-}
-
 int32 UPico_LeaderboardArray::GetSize()
 {
 	return Size;
 }
 
+int32 UPico_LeaderboardArray::GetTotalSize()
+{
+	return TotalSize;
+}
+
 bool UPico_LeaderboardArray::HasNextPage()
 {
 	return bHasNextPage;
+}
+
+FString UPico_LeaderboardArray::GetDebugString()
+{
+	FString Log;
+	Log.Append(FString::Printf(TEXT("LeaderboardArray DebugString:\nTotalSize: %d\nSize: %d\nbHasNextPage: %s\n"), GetTotalSize(), GetSize(), bHasNextPage?TEXT("true"):TEXT("false")));
+	
+	return Log;
 }

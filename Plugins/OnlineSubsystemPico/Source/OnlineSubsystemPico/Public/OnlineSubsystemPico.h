@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -29,6 +27,8 @@ class FOnlineSessionPico;
 typedef TSharedPtr<class FOnlineSessionPico, ESPMode::ThreadSafe> FOnlineSessionPicoPtr;
 class FOnlineLeaderboardPico;
 typedef TSharedPtr<class FOnlineLeaderboardPico, ESPMode::ThreadSafe> FOnlineLeaderboardPicoPtr;
+class FOnlineAchievementsPico;
+typedef TSharedPtr<class FOnlineAchievementsPico, ESPMode::ThreadSafe> FOnlineAchievementPicoPtr;
 
 class FRTCPicoUserInterface;
 class FPicoApplicationInterface;
@@ -41,6 +41,14 @@ class FPicoSportInterface;
 class FPicoLeaderboardsInterface;
 class FPicoAchievementsInterface;
 class FPicoChallengesInterface;
+class FPicoRoomInterface;
+class FPicoMatchmakingInterface;
+class FPicoNotificationInterface;
+class FPicoNetworkingInterface;
+class FPicoComplianceInterface;
+class FPicoSpeechInterface;
+class FPicoHighlightInterface;
+class FPicoCloudStorageInterface;
 
 /// @brief OnlineSubsystemPico class inherited from FOnlineSubsystemImpl(Unreal Engine)
 class ONLINESUBSYSTEMPICO_API FOnlineSubsystemPico : public FOnlineSubsystemImpl
@@ -50,7 +58,6 @@ public:
 
     virtual IOnlineSessionPtr GetSessionInterface() const override;
 
-    /// @brief Get friends interface of Pico
     virtual IOnlineFriendsPtr GetFriendsInterface() const override;
     virtual IOnlinePartyPtr GetPartyInterface() const override;
     virtual IOnlineGroupsPtr GetGroupsInterface() const override;
@@ -62,7 +69,6 @@ public:
     virtual IOnlineExternalUIPtr GetExternalUIInterface() const override;
     virtual IOnlineTimePtr GetTimeInterface() const override;
 
-    /// @brief Get identity interface of Pico
     virtual IOnlineIdentityPtr GetIdentityInterface() const override;
     virtual IOnlineTitleFilePtr GetTitleFileInterface() const override;
     virtual IOnlineStoreV2Ptr GetStoreV2Interface() const override;
@@ -89,9 +95,7 @@ public:
 
     virtual bool Tick(float DeltaTime) override;
 
-    //Rtc
 
-    /// @brief Get RTC interface of Pico
     TSharedPtr<FRTCPicoUserInterface> GetRtcUserInterface() const;
 
     TSharedPtr<FPicoApplicationInterface> GetApplicationInterface() const;
@@ -108,6 +112,7 @@ public:
 
     TSharedPtr<FPicoSportInterface> GetPicoSportInterface() const;
 
+
     // Game
     FOnlineSessionPicoPtr GetGameSessionInterface() const;
 
@@ -116,6 +121,22 @@ public:
     TSharedPtr<FPicoLeaderboardsInterface> GetPicoLeaderboardsInterface() const;
 
     TSharedPtr<FPicoChallengesInterface> GetPicoChallengesInterface() const;
+
+    TSharedPtr<FPicoRoomInterface> GetPicoRoomInterface() const;
+
+    TSharedPtr<FPicoMatchmakingInterface> GetPicoMatchmakingInterface() const;
+
+    TSharedPtr<FPicoNotificationInterface> GetPicoNotificationInterface() const;
+
+    TSharedPtr<FPicoNetworkingInterface> GetPicoNetworkingInterface() const;
+
+    TSharedPtr<FPicoComplianceInterface> GetPicoComplianceInterface() const;
+
+    TSharedPtr<FPicoSpeechInterface> GetPicoSpeechInterface() const;
+
+    TSharedPtr<FPicoHighlightInterface> GetPicoHighlightInterface() const;    
+    
+    TSharedPtr<FPicoCloudStorageInterface> GetPicoCloudStorageInterface() const;
 
     /**
      * Allows for the PicoSDK calls to be used directly with the Delegates in the Pico PSS
@@ -176,12 +197,28 @@ private:
 
     FOnlineLeaderboardPicoPtr LeaderboardInterface;
 
+    FOnlineAchievementPicoPtr AchievementInterface;
+
     TSharedPtr<FPicoLeaderboardsInterface> PicoLeaderboardsInterface;
 
     TSharedPtr<FPicoAchievementsInterface> PicoAchievementsInterface;
 
     TSharedPtr<FPicoChallengesInterface> PicoChallengesInterface;
 
+    TSharedPtr<FPicoRoomInterface> PicoRoomInterface;
+
+    TSharedPtr<FPicoMatchmakingInterface> PicoMatchmakingInterface;
+    
+    TSharedPtr<FPicoNotificationInterface> PicoNotificationInterface;
+
+    TSharedPtr<FPicoNetworkingInterface> PicoNetworkingInterface;
+
+    TSharedPtr<FPicoComplianceInterface> PicoComplianceInterface;
+    TSharedPtr<FPicoSpeechInterface> PicoSpeechInterface;
+
+    TSharedPtr<FPicoHighlightInterface> PicoHighlightInterface;    
+
+    TSharedPtr<FPicoCloudStorageInterface> PicoCloudStorageInterface;
     /** Online async task runnable */
     class FOnlineAsyncTaskManagerPico* OnlineAsyncTaskThreadRunnable;
 

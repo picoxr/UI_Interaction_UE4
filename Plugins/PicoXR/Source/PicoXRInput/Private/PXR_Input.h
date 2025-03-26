@@ -1,4 +1,6 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "GenericPlatform/IInputInterface.h"
@@ -6,7 +8,7 @@
 #include "IInputDevice.h"
 #include "IHapticDevice.h"
 #include "IPXR_HandTracker.h"
-#include "PXR_Settings.h"
+#include "PXR_HMDRuntimeSettings.h"
 #include "PXR_HMD.h"
 
 #define ButtonEventNum 12
@@ -41,11 +43,7 @@ struct EPICOHandButton
 {
 	enum Type
 	{
-		Index,
-		Middle,
-		Ring,
-	    Pinky,
-		ThumbClick,
+		Pinch,
 		ButtonCount
 	};
 };
@@ -73,23 +71,6 @@ struct EPICOXRControllerHandness
 	};
 };
 
-enum EPICOInputType:uint8
-{
-	Unknown = 0,
-	G2 = 3,
-	Neo2 = 4,
-	Neo3 = 5,
-};
-
-static const FQuat LeftRootFixupOrientation = FQuat(0.0f, FMath::Sin(-PI / 4), 0.0f, FMath::Cos(PI / 4));
-static const FQuat LeftRootFixupOrientation2 = FQuat(FMath::Sin(-PI / 4),0.0f , 0.0f, FMath::Cos(PI / 4));
-static const FQuat LeftRootFixupOrientation3 = FQuat(0.0f,0.0f,FMath::Sin(-PI / 4), FMath::Cos(PI / 4));
-
-static const FQuat RightRootFixupOrientation = FQuat(0.0f, FMath::Sin(PI / 4), 0.0f, FMath::Cos(PI / 4));
-static const FQuat RightRootFixupOrientation2 = FQuat(FMath::Sin(-PI / 4),0.0f , 0.0f, FMath::Cos(PI / 4));
-static const FQuat RightRootFixupOrientation3 = FQuat(0.0f,0.0f,FMath::Sin(-PI / 4), FMath::Cos(PI / 4));
-
-
 class FPICOXRHMD;
 class UPICOXRHandComponent;
 
@@ -98,6 +79,8 @@ class FPICOXRInput : public IInputDevice, public IPXR_HandTracker, public FXRMot
 public:
 	FPICOXRInput();
 	virtual ~FPICOXRInput();
+
+	static void PreInit();
 
 	// IInputDevice overrides
 	virtual void Tick(float DeltaTime) override;
@@ -118,14 +101,11 @@ public:
 	virtual FTransform GetHandRootPose(const EPICOXRHandType DeviceHand) override;
 	virtual float GetHandScale(const EPICOXRHandType DeviceHand) override;
 	virtual EPICOXRHandTrackingConfidence GetTrackingConfidence(const EPICOXRHandType DeviceHand) override;
-	virtual FTransform GetPointerPose(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsHandTracked(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsAimValid(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsAimRayTouchedValid(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsSystemGestureInProgress(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsDominantHand(const EPICOXRHandType DeviceHand) override;
-	virtual bool IsMenuPressed(const EPICOXRHandType DeviceHand) override;
-	virtual float GetClickStrength(const EPICOXRHandType DeviceHand) override;
+	virtual FTransform GetRayPose(const EPICOXRHandType DeviceHand) override;
+	virtual bool IsComputed(const EPICOXRHandType DeviceHand) override;
+	virtual bool IsRayValid(const EPICOXRHandType DeviceHand) override;
+	virtual bool IsPinchValid(const EPICOXRHandType DeviceHand) override;
+	virtual float GetPinchStrength(const EPICOXRHandType DeviceHand) override;
 	virtual bool GetFingerIsPinching(const EPICOXRHandType DeviceHand,const EPICOXRHandFinger Finger) override;
 	virtual float GetFingerPinchStrength(const EPICOXRHandType DeviceHand, const EPICOXRHandFinger Finger) override;
 	virtual EPICOXRActiveInputDevice GetActiveInputDevice() override;
@@ -137,8 +117,8 @@ public:
 
 	// IMotionController overrides
 	virtual FName GetMotionControllerDeviceTypeName() const override;
-	virtual bool GetControllerOrientationAndPosition(const int32 ControllerIndex, const EControllerHand DeviceHand, FRotator& OutOrientation, FVector& OutPosition, float WorldToMetersScale) const override;
-	virtual ETrackingStatus GetControllerTrackingStatus(const int32 ControllerIndex, const EControllerHand DeviceHand) const override;
+	virtual bool GetControllerOrientationAndPosition(const int32 ControllerIndex, const FName MotionSource, FRotator& OutOrientation, FVector& OutPosition, float WorldToMetersScale) const override;
+	virtual ETrackingStatus GetControllerTrackingStatus(const int32 ControllerIndex, const FName MotionSource) const override;
 
 	// IHapticDevice overrides
 	IHapticDevice* GetHapticDevice() override { return (IHapticDevice*)this; }
@@ -166,17 +146,19 @@ public:
 private:
 	//HandTracking
 	void SetAppHandTrackingEnabled(bool Enabled);
+
+	static void AddNonExistingKey(const TArray<FKey> &ExistAllKeys,const FKeyDetails& KeyDetails);
 	
 	FPICOXRHandState HandStates[2];
 	EPICOXRHandType SkeletonType;
 	bool bHandTrackingAvailable;
 	
-	void RegisterKeys();
+	static void RegisterKeys();
 	void SetKeyMapping();
 	void ProcessButtonEvent();
 	void ProcessButtonAxis();
 	void UpdateConnectState();
-	void GetControllerSensorData(EControllerHand DeviceHand, float WorldToMetersScale, double inPredictedTime, FVector SourcePosition, FQuat SourceOrientation, FRotator& OutOrientation, FVector& OutPosition) const;
+	void GetControllerSensorData(const FGameSettings* InSettings, EControllerHand DeviceHand, float WorldToMetersScale, double inPredictedTime, FVector SourcePosition, FQuat SourceOrientation, FRotator& OutOrientation, FVector& OutPosition) const;
 
 	FPICOXRHMD* PICOXRHMD;
 	TSharedRef<FGenericApplicationMessageHandler> MessageHandler;
@@ -199,7 +181,8 @@ private:
 	float LeftControllerGripValue;
 	float RightControllerGripValue;
 	uint32_t MainControllerHandle;
-	EPICOInputType ControllerType;
+	PxrControllerType ControllerType;
 	UPICOXRSettings* Settings;
 	int CurrentVersion;
+	float CurrentFramePredictedTime;
 };

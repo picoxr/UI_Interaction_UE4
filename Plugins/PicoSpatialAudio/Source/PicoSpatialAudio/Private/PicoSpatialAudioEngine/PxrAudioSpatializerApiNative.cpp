@@ -1,4 +1,7 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerApiNative.h"
+#include "PicoSpatialAudioEventTracker.h"
 
 namespace Pxr_Audio
 {
@@ -14,6 +17,7 @@ namespace Pxr_Audio
 			size_t FramesPerBuffer,
 			size_t SampleRate)
 		{
+			PicoSpatialAudioEventTracker::LogSdkApi("pico_spatial_audio_create_context|unreal_native");
 			return PxrAudioSpatializer_CreateContext(&Context, Mode, FramesPerBuffer, SampleRate);
 		}
 
@@ -65,12 +69,52 @@ namespace Pxr_Audio
 			return Result;
 		}
 
+		PxrAudioSpatializer_Result APINative::SubmitMeshWithConfig(const float* Vertices, int VerticesCount,
+		                                                           const int* Indices, int IndicesCount,
+		                                                           const PxrAudioSpatializer_AcousticMeshConfig* Config,
+		                                                           int* GeometryId)
+		{
+			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
+			if (ContextDestructionMutex.try_lock_shared())
+			{
+				Result = PxrAudioSpatializer_SubmitMeshWithConfig(Context, Vertices, VerticesCount, Indices,
+				                                                  IndicesCount, Config, GeometryId);
+				PicoSpatialAudioEventTracker::LogSdkApi("pico_spatial_audio_submit_mesh_with_config|unreal_native");
+				ContextDestructionMutex.unlock_shared();
+			}
+			return Result;
+		}
+
 		PxrAudioSpatializer_Result APINative::RemoveMesh(int GeometryId)
 		{
 			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
 			if (ContextDestructionMutex.try_lock_shared())
 			{
 				Result = PxrAudioSpatializer_RemoveMesh(Context, GeometryId);
+				ContextDestructionMutex.unlock_shared();
+			}
+			return Result;
+		}
+
+		PxrAudioSpatializer_Result APINative::SetMeshEnable(int GeometryId, bool Enable)
+		{
+			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
+			if (ContextDestructionMutex.try_lock_shared())
+			{
+				Result = PxrAudioSpatializer_SetMeshEnable(Context, GeometryId, Enable);
+				ContextDestructionMutex.unlock_shared();
+			}
+			return Result;
+		}
+
+		PxrAudioSpatializer_Result APINative::SetMeshConfig(int GeometryId,
+		                                                    const PxrAudioSpatializer_AcousticMeshConfig* Config,
+		                                                    unsigned PropertyMask)
+		{
+			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
+			if (ContextDestructionMutex.try_lock_shared())
+			{
+				Result = PxrAudioSpatializer_SetMeshConfig(Context, GeometryId, Config, PropertyMask);
 				ContextDestructionMutex.unlock_shared();
 			}
 			return Result;
@@ -148,6 +192,32 @@ namespace Pxr_Audio
 			if (ContextDestructionMutex.try_lock_shared())
 			{
 				Result = PxrAudioSpatializer_AddSourceWithConfig(Context, SourceConfig, SourceId, bIsAsync);
+				PicoSpatialAudioEventTracker::LogSdkApi("pico_spatial_audio_add_source_with_config|unreal_native");
+				ContextDestructionMutex.unlock_shared();
+			}
+			return Result;
+		}
+
+		PxrAudioSpatializer_Result APINative::SetSourceConfig(const int SourceId,
+		                                                      const PxrAudioSpatializer_SourceConfig* SourceConfig,
+		                                                      unsigned int PropertyMask)
+		{
+			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
+			if (ContextDestructionMutex.try_lock_shared())
+			{
+				Result = PxrAudioSpatializer_SetSourceConfig(Context, SourceId, SourceConfig, PropertyMask);
+				ContextDestructionMutex.unlock_shared();
+			}
+			return Result;
+		}
+
+		PxrAudioSpatializer_Result APINative::GetSourceConfig(const int SourceId,
+		                                                      PxrAudioSpatializer_SourceConfig* SourceConfig)
+		{
+			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
+			if (ContextDestructionMutex.try_lock_shared())
+			{
+				Result = PxrAudioSpatializer_GetSourceConfig(Context, SourceId, SourceConfig);
 				ContextDestructionMutex.unlock_shared();
 			}
 			return Result;
@@ -315,12 +385,16 @@ namespace Pxr_Audio
 			return Result;
 		}
 
+		DECLARE_CYCLE_STAT(TEXT("APINative::UpdateScene"), STAT_APINative_UpdateScene, STATGROUP_PicoSpatialAudio)
 		PxrAudioSpatializer_Result APINative::UpdateScene()
 		{
 			PxrAudioSpatializer_Result Result = PASP_SUCCESS;
 			if (ContextDestructionMutex.try_lock_shared())
 			{
-				Result = PxrAudioSpatializer_UpdateScene(Context);
+				{
+					SCOPE_CYCLE_COUNTER(STAT_APINative_UpdateScene)
+					Result = PxrAudioSpatializer_UpdateScene(Context);
+				}
 				ContextDestructionMutex.unlock_shared();
 			}
 			return Result;

@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "OnlineIdentityPico.h"
 #include "OnlineSubsystemPicoPrivate.h"
@@ -315,23 +313,25 @@ FString FOnlineIdentityPico::GetAuthToken(int32 LocalUserNum) const
 {
     // Testing
     UE_LOG_ONLINE_IDENTITY(Log, TEXT("FOnlineIdentityPico::GetAuthToken"));
-#if ENGINE_MAJOR_VERSION > 4
-    FUniqueNetIdPtr UserId = GetUniquePlayerId(LocalUserNum);
-#elif ENGINE_MINOR_VERSION > 26
-    FUniqueNetIdPtr UserId = GetUniquePlayerId(LocalUserNum);
-#elif ENGINE_MINOR_VERSION > 24
-    TSharedPtr<const FUniqueNetId> UserId = GetUniquePlayerId(LocalUserNum);
-#endif
 
-    if (UserId.IsValid())
-    {
-        TSharedPtr<FUserOnlineAccount> UserAccount = GetUserAccount(*UserId);
-        if (UserAccount.IsValid())
-        {
-            return UserAccount->GetAccessToken();
-        }
-    }
-    return FString();
+    return AuthToken;
+//#if ENGINE_MAJOR_VERSION > 4
+//    FUniqueNetIdPtr UserId = GetUniquePlayerId(LocalUserNum);
+//#elif ENGINE_MINOR_VERSION > 26
+//    FUniqueNetIdPtr UserId = GetUniquePlayerId(LocalUserNum);
+//#elif ENGINE_MINOR_VERSION > 24
+//    TSharedPtr<const FUniqueNetId> UserId = GetUniquePlayerId(LocalUserNum);
+//#endif
+//
+//    if (UserId.IsValid())
+//    {
+//        TSharedPtr<FUserOnlineAccount> UserAccount = GetUserAccount(*UserId);
+//        if (UserAccount.IsValid())
+//        {
+//            return UserAccount->GetAccessToken();
+//        }
+//    }
+//    return FString();
 }
 
 void FOnlineIdentityPico::RevokeAuthToken(const FUniqueNetId & UserId, const FOnRevokeAuthTokenCompleteDelegate & Delegate)
@@ -375,6 +375,35 @@ FPlatformUserId FOnlineIdentityPico::GetPlatformUserIdFromUniqueNetId(const FUni
     return PLATFORMUSERID_NONE;
 }
 
+#if ENGINE_MINOR_VERSION > 26
+void FOnlineIdentityPico::GetLinkedAccountAuthToken(int32 LocalUserNum, const FOnGetLinkedAccountAuthTokenCompleteDelegate& Delegate) const
+{
+#if PLATFORM_ANDROID
+    ppfRequest RequestId = ppf_User_GetIdToken();
+    PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
+        [Delegate, LocalUserNum](ppfMessageHandle Message, bool bIsError)
+        {
+            if (bIsError)
+            {
+                auto Error = ppf_Message_GetError(Message);
+                FExternalAuthToken EmptyToken;
+                Delegate.ExecuteIfBound(LocalUserNum, false, EmptyToken);
+            }
+            else
+            {
+                ppfMessageType messageType = ppf_Message_GetType(Message);
+                FString IDToken = ppf_Message_GetString(Message);
+                FExternalAuthToken Token;
+                Token.TokenString = IDToken;
+                Delegate.ExecuteIfBound(LocalUserNum, true, Token);
+            }
+        }));
+#endif
+    FExternalAuthToken EmptyToken;
+    Delegate.ExecuteIfBound(LocalUserNum, false, EmptyToken);
+}
+#endif
+
 FString FOnlineIdentityPico::GetAuthType() const
 {
     return TEXT("Pico");
@@ -388,6 +417,33 @@ UPico_User* FOnlineIdentityPico::GetLoginPicoUser(int32 LocalUserNum)
         return *LoginPicoUserMap.Find(LocalUserNum);
     }
     return nullptr;
+}
+
+void FOnlineIdentityPico::GetLoginUserOpenID(FGetIDToken OnGetIdTokenDelegate)
+{
+    UE_LOG_ONLINE_IDENTITY(Display, TEXT("FOnlineIdentityPico::GetLoginUserOpenID"));
+#if PLATFORM_ANDROID
+    ppfRequest RequestId = ppf_User_GetIdToken();
+    PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
+        [OnGetIdTokenDelegate, this](ppfMessageHandle Message, bool bIsError)
+        {
+            if (bIsError)
+            {
+                auto Error = ppf_Message_GetError(Message);
+                FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+                OnGetIdTokenDelegate.ExecuteIfBound(true, ErrorMessage, FString());
+            }
+            else
+            {
+                ppfMessageType messageType = ppf_Message_GetType(Message);
+                FString IDToken = ppf_Message_GetString(Message);
+                this->AuthToken = IDToken;
+                OnGetIdTokenDelegate.ExecuteIfBound(false, FString(), IDToken);
+            }
+        }));
+#endif
 }
 
 FOnlineIdentityPico::FOnlineIdentityPico(FOnlineSubsystemPico & InSubsystem)
@@ -408,6 +464,8 @@ void FOnlineIdentityPico::OnLoginComplete(ppfMessageHandle Message, bool bIsErro
     {
         auto Error = ppf_Message_GetError(Message);
         ErrorStr = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorStr = ErrorStr + FString(". Error Code: ") + ErrorCode;
     }
     else
     {
@@ -507,6 +565,7 @@ void FOnlineIdentityPico::OnLoginComplete(ppfMessageHandle Message, bool bIsErro
             return;
         }
 #endif
+    
     }
 
     TriggerOnLoginCompleteDelegates(LocalUserNum, false, *FUniqueNetIdPico::EmptyId(), *ErrorStr);

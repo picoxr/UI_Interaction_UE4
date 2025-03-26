@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -15,6 +13,8 @@ const string HEX = "0123456789abcdef";
 
 /// @file RTCPicoUserInterface.h
 
+
+/// @cond
 DECLARE_LOG_CATEGORY_EXTERN(RtcInterface, Log, All);
 
 // <summary>Rtc engine privilege enum.</summary>
@@ -219,8 +219,11 @@ DECLARE_MULTICAST_DELEGATE_FourParams(FRtcUserUnPublishInfo, const FString& /*Ro
 DECLARE_MULTICAST_DELEGATE_FiveParams(FGetRtcStreamSyncInfo, const FString& /*RoomId*/, const FString& /*UserId*/, ERtcStreamIndex /*StreamIndex*/, ERtcSyncInfoStreamType /*RtcSyncInfoStreamType*/, const FString& /*Info*/)
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcMessageSendResult, int64 /*MessageId*/, int32 /*Error*/, const FString& /*RoomId*/)
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcBinaryMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Info*/)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcBinaryArrayMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, TArray<uint8> /*BinaryArray*/)
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcRoomMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Message*/)
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FRtcUserMessageReceived, const FString& /*RoomId*/, const FString& /*UserId*/, const FString& /*Message*/)
+/// @endcond
+
 /** @addtogroup Function Function
  *  This is the Function group
  *  @{
@@ -272,8 +275,8 @@ public:
     /// </param>
     /// <returns>Int:
     /// <ul>
-    /// <li>`0`: success</li> 
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li> 
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns>
     int RtcJoinRoom(const FString& RoomId, const FString& UserId, const FString& Token, const FString& UserExtra, ERtcRoomProfileType InRoomProfileType, bool bIsAutoSubscribeAudio);
@@ -282,8 +285,8 @@ public:
     /// <param name="RoomId">The ID of the room to be destroyed.</param>
     /// <returns>Int:
     /// <ul>
-    /// <li>`0`: success</li> 
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li> 
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns>
     int RtcDestroyRoom(const FString& RoomId);
@@ -300,8 +303,8 @@ public:
     /// <param name="RoomId">Room ID.</param>
     /// <returns>Int:
     /// <ul>
-    /// <li>`0`: success</li> 
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li> 
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns>
     int RtcLeaveRoom(const FString& RoomId);
@@ -406,7 +409,8 @@ public:
     /// <param name="RoomId">Room ID.</param>
     /// <param name="Ttl">The effective duration (in seconds) of room.</param>
     /// <param name="InValue">Channel effective time (in seconds).</param>
-    /// <param name="Delegate">Callback function proxy.</param>
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (const FString& /*String Token*/, bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     void GetToken(const FString& UserId, const FString& RoomId, int Ttl, int InValue, const FOnGetTokenComplete& Delegate = FOnGetTokenComplete());
 
     // V2
@@ -443,6 +447,39 @@ public:
     /// |-4|Send Failed. Send sync info with a un-publish audio stream.|
     /// </returns>
     int32 RtcSendStreamSyncInfo(int32 Info, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType);
+
+    /// <summary>
+    /// Sends stream sync info. The sync info data will be sent in the same packet with the audio data. Users who subscribe to this audio stream will receive the stream sync info message.
+    /// </summary>
+    /// <param name="Bytes">The stream sync info.</param>
+    /// <param name="InStreamIndex">The stream index:
+    /// <ul>
+    /// <li> `0`: Main</li>
+    /// <li> `1`: Screen</li>
+    /// <li> `2`: None</li>
+    /// </ul>
+    /// </param>
+    /// <param name="RepeatCount">The stream sync info will be sent repeatedly for the times set in `repeatCount`.
+    /// It's designed to avoid losing package and ensuring that the sync info can be sent successfully.
+    /// However, if `repeatCount` is too large, it will cause the sync info to pile up in the queue.
+    /// It is recommended to set this parameter to `1`.
+    /// </param>
+    /// <param name="InSyncInfoStreamType">The sync info stream type:
+    /// <ul>
+    /// <li>`0`: Audio</li>
+    /// <li>`1`: None</li>
+    /// </ul>
+    /// </param>
+    /// <returns>Any code which equals to or below `0` indicates success, and other codes indicate failure. 
+    /// | Code | Description|
+    /// |---|---|
+    /// |>=0|Send successfully. Indicates the times sent successfully.|
+    /// |-1|Send Failed. Message length exceeded 255B.|
+    /// |-2|Send Failed. The data is empty.|
+    /// |-3|Send Failed. Send sync info with a un-publish screen stream.|
+    /// |-4|Send Failed. Send sync info with a un-publish audio stream.|
+    /// </returns>
+    int32 RtcSendStreamSyncInfo(TArray<uint8> Bytes, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType);
 
     /// <summary>
     /// Publishes the local audio stream to a room so that the local user's voice can be heard by other users in the same room.
@@ -515,12 +552,21 @@ public:
     int64 RtcSendRoomBinaryMessage(const FString& RoomId, const FString& MessageInfo);
 
     /// <summary>
+    /// Sends a binary message to a room. All in-room users will receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room to which the binary message is to be sent.</param>
+    /// <param name="Bytes">The binary message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendRoomBinaryMessage(const FString& RoomId, TArray<uint8> Bytes);
+
+    /// <summary>
     /// Sends a text message to a room. All in-room users will receive this message.
     /// </summary>
     /// <param name="RoomId">The ID of the room to which the text message is to be sent.</param>
     /// <param name="Message">The text message to be sent.</param>
     /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
     int64 RtcSendRoomMessage(const FString& RoomId, const FString& Message);
+
 
     /// <summary>
     /// Sends a binary message to a user. Only the user can receive this message.
@@ -530,6 +576,15 @@ public:
     /// <param name="MessageInfo">The binary message to be sent.</param>
     /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
     int64 RtcSendUserBinaryMessage(const FString& RoomId, const FString& UserId, const FString& MessageInfo);
+
+    /// <summary>
+    /// Sends a binary message to a user. Only the user can receive this message.
+    /// </summary>
+    /// <param name="RoomId">The ID of the room the user is in.</param>
+    /// <param name="UserId">The ID of the user to whom the binary message is to be sent.</param>
+    /// <param name="Bytes">The binary message to be sent.</param>
+    /// <returns>A user message ID of type int64, which is automatically generated and incremented.</returns>
+    int64 RtcSendUserBinaryMessage(const FString& RoomId, const FString& UserId, TArray<uint8> Bytes);
 
     /// <summary>
     /// Sends a text message to a user. Only the user can receive this message.
@@ -709,6 +764,11 @@ public:
     /// Sets the callback to get notified when a to-room binary message is received.
     /// </summary>
     FRtcBinaryMessageReceived RtcBinaryMessageReceivedCallback;
+
+    /// <summary>
+    /// Sets the callback to get notified when a to-room binary message is received(As TArray<uint8>).
+    /// </summary>
+    FRtcBinaryArrayMessageReceived RtcBinaryArrayMessageReceivedCallback;
 
     /// <summary>
     /// Sets the callback to get notified when a to-room message is received.

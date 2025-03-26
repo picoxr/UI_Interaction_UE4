@@ -1,44 +1,42 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 using UnrealBuildTool;
 using System.IO;
 
 public class PICOXRInput : ModuleRules
 {
-	public PICOXRInput(ReadOnlyTargetRules Target) : base(Target)
-	{
-        System.Console.WriteLine(" Build the PICOXRInput Plugin");
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-
-        string PICOXRLibsDirectory = Path.Combine(ModuleDirectory, @"..\..\Libs");
-        string PICOXRHeaderDirectory = Path.Combine(PICOXRLibsDirectory, @"Include");
-        PICOXRHeaderDirectory = Path.GetFullPath(PICOXRHeaderDirectory);
-
+    public PICOXRInput(ReadOnlyTargetRules Target) : base(Target)
+    {
         PrivateIncludePathModuleNames.AddRange(
-                new []
-                {
-                    "InputDevice",			// For IInputDevice.h
-					"HeadMountedDisplay",	// For IMotionController.h
-					"ImageWrapper",
-                });
+            new[]
+            {
+                "InputDevice",			// For IInputDevice.h
+				"HeadMountedDisplay",	// For IMotionController.h
+				"ImageWrapper",
+                "XRBase"
+            });
 
         PrivateDependencyModuleNames.AddRange(
-            new []
+            new[]
             {
-                    "Core",
-                    "CoreUObject",
-                    "ApplicationCore",
-                    "Engine",
-                    "InputCore",
-                    "HeadMountedDisplay",
-                    "PICOXRHMD"
+                "Core",
+                "CoreUObject",
+                "ApplicationCore",
+                "Engine",
+                "InputCore",
+                "HeadMountedDisplay",
+                "PICOXRHMD",
+                "PXRPlugin",
+                "Projects",
+                "XRBase"
             });
         PrivateIncludePaths.AddRange(
-                new [] {
-					"PICOXRInput/Private",
-                    "PICOXRHMD/Private",
-                    PICOXRHeaderDirectory,
-                });
+            new[] {
+                "PICOXRInput/Private",
+                "PICOXRHMD/Private",
+            });
 
     }
 }

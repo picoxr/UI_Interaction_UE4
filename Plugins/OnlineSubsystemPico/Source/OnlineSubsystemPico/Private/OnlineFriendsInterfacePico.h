@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 #pragma once
 
 #include "CoreMinimal.h"
@@ -235,8 +233,8 @@ public:
     /// <param name="ListName">The name of the friend list to read.</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     virtual bool ReadFriendsList(int32 LocalUserNum, const FString& ListName, const FOnReadFriendsListComplete& Delegate = FOnReadFriendsListComplete()) override;

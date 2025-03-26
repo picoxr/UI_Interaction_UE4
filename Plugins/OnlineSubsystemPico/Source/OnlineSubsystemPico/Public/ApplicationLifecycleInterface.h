@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -41,8 +39,8 @@ public:
     /// <summary>Gets information about how the app was launched.</summary>
     /// <param name ="OutLaunchDetails">The [out] struct of launch details.</param> 
     /// <returns>Bool: 
-    /// * `true`: success
-    /// * `false`: failure
+    /// * `true`: Call success
+    /// * `false`: Call failure
     /// </returns>
     bool GetLaunchDetails(FLaunchDetails& OutLaunchDetails);
 
@@ -58,10 +56,27 @@ public:
     /// * `FailedOtherReason`
     /// </param> 
     /// <returns>Bool: 
-    /// * `true`: the result has been logged
-    /// * `false`: failed to log the result
+    /// * `true`: Call success
+    /// * `false`: Call failure
     /// </returns>
     bool LogDeeplinkResult(const FString& TrackingID, ELaunchResult LaunchResult);
+
+    /// <summary>
+    /// Get device system information synchronously. 
+    /// </summary>
+    /// <param name ="SystemInfo">The [out] struct of system info:
+    /// * `ROMVersion`: The ROM version of the device system
+    /// * `Locale`: The region of the device system
+    /// * `ProductName`: The product name of the device system
+    /// * `bIsCnDevice`: Whether the device system is global or in mainland China
+    /// * `MatrixVersionName`: The matrix version name of the device system
+    /// * `MatrixVersionCode`: The matrix version code of the device system
+    /// </param> 
+    /// <returns>Bool:
+    /// * `true`: Call success
+    /// * `false`: Call failure
+    /// </returns>
+    bool GetSystemInfo(FPicoSystemInfo &SystemInfo);
 
     FDelegateHandle OnLaunchIntentChangedNotificationHandle;
     void OnLaunchIntentChangedNotification(ppfMessageHandle Message, bool bIsError);

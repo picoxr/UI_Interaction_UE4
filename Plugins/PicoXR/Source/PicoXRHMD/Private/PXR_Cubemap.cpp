@@ -1,4 +1,6 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 
 #include "PXR_Cubemap.h"
@@ -14,6 +16,7 @@
 #include "Engine/World.h"
 #include "Misc/FileHelper.h"
 #include "Modules/ModuleManager.h"
+#include "TextureResource.h"
 
 // Sets default values
 APXR_Cubemap::APXR_Cubemap()
@@ -57,7 +60,8 @@ bool APXR_Cubemap::SaveCubeMap_PICO()
 		CaptureComponent->SetVisibility(true);
 		CaptureComponent->SetHiddenInGame(false);
 
-		CaptureComponent->CaptureStereoPass = EStereoscopicPass::eSSP_FULL;//LEFT_EYE; //??
+		//Different from 4.27,not have this property
+		//CaptureComponent->CaptureStereoPass = EStereoscopicPass::eSSP_FULL;//LEFT_EYE; //??
 		CaptureComponent->FOVAngle = 90.f;
 		CaptureComponent->bCaptureEveryFrame = true;
 		CaptureComponent->CaptureSource = ESceneCaptureSource::SCS_FinalColorLDR;
@@ -85,7 +89,7 @@ bool APXR_Cubemap::SaveCubeMap_PICO()
 	OutputDir = FPaths::ProjectSavedDir() + TEXT("/Cubemaps");
 	IFileManager::Get().MakeDirectory(*OutputDir);
 
-	auto CopyRT2D = [=]()
+	auto CopyRT2D = [this]()
 	{
 		IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
 		TSharedPtr<IImageWrapper> ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
@@ -114,12 +118,7 @@ bool APXR_Cubemap::SaveCubeMap_PICO()
 		}
 
 		ImageWrapper->SetRaw(WholeCubemapData.GetData(), WholeCubemapData.GetAllocatedSize(), CaptureBoxSideRes * 6, CaptureBoxSideRes, ERGBFormat::BGRA, 8);
-#if ENGINE_MINOR_VERSION >24
 		const TArray64<uint8>& PNGData = ImageWrapper->GetCompressed(100);
-#else
-		const TArray<uint8>& PNGData = ImageWrapper->GetCompressed(100);
-#endif
-
 		const FString Filename = OutputDir + FString::Printf(TEXT("/Cubemap-%d-%s.png"), CaptureBoxSideRes, *FDateTime::Now().ToString(TEXT("%m.%d-%H.%M.%S")));
 
 		isCatchImageWP = FFileHelper::SaveArrayToFile(PNGData, *Filename);

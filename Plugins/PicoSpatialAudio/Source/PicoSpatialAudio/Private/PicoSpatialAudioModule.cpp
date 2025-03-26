@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
 
 #include "PicoSpatialAudioModule.h"
 
@@ -6,6 +6,7 @@
 #include "PxrAudioSpatializerSpatialization.h"
 #include "PxrAudioSpatializerReverb.h"
 #include "PxrAudioSpatializerListener.h"
+#include "PicoSpatialAudioEngine/PicoSpatialAudioEventTracker.h"
 
 /**
  * @brief Implementation of FPicoSpatializationFactory 
@@ -106,6 +107,9 @@ void FPicoSpatialAudioModule::StartupModule()
 	IModularFeatures::Get().RegisterModularFeature(FPicoReverbFactory::GetModularFeatureName(), &ReverbPluginFactory);
 
 	UE_LOG(LogPicoSpatialAudio, Display, TEXT("Pico Spatial Audio Module is initialized"));
+
+	//	Start event tracking module
+	PicoSpatialAudioEventTracker::Init();
 }
 
 void FPicoSpatialAudioModule::ShutdownModule()
@@ -119,6 +123,9 @@ void FPicoSpatialAudioModule::ShutdownModule()
 	UnloadDll(DllHandle);
 
 	UE_LOG(LogPicoSpatialAudio, Display, TEXT("Pico Spatial Audio Module is shutdown"));
+	
+	//	Stop event tracking module
+	PicoSpatialAudioEventTracker::Shutdown();
 }
 
 IAudioPluginFactory* FPicoSpatialAudioModule::GetPluginFactory(EAudioPlugin PluginType)
@@ -170,7 +177,7 @@ void* FPicoSpatialAudioModule::LoadDll()
 		Path = ModuleDir / TEXT("Source/PicoSpatialAudio/libs/windows/dll/PicoSpatializerNative.dll");
 #endif	// PLATFORM_64BITS
 #elif PLATFORM_MAC
-	Path = ModuleDir / TEXT("Source/PicoSpatialAudio/libs/mac/x86_64/libPicoSpatializerNative.dylib");
+	Path = ModuleDir / TEXT("Source/PicoSpatialAudio/libs/mac/libPicoSpatializerNative.dylib");
 #elif PLATFORM_ANDROID
 		// Not necessary on this platform.
 		return nullptr;

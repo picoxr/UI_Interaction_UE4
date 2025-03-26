@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// CopyrightÂ® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -7,6 +7,7 @@
 #include "PPF_Platform.h"
 #include "OnlineSubsystemPicoNames.h"
 #include "OnlineSubsystemPico.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "Pico_Sport.generated.h"
 
 /**
@@ -54,11 +55,13 @@ public:
     /// </summary>
     /// <param name="BeginTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the begin time of the period.</param>
     /// <param name="EndTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the end time of the period.</param>
-    /// <param name="InGetDailySummaryDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetDailySummaryDelegate">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportDailySummaryArray *, SportDailySummaryArray).</param>
+    /// <remarks></remarks>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetDailySummary(int64 BeginTime, int64 EndTime, FGetDailySummary InGetDailySummaryDelegate);
@@ -68,11 +71,12 @@ public:
     /// </summary>
     /// <param name="BeginTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the begin time of the period.</param>
     /// <param name="EndTime">A DateTime struct(FDateTime(int64 InTicks)GetTicks()) defining the end time of the period.</param>
-    /// <param name="InGetSummaryDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetSummaryDelegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportSummary *, SportSummary).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetSummary(int64 BeginTime, int64 EndTime, FGetSummary InGetSummaryDelegate);
@@ -80,11 +84,12 @@ public:
     /// <summary>
     /// Gets a user's basic information and exercise plan.
     /// </summary>
-    /// <param name="InGetSportUserInfoDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetSportUserInfoDelegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportUserInfo *, SportUserInfo).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetSportUserInfo(FGetSportUserInfo InGetSportUserInfoDelegate);
@@ -120,11 +125,12 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="BeginTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the begin time of the period.</param>
     /// <param name="EndTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the end time of the period.</param>
-    /// <param name="InGetDailySummaryDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetDailySummaryDelegate">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportDailySummaryArray *, SportDailySummaryArray).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Sport")
@@ -136,11 +142,12 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="BeginTime">A DateTime struct(FDateTime(int64 InTicks).GetTicks()) defining the begin time of the period.</param>
     /// <param name="EndTime">A DateTime struct(FDateTime(int64 InTicks)GetTicks()) defining the end time of the period.</param>
-    /// <param name="InGetSummaryDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetSummaryDelegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportSummary *, SportSummary).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Sport")
@@ -150,11 +157,12 @@ public:
     /// Gets a user's basic information and exercise plan.
     /// </summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
-    /// <param name="InGetSportUserInfoDelegate">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetSportUserInfoDelegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_SportUserInfo *, SportUserInfo).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Sport")
@@ -184,6 +192,7 @@ public:
 /** @} */ // end of BP_Sport
 /** @} */ // end of BlueprintFunction
 
+/// @brief UPico_SportDailySummary class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_SportDailySummary : public UObject
 {
@@ -201,31 +210,33 @@ private:
 
 public:
 
-    // Count ID
+    /** @brief The ID of the summary.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     int64 GetID();
 
-    // Date
+    /** @brief The date when the summary was generated.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     int64 GetDate();
 
-    // Daily exercise duration (in seconds)
+    /** @brief The sport duration (in seconds).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     int32 GetDurationInSeconds();
 
-    // Planned daily exercise duration (in minutes)
+    /** @brief The planned sport duration (in seconds).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     int32 GetPlanDurationInMinutes();
 
-    // Calorie
+    /** @brief The actual calorie burnt (in kilo calorie).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     float GetCalorie();
 
-    // Plan calorie
+    /** @brief The planned calorie to burn. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary")
     float GetPlanCalorie();
 };
 
+
+/// @brief UPico_SportDailySummaryArray class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_SportDailySummaryArray : public UObject
 {
@@ -240,13 +251,17 @@ private:
 
 public:
 
+    /** @brief Get the size of SportDailySummaryArray .*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary Array")
     int32 GetSize();
 
+    /** @brief Get SportDailySummaryArray element form Index.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Daily Summary Array")
     UPico_SportDailySummary* GetElement(int32 Index);
 };
 
+
+/// @brief UPico_SportSummary class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_SportSummary : public UObject
 {
@@ -262,23 +277,24 @@ private:
 
 public:
 
-    // Daily exercise duration (in seconds)
+    /** @brief The sport duration (in seconds).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Summary")
     int64 GetDurationInSeconds();
 
-    // Calorie
+    /** @brief The calorie burnt (in kilo calorie).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Summary")
     float GetCalorie();
 
-    // Start time
+    /** @brief The time when the user started playing sport.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Summary")
     int64 GetStartTime();
 
-    // End time
+    /** @brief The time when the user stopped playing sport.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|Sport Summary")
     int64 GetEndTime();
 };
 
+/// @brief UPico_SportUserInfo class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_SportUserInfo : public UObject
 {
@@ -298,35 +314,35 @@ private:
 
 public:
 
-    // Gender
+    /**@brief The gender of the user (in cm). */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     EUserGender GetGender();
 
-    // Birthday
+    /**@brief The birthday of the user (in cm). */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int64 GetBirthday();
 
-    // Stature(cm)
+    /**@brief The height of the user (in cm). */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int32 GetStature();
 
-    // Weight(kg) 
+    /**@brief The weight of the user (in kg). */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int32 GetWeight();
 
-    // 1-low£»2-medium£»3-high
+    /** @brief The sport level that indicates the intensity of the sport.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int32 GetSportLevel();
 
-    // Planned daily exercise duration (in minutes)
+    /** @brief The planned daily sport duration (in minutes).*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int32 GetDailyDurationInMinutes();
 
-    // Planned days for exercise per week
+    /** @brief The planned weekly sport days.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     int32 GetDaysPerWeek();
 
-    // Exercise target: "lose weight" or "stay healthy"
+    /** @brief The sport purpose, such as `keep fit` and `lose weight`. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Sport|User Info")
     ESportTarget GetSportTarget();
 };

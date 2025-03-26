@@ -1,4 +1,6 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "IInputDevice.h"
@@ -60,35 +62,14 @@ struct FPICOKeyNames
 	static const FName PICOTouch_Right_Thumbstick_Left;
 	static const FName PICOTouch_Right_Thumbstick_Right;
 
-	static const FName PICOHand_Left_ThumbClick;
-	static const FName PICOHand_Left_IndexPinch;
-	static const FName PICOHand_Left_MiddlePinch;
-	static const FName PICOHand_Left_RingPinch;
-	static const FName PICOHand_Left_PinkyPinch;
+	static const FName PICOHand_Left_Pinch;
+	static const FName PICOHand_Right_Pinch;
 
-	static const FName PICOHand_Right_ThumbClick;
-	static const FName PICOHand_Right_IndexPinch;
-	static const FName PICOHand_Right_MiddlePinch;
-	static const FName PICOHand_Right_RingPinch;
-	static const FName PICOHand_Right_PinkyPinch;
-
-	static const FName PICOHand_Left_SystemGesture;
-	static const FName PICOHand_Right_SystemGesture;
-
-	static const FName PICOHand_Left_ThumbClickStrength;
-	static const FName PICOHand_Left_IndexPinchStrength;
-	static const FName PICOHand_Left_MiddlePinchStrength;
-	static const FName PICOHand_Left_RingPinchStrength;
-	static const FName PICOHand_Left_PinkyPinchStrength;
-	
-	static const FName PICOHand_Right_ThumbClickStrength;
-	static const FName PICOHand_Right_IndexPinchStrength;
-	static const FName PICOHand_Right_MiddlePinchStrength;
-	static const FName PICOHand_Right_RingPinchStrength;
-	static const FName PICOHand_Right_PinkyPinchStrength;
+	static const FName PICOHand_Left_PinchStrength;
+	static const FName PICOHand_Right_PinchStrength;
 };
 
-struct FPICOTouchKey
+struct PICOXRINPUT_API FPICOTouchKey
 {
 	// PICO Touch Controller
 	static const FKey PICOTouch_Left_X_Click;
@@ -143,31 +124,10 @@ struct FPICOTouchKey
 	static const FKey PICOTouch_Right_Thumbstick_Left;
 	static const FKey PICOTouch_Right_Thumbstick_Right;
 
-	static const FKey PICOHand_Left_ThumbClick;
-	static const FKey PICOHand_Left_IndexPinch;
-	static const FKey PICOHand_Left_MiddlePinch;
-	static const FKey PICOHand_Left_RingPinch;
-	static const FKey PICOHand_Left_PinkyPinch;
-
-	static const FKey PICOHand_Right_ThumbClick;
-	static const FKey PICOHand_Right_IndexPinch;
-	static const FKey PICOHand_Right_MiddlePinch;
-	static const FKey PICOHand_Right_RingPinch;
-	static const FKey PICOHand_Right_PinkyPinch;
-
-	static const FKey PICOHand_Left_SystemGesture;
-	static const FKey PICOHand_Right_SystemGesture;
-
-	static const FKey PICOHand_Left_ThumbClickStrength;
-	static const FKey PICOHand_Left_IndexPinchStrength;
-	static const FKey PICOHand_Left_MiddlePinchStrength;
-	static const FKey PICOHand_Left_RingPinchStrength;
-	static const FKey PICOHand_Left_PinkyPinchStrength;
-
-	static const FKey PICOHand_Right_ThumbClickStrength;
-	static const FKey PICOHand_Right_IndexPinchStrength;
-	static const FKey PICOHand_Right_MiddlePinchStrength;
-	static const FKey PICOHand_Right_RingPinchStrength;
-	static const FKey PICOHand_Right_PinkyPinchStrength;
+	static const FKey PICOHand_Left_Pinch;
+	static const FKey PICOHand_Right_Pinch;
+	
+	static const FKey PICOHand_Left_PinchStrength;
+	static const FKey PICOHand_Right_PinchStrength;
 	
 };

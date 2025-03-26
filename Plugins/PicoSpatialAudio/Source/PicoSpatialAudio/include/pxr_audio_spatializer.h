@@ -167,6 +167,39 @@ PxrAudioSpatializer_SubmitMeshAndMaterialFactor(PxrAudioSpatializer_Context* ctx
                                                 int* geometry_id);
 
 /**
+ * 提交mesh到场景中。与 PxrAudioSpatializer_SubmitMesh 功能相同，不过这个API可以直接输入mesh的配置属性数据结构
+ *
+ * @param ctx 要使用的的 context
+ * @param vertices 场景的顶点数组
+ * @param vertices_count 场景中顶点的个数
+ * @param indices 场景中三角形的顶点索引数组
+ * @param indices_count 顶点索引数组（三角形）的个数
+ * @param config Mesh 的属性
+ * @param geometry_id 返回提交的 Mesh 的 geometry_id，每个 Mesh 在场景中会有唯一对应的 geometry_id
+ * @return 返回执行结果
+ *
+ * Submits acoustic mesh to the scene. This API has the same functionality as PxrAudioSpatializer_SubmitMesh, but can
+ * directly input property of mesh.
+ *
+ * @param ctx context
+ * @param vertices Vertices array of the scene
+ * @param vertices_count Number of vertices in the vertices array
+ * @param indices Indices array of the scene
+ * @param indices_count Number of triangles represented by the indices array
+ * @param config Config of the mesh
+ * @param[out] geometry_id Returns the geometry id of the submitted scene mesh, this is unique in current current
+ * @return Error code of this API call. Returns YGG_SUCCESS if nothing was wrong.
+ */
+PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result
+PxrAudioSpatializer_SubmitMeshWithConfig(PxrAudioSpatializer_Context* ctx,
+                                         const float* vertices,
+                                         int vertices_count,
+                                         const int* indices,
+                                         int indices_count,
+                                         const PxrAudioSpatializer_AcousticMeshConfig* config,
+                                         int* geometry_id);
+
+/**
  * 从场景中删除指定的场景mesh
  * @param ctx 要使用的的 context
  * @param geometry_id 要删除的 Mesh 的 geometry_id，每个 Mesh 在场景中会有唯一对应的 geometry_id
@@ -178,7 +211,7 @@ PxrAudioSpatializer_SubmitMeshAndMaterialFactor(PxrAudioSpatializer_Context* ctx
  * @return Error code of this API call. Returns PASP_SUCCESS if nothing was wrong.
  */
 PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result PxrAudioSpatializer_RemoveMesh(PxrAudioSpatializer_Context* ctx,
-                                                                                    int geometry_id);
+                                                                                       int geometry_id);
 
 /**
  * 从场景中 enable / disable 指定的场景mesh
@@ -195,6 +228,32 @@ PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result PxrAudioSpatializer_Remo
  */
 PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result
 PxrAudioSpatializer_SetMeshEnable(PxrAudioSpatializer_Context* ctx, int geometry_id, bool enable);
+
+/**
+ * 设定指定场景mesh的位置、朝向，和缩放。如果想让被提交的mesh有初始的位置、朝向，以及缩放的话，请务必在提交mesh后立刻调用这个接口。
+ * @param ctx 要使用的的 context
+ * @param geometry_id 要修改的 Mesh 的 geometry_id，每个 Mesh 在场景中会有唯一对应的 geometry_id
+ * @param config Mesh 的配置属性
+ * @param property_mask 一个表示什么Mesh属性需要被修改的bit mask。只有和property_mask 按位与之后不为0的
+ * PxrAudioSpatializer_AcousticMeshConfig 才会被修改
+ * @return 返回执行结果
+ *
+ * Setup the position, rotation, and scaling of the specified mesh via a 4x4 transform matrix. If you want to
+ * specify the initial transform of a submitted mesh, please call this API as soon as you finished your mesh submission
+ * call.
+ * @param ctx context
+ * @param geometry_id ID of the mesh you want to config
+ * @param config Config of the mesh
+ * @param property_mask A bit mask that specify which properties of the mesh need to be changed. Only the
+ * PxrAudioSpatializer_AcousticMeshConfig that yield non-zero value by bit-wise and operation with property_mask will be
+ * changed.
+ * @return Error code of this API call. Returns YGG_SUCCESS if nothing was wrong.
+ */
+PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result
+PxrAudioSpatializer_SetMeshConfig(PxrAudioSpatializer_Context* ctx,
+                                  int geometry_id,
+                                  const PxrAudioSpatializer_AcousticMeshConfig* config,
+                                  unsigned int property_mask = PASP_MeshProperty_All);
 
 /**
  * 根据输入的材质预设，输出材质的吸收参数
@@ -425,7 +484,8 @@ PxrAudioSpatializer_AddSourceWithConfig(PxrAudioSpatializer_Context* ctx,
 PXR_AUDIO_SPATIALIZER_EXPORT PxrAudioSpatializer_Result
 PxrAudioSpatializer_SetSourceConfig(PxrAudioSpatializer_Context* ctx,
                                     const int source_id,
-                                    const PxrAudioSpatializer_SourceConfig* source_config);
+                                    const PxrAudioSpatializer_SourceConfig* source_config,
+                                    unsigned int property_mask = PASP_SourceProperty_All);
 /**
  * 获得声源的 source config 配置
  *

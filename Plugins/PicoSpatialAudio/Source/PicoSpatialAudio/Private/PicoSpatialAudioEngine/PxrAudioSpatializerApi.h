@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #pragma once
 #include "pxr_audio_spatializer_types.h"
 
@@ -26,7 +28,6 @@ namespace Pxr_Audio
 				Material,
 				int* GeometryId) = 0;
 			virtual PxrAudioSpatializer_Result SubmitMeshAndMaterialFactor(
-
 				const float* Vertices,
 				int VerticesCount,
 				const int* Indices,
@@ -35,7 +36,19 @@ namespace Pxr_Audio
 				float ScatteringFactor,
 				float TransmissionFactor,
 				int* GeometryId) = 0;
+			virtual PxrAudioSpatializer_Result SubmitMeshWithConfig(
+				const float* Vertices,
+				int VerticesCount,
+				const int* Indices,
+				int IndicesCount,
+				const PxrAudioSpatializer_AcousticMeshConfig* Config,
+				int* GeometryId) = 0;
 			virtual PxrAudioSpatializer_Result RemoveMesh(int GeometryId) = 0;
+			virtual PxrAudioSpatializer_Result SetMeshEnable(int GeometryId, bool Enable) = 0;
+			virtual PxrAudioSpatializer_Result
+			SetMeshConfig(int GeometryId,
+			              const PxrAudioSpatializer_AcousticMeshConfig* Config,
+			              unsigned int PropertyMask = PASP_MeshProperty_All) = 0;
 			virtual PxrAudioSpatializer_Result GetAbsorptionFactor(
 				PxrAudioSpatializer_AcousticsMaterial Material, float* AbsorptionFactor) = 0;
 			virtual PxrAudioSpatializer_Result GetScatteringFactor(
@@ -49,7 +62,6 @@ namespace Pxr_Audio
 				int* SourceId,
 				bool bIsAsync = false) = 0;
 			virtual PxrAudioSpatializer_Result AddSourceWithOrientation(
-
 				PxrAudioSpatializer_SourceMode Mode,
 				const float* Position,
 				const float* Front,
@@ -61,8 +73,12 @@ namespace Pxr_Audio
 				const PxrAudioSpatializer_SourceConfig* SourceConfig,
 				int* SourceId,
 				bool bIsAsync = false) = 0;
+			virtual PxrAudioSpatializer_Result SetSourceConfig(const int SourceId,
+			                                                   const PxrAudioSpatializer_SourceConfig* SourceConfig,
+			                                                   unsigned int PropertyMask = PASP_SourceProperty_All) = 0;
+			virtual PxrAudioSpatializer_Result GetSourceConfig(const int source_id,
+			                                                   PxrAudioSpatializer_SourceConfig* source_config) = 0;
 			virtual PxrAudioSpatializer_Result SetSourceAttenuationMode(
-
 				int SourceId,
 				PxrAudioSpatializer_SourceAttenuationMode Mode,
 				DistanceAttenuationCallback DirectDistanceAttenuationCallback = nullptr,

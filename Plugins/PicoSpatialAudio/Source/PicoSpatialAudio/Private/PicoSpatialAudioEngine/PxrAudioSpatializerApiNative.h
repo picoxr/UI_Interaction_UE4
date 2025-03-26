@@ -1,7 +1,10 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #pragma once
 #include "PxrAudioSpatializerApi.h"
 #include "pxr_audio_spatializer.h"
 #include "pxr_audio_spatializer_types.h"
+#include "PxrAudioSpatializerCommonUtils.h"
 #include <shared_mutex>
 
 namespace Pxr_Audio
@@ -39,7 +42,16 @@ namespace Pxr_Audio
 			                                                               float ScatteringFactor,
 			                                                               float TransmissionFactor,
 			                                                               int* GeometryId) override;
+			virtual PxrAudioSpatializer_Result SubmitMeshWithConfig(const float* Vertices, int VerticesCount,
+			                                                        const int* Indices, int IndicesCount,
+			                                                        const PxrAudioSpatializer_AcousticMeshConfig*
+			                                                        Config,
+			                                                        int* GeometryId) override;
 			virtual PxrAudioSpatializer_Result RemoveMesh(int GeometryId) override;
+			virtual PxrAudioSpatializer_Result SetMeshEnable(int GeometryId, bool Enable) override;
+			virtual PxrAudioSpatializer_Result SetMeshConfig(int GeometryId,
+			                                                 const PxrAudioSpatializer_AcousticMeshConfig* Config,
+			                                                 unsigned PropertyMask) override;
 			virtual PxrAudioSpatializer_Result GetAbsorptionFactor(
 				PxrAudioSpatializer_AcousticsMaterial Material, float* AbsorptionFactor) override;
 			virtual PxrAudioSpatializer_Result GetScatteringFactor(
@@ -63,6 +75,12 @@ namespace Pxr_Audio
 				const PxrAudioSpatializer_SourceConfig* SourceConfig,
 				int* SourceId,
 				bool bIsAsync = false) override;
+			virtual PxrAudioSpatializer_Result SetSourceConfig(const int SourceId,
+			                                                   const PxrAudioSpatializer_SourceConfig* SourceConfig,
+			                                                   unsigned int PropertyMask =
+				                                                   PASP_SourceProperty_All) override;
+			virtual PxrAudioSpatializer_Result GetSourceConfig(const int SourceId,
+			                                                   PxrAudioSpatializer_SourceConfig* SourceConfig) override;
 			virtual PxrAudioSpatializer_Result SetSourceAttenuationMode(int SourceId,
 			                                                            PxrAudioSpatializer_SourceAttenuationMode Mode,
 			                                                            DistanceAttenuationCallback
@@ -137,6 +155,7 @@ namespace Pxr_Audio
 				int SourceId,
 				PxrAudioSpatializer_SourceMode Mode) override;
 			virtual PxrAudioSpatializer_Result Destroy() override;
+
 		private:
 			PxrAudioSpatializer_Context* Context;
 			std::shared_timed_mutex ContextDestructionMutex;

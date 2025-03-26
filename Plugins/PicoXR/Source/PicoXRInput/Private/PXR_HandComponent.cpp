@@ -1,8 +1,10 @@
-﻿//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+﻿// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HandComponent.h"
 #include <GameFramework/PlayerController.h>
-#include "PXR_Settings.h"
+#include "PXR_HMDRuntimeSettings.h"
 #include "PXR_EventManager.h"
 #include "PXR_InputFunctionLibrary.h"
 #include "PXR_InputState.h"
@@ -13,9 +15,6 @@
 #include "Camera/PlayerCameraManager.h"
 #include "PXR_Input.h"
 #include "PXR_Log.h"
-#if PLATFORM_ANDROID
-#include "PxrInput.h"
-#endif
 
 UPICOXRHandComponent::UPICOXRHandComponent(const FObjectInitializer& ObjectInitializer) :
 	Super(ObjectInitializer),
@@ -38,48 +37,64 @@ void UPICOXRHandComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	// Use custom mesh if a skeletal mesh is already set, else try to load the runtime mesh
-	if (SkeletalMesh)
+	if (GetSkinnedAsset())
 	{
 		bCustomHandMesh = true;
 	}
 	//Hide Component if HandTracking is Disabled
 	const bool bStartHidden = UPICOXRInputFunctionLibrary::IsHandTrackingEnabled() ? false : true;
 	SetHiddenInGame(bStartHidden, true);
+	UPICOXRSettings* HMDSettings = GetMutableDefault<UPICOXRSettings>();
+
+	if (HMDSettings)
+	{
+		bUpdateHandScale=HMDSettings->bAdaptiveHandModel;
+	}
+	
 }
 
 void UPICOXRHandComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	bool bHidden = false;
-	if (UPICOXRInputFunctionLibrary::IsHandTrackingEnabled())
+	if (IsInGameThread())
 	{
-		if (bHideByConfidence)
-		{
-			const EPICOXRHandTrackingConfidence TrackingConfidence = UPICOXRInputFunctionLibrary::GetTrackingConfidence(SkeletonType);
-			bHidden |= TrackingConfidence != EPICOXRHandTrackingConfidence::High;
-		}
-
-		if (bUpdateHandScale)
-		{
-			const float NewScale = UPICOXRInputFunctionLibrary::GetHandScale(SkeletonType);
-			SetRelativeScale3D(FVector(NewScale));
-		}
-
-		if (SkeletalMesh)
-		{
-			UpdateBonePose();
-			UpdateHandTransform();
-		}
-	}
-	else
-	{
-		bHidden = true;
+		const AActor* Owner = GetOwner();
+		bHasAuthority = Owner->HasLocalNetOwner();
 	}
 
-	if (bHidden != bHiddenInGame)
+	if (bHasAuthority)
 	{
-		SetHiddenInGame(bHidden, true);
+		bool bHidden = false;
+		if (UPICOXRInputFunctionLibrary::IsHandTrackingEnabled())
+		{
+			if (bHideByConfidence)
+			{
+				const EPICOXRHandTrackingConfidence TrackingConfidence = UPICOXRInputFunctionLibrary::GetTrackingConfidence(SkeletonType);
+				bHidden |= TrackingConfidence != EPICOXRHandTrackingConfidence::High;
+			}
+
+			if (bUpdateHandScale)
+			{
+				const float NewScale = UPICOXRInputFunctionLibrary::GetHandScale(SkeletonType);
+				SetRelativeScale3D(FVector(NewScale));
+			}
+
+			if (GetSkinnedAsset())
+			{
+				UpdateBonePose();
+				UpdateHandTransform();
+			}
+		}
+		else
+		{
+			bHidden = true;
+		}
+
+		if (bHidden != bHiddenInGame)
+		{
+			SetHiddenInGame(bHidden, true);
+		}
 	}
 }
 
@@ -89,28 +104,19 @@ void UPICOXRHandComponent::UpdateBonePose()
 	{
 		for (auto& BoneElem : BoneNameMappings)
 		{
-			if (BoneElem.Key == EPICOXRHandJoint::Wrist)
+ 			const int32 BoneIndex = GetSkinnedAsset()->GetRefSkeleton().FindBoneIndex(BoneElem.Value);
+			if (BoneIndex >= 0)
 			{
-				FTransform BoneTransform = UPICOXRInputFunctionLibrary::GetHandRootPose(SkeletonType);
-				if (!BoneTransform.Rotator().ContainsNaN() && !BoneTransform.Rotator().IsZero())
+				FQuat BoneRotation = UPICOXRInputFunctionLibrary::GetBoneRotation(SkeletonType, BoneElem.Key);
+				if (!BoneRotation.IsIdentity()&&BoneRotation.IsNormalized())
 				{
-					SetBoneRotationByName(BoneElem.Value, BoneTransform.Rotator(), EBoneSpaces::WorldSpace);
+					SetBoneRotationByName(BoneElem.Value, BoneRotation.Rotator(), EBoneSpaces::ComponentSpace);
 				}
-			}
-			else
-			{
-#if ENGINE_MINOR_VERSION >26
- 				const int32 BoneIndex = SkeletalMesh->GetRefSkeleton().FindBoneIndex(BoneElem.Value);
-#else
-				const int32 BoneIndex = SkeletalMesh->RefSkeleton.FindBoneIndex(BoneElem.Value);
-#endif
-				if (BoneIndex >= 0)
+
+				const FVector BoneLocation = UPICOXRInputFunctionLibrary::GetBoneLocation(SkeletonType, BoneElem.Key);
+				if (!BoneLocation.IsZero()&&!BoneLocation.ContainsNaN()&&bApplyLocationToBones)
 				{
-					FQuat BoneRotation = UPICOXRInputFunctionLibrary::GetBoneRotation(SkeletonType, BoneElem.Key);
-					if (!BoneRotation.IsIdentity())
-					{
-						BoneSpaceTransforms[BoneIndex].SetRotation(BoneRotation);
-					}
+					SetBoneLocationByName(BoneElem.Value, BoneLocation, EBoneSpaces::WorldSpace);
 				}
 			}
 		}

@@ -1,15 +1,11 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDRenderBridge.h"
+#include "PXR_HMDPrivateRHI.h"
 #include "PXR_HMD.h"
 #include "PXR_Log.h"
-
-#if PLATFORM_ANDROID
-#include "VulkanRHIPrivate.h"
-#include "VulkanResources.h"
-#include "VulkanPendingState.h"
-#include "VulkanContext.h"
-#endif
 
 class FPICOXRRenderBridge_Vulkan : public FPICOXRRenderBridge
 {
@@ -49,34 +45,28 @@ public:
 		}
 #endif
 	}
-#if ENGINE_MINOR_VERSION>25
-	virtual FTextureRHIRef CreateTexture_RenderThread(ERHIResourceType ResourceType, uint64 InTexture, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue)override
-#else
-	virtual FTextureRHIRef CreateTexture_RenderThread(ERHIResourceType ResourceType, uint64 InTexture, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 NumMips, uint32 NumSamples, uint32 TargetableTextureFlags, uint32 MSAAValue)override
-#endif
+	virtual FTextureRHIRef CreateTexture_RenderThread(ERHIResourceType RHIResourceType, uint64 InTexture, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue)override
 	{
+		FClearValueBinding ColorTextureBinding = FClearValueBinding();
 #if PLATFORM_ANDROID
-		VkImageSubresourceRange SubresourceRangeAll = { VK_IMAGE_ASPECT_COLOR_BIT, 0, VK_REMAINING_MIP_LEVELS, 0, VK_REMAINING_ARRAY_LAYERS };
-		FVulkanCommandListContext& ImmediateContext = GVulkanRHI->GetDevice()->GetImmediateContext();
-		FVulkanCmdBuffer* CmdBuffer = ImmediateContext.GetCommandBufferManager()->GetActiveCmdBuffer();
+		const VkImageSubresourceRange SubresourceRangeAll = { VK_IMAGE_ASPECT_COLOR_BIT, 0, VK_REMAINING_MIP_LEVELS, 0, VK_REMAINING_ARRAY_LAYERS };
 
-		if (TargetableTextureFlags & TexCreate_RenderTargetable)
+		if (EnumHasAnyFlags(TargetableTextureFlags,TexCreate_RenderTargetable))
 		{
-			GVulkanRHI->VulkanSetImageLayout(CmdBuffer->GetHandle(), (VkImage)InTexture, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL, SubresourceRangeAll);
+			GVulkanRHI->RHISetImageLayout((VkImage)InTexture, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL, SubresourceRangeAll);
 		}
-#if ENGINE_MINOR_VERSION > 25
-		else if (TargetableTextureFlags & TexCreate_Foveation)
+		else if (EnumHasAnyFlags(TargetableTextureFlags,TexCreate_Foveation))
 		{
-			GVulkanRHI->VulkanSetImageLayout(CmdBuffer->GetHandle(), (VkImage)InTexture, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT, SubresourceRangeAll);
+			GVulkanRHI->RHISetImageLayout((VkImage)InTexture, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT, SubresourceRangeAll);
 		}
-#endif
-		switch (ResourceType)
+
+		switch (RHIResourceType)
 		{
 		case RRT_Texture2D:
 			return GVulkanRHI->RHICreateTexture2DFromResource((EPixelFormat)Format, SizeX, SizeY, NumMips, NumSamples, (VkImage)(InTexture), TargetableTextureFlags).GetReference();
 
 		case RRT_Texture2DArray:
-			return GVulkanRHI->RHICreateTexture2DArrayFromResource((EPixelFormat)Format, SizeX, SizeY, 2, NumMips, NumSamples, (VkImage)(InTexture), TargetableTextureFlags).GetReference();
+			return GVulkanRHI->RHICreateTexture2DArrayFromResource((EPixelFormat)Format, SizeX, SizeY, 2, NumMips, NumSamples, (VkImage)(InTexture), TargetableTextureFlags,ColorTextureBinding).GetReference();
 
 		case RRT_TextureCube:
 			return GVulkanRHI->RHICreateTextureCubeFromResource((EPixelFormat)Format, SizeX, false, 1, NumMips, (VkImage)(InTexture), TargetableTextureFlags).GetReference();
@@ -102,9 +92,28 @@ public:
 		vulkanBinding.queueFamilyIndex = Queue->GetFamilyIndex();
 		vulkanBinding.queueIndex = 0;
 
-		Pxr_CreateVulkanSystem(&vulkanBinding);
+		FPICOXRHMDModule::GetPluginWrapper().CreateVulkanSystem(&vulkanBinding);
 #endif
 	}
+
+#ifdef PICO_CUSTOM_ENGINE
+	virtual void UpdateFoveationOffsetsUsage_RHIThread(bool bUseOffsets) override
+	{
+
+#if PLATFORM_ANDROID
+		check(IsInRHIThread() || IsInRenderingThread());
+		GVulkanRHI->VulkanSetFragmentDensityMapOffsetUsage(bUseOffsets);
+#endif
+	}
+	virtual void UpdateFoveationOffsets_RHIThread(const FIntPoint& LeftOffset, const FIntPoint& RightOffset) override
+	{
+
+#if PLATFORM_ANDROID
+		check(IsInRHIThread() || IsInRenderingThread());
+		GVulkanRHI->VulkanSetFragmentDensityMapOffsets(LeftOffset, RightOffset);
+#endif
+	}
+#endif
 };
 
 FPICOXRRenderBridge* CreateRenderBridge_Vulkan(FPICOXRHMD* HMD)

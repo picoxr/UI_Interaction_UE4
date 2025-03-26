@@ -1,4 +1,6 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_InputState.h"
 
@@ -50,33 +52,11 @@ const FPICOKeyNames::Type FPICOKeyNames::PICOTouch_Right_Thumbstick_Down("PICOTo
 const FPICOKeyNames::Type FPICOKeyNames::PICOTouch_Right_Thumbstick_Left("PICOTouch_Right_Thumbstick_Left");
 const FPICOKeyNames::Type FPICOKeyNames::PICOTouch_Right_Thumbstick_Right("PICOTouch_Right_Thumbstick_Right");
 
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_ThumbClick("PICOHand_Left_ThumbClick");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_IndexPinch("PICOHand_Left_IndexPinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_MiddlePinch("PICOHand_Left_MiddlePinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_RingPinch("PICOHand_Left_RingPinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_PinkyPinch("PICOHand_Left_PinkyPinch");
+const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_Pinch("PICOHand_Left_Pinch");
+const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_Pinch("PICOHand_Right_Pinch");
 
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_ThumbClick("PICOHand_Right_ThumbClick");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_IndexPinch("PICOHand_Right_IndexPinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_MiddlePinch("PICOHand_Right_MiddlePinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_RingPinch("PICOHand_Right_RingPinch");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_PinkyPinch("PICOHand_Right_PinkyPinch");
-
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_SystemGesture("PICOHand_Left_SystemGesture");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_SystemGesture("PICOHand_Right_SystemGesture");
-
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_ThumbClickStrength("PICOHand_Left_ThumbClickStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_IndexPinchStrength("PICOHand_Left_IndexPinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_MiddlePinchStrength("PICOHand_Left_MiddlePinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_RingPinchStrength("PICOHand_Left_RingPinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_PinkyPinchStrength("PICOHand_Left_PinkyPinchStrength");
-
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_ThumbClickStrength("PICOHand_Right_ThumbClickStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_IndexPinchStrength("PICOHand_Right_IndexPinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_MiddlePinchStrength("PICOHand_Right_MiddlePinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_RingPinchStrength("PICOHand_Right_RingPinchStrength");
-const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_PinkyPinchStrength("PICOHand_Right_PinkyPinchStrength");
-
+const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Left_PinchStrength("PICOHand_Left_PinchStrength");
+const FPICOKeyNames::Type FPICOKeyNames::PICOHand_Right_PinchStrength("PICOHand_Right_PinchStrength");
 
 const FKey FPICOTouchKey::PICOTouch_Left_Home_Click("PICOTouch_Left_Home_Click");
 const FKey FPICOTouchKey::PICOTouch_Left_VolumeUp_Click("PICOTouch_Left_VolumeUp_Click");
@@ -124,30 +104,9 @@ const FKey FPICOTouchKey::PICOTouch_Right_Thumbstick_Down("PICOTouch_Right_Thumb
 const FKey FPICOTouchKey::PICOTouch_Right_Thumbstick_Left("PICOTouch_Right_Thumbstick_Left");
 const FKey FPICOTouchKey::PICOTouch_Right_Thumbstick_Right("PICOTouch_Right_Thumbstick_Right");
 
-const FKey FPICOTouchKey::PICOHand_Right_ThumbClick("PICOHand_Right_ThumbClick");
-const FKey FPICOTouchKey::PICOHand_Right_IndexPinch("PICOHand_Right_IndexPinch");
-const FKey FPICOTouchKey::PICOHand_Right_MiddlePinch("PICOHand_Right_MiddlePinch");
-const FKey FPICOTouchKey::PICOHand_Right_RingPinch("PICOHand_Right_RingPinch");
-const FKey FPICOTouchKey::PICOHand_Right_PinkyPinch("PICOHand_Right_PinkyPinch");
+const FKey FPICOTouchKey::PICOHand_Right_Pinch("PICOHand_Right_Pinch");
+const FKey FPICOTouchKey::PICOHand_Left_Pinch("PICOHand_Left_Pinch");
 
-const FKey FPICOTouchKey::PICOHand_Left_ThumbClick("PICOHand_Left_ThumbClick");
-const FKey FPICOTouchKey::PICOHand_Left_IndexPinch("PICOHand_Left_IndexPinch");
-const FKey FPICOTouchKey::PICOHand_Left_MiddlePinch("PICOHand_Left_MiddlePinch");
-const FKey FPICOTouchKey::PICOHand_Left_RingPinch("PICOHand_Left_RingPinch");
-const FKey FPICOTouchKey::PICOHand_Left_PinkyPinch("PICOHand_Left_PinkyPinch");
-
-const FKey FPICOTouchKey::PICOHand_Left_SystemGesture("PICOHand_Left_SystemGesture");
-const FKey FPICOTouchKey::PICOHand_Right_SystemGesture("PICOHand_Right_SystemGesture");
-
-const FKey FPICOTouchKey::PICOHand_Left_ThumbClickStrength("PICOHand_Left_ThumbClickStrength");
-const FKey FPICOTouchKey::PICOHand_Left_IndexPinchStrength("PICOHand_Left_IndexPinchStrength");
-const FKey FPICOTouchKey::PICOHand_Left_MiddlePinchStrength("PICOHand_Left_MiddlePinchStrength");
-const FKey FPICOTouchKey::PICOHand_Left_RingPinchStrength("PICOHand_Left_RingPinchStrength");
-const FKey FPICOTouchKey::PICOHand_Left_PinkyPinchStrength("PICOHand_Left_PinkyPinchStrength");
-
-const FKey FPICOTouchKey::PICOHand_Right_ThumbClickStrength("PICOHand_Right_ThumbClickStrength");
-const FKey FPICOTouchKey::PICOHand_Right_IndexPinchStrength("PICOHand_Right_IndexPinchStrength");
-const FKey FPICOTouchKey::PICOHand_Right_MiddlePinchStrength("PICOHand_Right_MiddlePinchStrength");
-const FKey FPICOTouchKey::PICOHand_Right_RingPinchStrength("PICOHand_Right_RingPinchStrength");
-const FKey FPICOTouchKey::PICOHand_Right_PinkyPinchStrength("PICOHand_Right_PinkyPinchStrength");
+const FKey FPICOTouchKey::PICOHand_Left_PinchStrength("PICOHand_Left_PinchStrength");
+const FKey FPICOTouchKey::PICOHand_Right_PinchStrength("PICOHand_Right_PinchStrength");
 #undef LOCTEXT_NAMESPACE

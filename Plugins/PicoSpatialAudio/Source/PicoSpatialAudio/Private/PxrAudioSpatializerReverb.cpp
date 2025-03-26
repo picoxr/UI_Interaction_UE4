@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerReverb.h"
 
 namespace Pxr_Audio
@@ -51,7 +53,7 @@ namespace Pxr_Audio
 			if (!ReverbSubmix)
 			{
 				static const FString DefaultSubmixName = TEXT("Pico Spatial Audio Reverb Submix");
-				UE_LOG(LogPicoSpatialAudio, Error,
+				UE_LOG(LogPicoSpatialAudio, Warning,
 				       TEXT(
 					       "Failed to load Pico Spatial Audio Reverb Submix from object path '%s' in PicoSpatialAudioSettings. Creating '%s' as stub."
 				       ),
@@ -61,6 +63,9 @@ namespace Pxr_Audio
 				ReverbSubmix = NewObject<USoundSubmix>(USoundSubmix::StaticClass(), *DefaultSubmixName);
 				ReverbSubmix->bMuteWhenBackgrounded = true;
 			}
+#if ENGINE_MAJOR_VERSION >= 5
+			ReverbSubmix->bAutoDisable = false;
+#endif
 
 			if (!SubmixEffect.IsValid())
 			{
@@ -84,7 +89,7 @@ namespace Pxr_Audio
 				if (!bFoundPreset)
 				{
 					static const FString DefaultPresetName = TEXT("PicoSpatialAudioReverbDefault_0");
-					UE_LOG(LogPicoSpatialAudio, Error,
+					UE_LOG(LogPicoSpatialAudio, Warning,
 					       TEXT(
 						       "Failed to find Pico UPxrAudioSpatializerReverbPluginPreset on default reverb submix. Creating stub '%s'."
 					       ),

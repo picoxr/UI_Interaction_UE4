@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerListener.h"
 
 namespace Pxr_Audio
@@ -12,6 +14,7 @@ namespace Pxr_Audio
 			  SpatializationPtr(nullptr),
 			  ReverbPtr(nullptr)
 		{
+			bNeedSceneCommit = true;
 		}
 
 		FListener::~FListener()
@@ -26,7 +29,7 @@ namespace Pxr_Audio
 			}
 
 			ReverbPtr = static_cast<FReverb*>(AudioDevice->ReverbPluginInterface.Get());
-			SpatializationPtr = static_cast<FSpatialization*>(AudioDevice->SpatializationPluginInterface.Get());
+			SpatializationPtr = static_cast<FSpatialization*>(AudioDevice->GetSpatializationPluginInterface().Get());
 
 			// Make sure that both spatialization *AND* reverb plugins are enabled, since we use spatialization to take source input, and reverb to output mixed result
 			if (ReverbPtr == nullptr || SpatializationPtr == nullptr)
@@ -69,9 +72,11 @@ namespace Pxr_Audio
 			       Patch);
 		}
 
+		DECLARE_CYCLE_STAT(TEXT("FListener::OnListenerUpdated"), STAT_FListener_OnListenerUpdated, STATGROUP_PicoSpatialAudio)
 		void FListener::OnListenerUpdated(FAudioDevice* AudioDevice, const int32 ViewportIndex,
 		                                  const FTransform& ListenerTransform, const float InDeltaSeconds)
 		{
+			SCOPE_CYCLE_COUNTER(STAT_FListener_OnListenerUpdated)
 			if (!FContextSingleton::IsInitialized())
 			{
 				return;
@@ -114,10 +119,12 @@ namespace Pxr_Audio
 			OwningAudioDevice = nullptr;
 			UE_LOG(LogPicoSpatialAudio, Display, TEXT("Listener is destroyed"));
 		}
-
+		
+		DECLARE_CYCLE_STAT(TEXT("FListener::OnTick"), STAT_FListener_OnTick, STATGROUP_PicoSpatialAudio)
 		void FListener::OnTick(UWorld* InWorld, const int32 ViewportIndex, const FTransform& ListenerTransform,
 		                       const float InDeltaSeconds)
 		{
+			SCOPE_CYCLE_COUNTER(STAT_FListener_OnTick)
 			if (!FContextSingleton::IsInitialized())
 			{
 				return;

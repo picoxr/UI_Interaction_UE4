@@ -1,0 +1,4088 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved. 
+-->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<init>
+        <log text="PICOEnterprise init"/>
+        <log text="PICOEnterprise SDK Version = UE_3.1.2"/>
+    </init>
+	
+	<androidManifestUpdates>
+		<addElements tag="application">
+			<meta-data android:name="pvr.tobsdk.version" android:value="UE_3.1.2" />
+			<meta-data android:name="pico_advance_interface" android:value="0"/>
+		</addElements>
+	</androidManifestUpdates>
+
+	<resourceCopies>
+		<copyFile src="$S(PluginDir)/../../Libs/BAuthLib-1.0.0.jar"
+				  dst="$S(BuildDir)/libs/BAuthLib-1.0.0.jar" />
+	</resourceCopies>
+	
+	<baseBuildGradleAdditions>
+        <insert>
+            allprojects {
+            repositories {
+            repositories {
+            flatDir {
+        </insert>
+		<insertValue value="dirs '$S(PluginDir)/../../Libs/'"/>
+        <insertNewline/>
+        <insert>
+            }
+            }
+            }
+            }
+        </insert>
+    </baseBuildGradleAdditions>
+	
+	<buildGradleAdditions>
+        <insert>
+android {
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+repositories {
+	flatDir { dirs '/src/main/libs/' }
+}
+buildscript {
+    repositories {
+	    maven { url 'https://artifacts-cn-beijing.volces.com/repository/picoxrtob/' }
+    }
+}
+
+allprojects {
+    repositories {
+	    maven { url 'https://artifacts-cn-beijing.volces.com/repository/picoxrtob/' }
+		maven { url 'https://maven.aliyun.com/repository/google' }
+		maven { url 'https://maven.aliyun.com/repository/jcenter' }
+ 		google()
+        jcenter()
+    }
+}
+
+dependencies {
+	implementation 'com.picoxr.tobservice:tobservicelib:4.3.18'
+	implementation 'com.google.code.gson:gson:2.8.6'
+}
+		</insert>
+	</buildGradleAdditions>
+	
+	<gameActivityImportAdditions>
+	    <insert>
+import android.os.RemoteException;
+import android.os.CpuUsageInfo;
+import java.util.function.Consumer;
+import com.pvr.tobservice.interfaces.IToBService;
+import com.pvr.tobservice.interfaces.IToBServiceProxy;
+import com.pvr.tobservice.ToBServiceHelper;
+import com.pvr.tobservice.interfaces.IBoolCallback;
+import com.pvr.tobservice.interfaces.IStringCallback;
+import com.pvr.tobservice.interfaces.IIntCallback;
+import com.pvr.tobservice.interfaces.ILongCallback;
+import com.pvr.tobservice.interfaces.IWDJsonCallback;
+import com.pvr.tobservice.interfaces.IWDModelsCallback;
+import com.pvr.tobservice.interfaces.IGetControllerPairTimeCallback;
+import com.pvr.tobservice.interfaces.IFileCopyCallback;
+import com.pvr.tobservice.interfaces.ISystemUpdateCallback;
+import com.pvr.tobservice.model.PicoCastMediaFormat;
+import com.pvr.tobservice.model.MarkerInfo;
+import com.pvr.tobservice.model.MarkerInfoF;
+import com.pvr.tobservice.model.OffLineSystemUpdateConfig;
+import com.pvr.tobservice.enums.PBS_DeviceControlEnum;
+import com.pvr.tobservice.enums.PBS_HomeEventEnum;
+import com.pvr.tobservice.enums.PBS_HomeFunctionEnum;
+import com.pvr.tobservice.enums.PBS_PackageControlEnum;
+import com.pvr.tobservice.enums.PBS_PowerOnOffLogoEnum;
+import com.pvr.tobservice.enums.PBS_ScreenOffDelayTimeEnum;
+import com.pvr.tobservice.enums.PBS_SleepDelayTimeEnum;
+import com.pvr.tobservice.enums.PBS_SwitchEnum;
+import com.pvr.tobservice.enums.PBS_SystemFunctionSwitchEnum;
+import com.pvr.tobservice.enums.PBS_SystemInfoEnum;
+import com.pvr.tobservice.enums.PBS_USBConfigModeEnum;
+import com.pvr.tobservice.enums.PBS_WifiDisplayModel;
+import com.pvr.tobservice.enums.PBS_StartVRSettingsEnum;
+import com.pvr.tobservice.enums.PBS_ControllerKeyEnum;
+import com.pvr.tobservice.enums.PBS_PICOCastUrlTypeEnum;
+import com.pvr.tobservice.enums.PBS_PICOCastOptionOrStatusEnum;
+import com.pvr.tobservice.enums.PBS_PICOCastOptionValueEnum;
+import com.pvr.tobservice.enums.PBS_ControllerPairTimeEnum;
+import com.pvr.tobservice.enums.PBS_ScreencastAudioOutputEnum;
+import com.pvr.tobservice.enums.PBS_CustomizeSettingsTabEnum;
+
+import com.pvr.tobauthlib.AuthCheckServer;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+import com.pvr.tobservice.model.Point3D;
+import com.pvr.tobservice.model.LargeSpaceQuickModeInfo;
+import android.graphics.Bitmap;
+import android.net.wifi.WifiConfiguration;
+import java.net.InetAddress;
+
+        </insert>
+    </gameActivityImportAdditions>
+	
+	<gameActivityClassAdditions>
+        <insert>
+public native void JavaToCSetDeviceActionCallBack(int EventType,int Result);
+public native void JavaToCAPPMangerCallBack(int EventType,String AppPath,int result);
+
+public native void JavaToCBindTobService(boolean Result);
+public void BindTobService()
+{
+    ToBServiceHelper.getInstance().bindTobService(this, new ToBServiceHelper.BindCallBack() {
+    @Override
+    public void bindCallBack(Boolean status) {
+	    Log.debug("bindCallBack : " + status);
+		JavaToCBindTobService(status);
+    }
+	});
+}
+
+public void UnBindTobService()
+{
+    ToBServiceHelper.getInstance().unBindTobService(this);
+}
+
+public String GetDeviceInfo(int type)
+{
+    String Result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            PBS_SystemInfoEnum InfoType = PBS_SystemInfoEnum.values()[type];
+            Result = binder.pbsStateGetDeviceInfo(InfoType,0);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetDeviceInfo: not bind ToBService");
+	}
+    return Result;
+}
+
+IIntCallback SetDeviceActionCallback_Reboot = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+    {
+        JavaToCSetDeviceActionCallBack(0,result);
+    }
+};
+
+IIntCallback SetDeviceActionCallback_ShutDown = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+    {
+        JavaToCSetDeviceActionCallBack(1,result);
+    }
+};
+
+public void SetDeviceAction(int deviceControlEnum)
+{
+    IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            PBS_DeviceControlEnum DeviceControlEnum = PBS_DeviceControlEnum.values()[deviceControlEnum];
+            if(deviceControlEnum == 0)
+            {
+                binder.pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_Reboot);
+            }
+	        else if(deviceControlEnum == 1)
+            {
+                binder.pbsControlSetDeviceAction(DeviceControlEnum,SetDeviceActionCallback_ShutDown);
+            }
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetDeviceAction: not bind ToBService");
+	}
+}
+
+public class APPMangerCallBackClass
+{
+    public APPMangerCallBackClass(int InEventType,String InAppPath)
+    {
+        EventType = InEventType;
+        AppPath = InAppPath;
+    }
+    int EventType;
+    String AppPath;
+    public IIntCallback APPMangerCallback = new IIntCallback.Stub()
+    {
+        @Override
+        public void callback(int result) throws RemoteException
+        {
+            JavaToCAPPMangerCallBack(EventType,AppPath,result);
+        }
+    };
+}
+
+public void APPManger(int packageControlEnum,String path,int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            APPMangerCallBackClass mAPPMangerCallBack = new APPMangerCallBackClass(packageControlEnum,path);
+            PBS_PackageControlEnum PackageControlEnum = PBS_PackageControlEnum.values()[packageControlEnum];
+            binder.pbsControlAPPManger(PackageControlEnum,path,ext,mAPPMangerCallBack.APPMangerCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("APPManger: not bind ToBService");
+	}
+}
+
+public native void JavaToCAutoConnectWifiCallBack(boolean result);
+public IBoolCallback SetAutoConnectWIFICallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCAutoConnectWifiCallBack(result);
+    }
+};
+
+public void SetAutoConnectWIFI(String ssid, String pwd, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsControlSetAutoConnectWIFI(ssid,pwd,ext,SetAutoConnectWIFICallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetAutoConnectWIFI: not bind ToBService");
+	}
+}
+
+public native void JavaToCClearAutoConnectWifiCallBack(boolean result);
+IBoolCallback ClearAutoConnectWIFICallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCClearAutoConnectWifiCallBack(result);
+    }
+};
+
+public void ClearAutoConnectWIFI()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsControlClearAutoConnectWIFI(ClearAutoConnectWIFICallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ClearAutoConnectWIFI: not bind ToBService");
+	}
+}
+
+public native void JavaToCSetHomeKeyCallBack(int EventType, int FunctionType,boolean Result);
+public class SetHomeKayClass
+{
+    int HomeKeyEvent;
+    int HomeKeyFunction;
+    public SetHomeKayClass(int InHomeKeyEvent,int InHomeKeyFunction)
+    {
+        HomeKeyEvent = InHomeKeyEvent;
+        HomeKeyFunction = InHomeKeyFunction;
+    }
+
+    public IBoolCallback SetHomeKeyCallback = new IBoolCallback.Stub()
+    {
+        @Override
+        public void callBack(boolean result) throws RemoteException
+		{
+            JavaToCSetHomeKeyCallBack(HomeKeyEvent,HomeKeyFunction,result);
+        }
+    };
+}
+
+public void SetHomeKey(int eventEnum, int functionEnum)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            SetHomeKayClass mSetHomeKay = new SetHomeKayClass(eventEnum,functionEnum);
+            PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
+            PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
+            binder.pbsPropertySetHomeKey(EventEnum,FunctionEnum,mSetHomeKay.SetHomeKeyCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetHomeKey: not bind ToBService");
+	}
+}
+
+public native void JavaToCSetHomeKeyAllCallBack(int EventType, int FunctionType,boolean Result);
+public class SetHomeKayAllClass
+{
+    int HomeKeyEvent;
+    int HomeKeyFunction;
+    public SetHomeKayAllClass(int InHomeKeyEvent,int InHomeKeyFunction)
+    {
+        HomeKeyEvent = InHomeKeyEvent;
+        HomeKeyFunction = InHomeKeyFunction;
+    }
+
+    public IBoolCallback SetHomeKeyAllCallback = new IBoolCallback.Stub()
+    {
+        @Override
+        public void callBack(boolean result) throws RemoteException
+		{
+            JavaToCSetHomeKeyAllCallBack(HomeKeyEvent,HomeKeyFunction,result);
+        }
+    };
+}
+
+public void SetHomeKeyAll(int eventEnum, int functionEnum, int timesetup, String pkg, String className)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            SetHomeKayAllClass mSetHomeKayAll = new SetHomeKayAllClass(eventEnum,functionEnum);
+            PBS_HomeEventEnum EventEnum = PBS_HomeEventEnum.values()[eventEnum];
+            PBS_HomeFunctionEnum FunctionEnum = PBS_HomeFunctionEnum.values()[functionEnum];
+            binder.pbsPropertySetHomeKeyAll(EventEnum,FunctionEnum,timesetup,pkg,className,mSetHomeKayAll.SetHomeKeyAllCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetHomeKeyAll: not bind ToBService");
+	}
+}
+
+public native void JavaToCDisablePowerKeyCallBack(boolean isSingleTap,int Result);
+IIntCallback DisablePowerKeyCallback_SingleClick = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+    {
+        JavaToCDisablePowerKeyCallBack(true,result);
+    }
+};
+
+IIntCallback DisablePowerKeyCallback_DoubleClick = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+    {
+        JavaToCDisablePowerKeyCallBack(false,result);
+    }
+};
+
+public void DisablePowerKey(boolean isSingleTap, boolean enable)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            if(isSingleTap == true)
+            {
+                binder.pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_SingleClick);
+            }
+	        else
+            {
+                binder.pbsPropertyDisablePowerKey(isSingleTap,enable,DisablePowerKeyCallback_DoubleClick);
+            }
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("DisablePowerKey: not bind ToBService");
+	}
+}
+
+int SetSystemAutoSleepTime(int timeEnum)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+      result = binder.setSystemAutoSleepTime(PBS_SleepDelayTimeEnum.values()[timeEnum]);
+	}
+	else
+	{
+	    Log.debug("SetSystemAutoSleepTime: not bind ToBService");
+	}
+  return result;
+}
+
+public native void JavaToCSetScreenOffDelayCallBack(int Result);
+public class SetScreenOffDelayClass
+{
+    int timeIndex;
+    public SetScreenOffDelayClass(int IntimeIndex)
+    {
+        timeIndex = IntimeIndex;
+    }
+
+    IIntCallback SetScreenOffDelayCallback = new IIntCallback.Stub()
+    {
+        @Override
+        public void callback(int result) throws RemoteException
+        {
+            JavaToCSetScreenOffDelayCallBack(result);
+        }
+    };
+}
+      
+public void SetScreenOffDelay(int timeEnum)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            SetScreenOffDelayClass mSetScreenOffDelay = new SetScreenOffDelayClass(timeEnum);
+            binder.pbsPropertySetScreenOffDelay(PBS_ScreenOffDelayTimeEnum.values()[timeEnum],mSetScreenOffDelay.SetScreenOffDelayCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetScreenOffDelay: not bind ToBService");
+	}
+}
+
+public native void JavaToCSwitchSystemFunctionCallback(int Result);
+void SwitchSystemFunction(int systemFunction, int switchEnum, int ext)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; SwitchSystemFunctionCallback = result -> {
+			JavaToCSwitchSystemFunctionCallback(result);
+		};
+		binder.pbsSwitchSystemFunction(systemFunction, switchEnum, SwitchSystemFunctionCallback, ext);
+	}
+	else
+	{
+	    Log.debug("SwitchSystemFunction: not bind ToBService");
+	}
+}
+
+public void SetUsbConfigurationOption(int uSBConfigModeEnum, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsSwitchSetUsbConfigurationOption(PBS_USBConfigModeEnum.values()[uSBConfigModeEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetUsbConfigurationOption: not bind ToBService");
+	}
+}
+      
+public void ScreenOn()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsScreenOn();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ScreenOn: not bind ToBService");
+	}
+}
+
+public void ScreenOff()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsScreenOff();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ScreenOff: not bind ToBService");
+	}
+}
+
+public void AcquireWakeLock()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsAcquireWakeLock();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("AcquireWakeLock: not bind ToBService");
+	}
+}
+
+public void ReleaseWakeLock()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsReleaseWakeLock();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ReleaseWakeLock: not bind ToBService");
+	}
+}
+      
+public native void JavaToCWriteConfigFileToDataLocalCallback(boolean result);
+public IBoolCallback WriteConfigFileToDataLocalCallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCWriteConfigFileToDataLocalCallback(result);
+    }
+};
+
+public void WriteConfigFileToDataLocal(String path, String content)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+            binder.pbsWriteConfigFileToDataLocal(path,content,WriteConfigFileToDataLocalCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("WriteConfigFileToDataLocal: not bind ToBService");
+	}
+}
+
+public native void JavaToCResetAllKeyToDefaultCallback(boolean Result);
+public IBoolCallback ResetAllKeyToDefaultCallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCResetAllKeyToDefaultCallback(result);
+    }
+};
+
+public void ResetAllKeyToDefault()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsResetAllKeyToDefault(ResetAllKeyToDefaultCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ResetAllKeyToDefault: not bind ToBService");
+	}
+}
+
+public void EnableEnterKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsEnableEnterKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("EnableEnterKey: not bind ToBService");
+	}
+}
+
+public void DisableEnterKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsDisableEnterKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("DisableEnterKey: not bind ToBService");
+	}
+}
+
+public void EnableVolumeKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsEnableVolumeKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("EnableVolumeKey: not bind ToBService");
+	}
+}
+
+public void DisableVolumeKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsDisableVolumeKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("DisableVolumeKey: not bind ToBService");
+	}
+}
+
+public void EnableBackKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsEnableBackKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("EnableBackKey: not bind ToBService");
+	}
+}
+
+public void DisableBackKey()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsDisableBackKey();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("DisableBackKey: not bind ToBService");
+	}
+}
+
+public void FreezeScreen(boolean freeze)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsFreezeScreen(freeze);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("FreezeScreen: not bind ToBService");
+	}
+}
+
+public void KillAppsByPidOrPackageName(int[] pids, String[] packageNames, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsKillAppsByPidOrPackageName(pids,packageNames,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("KillAppsByPidOrPackageName: not bind ToBService");
+	}
+}
+
+public void KillBackgroundAppsWithWhiteList(String[] packageNames, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsKillBackgroundAppsWithWhiteList(packageNames,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("KillBackgroundAppsWithWhiteList: not bind ToBService");
+	}
+}
+
+public void OpenMiracast()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsOpenMiracast();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("OpenMiracast: not bind ToBService");
+	}
+}
+
+public boolean IsMiracastOn()
+{
+	boolean result = false;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsIsMiracastOn();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("IsMiracastOn: not bind ToBService");
+	}
+	return result;
+}
+
+public void CloseMiracast()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsCloseMiracast();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("CloseMiracast: not bind ToBService");
+	}
+}
+
+public void StartScan()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsStartScan();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("StartScan: not bind ToBService");
+	}
+}
+
+public void StopScan()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsStopScan();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("StopScan: not bind ToBService");
+	}
+}
+
+public void ConnectWifiDisplay(String deviceAddress2,String deviceName2,boolean isAvailable2,boolean canConnect2,boolean isRemembered2,int statusCode2,String status2,String description2)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			PBS_WifiDisplayModel WifiDisplayModel=new PBS_WifiDisplayModel(deviceAddress2,deviceName2,isAvailable2,canConnect2,isRemembered2,statusCode2,status2,description2);
+			binder.pbsConnectWifiDisplay(WifiDisplayModel);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ConnectWifiDisplay: not bind ToBService");
+	}
+}
+
+public void DisConnectWifiDisplay()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsDisConnectWifiDisplay();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("DisConnectWifiDisplay: not bind ToBService");
+	}
+}
+void ForgetWifiDisplay(String address)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsForgetWifiDisplay(address);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ForgetWifiDisplay: not bind ToBService");
+	}
+}
+
+public void RenameWifiDisplay(String address, String newName)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsRenameWifiDisplay(address,newName);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("RenameWifiDisplay: not bind ToBService");
+	}
+}
+
+public void UpdateWifiDisplays()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsUpdateWifiDisplays();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("UpdateWifiDisplays: not bind ToBService");
+	}
+}
+
+public String GetConnectedWD()
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			PBS_WifiDisplayModel WifiDisplayModel = binder.pbsGetConnectedWD();
+			if(WifiDisplayModel!=null)
+			{
+				result = WifiDisplayModel.toString();
+			}
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetConnectedWD: not bind ToBService");
+	}
+	return result;
+}
+
+public native void JavaToCSetWDJsonCallback(String Result);
+public IWDJsonCallback SetWDJsonCallback = new IWDJsonCallback.Stub()
+{
+    @Override
+    public void callback(String result) throws RemoteException
+	{
+        JavaToCSetWDJsonCallback(result);
+    }
+};
+      
+public void SetWDJson()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsSetWDJsonCallback(SetWDJsonCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetWDJson: not bind ToBService");
+	}
+}
+
+public native void JavaToCSetWDModelsCallback(String Result);
+public IWDModelsCallback SetWDModelsCallback = new IWDModelsCallback.Stub()
+{
+    String result;
+    @Override
+    public void callback(List&lt;PBS_WifiDisplayModel&gt; models) throws RemoteException
+	{
+        for(PBS_WifiDisplayModel member : models)
+        {
+            result=result+member.toString()+"SPC";
+        }
+        JavaToCSetWDModelsCallback(result);
+    }
+};
+      
+public void SetWDModels()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsSetWDModelsCallback(SetWDModelsCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetWDModels: not bind ToBService");
+	}
+}
+
+public native void JavaToCSwitchLargeSpaceSceneCallback(boolean Result);
+public IBoolCallback SwitchLargeSpaceSceneCallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCSwitchLargeSpaceSceneCallback(result);
+    }
+};
+void SwitchLargeSpaceScene(boolean open, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsSwitchLargeSpaceScene(SwitchLargeSpaceSceneCallback,open,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SwitchLargeSpaceScene: not bind ToBService");
+	}
+}
+
+public native void JavaToCLargeSpaceStatusCallback(String Result);
+public IStringCallback LargeSpaceStatusCallback = new IStringCallback.Stub()
+{
+    @Override
+    public void callback(String result) throws RemoteException
+	{
+        JavaToCLargeSpaceStatusCallback(result);
+    }
+};
+void GetSwitchLargeSpaceStatus(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsGetSwitchLargeSpaceStatus(LargeSpaceStatusCallback,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSwitchLargeSpaceStatus: not bind ToBService");
+	}
+}
+      
+boolean SaveLargeSpaceMaps(int ext)
+{
+	boolean result = false;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSaveLargeSpaceMaps(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SaveLargeSpaceMaps: not bind ToBService");
+	}
+	return result;
+}
+      
+public native void JavaToCExportMapsCallback(boolean Result);
+public IBoolCallback ExportMapsCallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCExportMapsCallback(result);
+    }
+};
+void ExportMaps(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsExportMaps(ExportMapsCallback,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ExportMaps: not bind ToBService");
+	}
+}
+      
+public native void JavaToCImportMapsCallback(boolean Result);
+public IBoolCallback ImportMapsCallback = new IBoolCallback.Stub()
+{
+    @Override
+    public void callBack(boolean result) throws RemoteException
+	{
+        JavaToCImportMapsCallback(result);
+    }
+};
+void ImportMaps(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsImportMaps(ImportMapsCallback,ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ImportMaps: not bind ToBService");
+	}
+}
+      
+float[] GetCpuUsages()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			CpuUsageInfo[] cpus = binder.pbsGetCpuUsages();
+			float[] cpuus = new float[cpus.length];
+			for (int i = 0; i &lt; cpus.length; i++) {
+                cpuus[i] = ((float) cpus[i].getActive()) / ((float) cpus[i].getTotal());
+            }
+			return cpuus;
+		} catch (RemoteException e) {
+            e.printStackTrace();
+			return null;
+        }
+	}
+	else
+	{
+	    Log.debug("GetCpuUsages: not bind ToBService");
+	}
+	return null;
+}
+
+float[] GetDeviceTemperatures(int inType,int inSource)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			return binder.pbsGetDeviceTemperatures(inType,inSource);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+			return null;
+        }
+	}
+	else
+	{
+	    Log.debug("GetDeviceTemperatures: not bind ToBService");
+	}
+	return null;
+}
+
+void Capture()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsCapture();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("Capture: not bind ToBService");
+	}
+}
+
+void Record()
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsRecord();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("Record: not bind ToBService");
+	}
+}
+
+public native void JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(int Result);
+IIntCallback ControlSetAutoConnectWIFIWithErrorCodeCallback = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+	{
+        JavaToCControlSetAutoConnectWIFIWithErrorCodeCallback(result);
+    }
+};
+void ControlSetAutoConnectWIFIWithErrorCode(String ssid, String pwd, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsControlSetAutoConnectWIFIWithErrorCodeCallback(ssid, pwd, ext, ControlSetAutoConnectWIFIWithErrorCodeCallback);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ControlSetAutoConnectWIFIWithErrorCode: not bind ToBService");
+	}
+}
+
+void AppKeepAlive(String appPackageName, boolean keepAlive, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsAppKeepAlive(appPackageName, keepAlive, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("AppKeepAlive: not bind ToBService");
+	}
+}
+
+void TimingStartup(int year, int month, int day, int hour, int minute, boolean open)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsTimingStartup( year,  month,  day,  hour,  minute,  open);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("TimingStartup: not bind ToBService");
+	}
+}
+
+void TimingShutdown(int year, int month, int day, int hour, int minute, boolean open)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsTimingShutdown( year,  month,  day,  hour,  minute,  open);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("TimingShutdown: not bind ToBService");
+	}
+}
+
+void StartVrSettingsItem(int vrSettingsEnum, boolean hideOtherItem, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsStartVrSettingsItem(PBS_StartVRSettingsEnum.values()[vrSettingsEnum],  hideOtherItem,  ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("StartVrSettingsItem: not bind ToBService");
+	}
+}
+
+void SwitchVolumeToHomeAndEnter(int switchEnum, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsSwitchVolumeToHomeAndEnter(PBS_SwitchEnum.values()[switchEnum],  ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SwitchVolumeToHomeAndEnter: not bind ToBService");
+	}
+}
+
+int IsVolumeChangeToHomeAndEnter()
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsIsVolumeChangeToHomeAndEnter().ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("IsVolumeChangeToHomeAndEnter: not bind ToBService");
+	}
+	return result;
+}
+			
+int InstallOTAPackage(String otaPackagePath, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsInstallOTAPackage(otaPackagePath, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("InstallOTAPackage: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetAutoConnectWiFiConfig(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetAutoConnectWiFiConfig(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetAutoConnectWiFiConfig: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetTimingStartupStatus(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetTimingStartupStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetTimingStartupStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetTimingShutdownStatus(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetTimingShutdownStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetTimingShutdownStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetControllerKeyState(int controllerKeyEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetControllerKeyState(PBS_ControllerKeyEnum.values()[controllerKeyEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetControllerKeyState: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetPowerOffWithUSBCable(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsControlGetPowerOffWithUSBCable(ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetPowerOffWithUSBCable: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetScreenOffDelay(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPropertyGetScreenOffDelay(ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetScreenOffDelay: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetSleepDelay(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPropertyGetSleepDelay(ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSleepDelay: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetPowerKeyStatus(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPropertyGetPowerKeyStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetPowerKeyStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetEnterKeyStatus(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetEnterKeyStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetEnterKeyStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetVolumeKeyStatus(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetVolumeKeyStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetVolumeKeyStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetBackKeyStatus(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetBackKeyStatus(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetBackKeyStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetHomeKeyStatus(int homeEventEnum, int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPropertyGetHomKeyStatus(PBS_HomeEventEnum.values()[homeEventEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetHomeKeyStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetUsbConfigurationOption(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSwitchGetUsbConfigurationOption(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetUsbConfigurationOption: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetCurrentLauncher(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetCurrentLauncher(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetCurrentLauncher: not bind ToBService");
+	}
+	return result;
+}
+			
+public native void JavaToCGetSwitchSystemFunctionStatusCallback(int Result);
+IIntCallback GetSwitchSystemFunctionStatusCallback = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+	{
+        JavaToCGetSwitchSystemFunctionStatusCallback(result);
+    }
+};
+void GetSwitchSystemFunctionStatus(int systemFunctionSwitchEnum, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsGetSwitchSystemFunctionStatus(PBS_SystemFunctionSwitchEnum.values()[systemFunctionSwitchEnum], GetSwitchSystemFunctionStatusCallback, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSwitchSystemFunctionStatus: not bind ToBService");
+	}
+}
+			
+public native void JavaToCPICOCastInitCallback(int Result);
+IIntCallback PICOCastInitCallback = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+	{
+        JavaToCPICOCastInitCallback(result);
+    }
+};
+int PICOCastInit(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastInit(PICOCastInitCallback, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastInit: not bind ToBService");
+	}
+	return result;
+}
+			
+int PICOCastSetShowAuthorization(int authZ, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastSetShowAuthorization(authZ, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastSetShowAuthorization: not bind ToBService");
+	}
+	return result;
+}
+			
+int PICOCastGetShowAuthorization(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastGetShowAuthorization(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastGetShowAuthorization: not bind ToBService");
+	}
+	return result;
+}
+			
+String PICOCastGetUrl(int urlType, int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastGetUrl(PBS_PICOCastUrlTypeEnum.values()[urlType], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastGetUrl: not bind ToBService");
+	}
+	return result;
+}
+			
+int PICOCastStopCast(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastStopCast(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastStopCast: not bind ToBService");
+	}
+	return result;
+}
+			
+int PICOCastSetOption(int optionEnum, int optionValue, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastSetOption(PBS_PICOCastOptionOrStatusEnum.values()[optionEnum], PBS_PICOCastOptionValueEnum.values()[optionValue], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastSetOption: not bind ToBService");
+	}
+	return result;
+}
+			
+int PICOCastGetOptionOrStatus(int castEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsPicoCastGetOptionOrStatus(PBS_PICOCastOptionOrStatusEnum.values()[castEnum], ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("PICOCastGetOptionOrStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+public native void JavaToCSetControllerPairTimeCallback(int Result);
+IIntCallback SetControllerPairTimeCallback = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+	{
+        JavaToCSetControllerPairTimeCallback(result);
+    }
+};
+void SetControllerPairTime(int timeEnum, int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsSetControllerPairTime(PBS_ControllerPairTimeEnum.values()[timeEnum], SetControllerPairTimeCallback, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetControllerPairTime: not bind ToBService");
+	}
+}
+			
+public native void JavaToCGetControllerPairTimeCallback(int Result);
+IGetControllerPairTimeCallback GetControllerPairTimeCallback = new IGetControllerPairTimeCallback.Stub()
+{
+    @Override
+    public void callBack(PBS_ControllerPairTimeEnum result) throws RemoteException
+	{
+        JavaToCGetControllerPairTimeCallback(result.ordinal());
+    }
+};
+void GetControllerPairTime(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			binder.pbsGetControllerPairTime(GetControllerPairTimeCallback, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetControllerPairTime: not bind ToBService");
+	}
+}
+			
+int SetSystemLanguage(String language, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSetSystemLanguage(language, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetSystemLanguage: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetSystemLanguage(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetSystemLanguage(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSystemLanguage: not bind ToBService");
+	}
+	return result;
+}
+			
+int ConfigWifi(String ssid, String pwd, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsConfigWifi(ssid, pwd, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("ConfigWifi: not bind ToBService");
+	}
+	return result;
+}
+			
+String[] GetConfiguredWifi(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			return binder.pbsGetConfiguredWifi(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+			return null;
+        }
+	}
+	else
+	{
+	    Log.debug("GetConfiguredWifi: not bind ToBService");
+	}
+	return null;
+}
+			
+public native void JavaToCSetSystemCountryCodeCallback(int Result);
+IIntCallback SetSystemCountryCodeCallback = new IIntCallback.Stub()
+{
+    @Override
+    public void callback(int result) throws RemoteException
+	{
+        JavaToCSetSystemCountryCodeCallback(result);
+    }
+};
+int SetSystemCountryCode(String countryCode, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSetSystemCountryCode(countryCode, SetSystemCountryCodeCallback, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetSystemCountryCode: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetSystemCountryCode(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetSystemCountryCode(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSystemCountryCode: not bind ToBService");
+	}
+	return result;
+}
+			
+int SetSkipInitSettingPage(int flag, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSetSkipInitSettingPage(flag, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetSkipInitSettingPage: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetSkipInitSettingPage(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetSkipInitSettingPage(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetSkipInitSettingPage: not bind ToBService");
+	}
+	return result;
+}
+			
+int IsInitSettingComplete(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsIsInitSettingComplete(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("IsInitSettingComplete: not bind ToBService");
+	}
+	return result;
+}
+			
+int StartActivity(String packageName, String className, String action, String extra, String[] categories, int[] flags, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsStartActivity(packageName, className, action, extra, categories, flags, ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("StartActivity: not bind ToBService");
+	}
+	return result;
+}
+			
+int CustomizeAppLibrary(String[] packageNames, int switchEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsCustomizeAppLibrary(packageNames, PBS_SwitchEnum.values()[switchEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("CustomizeAppLibrary: not bind ToBService");
+	}
+	return result;
+}
+			
+int[] GetControllerBattery(int ext)
+{
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			return binder.pbsGetControllerBattery(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+			return null;
+        }
+	}
+	else
+	{
+	    Log.debug("GetControllerBattery: not bind ToBService");
+	}
+	return null;
+}
+			
+int GetControllerConnectState(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetControllerConnectState(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetControllerConnectState: not bind ToBService");
+	}
+	return result;
+}
+			
+String GetAppLibraryHideList(int ext)
+{
+	String result = "";
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetAppLibraryHideList(ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetAppLibraryHideList: not bind ToBService");
+	}
+	return result;
+}
+			
+int SetControllerKeyState(int controllerKeyEnum, int switchEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSetControllerKeyState(PBS_ControllerKeyEnum.values()[controllerKeyEnum], PBS_SwitchEnum.values()[switchEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetControllerKeyState: not bind ToBService");
+	}
+	return result;
+}
+			
+int SetScreenCastAudioOutput(int screencastAudionOutputEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsSetScreenCastAudioOutput(PBS_ScreencastAudioOutputEnum.values()[screencastAudionOutputEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("SetScreenCastAudioOutput: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetScreenCastAudioOutput(int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetScreenCastAudioOutput(ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetScreenCastAudioOutput: not bind ToBService");
+	}
+	return result;
+}
+			
+int CustomizeSettingsTabStatus(int customizeSettingsTabEnum, int switchEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsCustomizeSettingsTabStatus(PBS_CustomizeSettingsTabEnum.values()[customizeSettingsTabEnum], PBS_SwitchEnum.values()[switchEnum], ext);
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("CustomizeSettingsTabStatus: not bind ToBService");
+	}
+	return result;
+}
+			
+int GetCustomizeSettingsTabStatus(int customizeSettingsTabEnum, int ext)
+{
+	int result = 0;
+	IToBService binder = ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    try {
+			result = binder.pbsGetCustomizeSettingsTabStatus(PBS_CustomizeSettingsTabEnum.values()[customizeSettingsTabEnum], ext).ordinal();
+		} catch (RemoteException e) {
+            e.printStackTrace();
+        }
+	}
+	else
+	{
+	    Log.debug("GetCustomizeSettingsTabStatus: not bind ToBService");
+	}
+	return result;
+}
+
+public native void JavaToCSetIPDCallback(int Result);
+void SetIPD(float ipd)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; SetIPDCallback = result -> {
+			JavaToCSetIPDCallback(result);
+		};
+		binder.pbsSetIPD(ipd, SetIPDCallback);
+	}
+	else
+	{
+	    Log.debug("SetIPD: not bind ToBService");
+	}
+}
+
+int SetPICOCastMediaFormat(int bitrate, int ext)
+{
+	int result = 0;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		PicoCastMediaFormat format = new PicoCastMediaFormat();
+		format.bitrate = bitrate;
+		result = binder.setPicoCastMediaFormat(format, ext);
+	}
+	else
+	{
+	    Log.debug("SetPICOCastMediaFormat: not bind ToBService");
+	}
+	return result;
+}
+
+public native void JavaToCSetArUcoMarkerCallback(MarkerInfo[] marker);
+void SetArUcoMarker()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;MarkerInfo[]&gt; SetArUcoMarkerCallback = result -> {
+			JavaToCSetArUcoMarkerCallback(result);
+		};
+		binder.setMarkerInfoCallback(SetArUcoMarkerCallback);
+	}
+	else
+	{
+	    Log.debug("SetArUcoMarker: not bind ToBService");
+	}
+}
+
+public native void JavaToCSetArUcoMarkerFCallback(MarkerInfoF[] marker);
+void SetArUcoMarkerF()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;MarkerInfoF[]&gt; SetArUcoMarkerFCallback = result -> {
+			JavaToCSetArUcoMarkerFCallback(result);
+		};
+		binder.setMarkerInfoCallbackF(SetArUcoMarkerFCallback);
+	}
+	else
+	{
+	    Log.debug("SetArUcoMarkerF: not bind ToBService");
+	}
+}
+
+int GotoSeeThroughFloorSetting(int ext)
+{
+	int result = 0;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    result = binder.gotoSeeThroughFloorSetting(ext);
+	}
+	else
+	{
+	    Log.debug("GotoSeeThroughFloorSetting: not bind ToBService");
+	}
+	return result;
+}
+
+public native void JavaToCFileCopyCallback(boolean bStart, boolean bProcess, double Process, boolean bFinish, int ErrorCode);
+public IFileCopyCallback FileCopyCallback = new IFileCopyCallback.Stub()
+{
+    @Override
+    public void onCopyStart() throws RemoteException {
+		JavaToCFileCopyCallback(true, false, 0, false, 0);
+    }
+
+    @Override
+    public void onCopyProgress(double process) throws RemoteException {
+		JavaToCFileCopyCallback(false, true, process, false, 0);
+    }
+
+    @Override
+    public void onCopyFinish(int resultCode) throws RemoteException {
+		JavaToCFileCopyCallback(false, false, 1, true, resultCode);
+    }
+
+};
+int FileCopy(String srcPath, String dstPath)
+{
+	int result = 0;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    result = binder.fileCopy(srcPath, dstPath, FileCopyCallback);
+	}
+	else
+	{
+	    Log.debug("FileCopy: not bind ToBService");
+	}
+	return result;
+}
+
+public native void JavaToCIsMapInEffectCallback(int result);
+public IIntCallback IsMapInEffectCallback = new IIntCallback.Stub()
+{
+    @Override
+	public void callback(int result) throws RemoteException {
+		JavaToCIsMapInEffectCallback(result);
+	}
+};
+void isMapInEffect(String MapPath, int ext)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    binder.isMapInEffect(MapPath, IsMapInEffectCallback, ext);
+	}
+	else
+	{
+	    Log.debug("isMapInEffect: not bind ToBService");
+	}
+}
+
+public native void JavaToCImportMapByPathCallback(int result);
+public IIntCallback ImportMapByPathCallback = new IIntCallback.Stub()
+{
+    @Override
+	public void callback(int result) throws RemoteException {
+		JavaToCImportMapByPathCallback(result);
+	}
+};
+void ImportMapByPath(String MapPath, int ext)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+	    binder.importMapByPath(MapPath, ImportMapByPathCallback, ext);
+	}
+	else
+	{
+	    Log.debug("ImportMapByPath: not bind ToBService");
+	}
+}
+
+String GetToken()
+{
+	String Token = AuthCheckServer.featureAuthByToken(this, "getCameraInfo");
+	return Token;
+}
+
+public native void JavaToCSetWifiP2PDeviceNameCallback(int Result);
+void SetWifiP2PDeviceName(String deviceName, int ext)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; SetWifiP2PDeviceNameCallback = result -> {
+			JavaToCSetWifiP2PDeviceNameCallback(result);
+		};
+		binder.setWifiP2PDeviceName(deviceName, SetWifiP2PDeviceNameCallback, ext);
+	}
+	else
+	{
+	    Log.debug("SetWifiP2PDeviceName: not bind ToBService");
+	}
+}
+
+String GetWifiP2PDeviceName(int ext)
+{
+	String name = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		name = binder.getWifiP2PDeviceName(ext);
+	}
+	else
+	{
+	  Log.debug("GetWifiP2PDeviceName: not bind ToBService");
+	}
+  return name;
+}
+
+int SetScreenBrightness(int brightness, int ext)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setScreenBrightness(brightness, ext);
+	}
+	else
+	{
+	  Log.debug("SetScreenBrightness: not bind ToBService");
+	}
+  return result;
+}
+
+int SetSystemKeyUsability(int key, int ext)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setSystemKeyUsability(key, ext);
+	}
+	else
+	{
+	  Log.debug("SetSystemKeyUsability: not bind ToBService");
+	}
+  return result;
+}
+
+int SetLauncher(String packageName)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setLauncher(packageName);
+	}
+	else
+	{
+	  Log.debug("SetLauncher: not bind ToBService");
+	}
+  return result;
+}
+
+int OpenTimingStartup(int hour, int minute, int repeat)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.openTimingStartup(hour, minute, repeat);
+	}
+	else
+	{
+	  Log.debug("OpenTimingStartup: not bind ToBService");
+	}
+  return result;
+}
+
+
+int CloseTimingStartup()
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.closeTimingStartup();
+	}
+	else
+	{
+	  Log.debug("CloseTimingStartup: not bind ToBService");
+	}
+  return result;
+}
+
+int OpenTimingShutdown(int hour, int minute, int repeat)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.openTimingShutdown(hour, minute, repeat);
+	}
+	else
+	{
+	  Log.debug("OpenTimingShutdown: not bind ToBService");
+	}
+  return result;
+}
+
+int CloseTimingShutdown()
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.closeTimingShutdown();
+	}
+	else
+	{
+	  Log.debug("CloseTimingShutdown: not bind ToBService");
+	}
+  return result;
+}
+
+int SetTimeZone(String timeZone)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setTimeZone(timeZone);
+	}
+	else
+	{
+	  Log.debug("SetTimeZone: not bind ToBService");
+	}
+  return result;
+}
+
+public native void JavaToCAppCopyrightVerifyCallback(int Result);
+void AppCopyrightVerify(String packageName)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; AppCopyrightVerifyCallback = result -> {
+			JavaToCAppCopyrightVerifyCallback(result);
+		};
+		binder.appCopyrightVerify(packageName, AppCopyrightVerifyCallback);
+	}
+	else
+	{
+	    Log.debug("AppCopyrightVerify: not bind ToBService");
+	}
+}
+
+int GotoEnvironmentTextureCheck()
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.gotoEnvironmentTextureCheck();
+	}
+	else
+	{
+	  Log.debug("GotoEnvironmentTextureCheck: not bind ToBService");
+	}
+  return result;
+}
+
+int setSystemDate(int year, int month, int day)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setSystemDate(year, month, day);
+	}
+	else
+	{
+	  Log.debug("setSystemDate: not bind ToBService");
+	}
+	return result;
+}
+
+int setSystemTime(int hourOfDay, int minute, int second)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setSystemTime(hourOfDay, minute, second);
+	}
+	else
+	{
+	  Log.debug("setSystemTime: not bind ToBService");
+	}
+	return result;
+}
+
+String[] getRunningAppProcesses()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		ActivityManager.RunningAppProcessInfo[] temps = binder.getRunningAppProcesses();
+		String[] results = new String[temps.length];
+		for (int i = 0; i &lt; temps.length; i++) 
+		{
+			results[i] = temps[i].pkgList[0];
+        }
+		return results;
+	}
+	else
+	{
+	  Log.debug("getRunningAppProcesses: not bind ToBService");
+	}
+  return null;
+}
+
+String getFocusedApp()
+{
+	String name = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		ComponentName temp = binder.getFocusedApp();
+		name = temp.toShortString();
+	}
+	else
+	{
+	  Log.debug("getFocusedApp: not bind ToBService");
+	}
+  return name;
+}
+		
+int createVirtualDisplay(String displayName, Surface surface, int width, int height, int densityDpi, int flags)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		IBinder m = new Binder();
+		result = binder.createVirtualDisplay(m, displayName, surface, width, height, densityDpi, flags);
+	}
+	else
+	{
+	  Log.debug("createVirtualDisplay: not bind ToBService");
+	}
+	return result;
+}
+
+int setVirtualDisplaySurface(int displayId, Surface surface)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setVirtualDisplaySurface(displayId, surface);
+	}
+	else
+	{
+	  Log.debug("setVirtualDisplaySurface: not bind ToBService");
+	}
+	return result;
+}
+
+int resizeVirtualDisplay(int displayId, int width, int height, int densityDpi)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.resizeVirtualDisplay(displayId, width, height, densityDpi);
+	}
+	else
+	{
+	  Log.debug("resizeVirtualDisplay: not bind ToBService");
+	}
+	return result;
+}
+
+int injectEvent(int displayId, int action, int source, float x, float y)
+{	
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		MotionEvent motionEvent = MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), action, x, y, 0);
+		motionEvent.setSource(source);
+		result = binder.injectEvent(displayId, motionEvent);
+		motionEvent.recycle();
+	}
+	else
+	{
+	  Log.debug("injectEvent: not bind ToBService");
+	}
+	return result;
+}
+
+int injectEvent(int displayId, int action, int source, int keycode)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{  
+		KeyEvent keyEvent = new KeyEvent(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), action, keycode, 0, 0, 110000, 0);
+	    keyEvent.setSource(source);
+		result = binder.injectEvent(displayId, keyEvent);
+	}
+	else
+	{
+	  Log.debug("injectEvent: not bind ToBService");
+	}
+	return result;
+}
+
+int startApp(int displayId, String PackageName, String ClassName, String Action)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{		
+		Intent intent = new Intent(this.getApplicationContext(), GameActivity.class);
+		intent.setClassName(PackageName, ClassName);
+		intent.setAction(Action);
+		result = binder.startApp(displayId, intent);
+	}
+	else
+	{
+	  Log.debug("startApp: not bind ToBService");
+	}
+	return result;
+}
+
+int releaseVirtualDisplay(int displayId)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.releaseVirtualDisplay(displayId);
+	}
+	else
+	{
+	  Log.debug("releaseVirtualDisplay: not bind ToBService");
+	}
+	return result;
+}
+
+int setVirtualEnvironment(String envPath)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setVirtualEnvironment(envPath);
+	}
+	else
+	{
+	  Log.debug("setVirtualEnvironment: not bind ToBService");
+	}
+	return result;
+}
+
+String getVirtualEnvironment()
+{
+	String name = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		name = binder.getVirtualEnvironment();
+	}
+	else
+	{
+	  Log.debug("getVirtualEnvironment: not bind ToBService");
+	}
+  return name;
+}
+
+String startService(String PackageName, String ClassName, String Action)
+{
+	String name = "Error:StartService failed!";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		ComponentName componentName = new ComponentName(PackageName, ClassName);
+		Intent intent = new Intent();
+		intent.setComponent(componentName);
+		intent.setAction(Action);
+		ComponentName temp = binder.startService(intent);
+		if(temp != null)
+		{
+			name = temp.toString();
+		}
+	}
+	else
+	{
+	  Log.debug("startService: not bind ToBService");
+	}
+  return name;
+}
+
+String startForegroundService(String PackageName, String ClassName, String Action)
+{
+	String name = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		ComponentName componentName = new ComponentName(PackageName, ClassName);
+		Intent intent = new Intent();
+		intent.setComponent(componentName);
+		intent.setAction(Action);
+		ComponentName temp = binder.startForegroundService(intent);
+		if(temp != null)
+		{
+			name = temp.toString();
+		}
+	}
+	else
+	{
+	  Log.debug("startForegroundService: not bind ToBService");
+	}
+  return name;
+}
+
+int sendBroadcast(String PackageName, String ClassName, String Action)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Intent intent = new Intent(this.getApplicationContext(), GameActivity.class);
+		intent.setClassName(PackageName, ClassName);
+		intent.setAction(Action);
+		result = binder.sendBroadcast(intent);
+	}
+	else
+	{
+	  Log.debug("sendBroadcast: not bind ToBService");
+	}
+  return result;
+}
+
+int sendOrderedBroadcast(String PackageName, String ClassName, String Action, String ReceiverPermission)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Intent intent = new Intent(this.getApplicationContext(), GameActivity.class);
+		intent.setClassName(PackageName, ClassName);
+		intent.setAction(Action);
+		result = binder.sendOrderedBroadcast(intent, ReceiverPermission);
+	}
+	else
+	{
+	  Log.debug("sendOrderedBroadcast: not bind ToBService");
+	}
+  return result;
+}
+
+int keepAliveBackground(int keepAlivePid, int flags, int level)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.keepAliveBackground(keepAlivePid, flags, level);
+	}
+	else
+	{
+	  Log.debug("keepAliveBackground: not bind ToBService");
+	}
+	return result;
+}
+
+int openIPDDetectionPage()
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.openIPDDetectionPage();
+	}
+	else
+	{
+	  Log.debug("openIPDDetectionPage: not bind ToBService");
+	}
+	return result;
+}
+
+int setFloorHeight(float height)
+{
+	int result = Integer.MAX_VALUE;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.setFloorHeight(height);
+	}
+	else
+	{
+	  Log.debug("setFloorHeight: not bind ToBService");
+	}
+	return result;
+}
+
+float getFloorHeight()
+{
+	float result = 0;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.getFloorHeight();
+	}
+	else
+	{
+	  Log.debug("getFloorHeight: not bind ToBService");
+	}
+	return result;
+}
+
+String pbsGetTimingStartupStatusTwo(int ext)
+{
+	String result = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.pbsGetTimingStartupStatusTwo(ext);
+	}
+	else
+	{
+		Log.debug("pbsGetTimingStartupStatusTwo: not bind ToBService");
+	}
+  return result;
+}
+
+String pbsGetTimingShutDownStatusTwo(int ext)
+{
+	String result = "";
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		result = binder.pbsGetTimingShutDownStatusTwo(ext);
+	}
+	else
+	{
+		Log.debug("pbsGetTimingShutDownStatusTwo: not bind ToBService");
+	}
+  return result;
+}
+
+float[] getLargeSpaceBoundsInfo()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Point3D[] points = binder.getLargeSpaceBoundsInfo();
+		float[] results = new float[points.length * 3];
+		for (int i = 0; i &lt; points.length; i = i + 3) 
+		{
+          results[i] = (float)points[i].x;
+		  results[i+1] = (float)points[i].y;
+		  results[i+2] = (float)points[i].z;
+        }
+		return results;
+	}
+	else
+	{
+	    Log.debug("getLargeSpaceBoundsInfo: not bind ToBService");
+	}
+	return null;
+}
+
+public native void JavaToCopenLargeSpaceQuickModeCallback(int Result);
+void openLargeSpaceQuickMode(int length, int width, int originType, boolean openVst, float distance, int timeout)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; ConsumerIntegerCallback = result -> {JavaToCopenLargeSpaceQuickModeCallback(result);};
+		binder.openLargeSpaceQuickMode(length, width, originType, openVst, distance, timeout, ConsumerIntegerCallback);
+	}
+	else
+	{
+	    Log.debug("openLargeSpaceQuickMode: not bind ToBService");
+	}
+}
+
+void closeLargeSpaceQuickMode()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.closeLargeSpaceQuickMode();
+	}
+	else
+	{
+	    Log.debug("closeLargeSpaceQuickMode: not bind ToBService");
+	}
+}
+
+public native void JavaToCsetOriginOfLargeSpaceQuickModeCallback(int Result);
+void setOriginOfLargeSpaceQuickMode(int originType, boolean openVst, float distance, int timeout)
+{	
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; ConsumerIntegerCallback = result -> {JavaToCsetOriginOfLargeSpaceQuickModeCallback(result);};
+		binder.setOriginOfLargeSpaceQuickMode(originType, openVst, distance, timeout, ConsumerIntegerCallback);
+	}
+	else
+	{
+	    Log.debug("setOriginOfLargeSpaceQuickMode: not bind ToBService");
+	}
+}
+
+public native void JavaToCsetBoundaryOfLargeSpaceQuickModeCallback(int Result);
+void setBoundaryOfLargeSpaceQuickMode(int length, int width)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; ConsumerIntegerCallback = result -> {JavaToCsetBoundaryOfLargeSpaceQuickModeCallback(result);};
+		binder.setBoundaryOfLargeSpaceQuickMode(length, width, ConsumerIntegerCallback);
+	}
+	else
+	{
+	    Log.debug("setBoundaryOfLargeSpaceQuickMode: not bind ToBService");
+	}
+}
+
+int[] getLargeSpaceQuickModeInfo()
+{	
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		LargeSpaceQuickModeInfo infor = binder.getLargeSpaceQuickModeInfo();
+		int[] results = new int[4];
+		results[0] = infor.status? 1:0;
+		results[1] = infor.length;
+		results[2] = infor.width;
+		results[3] = infor.originType;
+		return results;
+	}
+	else
+	{
+	    Log.debug("getLargeSpaceQuickModeInfo: not bind ToBService");
+	}
+	return null;
+}
+
+int startLeftControllerPair()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.startLeftControllerPair();
+	}
+	else
+	{
+	    Log.debug("startLeftControllerPair: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int makeLeftControllerUnPair()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.makeLeftControllerUnPair();
+	}
+	else
+	{
+	    Log.debug("makeLeftControllerUnPair: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int startRightControllerPair()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.startRightControllerPair();
+	}
+	else
+	{
+	    Log.debug("startRightControllerPair: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int makeRightControllerUnPair()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.makeRightControllerUnPair();
+	}
+	else
+	{
+	    Log.debug("makeRightControllerUnPair: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int stopControllerPair()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.stopControllerPair();
+	}
+	else
+	{
+	    Log.debug("stopControllerPair: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setControllerPreferHand(boolean isLeft)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setControllerPreferHand(isLeft);
+	}
+	else
+	{
+	    Log.debug("setControllerPreferHand: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;		
+}
+
+int setControllerVibrateAmplitude(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setControllerVibrateAmplitude(value);
+	}
+	else
+	{
+	    Log.debug("setControllerVibrateAmplitude: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;			
+}
+
+int setPowerManageMode(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setPowerManageMode(value);
+	}
+	else
+	{
+	    Log.debug("setPowerManageMode: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;		
+}
+
+int startRoomMark()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.startRoomMark();
+	}
+	else
+	{
+	    Log.debug("startRoomMark: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int clearRoomMark()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.clearRoomMark();
+	}
+	else
+	{
+	    Log.debug("clearRoomMark: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int clearEyeTrackData()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.clearEyeTrackData();
+	}
+	else
+	{
+	    Log.debug("clearEyeTrackData: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setEyeTrackRate(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setEyeTrackRate(value);
+	}
+	else
+	{
+	    Log.debug("setEyeTrackRate: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setTrackFrequency(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setTrackFrequency(value);
+	}
+	else
+	{
+	    Log.debug("setTrackFrequency: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int startSetSecureBorder()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.startSetSecureBorder();
+	}
+	else
+	{
+	    Log.debug("startSetSecureBorder: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setDistanceSensitivity(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setDistanceSensitivity(value);
+	}
+	else
+	{
+	    Log.debug("setDistanceSensitivity: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setSpeedSensitivity(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setSpeedSensitivity(value);
+	}
+	else
+	{
+	    Log.debug("setSpeedSensitivity: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setMotionTrackerPredictionCoefficient(float predictionCoefficient)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setMotionTrackerPredictionCoefficient(predictionCoefficient);
+	}
+	else
+	{
+	    Log.debug("setMotionTrackerPredictionCoefficient: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+float getMotionTrackerPredictionCoefficient()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getMotionTrackerPredictionCoefficient();
+	}
+	else
+	{
+	    Log.debug("getMotionTrackerPredictionCoefficient: not bind ToBService");
+	}
+	return 0;		
+}
+
+int startMotionTrackerApp(int failMode, int avatarMode)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.startMotionTrackerApp(failMode, avatarMode);
+	}
+	else
+	{
+	    Log.debug("startMotionTrackerApp: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setSingleEyeSource(boolean isLeft)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setSingleEyeSource(isLeft);
+	}
+	else
+	{
+	    Log.debug("setSingleEyeSource: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setViewVisual(int mode)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setViewVisual(mode);
+	}
+	else
+	{
+	    Log.debug("setViewVisual: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setAcceptCastMode(int mode)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setAcceptCastMode(mode);
+	}
+	else
+	{
+	    Log.debug("setAcceptCastMode: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setScreenCastMode(int mode)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setScreenCastMode(mode);
+	}
+	else
+	{
+	    Log.debug("setScreenCastMode: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setScreenRecordShotRatio(int mode)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setScreenRecordShotRatio(mode);
+	}
+	else
+	{
+	    Log.debug("setScreenRecordShotRatio: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setScreenResolution(int width, int height)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setScreenResolution(width, height);
+	}
+	else
+	{
+	    Log.debug("setScreenResolution: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int setScreenRecordFrameRate(int value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setScreenRecordFrameRate(value);
+	}
+	else
+	{
+	    Log.debug("setScreenRecordFrameRate: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;		
+}
+
+int showGlobalMessageDialog(byte[] inColor, String title, String body, long time, int gap, int position, int w, int h)
+{
+	int PixelNum = w * h;
+	int[] color = new int[PixelNum];
+
+    for(int i = 0; i &lt; PixelNum; i++) 
+	{
+        color[i] = Color.argb(inColor[4 * i + 3], inColor[4 * i + 2], inColor[4 * i + 1], inColor[4 * i]);
+    }
+	Bitmap icon = null; 
+	if(PixelNum != 0)
+	{
+		icon = Bitmap.createBitmap(color, w, h, Bitmap.Config.ARGB_8888);
+	}
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.showGlobalMessageDialog(icon, title, body, time, gap, position);
+	}
+	else
+	{
+	    Log.debug("showGlobalMessageDialog: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;		
+}
+
+void hideGlobalMessageDialog()
+{	
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.hideGlobalMessageDialog();
+	}
+	else
+	{
+	    Log.debug("hideGlobalMessageDialog: not bind ToBService");
+	}
+}
+
+int showGlobalTipsDialog(byte[] inColor, String title, long time, int position, int bgColor, int w, int h)
+{
+	int PixelNum = w * h;
+	int[] color = new int[PixelNum];
+
+    for(int i = 0; i &lt; PixelNum; i++) 
+	{
+        color[i] = Color.argb(inColor[4 * i + 3], inColor[4 * i + 2], inColor[4 * i + 1], inColor[4 * i]);
+    }
+	Bitmap icon = null; 
+	if(PixelNum != 0)
+	{
+		icon = Bitmap.createBitmap(color, w, h, Bitmap.Config.ARGB_8888);
+	}
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.showGlobalTipsDialog(icon, title, time, position, bgColor);
+	}
+	else
+	{
+	    Log.debug("showGlobalTipsDialog: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+void hideGlobalTipsDialog()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.hideGlobalTipsDialog();
+	}
+	else
+	{
+	    Log.debug("hideGlobalTipsDialog: not bind ToBService");
+	}
+}
+
+int showGlobalBigStatusDialog(byte[] inColor, String title, String body, long time, int gap, int position, int w, int h)
+{
+	int PixelNum = w * h;
+	int[] color = new int[PixelNum];
+
+    for(int i = 0; i &lt; PixelNum; i++) 
+	{
+        color[i] = Color.argb(inColor[4 * i + 3], inColor[4 * i + 2], inColor[4 * i + 1], inColor[4 * i]);
+    }
+	Bitmap icon = null; 
+	if(PixelNum != 0)
+	{
+		icon = Bitmap.createBitmap(color, w, h, Bitmap.Config.ARGB_8888);
+	}
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.showGlobalBigStatusDialog(icon, title, body, time, gap, position);
+	}
+	else
+	{
+	    Log.debug("showGlobalBigStatusDialog: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;		
+}
+
+void hideGlobalBigStatusDialog()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.hideGlobalBigStatusDialog();
+	}
+	else
+	{
+	    Log.debug("hideGlobalBigStatusDialog: not bind ToBService");
+	}
+}
+	
+int showGlobalSmallStatusDialog(byte[] inColor, String title, long time, int gap, int position, int w, int h)
+{
+	int PixelNum = w * h;
+	int[] color = new int[PixelNum];
+
+    for(int i = 0; i &lt; PixelNum; i++) 
+	{
+        color[i] = Color.argb(inColor[4 * i + 3], inColor[4 * i + 2], inColor[4 * i + 1], inColor[4 * i]);
+    }
+	Bitmap icon = null; 
+	if(PixelNum != 0)
+	{
+		icon = Bitmap.createBitmap(color, w, h, Bitmap.Config.ARGB_8888);
+	}
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.showGlobalSmallStatusDialog(icon, title, time, gap, position);
+	}
+	else
+	{
+	    Log.debug("showGlobalSmallStatusDialog: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+void hideGlobalSmallStatusDialog()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.hideGlobalSmallStatusDialog();
+	}
+	else
+	{
+	    Log.debug("hideGlobalSmallStatusDialog: not bind ToBService");
+	}
+}
+
+int showGlobalDialogByType(String type, byte[] inColor, String title, String body, long time, int gap, int position, int bgColor, int w, int h)
+{
+	int PixelNum = w * h;
+	int[] color = new int[PixelNum];
+
+    for(int i = 0; i &lt; PixelNum; i++) 
+	{
+        color[i] = Color.argb(inColor[4 * i + 3], inColor[4 * i + 2], inColor[4 * i + 1], inColor[4 * i]);
+    }
+	Bitmap icon = null; 
+	if(PixelNum != 0)
+	{
+		icon = Bitmap.createBitmap(color, w, h, Bitmap.Config.ARGB_8888);
+	}
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.showGlobalDialogByType(type, icon, title, body, time, gap, position, bgColor);
+	}
+	else
+	{
+	    Log.debug("showGlobalDialogByType: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+void hideGlobalDialogByType(String type)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		binder.hideGlobalDialogByType(type);
+	}
+	else
+	{
+	    Log.debug("hideGlobalDialogByType: not bind ToBService");
+	}
+}
+
+public native void JavaToCOnUpdateStatusChangedCallback(int statusCode, float percent);
+public native void JavaToCOnUpdateCompleteCallback(int errorCode, String errorMsg);
+ISystemUpdateCallback SystemUpdateCallback = new ISystemUpdateCallback.Stub()
+{
+    @Override
+    public void onUpdateStatusChanged(int statusCode, float percent) throws RemoteException
+	{
+        JavaToCOnUpdateStatusChangedCallback(statusCode, percent);
+    }
+	
+	@Override
+    public void onUpdateComplete(int errorCode, String errorMsg) throws RemoteException
+	{
+        JavaToCOnUpdateCompleteCallback(errorCode, errorMsg);
+    }
+};
+
+int OnlineSystemUpdate()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.onlineSystemUpdate(SystemUpdateCallback);
+	}
+	else
+	{
+	    Log.debug("OnlineSystemUpdate: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+public native void JavaToCOnOnfflineUpdateStatusChangedCallback(int statusCode, float percent);
+public native void JavaToCOnOnfflineUpdateCompleteCallback(int errorCode, String errorMsg);
+ISystemUpdateCallback OfflineSystemUpdateCallback = new ISystemUpdateCallback.Stub()
+{
+    @Override
+    public void onUpdateStatusChanged(int statusCode, float percent) throws RemoteException
+	{
+        JavaToCOnOnfflineUpdateStatusChangedCallback(statusCode, percent);
+    }
+	
+	@Override
+    public void onUpdateComplete(int errorCode, String errorMsg) throws RemoteException
+	{
+        JavaToCOnOnfflineUpdateCompleteCallback(errorCode, errorMsg);
+    }
+};
+
+int OfflineSystemUpdate(String otaFilePath, boolean autoReboot, boolean showProgress)
+{
+	OffLineSystemUpdateConfig systemUpdateConfig = new OffLineSystemUpdateConfig();
+	systemUpdateConfig.otaFilePath  = otaFilePath;
+	systemUpdateConfig.autoReboot = autoReboot;
+	systemUpdateConfig.showProgress = showProgress;
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.offlineSystemUpdate(systemUpdateConfig, OfflineSystemUpdateCallback);
+	}
+	else
+	{
+	    Log.debug("OfflineSystemUpdate: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int Recenter()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.recenter();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+public native void JavaToCScanQRCodeCallback(String Msg);
+void ScanQRCode()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+			Consumer&lt;String&gt; ScanQRCodeCallback = callback -> {
+				JavaToCScanQRCodeCallback(callback);
+				};
+		binder.scanQRCode(ScanQRCodeCallback);
+	}
+	else
+	{
+	    Log.debug("ScanQRCode: not bind ToBService");
+	}	
+}
+
+int GetControllerVibrateAmplitude()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getControllerVibrateAmplitude();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int SetHMDVolumeKeyFunc(int func)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setHMDVolumeKeyFunc(func);
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetHMDVolumeKeyFunc()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getHMDVolumeKeyFunc();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetPowerManageMode()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getPowerManageMode();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetEyeTrackRate()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getEyeTrackRate();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetTrackFrequency()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getTrackFrequency();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetDistanceSensitivity()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getDistanceSensitivity();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;	
+}
+
+int GetSpeedSensitivity()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getSpeedSensitivity();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int SetMRCollisionAlertSensitivity(float value)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.setMRCollisionAlertSensitivity(value);
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+float GetMRCollisionAlertSensitivity()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getMRCollisionAlertSensitivity();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return 0;
+}
+
+int GetSingleEyeSource()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getSingleEyeSource();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int GetViewVisual()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getViewVisual();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int GetAcceptCastMode()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getAcceptCastMode();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int GetScreenCastMode()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getScreenCastMode();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int GetScreenRecordShotRatio()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getScreenRecordShotRatio();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+int[] GetScreenResolution()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getScreenResolution();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return null;
+}
+
+int GetScreenRecordFrameRate()
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		return binder.getScreenRecordFrameRate();
+	}
+	else
+	{
+	    Log.debug("Recenter: not bind ToBService");
+	}
+	return Integer.MAX_VALUE;
+}
+
+public native void JavaToCConnectWifiCallback(int Result);
+void ConnectWifi(String ssid, String password)
+{
+	IToBServiceProxy binder = (IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder();
+	if (binder != null)
+	{
+		Consumer&lt;Integer&gt; ConsumerIntegerCallback = result -> {JavaToCConnectWifiCallback(result);};
+		WifiConfiguration config = new WifiConfiguration();
+		if (password.isEmpty()) 
+		{
+			config.SSID = "\"" + ssid + "\"";
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+		}
+		else
+		{
+			config.allowedAuthAlgorithms.clear();
+			config.allowedGroupCiphers.clear();
+			config.allowedKeyManagement.clear();
+			config.allowedPairwiseCiphers.clear();
+			config.allowedProtocols.clear();
+			config.SSID = "\"" + ssid + "\"";
+			config.preSharedKey = "\"" + password + "\"";
+			config.hiddenSSID = true;
+			config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+			config.status = WifiConfiguration.Status.ENABLED;
+		}
+
+		binder.connectWifi(config, ConsumerIntegerCallback);
+	}
+	else
+	{
+		Log.debug("Recenter: not bind ToBService");
+	}
+}
+
+String[] SetStaticIpConfiguration(String ssid, String password, String StaticIP, String Subnet_Mask, String Gateway, String[] DNS)
+{
+		WifiConfiguration config = new WifiConfiguration();
+		if (password.isEmpty()) 
+		{
+			config.SSID = "\"" + ssid + "\"";
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+		}
+		else
+		{
+			config.allowedAuthAlgorithms.clear();
+			config.allowedGroupCiphers.clear();
+			config.allowedKeyManagement.clear();
+			config.allowedPairwiseCiphers.clear();
+			config.allowedProtocols.clear();
+			config.SSID = "\"" + ssid + "\"";
+			config.preSharedKey = "\"" + password + "\"";
+			config.hiddenSSID = true;
+			config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+			config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+			config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+			config.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+			config.status = WifiConfiguration.Status.ENABLED;
+		}
+		
+		try
+		{
+			InetAddress staticIP = InetAddress.getByName(StaticIP);
+			String subnetMask = Subnet_Mask;
+			InetAddress gateWay = InetAddress.getByName(Gateway);
+	  
+	  		InetAddress[] dns = new InetAddress[DNS.length];
+			for (int i = 0; i &lt; DNS.length; i++) 
+			{
+                dns[i] = InetAddress.getByName(DNS[i]);
+			}
+    
+			WifiConfiguration result = ((IToBServiceProxy)ToBServiceHelper.getInstance().getServiceBinder()).setStaticIpConfiguration(config, staticIP, subnetMask, gateWay, dns);
+			String[] R = new String[2];
+			R[0] = result.SSID;
+			R[1] = result.preSharedKey;
+			return R;
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		String[] R = new String[2];
+		R[0] = "None";
+		R[1] = "None";
+		return R;
+}
+
+		</insert>
+	</gameActivityClassAdditions>
+	
+	<!-- optional additions to proguard -->
+	<proguardAdditions>
+		<insert>
+		-keep class com.epicgames.unreal.GameActivity{*;}
+		</insert>
+	</proguardAdditions>
+</root>

@@ -1,15 +1,15 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "5.0",
+	"VersionName": "2.4.0",
 	"FriendlyName": "OnlineSubsystemPICO",
 	"Description": "",
-  "Category": "OnlineSubsystem",
-  "CreatedBy": "PICO Technology Co., Ltd",
-  "CreatedByURL": "https://www.pico-interactive.com/",
-  "DocsURL": "http://sdk.picovr.com/docs/UnrealSDK/cn/index.html",
-	"MarketplaceURL": "",
-	"SupportURL": "",
+	"Category": "OnlineSubsystem",
+	"CreatedBy": "PICO Technology Co., Ltd",
+	"CreatedByURL": "https://www.pico-interactive.com/",
+	"DocsURL": "https://developer-global.pico-interactive.com/document/ue4/about-sdk",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/6b674b5eed7343eda5d3f2ab8030b50f",
+	"SupportURL": "https://picodevsupport.freshdesk.com/en/support/home",
 	"EngineVersion": "",
 	"CanContainContent": true,
 	"Installed": true,
@@ -18,7 +18,7 @@
 			"Name": "OnlineSubsystemPico",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
-			"WhitelistPlatforms": [
+			"PlatformAllowList": [
 				"Win64",
 				"Android"
 			]

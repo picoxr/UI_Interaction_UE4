@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 
 #include "Pico_AssetFile.h"
@@ -21,7 +21,15 @@ FPicoAssetFileInterface::FPicoAssetFileInterface(FOnlineSubsystemPico& InSubsyst
 
 FPicoAssetFileInterface::~FPicoAssetFileInterface()
 {
+    if (AssetFileDownloadUpdateHandle.IsValid())
+    {
+        AssetFileDownloadUpdateHandle.Reset();
+    }
 
+    if (AssetFileDeleteForSafetyHandle.IsValid())
+    {
+        AssetFileDeleteForSafetyHandle.Reset();
+    }
 }
 
 bool FPicoAssetFileInterface::DeleteByID(FString AssetFileID, FAssetFileDeleteResult InDeleteByIDDelegate)
@@ -37,6 +45,8 @@ bool FPicoAssetFileInterface::DeleteByID(FString AssetFileID, FAssetFileDeleteRe
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DeleteByID return failed:%s"), *ErrorMessage);
                 this->DeleteByIDDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDeleteByIDDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -68,6 +78,8 @@ bool FPicoAssetFileInterface::DeleteByName(FString AssetFileName, FAssetFileDele
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DeleteByName return failed:%s"), *ErrorMessage);
                 this->DeleteByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDeleteByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -98,6 +110,8 @@ bool FPicoAssetFileInterface::DownloadById(FString AssetFileID, FAssetFileDownlo
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DownloadById return failed:%s"), *ErrorMessage);
                 this->DownloadByIdDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDownloadByIDDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -128,6 +142,8 @@ bool FPicoAssetFileInterface::DownloadByName(FString AssetFileName, FAssetFileDo
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DownloadByName return failed:%s"), *ErrorMessage);
                 this->DownloadByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDownloadByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -158,6 +174,8 @@ bool FPicoAssetFileInterface::DownloadCancelById(FString AssetFileID, FAssetFile
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DownloadCancelById return failed:%s"), *ErrorMessage);
                 this->DownloadCancelByIdDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDownloadCancelByIDDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -188,6 +206,8 @@ bool FPicoAssetFileInterface::DownloadCancelByName(FString AssetFileName, FAsset
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("DownloadCancelByName return failed:%s"), *ErrorMessage);
                 this->DownloadCancelNameIdDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InDownloadCancelByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -218,6 +238,8 @@ bool FPicoAssetFileInterface::GetAssetFileList(FGetAssetFileList InGetAssetFileL
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("GetAssetFileList return failed:%s"), *ErrorMessage);
                 this->GetAssetFileListDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InGetAssetFileListDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -248,6 +270,8 @@ bool FPicoAssetFileInterface::GetNextAssetDetailsArrayPage(UPico_AssetDetailsArr
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("GetNextAssetDetailsArrayPage return failed:%s"), *ErrorMessage);
                 this->GetNextAssetDetailsArrayPageDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InGetNextAssetDetailsArrayPageDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -278,6 +302,8 @@ bool FPicoAssetFileInterface::GetAssetFileStatusById(FString AssetFileID, FGetAs
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("GetAssetFileStatusById return failed:%s"), *ErrorMessage);
                 this->GetAssetFileStatusByIdDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InGetAssetFileStatusByIdDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
@@ -308,6 +334,8 @@ bool FPicoAssetFileInterface::GetAssetFileStatusByName(FString AssetFileName, FG
             {
                 auto Error = ppf_Message_GetError(Message);
                 FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+                FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+                ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
                 UE_LOG(PicoAssetFile, Log, TEXT("GetAssetFileStatusByName return failed:%s"), *ErrorMessage);
                 this->GetAssetFileStatusByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);
                 InGetAssetFileStatusByNameDelegate.ExecuteIfBound(true, ErrorMessage, nullptr);

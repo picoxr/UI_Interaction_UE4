@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
 
 
 #include "PicoSpatialAudioSceneMaterialSettingsFactory.h"

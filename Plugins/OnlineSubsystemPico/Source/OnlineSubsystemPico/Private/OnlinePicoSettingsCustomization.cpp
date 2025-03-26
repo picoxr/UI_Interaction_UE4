@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "OnlinePicoSettingsCustomization.h"
 
@@ -37,7 +35,11 @@ class SPicoDeprecationBanner : public SCompoundWidget
             [
                 SNew(SBorder)
                 .BorderBackgroundColor(this, &SPicoDeprecationBanner::GetBorderColor)
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+            .BorderImage(FAppStyle::GetBrush("ToolPanel.LightGroupBorder"))
+#else
             .BorderImage(FEditorStyle::GetBrush("ToolPanel.LightGroupBorder"))
+#endif
             .Padding(2.0f)
             [
                 SNew(SHorizontalBox)
@@ -46,7 +48,11 @@ class SPicoDeprecationBanner : public SCompoundWidget
             .VAlign(VAlign_Center)
             [
                 SNew(SImage)
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+                .Image(FAppStyle::GetBrush("SettingsEditor.WarningIcon"))
+#else
                 .Image(FEditorStyle::GetBrush("SettingsEditor.WarningIcon"))
+#endif
             ]
 
         + SHorizontalBox::Slot()
@@ -173,7 +179,11 @@ void FOnlinePicoSettingsCustomization::ShowDialogWidget()
     }
 
     const TSharedPtr<SBorder> Content = SNew(SBorder)
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+        .BorderImage(FAppStyle::GetBrush("ToolPanel.GroupBorder"))
+#else
         .BorderImage(FEditorStyle::GetBrush("ToolPanel.GroupBorder"))
+#endif
         [
             SNew(SVerticalBox)
             + SVerticalBox::Slot()
@@ -183,7 +193,11 @@ void FOnlinePicoSettingsCustomization::ShowDialogWidget()
         [
             SNew(STextBlock)
             .Text(FText::FromString("     EntitlementCheck is highly recommended in order \nto protect the copyright of an app. To enable it upon \napp start-up, go to \"Edit->Project Settings->\nOnlinePico Settings->Platform\" and enter your APPID."))
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+        .Font(FAppStyle::GetFontStyle("StandardDialog.LargeFont"))
+#else
         .Font(FEditorStyle::GetFontStyle("StandardDialog.LargeFont"))
+#endif
         .AutoWrapText(true)
         ]
 
@@ -201,7 +215,11 @@ void FOnlinePicoSettingsCustomization::ShowDialogWidget()
             SNew(SButton)
             .Text(FText::FromString("OK"))
         .OnClicked(this, &FOnlinePicoSettingsCustomization::OnOKButtonClick)
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+        .ContentPadding(FAppStyle::GetMargin("StandardDialog.ContentPadding"))
+#else
         .ContentPadding(FEditorStyle::GetMargin("StandardDialog.ContentPadding"))
+#endif
         .HAlign(HAlign_Center)
         ]
     + SHorizontalBox::Slot()
@@ -213,7 +231,11 @@ void FOnlinePicoSettingsCustomization::ShowDialogWidget()
             SNew(SButton)
             .Text(FText::FromString("Ignore"))
         .OnClicked(this, &FOnlinePicoSettingsCustomization::OnIgnoreButtonClick)
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+        .ContentPadding(FAppStyle::GetMargin("StandardDialog.ContentPadding"))
+#else
         .ContentPadding(FEditorStyle::GetMargin("StandardDialog.ContentPadding"))
+#endif
         .HAlign(HAlign_Center)
         ]
         ]
@@ -241,7 +263,11 @@ void FOnlinePicoSettingsCustomization::ShowDialogWidget()
         [
             SNew(STextBlock)
             .Text(FText::FromString("No longer remind"))
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+        .Font(FAppStyle::GetFontStyle("StandardDialog.LargeFont"))
+#else
         .Font(FEditorStyle::GetFontStyle("StandardDialog.LargeFont"))
+#endif
         ]
         ]
 

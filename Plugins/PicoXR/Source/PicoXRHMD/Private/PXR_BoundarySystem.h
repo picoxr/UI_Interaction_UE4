@@ -1,4 +1,6 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "CoreMinimal.h"
@@ -35,14 +37,9 @@ public:
 
 	FVector UPxr_GetDimensions(bool BoundaryType);
 
-	bool UPxr_GetSeeThroughData(int CameraType,UTexture2D* &CameraImage);
-
-	bool UPxr_SetCameraImageSize(FIntPoint ImageSize);
-
 	int UPxr_SetSeeThroughBackground(bool value);
 
 private:
-	bool bIsStartCamera;
 	FIntPoint CurrentImageSize;
 	UTexture2D* CameraTextureLeft;
 	UTexture2D* CameraTextureRight;

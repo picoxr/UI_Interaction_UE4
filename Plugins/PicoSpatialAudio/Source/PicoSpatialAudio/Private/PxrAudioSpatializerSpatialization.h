@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #pragma once
 #include "IAudioExtensionPlugin.h"
 #include "PicoSpatializationSourceSettings.h"
@@ -26,22 +28,22 @@ namespace Pxr_Audio
 			struct FInternalSourceProperties
 			{
 				int SourceId = -1;
-				float Position[3] = {0.f, 0.f, 0.f};
-
+				
 				//	Source settings
-				float SourceGainDb;
-				float VolumetricSize;
-				bool EnableDoppler;
-				float MinAttenuationDistance;
-				float MaxAttenuationDistance;
+				PxrAudioSpatializer_SourceConfig Config;
+				unsigned int PropertyMask = 0;
+				
 				FInternalSourceProperties()
 				{
 					const auto* DefaultSourceSettings = FPicoSpatialAudioModule::GetDefaultSourceSettings();
-					SourceGainDb = DefaultSourceSettings->SourceGainDb;
-					VolumetricSize = DefaultSourceSettings->VolumetricSize;
-					EnableDoppler = DefaultSourceSettings->EnableDoppler;
-					MinAttenuationDistance = DefaultSourceSettings->MinAttenuationDistance;
-					MaxAttenuationDistance = DefaultSourceSettings->MaxAttenuationDistance;
+					Config.source_gain = DB2Mag(DefaultSourceSettings->SourceGainDb);
+					Config.reflection_gain = DB2Mag(DefaultSourceSettings->ReflectionGainDb);
+					Config.radius = DefaultSourceSettings->VolumetricSize;
+					Config.enable_doppler = DefaultSourceSettings->EnableDoppler;
+					Config.range_min = DefaultSourceSettings->MinAttenuationDistance;
+					Config.range_max = DefaultSourceSettings->MaxAttenuationDistance;
+					Config.directivity_alpha = DefaultSourceSettings->DirectivityAlpha;
+					Config.directivity_order = DefaultSourceSettings->DirectivityOrder;
 				}
 			};
 

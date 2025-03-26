@@ -1,11 +1,13 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #pragma once
 #include "IXRLoadingScreen.h"
 #include "TickableObjectRenderThread.h"
 #include "PXR_StereoLayer.h"
 #include "PXR_HMDTypes.h"
-#include "PXR_Settings.h"
+#include "PXR_HMDRuntimeSettings.h"
 #include "PXR_GameFrame.h"
 
 struct FPXRSplashLayer
@@ -42,12 +44,14 @@ public:
 	virtual ~FPXRSplash();
 	virtual void ShowLoadingScreen() override;
 	virtual void HideLoadingScreen() override;
+	virtual bool IsPlayingLoadingMovie() const override;
 	virtual void ClearSplashes() override;
 	virtual void AddSplash(const FSplashDesc& InSplashDesc) override;
 	virtual bool IsShown() const override { return bIsShown; }
 
 	void InitSplash();
 	void ShutDownSplash();
+	void ReleaseResources_RHIThread();
 
 	void OnPreLoadMap(const FString& MapName);
 	void AutoShow(bool AutoShowSplash);
@@ -77,6 +81,7 @@ protected:
 	FPICOXRRenderBridge* CustomRenderBridge;
 	FDelegateHandle PostLoadLevelDelegate;
 	UPICOXRSettings* PICOSettings;
+	FSettingsPtr Settings;
 	FPXRGameFramePtr PXRFrame;
 	bool bIsShown;
 	bool bSplashNeedUpdateActiveState;

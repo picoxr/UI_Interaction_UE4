@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #pragma once
 #include "pxr_audio_spatializer_types.h"
 #include "PicoSpatialAudioEngine/PxrAudioSpatializerApiNative.h"
@@ -32,7 +34,6 @@ namespace Pxr_Audio
 				Material,
 				int* GeometryId) const;
 			PxrAudioSpatializer_Result SubmitMeshAndMaterialFactor(
-
 				const float* Vertices,
 				int VerticesCount,
 				const int* Indices,
@@ -41,7 +42,19 @@ namespace Pxr_Audio
 				float ScatteringFactor,
 				float TransmissionFactor,
 				int* GeometryId) const;
+			PxrAudioSpatializer_Result SubmitMeshWithConfig(
+				const float* Vertices,
+				int VerticesCount,
+				const int* Indices,
+				int IndicesCount,
+				const PxrAudioSpatializer_AcousticMeshConfig* Config,
+				int* GeometryId) const;
 			PxrAudioSpatializer_Result RemoveMesh(int GeometryId) const;
+			PxrAudioSpatializer_Result SetMeshEnable(int GeometryId, bool Enable) const;
+			PxrAudioSpatializer_Result
+			SetMeshConfig(int GeometryId,
+			              const PxrAudioSpatializer_AcousticMeshConfig* Config,
+			              unsigned int PropertyMask = PASP_MeshProperty_All) const;
 			PxrAudioSpatializer_Result GetAbsorptionFactor(
 				PxrAudioSpatializer_AcousticsMaterial Material, float* AbsorptionFactor) const;
 			PxrAudioSpatializer_Result GetScatteringFactor(
@@ -67,6 +80,11 @@ namespace Pxr_Audio
 				const PxrAudioSpatializer_SourceConfig* SourceConfig,
 				int* SourceId,
 				bool bIsAsync = false) const;
+			PxrAudioSpatializer_Result SetSourceConfig(const int SourceId,
+			                                           const PxrAudioSpatializer_SourceConfig* SourceConfig,
+			                                           unsigned PropertyMask = PASP_SourceProperty_All) const;
+			PxrAudioSpatializer_Result GetSourceConfig(const int SourceId,
+			                                           PxrAudioSpatializer_SourceConfig* SourceConfig) const;
 			PxrAudioSpatializer_Result SetSourceAttenuationMode(
 
 				int SourceId,
@@ -145,6 +163,7 @@ namespace Pxr_Audio
 			PxrAudioSpatializer_Result UpdateSourceMode(
 				int SourceId,
 				PxrAudioSpatializer_SourceMode Mode) const;
+
 		private:
 			TSharedPtr<API, ESPMode::ThreadSafe> Api;
 			static FContextSingleton* Instance;

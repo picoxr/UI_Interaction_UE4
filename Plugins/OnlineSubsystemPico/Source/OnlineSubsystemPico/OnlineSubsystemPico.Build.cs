@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 using UnrealBuildTool;
 using System.IO;
@@ -11,7 +9,7 @@ public class OnlineSubsystemPico : ModuleRules
         PrivateDefinitions.Add("ONLINESUBSYSTEMPICO_PACKAGE=1");
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         string OnlineSubsystemPublic = Path.GetFullPath(Path.Combine(Target.RelativeEnginePath, "Plugins/Online/OnlineSubsystem/Source/Public/"));
-        PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source/OnlineSubsystemPico/include"));
+        PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source/ThirdParty/include"));
         PrivateIncludePaths.Add("OnlineSubsystemPico/Private");
         PrivateIncludePaths.AddRange(
              new string[] {
@@ -20,25 +18,34 @@ public class OnlineSubsystemPico : ModuleRules
         );
         if (Target.Platform == UnrealTargetPlatform.Android)
         {
-            PublicAdditionalLibraries.Add(Path.Combine(PluginDirectory, "Source/OnlineSubsystemPico/lib/armeabi-v7a/libpxrplatformloader.so"));
-            PublicAdditionalLibraries.Add(Path.Combine(PluginDirectory, "Source/OnlineSubsystemPico/lib/arm64-v8a/libpxrplatformloader.so"));
             PrivateDependencyModuleNames.AddRange(new string[] { "Launch" });
+            PublicAdditionalLibraries.Add(Path.Combine(PluginDirectory, "Source/ThirdParty/lib/arm64-v8a/libpxrplatformloader.so"));
             string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, Target.RelativeEnginePath);
             AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(PluginPath, "OnlineSubsystemPico_APL.xml"));
         }
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-            PublicAdditionalLibraries.Add(Path.Combine(PluginDirectory, "Source/OnlineSubsystemPico/lib/Windows/libplatformsdk.dll.a"));
-            PublicDelayLoadDLLs.Add("libplatformsdk.dll");
-            PublicDelayLoadDLLs.Add("libgcc_s_seh-1.dll");
-            PublicDelayLoadDLLs.Add("libwinpthread-1.dll");
-            PublicDelayLoadDLLs.Add("libstdc++-6.dll");
-            PublicDelayLoadDLLs.Add("WSOCK32.dll");
+            PublicAdditionalLibraries.Add(Path.Combine(PluginDirectory, "Source/ThirdParty/lib/Windows/platformsdk.lib"));
             // Ensure that the DLL is staged along with the executable
-            RuntimeDependencies.Add("$(PluginDir)/OnlineSubsystemPico/Binaries/Win64/libplatformsdk.dll");
-            RuntimeDependencies.Add("$(PluginDir)/OnlineSubsystemPico/Binaries/Win64/libgcc_s_seh-1.dll");
-            RuntimeDependencies.Add("$(PluginDir)/OnlineSubsystemPico/Binaries/Win64/libwinpthread-1.dll");
-            RuntimeDependencies.Add("$(PluginDir)/OnlineSubsystemPico/Binaries/Win64/libstdc++-6.dll");
+
+            PublicDelayLoadDLLs.Add("platformsdk.dll");
+            PublicDelayLoadDLLs.Add("openh264-4.dll");
+            PublicDelayLoadDLLs.Add("RTCFFmpeg.dll");
+            PublicDelayLoadDLLs.Add("VolcEngineRTC.dll");
+            PublicDelayLoadDLLs.Add("pthreadVC2.dll");
+
+            RuntimeDependencies.Add("$(PluginDir)/Binaries/ThirdParty/PPFLibrary/Win64/platformsdk.dll");
+            RuntimeDependencies.Add("$(PluginDir)/Binaries/ThirdParty/PPFLibrary/Win64/openh264-4.dll");
+            RuntimeDependencies.Add("$(PluginDir)/Binaries/ThirdParty/PPFLibrary/Win64/RTCFFmpeg.dll");
+            RuntimeDependencies.Add("$(PluginDir)/Binaries/ThirdParty/PPFLibrary/Win64/VolcEngineRTC.dll");
+            RuntimeDependencies.Add("$(PluginDir)/Binaries/ThirdParty/PPFLibrary/Win64/pthreadVC2.dll");
+
+            //string DllDirectory = Path.Combine(PluginDirectory, "Source/ThirdParty/lib/Windows/");
+            //RuntimeDependencies.Add("$(BinaryOutputDir)/openh264-4.dll", Path.Combine(DllDirectory, "openh264-4.dll"));
+            //RuntimeDependencies.Add("$(BinaryOutputDir)/platformsdk.dll", Path.Combine(DllDirectory, "platformsdk.dll"));
+            //RuntimeDependencies.Add("$(BinaryOutputDir)/RTCFFmpeg.dll", Path.Combine(DllDirectory, "RTCFFmpeg.dll"));
+            //RuntimeDependencies.Add("$(BinaryOutputDir)/VolcEngineRTC.dll", Path.Combine(DllDirectory, "VolcEngineRTC.dll"));
+            //RuntimeDependencies.Add("$(BinaryOutputDir)/pthreadVC2.dll", Path.Combine(DllDirectory, "pthreadVC2.dll"));
         }
 
         PublicIncludePaths.AddRange(
@@ -46,6 +53,7 @@ public class OnlineSubsystemPico : ModuleRules
 				// ... add public include paths required here ...
 			}
             );
+
 
         PublicIncludePathModuleNames.Add("Launch");
         if (Target.Type == TargetRules.TargetType.Editor)
@@ -65,6 +73,7 @@ public class OnlineSubsystemPico : ModuleRules
                 }
             );
         }
+
         PublicDependencyModuleNames.AddRange(
             new string[]
             {

@@ -1,8 +1,11 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_HMDRenderBridge.h"
 #include "PXR_HMD.h"
 #include "PXR_Log.h"
+#include "XRThreadUtils.h"
 
 #include "Runtime/RenderCore/Public/Shader.h"
 #include "Runtime/RenderCore/Public/RendererInterface.h"
@@ -44,7 +47,7 @@ bool FPICOXRRenderBridge::Present(int32& InOutSyncInterval)
 	{
 #if PLATFORM_ANDROID
 		int32 fps;
-		Pxr_GetConfigInt(PXR_RENDER_FPS, &fps);
+		FPICOXRHMDModule::GetPluginWrapper().GetConfigInt(PXR_RENDER_FPS, &fps);
 		PXR_LOGI(PxrUnreal, " Current FPS : %d ", fps);
 #endif
 		BeginTime = NewTime;
@@ -55,31 +58,21 @@ bool FPICOXRRenderBridge::Present(int32& InOutSyncInterval)
 	return false;
 }
 
-#if ENGINE_MINOR_VERSION > 25
-FXRSwapChainPtr FPICOXRRenderBridge::CreateSwapChain_RenderThread(uint32 LayerID, ERHIResourceType ResourceType, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue)
-#else
-FXRSwapChainPtr FPICOXRRenderBridge::CreateSwapChain_RenderThread(uint32 LayerID, ERHIResourceType ResourceType, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, uint32 Flags, uint32 TargetableTextureFlags, uint32 MSAAValue)
-#endif
+FXRSwapChainPtr FPICOXRRenderBridge::CreateSwapChain_RenderThread(uint32 ID, uint32 LayerID, ERHIResourceType RHIResourceType, TArray<uint64>& NativeTextures, uint8 Format, uint32 SizeX, uint32 SizeY, uint32 ArraySize, uint32 NumMips, uint32 NumSamples, ETextureCreateFlags Flags, ETextureCreateFlags TargetableTextureFlags, uint32 MSAAValue)
 {
 	check(IsInRenderingThread());
-	PXR_LOGI(PxrUnreal, "CreateSwapChain_%s LayerID:%u, Format:%d,SizeX:%d,SizeY:%d,ArraySize:%d,NumMips:%d,NumSamples:%d,Flags:%d,TargetableTextureFlags:%d,MSAAValue:%d", PLATFORM_CHAR(*RHIString), LayerID, Format, SizeX, SizeY, ArraySize, NumMips, NumSamples, Flags, TargetableTextureFlags, MSAAValue);
+	PXR_LOGI(PxrUnreal, "CreateSwapChain_%s ID:%d, LayerID:%u, Format:%d,SizeX:%d,SizeY:%d,ArraySize:%d,NumMips:%d,NumSamples:%d,Flags:%d,TargetableTextureFlags:%d,MSAAValue:%d", PLATFORM_CHAR(*RHIString), ID, LayerID, Format, SizeX, SizeY, ArraySize, NumMips, NumSamples, Flags, TargetableTextureFlags, MSAAValue);
 	FTextureRHIRef RHITexture;
 	TArray<FTextureRHIRef> RHITextureSwapChain;
 	{
 		for (int32 TextureIndex = 0; TextureIndex < NativeTextures.Num(); ++TextureIndex)
 		{
-			FTextureRHIRef TexRef = CreateTexture_RenderThread(ResourceType, NativeTextures[TextureIndex], Format, SizeX, SizeY, NumMips, NumSamples, TargetableTextureFlags, MSAAValue);
+			FTextureRHIRef TexRef = CreateTexture_RenderThread(RHIResourceType, NativeTextures[TextureIndex], Format, SizeX, SizeY, NumMips, NumSamples, TargetableTextureFlags, MSAAValue);
 			RHITextureSwapChain.Add(TexRef);
 		}
 	}
-	if (ENGINE_MINOR_VERSION >= 25 || ENGINE_MAJOR_VERSION >= 5)
-	{
-		RHITexture = GDynamicRHI->RHICreateAliasedTexture(RHITextureSwapChain[0]);
-	}
-	else
-	{
-		RHITexture = CreateTexture_RenderThread(ResourceType, NativeTextures[0], Format, SizeX, SizeY, NumMips, NumSamples, TargetableTextureFlags, MSAAValue);
-	}
+	RHITexture = GDynamicRHI->RHICreateAliasedTexture(RHITextureSwapChain[0]);
+
 	return CreateXRSwapChain(MoveTemp(RHITextureSwapChain), RHITexture);
 }
 
@@ -87,7 +80,7 @@ int FPICOXRRenderBridge::GetSystemRecommendedMSAA() const
 {
 	int msaa = 1;
 #if PLATFORM_ANDROID
-	Pxr_GetConfigInt(PXR_MSAA_LEVEL_RECOMMENDED, &msaa);
+	FPICOXRHMDModule::GetPluginWrapper().GetConfigInt(PXR_MSAA_LEVEL_RECOMMENDED, &msaa);
 #endif
 	return msaa;
 }
@@ -147,11 +140,7 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 #endif
 
 	FRHITexture* SrcTextureRHI = SrcTexture;
-#if ENGINE_MINOR_VERSION > 25
-    RHICmdList.Transition(FRHITransitionInfo(SrcTextureRHI, ERHIAccess::Unknown, ERHIAccess::SRVGraphics));
-#else
-    RHICmdList.TransitionResources(EResourceTransitionAccess::EReadable, &SrcTextureRHI, 1);
-#endif
+	RHICmdList.Transition(FRHITransitionInfo(DstTexture, ERHIAccess::Unknown, ERHIAccess::RTV));
     FGraphicsPipelineStateInitializer GraphicsPSOInit;
 
 	if (bNeedGreenClear)
@@ -193,20 +182,12 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 	auto ShaderMap = GetGlobalShaderMap(FeatureLevel);
 	TShaderMapRef<FScreenVS> VertexShader(ShaderMap);
 	GraphicsPSOInit.BoundShaderState.VertexDeclarationRHI = GFilterVertexDeclaration.VertexDeclarationRHI;
-#if ENGINE_MINOR_VERSION > 24
     GraphicsPSOInit.BoundShaderState.VertexShaderRHI = VertexShader.GetVertexShader();
-#else
-    GraphicsPSOInit.BoundShaderState.VertexShaderRHI = GETSAFERHISHADER_VERTEX(*VertexShader);
-#endif
-
+	
 	if (DstTexture2D)
 	{
-		sRGBSource &= ((SrcTexture->GetFlags() & TexCreate_SRGB) != 0);
-#if ENGINE_MINOR_VERSION > 24
+		sRGBSource &= ( (static_cast<int32>(SrcTexture->GetFlags()) & static_cast<int32>(TexCreate_SRGB) ) != 0);
 		uint32 NumMips = SrcTexture->GetNumMips();
-#else
-		uint32 NumMips = 1;
-#endif
 		for (uint32 MipIndex = 0; MipIndex < NumMips; MipIndex++)
 		{
 			FRHIRenderPassInfo RPInfo(DstTexture, ERenderTargetActions::Load_Store);
@@ -227,44 +208,26 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 				RHICmdList.ApplyCachedRenderTargets(GraphicsPSOInit);
 				FRHISamplerState* SamplerState = DstRect.Size() == SrcRect.Size() ? TStaticSamplerState<SF_Point>::GetRHI() : TStaticSamplerState<SF_Bilinear>::GetRHI();
 
-#if ENGINE_MINOR_VERSION > 24
 				if (!sRGBSource)
 				{
-
 					TShaderMapRef<FScreenPSMipLevel> PixelShader(ShaderMap);
 					GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
-					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-					PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit, 0);
+					FRHIBatchedShaderParameters& BatchedParameters = RHICmdList.GetScratchShaderParameters();
+					PixelShader->SetParameters(BatchedParameters, SamplerState, SrcTextureRHI, MipIndex);
+					RHICmdList.SetBatchedShaderParameters(RHICmdList.GetBoundPixelShader(), BatchedParameters);
 				}
 				else
 				{
 					TShaderMapRef<FScreenPSsRGBSourceMipLevel> PixelShader(ShaderMap);
 					GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
-					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-					PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, MipIndex);
+					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit, 0);
+					FRHIBatchedShaderParameters& BatchedParameters = RHICmdList.GetScratchShaderParameters();
+					PixelShader->SetParameters(BatchedParameters, SamplerState, SrcTextureRHI, MipIndex);
+					RHICmdList.SetBatchedShaderParameters(RHICmdList.GetBoundPixelShader(), BatchedParameters);
 				}
-
+				
 				RHICmdList.SetViewport(DstRect.Min.X, DstRect.Min.Y, 0.0f, DstRect.Min.X + MipViewportWidth, DstRect.Min.Y + MipViewportHeight, 1.0f);
-#else
-				if (!sRGBSource)
-				{
-
-					TShaderMapRef<FScreenPS> PixelShader(ShaderMap);
-					GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
-					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-					PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
-				}
-				else
-				{
-
-					TShaderMapRef<FScreenPSsRGBSource> PixelShader(ShaderMap);
-					GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
-					SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
-					PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI);
-				}
-
-				RHICmdList.SetViewport(DstRect.Min.X, DstRect.Min.Y, 0.0f, DstRect.Max.X, DstRect.Max.Y, 1.0f);
-#endif
 
 				RendererModule->DrawRectangle(
 					RHICmdList,
@@ -272,11 +235,7 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 					U, V, USize, VSize,
 					MipTargetSize,
 					FIntPoint(1, 1),
-#if ENGINE_MINOR_VERSION > 24
 					VertexShader,
-#else
-					* VertexShader,
-#endif
 					EDRF_Default);
 			}
 			RHICmdList.EndRenderPass();
@@ -300,12 +259,9 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 				RHICmdList.ApplyCachedRenderTargets(GraphicsPSOInit);
 
 				TShaderMapRef<FPICOCubemapPS> PixelShader(ShaderMap);
-#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
 				GraphicsPSOInit.BoundShaderState.PixelShaderRHI = PixelShader.GetPixelShader();
-#else
-				GraphicsPSOInit.BoundShaderState.PixelShaderRHI = GETSAFERHISHADER_PIXEL(*PixelShader);
-#endif
-				SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit);
+
+				SetGraphicsPipelineState(RHICmdList, GraphicsPSOInit,0);
 				FRHISamplerState* SamplerState = DstRect.Size() == SrcRect.Size() ? TStaticSamplerState<SF_Point>::GetRHI() : TStaticSamplerState<SF_Bilinear>::GetRHI();
 				PixelShader->SetParameters(RHICmdList, SamplerState, SrcTextureRHI, FaceIndex);
 
@@ -317,20 +273,35 @@ void FPICOXRRenderBridge::TransferImage_RenderThread(FRHICommandListImmediate& R
 					U, V, USize, VSize,
 					TargetSize,
 					FIntPoint(1, 1),
-#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
 					VertexShader,
-#else
-					* VertexShader,
-#endif
 					EDRF_Default);
 			}
 			RHICmdList.EndRenderPass();
 		}
 	}
+	RHICmdList.Transition(FRHITransitionInfo(DstTexture, ERHIAccess::RTV, ERHIAccess::SRVMask));
 }
 
 void FPICOXRRenderBridge::SubmitGPUCommands_RenderThread(FRHICommandListImmediate& RHICmdList)
 {
 	check(IsInRenderingThread());
 	RHICmdList.SubmitCommandsHint();
+}
+
+void FPICOXRRenderBridge::ReleaseResources_RHIThread()
+{
+	CheckInRHIThread();
+}
+
+void FPICOXRRenderBridge::Shutdown()
+{
+	CheckInGameThread();
+
+	ExecuteOnRenderThread([this]()
+		{
+			ExecuteOnRHIThread([this]()
+				{
+					PICOXRHMD = nullptr;
+				});
+		});
 }

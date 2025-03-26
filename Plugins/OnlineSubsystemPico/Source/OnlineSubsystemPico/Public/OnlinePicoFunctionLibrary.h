@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -12,10 +10,9 @@
 #include "OnlineSessionSettings.h"
 #include "OnlineSubsystemPicoManager.h"
 #include "Net/OnlineBlueprintCallProxyBase.h"
+#include "Pico_User.h"
 #include "OnlinePicoFunctionLibrary.generated.h"
 
-
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnlinePicoVerifyAppDelegate, const int32&, code);
 /// @file OnlinePicoFunctionLibrary.h
  
 
@@ -28,7 +25,10 @@ class ONLINESUBSYSTEMPICO_API UOnlinePicoFunctionLibrary : public UBlueprintFunc
 public:
 	UOnlinePicoFunctionLibrary();
 private:
+
 	static UOnlineSubsystemPicoManager* PicoSubsystemManager;
+
+    static UObject* World;
 
     /** @defgroup BlueprintFunction BlueprintFunction
      *  This is the BlueprintFunction group
@@ -49,10 +49,12 @@ public:
     /// <param name ="UserId">User ID.</param>
     /// <param name ="InToken">User token.</param>
     /// <param name ="InType">User type.</param>
-    /// <param name ="InLoginComleteDelegate">Callback function proxy.</param>
+    /// <param name ="InLoginComleteDelegate">Callback function proxy(int, LocalUserNum, const FString, UserId, bool, bIsSuccessed, const FString, ErrorMessage).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Identity")
     static void PicoLogin(UObject* WorldContextObject, int32 LocalUserNum, const FString& UserId, const FString& InToken, const FString& InType, FOnlineManagerLoginCompleteDelegate InLoginComleteDelegate);
 
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Identity")
+    static void PicoGetOpenIDToken(UObject* WorldContextObject, FGetIDToken OnGetIdTokenComplete);
     /// <summary>Gets a user's nickname.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="LocalUserNum">The controller number of the user to get nickname for.</param>   
@@ -77,7 +79,7 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="LocalUserNum">User's account number.</param>
     /// <param name ="ListName">The name of the list. Valid value is `Default` or `OnlinePlayers`.</param>
-    /// <param name ="InReadFriendListDelegate">Callback function proxy.</param> 
+    /// <param name ="InReadFriendListDelegate">Callback function proxy(int, LocalUserNum, bool, bWasSuccessful, const FString, ListName, const FString, ErrorStr).</param> 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Friend")
 	static void PicoReadFriendList(UObject* WorldContextObject, int32 LocalUserNum, const FString& ListName, FOnlineManagerReadFriendListDelegate InReadFriendListDelegate);
 
@@ -118,7 +120,7 @@ public:
     /// <param name ="RoomId">Room ID.</param>
     /// <param name ="Ttl">The effective duration of the room (in seconds).</param>
     /// <param name ="InValue">Channel effective time (in seconds).</param>
-    /// <param name ="InRtcGetTokenDelegate">Callback function proxy.</param>  
+    /// <param name ="InRtcGetTokenDelegate">Callback function proxy( FString, Token, bool, IsSuccessed, FString, ErrorMessage).</param>  
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
 	static void PicoRtcGetToken(UObject* WorldContextObject, const FString& UserId, const FString& RoomId, int Ttl, int InValue, FOnlineManagerRtcGetTokenDelegate InRtcGetTokenDelegate);
 
@@ -155,8 +157,8 @@ public:
     /// </param>
     /// <returns>Int:
     /// <ul>
-    /// <li>`0`: success</li>
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li>
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
@@ -168,8 +170,8 @@ public:
     /// <param name ="RoomId">The ID of the room to destroy.</param>
     /// <returns>Int: 
     /// <ul>
-    /// <li>`0`: success</li>
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li>
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns>    
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
@@ -191,8 +193,8 @@ public:
     /// <param name ="RoomId">Room ID.</param>
     /// <returns>
     /// <ul>
-    /// <li>`0`: success</li>
-    /// <li>Other values: failure</li>
+    /// <li>`0`: Sending request succeeded</li>
+    /// <li>Other values: Sending request failed</li>
     /// </ul>
     /// </returns> 
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
@@ -355,8 +357,39 @@ public:
     /// |-3|Send Failed. Send sync info with a un-publish screen stream.|
     /// |-4|Send Failed. Send sync info with a un-publish audio stream.|
     /// </returns>
-    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send Stream Sync int Info"))
     static int32 RtcSendStreamSyncInfo(UObject* WorldContextObject, int32 Info, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType);
+
+    /// <summary>
+    /// Sends stream sync info. The sync info data will be sent in the same packet with the audio data. Users who subscribe to this audio stream will receive the stream sync info message.
+    /// </summary>
+    /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
+    /// <param name="Bytes">The stream sync bytes info.</param>
+    /// <param name="InStreamIndex">The Stream index:
+    /// * `0`: Main
+    /// * `1`: Screen
+    /// * `2`: None
+    /// </param>
+    /// <param name="RepeatCount">The stream sync info will be sent repeatedly for the times set in `repeatCount`.
+    /// It's designed to avoid losing package and to ensure that the sync info can be sent successfully.
+    /// However, if `repeatCount` is too large, it will cause the sync info to pile up in the queue.
+    /// It is recommended to set this parameter to `1`.
+    /// </param>
+    /// <param name="InSyncInfoStreamType">The sync info stream type:
+    /// * `0`: Audio
+    /// * `1`: None
+    /// </param>
+    /// <returns>Any code which equals to or below `0` indicates success, and other codes indicate failure. 
+    /// | Code | Description|
+    /// |---|---|
+    /// |>=0|Send successfully. Indicates the times sent successfully.|
+    /// |-1|Send Failed. Message length exceeded 255B.|
+    /// |-2|Send Failed. The data is empty.|
+    /// |-3|Send Failed. Send sync info with a un-publish screen stream.|
+    /// |-4|Send Failed. Send sync info with a un-publish audio stream.|
+    /// </returns>
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send Stream Sync Bytes Info"))
+    static int32 RtcSendStreamSyncBytesInfo(UObject* WorldContextObject, TArray<uint8> Bytes, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType);
 
     /// <summary>
     /// Publishes the local audio stream to a room so that the local user's voice can be heard by other users in the same room.
@@ -437,8 +470,19 @@ public:
     /// <param name="RoomId">The ID of the room to which the binary message is to be sent.</param>
     /// <param name="MessageInfo">The binary message to be sent.</param>
     /// <returns>A room message ID of type int64, which is automatically generated and incremented.</returns>
-    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send String Binary Message"))
     static int64 RtcSendRoomBinaryMessage(UObject* WorldContextObject, const FString& RoomId, const FString& MessageInfo);
+
+
+    /// <summary>
+    /// Sends a binary message to a room. All in-room users will receive this message.
+    /// </summary>
+    /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
+    /// <param name="RoomId">The ID of the room to which the binary message is to be sent.</param>
+    /// <param name="Bytes">The binary array to be sent.</param>
+    /// <returns>A room message ID of type int64, which is automatically generated and incremented.</returns>
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send Bytes Binary Message"))
+    static int64 RtcSendRoomBytesBinaryMessage(UObject* WorldContextObject, const FString& RoomId, TArray<uint8> Bytes);
 
     /// <summary>
     /// Sends a text message to a room. All in-room users will receive this message.
@@ -458,8 +502,19 @@ public:
     /// <param name="UserId">The ID of the user the message is sent to.</param>
     /// <param name="MessageInfo">The message to be sent.</param>
     /// <returns>A room message ID of type int64, which is automatically generated and incremented.</returns>
-    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send User String Binary Message"))
     static int64 RtcSendUserBinaryMessage(UObject* WorldContextObject, const FString& RoomId, const FString& UserId, const FString& MessageInfo);
+
+    /// <summary>
+    /// Sends a binary message to a user. Only the user can receive this message.
+    /// </summary>
+    /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
+    /// <param name="RoomId">The ID of the room the user is in.</param>
+    /// <param name="UserId">The ID of the user the message is sent to.</param>
+    /// <param name="Bytes">The message to be sent.</param>
+    /// <returns>A room message ID of type int64, which is automatically generated and incremented.</returns>
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc", Meta = (DisplayName = "Rtc Send User Bytes Binary Message"))
+    static int64 RtcSendUserBytesBinaryMessage(UObject* WorldContextObject, const FString& RoomId, const FString& UserId, TArray<uint8> Bytes);
 
     /// <summary>
     /// Sends a text message to a user. Only the user can receive this message.
@@ -472,6 +527,9 @@ public:
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Rtc")
     static int64 RtcSendUserMessage(UObject* WorldContextObject, const FString& RoomId, const FString& UserId, const FString& Message);
 
+
+
+
     /** @} */ // end of BP_RTC
 
     /** @defgroup BP_Session BP_Session(OnlineSub)
@@ -479,18 +537,49 @@ public:
      *  @{
      */
 
-    // Game
+	// Game
+	/// <summary>Is game initialize success.</summary>
+	/// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
+	/// </ul>
+	/// </returns>
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
+	static bool IsGameInitSuccess(UObject* WorldContextObject);
+	/// <summary>Game initialize.</summary>
+	/// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
+	/// </ul>
+	/// </returns>
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
+	static bool GameInitialize(UObject* WorldContextObject);
+	
+	/// <summary>Game uninitialize.</summary>
+	/// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
+	/// <returns>Bool: 
+	/// <ul>
+	/// <li>`true`: Sending request succeeded</li>
+	/// <li>`false`: Sending request failed</li>
+	/// </ul>
+	/// </returns>
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
+	static bool GameUninitialize(UObject* WorldContextObject);
 
     /// <summary>Creates a private session or a matchmaking session.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name ="HostingPlayerNum">The index in the current userId array.</param> 
     /// <param name ="SessionName">The session name.</param> 
     /// <param name ="NewSessionSettings">The session settings.</param> 
-    /// <param name ="OnCreateSessionCompleteDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="OnCreateSessionCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -499,11 +588,11 @@ public:
     /// <summary>Changes the session state to `InProgress`.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name ="SessionName">The session name.</param> 
-    /// <param name ="OnStartSessionCompleteDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="OnStartSessionCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -513,12 +602,12 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name ="SessionName">The session name.</param> 
     /// <param name ="UpdatedSessionSettings">The settings with new datastore.</param> 
-    /// <param name ="OnUpdateSessionCompleteDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="OnUpdateSessionCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param> 
     /// <param name ="bShouldRefreshOnlineData">(not used)</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -527,25 +616,24 @@ public:
     /// <summary>Changes the session state to `Ended`.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name ="SessionName">The session name.</param> 
-    /// <param name ="OnEndSessionCompleteDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="OnEndSessionCompleteDelegate">Will be executed when the request has been completed( FName, SessionName, bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
     static bool EndSession(UObject* WorldContextObject, FName SessionName, FPicoManagerOnEndSessionCompleteDelegate OnEndSessionCompleteDelegate);
 
-	// todo CompletionDelegate
     /// <summary>Destroys the current session.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name ="SessionName">The session name.</param> 
-    /// <param name ="OnDestroySessionCompleteDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="OnDestroySessionCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -557,8 +645,8 @@ public:
     /// <param name ="UniqueId">The unique ID of the player.</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -570,11 +658,11 @@ public:
     /// <param name ="SessionName">The session name.</param>
     /// <param name ="NewSessionSettings">Set `NumPrivateConnections` to `0`.</param>
     /// <param name ="NewSessionSearch">Used to modify the search state.</param>
-    /// <param name ="OnMatchmakingCompleteDelegate">Will be executed when the request has been completed.</param>
+    /// <param name ="OnMatchmakingCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -584,11 +672,11 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="SearchingPlayerNum">(not used)</param>
     /// <param name ="SessionName">The session name.</param>
-    /// <param name ="OnCancelMatchmakingCompleteDelegate">Will be executed when the request has been completed.</param>
+    /// <param name ="OnCancelMatchmakingCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, bool, bWasSuccessful).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -598,26 +686,25 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="SearchingPlayerNum">(not used)</param>
     /// <param name ="NewSessionSearch">The search settings.</param>
-    /// <param name ="OnFindSessionCompleteDelegate">Will be executed when the request has been completed.</param>
+    /// <param name ="OnFindSessionCompleteDelegate">Will be executed when the request has been completed(bool, bWasSuccessful).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
     static bool FindSessions(UObject* WorldContextObject, int32 SearchingPlayerNum, UPARAM(ref)FPicoOnlineSessionSearch& NewSessionSearch, FPicoManagerOnFindSessionCompleteDelegate OnFindSessionCompleteDelegate);
 
-	// todo FriendId /// CompletionDelegate
     /// <summary>Gets session data by session ID.</summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="SearchingUserId">The ID of the logged-in player. If the played has not logged in, the session data will be unable to get.</param>
     /// <param name ="SessionId">The session ID.</param>
-    /// <param name ="OnSingleSessionResultCompleteDelegate">Will be executed when the request has been completed.</param>
+    /// <param name ="OnSingleSessionResultCompleteDelegate">Will be executed when the request has been completed(int32, LocalUserNum, bool, bWasSuccessful, const FPicoOnlineSessionSearchResult&, SearchResult).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -628,11 +715,11 @@ public:
     /// <param name ="PlayerNum">The `LocalOwnerId` of the session.</param>
     /// <param name ="SessionName">The name of the session to join.</param>
     /// <param name ="SearchResult">The search session result settings.</param>
-    /// <param name ="OnJoinSessionCompleteDelegate">Will be executed when the request has been completed.</param>
+    /// <param name ="OnJoinSessionCompleteDelegate">Will be executed when the request has been completed(FName, SessionName, EOnJoinSessionCompleteResultPicoType , Type).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Game")
@@ -711,7 +798,7 @@ public:
 
     /// <summary>Clears a user's presence data in the current app.</summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>
-    /// <param name="InPresenceClearDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceClearDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -724,7 +811,7 @@ public:
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="SuggestedUserList">The ID list of the users suggested being invited.</param>
-    /// <param name="InReadInvitableUserDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InReadInvitableUserDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -752,7 +839,7 @@ public:
     /// * `false`: not joinable
     /// </param> 
     /// <param name="Extra">Extra presence data defined by the developer.</param> 
-    /// <param name="InPresenceSetDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name="InPresenceSetDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param> 
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -765,7 +852,7 @@ public:
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>   
     /// <param name="ApiName">The API name of the new destination.</param>
-    /// <param name="InPresenceSetDestinationDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceSetDestinationDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -782,7 +869,7 @@ public:
     /// * `true`: joinable
     /// * `false`: not joinable
     /// </param>
-    /// <param name="InPresenceSetIsJoinableDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceSetIsJoinableDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -795,7 +882,7 @@ public:
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>  
     /// <param name="LobbySession">The new lobby session ID.</param>
-    /// <param name="InPresenceSetLobbySessionDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceSetLobbySessionDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -808,7 +895,7 @@ public:
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name="MatchSession">The new match session ID.</param>
-    /// <param name="InPresenceSetMatchSessionDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceSetMatchSessionDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -819,7 +906,7 @@ public:
     /// <summary>Sets extra presence data for a user.</summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name="Extra">The extra presence data defined by the developer.</param> 
-    /// <param name="InPresenceSetExtraDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name="InPresenceSetExtraDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param> 
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -831,11 +918,11 @@ public:
     /// @note Call `GetSendInvitesList` after the Delegate has been executed.
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>
-    /// <param name="InPresenceReadSendInvitesDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceReadSendInvitesDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
-    /// <returns>
+    /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Presence")
     static bool PresenceReadSendInvites(UObject* WorldContextObject, FOnlineManagerPresenceReadSentInvitesDelegate InPresenceReadSendInvitesDelegate);
 
@@ -844,7 +931,7 @@ public:
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name="UserIdArray">The ID array of the users to invite.</param>
-    /// <param name="InPresenceSentInvitesDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceSentInvitesDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -866,7 +953,7 @@ public:
     /// @note Call `PresenceGetDescriptionList` after the Delegate has been executed.
     /// </summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
-    /// <param name="InPresenceGetDestinationsDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InPresenceGetDestinationsDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -886,7 +973,7 @@ public:
 
     /// <summary>Call up the system panel to invite friends.</summary>
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
-    /// <param name="InLaunchInvitePanelDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InLaunchInvitePanelDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -917,7 +1004,7 @@ public:
     /// * `0`: Douyin
     /// * `1`: None
     /// </param>
-    /// <param name="InShareMediaDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InShareMediaDelegate">Will be executed when the request has been completed(bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -940,7 +1027,7 @@ public:
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name="PackageName">The package name of the app to launch.</param>
     /// <param name="Message">A message to be passed to the launched app.</param> 
-    /// <param name="InLaunchOtherAppDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name="InLaunchOtherAppDelegate">Will be executed when the request has been completed(FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage).</param> 
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -948,6 +1035,18 @@ public:
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Application")
     static bool LaunchOtherApp(UObject* WorldContextObject, const FString& PackageName, const FString& Message, FOnlineManagerLaunchOtherAppDelegate InLaunchOtherAppDelegate);
 
+
+    /// <summary>
+    /// Gets the current app's latest version in the PICO Store.
+    /// </summary>
+    /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
+    /// <param name="InGetVersionDelegate">Will be executed when the request has been completed(int64, CurrentCode, FString, CurrentName, int64, LatestCode, FString, LatestName, bool, IsSuccessed, FString, ErrorMessage).</param> 
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
+    /// </ul>
+    /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Application")
     static bool GetVersion(UObject* WorldContextObject, FOnlineManagerGetVersionDelegate InGetVersionDelegate);
 
@@ -963,7 +1062,7 @@ public:
     /// <param name="MatchSessionId">The match session ID of the user's presence, which identifies all users within the same destination, such as maps and levels. Users with different lobby session IDs will have the same match session ID when playing the same match.</param>
     /// <param name="TrackId">The tracking ID of the app launch event.</param>
     /// <param name="Extra">Extra data defined by the developer.</param>
-    /// <param name="InLaunchOtherAppByPresenceDelegate">Will be executed when the request has been completed.</param>
+    /// <param name="InLaunchOtherAppByPresenceDelegate">Will be executed when the request has been completed(FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -977,13 +1076,27 @@ public:
     /// <param name="WorldContextObject">Used to get the information about the current world.</param> 
     /// <param name="AppId">The app id of the app to launch.</param>
     /// <param name="Message">A message to be passed to the launched app.</param> 
-    /// <param name="InLaunchOtherAppByAppIdDelegate">Will be executed when the request has been completed.</param> 
+    /// <param name="InLaunchOtherAppByAppIdDelegate">Will be executed when the request has been completed(FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage).</param> 
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
     /// </returns>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Application")
     static bool LaunchOtherAppByAppId(UObject* WorldContextObject, const FString& AppId, const FString& Message, FOnlineManagerLaunchOtherAppByAppIdDelegate InLaunchOtherAppByAppIdDelegate);
+
+
+    /// <summary>
+    /// Launches the PICO Store and jump to the details page of the current app.
+    /// </summary>
+    /// <param name="WorldContextObject">Used to get the information about the current world(FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage).</param> 
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
+    /// </ul>
+    /// </returns>
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Application")
+    static bool LaunchStore(UObject* WorldContextObject, FOnlineManagerLaunchStoreDelegate InLaunchStoreDelegate);
 
     /** @} */ // end of BP_Application
 
@@ -1023,6 +1136,9 @@ public:
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|ApplicationLifecycle")
     static bool LogDeeplinkResult(UObject* WorldContextObject, const FString& TrackingID, ELaunchResult LaunchResult);
 
+    UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|ApplicationLifecycle")
+    static bool GetSystemInfo(UObject* WorldContextObject, FPicoSystemInfo& SystemInfo);
+
     /** @} */ // end of BP_ApplicationLifecycle
 
     /** @defgroup BP_Leaderboard BP_Leaderboard(OnlineSub)
@@ -1037,11 +1153,11 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name ="Players">If the num of players is bigger than zero, and the only player in it is the logged-in player, then the value of StartAt will be 'ppfLeaderboard_StartAtCenteredOnViewer'.</param>
     /// <param name ="PicoReadObject">Set leaderboard name in it.</param>
-    /// <param name ="OnReadLeaderboardsCompleteDelegate">Executes this parameter after the request has been completed.</param> 
+    /// <param name ="OnReadLeaderboardsCompleteDelegate">Executes this parameter after the request has been completed(bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Leaderboard")
@@ -1052,11 +1168,11 @@ public:
     /// <param name="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="LocalUserNum">Not used.</param>
     /// <param name="PicoReadObject">Set leaderboard name in it.</param>
-    /// <param name ="OnReadLeaderboardsCompleteDelegate">Executes this parameter after the request has been completed.</param> 
+    /// <param name ="OnReadLeaderboardsCompleteDelegate">Executes this parameter after the request has been completed(bool, bWasSuccessful).</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Leaderboard")
@@ -1070,18 +1186,15 @@ public:
     /// <param name="PicoWriteObject">Set leaderboard name and the score in it.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Leaderboard")
 	static bool WriteLeaderboards(UObject* WorldContextObject, const FString& SessionName, const FString& Player, UPARAM(ref)FPicoOnlineLeaderboardWrite& PicoWriteObject);
     /** @} */ // end of BP_Leaderboard(OnlineSub)
 	
-    // Old Online Pico
 public:
-    static FOnlinePicoVerifyAppDelegate VerifyAppDelegate;
-    static int32 VerifyAppCode;
 
     /** @defgroup BP_Common BP_Common
      *  This is the BP_Common group
@@ -1093,21 +1206,25 @@ public:
     UFUNCTION(BlueprintPure, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico")
     static UOnlineSubsystemPicoManager* GetOnlineSubsystemPicoManager(UObject* WorldContextObject);
 
+    /// <summary>Extract ErrorCode from ErrorMessage.</summary>
+    /// <param name="InErrorMessage">Returned from the OnlineSubsystem interface.</param>
+    /// <param name="ErrorCode">Error code returned as a reference.</param>
+    /// <returns>Bool: 
+    /// <ul>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
+    /// </ul>
+    /// </returns>
+    UFUNCTION(BlueprintPure, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico")
+    static bool ParseErrorInfo(FString InErrorMessage, int32& ErrorCode);
 
 
     UFUNCTION(BlueprintCallable, Category = "OnlinePico")
     static void FindFileOrForder(TArray<FString>& OutFindArray, const FString& FindName, const FString& FindPath, bool IsFile = false, bool IsInDirectories = true);
 
+
     /** @} */ // end of BP_Common
     /** @} */ // end of BlueprintFunction
-    // Old Online Pico
-    UFUNCTION(BlueprintCallable, Category = "OnlinePico|PicoEntitlement")
-    static void PicoEntitlementVerifyAppDelegate(FOnlinePicoVerifyAppDelegate OnVerifyAppCallback);
 
-    UFUNCTION(BlueprintCallable, Category = "OnlinePico|PicoEntitlement")
-    static void PicoEntitlementVerifyCheck();
-
-    UFUNCTION(BlueprintCallable, Category = "OnlinePico|PicoEntitlement")
-    static FString PicoGetDeviceSN();
 };
 

@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -14,9 +12,10 @@
 #include "PicoPresenceInterface.h"
 #include "PicoApplicationInterface.h"
 #include "ApplicationLifecycleInterface.h"
-#include "Pico_Leaderboard.h"
 #include "Pico_AssetFile.h"
 #include "Pico_User.h"
+#include "Pico_Speech.h"
+#include "Pico_Highlight.h"
 #include "OnlineSubsystemPicoManager.generated.h"
 /**
  * 
@@ -56,6 +55,7 @@ DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FRtcUserUnPublishInfoDelega
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FiveParams(FGetRtcStreamSyncInfoDelegate, UOnlineSubsystemPicoManager, OnGetRtcStreamSyncInfoDelegate, const FString&, RoomId, const FString&, UserId, ERtcStreamIndex, StreamIndex, ERtcSyncInfoStreamType, RtcSyncInfoStreamType, const FString&, Info);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FRtcMessageSendResultDelegate, UOnlineSubsystemPicoManager, OnRtcMessageSendResultDelegate, int64, MessageId, int32, Error, const FString&, RoomId);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FRtcBinaryMessageReceivedDelegate, UOnlineSubsystemPicoManager, OnRtcBinaryMessageReceivedDelegate, const FString&, RoomId, const FString&, UserId, const FString&, Info);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FRtcBinaryArrayMessageReceivedDelegate, UOnlineSubsystemPicoManager, OnRtcBinaryArrayMessageReceivedDelegate, const FString&, RoomId, const FString&, UserId, TArray<uint8>, BinaryArray);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FRtcRoomMessageReceivedDelegate, UOnlineSubsystemPicoManager, OnRtcRoomMessageReceivedDelegateDelegate, const FString&, RoomId, const FString&, UserId, const FString&, Message);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FRtcUserMessageReceivedDelegate, UOnlineSubsystemPicoManager, OnRtcUserMessageReceivedDelegate, const FString&, RoomId, const FString&, UserId, const FString&, Message);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FRtcOnTokenWilExpireCallbackDelegate, UOnlineSubsystemPicoManager, OnRtcTokenWilExpireCallbackDelegate, const FString&, StringMessage);
@@ -79,14 +79,15 @@ DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnlineManagerLaunchInvitePanelDelegate, bool
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnlineManagerShareMediaDelegate, bool, IsSuccessed, FString, ErrorMessage);
 
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPresenceJoinIntentReceivedDelegate, UOnlineSubsystemPicoManager, OnPresenceJoinIntentReceivedDelegate, const FString&, DeeplinkMessage, const FString&, DestinationApiName, const FString&, LobbySessionId, const FString&, MatchSessionId);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FiveParams(FPresenceJoinIntentReceivedDelegate, UOnlineSubsystemPicoManager, OnPresenceJoinIntentReceivedDelegate, const FString&, DeeplinkMessage, const FString&, DestinationApiName, const FString&, LobbySessionId, const FString&, MatchSessionId, const FString&, Extra);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FPresenceLeaveIntentReceivedDelegate, UOnlineSubsystemPicoManager, OnPresenceLeaveIntentReceivedDelegate, const FString&, DestinationApiName, const FString&, LobbySessionId, const FString&, MatchSessionId);
 
 // ApplicationInterface
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnlineManagerLaunchOtherAppDelegate, FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage);
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnlineManagerLaunchOtherAppByPresenceDelegate, FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage);
-DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnlineManagerGetVersionDelegate, FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage);
+DECLARE_DYNAMIC_DELEGATE_SixParams(FOnlineManagerGetVersionDelegate, int64, CurrentCode, FString, CurrentName, int64, LatestCode, FString, LatestName, bool, IsSuccessed, FString, ErrorMessage);
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnlineManagerLaunchOtherAppByAppIdDelegate, FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FOnlineManagerLaunchStoreDelegate, FString, StringMessage, bool, IsSuccessed, FString, ErrorMessage);
 
 // ApplicationLifecycle
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FOnlineManagerApplicationLifecycleReadDetailsDelegate, bool, IsSuccessed, FString, ErrorMessage);
@@ -103,12 +104,11 @@ DECLARE_DYNAMIC_DELEGATE_TwoParams(FPicoManagerOnEndSessionCompleteDelegate, FNa
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FPicoManagerOnDestroySessionCompleteDelegate, FName, SessionName, bool, bWasSuccessful);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FPicoManagerOnCancelMatchmakingCompleteDelegate, FName, SessionName, bool, bWasSuccessful);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FPicoManagerOnMatchmakingCompleteDelegate, FName, SessionName, bool, bWasSuccessful);
-// DECLARE_DELEGATE_ThreeParams(FOnStartMatchmakingComplete, FName /*SessionName*/, const struct FOnlineError& /*ErrorDetails*/, const struct FSessionMatchmakingResults& /*Results*/);
-// DECLARE_MULTICAST_DELEGATE_TwoParams(FOnMatchmakingComplete, FName, bool);
 DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoManagerOnFindSessionCompleteDelegate, bool, bWasSuccessful);
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FPicoManagerOnSingleSessionResultCompleteDelegate, int32, LocalUserNum, bool, bWasSuccessful, const FPicoOnlineSessionSearchResult&, SearchResult);
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FPicoManagerOnJoinSessionCompleteDelegate, FName, SessionName, EOnJoinSessionCompleteResultPicoType, Type);
 
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FOnGameInitializeCallbackDelegate, UOnlineSubsystemPicoManager, OnGameInitializeCallbackDelegate, bool, bWasSuccessful, int, ErrorCode, const FString&, ErrorMessage, int, Result);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnGameConnectionNotifyDelegate, UOnlineSubsystemPicoManager, OnGameConnectionNotifyDelegate, int, Result, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnGameRequestFailedNotifyDelegate, UOnlineSubsystemPicoManager, OnGameRequestFailedNotifyDelegate, int, Result, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnGameStateResetNotifyDelegate, UOnlineSubsystemPicoManager, OnGameStateResetNotifyDelegate, bool, bWasSuccessful);
@@ -120,9 +120,9 @@ DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnRoomKickUserNotifyDelegat
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnRoomUpdateOwnerNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomUpdateOwnerNotifyDelegate, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnRoomUpdateDataStoreNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomUpdateDataStoreNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnRoomUpdateMembershipLockStatusNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomUpdateMembershipLockStatusNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnRoomUpdateNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomUpdateNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FOnRoomInviteAcceptedNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomInviteAcceptedNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful);
-//DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FOnPicoSessionUserInviteAcceptedDelegate, UOnlineSubsystemPicoManager, FOnPicoSessionUserInviteAcceptedDelegate, const bool, bWasSuccessful, const int32, ControllerId, const FString&, UserId, const FPicoOnlineSessionSearchResult&, InviteResult);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FOnRoomUpdateNotifyDelegate, UOnlineSubsystemPicoManager, OnRoomUpdateNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful, int, ErrorCode, const FString&, ErrorMessage);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FOnMatchmakingFoundNotifyDelegate, UOnlineSubsystemPicoManager, OnMatchmakingFoundNotifyDelegate, const FString&, RoomID, bool, bWasSuccessful, int, ErrorCode, const FString&, ErrorMessage);
 
 // Leaderboard
 DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoManagerOnReadLeaderboardsCompleteDelegate, bool, bWasSuccessful);
@@ -131,7 +131,28 @@ DECLARE_DYNAMIC_DELEGATE_OneParam(FPicoManagerOnReadLeaderboardsCompleteDelegate
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FAssetFileDownloadUpdateDelegate, UOnlineSubsystemPicoManager, OnAssetFileDownloadUpdateDelegate, UPico_AssetFileDownloadUpdate*, AssetFileDownloadUpdateObj);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FAssetFileDeleteForSafetyDelegate, UOnlineSubsystemPicoManager, OnAssetFileDeleteForSafetyDelegate, UPico_AssetFileDeleteForSafety*, AssetFileDeleteForSafetyObj);
 
-UCLASS()
+// Speech
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FSpeechAsrResultDelegate, UOnlineSubsystemPicoManager, OnSpeechAsrResultDelegate, UPico_AsrResult*, AsrResultObj);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FSpeechErrorDelegate, UOnlineSubsystemPicoManager, OnSpeechErrorDelegate, UPico_SpeechError*, SpeechErrorObj);
+
+// Highlight
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FHighlightRecordStopDelegate, UOnlineSubsystemPicoManager, OnHighlightRecordStopDelegate, UPico_RecordInfo*, RecordInfoObj);
+
+// Pico_Room
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoRoomUpdateNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoRoomUpdateNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, UPico_Room*, Room);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FPicoRoomUpdateOwnerNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoRoomUpdateOwnerNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoRoomLeaveNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoRoomLeaveNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, UPico_Room*, Room);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoRoomJoinNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoRoomJoinNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, UPico_Room*, Room);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoRoomInviteAcceptedNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoRoomInviteAcceptedNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, const FString&, RoomID);
+// Pico_Matchmaking
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FPicoMatchmakingCancelNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoMatchmakingCancelNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoMatchmakingMatchFoundNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoMatchmakingMatchFoundNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, UPico_Room*, Room);
+// Pico_Challenges
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_FourParams(FPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate, UOnlineSubsystemPicoManager, OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate, bool, bIsError, int, ErrorCode, const FString&, ErrorMessage, const FString&, ChallengeID);
+
+
+
+UCLASS(BlueprintType, Within = GameInstanceSubsystem)
 class UOnlineSubsystemPicoManager : public UObject
 {
     GENERATED_BODY()
@@ -140,11 +161,17 @@ public:
 	UOnlineSubsystemPicoManager();
 	~UOnlineSubsystemPicoManager();
 
+
 	FOnReadFriendsListComplete ReadCompleteDelegate;
 
     TSharedPtr<FRTCPicoUserInterface> RtcInterface;
     TSharedPtr<FPicoPresenceInterface> PresenceInterface;
     TSharedPtr<FPicoAssetFileInterface> PicoAssetFileInterface;
+    TSharedPtr<FPicoHighlightInterface> PicoHighlightInterface;
+	TSharedPtr<FPicoRoomInterface> PicoRoomInterface;
+	TSharedPtr<FPicoMatchmakingInterface> PicoMatchmakingInterface;
+	TSharedPtr<FPicoChallengesInterface> PicoChallengesInterface;
+    TSharedPtr<FPicoSpeechInterface> PicoSpeechInterface;
 
     FOnGetTokenComplete RtcGetTokenCompleteDelegate;
     // Presence
@@ -166,7 +193,8 @@ public:
     FOnLaunchOtherAppComplete LaunchOtherAppCompleteDelegate;
     FOnLaunchOtherAppByAppIdComplete LaunchOtherAppByAppIdCompleteDelegate;
     FOnLaunchOtherAppByPresenceComplete LaunchOtherAppByPresenceCompleteDelegate;
-    FOnGetVersion GetVersionCompleteDelegate;
+    FOnGetVersionComplete GetVersionCompleteDelegate;
+    FOnLaunchStoreComplete LaunchStoreCompleteDelegate;
 
     // ApplicationLifecycle
     //FOnReadDetailsComplete ApplicationLifecycleReadDetailsCompleteDelegate;
@@ -242,13 +270,14 @@ public:
     void OnGetRtcStreamSyncInfo(const FString& RoomId, const FString& UserId, ERtcStreamIndex StreamIndex, ERtcSyncInfoStreamType RtcSyncInfoStreamType, const FString& Info);
     void OnRtcMessageSendResult(int64 MessageId, int32 Error, const FString& RoomId);
     void OnRtcBinaryMessageReceived(const FString& RoomId, const FString& UserId, const FString& Info);
+    void OnRtcBinaryArrayMessageReceived(const FString& RoomId, const FString& UserId, TArray<uint8> BinaryArray);
     void OnRtcRoomMessageReceived(const FString& RoomId, const FString& UserId, const FString& Message);
     void OnRtcUserMessageReceived(const FString& RoomId, const FString& UserId, const FString& Message);
     void OnRtcTokenWilExpire(const FString& Message);
 
 
     //Presence Notify React
-    void OnPresenceJoinIntentReceivedResult(const FString& DeeplinkMessage, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId);
+    void OnPresenceJoinIntentReceivedResult(const FString& DeeplinkMessage, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId, const FString& Extra);
     void OnPresenceLeavententReceivedResult(const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId);
 
     //ApplicationLifecycle Notify React
@@ -323,6 +352,9 @@ public:
     FRtcBinaryMessageReceivedDelegate OnRtcBinaryMessageReceivedDelegate;
 
     UPROPERTY(BlueprintAssignable, Category = "Rtc")
+    FRtcBinaryArrayMessageReceivedDelegate OnRtcBinaryArrayMessageReceivedDelegate;
+
+    UPROPERTY(BlueprintAssignable, Category = "Rtc")
     FRtcRoomMessageReceivedDelegate OnRtcRoomMessageReceivedDelegateDelegate;
 
     UPROPERTY(BlueprintAssignable, Category = "Rtc")
@@ -330,7 +362,9 @@ public:
 
     UPROPERTY(BlueprintAssignable, Category = "Rtc")
     FRtcOnTokenWilExpireCallbackDelegate OnRtcTokenWilExpireCallbackDelegate;
-    // Game Notification Delegate
+	// Game Notification Delegate
+	UPROPERTY(BlueprintAssignable, Category = "Game")
+	FOnGameInitializeCallbackDelegate OnGameInitializeCallbackDelegate;
     UPROPERTY(BlueprintAssignable, Category = "Game")
     FOnGameConnectionNotifyDelegate OnGameConnectionNotifyDelegate;
     UPROPERTY(BlueprintAssignable, Category = "Game")
@@ -354,25 +388,27 @@ public:
     UPROPERTY(BlueprintAssignable, Category = "Game")
     FOnRoomUpdateMembershipLockStatusNotifyDelegate OnRoomUpdateMembershipLockStatusNotifyDelegate;
     UPROPERTY(BlueprintAssignable, Category = "Game")
-    FOnRoomUpdateNotifyDelegate OnRoomUpdateNotifyDelegate;
-    UPROPERTY(BlueprintAssignable, Category = "Game")
-    FOnRoomInviteAcceptedNotifyDelegate OnRoomInviteAcceptedNotifyDelegate;
-    // UPROPERTY(BlueprintAssignable, Category = "Game")
-	// FOnPicoSessionUserInviteAcceptedDelegate OnPicoSessionUserInviteAcceptedDelegate;
+	FOnRoomInviteAcceptedNotifyDelegate OnRoomInviteAcceptedNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Game")
+	FOnRoomUpdateNotifyDelegate OnRoomUpdateNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Game")
+	FOnMatchmakingFoundNotifyDelegate OnMatchmakingFoundNotifyDelegate;
     
+	void OnGameInitializeCallback(bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage, int Result);
     void OnGameConnectionNotification(int Result, bool bWasSuccessful);
     void OnGameRequestFailedNotification(int Result, bool bWasSuccessful);
     void OnGameStateResetNotification(bool bWasSuccessful);
     void OnMatchmakingCancel2Notification(bool bWasSuccessful);
-    void OnRoomLeaveNotification(const FString& RoomID, bool bWasSuccessful);
+    void OnSessionLeaveNotification(const FString& RoomID, bool bWasSuccessful);
     void OnRoomJoin2Notification(const FString& RoomID, bool bWasSuccessful);
     void OnRoomSetDescriptionNotification(const FString& RoomID, bool bWasSuccessful);
     void OnRoomKickUserNotification(const FString& RoomID, bool bWasSuccessful);
     void OnRoomUpdateOwnerNotification(bool bWasSuccessful);
     void OnRoomUpdateDataStoreNotification(const FString& RoomID, bool bWasSuccessful);
     void OnRoomUpdateMembershipLockStatusNotification(const FString& RoomID, bool bWasSuccessful);
-    void OnRoomUpdateComplete(const FString& RoomID, bool bWasSuccessful);
+    void OnRoomUpdateComplete(const FString& RoomID, bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage);
     void OnRoomInviteAcceptedComplete(const FString& RoomID, bool bWasSuccessful);
+	void OnMatchmakingFoundComplete(const FString& RoomID, bool bWasSuccessful, int ErrorCode, const FString& ErrorMessage);
 	void OnSessionUserInviteAccepted(const bool bWasSuccessful, const int32 ControllerId,
 													const FString& UserId,
 													const FPicoOnlineSessionSearchResult& InviteResult);
@@ -388,10 +424,6 @@ public:
     static FPicoManagerOnFindSessionCompleteDelegate OnFindSessionCompleteDelegate;
     static FPicoManagerOnSingleSessionResultCompleteDelegate OnSingleSessionResultCompleteDelegate;
     static FPicoManagerOnJoinSessionCompleteDelegate OnJoinSessionCompleteDelegate;
-    // todo 480
-    // DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnFindFriendSessionComplete, int32, bool, const TArray<FOnlineSessionSearchResult>&);
-    // DECLARE_MULTICAST_DELEGATE_FourParams(FOnSessionUserInviteAccepted, const bool, const int32, FUniqueNetIdPtr, const FOnlineSessionSearchResult&);
-    // DECLARE_MULTICAST_DELEGATE_FourParams(FOnSessionInviteReceived, const FUniqueNetId& /*UserId*/, const FUniqueNetId& /*FromId*/, const FString& /*AppId*/, const FOnlineSessionSearchResult& /*InviteResult*/);
 
     // Leaderboard
 	static FPicoManagerOnReadLeaderboardsCompleteDelegate OnReadLeaderboardsCompleteDelegate;
@@ -409,6 +441,9 @@ public:
 
 
     // Game IOnlineSession
+	bool IsGameInitSuccess(UObject* WorldContextObject);
+	bool GameInitialize(UObject* WorldContextObject);
+	bool GameUninitialize(UObject* WorldContextObject);
     bool CreateSession(UObject* WorldContextObject, int HostingPlayerNum, FName SessionName, const FOnlineSessionSettings& NewSessionSettings, FPicoManagerOnCreateSessionCompleteDelegate OnCreateSessionCompleteDelegate);
     bool StartSession(UObject* WorldContextObject, FName SessionName, FPicoManagerOnStartSessionCompleteDelegate OnStartSessionCompleteDelegate);
     bool UpdateSession(UObject* WorldContextObject, FName SessionName, FOnlineSessionSettings& UpdatedSessionSettings, FPicoManagerOnUpdateSessionCompleteDelegate OnUpdateSessionCompleteDelegate, bool bShouldRefreshOnlineData = true);
@@ -551,6 +586,7 @@ public:
     static FOnlineManagerLaunchOtherAppByAppIdDelegate LaunchOtherAppByAppIdDelegate;
     static FOnlineManagerLaunchOtherAppByPresenceDelegate LaunchOtherAppByPresenceDelegate;
     static FOnlineManagerGetVersionDelegate GetVersionDelegate;
+    static FOnlineManagerLaunchStoreDelegate LaunchStoreDelegate;
 
     bool LaunchOtherApp(UObject* WorldContextObject, const FString& PackageName, const FString& Message, FOnlineManagerLaunchOtherAppDelegate InLaunchOtherAppDelegate);
     void OnLaunchOtherAppComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage);
@@ -559,10 +595,13 @@ public:
     void OnLaunchOtherAppByAppIdComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage);
 
     bool GetVersion(UObject* WorldContextObject, FOnlineManagerGetVersionDelegate InGetVersionDelegate);
-    void OnGetVersionComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage);
+    void OnGetVersionComplete(int64 CurrentCode, const FString& CurrentName, int64 LatestCode, const FString& LatestName, bool bIsSuccessed, const FString& ErrorMessage);
 
     bool LaunchOtherAppByPresence(UObject* WorldContextObject, const FString& AppID, const FString& PackageName, const FString& Message, const FString& ApiName, const FString& LobbySessionId, const FString& MatchSessionId, const FString& TrackId, const FString& Extra, FOnlineManagerLaunchOtherAppByPresenceDelegate InLaunchOtherAppByPresenceDelegate);
     void OnLaunchOtherAppByPresenceComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage);
+
+    bool LaunchStore(UObject* WorldContextObject, FOnlineManagerLaunchStoreDelegate InLaunchStoreDelegate);
+    void OnLaunchStoreComplete(const FString& Message, bool bIsSuccessed, const FString& ErrorMessage);
 
     // ApplicationLifecycle
     static FOnlineManagerApplicationLifecycleReadDetailsDelegate ApplicationLifecycleReadDetailsDelegate;
@@ -574,6 +613,8 @@ public:
 
     bool LogDeeplinkResult(UObject* WorldContextObject, const FString& TrackingID, ELaunchResult LaunchResult);
 
+    bool GetSystemInfo(UObject* WorldContextObject, FPicoSystemInfo &SystemInfo);
+
     // 
 
     UPROPERTY(BlueprintAssignable, Category = "AssetFile")
@@ -582,8 +623,70 @@ public:
     UPROPERTY(BlueprintAssignable, Category = "AssetFile")
     FAssetFileDeleteForSafetyDelegate OnAssetFileDeleteForSafetyDelegate;
 
+    UPROPERTY(BlueprintAssignable, Category = "Highlight")
+    FHighlightRecordStopDelegate OnHighlightRecordStopDelegate;
+
+    void OnHighlightRecordStop(UPico_RecordInfo* RecordInfoObj);
+
     void OnAssetFileDownloadUpdate(UPico_AssetFileDownloadUpdate* AssetFileDownloadUpdateObj);
 
     void OnAssetFileDeleteForSafety(UPico_AssetFileDeleteForSafety* AssetFileDeleteForSafetyObj);
 
+    // Speech
+
+    UPROPERTY(BlueprintAssignable, Category = "AssetFile")
+    FSpeechAsrResultDelegate OnSpeechAsrResultDelegate;
+
+    UPROPERTY(BlueprintAssignable, Category = "AssetFile")
+    FSpeechErrorDelegate OnSpeechErrorDelegate;
+
+    void OnSpeechAsrResult(UPico_AsrResult* AsrResultObj);
+
+    void OnSpeechError(UPico_SpeechError* SpeechErrorObj);	/*
+	 * Pico_Room Notification begin
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Pico Room")
+	FPicoRoomUpdateNotifyDelegate OnPicoRoomUpdateNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Pico Room")
+	FPicoRoomUpdateOwnerNotifyDelegate OnPicoRoomUpdateOwnerNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Pico Room")
+	FPicoRoomLeaveNotifyDelegate OnPicoRoomLeaveNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Pico Room")
+	FPicoRoomJoinNotifyDelegate OnPicoRoomJoinNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Pico Room")
+	FPicoRoomInviteAcceptedNotifyDelegate OnPicoRoomInviteAcceptedNotifyDelegate;
+
+	void OnPicoRoomUpdateNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room);
+	void OnPicoRoomUpdateOwnerNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage);
+	void OnPicoRoomJoinNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room);
+	void OnPicoRoomLeaveNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room);
+	void OnPicoRoomInviteAcceptedNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, const FString& RoomID);
+	/*
+	 * Pico_Room Notification end
+	 */
+	
+	/*
+	 * Pico_Matchmaking Notification begin
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Pico Matchmaking")
+	FPicoMatchmakingCancelNotifyDelegate OnPicoMatchmakingCancelNotifyDelegate;
+	UPROPERTY(BlueprintAssignable, Category = "Pico Matchmaking")
+	FPicoMatchmakingMatchFoundNotifyDelegate OnPicoMatchmakingMatchFoundNotifyDelegate;
+
+	void OnPicoMatchmakingCancelNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage);
+	void OnPicoMatchmakingMatchFoundNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, UPico_Room* Room);
+	/*
+	 * Pico_Matchmaking Notification end
+	 */
+
+	/*
+	 * Pico_Challenges Notification begin
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Pico Challenges")
+	FPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate;
+
+	void OnPicoChallengeInviteAcceptedOrLaunchAppNotification(bool bIsError, int ErrorCode, const FString& ErrorMessage, const FString& ChallengeID);
+	/*
+	 * Pico_Challenges Notification end
+	 */
 };

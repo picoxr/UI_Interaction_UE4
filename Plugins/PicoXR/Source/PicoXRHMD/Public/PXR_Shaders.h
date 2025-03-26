@@ -1,4 +1,6 @@
-﻿//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+﻿// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 #pragma once
 
 #include "CoreMinimal.h"
@@ -30,34 +32,24 @@ public:
 
 	void SetParameters(FRHICommandList& RHICmdList, const FTexture* Texture, int FaceIndex)
 	{
-#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
-		SetTextureParameter(RHICmdList, RHICmdList.GetBoundPixelShader(), InTexture, InTextureSampler, Texture);
-		SetShaderValue(RHICmdList, RHICmdList.GetBoundPixelShader(), InFaceIndexParameter, FaceIndex);
-#else
-		SetTextureParameter(RHICmdList, GetPixelShader(), InTexture, InTextureSampler, Texture);
-		SetShaderValue(RHICmdList, GetPixelShader(), InFaceIndexParameter, FaceIndex);
-#endif
+		FRHIBatchedShaderParameters& BatchedParameters = RHICmdList.GetScratchShaderParameters();
+		SetTextureParameter(BatchedParameters, InTexture, InTextureSampler, Texture);
+		RHICmdList.SetBatchedShaderParameters(RHICmdList.GetBoundPixelShader(), BatchedParameters);
+
+		SetShaderValue(BatchedParameters, InFaceIndexParameter, FaceIndex, 0);
+		RHICmdList.SetBatchedShaderParameters(RHICmdList.GetBoundPixelShader(), BatchedParameters);
 	}
 
 	void SetParameters(FRHICommandList& RHICmdList, FRHISamplerState* SamplerStateRHI, FRHITexture* TextureRHI, int FaceIndex)
 	{
-#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
+		FRHIBatchedShaderParameters& BatchedParameters = RHICmdList.GetScratchShaderParameters();
 		SetTextureParameter(RHICmdList, RHICmdList.GetBoundPixelShader(), InTexture, InTextureSampler, SamplerStateRHI, TextureRHI);
-		SetShaderValue(RHICmdList, RHICmdList.GetBoundPixelShader(), InFaceIndexParameter, FaceIndex);
-#else
-		SetTextureParameter(RHICmdList, GetPixelShader(), InTexture, InTextureSampler, SamplerStateRHI, TextureRHI);
-		SetShaderValue(RHICmdList, GetPixelShader(), InFaceIndexParameter, FaceIndex);
-#endif
+		SetShaderValue(BatchedParameters, InFaceIndexParameter, FaceIndex, 0);
+		RHICmdList.SetBatchedShaderParameters(RHICmdList.GetBoundPixelShader(), BatchedParameters);
 	}
 
 private:
-#if ENGINE_MAJOR_VERSION >=5 || ENGINE_MINOR_VERSION >=25
 	LAYOUT_FIELD(FShaderResourceParameter, InTexture);
 	LAYOUT_FIELD(FShaderResourceParameter, InTextureSampler);
 	LAYOUT_FIELD(FShaderParameter, InFaceIndexParameter);
-#else
-	FShaderResourceParameter InTexture;
-	FShaderResourceParameter InTextureSampler;
-	FShaderParameter InFaceIndexParameter;
-#endif
 };

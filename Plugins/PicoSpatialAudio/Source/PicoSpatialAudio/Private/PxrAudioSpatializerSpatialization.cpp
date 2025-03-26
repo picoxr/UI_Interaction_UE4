@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerSpatialization.h"
 
 namespace Pxr_Audio
@@ -81,11 +83,20 @@ namespace Pxr_Audio
 				       ));
 				return;
 			}
-			PxrAudioSpatializer_SourceConfig SourceConfig;
-			SourceConfig.source_gain = DB2Mag(SourceSetting->SourceGainDb);
-			SourceConfig.enable_doppler = SourceSetting->EnableDoppler;
+
+			InternalSourceProperty.Config.source_gain = DB2Mag(SourceSetting->SourceGainDb);
+			InternalSourceProperty.Config.reflection_gain = DB2Mag(SourceSetting->ReflectionGainDb);
+			InternalSourceProperty.Config.radius = SourceSetting->VolumetricSize;
+			InternalSourceProperty.Config.use_direct_path_spread = false;
+			InternalSourceProperty.Config.enable_doppler = SourceSetting->EnableDoppler;
+			InternalSourceProperty.Config.attenuation_mode = static_cast<PxrAudioSpatializer_SourceAttenuationMode>(
+				SourceSetting->AttenuationMode);
+			InternalSourceProperty.Config.range_min = SourceSetting->MinAttenuationDistance;
+			InternalSourceProperty.Config.range_max = SourceSetting->MaxAttenuationDistance;
+			InternalSourceProperty.Config.directivity_alpha = SourceSetting->DirectivityAlpha;
+			InternalSourceProperty.Config.directivity_order = SourceSetting->DirectivityOrder;
 			Result = FContextSingleton::GetInstance()->AddSourceWithConfig(
-				&SourceConfig, &InternalSourceProperty.SourceId, true);
+				&InternalSourceProperty.Config, &InternalSourceProperty.SourceId, true);
 
 			if (Result != PASP_SUCCESS)
 			{
@@ -96,39 +107,6 @@ namespace Pxr_Audio
 				return;
 			}
 
-			// Set distance attenuation model.
-			switch (SourceSetting->AttenuationMode)
-			{
-			case EPxrAudioSpatializer_SourceAttenuationMode::None:
-				FContextSingleton::GetInstance()->SetSourceAttenuationMode(
-					InternalSourceProperty.SourceId, PASP_SOURCE_ATTENUATION_MODE_NONE);
-				break;
-			case EPxrAudioSpatializer_SourceAttenuationMode::Fixed:
-				FContextSingleton::GetInstance()->SetSourceAttenuationMode(
-					InternalSourceProperty.SourceId, PASP_SOURCE_ATTENUATION_MODE_FIXED);
-				break;
-			case EPxrAudioSpatializer_SourceAttenuationMode::InverseSquare:
-				FContextSingleton::GetInstance()->SetSourceAttenuationMode(
-					InternalSourceProperty.SourceId, PASP_SOURCE_ATTENUATION_MODE_INVERSE_SQUARE);
-				FContextSingleton::GetInstance()->SetSourceRange(
-					InternalSourceProperty.SourceId, SourceSetting->MinAttenuationDistance,
-					SourceSetting->MaxAttenuationDistance);
-				break;
-			case EPxrAudioSpatializer_SourceAttenuationMode::Customized:
-				FContextSingleton::GetInstance()->SetSourceAttenuationMode(
-					InternalSourceProperty.SourceId, PASP_SOURCE_ATTENUATION_MODE_INVERSE_SQUARE,
-					SourceSetting->DirectSoundDistanceAttenuationCallback,
-					SourceSetting->IndirectSoundDistanceAttenuationCallback);
-				break;
-			default:
-				UE_LOG(LogPicoSpatialAudio, Error,
-				       TEXT("FPicoAudioSpatialization::OnInitSource: Undefined distance attenuation method!"));
-				break;
-			}
-
-			//	A Hack to ensure volumetric size setup executed across different playbacks
-			InternalSourceProperty.VolumetricSize = 0.f;
-			
 			UE_LOG(LogPicoSpatialAudio, Display,
 			       TEXT("Initialized Source (UE source ID: %i) (Internal source ID: %i)"),
 			       SourceId, InternalSourceProperty.SourceId);
@@ -177,93 +155,85 @@ namespace Pxr_Audio
 
 			const auto* SourceSetting = SpatializationSettings[InputData.SourceId];
 			auto& InternalSourceProperty = InternalSourceProperties[InputData.SourceId];
+
+			//	Setup source transform
 			ConvertToPicoSpatialAudioCoordinates(InputData.SpatializationParams->EmitterWorldPosition,
-			                                     InternalSourceProperty.Position);
-			auto Result = FContextSingleton::GetInstance()->SetSourcePosition(
-				InternalSourceProperty.SourceId, InternalSourceProperty.Position);
-			if (Result != PASP_SUCCESS)
-			{
-				UE_LOG(LogPicoSpatialAudio, Error,
-				       TEXT(
-					       "Failed to set source position (UE source ID: %i) (Internal source ID: %i), error code: %i"
-				       ), InputData.SourceId,
-				       InternalSourceProperty.SourceId, Result);
-			}
+			                                     InternalSourceProperty.Config.position);
+			ConvertToPicoSpatialAudioCoordinates(
+				InputData.SpatializationParams->EmitterWorldRotation.GetForwardVector() * 100.f,
+				InternalSourceProperty.Config.front);
+			ConvertToPicoSpatialAudioCoordinates(
+				InputData.SpatializationParams->EmitterWorldRotation.GetUpVector() * 100.f,
+				InternalSourceProperty.Config.up);
+			InternalSourceProperty.PropertyMask |= PASP_SourceProperty_Position | PASP_SourceProperty_Orientation;
 
 			// Set sound source gain.
-			if (!FMath::IsNearlyEqual(InternalSourceProperty.SourceGainDb, SourceSetting->SourceGainDb))
+			const float NewSourceGainAmplitude = DB2Mag(SourceSetting->SourceGainDb);
+			if (!FMath::IsNearlyEqual(InternalSourceProperty.Config.source_gain, NewSourceGainAmplitude))
 			{
-				Result = FContextSingleton::GetInstance()->SetSourceGain(
-					InternalSourceProperty.SourceId, DB2Mag(SourceSetting->SourceGainDb));
-				if (Result == PASP_SUCCESS)
-				{
-					InternalSourceProperty.SourceGainDb = SourceSetting->SourceGainDb;
-				}
-				else
-				{
-					UE_LOG(LogPicoSpatialAudio, Error,
-					       TEXT(
-						       "Failed to set source gain (UE source ID: %i) (Internal source ID: %i), error code is: %d"
-					       ), InputData.SourceId, InternalSourceProperty.SourceId, Result);
-				}
+				InternalSourceProperty.Config.source_gain = NewSourceGainAmplitude;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_SourceGain;
+			}
+
+			// Set sound source reflection gain.
+			const float NewSourceReflectionGainAmplitude = DB2Mag(SourceSetting->ReflectionGainDb);
+			if (!FMath::IsNearlyEqual(InternalSourceProperty.Config.reflection_gain, NewSourceReflectionGainAmplitude))
+			{
+				InternalSourceProperty.Config.reflection_gain = NewSourceReflectionGainAmplitude;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_ReflectionGain;
 			}
 
 			// Set source volumetric size (radius).
-			if (!FMath::IsNearlyEqual(InternalSourceProperty.VolumetricSize, SourceSetting->VolumetricSize))
+			if (!FMath::IsNearlyEqual(InternalSourceProperty.Config.radius, SourceSetting->VolumetricSize))
 			{
-				Result = FContextSingleton::GetInstance()->SetSourceSize(
-					InternalSourceProperty.SourceId, SourceSetting->VolumetricSize);
-				if (Result == PASP_SUCCESS)
-				{
-					InternalSourceProperty.VolumetricSize = SourceSetting->VolumetricSize;
-				}
-				else
-				{
-					UE_LOG(LogPicoSpatialAudio, Error,
-					       TEXT("Failed to set source size (UE source ID: %i) (Internal source ID: %i)"
-					       ), InputData.SourceId, InternalSourceProperty.SourceId);
-				}
+				InternalSourceProperty.Config.radius = SourceSetting->VolumetricSize;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_VolumetricRadius;
 			}
 
 			// Set source doppler on/off.
-			if (InternalSourceProperty.EnableDoppler != SourceSetting->EnableDoppler)
+			if (InternalSourceProperty.Config.enable_doppler != SourceSetting->EnableDoppler)
 			{
-				Result = FContextSingleton::GetInstance()->SetDopplerEffect(
-					InternalSourceProperty.SourceId, SourceSetting->EnableDoppler);
-				if (Result == PASP_SUCCESS)
-				{
-					InternalSourceProperty.EnableDoppler = SourceSetting->EnableDoppler;
-				}
-				else
-				{
-					UE_LOG(LogPicoSpatialAudio, Error,
-					       TEXT(
-						       "Failed to set source Doppler effect on/off (UE source ID: %i) (Internal source ID: %i), error code: %d"
-					       ), InputData.SourceId, InternalSourceProperty.SourceId, Result);
-				}
+				InternalSourceProperty.Config.enable_doppler = SourceSetting->EnableDoppler;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_DopplerOnOff;
 			}
 
 			// Set source attenuation distances.
 			if (SourceSetting->AttenuationMode == EPxrAudioSpatializer_SourceAttenuationMode::InverseSquare &&
-				!(FMath::IsNearlyEqual(InternalSourceProperty.MinAttenuationDistance,
+				!(FMath::IsNearlyEqual(InternalSourceProperty.Config.range_min,
 				                       SourceSetting->MinAttenuationDistance) &&
-					FMath::IsNearlyEqual(InternalSourceProperty.MaxAttenuationDistance,
+					FMath::IsNearlyEqual(InternalSourceProperty.Config.range_max,
 					                     SourceSetting->MaxAttenuationDistance)))
 			{
-				Result = FContextSingleton::GetInstance()->SetSourceRange(
-					InternalSourceProperty.SourceId, SourceSetting->MinAttenuationDistance,
-					SourceSetting->MaxAttenuationDistance);
-				if (Result == PASP_SUCCESS)
-				{
-					InternalSourceProperty.MinAttenuationDistance = SourceSetting->MinAttenuationDistance;
-					InternalSourceProperty.MaxAttenuationDistance = SourceSetting->MaxAttenuationDistance;
-				}
-				else
+				InternalSourceProperty.Config.range_min = SourceSetting->MinAttenuationDistance;
+				InternalSourceProperty.Config.range_max = SourceSetting->MaxAttenuationDistance;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_RangeMin | PASP_SourceProperty_RangeMax;
+			}
+
+			// Set source directivity.
+			if (!(FMath::IsNearlyEqual(InternalSourceProperty.Config.directivity_alpha,
+			                           SourceSetting->DirectivityAlpha) &&
+				FMath::IsNearlyEqual(InternalSourceProperty.Config.directivity_order,
+				                     SourceSetting->DirectivityOrder)))
+			{
+				InternalSourceProperty.Config.directivity_alpha = SourceSetting->DirectivityAlpha;
+				InternalSourceProperty.Config.directivity_order = SourceSetting->DirectivityOrder;
+				InternalSourceProperty.PropertyMask |= PASP_SourceProperty_Directivity;
+			}
+
+			if (InternalSourceProperty.PropertyMask != PASP_SourceProperty_None)
+			{
+				auto Result = FContextSingleton::GetInstance()->SetSourceConfig(
+					InternalSourceProperty.SourceId, &InternalSourceProperty.Config,
+					InternalSourceProperty.PropertyMask);
+				InternalSourceProperty.PropertyMask = PASP_SourceProperty_None;
+				if (Result != PASP_SUCCESS)
 				{
 					UE_LOG(LogPicoSpatialAudio, Error,
 					       TEXT(
-						       "Failed to set source attenuation range (UE source ID: %i) (Internal source ID: %i), error code: %d"
-					       ), InputData.SourceId, InternalSourceProperty.SourceId, Result);
+						       "Failed to update source config (UE source ID: %i) (Internal source ID: %i), error code: %i"
+					       ), InputData.SourceId,
+					       InternalSourceProperty.SourceId,
+					       Result);
 				}
 			}
 
@@ -284,7 +254,7 @@ namespace Pxr_Audio
 			}
 
 			// Add source buffer to process.
-			Result = FContextSingleton::GetInstance()->SubmitSourceBuffer(
+			auto Result = FContextSingleton::GetInstance()->SubmitSourceBuffer(
 				InternalSourceProperty.SourceId, InputData.AudioBuffer->GetData(),
 				InputData.AudioBuffer->Num() / InputData.NumChannels);
 			if (Result != PASP_SUCCESS)

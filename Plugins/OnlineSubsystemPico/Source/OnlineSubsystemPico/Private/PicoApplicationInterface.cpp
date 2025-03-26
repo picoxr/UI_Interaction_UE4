@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 
 #include "PicoApplicationInterface.h"
@@ -45,9 +43,10 @@ void FPicoApplicationInterface::OnQueryLaunchOtherAppComplete(ppfMessageHandle M
     if (bIsError)
     {
         auto Error = ppf_Message_GetError(Message);
-        auto ErrorMessage = ppf_Error_GetMessage(Error);
-        ErrorStr = FString(ErrorMessage);
-        Delegate.ExecuteIfBound(FString(), false, ErrorStr);
+        FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+        Delegate.ExecuteIfBound(FString(), false, ErrorMessage);
         return;
     }
     else
@@ -57,42 +56,48 @@ void FPicoApplicationInterface::OnQueryLaunchOtherAppComplete(ppfMessageHandle M
     }
 }
 
-bool FPicoApplicationInterface::GetVersion(const FOnGetVersion& Delegate /*= FOnGetVersion()*/)
+bool FPicoApplicationInterface::GetVersion(const FOnGetVersionComplete& Delegate /*= FOnGetVersion()*/)
 {
-    //#if CHECK_PLATFORM
-    //    PicoSubsystem.AddRequestDelegate
-    //    (
-    //        ppf_Application_GetVersion(),
-    //        FPicoMessageOnCompleteDelegate::CreateLambda
-    //        (
-    //            [this, Delegate](ppfMessageHandle Message, bool bIsError)
-    //            {
-    //                OnQueryGetVersionComplete(Message, bIsError, Delegate);
-    //            }
-    //        )
-    //    );
-    //
-    //    return true;
-    //#endif
+#if PLATFORM_ANDROID
+    PicoSubsystem.AddAsyncTask
+    (
+        ppf_Application_GetVersion(),
+        FPicoMessageOnCompleteDelegate::CreateLambda
+        (
+            [this, Delegate](ppfMessageHandle Message, bool bIsError)
+            {
+                OnQueryGetVersionComplete(Message, bIsError, Delegate);
+            }
+        )
+    );
+
+    return true;
+#endif
     return false;
 }
 
-void FPicoApplicationInterface::OnQueryGetVersionComplete(ppfMessageHandle Message, bool bIsError, const FOnGetVersion& Delegate)
+void FPicoApplicationInterface::OnQueryGetVersionComplete(ppfMessageHandle Message, bool bIsError, const FOnGetVersionComplete& Delegate)
 {
-    FString ErrorStr;
+#if PLATFORM_ANDROID
     if (bIsError)
     {
         auto Error = ppf_Message_GetError(Message);
-        auto ErrorMessage = ppf_Error_GetMessage(Error);
-        ErrorStr = FString(ErrorMessage);
-        Delegate.ExecuteIfBound(FString(), false, ErrorStr);
+        FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+        Delegate.ExecuteIfBound(0, FString(), 0, FString(), false, ErrorMessage);
         return;
     }
     else
     {
-        FString PayloadMessage = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
-        Delegate.ExecuteIfBound(PayloadMessage, true, FString());
+        auto ApplicationVersion = ppf_Message_GetApplicationVersion(Message);
+        int64 CurrentCode = ppf_ApplicationVersion_GetCurrentCode(ApplicationVersion);
+        FString CurrentName = UTF8_TO_TCHAR(ppf_ApplicationVersion_GetCurrentName(ApplicationVersion));
+        int64 LatestCode = ppf_ApplicationVersion_GetLatestCode(ApplicationVersion);
+        FString LatestName = ppf_ApplicationVersion_GetLatestName(ApplicationVersion);
+        Delegate.ExecuteIfBound(CurrentCode, CurrentName, LatestCode, LatestName, true, FString());
     }
+#endif
 }
 
 bool FPicoApplicationInterface::LaunchOtherAppByPresence(const FString& AppID, const FString& PackageName, const FString& Message, const FString& ApiName, const FString& LobbySessionId, const FString& MatchSessionId, const FString& TrackId, const FString& Extra, const FOnLaunchOtherAppByPresenceComplete& Delegate /*= FOnLaunchOtherAppByPresenceComplete()*/)
@@ -122,13 +127,13 @@ bool FPicoApplicationInterface::LaunchOtherAppByPresence(const FString& AppID, c
 
 void FPicoApplicationInterface::OnQueryLaunchOtherAppByPresenceComplete(ppfMessageHandle Message, bool bIsError, const FOnLaunchOtherAppByPresenceComplete& Delegate)
 {
-    FString ErrorStr;
     if (bIsError)
     {
         auto Error = ppf_Message_GetError(Message);
-        auto ErrorMessage = ppf_Error_GetMessage(Error);
-        ErrorStr = FString(ErrorMessage);
-        Delegate.ExecuteIfBound(FString(), false, ErrorStr);
+        FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+        Delegate.ExecuteIfBound(FString(), false, ErrorMessage);
         return;
     }
     else
@@ -162,13 +167,51 @@ bool FPicoApplicationInterface::LaunchOtherAppByAppId(const FString& AppId, cons
 
 void FPicoApplicationInterface::OnQueryLaunchOtherAppByAppIdComplete(ppfMessageHandle Message, bool bIsError, const FOnLaunchOtherAppByAppIdComplete& Delegate)
 {
+    if (bIsError)
+    {
+        auto Error = ppf_Message_GetError(Message);
+        FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+        Delegate.ExecuteIfBound(FString(), false, ErrorMessage);
+        return;
+    }
+    else
+    {
+        FString PayloadMessage = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
+        Delegate.ExecuteIfBound(PayloadMessage, true, FString());
+    }
+}
+
+bool FPicoApplicationInterface::LaunchStore(const FOnLaunchStoreComplete& Delegate /*= FOnLaunchStoreComplete()*/)
+{
+#if PLATFORM_ANDROID
+    PicoSubsystem.AddAsyncTask
+    (
+        ppf_Application_LaunchStore(),
+        FPicoMessageOnCompleteDelegate::CreateLambda
+        (
+            [this, Delegate](ppfMessageHandle Message, bool bIsError)
+            {
+                OnQueryLaunchStoreComplete(Message, bIsError, Delegate);
+            }
+        )
+    );
+    return true;
+#endif
+    return false;
+}
+
+void FPicoApplicationInterface::OnQueryLaunchStoreComplete(ppfMessageHandle Message, bool bIsError, const FOnLaunchStoreComplete& Delegate)
+{
     FString ErrorStr;
     if (bIsError)
     {
         auto Error = ppf_Message_GetError(Message);
-        auto ErrorMessage = ppf_Error_GetMessage(Error);
-        ErrorStr = FString(ErrorMessage);
-        Delegate.ExecuteIfBound(FString(), false, ErrorStr);
+        FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+        FString ErrorCode = FString::FromInt(ppf_Error_GetCode(Error));
+        ErrorMessage = ErrorMessage + FString(". Error Code: ") + ErrorCode;
+        Delegate.ExecuteIfBound(FString(), false, ErrorMessage);
         return;
     }
     else

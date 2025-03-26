@@ -1,0 +1,12 @@
+{
+	"BuildId": "27405482",
+	"Modules": 
+	{
+		"PICOXREditor": "UnrealEditor-PICOXREditor.dll",
+		"PICOXREyeTracker": "UnrealEditor-PICOXREyeTracker.dll",
+		"PICOXRHMD": "UnrealEditor-PICOXRHMD.dll",
+		"PICOXRInput": "UnrealEditor-PICOXRInput.dll",
+		"PICOXRMR": "UnrealEditor-PICOXRMR.dll",
+		"PICOXRMotionTracking": "UnrealEditor-PICOXRMotionTracking.dll"
+	}
+}

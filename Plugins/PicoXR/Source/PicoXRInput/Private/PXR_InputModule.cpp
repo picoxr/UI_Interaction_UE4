@@ -1,8 +1,11 @@
-//Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc. All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved.
+// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc. in the United States of America and elsewhere.
+// Unreal® Engine, Copyright 1998 – 2023, Epic Games, Inc. All rights reserved.
 
 #include "PXR_InputModule.h"
 #include "IPXR_HMDModule.h"
 #include "PXR_Input.h"
+#include "Interfaces/IPluginManager.h"
 
 #define LOCTEXT_NAMESPACE "FPICOXRInputModule"
 
@@ -18,6 +21,7 @@ FPICOXRInputModule::~FPICOXRInputModule()
 void FPICOXRInputModule::StartupModule()
 {
 	IInputDeviceModule::StartupModule();
+	FPICOXRInput::PreInit();
 }
 
 void FPICOXRInputModule::ShutdownModule()
@@ -29,7 +33,7 @@ TSharedPtr< class IInputDevice > FPICOXRInputModule::CreateInputDevice(const TSh
 {
 	if (IPICOXRHMDModule::IsAvailable())
 	{
-		if (UPICOXRHMDFunctionLibrary::GetPICOXRHMD())
+		if (FPICOXRHMDModule::Get().PreInit())
 		{
 			InputDevice = MakeShared<FPICOXRInput>();
 			if (InputDevice)

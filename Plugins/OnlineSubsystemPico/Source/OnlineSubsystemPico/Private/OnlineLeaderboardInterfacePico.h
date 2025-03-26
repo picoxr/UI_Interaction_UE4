@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -35,7 +33,7 @@ private:
     FOnlineSubsystemPico& PicoSubsystem;
 
     bool ReadPicoLeaderboards(bool bOnlyFriends, bool bOnlyLoggedInUser, FOnlineLeaderboardReadRef& ReadObject);
-    void OnReadLeaderboardsComplete(ppfMessageHandle Message, bool bIsError, const FOnlineLeaderboardReadRef& ReadObject);
+    void OnReadLeaderboardsComplete(ppfMessageHandle Message, bool bIsError, bool bOnlyFriends, bool bOnlyLoggedInUser, const FOnlineLeaderboardReadRef& ReadObject);
 
     const char* FilterTypeNames[4] = { "None", "Friends", "Unknown", "UserIds" };
     const char* StartAtNames[4] = { "Top", "CenteredOnViewer", "CenteredOnViewerOrTop", "Unknown" };
@@ -43,7 +41,8 @@ private:
     static void SaveLog(const ELogVerbosity::Type Verbosity, const FString& Log);
 
 public:
-
+    const int MAX_REQUEST_SIZE = 100; // single max
+    int ReadIndex = 0;
 
     //Constructor * @param InSubsystem - A reference to the owning subsystem
     FOnlineLeaderboardPico(FOnlineSubsystemPico& InSubsystem);
@@ -63,15 +62,17 @@ public:
     /// <param name="PicoReadObject">Set the leaderboard name in it.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
+/// @cond
 #if ENGINE_MAJOR_VERSION > 4
     virtual bool ReadLeaderboards(const TArray< FUniqueNetIdRef >& Players, FOnlineLeaderboardReadRef& ReadObject) override;
 #elif ENGINE_MINOR_VERSION > 26
     virtual bool ReadLeaderboards(const TArray< FUniqueNetIdRef >& Players, FOnlineLeaderboardReadRef& ReadObject) override;
 #elif ENGINE_MINOR_VERSION > 24
+/// @endcond
     virtual bool ReadLeaderboards(const TArray< TSharedRef<const FUniqueNetId> >& Players, FOnlineLeaderboardReadRef& ReadObject) override;
 #endif
 
@@ -80,8 +81,8 @@ public:
     /// <param name="PicoReadObject">Set the leaderboard name in it.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     virtual bool ReadLeaderboardsForFriends(int32 LocalUserNum, FOnlineLeaderboardReadRef& ReadObject) override;
@@ -102,8 +103,8 @@ public:
     /// <param name="PicoWriteObject">Set the leaderboard name and the score in it.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     virtual bool WriteLeaderboards(const FName& SessionName, const FUniqueNetId& Player, FOnlineLeaderboardWrite& WriteObject) override;
@@ -113,8 +114,8 @@ public:
     /// <param name="SessionName">The parameter of `LeaderboardFlushCompleteDelegates`.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     virtual bool FlushLeaderboards(const FName& SessionName) override;

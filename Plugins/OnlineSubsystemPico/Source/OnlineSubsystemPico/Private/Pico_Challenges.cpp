@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "Pico_Challenges.h"
 #include "Pico_User.h"
@@ -18,18 +16,40 @@ DEFINE_LOG_CATEGORY(PicoChallenges);
 FPicoChallengesInterface::FPicoChallengesInterface(FOnlineSubsystemPico& InSubsystem) :
 	PicoSubsystem(InSubsystem)
 {
-	
+	ChallengeInviteAcceptedOrLaunchAppHandle =
+		PicoSubsystem.GetOrAddNotify(ppfMessageType_Notification_Challenge_LaunchByInvite)
+		.AddRaw(this, &FPicoChallengesInterface::OnChallengeInviteAcceptedOrLaunchAppNotification);
 }
 
 FPicoChallengesInterface::~FPicoChallengesInterface()
 {
-	
+	if (ChallengeInviteAcceptedOrLaunchAppHandle.IsValid())
+	{
+		ChallengeInviteAcceptedOrLaunchAppHandle.Reset();
+	}
+}
+void FPicoChallengesInterface::OnChallengeInviteAcceptedOrLaunchAppNotification(ppfMessageHandle Message, bool bIsError)
+{
+	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::OnChallengeInviteAcceptedOrLaunchAppNotification"));
+	if (bIsError)
+	{
+		const ppfErrorHandle Error = ppf_Message_GetError(Message);
+		const int ErrorCode = ppf_Error_GetCode(Error);
+		const FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+		UE_LOG(PicoChallenges, Error, TEXT("OnChallengeInviteAcceptedOrLaunchAppNotification error! ErrorCode: %d, ErrorMessage: %s"), ErrorCode, *ErrorMessage);
+		ChallengeInviteAcceptedOrLaunchAppNotify.Broadcast(bIsError, ErrorCode, ErrorMessage, FString());
+	}
+	else
+	{
+		UE_LOG(PicoChallenges, Log, TEXT("OnChallengeInviteAcceptedOrLaunchAppNotification success!"));
+		const FString ChallengeID = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
+		ChallengeInviteAcceptedOrLaunchAppNotify.Broadcast(bIsError, 0, FString(), ChallengeID);
+	}
 }
 
 bool FPicoChallengesInterface::Get(const FString& ChallengeID, FChallengeGet InGetDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::Get"));
-#if PLATFORM_ANDROID
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	ppfRequest RequestId = ppf_Challenges_Get(ID);
 	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
@@ -53,14 +73,11 @@ bool FPicoChallengesInterface::Get(const FString& ChallengeID, FChallengeGet InG
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::GetEntries(const FString& ChallengeID, int PageIdx, int PageSize, ELeaderboardFilterType Filter, ELeaderboardStartAt StartAt, FChallengeGetEntries InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::GetEntries"));
-#if PLATFORM_ANDROID
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	ppfRequest RequestId = ppf_Challenges_GetEntries(ID, (ppfLeaderboardFilterType)Filter, (ppfLeaderboardStartAt)StartAt, PageIdx, PageSize);
 	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
@@ -84,14 +101,11 @@ bool FPicoChallengesInterface::GetEntries(const FString& ChallengeID, int PageId
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
     
 bool FPicoChallengesInterface::GetEntriesAfterRank(ppfID ChallengeID, int PageIdx, int PageSize, unsigned long long AfterRank, FChallengeGetEntriesAfterRank InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::GetEntriesAfterRank"));
-#if PLATFORM_ANDROID
 	ppfRequest RequestId = ppf_Challenges_GetEntriesAfterRank(ChallengeID, AfterRank, PageIdx, PageSize);
 	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
 		[InDelegate, this](ppfMessageHandle Message, bool bIsError)
@@ -114,14 +128,11 @@ bool FPicoChallengesInterface::GetEntriesAfterRank(ppfID ChallengeID, int PageId
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::GetEntriesByIds(const FString& ChallengeID, int PageIdx, int PageSize, ELeaderboardStartAt StartAt, const TArray<FString>& UserIDs, FChallengeGetEntriesByIds InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::GetEntriesByIds"));
-#if PLATFORM_ANDROID
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	int32 Length = UserIDs.Num();
 	std::vector<std::string> StringArray;
@@ -156,15 +167,11 @@ bool FPicoChallengesInterface::GetEntriesByIds(const FString& ChallengeID, int P
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::GetList(FPico_ChallengeOptions ChallengeOptions, int PageIdx, int PageSize, FChallengeGetList InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::GetList"));
-#if PLATFORM_ANDROID
-
 	auto ppfChallengeOptionsHandle = ppf_ChallengeOptions_Create();
 
 	ppf_ChallengeOptions_SetEndDate(ppfChallengeOptionsHandle, ChallengeOptions.EndDate);
@@ -233,14 +240,11 @@ bool FPicoChallengesInterface::GetList(FPico_ChallengeOptions ChallengeOptions, 
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::Join(const FString& ChallengeID, FChallengeJoin InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::Join"));
-#if PLATFORM_ANDROID
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	ppfRequest RequestId = ppf_Challenges_Join(ID);
 	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
@@ -264,14 +268,11 @@ bool FPicoChallengesInterface::Join(const FString& ChallengeID, FChallengeJoin I
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::Leave( const FString& ChallengeID, FChallengeLeave InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::Leave"));
-#if PLATFORM_ANDROID
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	ppfRequest RequestId = ppf_Challenges_Leave(ID);
 	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
@@ -295,15 +296,11 @@ bool FPicoChallengesInterface::Leave( const FString& ChallengeID, FChallengeLeav
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
 
 bool FPicoChallengesInterface::Invite(const FString& ChallengeID, const TArray<FString>& UserIDs, FChallengeInvite InDelegate)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::Invite"));
-#if PLATFORM_ANDROID
-
 	int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
 	int32 Length = UserIDs.Num();
 	std::vector<std::string> StringArray;
@@ -338,10 +335,35 @@ bool FPicoChallengesInterface::Invite(const FString& ChallengeID, const TArray<F
 			}
 		}));
 	return true;
-#endif
-	return false;
 }
-
+bool FPicoChallengesInterface::LaunchInvitableUserFlow(const FString& ChallengeID, FChallengeLaunchInvitableUserFlow InDelegate)
+{
+#if PLATFORM_ANDROID
+	UE_LOG(PicoChallenges, Log, TEXT("FPicoChallengesInterface::LaunchInvitableUserFlow"));
+	const int64 ID = FCString::Strtoi64(*ChallengeID, NULL, 10);
+	ppfRequest RequestId = ppf_Challenges_LaunchInvitableUserFlow(ID);
+	PicoSubsystem.AddAsyncTask(RequestId, FPicoMessageOnCompleteDelegate::CreateLambda(
+		[InDelegate, this](ppfMessageHandle Message, bool bIsError)
+		{
+			if (bIsError)
+			{
+				const ppfErrorHandle Error = ppf_Message_GetError(Message);
+				const int ErrorCode = ppf_Error_GetCode(Error);
+				const FString ErrorMessage = UTF8_TO_TCHAR(ppf_Error_GetMessage(Error));
+				UE_LOG(PicoChallenges, Log, TEXT("LaunchInvitableUserFlow return failed:%s"), *ErrorMessage);
+				this->LaunchInvitableUserFlowDelegate.ExecuteIfBound(true, ErrorCode, ErrorMessage);
+				InDelegate.ExecuteIfBound(true, ErrorCode, ErrorMessage);
+			}
+			else
+			{
+				UE_LOG(PicoChallenges, Log, TEXT("LaunchInvitableUserFlow Successfully"));
+				this->LaunchInvitableUserFlowDelegate.ExecuteIfBound(false, 0, FString());
+				InDelegate.ExecuteIfBound(false, 0, FString());
+			}
+		}));
+#endif
+	return true;
+}
 
 
 
@@ -476,6 +498,20 @@ void UOnlinePicoChallengesFunction::Invite(UObject* WorldContextObject, const FS
 		InDelegate.ExecuteIfBound(true, FString(TEXT("PicoChallengesInterface Not Vailed")), nullptr);
 	}
 }
+void UOnlinePicoChallengesFunction::LaunchInvitableUserFlow(UObject* WorldContextObject, const FString& ChallengeID, FChallengeLaunchInvitableUserFlow InDelegate)
+{
+	UE_LOG(PicoChallenges, Log, TEXT("UOnlinePicoChallengesFunction::LaunchInvitableUserFlow"));
+	FOnlineSubsystemPico* Subsystem = static_cast<FOnlineSubsystemPico*>(Online::GetSubsystem(GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::ReturnNull), PICO_SUBSYSTEM));
+	if (Subsystem && Subsystem->GetPicoChallengesInterface())
+	{
+		Subsystem->GetPicoChallengesInterface()->LaunchInvitableUserFlow(ChallengeID, InDelegate);
+	}
+	else
+	{
+		UE_LOG(PicoChallenges, Log, TEXT("Invite Failed, PicoChallengesInterface Not Vailed!"));
+		InDelegate.ExecuteIfBound(true, -1, FString(TEXT("PicoChallengesInterface Not Vailed")));
+	}
+}
 
 
 
@@ -487,7 +523,6 @@ void UOnlinePicoChallengesFunction::Invite(UObject* WorldContextObject, const FS
 void UPico_Challenge::InitParams(ppfChallenge* ppfChallengeHandle)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_Challenge::InitParams"));
-#if PLATFORM_ANDROID
 	CreationType = ppf_Challenge_GetCreationType(ppfChallengeHandle);
 	EndDate = ppf_Challenge_GetEndDate(ppfChallengeHandle);
 	StartDate = ppf_Challenge_GetStartDate(ppfChallengeHandle);
@@ -496,20 +531,19 @@ void UPico_Challenge::InitParams(ppfChallenge* ppfChallengeHandle)
 	Visibility = ppf_Challenge_GetVisibility(ppfChallengeHandle);
 	if (InvitedUsersOptional == nullptr)
 	{
-		InvitedUsersOptional = NewObject<UPico_UserArray>();
+		InvitedUsersOptional = NewObject<UPico_UserArray>(this);
 	}
 	InvitedUsersOptional->InitParams(ppf_Challenge_GetInvitedUsers(ppfChallengeHandle));
 	if (ParticipantsOptional == nullptr)
 	{
-		ParticipantsOptional = NewObject<UPico_UserArray>();
+		ParticipantsOptional = NewObject<UPico_UserArray>(this);
 	}
 	ParticipantsOptional->InitParams(ppf_Challenge_GetParticipants(ppfChallengeHandle));
 	if (Leaderboard == nullptr)
 	{
-		Leaderboard = NewObject<UPico_Leaderboard>();
+		Leaderboard = NewObject<UPico_Leaderboard>(this);
 	}
 	Leaderboard->InitParams(ppf_Challenge_GetLeaderboard(ppfChallengeHandle));
-#endif
 }
 
 EChallengeCreationType UPico_Challenge::GetCreationType()
@@ -577,7 +611,6 @@ UPico_UserArray* UPico_Challenge::GetParticipantsOptional()
 void UPico_ChallengeEntry::InitParams(ppfChallengeEntryHandle ppfChallengeEntryHandle)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_ChallengeEntry::InitParams"));
-#if PLATFORM_ANDROID
 	DisplayScore = UTF8_TO_TCHAR(ppf_ChallengeEntry_GetDisplayScore(ppfChallengeEntryHandle));
 	ID = ppf_ChallengeEntry_GetID(ppfChallengeEntryHandle);
 	Rank = ppf_ChallengeEntry_GetRank(ppfChallengeEntryHandle);
@@ -585,17 +618,16 @@ void UPico_ChallengeEntry::InitParams(ppfChallengeEntryHandle ppfChallengeEntryH
 	Timestamp = ppf_ChallengeEntry_GetTimestamp(ppfChallengeEntryHandle);
 	if (User == nullptr)
 	{
-		User = NewObject<UPico_User>();
+		User = NewObject<UPico_User>(this);
 	}
 	User->InitParams(ppf_ChallengeEntry_GetUser(ppfChallengeEntryHandle));
 	// ExtraData
-	unsigned size = ppf_ChallengeEntry_GetExtraDataLength(ppfChallengeEntryHandle);
+	int size = ppf_ChallengeEntry_GetExtraDataLength(ppfChallengeEntryHandle);
 	auto extraData = (uint8*)ppf_ChallengeEntry_GetExtraData(ppfChallengeEntryHandle);
 	for (int i = 0; i < size; i++)
 	{
 		ExtraData.Add(*(extraData + i));
 	}
-#endif
 }
 
 FString UPico_ChallengeEntry::GetDisplayScore()
@@ -648,19 +680,17 @@ UPico_User* UPico_ChallengeEntry::GetUser()
 void UPico_ChallengeEntryArray::InitParams(ppfChallengeEntryArrayHandle InppfChallengeEntryArrayHandle)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_ChallengeEntryArray::InitParams"));
-#if PLATFORM_ANDROID
 	Size = ppf_ChallengeEntryArray_GetSize(InppfChallengeEntryArrayHandle);
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_ChallengeEntryArray::InitParams ppf_ChallengeEntryArray_GetSize: %d"), Size);
 	for (int32 i = 0; i < Size; i++)
 	{
-		UPico_ChallengeEntry* ThisElement = NewObject<UPico_ChallengeEntry>();
+		UPico_ChallengeEntry* ThisElement = NewObject<UPico_ChallengeEntry>(this);
 		ThisElement->InitParams(ppf_ChallengeEntryArray_GetElement(InppfChallengeEntryArrayHandle, i));
 		ChallengeEntryArray.Add(ThisElement);
 	}
 	bHasNextPage = ppf_ChallengeEntryArray_HasNextPage(InppfChallengeEntryArrayHandle);
-	// PPF_PUBLIC_FUNCTION(unsigned long long)      ppf_ChallengeEntryArray_GetTotalCount(const ppfChallengeEntryArrayHandle obj);
-	// PPF_PUBLIC_FUNCTION(bool)                    ppf_ChallengeEntryArray_HasPreviousPage(const ppfChallengeEntryArrayHandle obj);
-#endif
+	TotalCount = ppf_ChallengeEntryArray_GetTotalCount(InppfChallengeEntryArrayHandle);
+	bHasPreviousPage = ppf_ChallengeEntryArray_HasPreviousPage(InppfChallengeEntryArrayHandle);
 }
 
 UPico_ChallengeEntry* UPico_ChallengeEntryArray::GetElement(int32 Index)
@@ -683,6 +713,16 @@ bool UPico_ChallengeEntryArray::HasNextPage()
 	return bHasNextPage;
 }
 
+bool UPico_ChallengeEntryArray::HasPreviousPage()
+{
+	return bHasPreviousPage;
+}
+
+int32 UPico_ChallengeEntryArray::GetTotalCount()
+{
+	return TotalCount;
+}
+
 
 
 
@@ -692,19 +732,17 @@ bool UPico_ChallengeEntryArray::HasNextPage()
 void UPico_ChallengeArray::InitParams(ppfChallengeArrayHandle InppfChallengeArrayHandle)
 {
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_ChallengeArray::InitParams"));
-#if PLATFORM_ANDROID
 	Size = ppf_ChallengeArray_GetSize(InppfChallengeArrayHandle);
 	UE_LOG(PicoChallenges, Log, TEXT("UPico_ChallengeArray::InitParams ppf_ChallengeArray_GetSize: %d"), Size);
 	for (int32 i = 0; i < Size; i++)
 	{
-		UPico_Challenge* ThisElement = NewObject<UPico_Challenge>();
+		UPico_Challenge* ThisElement = NewObject<UPico_Challenge>(this);
 		ThisElement->InitParams(ppf_ChallengeArray_GetElement(InppfChallengeArrayHandle, i));
 		ChallengeArray.Add(ThisElement);
 	}
 	bHasNextPage = ppf_ChallengeArray_HasNextPage(InppfChallengeArrayHandle);
-	// PPF_PUBLIC_FUNCTION(unsigned long long)      ppf_ChallengeArray_GetTotalCount(const ppfChallengeArrayHandle obj);
-	// PPF_PUBLIC_FUNCTION(bool)                    ppf_ChallengeArray_HasPreviousPage(const ppfChallengeArrayHandle obj);
-#endif
+	TotalCount = ppf_ChallengeArray_GetTotalCount(InppfChallengeArrayHandle);
+	bHasPreviousPage = ppf_ChallengeArray_HasPreviousPage(InppfChallengeArrayHandle);
 }
 
 UPico_Challenge* UPico_ChallengeArray::GetElement(int32 Index)
@@ -725,4 +763,14 @@ int32 UPico_ChallengeArray::GetSize()
 bool UPico_ChallengeArray::HasNextPage()
 {
 	return bHasNextPage;
+}
+
+bool UPico_ChallengeArray::HasPreviousPage()
+{
+	return bHasPreviousPage;
+}
+
+int32 UPico_ChallengeArray::GetTotalCount()
+{
+	return TotalCount;
 }

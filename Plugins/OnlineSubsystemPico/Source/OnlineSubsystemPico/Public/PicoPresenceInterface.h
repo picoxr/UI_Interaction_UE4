@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -44,7 +42,7 @@ DECLARE_DELEGATE_TwoParams(FOnLaunchInvitePanelComplete, bool /*IsSuccessed*/, c
 DECLARE_DELEGATE_TwoParams(FOnShareMediaComplete, bool /*IsSuccessed*/, const FString& /*Error Message*/);
 
 
-DECLARE_MULTICAST_DELEGATE_FourParams(FJoinIntentReceived, const FString& /*DeeplinkMessage*/, const FString& /*DestinationApiName*/, const FString&/*LobbySessionId*/, const FString& /*MatchSessionId*/);
+DECLARE_MULTICAST_DELEGATE_FiveParams(FJoinIntentReceived, const FString& /*DeeplinkMessage*/, const FString& /*DestinationApiName*/, const FString&/*LobbySessionId*/, const FString& /*MatchSessionId*/, const FString& /*Extra*/);
 DECLARE_MULTICAST_DELEGATE_ThreeParams(FLeaveIntentReceived, const FString& /*DestinationApiName*/, const FString&/*LobbySessionId*/, const FString& /*MatchSessionId*/);
 
 /// <summary>Pico Presence interface class.</summary>
@@ -66,11 +64,12 @@ public:
 	~FPicoPresenceInterface();
 
     /// <summary>Clears a user's presence data in the current app.</summary>
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceClear(const FOnPresenceClearComplete& Delegate = FOnPresenceClearComplete());
@@ -80,11 +79,12 @@ public:
     /// @note Call `GetInvitableFriendList` after the Delegate has been executed.
     /// </summary>
     /// <param name ="SuggestedUserList">The ID list of users suggested being invited.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool ReadInvitableUser(TArray<FString> SuggestedUserList, const FOnReadInvitableUserComplete& Delegate = FOnReadInvitableUserComplete());
@@ -94,8 +94,8 @@ public:
     /// <param name ="OutFriends">The [out] array that receives the copied data.</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool GetInvitableFriendList(TArray<TSharedRef<FOnlinePicoFriend>>& OutFriends);
@@ -111,11 +111,12 @@ public:
     /// * `false`: not joinable
     /// </param> 
     /// <param name ="Extra">Extra presence data defined by the developer.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceSet(const FString& ApiName, const FString& LobbySessionId, const FString& MatchSessionId, bool bIsJoinable, const FString& Extra, const FOnPresenceSetComplete& Delegate = FOnPresenceSetComplete());
@@ -125,11 +126,12 @@ public:
     /// @note Other presence-related parameters will remain the same.
     /// </summary>
     /// <param name ="ApiName">The API name of the new destination.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceSetDestination(const FString& ApiName, const FOnPresenceSetDestinationComplete& Delegate = FOnPresenceSetDestinationComplete());
@@ -143,11 +145,12 @@ public:
     /// * `true`: joinable
     /// * `false`: not joinable
     /// </param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool PresenceSetSetIsJoinable(bool bIsJoinable, const FOnPresenceSetIsJoinableComplete& Delegate = FOnPresenceSetIsJoinableComplete());
@@ -157,11 +160,12 @@ public:
     /// @note Other presence parameter settings will remain the same.
     /// </summary>
     /// <param name ="LobbySession">The new lobby session ID.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool PresenceSetLobbySession(const FString& LobbySession, const FOnPresenceSetLobbySessionComplete& Delegate = FOnPresenceSetLobbySessionComplete());
@@ -171,11 +175,12 @@ public:
     /// @note Other presence parameter settings will remain the same.
     /// </summary>
     /// <param name ="MatchSession">The new match session ID.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool PresenceSetMatchSession(const FString& MatchSession, const FOnPresenceSetMatchSessionComplete& Delegate = FOnPresenceSetMatchSessionComplete());
@@ -185,11 +190,12 @@ public:
     /// Sets extra presence data for a user.
     /// </summary>
     /// <param name ="Extra">Extra presence data defined by the developer.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceSetExtra(const FString& Extra, const FOnPresenceSetPresenceExtraComplete& Delegate = FOnPresenceSetPresenceExtraComplete());
@@ -198,11 +204,12 @@ public:
     /// <summary>Reads a list of sent invitations.
     /// @note Call `GetSendInvitesList` after the Delegate has been executed.
     /// </summary>
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceReadSendInvites(const FOnReadSentInvitesComplete& Delegate = FOnReadSentInvitesComplete());
@@ -212,11 +219,12 @@ public:
 	/// @note Call `GetSendInvitesList` after the Delegate has been executed.
     /// </summary>
     /// <param name ="UserIdArray">The ID array of the users to invite.</param> 
-    /// <param name ="Delegate">Will be executed when the request has been complete.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceSendInvites(TArray<FString> UserIdArray, const FOnSentInvitesComplete& Delegate = FOnSentInvitesComplete());
@@ -226,8 +234,8 @@ public:
     /// <param name ="OutList">The [out] array that receives the copied data.</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool GetSendInvitesList(TArray<FPicoApplicationInvite>& OutList);
@@ -235,11 +243,12 @@ public:
     /// <summary>Gets all the destinations that can be set for a user.
     /// @note Call `PresenceGetDescriptionList` after the Delegate has been executed.
     /// </summary>
-    /// <param name ="Delegate">Will be executed when the request has been completed.</param> 
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceGetDestinations(const FOnGetDestinationsComplete& Delegate = FOnGetDestinationsComplete());
@@ -249,14 +258,15 @@ public:
     /// <param name ="OutList">The [out] array that receives the copied data.</param> 
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
 	bool PresenceGetDestnationsList(TArray<FPicoDestination>& OutList);
 
     /// <summary>Call up the system panel to invite friends.</summary>
-    /// <param name="Delegate">Will be executed when the request has been completed.</param>
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -286,7 +296,8 @@ public:
     /// * `0`: Douyin
     /// * `1`: None
     /// </param>
-    /// <param name="Delegate">Will be executed when the request has been completed.</param>
+    /// <param name ="Delegate">Will be executed when the request has been completed.  
+    /// Delegate will contain the requested object class (bool /*IsSuccessed*/, const FString& /*Error Message*/).</param>
     /// <returns>Bool:
     /// * `true`: success
     /// * `false`: failure
@@ -305,7 +316,7 @@ public:
     /// @brief Gets notified when the join intent has been received.
 	FJoinIntentReceived JoinIntentReceivedCallback;
 
-    /// @brief Gets notified when the leave intent has been received.
+    // unavailable
 	FLeaveIntentReceived LeaveIntentReceivedCallback;
 };
 /** @} */ // end of Presence

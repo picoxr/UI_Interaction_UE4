@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 #include "PPF_Platform.h"
 #include "OnlineSubsystemPicoNames.h"
 #include "OnlineSubsystemPico.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "Pico_Achievements.generated.h"
 
 /// @file Pico_Achievements.h
@@ -69,13 +68,13 @@ public:
     /// If the count is larger than that, it is clamped to that maximum value before being passed to the servers.
     /// </param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InAddCountDelegate">The API requests to do an AddCount operation,
-    /// which is processed by the server and returned to the client as a 'success' or 'failure', and possibly other data.
+    /// <param name="InAddCountDelegate">Will be executed when the request has been completed.
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     /// </param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool AddCount(const FString& Name, const int64& Count, const FString& ExtraData, FAddCount InAddCountDelegate);
@@ -88,11 +87,12 @@ public:
     /// Every '1' will unlock a bit in the corresponding position of a bitfield.
     /// </param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InAddFieldsCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InAddFieldsCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool AddFields(const FString& Name, const FString& Fields, const FString& ExtraData, FAddFields InAddFieldsCallback);
@@ -100,11 +100,12 @@ public:
     /// <summary>Unlocks a specified achievement of any type even if the target for unlocking this achievement is not reached.</summary>
     /// <param name="Name">The API name of the achievement to unlock.</param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InUnlockCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InUnlockCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool Unlock(const FString& Name, const FString& ExtraData, FUnlock InUnlockCallback);
@@ -113,12 +114,13 @@ public:
     /// including API names, descriptions, types, the targets which must be reached to unlock those achievements, and more.
     /// </summary>
     /// <param name="PageIndex">The start index of the pages.</param>
-    /// <param name="PageSize">The size of the page.</param>
-    /// <param name="InGetAllDefinitionsCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="PageSize">The number of entries to return on each page.</param>
+    /// <param name="InGetAllDefinitionsCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementDefinitionArray *, AchievementDefinitionArray).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetAllDefinitions(int32 PageIndex, int32 PageSize, FGetAllDefinitions InGetAllDefinitionsCallback);
@@ -128,12 +130,13 @@ public:
     /// depending on the type, the progress made towards unlocking them, and more.
     /// </summary>
     /// <param name="PageIndex">The start index of the pages.</param>
-    /// <param name="PageSize">The size of the page.</param>
-    /// <param name="InGetAllProgressCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="PageSize">The number of entries to return on each page.</param>
+    /// <param name="InGetAllProgressCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementProgressArray *, AchievementProgressArray).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetAllProgress(int32 PageIndex, int32 PageSize, FGetAllProgress InGetAllProgressCallback);
@@ -142,11 +145,12 @@ public:
     /// including API names, descriptions, types, the targets which must be reached to unlock those achievements, and more.
     /// </summary>
     /// <param name="NameArray">The API names of the achievements.</param>
-    /// <param name="InGetDefinitionsByNameCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetDefinitionsByNameCallback">Will be executed when the request has been completed.
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementDefinitionArray *, AchievementDefinitionArray).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetDefinitionsByName(const TArray<FString>& NameArray, FGetDefinitionsByName InGetDefinitionsByNameCallback);
@@ -156,11 +160,12 @@ public:
     /// depending on the type, the progress made towards unlocking them, and more.
     /// </summary>
     /// <param name="NameArray">The API names of the achievements.</param>
-    /// <param name="InGetProgressByNameCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
+    /// <param name="InGetProgressByNameCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementProgressArray *, AchievementProgressArray).</param>
     /// <returns>Bool:
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     bool GetProgressByName(const TArray<FString>& NameArray, FGetProgressByName InGetProgressByNameCallback);
@@ -199,13 +204,8 @@ public:
     /// If the count is larger than that, it is clamped to that maximum value before being passed to the servers.
     /// </param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InAddCountCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="InAddCountCallback">Will be executed when the request has been completed.
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoAddCount(UObject* WorldContextObject, const FString& Name, const FString& Count, const FString& ExtraData, FAddCount InAddCountCallback);
 
@@ -218,13 +218,8 @@ public:
     /// Every '1' will unlock a bit in the corresponding position of a bitfield.
     /// </param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InAddFieldsCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="InAddFieldsCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoAddFields(UObject* WorldContextObject, const FString& Name, const FString& Fields, const FString& ExtraData, FAddFields InAddFieldsCallback);
 
@@ -233,13 +228,8 @@ public:
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="Name">The API name of the achievement to unlock.</param>
     /// <param name="ExtraData">Custom extension fields that can be used to record key information when unlocking achievements.</param>
-    /// <param name="InUnlockCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="InUnlockCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bIsError, const FString&, ErrorMessage, UPico_AchievementUpdate *, AchievementUpdate).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoUnlock(UObject* WorldContextObject, const FString& Name, const FString& ExtraData, FUnlock InUnlockCallback);
 
@@ -248,14 +238,9 @@ public:
     /// </summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="PageIndex">The start index of the pages.</param>
-    /// <param name="PageSize">The size of the page.</param>
-    /// <param name="InGetAllDefinitionsCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="PageSize">The number of entries to return on each page.</param>
+    /// <param name="InGetAllDefinitionsCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementDefinitionArray *, AchievementDefinitionArray).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoGetAllDefinitions(UObject* WorldContextObject, int32 PageIndex, int32 PageSize, FGetAllDefinitions InGetAllDefinitionsCallback);
 
@@ -265,14 +250,9 @@ public:
     /// </summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="PageIndex">The start index of the pages.</param>
-    /// <param name="PageSize">The size of the page.</param>
-    /// <param name="InGetAllProgressCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="PageSize">The number of entries to return on each page.</param>
+    /// <param name="InGetAllProgressCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementProgressArray *, AchievementProgressArray).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoGetAllProgress(UObject* WorldContextObject, int32 PageIndex, int32 PageSize, FGetAllProgress InGetAllProgressCallback);
 
@@ -281,13 +261,8 @@ public:
     /// </summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="NameArray">The API names of the achievements.</param>
-    /// <param name="InGetDefinitionsByNameCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="InGetDefinitionsByNameCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementDefinitionArray *, AchievementDefinitionArray).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoGetDefinitionsByName(UObject* WorldContextObject, const TArray<FString>& NameArray, FGetDefinitionsByName InGetDefinitionsByNameCallback);
 
@@ -297,13 +272,8 @@ public:
     /// </summary>
     /// <param name ="WorldContextObject">Used to get the information about the current world.</param>
     /// <param name="NameArray">The API names of the achievements.</param>
-    /// <param name="InGetProgressByNameCallback">Will be executed when the request has been completed. Delegate will contain the requested object class.</param>
-    /// <returns>Bool:
-    /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
-    /// </ul>
-    /// </returns>
+    /// <param name="InGetProgressByNameCallback">Will be executed when the request has been completed. 
+    /// Delegate will contain the requested object class (bool, bIsError, const FString&, ErrorMessage, UPico_AchievementProgressArray *, AchievementProgressArray).</param>
     UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"), Category = "OnlinePico|Achievements")
     static void PicoGetProgressByName(UObject* WorldContextObject, const TArray<FString>& NameArray, FGetProgressByName InGetProgressByNameCallback);
 
@@ -316,7 +286,7 @@ public:
 /** @} */ // end of BlueprintFunction
 
 
-//
+/// @brief UPico_AchievementUpdate class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_AchievementUpdate : public UObject
 {
@@ -330,12 +300,16 @@ private:
     bool JustUnlocked = false;
 public:
 
+    /** @brief Achievement name. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Update")
     FString GetName();
 
+    /** @brief Whether the achievement is unlocked in this time. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Update")
     bool GetJustUnlocked();
 };
+
+/// @brief UPico_AchievementProgress class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_AchievementProgress : public UObject
 {
@@ -350,38 +324,49 @@ private:
     long long Count = 0;
     bool IsUnlocked = false;
     FString Name = FString();
-    uint64_t ID = 0;
+    ppfID ID = 0;
     unsigned long long UnlockTime = 0;
     TArray<uint8> ExtraData;
 public:
 
+    /** @brief The progress of a bitfield achievement. `1` represents a completed bit. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FString GetBitfield();
 
+    /** @brief The progress of a count achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     int64 GetCount();
 
+    /** @brief Whether the achievement is unlocked */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     bool GetIsUnlocked();
 
+    /** @brief Achievement name. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FString GetName();
 
+    /** @brief The time when the achievement is unlocked (as string). */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FString GetUnlockTime();
     
+    /** @brief The time when the achievement is unlocked. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FDateTime GetUnlockDateTime();
 
+    /** @brief Achievement ID. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FString GetID();
 
+    /** @brief  Additional info, no more than 2KB.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     TArray<uint8> GetExtraData();
 
+    /** @brief  Additional info(as string), no more than 2KB.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress")
     FString GetExtraDataString();
 };
+
+/// @brief UPico_AchievementDefinition class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_AchievementDefinition : public UObject
 {
@@ -400,90 +385,106 @@ private:
     FString Title = FString();
     bool IsArchived = false;
     bool IsSecret = false;
-    uint64_t ID = 0;
+    ppfID ID = 0;
     FString UnlockedDescription = FString();
     EAchievementWritePolicy WritePolicy = EAchievementWritePolicy::Unknown;
     FString LockedImageURL = FString();
     FString UnlockedImageURL = FString();
 public:
 
+    /** @brief The API name of the achievement. An API name serves as the unique identifier of an achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetName();
 
+    /** @brief The requirement that users should meet for unlocking a bitfield achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetBitfieldLength();
 
+    /** @brief The requirement that users should meet for unlocking a count achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     int64 GetTarget();
 
+    /** @brief The type of the achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     EAchievementType GetType();
     
+    /** @brief The description of the achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetDescription();
     
+    /** @brief The display name of the achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetTitle();
     
+    /** @brief Whether the achievement is archived. Archived achievements are invisible to users. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     bool GetIsArchived();
     
+    /** @brief Whether the achievement is a hidden achievement. If so, it can be visible after being unlocked only. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     bool GetIsSecret();
     
+    /** @brief The ID of the achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetID();
     
+    /** @brief The description displayed to users after they unlock the achievement. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetUnlockedDescription();
     
+    /** @brief The data-writing policy of the achievement, which indicates whether the client or server are allowed to update the achievement's progress. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     EAchievementWritePolicy GetWritePolicy();
     
+    /** @brief The URL of the image displayed when the achievement is still locked. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetLockedImageURL();
     
+    /** @brief The URL of the image displayed when the achievement is unlocked. */
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition")
     FString GetUnlockedImageURL();
 };
 
+/// @brief UPico_AchievementProgressArray class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_AchievementProgressArray : public UObject
 {
     GENERATED_BODY()
 private:
+    UPROPERTY()
     TArray<UPico_AchievementProgress*> AchievementProgressArray;
-    FString NextPageParam = FString();
     int32 Size = 0;
     int32 TotalSize = 0;
     bool bHasNextPage;
 public:
     void InitParams(ppfAchievementProgressArrayHandle InppfAchievementProgressArrayHandle);
 
+    /** @brief Get AchievementProgressArray element form Index.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress Array")
     UPico_AchievementProgress* GetElement(int32 Index);
+    
 
-    UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress Array")
-    FString GetNextPageParam();
-
+    /** @brief Get the size of AchievementProgressArray .*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress Array")
     int32 GetSize();
     
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress Array")
     int32 GetTotalSize();
 
+    /** @brief Get whether the list has the next page.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Progress Array")
     bool HasNextPage();
 };
 
+/// @brief UPico_AchievementDefinitionArray class.
 UCLASS(BlueprintType)
 class ONLINESUBSYSTEMPICO_API UPico_AchievementDefinitionArray : public UObject
 {
 
     GENERATED_BODY()
 private:
+    UPROPERTY()
     TArray<UPico_AchievementDefinition*> AchievementDefinitionArray;
-    FString NextPageParam = FString();
     int32 Size = 0;
     int32 TotalSize = 0;
     bool bHasNextPage;
@@ -491,18 +492,18 @@ private:
 public:
     void InitParams(ppfAchievementDefinitionArrayHandle InppfAchievementDefinitionArrayHandle);
 
+    /** @brief Get AchievementDefinitionArray element form Index.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition Array")
-        UPico_AchievementDefinition* GetElement(int32 Index);
+    UPico_AchievementDefinition* GetElement(int32 Index);
 
+    /** @brief Get the size of AchievementDefinitionArray .*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition Array")
-        FString GetNextPageParam();
-
-    UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition Array")
-        int32 GetSize();
+    int32 GetSize();
     
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition Array")
-        int32 GetTotalSize();
+    int32 GetTotalSize();
 
+    /** @brief Get whether the list has the next page.*/
     UFUNCTION(BlueprintPure, Category = "Pico Platform|Achievements|Achievement Definition Array")
-        bool HasNextPage();
+    bool HasNextPage();
 };

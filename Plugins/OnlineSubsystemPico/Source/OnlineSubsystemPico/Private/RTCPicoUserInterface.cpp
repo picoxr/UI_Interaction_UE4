@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 
 #include "RTCPicoUserInterface.h"
@@ -263,7 +261,6 @@ FRTCPicoUserInterface::~FRTCPicoUserInterface()
 void FRTCPicoUserInterface::GetToken(const FString& UserId, const FString& RoomId, int Ttl, int InValue, const FOnGetTokenComplete& Delegate)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::GetToken!"));
-#if PLATFORM_ANDROID
     auto TokenOptions = ppf_RtcGetTokenOptions_Create();
     ppf_RtcGetTokenOptions_ClearPrivileges(TokenOptions);
     ppf_RtcGetTokenOptions_SetUserId(TokenOptions, TCHAR_TO_UTF8(*UserId));
@@ -285,14 +282,11 @@ void FRTCPicoUserInterface::GetToken(const FString& UserId, const FString& RoomI
         )
     );
     ppf_RtcGetTokenOptions_Destroy(TokenOptions);
-
-#endif
 }
 
 int32 FRTCPicoUserInterface::RtcSendStreamSyncInfo(int32 Info, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendStreamSyncInfo!"));
-#if PLATFORM_ANDROID
     auto RtcStreamSyncInfoOptions = ppf_RtcStreamSyncInfoOptions_Create();
     if (InStreamIndex == ERtcStreamIndex::None || InSyncInfoStreamType == ERtcSyncInfoStreamType::None)
     {
@@ -320,14 +314,39 @@ int32 FRTCPicoUserInterface::RtcSendStreamSyncInfo(int32 Info, ERtcStreamIndex I
     int32 ReturnCode = ppf_Rtc_SendStreamSyncInfo(Res.GetData(), Length, RtcStreamSyncInfoOptions);
     ppf_RtcStreamSyncInfoOptions_Destroy(RtcStreamSyncInfoOptions);
     return ReturnCode;
-#endif
-    return -1;
+}
+
+int32 FRTCPicoUserInterface::RtcSendStreamSyncInfo(TArray<uint8> Bytes, ERtcStreamIndex InStreamIndex, int32 RepeatCount, ERtcSyncInfoStreamType InSyncInfoStreamType)
+{
+    UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendStreamSyncInfo Bytes!"));
+    auto RtcStreamSyncInfoOptions = ppf_RtcStreamSyncInfoOptions_Create();
+    if (InStreamIndex == ERtcStreamIndex::None || InSyncInfoStreamType == ERtcSyncInfoStreamType::None)
+    {
+        UE_LOG(RtcInterface, Log, TEXT("RtcSendStreamSyncInfo wrong param!"));
+        return -1;
+    }
+    ppfRtcStreamIndex pRtcStreamIndex;
+    if (InStreamIndex == ERtcStreamIndex::Main)
+    {
+        pRtcStreamIndex = ppfRtcStreamIndex_Main;
+    }
+    else
+    {
+        pRtcStreamIndex = ppfRtcStreamIndex_Screen;
+    }
+    ppfRtcSyncInfoStreamType pRtcSyncInfoStreamType = ppfRtcSyncInfoStreamType_Audio;
+    ppf_RtcStreamSyncInfoOptions_SetStreamIndex(RtcStreamSyncInfoOptions, pRtcStreamIndex);
+    ppf_RtcStreamSyncInfoOptions_SetRepeatCount(RtcStreamSyncInfoOptions, RepeatCount);
+    ppf_RtcStreamSyncInfoOptions_SetStreamType(RtcStreamSyncInfoOptions, pRtcSyncInfoStreamType);
+    int32 Length = Bytes.Num();
+    int32 ReturnCode = ppf_Rtc_SendStreamSyncInfo(Bytes.GetData(), Length, RtcStreamSyncInfoOptions);
+    ppf_RtcStreamSyncInfoOptions_Destroy(RtcStreamSyncInfoOptions);
+    return ReturnCode;
 }
 
 void FRTCPicoUserInterface::RtcRoomPublishStream(const FString& RoomId, ERtcMediaStreamType InRtcMediaStreamType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomPublishStream!"));
-#if PLATFORM_ANDROID
     if (InRtcMediaStreamType == ERtcMediaStreamType::None)
     {
         UE_LOG(RtcInterface, Log, TEXT("RtcRoomPublishStream wrong param!"));
@@ -347,21 +366,17 @@ void FRTCPicoUserInterface::RtcRoomPublishStream(const FString& RoomId, ERtcMedi
         pRtcMediaStreamType = ppfRtcMediaStreamType_Both;
     }
     ppf_Rtc_RoomPublishStream(TCHAR_TO_UTF8(*RoomId), pRtcMediaStreamType);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomSetRemoteAudioPlaybackVolume(const FString& RoomId, const FString& UserId, int32 Volume)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomSetRemoteAudioPlaybackVolume!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_RoomSetRemoteAudioPlaybackVolume(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), Volume);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomSubscribeStream(const FString& RoomId, const FString& UserId, ERtcMediaStreamType InRtcMediaStreamType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomSubscribeStream!"));
-#if PLATFORM_ANDROID
     if (InRtcMediaStreamType == ERtcMediaStreamType::None)
     {
         UE_LOG(RtcInterface, Log, TEXT("RtcRoomSubscribeStream wrong param!"));
@@ -381,13 +396,11 @@ void FRTCPicoUserInterface::RtcRoomSubscribeStream(const FString& RoomId, const 
         pRtcMediaStreamType = ppfRtcMediaStreamType_Both;
     }
     ppf_Rtc_RoomSubscribeStream(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), pRtcMediaStreamType);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomUnPublishStream(const FString& RoomId, ERtcMediaStreamType InRtcMediaStreamType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomUnPublishStream!"));
-#if PLATFORM_ANDROID
     if (InRtcMediaStreamType == ERtcMediaStreamType::None)
     {
         UE_LOG(RtcInterface, Log, TEXT("RtcRoomUnPublishStream wrong param!"));
@@ -407,13 +420,11 @@ void FRTCPicoUserInterface::RtcRoomUnPublishStream(const FString& RoomId, ERtcMe
         pRtcMediaStreamType = ppfRtcMediaStreamType_Both;
     }
     ppf_Rtc_RoomUnPublishStream(TCHAR_TO_UTF8(*RoomId), pRtcMediaStreamType);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomUnsubscribeStream(const FString& RoomId, const FString& UserId, ERtcMediaStreamType InRtcMediaStreamType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomUnsubscribeStream!"));
-#if PLATFORM_ANDROID
     if (InRtcMediaStreamType == ERtcMediaStreamType::None)
     {
         UE_LOG(RtcInterface, Log, TEXT("RtcRoomUnsubscribeStream wrong param!"));
@@ -433,49 +444,50 @@ void FRTCPicoUserInterface::RtcRoomUnsubscribeStream(const FString& RoomId, cons
         pRtcMediaStreamType = ppfRtcMediaStreamType_Both;
     }
     ppf_Rtc_RoomUnsubscribeStream(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), pRtcMediaStreamType);
-#endif
 }
 
 int64 FRTCPicoUserInterface::RtcSendRoomBinaryMessage(const FString& RoomId, const FString& MessageInfo)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendRoomBinaryMessage!"));
-#if PLATFORM_ANDROID
     TArray<uint8> Bytes;
     Bytes.SetNumUninitialized(MessageInfo.Len());
     int32 NumBytes = StringToBytes(MessageInfo, Bytes.GetData(), Bytes.Num());
     return ppf_Rtc_SendRoomBinaryMessage(TCHAR_TO_UTF8(*RoomId), Bytes.GetData(), NumBytes);
-#endif
-    return -1;
+}
+
+int64 FRTCPicoUserInterface::RtcSendRoomBinaryMessage(const FString& RoomId, TArray<uint8> Bytes)
+{
+    UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendRoomBinaryMessage Bytes!"));
+    int32 NumBytesArray = Bytes.Num();
+    return ppf_Rtc_SendRoomBinaryMessage(TCHAR_TO_UTF8(*RoomId), Bytes.GetData(), NumBytesArray);
 }
 
 int64 FRTCPicoUserInterface::RtcSendRoomMessage(const FString& RoomId, const FString& Message)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendRoomMessage!"));
-#if PLATFORM_ANDROID
     return ppf_Rtc_SendRoomMessage(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*Message));
-#endif
-    return -1;
 }
 
 int64 FRTCPicoUserInterface::RtcSendUserBinaryMessage(const FString& RoomId, const FString& UserId, const FString& MessageInfo)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendUserBinaryMessage!"));
-#if PLATFORM_ANDROID
     TArray<uint8> Bytes;
     Bytes.SetNumUninitialized(MessageInfo.Len());
     int32 NumBytes = StringToBytes(MessageInfo, Bytes.GetData(), Bytes.Num());
     return ppf_Rtc_SendUserBinaryMessage(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), Bytes.GetData(), NumBytes);
-#endif
-    return -1;
+}
+
+int64 FRTCPicoUserInterface::RtcSendUserBinaryMessage(const FString& RoomId, const FString& UserId, TArray<uint8> Bytes)
+{
+    UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendUserBinaryMessage Bytes!"));
+    int32 NumBytesArray = Bytes.Num();
+    return ppf_Rtc_SendUserBinaryMessage(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), Bytes.GetData(), NumBytesArray);
 }
 
 int64 FRTCPicoUserInterface::RtcSendUserMessage(const FString& RoomId, const FString& UserId, const FString& Message)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSendUserMessage!"));
-#if PLATFORM_ANDROID
     return ppf_Rtc_SendUserMessage(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*UserId), TCHAR_TO_UTF8(*Message));
-#endif
-    return -1;
 }
 
 TArray<uint8> FRTCPicoUserInterface::GetBytesByInt(int32 Inint)
@@ -511,7 +523,6 @@ TArray<uint8> FRTCPicoUserInterface::GetBytesByInt(int32 Inint)
 void FRTCPicoUserInterface::OnQueryGetTokenComplete(ppfMessageHandle Message, bool bIsError, const FOnGetTokenComplete& Delegate)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::OnQueryGetTokenComplete!"));
-#if PLATFORM_ANDROID
     FString ErrorStr;
     if (bIsError)
     {
@@ -525,8 +536,6 @@ void FRTCPicoUserInterface::OnQueryGetTokenComplete(ppfMessageHandle Message, bo
         FString Token = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
         Delegate.ExecuteIfBound(Token, true, FString());
     }
-
-#endif
 }
 
 void FRTCPicoUserInterface::OnJoinRoomResult(ppfMessageHandle Message, bool bIsError)
@@ -537,7 +546,6 @@ void FRTCPicoUserInterface::OnJoinRoomResult(ppfMessageHandle Message, bool bIsE
         UE_LOG(RtcInterface, Error, TEXT("Join room result error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto JoinRoomResult = ppf_Message_GetRtcJoinRoomResult(Message);
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcJoinRoomResult_GetRoomId(JoinRoomResult)));
     FString UserId = UTF8_TO_TCHAR((ppf_RtcJoinRoomResult_GetUserId(JoinRoomResult)));
@@ -558,7 +566,6 @@ void FRTCPicoUserInterface::OnJoinRoomResult(ppfMessageHandle Message, bool bIsE
         JoinRoomType = ERtcJoinRoomType::None;
     }
     RtcJoinRoomCallback.Broadcast(RoomId, UserId, ErrorCode, Elapsed, JoinRoomType);
-#endif
 }
 
 void FRTCPicoUserInterface::OnLeaveRoomResult(ppfMessageHandle Message, bool bIsError)
@@ -568,12 +575,9 @@ void FRTCPicoUserInterface::OnLeaveRoomResult(ppfMessageHandle Message, bool bIs
     {
         UE_LOG(RtcInterface, Error, TEXT("Leave room result error!"));
     }
-
-#if PLATFORM_ANDROID
     auto LeaveRoomResult = ppf_Message_GetRtcLeaveRoomResult(Message);
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcLeaveRoomResult_GetRoomId(LeaveRoomResult));
     RtcLeaveRoomCallback.Broadcast(RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnUserJoinRoomResult(ppfMessageHandle Message, bool bIsError)
@@ -584,14 +588,12 @@ void FRTCPicoUserInterface::OnUserJoinRoomResult(ppfMessageHandle Message, bool 
         UE_LOG(RtcInterface, Error, TEXT("User join room result error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto UserJoinInfo = ppf_Message_GetRtcUserJoinInfo(Message);
     FString UserId = UTF8_TO_TCHAR((ppf_RtcUserJoinInfo_GetUserId(UserJoinInfo)));
     FString UserExtra = UTF8_TO_TCHAR((ppf_RtcUserJoinInfo_GetUserExtra(UserJoinInfo)));
     int Elapsed = ppf_RtcUserJoinInfo_GetElapsed(UserJoinInfo);
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcUserJoinInfo_GetRoomId(UserJoinInfo)));
     RtcUserJoinInfoCallback.Broadcast(UserId, UserExtra, Elapsed, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnUserLeaveRoomResult(ppfMessageHandle Message, bool bIsError)
@@ -602,7 +604,6 @@ void FRTCPicoUserInterface::OnUserLeaveRoomResult(ppfMessageHandle Message, bool
         UE_LOG(RtcInterface, Error, TEXT("User leave room result error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto UserLeaveInfo = ppf_Message_GetRtcUserLeaveInfo(Message);
     FString UserId = UTF8_TO_TCHAR((ppf_RtcUserLeaveInfo_GetUserId(UserLeaveInfo)));
     ppfRtcUserLeaveReasonType LeaveReason = ppf_RtcUserLeaveInfo_GetOfflineReason(UserLeaveInfo);
@@ -619,10 +620,8 @@ void FRTCPicoUserInterface::OnUserLeaveRoomResult(ppfMessageHandle Message, bool
     {
         RtcUserLeaveReasonType = ERtcUserLeaveReasonType::None;
     }
-
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcUserLeaveInfo_GetRoomId(UserLeaveInfo)));
     RtcUserLeaveInfoCallback.Broadcast(UserId, RtcUserLeaveReasonType, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRoomStatsNotification(ppfMessageHandle Message, bool bIsError)
@@ -633,14 +632,11 @@ void FRTCPicoUserInterface::OnRoomStatsNotification(ppfMessageHandle Message, bo
         UE_LOG(RtcInterface, Error, TEXT("Room stats error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RoomStates = ppf_Message_GetRtcRoomStats(Message);
     int TotalDuration = ppf_RtcRoomStats_GetTotalDuration(RoomStates);
     int UserCount = ppf_RtcRoomStats_GetUserCount(RoomStates);
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcRoomStats_GetRoomId(RoomStates)));
-
     RtcRoomStateCallback.Broadcast(TotalDuration, UserCount, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnWarnNotification(ppfMessageHandle Message, bool bIsError)
@@ -651,10 +647,8 @@ void FRTCPicoUserInterface::OnWarnNotification(ppfMessageHandle Message, bool bI
         UE_LOG(RtcInterface, Error, TEXT("Warn notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     int32 MessageCode = (ppf_Message_GetInt32(Message));
     RtcWarnCallback.Broadcast(MessageCode);
-#endif
 }
 
 void FRTCPicoUserInterface::OnErrorNotification(ppfMessageHandle Message, bool bIsError)
@@ -665,10 +659,8 @@ void FRTCPicoUserInterface::OnErrorNotification(ppfMessageHandle Message, bool b
         UE_LOG(RtcInterface, Error, TEXT("Error notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     int32 MessageCode = (ppf_Message_GetInt32(Message));
     RtcErrorCallback.Broadcast(MessageCode);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRoomWarnNotification(ppfMessageHandle Message, bool bIsError)
@@ -679,12 +671,10 @@ void FRTCPicoUserInterface::OnRoomWarnNotification(ppfMessageHandle Message, boo
         UE_LOG(RtcInterface, Error, TEXT("Room warn notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RoomWarn = ppf_Message_GetRtcRoomWarn(Message);
     int Code = ppf_RtcRoomWarn_GetCode(RoomWarn);
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcRoomWarn_GetRoomId(RoomWarn)));
     RtcRoomWarnCallback.Broadcast(Code, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRoomErrorNotification(ppfMessageHandle Message, bool bIsError)
@@ -695,12 +685,10 @@ void FRTCPicoUserInterface::OnRoomErrorNotification(ppfMessageHandle Message, bo
         UE_LOG(RtcInterface, Error, TEXT("Room error notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RoomError = ppf_Message_GetRtcRoomError(Message);
     int Code = ppf_RtcRoomError_GetCode(RoomError);
     FString RoomId = UTF8_TO_TCHAR((ppf_RtcRoomError_GetRoomId(RoomError)));
     RtcRoomErrorCallback.Broadcast(Code, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnConnectionStateChangeNotification(ppfMessageHandle Message, bool bIsError)
@@ -711,10 +699,8 @@ void FRTCPicoUserInterface::OnConnectionStateChangeNotification(ppfMessageHandle
         UE_LOG(RtcInterface, Error, TEXT("ConnectionStateChange notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     FString MessageString = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
     RtcConnectStateChangedCallback.Broadcast(MessageString);
-#endif
 }
 
 void FRTCPicoUserInterface::OnUserStartAudioCaptureNotification(ppfMessageHandle Message, bool bIsError)
@@ -725,10 +711,8 @@ void FRTCPicoUserInterface::OnUserStartAudioCaptureNotification(ppfMessageHandle
         UE_LOG(RtcInterface, Error, TEXT("UserStartAudioCapture notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     FString MessageString = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
     RtcUserStartAudioCaptureCallback.Broadcast(MessageString);
-#endif
 }
 
 void FRTCPicoUserInterface::OnUserStopAudioCaptureNotification(ppfMessageHandle Message, bool bIsError)
@@ -739,10 +723,8 @@ void FRTCPicoUserInterface::OnUserStopAudioCaptureNotification(ppfMessageHandle 
         UE_LOG(RtcInterface, Error, TEXT("UserStopAudioCapture notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     FString MessageString = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
     RtcUserStopAudioCaptureCallback.Broadcast(MessageString);
-#endif
 }
 
 void FRTCPicoUserInterface::OnAudioPlaybackDeviceChangeNotification(ppfMessageHandle Message, bool bIsError)
@@ -753,7 +735,6 @@ void FRTCPicoUserInterface::OnAudioPlaybackDeviceChangeNotification(ppfMessageHa
         UE_LOG(RtcInterface, Error, TEXT("Audio playback device change notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     ppfRtcAudioPlaybackDevice AudioPlaybackDeviceChange = ppf_Message_GetRtcAudioPlaybackDevice(Message);
     ERtcAudioPlaybackDevice RtcAudioPlaybackDevice = ERtcAudioPlaybackDevice::None;
     if (AudioPlaybackDeviceChange == ppfRtcAudioPlaybackDevice_EarPiece)
@@ -777,7 +758,6 @@ void FRTCPicoUserInterface::OnAudioPlaybackDeviceChangeNotification(ppfMessageHa
         RtcAudioPlaybackDevice = ERtcAudioPlaybackDevice::SpeakerPhone;
     }
     RtcAudioPlaybackDeviceChangeCallback.Broadcast(RtcAudioPlaybackDevice);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRemoteAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError)
@@ -788,7 +768,6 @@ void FRTCPicoUserInterface::OnRemoteAudioPropertiesReportNotification(ppfMessage
         UE_LOG(RtcInterface, Error, TEXT("Remote audio properties report notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     ppfRtcRemoteAudioPropertiesReportHandle RtcRemoteAudioProperitesReport = ppf_Message_GetRtcRemoteAudioPropertiesReport(Message);
     size_t S_AudioPropertiesInfosSize = ppf_RtcRemoteAudioPropertiesReport_GetAudioPropertiesInfosSize(RtcRemoteAudioProperitesReport);
     int TotalRemoteVolume = ppf_RtcRemoteAudioPropertiesReport_GetTotalRemoteVolume(RtcRemoteAudioProperitesReport);
@@ -822,8 +801,6 @@ void FRTCPicoUserInterface::OnRemoteAudioPropertiesReportNotification(ppfMessage
     }
     UE_LOG(RtcInterface, Log, TEXT("Remote audio properties broadcast!"));
     RtcRemoteAudioPropertiesReportCallback.Broadcast(TotalRemoteVolume, VolumeArray, RoomIdArray, UserIdArray, StreamIndexArray);
-
-#endif
 }
 
 void FRTCPicoUserInterface::OnLocalAudioPropertiesReportNotification(ppfMessageHandle Message, bool bIsError)
@@ -834,7 +811,6 @@ void FRTCPicoUserInterface::OnLocalAudioPropertiesReportNotification(ppfMessageH
         UE_LOG(RtcInterface, Error, TEXT("Local audio properties report notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcLocalAudioProperitesReport = ppf_Message_GetRtcLocalAudioPropertiesReport(Message);
     size_t S_AudioPropertiesInfosSize = ppf_RtcLocalAudioPropertiesReport_GetAudioPropertiesInfosSize(RtcLocalAudioProperitesReport);
     TArray<ERtcStreamIndex> StreamIndexArray;
@@ -859,7 +835,6 @@ void FRTCPicoUserInterface::OnLocalAudioPropertiesReportNotification(ppfMessageH
         VolumeArray.Add(Volume);
     }
     RtcLocalAudioPropertiesReportCallback.Broadcast(StreamIndexArray, VolumeArray);
-#endif
 }
 
 void FRTCPicoUserInterface::OnUserMuteAudioNotification(ppfMessageHandle Message, bool bIsError)
@@ -870,7 +845,6 @@ void FRTCPicoUserInterface::OnUserMuteAudioNotification(ppfMessageHandle Message
         UE_LOG(RtcInterface, Error, TEXT("User mute audio error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto MuteInfo = ppf_Message_GetRtcMuteInfo(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcMuteInfo_GetUserId(MuteInfo));
     ppfRtcMuteState ppfMuteState = ppf_RtcMuteInfo_GetMuteState(MuteInfo);
@@ -884,7 +858,6 @@ void FRTCPicoUserInterface::OnUserMuteAudioNotification(ppfMessageHandle Message
         RtcMuteState = ERtcMuteState::On;
     }
     RtcUserMuteAudioInfoCallback.Broadcast(UserId, RtcMuteState);
-#endif
 }
 
 void FRTCPicoUserInterface::OnMediaDeviceStateChangedNotification(ppfMessageHandle Message, bool bIsError)
@@ -895,7 +868,6 @@ void FRTCPicoUserInterface::OnMediaDeviceStateChangedNotification(ppfMessageHand
         UE_LOG(RtcInterface, Error, TEXT("Media device state changed info error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto MediaDeviceChangeInfo = ppf_Message_GetRtcMediaDeviceChangeInfo(Message);
     FString DeviceId = UTF8_TO_TCHAR((ppf_RtcMediaDeviceChangeInfo_GetDeviceId(MediaDeviceChangeInfo)));
     ppfRtcMediaDeviceType RtcMediaDeviceType = ppf_RtcMediaDeviceChangeInfo_GetDeviceType(MediaDeviceChangeInfo);
@@ -966,10 +938,6 @@ void FRTCPicoUserInterface::OnMediaDeviceStateChangedNotification(ppfMessageHand
         break;
     }
     RtcMediaDeviceChangeInfoCallback.Broadcast(DeviceId, MediaDeciveType, MediaDeviceState, MediaDeviceError);
-
-#endif
-
-
 }
 
 void FRTCPicoUserInterface::OnRtcUserPublishInfoNotification(ppfMessageHandle Message, bool bIsError)
@@ -980,7 +948,6 @@ void FRTCPicoUserInterface::OnRtcUserPublishInfoNotification(ppfMessageHandle Me
         UE_LOG(RtcInterface, Error, TEXT("OnRtcUserPublishInfoNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcUserPublishInfo = ppf_Message_GetRtcUserPublishInfo(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcUserPublishInfo_GetUserId(RtcUserPublishInfo));
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcUserPublishInfo_GetRoomId(RtcUserPublishInfo));
@@ -999,7 +966,6 @@ void FRTCPicoUserInterface::OnRtcUserPublishInfoNotification(ppfMessageHandle Me
         MediaStreamType = ERtcMediaStreamType::Both;
     }
     RtcUserPublishInfoCallback.Broadcast(RoomId, UserId, MediaStreamType);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRtcUserUnPublishInfoNotification(ppfMessageHandle Message, bool bIsError)
@@ -1010,7 +976,6 @@ void FRTCPicoUserInterface::OnRtcUserUnPublishInfoNotification(ppfMessageHandle 
         UE_LOG(RtcInterface, Error, TEXT("OnRtcUserUnPublishInfoNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcUserUnPublishInfo = ppf_Message_GetRtcUserUnPublishInfo(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcUserUnPublishInfo_GetUserId(RtcUserUnPublishInfo));
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcUserUnPublishInfo_GetRoomId(RtcUserUnPublishInfo));
@@ -1053,10 +1018,8 @@ void FRTCPicoUserInterface::OnRtcUserUnPublishInfoNotification(ppfMessageHandle 
         break;
     default:
         break;
-}
-
+    }
     RtcUserUnPublishInfoCallback.Broadcast(RoomId, UserId, MediaStreamType, RtcStreamRemoveReason);
-#endif
 }
 
 void FRTCPicoUserInterface::OnGetRtcStreamSyncInfoNotification(ppfMessageHandle Message, bool bIsError)
@@ -1067,7 +1030,6 @@ void FRTCPicoUserInterface::OnGetRtcStreamSyncInfoNotification(ppfMessageHandle 
         UE_LOG(RtcInterface, Error, TEXT("OnGetRtcStreamSyncInfoNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcStreamSyncInfo = ppf_Message_GetRtcStreamSyncInfo(Message);
     FString Info = BytesToString(ppf_RtcStreamSyncInfo_GetData(RtcStreamSyncInfo), ppf_RtcStreamSyncInfo_GetLength(RtcStreamSyncInfo));
     ppfRtcSyncInfoStreamType pRtcSyncInfoStreamType = ppf_RtcStreamSyncInfo_GetStreamType(RtcStreamSyncInfo);
@@ -1090,9 +1052,7 @@ void FRTCPicoUserInterface::OnGetRtcStreamSyncInfoNotification(ppfMessageHandle 
     {
         RtcStreamIndex = ERtcStreamIndex::Screen;
     }
-
     RtcStreamSyncInfoCallback.Broadcast(RoomId, UserId, RtcStreamIndex, RtcSyncInfoStreamType, Info);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRtcMessageSendResultNotification(ppfMessageHandle Message, bool bIsError)
@@ -1103,13 +1063,11 @@ void FRTCPicoUserInterface::OnRtcMessageSendResultNotification(ppfMessageHandle 
         UE_LOG(RtcInterface, Error, TEXT("OnRtcMessageSendResultNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcMessageSendResult = ppf_Message_GetRtcMessageSendResult(Message);
     int64 MessageId = ppf_RtcMessageSendResult_GetMessageId(RtcMessageSendResult);
     int32 Error = ppf_RtcMessageSendResult_GetError(RtcMessageSendResult);
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcMessageSendResult_GetRoomId(RtcMessageSendResult));
     RtcMessageSendResultCallback.Broadcast(MessageId, Error, RoomId);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRtcBinaryMessageReceivedNotification(ppfMessageHandle Message, bool bIsError)
@@ -1120,13 +1078,15 @@ void FRTCPicoUserInterface::OnRtcBinaryMessageReceivedNotification(ppfMessageHan
         UE_LOG(RtcInterface, Error, TEXT("OnRtcBinaryMessageReceivedNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcBinaryMessageReceived = ppf_Message_GetRtcBinaryMessageReceived(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcBinaryMessageReceived_GetUserId(RtcBinaryMessageReceived));
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcBinaryMessageReceived_GetRoomId(RtcBinaryMessageReceived));
+
     FString Info = BytesToString(ppf_RtcBinaryMessageReceived_GetData(RtcBinaryMessageReceived), ppf_RtcBinaryMessageReceived_GetLength(RtcBinaryMessageReceived));
+    TArray<uint8> BinaryArray;
+    BinaryArray.Append(ppf_RtcBinaryMessageReceived_GetData(RtcBinaryMessageReceived), ppf_RtcBinaryMessageReceived_GetLength(RtcBinaryMessageReceived));
     RtcBinaryMessageReceivedCallback.Broadcast(RoomId, UserId, Info);
-#endif
+    RtcBinaryArrayMessageReceivedCallback.Broadcast(RoomId, UserId, BinaryArray);
 }
 
 void FRTCPicoUserInterface::OnRtcRoomMessageReceivedNotification(ppfMessageHandle Message, bool bIsError)
@@ -1137,13 +1097,11 @@ void FRTCPicoUserInterface::OnRtcRoomMessageReceivedNotification(ppfMessageHandl
         UE_LOG(RtcInterface, Error, TEXT("OnRtcRoomMessageReceivedNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcRoomMessageReceived = ppf_Message_GetRtcRoomMessageReceived(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcRoomMessageReceived_GetUserId(RtcRoomMessageReceived));
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcRoomMessageReceived_GetRoomId(RtcRoomMessageReceived));
     FString MessageInfo = UTF8_TO_TCHAR(ppf_RtcRoomMessageReceived_GetMessage(RtcRoomMessageReceived));
     RtcRoomMessageReceivedCallback.Broadcast(RoomId, UserId, MessageInfo);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRtcUserMessageReceivedNotification(ppfMessageHandle Message, bool bIsError)
@@ -1154,13 +1112,11 @@ void FRTCPicoUserInterface::OnRtcUserMessageReceivedNotification(ppfMessageHandl
         UE_LOG(RtcInterface, Error, TEXT("OnRtcUserMessageReceivedNotification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     auto RtcUserMessageReceived = ppf_Message_GetRtcUserMessageReceived(Message);
     FString UserId = UTF8_TO_TCHAR(ppf_RtcUserMessageReceived_GetUserId(RtcUserMessageReceived));
     FString RoomId = UTF8_TO_TCHAR(ppf_RtcUserMessageReceived_GetRoomId(RtcUserMessageReceived));
     FString MessageInfo = UTF8_TO_TCHAR(ppf_RtcUserMessageReceived_GetMessage(RtcUserMessageReceived));
     RtcUserMessageReceivedCallback.Broadcast(RoomId, UserId, MessageInfo);
-#endif
 }
 
 void FRTCPicoUserInterface::OnRtcTokenWilExpireNotification(ppfMessageHandle Message, bool bIsError)
@@ -1171,18 +1127,14 @@ void FRTCPicoUserInterface::OnRtcTokenWilExpireNotification(ppfMessageHandle Mes
         UE_LOG(RtcInterface, Error, TEXT("OnRtcOnTokenWilExpireNotification notification error!"));
         return;
     }
-#if PLATFORM_ANDROID
     FString MessageString = UTF8_TO_TCHAR(ppf_Message_GetString(Message));
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::OnRtcOnTokenWilExpireNotification %s!"), *MessageString);
     RtcTokenWillExpireCallback.Broadcast(MessageString);
-#endif
 }
 
 ERtcEngineInitResult FRTCPicoUserInterface::RtcEngineInit()
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcEngineInit!"));
-#if PLATFORM_ANDROID
-
     ppfRtcEngineInitResult InitRes = ppf_Rtc_InitRtcEngine();
     ERtcEngineInitResult InitResult = ERtcEngineInitResult::None;
     if (InitRes == ppfRtcEngineInitResult_Success)
@@ -1202,14 +1154,11 @@ ERtcEngineInitResult FRTCPicoUserInterface::RtcEngineInit()
         InitResult = ERtcEngineInitResult::AlreadyInitialized;
     }
     return InitResult;
-#endif
-    return ERtcEngineInitResult::Unknow;
 }
 
 int FRTCPicoUserInterface::RtcJoinRoom(const FString& RoomId, const FString& UserId, const FString& Token, const FString& UserExtra, ERtcRoomProfileType InRoomProfileType, bool bIsAutoSubscribeAudio)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcJoinRoom!"));
-#if PLATFORM_ANDROID
     auto RtcRoomOpiton = ppf_RtcRoomOptions_Create();
     if (InRoomProfileType == ERtcRoomProfileType::CloundGame)
     {
@@ -1243,44 +1192,33 @@ int FRTCPicoUserInterface::RtcJoinRoom(const FString& RoomId, const FString& Use
     int Res = ppf_Rtc_JoinRoom(RtcRoomOpiton);
     ppf_RtcRoomOptions_Destroy(RtcRoomOpiton);
     return Res;
-#endif
-    return 0;
 }
 
 int FRTCPicoUserInterface::RtcDestroyRoom(const FString& RoomId)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcDestroyRoom!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_DestroyRoom(TCHAR_TO_UTF8(*RoomId));
     return 1;
-#endif
-    return 0;
 }
 
 void FRTCPicoUserInterface::RtcEnableAudioPropertiesReport(int Interval)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcEnableAudioPropertiesReport!"));
-#if PLATFORM_ANDROID
     auto RtcAudioPropertyOptions = ppf_RtcAudioPropertyOptions_Create();
     ppf_RtcAudioPropertyOptions_SetInterval(RtcAudioPropertyOptions, Interval);
     ppf_Rtc_EnableAudioPropertiesReport(RtcAudioPropertyOptions);
     ppf_RtcAudioPropertyOptions_Destroy(RtcAudioPropertyOptions);
-#endif
 }
 
 int FRTCPicoUserInterface::RtcLeaveRoom(const FString& RoomId)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcLeaveRoom!"));
-#if PLATFORM_ANDROID
     return ppf_Rtc_LeaveRoom(TCHAR_TO_UTF8(*RoomId));
-#endif
-    return 0;
 }
 
 void FRTCPicoUserInterface::RtcMuteLocalAudio(ERtcMuteState InRtcMuteState)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcMuteLocalAudio!"));
-#if PLATFORM_ANDROID
     if (InRtcMuteState == ERtcMuteState::On)
     {
         ppf_Rtc_MuteLocalAudio(ppfRtcMuteState_On);
@@ -1289,21 +1227,17 @@ void FRTCPicoUserInterface::RtcMuteLocalAudio(ERtcMuteState InRtcMuteState)
     {
         ppf_Rtc_MuteLocalAudio(ppfRtcMuteState_Off);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcPublishRoom(const FString& RoomId)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcPublishRoom!"));
-#if PLATFORM_ANDROID
     return ppf_Rtc_PublishRoom(TCHAR_TO_UTF8(*RoomId));
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomPauseAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomPauseAllSubscribedStream!"));
-#if PLATFORM_ANDROID
     if (InPauseResumeMediaType == ERtcPauseResumeMediaType::Audio)
     {
         ppf_Rtc_RoomPauseAllSubscribedStream(TCHAR_TO_UTF8(*RoomId), ppfRtcPauseResumeMediaType_Audio);
@@ -1316,13 +1250,11 @@ void FRTCPicoUserInterface::RtcRoomPauseAllSubscribedStream(const FString& RoomI
     {
         ppf_Rtc_RoomPauseAllSubscribedStream(TCHAR_TO_UTF8(*RoomId), ppfRtcPauseResumeMediaType_AudioAndVideo);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcRoomResumeAllSubscribedStream(const FString& RoomId, ERtcPauseResumeMediaType InPauseResumeMediaType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcRoomResumeAllSubscribedStream!"));
-#if PLATFORM_ANDROID
     if (InPauseResumeMediaType == ERtcPauseResumeMediaType::Audio)
     {
         ppf_Rtc_RoomResumeAllSubscribedStream(TCHAR_TO_UTF8(*RoomId), ppfRtcPauseResumeMediaType_Audio);
@@ -1335,13 +1267,11 @@ void FRTCPicoUserInterface::RtcRoomResumeAllSubscribedStream(const FString& Room
     {
         ppf_Rtc_RoomResumeAllSubscribedStream(TCHAR_TO_UTF8(*RoomId), ppfRtcPauseResumeMediaType_AudioAndVideo);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetAudioPlaybackDevice(ERtcAudioPlaybackDevice InRtcAudioPlaybackDevice)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetAudioPlaybackDevice!"));
-#if PLATFORM_ANDROID
     if (InRtcAudioPlaybackDevice == ERtcAudioPlaybackDevice::Headset)
     {
         ppf_Rtc_SetAudioPlaybackDevice(ppfRtcAudioPlaybackDevice_Headset);
@@ -1362,13 +1292,11 @@ void FRTCPicoUserInterface::RtcSetAudioPlaybackDevice(ERtcAudioPlaybackDevice In
     {
         ppf_Rtc_SetAudioPlaybackDevice(ppfRtcAudioPlaybackDevice_HeadsetUsb);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetAudioScenario(ERtcAudioScenarioType InRtcAudioScenarioType)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetAudioScenario!"));
-#if PLATFORM_ANDROID
     if (InRtcAudioScenarioType == ERtcAudioScenarioType::Music)
     {
         ppf_Rtc_SetAudioScenario(ppfRtcAudioScenarioType_Music);
@@ -1389,13 +1317,11 @@ void FRTCPicoUserInterface::RtcSetAudioScenario(ERtcAudioScenarioType InRtcAudio
     {
         ppf_Rtc_SetAudioScenario(ppfRtcAudioScenarioType_GameStreaming);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetCaptureVolume(ERtcStreamIndex InRtcStreamIndex, int InVolume)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetCaptureVolume!"));
-#if PLATFORM_ANDROID
     if (InRtcStreamIndex == ERtcStreamIndex::Main)
     {
         ppf_Rtc_SetCaptureVolume(ppfRtcStreamIndex_Main, InVolume);
@@ -1404,13 +1330,11 @@ void FRTCPicoUserInterface::RtcSetCaptureVolume(ERtcStreamIndex InRtcStreamIndex
     {
         ppf_Rtc_SetCaptureVolume(ppfRtcStreamIndex_Screen, InVolume);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetEarMonitorMode(ERtcEarMonitorMode InRtcEarMonitorMode)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetEarMonitorMode!"));
-#if PLATFORM_ANDROID
     if (InRtcEarMonitorMode == ERtcEarMonitorMode::Off)
     {
         ppf_Rtc_SetEarMonitorMode(ppfRtcEarMonitorMode_Off);
@@ -1419,53 +1343,40 @@ void FRTCPicoUserInterface::RtcSetEarMonitorMode(ERtcEarMonitorMode InRtcEarMoni
     {
         ppf_Rtc_SetEarMonitorMode(ppfRtcEarMonitorMode_On);
     }
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetEarMonitorVolume(int InVolume)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetEarMonitorVolume!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_SetEarMonitorVolume(InVolume);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcSetPlaybackVolume(int InVolume)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcSetPlaybackVolume!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_SetPlaybackVolume(InVolume);
-#endif
 }
 
 void FRTCPicoUserInterface::RtcStartAudioCapture()
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcStartAudioCapture!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_StartAudioCapture();
-#endif
 }
 
 void FRTCPicoUserInterface::RtcStopAudioCatpure()
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcStopAudioCatpure!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_StopAudioCapture();
-#endif
 }
 
 void FRTCPicoUserInterface::RtcUnPublishRoom(const FString& RoomId)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcUnPublishRoom!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_UnPublishRoom(TCHAR_TO_UTF8(*RoomId));
-#endif
 }
 
 void FRTCPicoUserInterface::RtcUpdateToken(const FString& RoomId, const FString& Token)
 {
     UE_LOG(RtcInterface, Log, TEXT("FRTCPicoUserInterface::RtcUpdateToken!"));
-#if PLATFORM_ANDROID
     ppf_Rtc_UpdateToken(TCHAR_TO_UTF8(*RoomId), TCHAR_TO_UTF8(*Token));
-#endif
 }

@@ -1,7 +1,3 @@
-//
-// Copyright (C) Google Inc. 2017. All rights reserved.
-//
-
 namespace UnrealBuildTool.Rules
 {
 	public class PicoSpatialAudioEditor : ModuleRules

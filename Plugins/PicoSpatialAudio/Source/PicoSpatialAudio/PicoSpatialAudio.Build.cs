@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
 
 using UnrealBuildTool;
 using System.IO;
@@ -20,11 +20,10 @@ public class PicoSpatialAudio : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[]
 			{
-				Path.Combine(ModuleDirectory, "include"),
+				Path.Combine(ModuleDirectory, "include")
 			}
 		);
-
-
+		
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
@@ -34,13 +33,17 @@ public class PicoSpatialAudio : ModuleRules
 				"AudioMixer",
 				"SignalProcessing",
 				"SoundFieldRendering",
+				"ProceduralMeshComponent",
+				"AndroidPermission",
+				"PASP_PXRPlugin"
 			}
 		);
 
 		PrivateIncludePathModuleNames.AddRange(
 			new string[]
 			{
-				"TargetPlatform"
+				"TargetPlatform",
+				"PASP_PXRPlugin"
 			}
 		);
 
@@ -53,9 +56,16 @@ public class PicoSpatialAudio : ModuleRules
 				"InputCore",
 				"Projects",
 				"AudioMixer",
-				"AudioExtensions"
+				"AudioExtensions",
+				"ProceduralMeshComponent",
+				"PASP_PXRPlugin"
 			}
 		);
+
+		if (Target.bBuildEditor == true)
+		{
+			PrivateDependencyModuleNames.Add("UnrealEd");
+		}
 
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
@@ -63,6 +73,9 @@ public class PicoSpatialAudio : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 		);
+		
+		PrivateDependencyModuleNames.Add("ProceduralMeshComponent");
+		PrivateDependencyModuleNames.Add("PASP_PXRPlugin");
 
 		if (Target.Platform == UnrealTargetPlatform.Win64)
 		{
@@ -76,7 +89,7 @@ public class PicoSpatialAudio : ModuleRules
 		}
 		else if (Target.Platform == UnrealTargetPlatform.Mac)
 		{
-			var dllPath = Path.Combine(ModuleDirectory, "libs/mac/x86_64", "libPicoSpatializerNative.dylib");
+			var dllPath = Path.Combine(ModuleDirectory, "libs/mac", "libPicoSpatializerNative.dylib");
 			PublicAdditionalLibraries.Add(dllPath);
 		}
 		else if (Target.Platform == UnrealTargetPlatform.Android)

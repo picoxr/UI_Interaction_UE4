@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "OnlineSubsystemPico.h"
 #include "OnlineIdentityPico.h"
@@ -19,11 +17,20 @@
 #include "Pico_Achievements.h"
 #include "Pico_Leaderboards.h"
 #include "Pico_Challenges.h"
+#include "Pico_Room.h"
+#include "Pico_Networking.h"
+#include "Pico_Compliance.h"
+#include "Pico_Speech.h"
+#include "Pico_Highlight.h"
+#include "Pico_CloudStorage.h"
 
-#include "Json.h"
+#include "OnlineAchievementsInterfacePico.h"
+#include "Pico_Matchmaking.h"
+#include "Pico_Notification.h"
 #include "Serialization/JsonWriter.h"
 #include "Serialization/JsonSerializerMacros.h"
 #include "Serialization/JsonSerializer.h"
+#include "Misc/FileHelper.h"
 
 #include "Modules/ModuleManager.h"
 #include "Interfaces/IPluginManager.h"
@@ -120,7 +127,7 @@ IOnlineEventsPtr FOnlineSubsystemPico::GetEventsInterface() const
 
 IOnlineAchievementsPtr FOnlineSubsystemPico::GetAchievementsInterface() const
 {
-    return nullptr;
+    return AchievementInterface;
 }
 
 IOnlineSharingPtr FOnlineSubsystemPico::GetSharingInterface() const
@@ -219,7 +226,43 @@ TSharedPtr<FPicoChallengesInterface> FOnlineSubsystemPico::GetPicoChallengesInte
 {
     return PicoChallengesInterface;
 }
+TSharedPtr<FPicoRoomInterface> FOnlineSubsystemPico::GetPicoRoomInterface() const
+{
+    return PicoRoomInterface;
+}
+TSharedPtr<FPicoMatchmakingInterface> FOnlineSubsystemPico::GetPicoMatchmakingInterface() const
+{
+    return PicoMatchmakingInterface;
+}
+TSharedPtr<FPicoNotificationInterface> FOnlineSubsystemPico::GetPicoNotificationInterface() const
+{
+    return PicoNotificationInterface;
+}
 
+TSharedPtr<FPicoNetworkingInterface> FOnlineSubsystemPico::GetPicoNetworkingInterface() const
+{
+    return PicoNetworkingInterface;
+}
+
+TSharedPtr<FPicoComplianceInterface> FOnlineSubsystemPico::GetPicoComplianceInterface() const
+{
+    return PicoComplianceInterface;
+}
+
+TSharedPtr<FPicoSpeechInterface> FOnlineSubsystemPico::GetPicoSpeechInterface() const
+{
+    return PicoSpeechInterface;
+}
+
+TSharedPtr<FPicoHighlightInterface> FOnlineSubsystemPico::GetPicoHighlightInterface() const
+{
+    return PicoHighlightInterface;
+}
+
+TSharedPtr<FPicoCloudStorageInterface> FOnlineSubsystemPico::GetPicoCloudStorageInterface() const
+{
+    return PicoCloudStorageInterface;
+}
 
 bool FOnlineSubsystemPico::Init()
 {
@@ -254,10 +297,18 @@ bool FOnlineSubsystemPico::Init()
         GameSessionInterface->Uninitialize();
         GameSessionInterface->Initialize();
         LeaderboardInterface = MakeShareable(new FOnlineLeaderboardPico(*this));
+        AchievementInterface = MakeShareable(new FOnlineAchievementsPico(*this));
         PicoLeaderboardsInterface = MakeShareable(new FPicoLeaderboardsInterface(*this));
         PicoAchievementsInterface = MakeShareable(new FPicoAchievementsInterface(*this));
         PicoChallengesInterface = MakeShareable(new FPicoChallengesInterface(*this));
-
+        PicoRoomInterface = MakeShareable(new FPicoRoomInterface(*this));
+        PicoMatchmakingInterface = MakeShareable(new FPicoMatchmakingInterface(*this));
+        PicoNotificationInterface = MakeShareable(new FPicoNotificationInterface(*this));
+        PicoNetworkingInterface = MakeShareable(new FPicoNetworkingInterface(*this));
+        PicoComplianceInterface = MakeShareable(new FPicoComplianceInterface(*this));
+        PicoSpeechInterface = MakeShareable(new FPicoSpeechInterface(*this));
+        PicoHighlightInterface = MakeShareable(new FPicoHighlightInterface(*this));
+        PicoCloudStorageInterface = MakeShareable(new FPicoCloudStorageInterface(*this));
 #if WITH_EDITOR
         StartTicker();
 #endif
@@ -284,19 +335,29 @@ bool FOnlineSubsystemPico::Shutdown()
     PicoUserInterface.Reset();
     GameSessionInterface.Reset();
     LeaderboardInterface.Reset();
+    AchievementInterface.Reset();
     PicoAssetFileInterface.Reset();
     PicoSportInterface.Reset();
     PicoAchievementsInterface.Reset();
     PicoLeaderboardsInterface.Reset();
     PicoChallengesInterface.Reset();
-
+    PicoRoomInterface.Reset();
+    PicoMatchmakingInterface.Reset();
+    PicoNotificationInterface.Reset();
+    PicoNetworkingInterface.Reset();
+    PicoComplianceInterface.Reset();
+    PicoSpeechInterface.Reset();
+    PicoHighlightInterface.Reset();
+    PicoCloudStorageInterface.Reset();
     if (OnlineAsyncTaskThreadRunnable)
     {
         delete OnlineAsyncTaskThreadRunnable;
         OnlineAsyncTaskThreadRunnable = nullptr;
     }
     bPicoInit = false;
-
+#if PLATFORM_WINDOWS    
+    ppf_PcUnInitialize();
+#endif
     return true;
 }
 
@@ -379,14 +440,14 @@ bool FOnlineSubsystemPico::InitWithWindowsPlatform() const
     auto PicoAppId = GetAppId();
     if (PicoAppId.IsEmpty())
     {
-        UE_LOG_ONLINE(Warning, TEXT("Missing PicoAppId key in [OnlineSubsystemPico] of DefaultEngine.ini"));
+        UE_LOG_ONLINE(Display, TEXT("Missing PicoAppId key in [OnlineSubsystemPico] of DefaultEngine.ini"));
         return false;
     }
     FString DebugInfo;
     FString WindowsDebugLogPath;
     if (!GetWindowsDebugInfo(DebugInfo, WindowsDebugLogPath))
     {
-        UE_LOG_ONLINE(Warning, TEXT("The windows debug profile is not set correctly!"));
+        UE_LOG_ONLINE(Display, TEXT("The windows debug profile is not set correctly!"));
         return false;
     }
     //return false;

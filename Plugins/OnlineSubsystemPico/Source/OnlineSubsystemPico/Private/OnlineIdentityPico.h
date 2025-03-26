@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -19,7 +17,6 @@
 
  /// @file OnlineIdentityPico.h
 DECLARE_DELEGATE_ThreeParams(FOnGetUserAndRoomDelegate, const FString& /**/, bool /*IsError*/, const FString& /*Error Message*/);
-
 /// @brief UserOnlineAccountPico class inherited from FUserOnlineAccount(Unreal Engine).
 class FUserOnlineAccountPico : public FUserOnlineAccount
 {
@@ -35,7 +32,9 @@ public:
         : UserId(InUserId),
         Name(InName)
     { }
-
+    /// <summary>
+    /// 
+    /// </summary>
     virtual ~FUserOnlineAccountPico()
     {
     }
@@ -141,8 +140,8 @@ public:
     /// <param name="LocalUserNum">The controller number of the associated user.</param>
     /// <returns>Bool: 
     /// <ul>
-    /// <li>`true`: success</li>
-    /// <li>`false`: failure</li>
+    /// <li>`true`: Sending request succeeded</li>
+    /// <li>`false`: Sending request failed</li>
     /// </ul>
     /// </returns>
     virtual bool AutoLogin(int32 LocalUserNum) override;
@@ -169,11 +168,13 @@ public:
     /// <returns>
     /// The valid user ID object if the call succeeds, `NULL` otherwise.
     /// </returns>
+/// @cond
 #if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr GetUniquePlayerId(int32 LocalUserNum) const override;
 #elif ENGINE_MINOR_VERSION > 26
     virtual FUniqueNetIdPtr GetUniquePlayerId(int32 LocalUserNum) const override;
 #elif ENGINE_MINOR_VERSION > 24
+/// @endcond
     virtual TSharedPtr<const FUniqueNetId> GetUniquePlayerId(int32 LocalUserNum) const override;
 #endif
 
@@ -183,11 +184,13 @@ public:
     /// <returns>
     /// The unique ID from the given data, `NULL` otherwise.
     /// </returns>
+/// @cond
 #if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
 #elif ENGINE_MINOR_VERSION > 26
     virtual FUniqueNetIdPtr CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
 #elif ENGINE_MINOR_VERSION > 24
+/// @endcond
     virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(uint8* Bytes, int32 Size) override;
 #endif
 
@@ -196,11 +199,13 @@ public:
     /// <returns>
     /// The unique ID from the given data, `NULL` otherwise.
     /// </returns>
+/// @cond 
 #if ENGINE_MAJOR_VERSION > 4
     virtual FUniqueNetIdPtr CreateUniquePlayerId(const FString& Str) override;
 #elif ENGINE_MINOR_VERSION > 26
     virtual FUniqueNetIdPtr CreateUniquePlayerId(const FString& Str) override;
 #elif ENGINE_MINOR_VERSION > 24
+/// @endcond
     virtual TSharedPtr<const FUniqueNetId> CreateUniquePlayerId(const FString& Str) override;
 #endif
 
@@ -225,7 +230,7 @@ public:
     /// <returns>A string containing the user's nickname.</returns>
     virtual FString GetPlayerNickname(const FUniqueNetId& UserId) const override;
 
-    // Not Supported
+
     virtual FString GetAuthToken(int32 LocalUserNum) const override;
 
     // Not Supported
@@ -238,12 +243,16 @@ public:
     // Not Supported
     virtual FPlatformUserId GetPlatformUserIdFromUniqueNetId(const FUniqueNetId& UniqueNetId) const override;
 
+#if ENGINE_MINOR_VERSION > 26
+    virtual void GetLinkedAccountAuthToken(int32 LocalUserNum, const FOnGetLinkedAccountAuthTokenCompleteDelegate& Delegate) const override;
+#endif
     /// <summary>Gets the auth type associated with accounts for this platform.</summary>
     /// <returns>The auth type associated with accounts for this platform.</returns>
     virtual FString GetAuthType() const override;
 
     UPico_User* GetLoginPicoUser(int32 LocalUserNum);
 
+    void GetLoginUserOpenID(FGetIDToken OnGetIdTokenDelegate);
 
     // FOnlineIdentityPico
 
@@ -277,6 +286,7 @@ private:
 #endif
     TMap<int32, UPico_User*> LoginPicoUserMap;
 
+    FString AuthToken;
     /// @brief IDs mapped to locally registered user accounts.
 #if ENGINE_MAJOR_VERSION > 4
     TUniqueNetIdMap<TSharedRef<FUserOnlineAccountPico>> UserAccounts;

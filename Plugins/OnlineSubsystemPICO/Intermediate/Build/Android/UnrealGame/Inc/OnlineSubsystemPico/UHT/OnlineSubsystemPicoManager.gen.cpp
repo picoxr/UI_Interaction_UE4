@@ -1,0 +1,6745 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+/*===========================================================================
+	Generated code exported from UnrealHeaderTool.
+	DO NOT modify this manually! Edit the corresponding .h files instead!
+===========================================================================*/
+
+#include "UObject/GeneratedCppIncludes.h"
+#include "../../OnlineSubsystemPico/Public/OnlineSubsystemPicoManager.h"
+#include "../../OnlineSubsystemPico/Public/OnlineSubsystemPicoNames.h"
+#include "../../Source/Runtime/Engine/Public/Subsystems/GameInstanceSubsystem.h"
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+void EmptyLinkFunctionForGeneratedCodeOnlineSubsystemPicoManager() {}
+// Cross Module References
+	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_AsrResult_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_AssetFileDeleteForSafety_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_AssetFileDownloadUpdate_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_RecordInfo_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_Room_NoRegister();
+	ONLINESUBSYSTEMPICO_API UClass* Z_Construct_UClass_UPico_SpeechError_NoRegister();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcAudioPlaybackDevice();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcJoinRoomType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceError();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceState();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaStreamType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcMuteState();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamRemoveReason();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcSyncInfoStreamType();
+	ONLINESUBSYSTEMPICO_API UEnum* Z_Construct_UEnum_OnlineSubsystemPico_ERtcUserLeaveReasonType();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature();
+	ONLINESUBSYSTEMPICO_API UScriptStruct* Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult();
+	UPackage* Z_Construct_UPackage__Script_OnlineSubsystemPico();
+// End Cross Module References
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms
+		{
+			int32 LocalUserNum;
+			FString UserId;
+			bool bIsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_LocalUserNum;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static void NewProp_bIsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsSuccessed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, LocalUserNum), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms*)Obj)->bIsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed = { "bIsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_bIsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/**\n * \n */// Identity\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "// Identity" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLoginCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLoginCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLoginCompleteDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLoginCompleteDelegate, int32 LocalUserNum, const FString& UserId, bool bIsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms
+	{
+		int32 LocalUserNum;
+		FString UserId;
+		bool bIsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLoginCompleteDelegate_Parms Parms;
+	Parms.LocalUserNum=LocalUserNum;
+	Parms.UserId=UserId;
+	Parms.bIsSuccessed=bIsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLoginCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms
+		{
+			int32 LocalUserNum;
+			bool bWasSuccessful;
+			FString ListName;
+			FString ErrorStr;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_LocalUserNum;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ListName_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ListName;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorStr_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorStr;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, LocalUserNum), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName = { "ListName", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, ListName), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr = { "ErrorStr", nullptr, (EPropertyFlags)0x0010000000000082, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms, ErrorStr), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ListName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::NewProp_ErrorStr,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Friend\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Friend" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerReadFriendListDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerReadFriendListDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerReadFriendListDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerReadFriendListDelegate, int32 LocalUserNum, bool bWasSuccessful, const FString& ListName, const FString& ErrorStr)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms
+	{
+		int32 LocalUserNum;
+		bool bWasSuccessful;
+		FString ListName;
+		FString ErrorStr;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerReadFriendListDelegate_Parms Parms;
+	Parms.LocalUserNum=LocalUserNum;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	Parms.ListName=ListName;
+	Parms.ErrorStr=ErrorStr;
+	OnlineManagerReadFriendListDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			int32 ErrorCode;
+			int32 Elapsed;
+			ERtcJoinRoomType InJoinRoomType;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Elapsed;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_InJoinRoomType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_InJoinRoomType;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_Elapsed = { "Elapsed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, Elapsed), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType = { "InJoinRoomType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms, InJoinRoomType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcJoinRoomType, METADATA_PARAMS(0, nullptr) }; // 4252363224
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_Elapsed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::NewProp_InJoinRoomType,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// RTC\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "RTC" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcJoinRoomResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcJoinRoomResultDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcJoinRoomResultDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcJoinRoomResultDelegate, const FString& RoomId, const FString& UserId, int32 ErrorCode, int32 Elapsed, ERtcJoinRoomType InJoinRoomType)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		int32 ErrorCode;
+		int32 Elapsed;
+		ERtcJoinRoomType InJoinRoomType;
+	};
+	_Script_OnlineSubsystemPico_eventRtcJoinRoomResultDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.ErrorCode=ErrorCode;
+	Parms.Elapsed=Elapsed;
+	Parms.InJoinRoomType=InJoinRoomType;
+	RtcJoinRoomResultDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms
+		{
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcLeaveRoomResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcLeaveRoomResultDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcLeaveRoomResultDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcLeaveRoomResultDelegate, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms
+	{
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcLeaveRoomResultDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	RtcLeaveRoomResultDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms
+		{
+			int32 TotalDuration;
+			int32 UserCount;
+			FString RoomId;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_TotalDuration;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_UserCount;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_TotalDuration = { "TotalDuration", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, TotalDuration), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_UserCount = { "UserCount", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, UserCount), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_TotalDuration,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_UserCount,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomStateDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomStateDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRoomStateDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRoomStateDelegate, int32 TotalDuration, int32 UserCount, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms
+	{
+		int32 TotalDuration;
+		int32 UserCount;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRoomStateDelegate_Parms Parms;
+	Parms.TotalDuration=TotalDuration;
+	Parms.UserCount=UserCount;
+	Parms.RoomId=RoomId;
+	RtcRoomStateDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms
+		{
+			FString UserId;
+			FString UserExtra;
+			int32 Elapsed;
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserExtra_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserExtra;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Elapsed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra = { "UserExtra", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, UserExtra), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra_MetaData) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_Elapsed = { "Elapsed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, Elapsed), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_UserExtra,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_Elapsed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserJoinInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserJoinInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserJoinInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserJoinInfoDelegate, const FString& UserId, const FString& UserExtra, int32 Elapsed, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms
+	{
+		FString UserId;
+		FString UserExtra;
+		int32 Elapsed;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserJoinInfoDelegate_Parms Parms;
+	Parms.UserId=UserId;
+	Parms.UserExtra=UserExtra;
+	Parms.Elapsed=Elapsed;
+	Parms.RoomId=RoomId;
+	RtcUserJoinInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms
+		{
+			FString UserId;
+			ERtcUserLeaveReasonType RtcUserLeaveReasonType;
+			FString RoomId;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_RtcUserLeaveReasonType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_RtcUserLeaveReasonType;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType = { "RtcUserLeaveReasonType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, RtcUserLeaveReasonType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcUserLeaveReasonType, METADATA_PARAMS(0, nullptr) }; // 1235459387
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RtcUserLeaveReasonType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserLeaveInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserLeaveInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserLeaveInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserLeaveInfoDelegate, const FString& UserId, ERtcUserLeaveReasonType RtcUserLeaveReasonType, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms
+	{
+		FString UserId;
+		ERtcUserLeaveReasonType RtcUserLeaveReasonType;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserLeaveInfoDelegate_Parms Parms;
+	Parms.UserId=UserId;
+	Parms.RtcUserLeaveReasonType=RtcUserLeaveReasonType;
+	Parms.RoomId=RoomId;
+	RtcUserLeaveInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms
+		{
+			int32 Code;
+			FString RoomId;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Code;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_Code = { "Code", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms, Code), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_Code,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomWarnDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomWarnDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRoomWarnDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRoomWarnDelegate, int32 Code, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms
+	{
+		int32 Code;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRoomWarnDelegate_Parms Parms;
+	Parms.Code=Code;
+	Parms.RoomId=RoomId;
+	RtcRoomWarnDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms
+		{
+			int32 Code;
+			FString RoomId;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Code;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_Code = { "Code", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms, Code), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_Code,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomErrorDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomErrorDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRoomErrorDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRoomErrorDelegate, int32 Code, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms
+	{
+		int32 Code;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRoomErrorDelegate_Parms Parms;
+	Parms.Code=Code;
+	Parms.RoomId=RoomId;
+	RtcRoomErrorDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms
+		{
+			FString UserId;
+			ERtcMuteState RtcMuteState;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_RtcMuteState_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_RtcMuteState;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState = { "RtcMuteState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms, RtcMuteState), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMuteState, METADATA_PARAMS(0, nullptr) }; // 2512930427
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::NewProp_RtcMuteState,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomMuteStateDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomMuteStateDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRoomMuteStateDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRoomMuteStateDelegate, const FString& UserId, ERtcMuteState RtcMuteState)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms
+	{
+		FString UserId;
+		ERtcMuteState RtcMuteState;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRoomMuteStateDelegate_Parms Parms;
+	Parms.UserId=UserId;
+	Parms.RtcMuteState=RtcMuteState;
+	RtcRoomMuteStateDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms
+		{
+			ERtcAudioPlaybackDevice RtcAudioPlaybackDevice;
+		};
+		static const UECodeGen_Private::FBytePropertyParams NewProp_RtcAudioPlaybackDevice_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_RtcAudioPlaybackDevice;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice = { "RtcAudioPlaybackDevice", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms, RtcAudioPlaybackDevice), Z_Construct_UEnum_OnlineSubsystemPico_ERtcAudioPlaybackDevice, METADATA_PARAMS(0, nullptr) }; // 2148689909
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::NewProp_RtcAudioPlaybackDevice,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcAudioChangePlaybackDeviceDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcAudioChangePlaybackDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcAudioChangePlaybackDeviceDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcAudioChangePlaybackDeviceDelegate, ERtcAudioPlaybackDevice RtcAudioPlaybackDevice)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms
+	{
+		ERtcAudioPlaybackDevice RtcAudioPlaybackDevice;
+	};
+	_Script_OnlineSubsystemPico_eventRtcAudioChangePlaybackDeviceDelegate_Parms Parms;
+	Parms.RtcAudioPlaybackDevice=RtcAudioPlaybackDevice;
+	RtcAudioChangePlaybackDeviceDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms
+		{
+			FString DeviceId;
+			ERtcMediaDeviceType MediaDeciveType;
+			ERtcMediaDeviceState MediaDeviceState;
+			ERtcMediaDeviceError MediaDeviceError;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DeviceId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_DeviceId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MediaDeciveType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_MediaDeciveType;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MediaDeviceState_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_MediaDeviceState;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MediaDeviceError_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_MediaDeviceError;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId = { "DeviceId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, DeviceId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType = { "MediaDeciveType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeciveType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceType, METADATA_PARAMS(0, nullptr) }; // 1131326753
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState = { "MediaDeviceState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeviceState), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceState, METADATA_PARAMS(0, nullptr) }; // 240893743
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError = { "MediaDeviceError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms, MediaDeviceError), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaDeviceError, METADATA_PARAMS(0, nullptr) }; // 1069356809
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_DeviceId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeciveType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceState,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::NewProp_MediaDeviceError,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcMediaDeviceChangeInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcMediaDeviceChangeInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcMediaDeviceChangeInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcMediaDeviceChangeInfoDelegate, const FString& DeviceId, ERtcMediaDeviceType MediaDeciveType, ERtcMediaDeviceState MediaDeviceState, ERtcMediaDeviceError MediaDeviceError)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms
+	{
+		FString DeviceId;
+		ERtcMediaDeviceType MediaDeciveType;
+		ERtcMediaDeviceState MediaDeviceState;
+		ERtcMediaDeviceError MediaDeviceError;
+	};
+	_Script_OnlineSubsystemPico_eventRtcMediaDeviceChangeInfoDelegate_Parms Parms;
+	Parms.DeviceId=DeviceId;
+	Parms.MediaDeciveType=MediaDeciveType;
+	Parms.MediaDeviceState=MediaDeviceState;
+	Parms.MediaDeviceError=MediaDeviceError;
+	RtcMediaDeviceChangeInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms
+		{
+			TArray<ERtcStreamIndex> StreamIndexs;
+			TArray<int32> Volumes;
+		};
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StreamIndexs_Inner_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StreamIndexs_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StreamIndexs_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_StreamIndexs;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Volumes_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Volumes_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Volumes;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner = { "StreamIndexs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex, METADATA_PARAMS(0, nullptr) }; // 1282499610
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs = { "StreamIndexs", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms, StreamIndexs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData) }; // 1282499610
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner = { "Volumes", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes = { "Volumes", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms, Volumes), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcLocalAudioPropertiesReportDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcLocalAudioPropertiesReportDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcLocalAudioPropertiesReportDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcLocalAudioPropertiesReportDelegate, TArray<ERtcStreamIndex> const& StreamIndexs, TArray<int32> const& Volumes)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms
+	{
+		TArray<ERtcStreamIndex> StreamIndexs;
+		TArray<int32> Volumes;
+	};
+	_Script_OnlineSubsystemPico_eventRtcLocalAudioPropertiesReportDelegate_Parms Parms;
+	Parms.StreamIndexs=StreamIndexs;
+	Parms.Volumes=Volumes;
+	RtcLocalAudioPropertiesReportDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms
+		{
+			int32 TotalRemoteVolume;
+			TArray<int32> Volumes;
+			TArray<FString> RoomIds;
+			TArray<FString> UserIds;
+			TArray<ERtcStreamIndex> StreamIndexs;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_TotalRemoteVolume;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Volumes_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Volumes_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Volumes;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomIds_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomIds_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_RoomIds;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserIds_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserIds_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_UserIds;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StreamIndexs_Inner_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StreamIndexs_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StreamIndexs_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_StreamIndexs;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_TotalRemoteVolume = { "TotalRemoteVolume", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, TotalRemoteVolume), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner = { "Volumes", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes = { "Volumes", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, Volumes), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_MetaData) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_Inner = { "RoomIds", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds = { "RoomIds", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, RoomIds), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_MetaData) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_Inner = { "UserIds", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds = { "UserIds", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, UserIds), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner = { "StreamIndexs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex, METADATA_PARAMS(0, nullptr) }; // 1282499610
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs = { "StreamIndexs", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms, StreamIndexs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_MetaData) }; // 1282499610
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_TotalRemoteVolume,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_Volumes,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_RoomIds,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_UserIds,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::NewProp_StreamIndexs,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRemoteAudioPropertiesReportDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRemoteAudioPropertiesReportDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRemoteAudioPropertiesReportDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRemoteAudioPropertiesReportDelegate, int32 TotalRemoteVolume, TArray<int32> const& Volumes, TArray<FString> const& RoomIds, TArray<FString> const& UserIds, TArray<ERtcStreamIndex> const& StreamIndexs)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms
+	{
+		int32 TotalRemoteVolume;
+		TArray<int32> Volumes;
+		TArray<FString> RoomIds;
+		TArray<FString> UserIds;
+		TArray<ERtcStreamIndex> StreamIndexs;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRemoteAudioPropertiesReportDelegate_Parms Parms;
+	Parms.TotalRemoteVolume=TotalRemoteVolume;
+	Parms.Volumes=Volumes;
+	Parms.RoomIds=RoomIds;
+	Parms.UserIds=UserIds;
+	Parms.StreamIndexs=StreamIndexs;
+	RtcRemoteAudioPropertiesReportDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms
+		{
+			int32 MessageCode;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_MessageCode;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::NewProp_MessageCode = { "MessageCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms, MessageCode), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::NewProp_MessageCode,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcWarnDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcWarnDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcWarnDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcWarnDelegate, int32 MessageCode)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms
+	{
+		int32 MessageCode;
+	};
+	_Script_OnlineSubsystemPico_eventRtcWarnDelegate_Parms Parms;
+	Parms.MessageCode=MessageCode;
+	RtcWarnDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms
+		{
+			int32 MessageCode;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_MessageCode;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::NewProp_MessageCode = { "MessageCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms, MessageCode), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::NewProp_MessageCode,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcErrorDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcErrorDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcErrorDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcErrorDelegate, int32 MessageCode)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms
+	{
+		int32 MessageCode;
+	};
+	_Script_OnlineSubsystemPico_eventRtcErrorDelegate_Parms Parms;
+	Parms.MessageCode=MessageCode;
+	RtcErrorDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms, StringMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcConnectStateChangedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcConnectStateChangedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcConnectStateChangedDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcConnectStateChangedDelegate, const FString& StringMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms
+	{
+		FString StringMessage;
+	};
+	_Script_OnlineSubsystemPico_eventRtcConnectStateChangedDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	RtcConnectStateChangedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms, StringMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserStartAudioCaptureDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserStartAudioCaptureDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserStartAudioCaptureDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserStartAudioCaptureDelegate, const FString& StringMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms
+	{
+		FString StringMessage;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserStartAudioCaptureDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	RtcUserStartAudioCaptureDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms, StringMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserStopAudioCaptureDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserStopAudioCaptureDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserStopAudioCaptureDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserStopAudioCaptureDelegate, const FString& StringMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms
+	{
+		FString StringMessage;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserStopAudioCaptureDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	RtcUserStopAudioCaptureDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			ERtcMediaStreamType MediaStreamType;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MediaStreamType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_MediaStreamType;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType = { "MediaStreamType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms, MediaStreamType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaStreamType, METADATA_PARAMS(0, nullptr) }; // 1326565376
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Rtc V2\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Rtc V2" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserPublishInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserPublishInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserPublishInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserPublishInfoDelegate, const FString& RoomId, const FString& UserId, ERtcMediaStreamType MediaStreamType)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		ERtcMediaStreamType MediaStreamType;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserPublishInfoDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.MediaStreamType=MediaStreamType;
+	RtcUserPublishInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			ERtcMediaStreamType MediaStreamType;
+			ERtcStreamRemoveReason Reason;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_MediaStreamType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_MediaStreamType;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Reason_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Reason;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType = { "MediaStreamType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms, MediaStreamType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcMediaStreamType, METADATA_PARAMS(0, nullptr) }; // 1326565376
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_Reason_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_Reason = { "Reason", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms, Reason), Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamRemoveReason, METADATA_PARAMS(0, nullptr) }; // 4256790858
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_MediaStreamType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_Reason_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::NewProp_Reason,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserUnPublishInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserUnPublishInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserUnPublishInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserUnPublishInfoDelegate, const FString& RoomId, const FString& UserId, ERtcMediaStreamType MediaStreamType, ERtcStreamRemoveReason Reason)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		ERtcMediaStreamType MediaStreamType;
+		ERtcStreamRemoveReason Reason;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserUnPublishInfoDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.MediaStreamType=MediaStreamType;
+	Parms.Reason=Reason;
+	RtcUserUnPublishInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			ERtcStreamIndex StreamIndex;
+			ERtcSyncInfoStreamType RtcSyncInfoStreamType;
+			FString Info;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StreamIndex_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StreamIndex;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_RtcSyncInfoStreamType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_RtcSyncInfoStreamType;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Info_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Info;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_StreamIndex_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_StreamIndex = { "StreamIndex", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms, StreamIndex), Z_Construct_UEnum_OnlineSubsystemPico_ERtcStreamIndex, METADATA_PARAMS(0, nullptr) }; // 1282499610
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RtcSyncInfoStreamType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RtcSyncInfoStreamType = { "RtcSyncInfoStreamType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms, RtcSyncInfoStreamType), Z_Construct_UEnum_OnlineSubsystemPico_ERtcSyncInfoStreamType, METADATA_PARAMS(0, nullptr) }; // 3271249062
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_Info_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_Info = { "Info", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms, Info), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_Info_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_Info_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_StreamIndex_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_StreamIndex,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RtcSyncInfoStreamType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_RtcSyncInfoStreamType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::NewProp_Info,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "GetRtcStreamSyncInfoDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGetRtcStreamSyncInfoDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FGetRtcStreamSyncInfoDelegate_DelegateWrapper(const FMulticastScriptDelegate& GetRtcStreamSyncInfoDelegate, const FString& RoomId, const FString& UserId, ERtcStreamIndex StreamIndex, ERtcSyncInfoStreamType RtcSyncInfoStreamType, const FString& Info)
+{
+	struct _Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		ERtcStreamIndex StreamIndex;
+		ERtcSyncInfoStreamType RtcSyncInfoStreamType;
+		FString Info;
+	};
+	_Script_OnlineSubsystemPico_eventGetRtcStreamSyncInfoDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.StreamIndex=StreamIndex;
+	Parms.RtcSyncInfoStreamType=RtcSyncInfoStreamType;
+	Parms.Info=Info;
+	GetRtcStreamSyncInfoDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms
+		{
+			int64 MessageId;
+			int32 Error;
+			FString RoomId;
+		};
+		static const UECodeGen_Private::FInt64PropertyParams NewProp_MessageId;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Error;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FInt64PropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_MessageId = { "MessageId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms, MessageId), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_Error = { "Error", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms, Error), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_MessageId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_Error,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::NewProp_RoomId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcMessageSendResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcMessageSendResultDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcMessageSendResultDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcMessageSendResultDelegate, int64 MessageId, int32 Error, const FString& RoomId)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms
+	{
+		int64 MessageId;
+		int32 Error;
+		FString RoomId;
+	};
+	_Script_OnlineSubsystemPico_eventRtcMessageSendResultDelegate_Parms Parms;
+	Parms.MessageId=MessageId;
+	Parms.Error=Error;
+	Parms.RoomId=RoomId;
+	RtcMessageSendResultDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			FString Info;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Info_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Info;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Info_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Info = { "Info", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms, Info), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Info_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Info_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Info,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcBinaryMessageReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcBinaryMessageReceivedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcBinaryMessageReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcBinaryMessageReceivedDelegate, const FString& RoomId, const FString& UserId, const FString& Info)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		FString Info;
+	};
+	_Script_OnlineSubsystemPico_eventRtcBinaryMessageReceivedDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.Info=Info;
+	RtcBinaryMessageReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			TArray<uint8> BinaryArray;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_BinaryArray_Inner;
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_BinaryArray;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_BinaryArray_Inner = { "BinaryArray", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_BinaryArray = { "BinaryArray", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms, BinaryArray), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_BinaryArray_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::NewProp_BinaryArray,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcBinaryArrayMessageReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcBinaryArrayMessageReceivedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcBinaryArrayMessageReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcBinaryArrayMessageReceivedDelegate, const FString& RoomId, const FString& UserId, const TArray<uint8>& BinaryArray)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		TArray<uint8> BinaryArray;
+	};
+	_Script_OnlineSubsystemPico_eventRtcBinaryArrayMessageReceivedDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.BinaryArray=BinaryArray;
+	RtcBinaryArrayMessageReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			FString Message;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Message_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Message;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message = { "Message", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms, Message), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcRoomMessageReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcRoomMessageReceivedDelegateDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcRoomMessageReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcRoomMessageReceivedDelegate, const FString& RoomId, const FString& UserId, const FString& Message)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		FString Message;
+	};
+	_Script_OnlineSubsystemPico_eventRtcRoomMessageReceivedDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.Message=Message;
+	RtcRoomMessageReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms
+		{
+			FString RoomId;
+			FString UserId;
+			FString Message;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UserId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_UserId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Message_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Message;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId = { "RoomId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms, RoomId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId = { "UserId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms, UserId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message = { "Message", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms, Message), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_RoomId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_UserId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::NewProp_Message,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcUserMessageReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcUserMessageReceivedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcUserMessageReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcUserMessageReceivedDelegate, const FString& RoomId, const FString& UserId, const FString& Message)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms
+	{
+		FString RoomId;
+		FString UserId;
+		FString Message;
+	};
+	_Script_OnlineSubsystemPico_eventRtcUserMessageReceivedDelegate_Parms Parms;
+	Parms.RoomId=RoomId;
+	Parms.UserId=UserId;
+	Parms.Message=Message;
+	RtcUserMessageReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms
+		{
+			FString StringMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StringMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms, StringMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::NewProp_StringMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "RtcOnTokenWilExpireCallbackDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRtcTokenWilExpireCallbackDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FRtcOnTokenWilExpireCallbackDelegate_DelegateWrapper(const FMulticastScriptDelegate& RtcOnTokenWilExpireCallbackDelegate, const FString& StringMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms
+	{
+		FString StringMessage;
+	};
+	_Script_OnlineSubsystemPico_eventRtcOnTokenWilExpireCallbackDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	RtcOnTokenWilExpireCallbackDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms
+		{
+			FString Token;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Token;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_Token = { "Token", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms, Token), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_Token,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerRtcGetTokenDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerRtcGetTokenDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerRtcGetTokenDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerRtcGetTokenDelegate, const FString& Token, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms
+	{
+		FString Token;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerRtcGetTokenDelegate_Parms Parms;
+	Parms.Token=Token;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerRtcGetTokenDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Presence\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Presence" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceClearDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceClearDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceClearDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceClearDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceClearDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceClearDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadInvitableUserDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceReadInvitableUserDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceReadInvitableUserDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadInvitableUserDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceReadInvitableUserDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetDestinationDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetDestinationDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetDestinationDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetDestinationDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetDestinationDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetDestinationDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetIsJoinableDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetIsJoinableDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetIsJoinableDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetIsJoinableDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetIsJoinableDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetLobbySessionDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetLobbySessionDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetLobbySessionDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetLobbySessionDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetLobbySessionDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetMatchSessionDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetMatchSessionDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetMatchSessionDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetMatchSessionDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetMatchSessionDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSetExtraDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSetExtraDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSetExtraDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSetExtraDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSetExtraDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSetExtraDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceReadSentInvitesDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceReadSentInvitesDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceReadSentInvitesDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceReadSentInvitesDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceReadSentInvitesDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceSentInvitesDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceSentInvitesDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceSentInvitesDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceSentInvitesDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceSentInvitesDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceSentInvitesDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerPresenceGetDestinationsDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerPresenceGetDestinationsDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerPresenceGetDestinationsDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerPresenceGetDestinationsDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerPresenceGetDestinationsDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLaunchInvitePanelDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchInvitePanelDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLaunchInvitePanelDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLaunchInvitePanelDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLaunchInvitePanelDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLaunchInvitePanelDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerShareMediaDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerShareMediaDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerShareMediaDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerShareMediaDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerShareMediaDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerShareMediaDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms
+		{
+			FString DeeplinkMessage;
+			FString DestinationApiName;
+			FString LobbySessionId;
+			FString MatchSessionId;
+			FString Extra;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DeeplinkMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_DeeplinkMessage;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DestinationApiName_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_DestinationApiName;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LobbySessionId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_LobbySessionId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MatchSessionId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_MatchSessionId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Extra_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_Extra;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DeeplinkMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DeeplinkMessage = { "DeeplinkMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms, DeeplinkMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DeeplinkMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DeeplinkMessage_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName = { "DestinationApiName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms, DestinationApiName), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId = { "LobbySessionId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms, LobbySessionId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId = { "MatchSessionId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms, MatchSessionId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_Extra_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_Extra = { "Extra", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms, Extra), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_Extra_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_Extra_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DeeplinkMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::NewProp_Extra,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PresenceJoinIntentReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPresenceJoinIntentReceivedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPresenceJoinIntentReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& PresenceJoinIntentReceivedDelegate, const FString& DeeplinkMessage, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId, const FString& Extra)
+{
+	struct _Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms
+	{
+		FString DeeplinkMessage;
+		FString DestinationApiName;
+		FString LobbySessionId;
+		FString MatchSessionId;
+		FString Extra;
+	};
+	_Script_OnlineSubsystemPico_eventPresenceJoinIntentReceivedDelegate_Parms Parms;
+	Parms.DeeplinkMessage=DeeplinkMessage;
+	Parms.DestinationApiName=DestinationApiName;
+	Parms.LobbySessionId=LobbySessionId;
+	Parms.MatchSessionId=MatchSessionId;
+	Parms.Extra=Extra;
+	PresenceJoinIntentReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms
+		{
+			FString DestinationApiName;
+			FString LobbySessionId;
+			FString MatchSessionId;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DestinationApiName_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_DestinationApiName;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LobbySessionId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_LobbySessionId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MatchSessionId_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_MatchSessionId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName = { "DestinationApiName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms, DestinationApiName), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId = { "LobbySessionId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms, LobbySessionId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId = { "MatchSessionId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms, MatchSessionId), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_DestinationApiName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_LobbySessionId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::NewProp_MatchSessionId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PresenceLeaveIntentReceivedDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPresenceLeaveIntentReceivedDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPresenceLeaveIntentReceivedDelegate_DelegateWrapper(const FMulticastScriptDelegate& PresenceLeaveIntentReceivedDelegate, const FString& DestinationApiName, const FString& LobbySessionId, const FString& MatchSessionId)
+{
+	struct _Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms
+	{
+		FString DestinationApiName;
+		FString LobbySessionId;
+		FString MatchSessionId;
+	};
+	_Script_OnlineSubsystemPico_eventPresenceLeaveIntentReceivedDelegate_Parms Parms;
+	Parms.DestinationApiName=DestinationApiName;
+	Parms.LobbySessionId=LobbySessionId;
+	Parms.MatchSessionId=MatchSessionId;
+	PresenceLeaveIntentReceivedDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms
+		{
+			FString StringMessage;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms, StringMessage), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// ApplicationInterface\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "ApplicationInterface" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLaunchOtherAppDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLaunchOtherAppDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLaunchOtherAppDelegate, const FString& StringMessage, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms
+	{
+		FString StringMessage;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLaunchOtherAppDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms
+		{
+			FString StringMessage;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms, StringMessage), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByPresenceDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLaunchOtherAppByPresenceDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLaunchOtherAppByPresenceDelegate, const FString& StringMessage, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms
+	{
+		FString StringMessage;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByPresenceDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLaunchOtherAppByPresenceDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms
+		{
+			int64 CurrentCode;
+			FString CurrentName;
+			int64 LatestCode;
+			FString LatestName;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FInt64PropertyParams NewProp_CurrentCode;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_CurrentName;
+		static const UECodeGen_Private::FInt64PropertyParams NewProp_LatestCode;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_LatestName;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FInt64PropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_CurrentCode = { "CurrentCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms, CurrentCode), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_CurrentName = { "CurrentName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms, CurrentName), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FInt64PropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_LatestCode = { "LatestCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int64, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms, LatestCode), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_LatestName = { "LatestName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms, LatestName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_CurrentCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_CurrentName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_LatestCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_LatestName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerGetVersionDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerGetVersionDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerGetVersionDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerGetVersionDelegate, int64 CurrentCode, const FString& CurrentName, int64 LatestCode, const FString& LatestName, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms
+	{
+		int64 CurrentCode;
+		FString CurrentName;
+		int64 LatestCode;
+		FString LatestName;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerGetVersionDelegate_Parms Parms;
+	Parms.CurrentCode=CurrentCode;
+	Parms.CurrentName=CurrentName;
+	Parms.LatestCode=LatestCode;
+	Parms.LatestName=LatestName;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerGetVersionDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms
+		{
+			FString StringMessage;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms, StringMessage), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchOtherAppByAppIdDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLaunchOtherAppByAppIdDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLaunchOtherAppByAppIdDelegate, const FString& StringMessage, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms
+	{
+		FString StringMessage;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLaunchOtherAppByAppIdDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLaunchOtherAppByAppIdDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms
+		{
+			FString StringMessage;
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static const UECodeGen_Private::FStrPropertyParams NewProp_StringMessage;
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_StringMessage = { "StringMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms, StringMessage), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_StringMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerLaunchStoreDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerLaunchStoreDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerLaunchStoreDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerLaunchStoreDelegate, const FString& StringMessage, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms
+	{
+		FString StringMessage;
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerLaunchStoreDelegate_Parms Parms;
+	Parms.StringMessage=StringMessage;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerLaunchStoreDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms
+		{
+			bool IsSuccessed;
+			FString ErrorMessage;
+		};
+		static void NewProp_IsSuccessed_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsSuccessed;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms*)Obj)->IsSuccessed = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed = { "IsSuccessed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms, ErrorMessage), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_IsSuccessed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// ApplicationLifecycle\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "ApplicationLifecycle" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_OnlineManagerApplicationLifecycleReadDetailsDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnlineManagerApplicationLifecycleReadDetailsDelegate_DelegateWrapper(const FScriptDelegate& OnlineManagerApplicationLifecycleReadDetailsDelegate, bool IsSuccessed, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms
+	{
+		bool IsSuccessed;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnlineManagerApplicationLifecycleReadDetailsDelegate_Parms Parms;
+	Parms.IsSuccessed=IsSuccessed ? true : false;
+	Parms.ErrorMessage=ErrorMessage;
+	OnlineManagerApplicationLifecycleReadDetailsDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms
+		{
+			FString MessageString;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MessageString_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_MessageString;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::NewProp_MessageString_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::NewProp_MessageString = { "MessageString", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms, MessageString), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::NewProp_MessageString_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::NewProp_MessageString_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::NewProp_MessageString,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "ApplicationLifecycleStringResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnApplicationLifecycleStringResultDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FApplicationLifecycleStringResultDelegate_DelegateWrapper(const FMulticastScriptDelegate& ApplicationLifecycleStringResultDelegate, const FString& MessageString)
+{
+	struct _Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms
+	{
+		FString MessageString;
+	};
+	_Script_OnlineSubsystemPico_eventApplicationLifecycleStringResultDelegate_Parms Parms;
+	Parms.MessageString=MessageString;
+	ApplicationLifecycleStringResultDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Game\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Game" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCreateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnCreateSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnCreateSessionCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnCreateSessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnCreateSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnStartSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnStartSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnStartSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnStartSessionCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnStartSessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnStartSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnUpdateSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnUpdateSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnUpdateSessionCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnUpdateSessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnUpdateSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnEndSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnEndSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnEndSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnEndSessionCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnEndSessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnEndSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnDestroySessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnDestroySessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnDestroySessionCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnDestroySessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnDestroySessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnCancelMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnCancelMatchmakingCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnCancelMatchmakingCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnCancelMatchmakingCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnCancelMatchmakingCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms
+		{
+			FName SessionName;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnMatchmakingCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnMatchmakingCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnMatchmakingCompleteDelegate, FName SessionName, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms
+	{
+		FName SessionName;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnMatchmakingCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnMatchmakingCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnFindSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnFindSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnFindSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnFindSessionCompleteDelegate, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms
+	{
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnFindSessionCompleteDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnFindSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms
+		{
+			int32 LocalUserNum;
+			bool bWasSuccessful;
+			FPicoOnlineSessionSearchResult SearchResult;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_LocalUserNum;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SearchResult_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_SearchResult;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum = { "LocalUserNum", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms, LocalUserNum), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult = { "SearchResult", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms, SearchResult), Z_Construct_UScriptStruct_FPicoOnlineSessionSearchResult, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult_MetaData) }; // 806083613
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_LocalUserNum,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::NewProp_SearchResult,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnSingleSessionResultCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnSingleSessionResultCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnSingleSessionResultCompleteDelegate, int32 LocalUserNum, bool bWasSuccessful, FPicoOnlineSessionSearchResult const& SearchResult)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms
+	{
+		int32 LocalUserNum;
+		bool bWasSuccessful;
+		FPicoOnlineSessionSearchResult SearchResult;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnSingleSessionResultCompleteDelegate_Parms Parms;
+	Parms.LocalUserNum=LocalUserNum;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	Parms.SearchResult=SearchResult;
+	PicoManagerOnSingleSessionResultCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms
+		{
+			FName SessionName;
+			EOnJoinSessionCompleteResultPicoType Type;
+		};
+		static const UECodeGen_Private::FNamePropertyParams NewProp_SessionName;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Type;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FNamePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName = { "SessionName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms, SessionName), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms, Type), Z_Construct_UEnum_OnlineSubsystemPico_EOnJoinSessionCompleteResultPicoType, METADATA_PARAMS(0, nullptr) }; // 3197607402
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_SessionName,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::NewProp_Type,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnJoinSessionCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnJoinSessionCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnJoinSessionCompleteDelegate, FName SessionName, EOnJoinSessionCompleteResultPicoType Type)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms
+	{
+		FName SessionName;
+		EOnJoinSessionCompleteResultPicoType Type;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnJoinSessionCompleteDelegate_Parms Parms;
+	Parms.SessionName=SessionName;
+	Parms.Type=Type;
+	PicoManagerOnJoinSessionCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms
+		{
+			bool bWasSuccessful;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			int32 Result;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Result;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_Result = { "Result", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms, Result), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::NewProp_Result,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameInitializeCallbackDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameInitializeCallbackDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnGameInitializeCallbackDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnGameInitializeCallbackDelegate, bool bWasSuccessful, int32 ErrorCode, const FString& ErrorMessage, int32 Result)
+{
+	struct _Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms
+	{
+		bool bWasSuccessful;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		int32 Result;
+	};
+	_Script_OnlineSubsystemPico_eventOnGameInitializeCallbackDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.Result=Result;
+	OnGameInitializeCallbackDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms
+		{
+			int32 Result;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Result;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_Result = { "Result", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms, Result), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_Result,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameConnectionNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameConnectionNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnGameConnectionNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnGameConnectionNotifyDelegate, int32 Result, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms
+	{
+		int32 Result;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnGameConnectionNotifyDelegate_Parms Parms;
+	Parms.Result=Result;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnGameConnectionNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms
+		{
+			int32 Result;
+			bool bWasSuccessful;
+		};
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Result;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_Result = { "Result", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms, Result), METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_Result,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameRequestFailedNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameRequestFailedNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnGameRequestFailedNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnGameRequestFailedNotifyDelegate, int32 Result, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms
+	{
+		int32 Result;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnGameRequestFailedNotifyDelegate_Parms Parms;
+	Parms.Result=Result;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnGameRequestFailedNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnGameStateResetNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnGameStateResetNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnGameStateResetNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnGameStateResetNotifyDelegate, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms
+	{
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnGameStateResetNotifyDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnGameStateResetNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnMatchmakingCancel2NotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnMatchmakingCancel2NotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnMatchmakingCancel2NotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnMatchmakingCancel2NotifyDelegate, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms
+	{
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnMatchmakingCancel2NotifyDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnMatchmakingCancel2NotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomLeaveNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomLeaveNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomLeaveNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomLeaveNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomLeaveNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomLeaveNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomJoin2NotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomJoin2NotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomJoin2NotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomJoin2NotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomJoin2NotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomJoin2NotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomSetDescriptionNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomSetDescriptionNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomSetDescriptionNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomSetDescriptionNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomSetDescriptionNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomSetDescriptionNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomKickUserNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomKickUserNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomKickUserNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomKickUserNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomKickUserNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomKickUserNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateOwnerNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateOwnerNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomUpdateOwnerNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomUpdateOwnerNotifyDelegate, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms
+	{
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomUpdateOwnerNotifyDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomUpdateOwnerNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateDataStoreNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomUpdateDataStoreNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomUpdateDataStoreNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomUpdateDataStoreNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomUpdateDataStoreNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateMembershipLockStatusNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomUpdateMembershipLockStatusNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomUpdateMembershipLockStatusNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomUpdateMembershipLockStatusNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomUpdateMembershipLockStatusNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomInviteAcceptedNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomInviteAcceptedNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomInviteAcceptedNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomInviteAcceptedNotifyDelegate, const FString& RoomID, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomInviteAcceptedNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	OnRoomInviteAcceptedNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+			int32 ErrorCode;
+			FString ErrorMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnRoomUpdateNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnRoomUpdateNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnRoomUpdateNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnRoomUpdateNotifyDelegate, const FString& RoomID, bool bWasSuccessful, int32 ErrorCode, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+		int32 ErrorCode;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnRoomUpdateNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	OnRoomUpdateNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms
+		{
+			FString RoomID;
+			bool bWasSuccessful;
+			int32 ErrorCode;
+			FString ErrorMessage;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "OnMatchmakingFoundNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnMatchmakingFoundNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FOnMatchmakingFoundNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& OnMatchmakingFoundNotifyDelegate, const FString& RoomID, bool bWasSuccessful, int32 ErrorCode, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms
+	{
+		FString RoomID;
+		bool bWasSuccessful;
+		int32 ErrorCode;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventOnMatchmakingFoundNotifyDelegate_Parms Parms;
+	Parms.RoomID=RoomID;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	OnMatchmakingFoundNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms
+		{
+			bool bWasSuccessful;
+		};
+		static void NewProp_bWasSuccessful_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bWasSuccessful;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms*)Obj)->bWasSuccessful = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful = { "bWasSuccessful", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms), &Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::NewProp_bWasSuccessful,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Leaderboard\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Leaderboard" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature", nullptr, nullptr, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00120000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_OnlineSubsystemPico_PicoManagerOnReadLeaderboardsCompleteDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoManagerOnReadLeaderboardsCompleteDelegate_DelegateWrapper(const FScriptDelegate& PicoManagerOnReadLeaderboardsCompleteDelegate, bool bWasSuccessful)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms
+	{
+		bool bWasSuccessful;
+	};
+	_Script_OnlineSubsystemPico_eventPicoManagerOnReadLeaderboardsCompleteDelegate_Parms Parms;
+	Parms.bWasSuccessful=bWasSuccessful ? true : false;
+	PicoManagerOnReadLeaderboardsCompleteDelegate.ProcessDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms
+		{
+			UPico_AssetFileDownloadUpdate* AssetFileDownloadUpdateObj;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AssetFileDownloadUpdateObj;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::NewProp_AssetFileDownloadUpdateObj = { "AssetFileDownloadUpdateObj", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms, AssetFileDownloadUpdateObj), Z_Construct_UClass_UPico_AssetFileDownloadUpdate_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::NewProp_AssetFileDownloadUpdateObj,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// AssetFile\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "AssetFile" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "AssetFileDownloadUpdateDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnAssetFileDownloadUpdateDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FAssetFileDownloadUpdateDelegate_DelegateWrapper(const FMulticastScriptDelegate& AssetFileDownloadUpdateDelegate, UPico_AssetFileDownloadUpdate* AssetFileDownloadUpdateObj)
+{
+	struct _Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms
+	{
+		UPico_AssetFileDownloadUpdate* AssetFileDownloadUpdateObj;
+	};
+	_Script_OnlineSubsystemPico_eventAssetFileDownloadUpdateDelegate_Parms Parms;
+	Parms.AssetFileDownloadUpdateObj=AssetFileDownloadUpdateObj;
+	AssetFileDownloadUpdateDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms
+		{
+			UPico_AssetFileDeleteForSafety* AssetFileDeleteForSafetyObj;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AssetFileDeleteForSafetyObj;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::NewProp_AssetFileDeleteForSafetyObj = { "AssetFileDeleteForSafetyObj", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms, AssetFileDeleteForSafetyObj), Z_Construct_UClass_UPico_AssetFileDeleteForSafety_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::NewProp_AssetFileDeleteForSafetyObj,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "AssetFileDeleteForSafetyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnAssetFileDeleteForSafetyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FAssetFileDeleteForSafetyDelegate_DelegateWrapper(const FMulticastScriptDelegate& AssetFileDeleteForSafetyDelegate, UPico_AssetFileDeleteForSafety* AssetFileDeleteForSafetyObj)
+{
+	struct _Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms
+	{
+		UPico_AssetFileDeleteForSafety* AssetFileDeleteForSafetyObj;
+	};
+	_Script_OnlineSubsystemPico_eventAssetFileDeleteForSafetyDelegate_Parms Parms;
+	Parms.AssetFileDeleteForSafetyObj=AssetFileDeleteForSafetyObj;
+	AssetFileDeleteForSafetyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms
+		{
+			UPico_AsrResult* AsrResultObj;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AsrResultObj;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::NewProp_AsrResultObj = { "AsrResultObj", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms, AsrResultObj), Z_Construct_UClass_UPico_AsrResult_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::NewProp_AsrResultObj,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Speech\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Speech" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "SpeechAsrResultDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnSpeechAsrResultDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FSpeechAsrResultDelegate_DelegateWrapper(const FMulticastScriptDelegate& SpeechAsrResultDelegate, UPico_AsrResult* AsrResultObj)
+{
+	struct _Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms
+	{
+		UPico_AsrResult* AsrResultObj;
+	};
+	_Script_OnlineSubsystemPico_eventSpeechAsrResultDelegate_Parms Parms;
+	Parms.AsrResultObj=AsrResultObj;
+	SpeechAsrResultDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms
+		{
+			UPico_SpeechError* SpeechErrorObj;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_SpeechErrorObj;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::NewProp_SpeechErrorObj = { "SpeechErrorObj", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms, SpeechErrorObj), Z_Construct_UClass_UPico_SpeechError_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::NewProp_SpeechErrorObj,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "SpeechErrorDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnSpeechErrorDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FSpeechErrorDelegate_DelegateWrapper(const FMulticastScriptDelegate& SpeechErrorDelegate, UPico_SpeechError* SpeechErrorObj)
+{
+	struct _Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms
+	{
+		UPico_SpeechError* SpeechErrorObj;
+	};
+	_Script_OnlineSubsystemPico_eventSpeechErrorDelegate_Parms Parms;
+	Parms.SpeechErrorObj=SpeechErrorObj;
+	SpeechErrorDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms
+		{
+			UPico_RecordInfo* RecordInfoObj;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_RecordInfoObj;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::NewProp_RecordInfoObj = { "RecordInfoObj", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms, RecordInfoObj), Z_Construct_UClass_UPico_RecordInfo_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::NewProp_RecordInfoObj,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Highlight\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Highlight" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "HighlightRecordStopDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnHighlightRecordStopDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FHighlightRecordStopDelegate_DelegateWrapper(const FMulticastScriptDelegate& HighlightRecordStopDelegate, UPico_RecordInfo* RecordInfoObj)
+{
+	struct _Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms
+	{
+		UPico_RecordInfo* RecordInfoObj;
+	};
+	_Script_OnlineSubsystemPico_eventHighlightRecordStopDelegate_Parms Parms;
+	Parms.RecordInfoObj=RecordInfoObj;
+	HighlightRecordStopDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			UPico_Room* Room;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Room;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_Room = { "Room", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms, Room), Z_Construct_UClass_UPico_Room_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::NewProp_Room,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Pico_Room\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Pico_Room" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoRoomUpdateNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoRoomUpdateNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoRoomUpdateNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoRoomUpdateNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		UPico_Room* Room;
+	};
+	_Script_OnlineSubsystemPico_eventPicoRoomUpdateNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.Room=Room;
+	PicoRoomUpdateNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoRoomUpdateOwnerNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoRoomUpdateOwnerNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoRoomUpdateOwnerNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventPicoRoomUpdateOwnerNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	PicoRoomUpdateOwnerNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			UPico_Room* Room;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Room;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_Room = { "Room", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms, Room), Z_Construct_UClass_UPico_Room_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::NewProp_Room,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoRoomLeaveNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoRoomLeaveNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoRoomLeaveNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoRoomLeaveNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		UPico_Room* Room;
+	};
+	_Script_OnlineSubsystemPico_eventPicoRoomLeaveNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.Room=Room;
+	PicoRoomLeaveNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			UPico_Room* Room;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Room;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_Room = { "Room", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms, Room), Z_Construct_UClass_UPico_Room_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::NewProp_Room,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoRoomJoinNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoRoomJoinNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoRoomJoinNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoRoomJoinNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		UPico_Room* Room;
+	};
+	_Script_OnlineSubsystemPico_eventPicoRoomJoinNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.Room=Room;
+	PicoRoomJoinNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			FString RoomID;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RoomID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_RoomID;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID = { "RoomID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms, RoomID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::NewProp_RoomID,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoRoomInviteAcceptedNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoRoomInviteAcceptedNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoRoomInviteAcceptedNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, const FString& RoomID)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		FString RoomID;
+	};
+	_Script_OnlineSubsystemPico_eventPicoRoomInviteAcceptedNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.RoomID=RoomID;
+	PicoRoomInviteAcceptedNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Pico_Matchmaking\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Pico_Matchmaking" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoMatchmakingCancelNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoMatchmakingCancelNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoMatchmakingCancelNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoMatchmakingCancelNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+	};
+	_Script_OnlineSubsystemPico_eventPicoMatchmakingCancelNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	PicoMatchmakingCancelNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			UPico_Room* Room;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Room;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_Room = { "Room", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms, Room), Z_Construct_UClass_UPico_Room_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::NewProp_Room,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoMatchmakingMatchFoundNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoMatchmakingMatchFoundNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoMatchmakingMatchFoundNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, UPico_Room* Room)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		UPico_Room* Room;
+	};
+	_Script_OnlineSubsystemPico_eventPicoMatchmakingMatchFoundNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.Room=Room;
+	PicoMatchmakingMatchFoundNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	struct Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics
+	{
+		struct _Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms
+		{
+			bool bIsError;
+			int32 ErrorCode;
+			FString ErrorMessage;
+			FString ChallengeID;
+		};
+		static void NewProp_bIsError_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsError;
+		static const UECodeGen_Private::FIntPropertyParams NewProp_ErrorCode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ErrorMessage_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ErrorMessage;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ChallengeID_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ChallengeID;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit(void* Obj)
+	{
+		((_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms*)Obj)->bIsError = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError = { "bIsError", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms), &Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode = { "ErrorCode", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms, ErrorCode), METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage = { "ErrorMessage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms, ErrorMessage), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ChallengeID_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ChallengeID = { "ChallengeID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms, ChallengeID), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ChallengeID_MetaData), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ChallengeID_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_bIsError,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorCode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ErrorMessage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::NewProp_ChallengeID,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Pico_Challenges\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Pico_Challenges" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_OnlineSubsystemPico, nullptr, "PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature", "OnlineSubsystemPicoManager", "OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate", Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::PropPointers), sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms) < MAX_uint16);
+	UFunction* Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+void FPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_DelegateWrapper(const FMulticastScriptDelegate& PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate, bool bIsError, int32 ErrorCode, const FString& ErrorMessage, const FString& ChallengeID)
+{
+	struct _Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms
+	{
+		bool bIsError;
+		int32 ErrorCode;
+		FString ErrorMessage;
+		FString ChallengeID;
+	};
+	_Script_OnlineSubsystemPico_eventPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_Parms Parms;
+	Parms.bIsError=bIsError ? true : false;
+	Parms.ErrorCode=ErrorCode;
+	Parms.ErrorMessage=ErrorMessage;
+	Parms.ChallengeID=ChallengeID;
+	PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate.ProcessMulticastDelegate<UObject>(&Parms);
+}
+	void UOnlineSubsystemPicoManager::StaticRegisterNativesUOnlineSubsystemPicoManager()
+	{
+	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UOnlineSubsystemPicoManager);
+	UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager_NoRegister()
+	{
+		return UOnlineSubsystemPicoManager::StaticClass();
+	}
+	struct Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics
+	{
+		static UObject* (*const DependentSingletons[])();
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
+#endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcJoinRoomResultDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcJoinRoomResultDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcLeaveRoomResultDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcLeaveRoomResultDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomStateDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomStateDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserJoinInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserJoinInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserLeaveInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserLeaveInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomWarnDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomWarnDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomErrorDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomErrorDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomMuteStateDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomMuteStateDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcAudioChangePlaybackDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcAudioChangePlaybackDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcMediaDeviceChangeInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcLocalAudioPropertiesReportDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRemoteAudioPropertiesReportDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcWarnDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcWarnDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcErrorDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcErrorDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcConnectStateChangedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcConnectStateChangedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserStartAudioCaptureDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserStopAudioCaptureDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserPublishInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserPublishInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserUnPublishInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserUnPublishInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnGetRtcStreamSyncInfoDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGetRtcStreamSyncInfoDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcMessageSendResultDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcMessageSendResultDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcBinaryMessageReceivedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcBinaryMessageReceivedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcBinaryArrayMessageReceivedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcBinaryArrayMessageReceivedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcRoomMessageReceivedDelegateDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcRoomMessageReceivedDelegateDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcUserMessageReceivedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcUserMessageReceivedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRtcTokenWilExpireCallbackDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRtcTokenWilExpireCallbackDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnGameInitializeCallbackDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameInitializeCallbackDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnGameConnectionNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameConnectionNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnGameRequestFailedNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameRequestFailedNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnGameStateResetNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnGameStateResetNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnMatchmakingCancel2NotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomLeaveNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomLeaveNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomJoin2NotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomJoin2NotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomSetDescriptionNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomKickUserNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomKickUserNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateOwnerNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateDataStoreNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomInviteAcceptedNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnRoomUpdateNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRoomUpdateNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnMatchmakingFoundNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnMatchmakingFoundNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPresenceJoinIntentReceivedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPresenceJoinIntentReceivedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPresenceLeaveIntentReceivedDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPresenceLeaveIntentReceivedDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnApplicationLifecycleStringResultDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnApplicationLifecycleStringResultDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnAssetFileDownloadUpdateDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnAssetFileDownloadUpdateDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnAssetFileDeleteForSafetyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnAssetFileDeleteForSafetyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnHighlightRecordStopDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnHighlightRecordStopDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnSpeechAsrResultDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnSpeechAsrResultDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnSpeechErrorDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnSpeechErrorDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoRoomUpdateNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoRoomUpdateNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoRoomUpdateOwnerNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoRoomUpdateOwnerNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoRoomLeaveNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoRoomLeaveNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoRoomJoinNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoRoomJoinNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoRoomInviteAcceptedNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoRoomInviteAcceptedNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoMatchmakingCancelNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoMatchmakingCancelNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_MetaData[];
+#endif
+		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
+		static const UECodeGen_Private::FClassParams ClassParams;
+	};
+	UObject* (*const Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::DependentSingletons[])() = {
+		(UObject* (*)())Z_Construct_UClass_UObject,
+		(UObject* (*)())Z_Construct_UPackage__Script_OnlineSubsystemPico,
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::DependentSingletons) < 16);
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "IncludePath", "OnlineSubsystemPicoManager.h" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// RTC Notification Delegate\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "RTC Notification Delegate" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate = { "OnRtcJoinRoomResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcJoinRoomResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcJoinRoomResultDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate_MetaData) }; // 679413980
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate = { "OnRtcLeaveRoomResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcLeaveRoomResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLeaveRoomResultDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate_MetaData) }; // 3811961810
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate = { "OnRtcRoomStateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomStateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomStateDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate_MetaData) }; // 4033090287
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate = { "OnRtcUserJoinInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserJoinInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserJoinInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate_MetaData) }; // 2327092573
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate = { "OnRtcUserLeaveInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserLeaveInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserLeaveInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate_MetaData) }; // 280066935
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate = { "OnRtcRoomWarnDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomWarnDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomWarnDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate_MetaData) }; // 869813273
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate = { "OnRtcRoomErrorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomErrorDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomErrorDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate_MetaData) }; // 3113601201
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate = { "OnRtcRoomMuteStateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomMuteStateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMuteStateDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate_MetaData) }; // 3077493426
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate = { "OnRtcAudioChangePlaybackDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcAudioChangePlaybackDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcAudioChangePlaybackDeviceDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate_MetaData) }; // 933646950
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate = { "OnRtcMediaDeviceChangeInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcMediaDeviceChangeInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMediaDeviceChangeInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate_MetaData) }; // 433174284
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate = { "OnRtcLocalAudioPropertiesReportDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcLocalAudioPropertiesReportDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcLocalAudioPropertiesReportDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate_MetaData) }; // 2587588626
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate = { "OnRtcRemoteAudioPropertiesReportDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRemoteAudioPropertiesReportDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRemoteAudioPropertiesReportDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate_MetaData) }; // 1795089897
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate = { "OnRtcWarnDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcWarnDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcWarnDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate_MetaData) }; // 2746319254
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate = { "OnRtcErrorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcErrorDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcErrorDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate_MetaData) }; // 1596454337
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate = { "OnRtcConnectStateChangedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcConnectStateChangedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcConnectStateChangedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate_MetaData) }; // 1714619117
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate = { "OnRtcUserStartAudioCaptureDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserStartAudioCaptureDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStartAudioCaptureDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate_MetaData) }; // 2935464164
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate = { "OnRtcUserStopAudioCaptureDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserStopAudioCaptureDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserStopAudioCaptureDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate_MetaData) }; // 1067612482
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserPublishInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserPublishInfoDelegate = { "OnRtcUserPublishInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserPublishInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserPublishInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserPublishInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserPublishInfoDelegate_MetaData) }; // 3668582402
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserUnPublishInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserUnPublishInfoDelegate = { "OnRtcUserUnPublishInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserUnPublishInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserUnPublishInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserUnPublishInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserUnPublishInfoDelegate_MetaData) }; // 1825841970
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGetRtcStreamSyncInfoDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGetRtcStreamSyncInfoDelegate = { "OnGetRtcStreamSyncInfoDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGetRtcStreamSyncInfoDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_GetRtcStreamSyncInfoDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGetRtcStreamSyncInfoDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGetRtcStreamSyncInfoDelegate_MetaData) }; // 2361001105
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMessageSendResultDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMessageSendResultDelegate = { "OnRtcMessageSendResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcMessageSendResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcMessageSendResultDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMessageSendResultDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMessageSendResultDelegate_MetaData) }; // 1999490262
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryMessageReceivedDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryMessageReceivedDelegate = { "OnRtcBinaryMessageReceivedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcBinaryMessageReceivedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryMessageReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryMessageReceivedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryMessageReceivedDelegate_MetaData) }; // 87132175
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryArrayMessageReceivedDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryArrayMessageReceivedDelegate = { "OnRtcBinaryArrayMessageReceivedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcBinaryArrayMessageReceivedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcBinaryArrayMessageReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryArrayMessageReceivedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryArrayMessageReceivedDelegate_MetaData) }; // 3651019263
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMessageReceivedDelegateDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMessageReceivedDelegateDelegate = { "OnRtcRoomMessageReceivedDelegateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcRoomMessageReceivedDelegateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcRoomMessageReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMessageReceivedDelegateDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMessageReceivedDelegateDelegate_MetaData) }; // 288627213
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserMessageReceivedDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserMessageReceivedDelegate = { "OnRtcUserMessageReceivedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcUserMessageReceivedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcUserMessageReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserMessageReceivedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserMessageReceivedDelegate_MetaData) }; // 3709361441
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcTokenWilExpireCallbackDelegate_MetaData[] = {
+		{ "Category", "Rtc" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcTokenWilExpireCallbackDelegate = { "OnRtcTokenWilExpireCallbackDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRtcTokenWilExpireCallbackDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_RtcOnTokenWilExpireCallbackDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcTokenWilExpireCallbackDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcTokenWilExpireCallbackDelegate_MetaData) }; // 153677143
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameInitializeCallbackDelegate_MetaData[] = {
+		{ "Category", "Game" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Game Notification Delegate\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Game Notification Delegate" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameInitializeCallbackDelegate = { "OnGameInitializeCallbackDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameInitializeCallbackDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameInitializeCallbackDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameInitializeCallbackDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameInitializeCallbackDelegate_MetaData) }; // 313105923
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate = { "OnGameConnectionNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameConnectionNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameConnectionNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate_MetaData) }; // 1193861628
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate = { "OnGameRequestFailedNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameRequestFailedNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameRequestFailedNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate_MetaData) }; // 708765609
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate = { "OnGameStateResetNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnGameStateResetNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnGameStateResetNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate_MetaData) }; // 3074011405
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate = { "OnMatchmakingCancel2NotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnMatchmakingCancel2NotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingCancel2NotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate_MetaData) }; // 3603586372
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate = { "OnRoomLeaveNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomLeaveNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomLeaveNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate_MetaData) }; // 3497798649
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate = { "OnRoomJoin2NotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomJoin2NotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomJoin2NotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate_MetaData) }; // 490429546
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate = { "OnRoomSetDescriptionNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomSetDescriptionNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomSetDescriptionNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate_MetaData) }; // 3365727927
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate = { "OnRoomKickUserNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomKickUserNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomKickUserNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate_MetaData) }; // 3354476824
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate = { "OnRoomUpdateOwnerNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateOwnerNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateOwnerNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate_MetaData) }; // 2369546276
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate = { "OnRoomUpdateDataStoreNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateDataStoreNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateDataStoreNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate_MetaData) }; // 1578429429
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate = { "OnRoomUpdateMembershipLockStatusNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateMembershipLockStatusNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateMembershipLockStatusNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate_MetaData) }; // 2616748119
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate = { "OnRoomInviteAcceptedNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomInviteAcceptedNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomInviteAcceptedNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate_MetaData) }; // 3462519406
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate = { "OnRoomUpdateNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnRoomUpdateNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnRoomUpdateNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate_MetaData) }; // 4100331300
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingFoundNotifyDelegate_MetaData[] = {
+		{ "Category", "Game" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingFoundNotifyDelegate = { "OnMatchmakingFoundNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnMatchmakingFoundNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_OnMatchmakingFoundNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingFoundNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingFoundNotifyDelegate_MetaData) }; // 330271863
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceJoinIntentReceivedDelegate_MetaData[] = {
+		{ "Category", "Presence" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Presence Notification Delegate\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Presence Notification Delegate" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceJoinIntentReceivedDelegate = { "OnPresenceJoinIntentReceivedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPresenceJoinIntentReceivedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceJoinIntentReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceJoinIntentReceivedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceJoinIntentReceivedDelegate_MetaData) }; // 2226627980
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceLeaveIntentReceivedDelegate_MetaData[] = {
+		{ "Category", "Presence" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceLeaveIntentReceivedDelegate = { "OnPresenceLeaveIntentReceivedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPresenceLeaveIntentReceivedDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PresenceLeaveIntentReceivedDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceLeaveIntentReceivedDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceLeaveIntentReceivedDelegate_MetaData) }; // 3483756513
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnApplicationLifecycleStringResultDelegate_MetaData[] = {
+		{ "Category", "ApplicationLifecycle" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// ApplicationLifecycle Notification Delegate\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "ApplicationLifecycle Notification Delegate" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnApplicationLifecycleStringResultDelegate = { "OnApplicationLifecycleStringResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnApplicationLifecycleStringResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_ApplicationLifecycleStringResultDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnApplicationLifecycleStringResultDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnApplicationLifecycleStringResultDelegate_MetaData) }; // 568225128
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDownloadUpdateDelegate_MetaData[] = {
+		{ "Category", "AssetFile" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// \n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDownloadUpdateDelegate = { "OnAssetFileDownloadUpdateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnAssetFileDownloadUpdateDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDownloadUpdateDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDownloadUpdateDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDownloadUpdateDelegate_MetaData) }; // 640633136
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDeleteForSafetyDelegate_MetaData[] = {
+		{ "Category", "AssetFile" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDeleteForSafetyDelegate = { "OnAssetFileDeleteForSafetyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnAssetFileDeleteForSafetyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_AssetFileDeleteForSafetyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDeleteForSafetyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDeleteForSafetyDelegate_MetaData) }; // 2365977865
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnHighlightRecordStopDelegate_MetaData[] = {
+		{ "Category", "Highlight" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnHighlightRecordStopDelegate = { "OnHighlightRecordStopDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnHighlightRecordStopDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_HighlightRecordStopDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnHighlightRecordStopDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnHighlightRecordStopDelegate_MetaData) }; // 2974478214
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechAsrResultDelegate_MetaData[] = {
+		{ "Category", "AssetFile" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Speech\n" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Speech" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechAsrResultDelegate = { "OnSpeechAsrResultDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnSpeechAsrResultDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechAsrResultDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechAsrResultDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechAsrResultDelegate_MetaData) }; // 4120791586
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechErrorDelegate_MetaData[] = {
+		{ "Category", "AssetFile" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechErrorDelegate = { "OnSpeechErrorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnSpeechErrorDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_SpeechErrorDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechErrorDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechErrorDelegate_MetaData) }; // 4191556260
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Room" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/*\n\x09 * Pico_Room Notification begin\n\x09 */" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "* Pico_Room Notification begin" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateNotifyDelegate = { "OnPicoRoomUpdateNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoRoomUpdateNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateNotifyDelegate_MetaData) }; // 2560936277
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateOwnerNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Room" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateOwnerNotifyDelegate = { "OnPicoRoomUpdateOwnerNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoRoomUpdateOwnerNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomUpdateOwnerNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateOwnerNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateOwnerNotifyDelegate_MetaData) }; // 2196006787
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomLeaveNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Room" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomLeaveNotifyDelegate = { "OnPicoRoomLeaveNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoRoomLeaveNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomLeaveNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomLeaveNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomLeaveNotifyDelegate_MetaData) }; // 3040858732
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomJoinNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Room" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomJoinNotifyDelegate = { "OnPicoRoomJoinNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoRoomJoinNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomJoinNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomJoinNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomJoinNotifyDelegate_MetaData) }; // 1627807667
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomInviteAcceptedNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Room" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomInviteAcceptedNotifyDelegate = { "OnPicoRoomInviteAcceptedNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoRoomInviteAcceptedNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoRoomInviteAcceptedNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomInviteAcceptedNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomInviteAcceptedNotifyDelegate_MetaData) }; // 3187616906
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingCancelNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Matchmaking" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/*\n\x09 * Pico_Matchmaking Notification begin\n\x09 */" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "* Pico_Matchmaking Notification begin" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingCancelNotifyDelegate = { "OnPicoMatchmakingCancelNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoMatchmakingCancelNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingCancelNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingCancelNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingCancelNotifyDelegate_MetaData) }; // 638921939
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Matchmaking" },
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate = { "OnPicoMatchmakingMatchFoundNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoMatchmakingMatchFoundNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoMatchmakingMatchFoundNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate_MetaData) }; // 3490388619
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_MetaData[] = {
+		{ "Category", "Pico Challenges" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/*\n\x09 * Pico_Challenges Notification begin\n\x09 */" },
+#endif
+		{ "ModuleRelativePath", "Public/OnlineSubsystemPicoManager.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "* Pico_Challenges Notification begin" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate = { "OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UOnlineSubsystemPicoManager, OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate), Z_Construct_USparseDelegateFunction_OnlineSubsystemPico_PicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_MetaData), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate_MetaData) }; // 201096886
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcJoinRoomResultDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLeaveRoomResultDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomStateDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserJoinInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserLeaveInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomWarnDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomErrorDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMuteStateDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcAudioChangePlaybackDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMediaDeviceChangeInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcLocalAudioPropertiesReportDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRemoteAudioPropertiesReportDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcWarnDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcErrorDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcConnectStateChangedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStartAudioCaptureDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserStopAudioCaptureDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserPublishInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserUnPublishInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGetRtcStreamSyncInfoDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcMessageSendResultDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryMessageReceivedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcBinaryArrayMessageReceivedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcRoomMessageReceivedDelegateDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcUserMessageReceivedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRtcTokenWilExpireCallbackDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameInitializeCallbackDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameConnectionNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameRequestFailedNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnGameStateResetNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingCancel2NotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomLeaveNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomJoin2NotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomSetDescriptionNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomKickUserNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateOwnerNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateDataStoreNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateMembershipLockStatusNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomInviteAcceptedNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnRoomUpdateNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnMatchmakingFoundNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceJoinIntentReceivedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPresenceLeaveIntentReceivedDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnApplicationLifecycleStringResultDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDownloadUpdateDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnAssetFileDeleteForSafetyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnHighlightRecordStopDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechAsrResultDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnSpeechErrorDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomUpdateOwnerNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomLeaveNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomJoinNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoRoomInviteAcceptedNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingCancelNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoMatchmakingMatchFoundNotifyDelegate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::NewProp_OnPicoChallengeInviteAcceptedOrLaunchAppNotifyDelegate,
+	};
+	const FCppClassTypeInfoStatic Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::StaticCppClassTypeInfo = {
+		TCppClassTypeTraits<UOnlineSubsystemPicoManager>::IsAbstract,
+	};
+	const UECodeGen_Private::FClassParams Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::ClassParams = {
+		&UOnlineSubsystemPicoManager::StaticClass,
+		nullptr,
+		&StaticCppClassTypeInfo,
+		DependentSingletons,
+		nullptr,
+		Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers,
+		nullptr,
+		UE_ARRAY_COUNT(DependentSingletons),
+		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers),
+		0,
+		0x008000A0u,
+		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams), Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::Class_MetaDataParams)
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::PropPointers) < 2048);
+	UClass* Z_Construct_UClass_UOnlineSubsystemPicoManager()
+	{
+		if (!Z_Registration_Info_UClass_UOnlineSubsystemPicoManager.OuterSingleton)
+		{
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UOnlineSubsystemPicoManager.OuterSingleton, Z_Construct_UClass_UOnlineSubsystemPicoManager_Statics::ClassParams);
+		}
+		return Z_Registration_Info_UClass_UOnlineSubsystemPicoManager.OuterSingleton;
+	}
+	template<> ONLINESUBSYSTEMPICO_API UClass* StaticClass<UOnlineSubsystemPicoManager>()
+	{
+		return UOnlineSubsystemPicoManager::StaticClass();
+	}
+	DEFINE_VTABLE_PTR_HELPER_CTOR(UOnlineSubsystemPicoManager);
+	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_OnlineSubsystemPicoManager_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_OnlineSubsystemPicoManager_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UOnlineSubsystemPicoManager, UOnlineSubsystemPicoManager::StaticClass, TEXT("UOnlineSubsystemPicoManager"), &Z_Registration_Info_UClass_UOnlineSubsystemPicoManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UOnlineSubsystemPicoManager), 698204792U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_OnlineSubsystemPicoManager_h_3026092563(TEXT("/Script/OnlineSubsystemPico"),
+		Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_OnlineSubsystemPicoManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_OnlineSubsystemPicoManager_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS

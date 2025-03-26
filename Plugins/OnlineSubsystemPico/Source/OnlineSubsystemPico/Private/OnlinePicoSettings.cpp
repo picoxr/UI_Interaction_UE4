@@ -1,25 +1,21 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "OnlinePicoSettings.h"
 
-#include "Json.h"
 #include "Serialization/JsonWriter.h"
 #include "Serialization/JsonSerializerMacros.h"
 #include "Serialization/JsonSerializer.h"
 
 #include "Modules/ModuleManager.h"
 #include "Interfaces/IPluginManager.h"
+#include "Misc/FileHelper.h"
 
 DEFINE_LOG_CATEGORY(PicoSettings);
 
 UOnlinePicoSettings::UOnlinePicoSettings(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer),
     bIsForeign(false),
-    bIsGlobal(false),
-    bStartTimeEntitlementCheck(false),
-    bEntitlementCheckSimulation(false)
+    bIsGlobal(false)
 {
     DefaultPlatformService = TEXT("Pico");
     AndroidPlatformService = TEXT("Pico");
@@ -52,17 +48,14 @@ void UOnlinePicoSettings::PostInitProperties()
 
 }
 
-void UOnlinePicoSettings::GetOnlinePicoSettings(bool& OutbIsEnable, ERegionType& OutRegionType, FString& OutAppID, FString& OutAppKey, FString& OutScope, bool& OutbStartTimeEntitlementCheck, FString& OutEntitlementCheckAppID, bool& OutbEntitlementCheckSimulation, TArray<FString>& OutDeviceSN, FString& OutAccessToken)
+void UOnlinePicoSettings::GetOnlinePicoSettings(bool& OutbIsEnable, ERegionType& OutRegionType, FString& OutAppID, FString& OutAccessToken, bool& OutbEnableHighlight)
 {
     UOnlinePicoSettings* OnlinePicoSettings = GetMutableDefault<UOnlinePicoSettings>();
     OutbIsEnable = OnlinePicoSettings->bEnabled;
     OutRegionType = OnlinePicoSettings->RegionType;
     OutAppID = OnlinePicoSettings->AppID;
-    OutbStartTimeEntitlementCheck = OnlinePicoSettings->bStartTimeEntitlementCheck;
-    OutEntitlementCheckAppID = OnlinePicoSettings->EntitlementCheckAppID;
-    OutbEntitlementCheckSimulation = OnlinePicoSettings->bEntitlementCheckSimulation;
-    OutDeviceSN = OnlinePicoSettings->DeviceSN;
     OutAccessToken = OnlinePicoSettings->AccessToken;
+    OutbEnableHighlight = OnlinePicoSettings->bEnableHighlight;
 }
 
 void UOnlinePicoSettings::LoadSettings()
@@ -80,10 +73,6 @@ void UOnlinePicoSettings::LoadSettings()
         RegionType = ERegionType::NonChina;
     }
     GConfig->GetString(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("AppID"), AppID, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
-    GConfig->GetBool(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("bStartTimeEntitlementCheck"), bStartTimeEntitlementCheck, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
-    GConfig->GetString(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("EntitlementCheckAppID"), EntitlementCheckAppID, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
-    GConfig->GetBool(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("bEntitlementCheckSimulation"), bEntitlementCheckSimulation, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
-    GConfig->GetArray(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("+DeviceSN"), DeviceSN, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
     GConfig->GetString(TEXT("OnlineSubsystem"), TEXT("DefaultPlatformService"), AndroidPlatformService, FPaths::ProjectDir() + "Config/Android/AndroidEngine.ini");
     GConfig->GetString(TEXT("/Script/OnlineSubsystemPico.OnlinePicoSettings"), TEXT("AccessToken"), AccessToken, FPaths::ProjectDir() + "Config/DefaultEngine.ini");
 #if WITH_EDITOR
@@ -91,6 +80,7 @@ void UOnlinePicoSettings::LoadSettings()
     SaveWindowsDebugSetting();
     UE_LOG(PicoSettings, Log, TEXT("DefaultEngine.ini->bEnabled = %s"), bEnabled ? TEXT("True") : TEXT("False"));
     UE_LOG(PicoSettings, Log, TEXT("DefaultEngine.ini->AppId = %s"), *AppID);
+    UE_LOG(PicoSettings, Log, TEXT("DefaultEngine.ini->bEnableHighlight = %s"), bEnableHighlight ? TEXT("True") : TEXT("False"));
     UE_LOG(PicoSettings, Log, TEXT("DefaultEngine.ini->DefaultPlatformService = %s"), *DefaultPlatformService);
     UE_LOG(PicoSettings, Log, TEXT("AndroidEngine.ini->DefaultPlatformService = %s"), *AndroidPlatformService);
 #endif //WITH_EDITOR

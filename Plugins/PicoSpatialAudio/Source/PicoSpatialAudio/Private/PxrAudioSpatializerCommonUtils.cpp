@@ -1,3 +1,5 @@
+//  Copyright © 2015-2023 Pico Technology Co., Ltd. All Rights Reserved.
+
 #include "PxrAudioSpatializerCommonUtils.h"
 
 DEFINE_LOG_CATEGORY(LogPicoSpatialAudio);
@@ -28,6 +30,41 @@ namespace Pxr_Audio
 				FMath::Sin(PolarUnrealCoordinate.Azimuth) * FMath::Sin(PolarUnrealCoordinate.Elevation);
 			CartesianPicoCoordinate[2] = 100.0f * PolarUnrealCoordinate.Radius * FMath::Cos(
 				PolarUnrealCoordinate.Azimuth);
+		}
+
+		void ConvertToPicoSpatialAudioCoordinates(const FTransform& TransformUnrealCoordinate,
+		                                          float TransformPicoCoordinate[16])
+		{
+			// UE:	 x:forward, y:right, z:up
+			// Pico:  x:right,   y:up,	z:backward
+			const FVector Right = TransformUnrealCoordinate.GetScaledAxis(EAxis::Y);
+			const FVector Up = TransformUnrealCoordinate.GetScaledAxis(EAxis::Z);
+			const FVector Backward = -TransformUnrealCoordinate.GetScaledAxis(EAxis::X);
+			const FVector Position = TransformUnrealCoordinate.GetLocation() * 0.01f;
+
+			//	Col 0
+			TransformPicoCoordinate[0] = Right.Y;
+			TransformPicoCoordinate[1] = Right.Z;
+			TransformPicoCoordinate[2] = -Right.X;
+			TransformPicoCoordinate[3] = 0.0f;
+
+			//	Col 1
+			TransformPicoCoordinate[4] = Up.Y;
+			TransformPicoCoordinate[5] = Up.Z;
+			TransformPicoCoordinate[6] = -Up.X;
+			TransformPicoCoordinate[7] = 0.0f;
+
+			//	Col 2
+			TransformPicoCoordinate[8] = Backward.Y;
+			TransformPicoCoordinate[9] = Backward.Z;
+			TransformPicoCoordinate[10] = -Backward.X;
+			TransformPicoCoordinate[11] = 0.0f;
+
+			//	Col 3
+			TransformPicoCoordinate[12] = Position.Y;
+			TransformPicoCoordinate[13] = Position.Z;
+			TransformPicoCoordinate[14] = -Position.X;
+			TransformPicoCoordinate[15] = 1.0f;
 		}
 
 		PxrAudioSpatializer_RenderingMode ConvertToInternalRenderingMode(
@@ -61,7 +98,7 @@ namespace Pxr_Audio
 		}
 
 		void InterleavedToPlannerBuffer(const Audio::AlignedFloatBuffer& InterleavedBuffer,
-			TArray<Audio::AlignedFloatBuffer>& PlannerBuffers)
+		                                TArray<Audio::AlignedFloatBuffer>& PlannerBuffers)
 		{
 			const int32 NumChannels = PlannerBuffers.Num();
 			const int32 NumFrames = InterleavedBuffer.Num() / NumChannels;

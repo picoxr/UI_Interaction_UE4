@@ -1,7 +1,8 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #include "PicoCreateSessionCallbackProxy.h"
 #include "OnlineSubsystemPicoPrivate.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #if ENGINE_MAJOR_VERSION > 4
 #include "Online/CoreOnline.h"
@@ -11,6 +12,7 @@
 
 #include "Online.h"
 #include "OnlineSessionInterfacePico.h"
+#include "../Plugins/Online/OnlineSubsystem/Source/Public/OnlineSessionSettings.h"
 
 UPicoCreateSessionCallbackProxy::UPicoCreateSessionCallbackProxy(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)

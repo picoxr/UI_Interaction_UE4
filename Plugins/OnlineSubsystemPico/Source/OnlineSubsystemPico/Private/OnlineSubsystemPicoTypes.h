@@ -1,6 +1,4 @@
-// Copyright 2022 Pico Technology Co., Ltd.All rights reserved.
-// This plugin incorporates portions of the Unreal® Engine. Unreal® is a trademark or registered trademark of Epic Games, Inc.In the United States of America and elsewhere.
-// Unreal® Engine, Copyright 1998 – 2022, Epic Games, Inc.All rights reserved.
+// Copyright® 2015-2023 PICO Technology Co., Ltd. All rights reserved. 
 
 #pragma once
 
@@ -8,6 +6,7 @@
 #include "OnlineSubsystemTypes.h"
 #include "OnlineSubsystemPicoPackage.h"
 #include "PPF_Platform.h"
+#include "Runtime/Launch/Resources/Version.h"
 #include "OnlineSubsystemPicoNames.h"
 
 #if ENGINE_MAJOR_VERSION > 4
@@ -144,11 +143,17 @@ public:
         return TEXT("ppfID:") + OSS_UNIQUEID_REDACT(*this, UniqueNetIdStr);
     }
 
-    /** Needed for TMap::GetTypeHash() */
+#if ENGINE_MAJOR_VERSION > 4 && ENGINE_MINOR_VERSION > 0
+    virtual uint32 GetTypeHash() const override
+    {
+        return ::GetTypeHash((uint64)ID);
+    }
+#else
     friend uint32 GetTypeHash(const FUniqueNetIdPico& A)
     {
         return GetTypeHash((uint64)A.ID);
     }
+#endif
 
     /** global static instance of invalid (zero) id */
 #if ENGINE_MAJOR_VERSION > 4

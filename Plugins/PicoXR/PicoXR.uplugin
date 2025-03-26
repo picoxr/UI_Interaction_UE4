@@ -1,74 +1,91 @@
 {
-  "FileVersion": 3,
-  "Version": 1,
-  "VersionName": "2.1.2.3",
-  "FriendlyName": "PICO XR",
-  "Description": "",
-  "Category": "Virtual Reality",
-  "CreatedBy": "PICO Technology Co., Ltd",
-  "CreatedByURL": "https://www.picoxr.com/",
-  "DocsURL": "https://developer-global.pico-interactive.com/document/ue4",
-  "MarketplaceURL": "",
-  "SupportURL": "",
-  "EnabledByDefault": true,
-  "CanContainContent": true,
-  "IsBetaVersion": false,
-  "Installed": true,
-  "SupportedTargetPlatforms": [
-    "Win64",
-    "Android"
-  ],
-  "Modules": [
-    {
-      "Name": "PICOXRHMD",
-      "Type": "Runtime",
-      "LoadingPhase": "PostConfigInit",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Android"
-      ]
-    },
-    {
-      "Name": "PICOXRInput",
-      "Type": "Runtime",
-      "LoadingPhase": "PostEngineInit",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Android"
-      ]
-    },
-    {
-      "Name": "PICOXRDPInput",
-      "Type": "Runtime",
-      "LoadingPhase": "Default",
-      "WhitelistPlatforms": [
-        "Win64"
-      ]
-    },
-    {
-      "Name": "PICOXRMRC",
-      "Type": "Runtime",
-      "LoadingPhase": "PostEngineInit",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Android"
-      ]
-    },
-    {
-      "Name": "PICOXRDPHMD",
-      "Type": "Runtime",
-      "LoadingPhase": "PostConfigInit",
-      "WhitelistPlatforms": [
-        "Win64"
-      ]
-    }
-
-  ],
-  "Plugins":
-  [
-    {
-      "Name": "ProceduralMeshComponent",
-      "Enabled": true
-    }
-  ]
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "3.1.2",
+	"FriendlyName": "PICO XR",
+	"Description": "",
+	"Category": "Virtual Reality",
+	"CreatedBy": "PICO Technology Co., Ltd",
+	"CreatedByURL": "https://www.picoxr.com/",
+	"DocsURL": "https://developer-global.pico-interactive.com/document/ue5/overview",
+	"MarketplaceURL": "https://publish.unrealengine.com/v3/edit-product/7932d7fc2aad4216b1b01644950f6fcc",
+	"SupportURL": "https://developer-global.pico-interactive.com/",
+	"EngineVersion": "5.3.0",
+	"EnabledByDefault": false,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"SupportedTargetPlatforms": [
+		"Win64",
+		"Android"
+	],
+	"Modules": [
+		{
+			"Name": "PICOXRHMD",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "PICOXRInput",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "PICOXREyeTracker",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "PICOXRMotionTracking",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "PICOXREditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "PICOXRMR",
+			"Type": "Runtime",
+			"LoadingPhase": "PostEngineInit",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Android"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ProceduralMeshComponent",
+			"Enabled": true
+		},
+		{
+			"Name": "AndroidPermission",
+			"Enabled": true
+		},
+		{
+			"Name": "XRBase",
+			"Enabled": true
+		}
+	]
 }
