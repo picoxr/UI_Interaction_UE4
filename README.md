@@ -9,21 +9,27 @@
 
 
 ## Description:
-  The functions realized in this example include:
-* Press and hold the left handle X, Y key can realize long-distance grasping
+  The sample implements functions as below:
+* Locomotion
+* Nearby grabbing by holding grip button
+* Long-distance grabbing by pressing and holdindg the left controller X, Y key
+* Gun shoot by pressing trigger button
 * Vibration feedback
-* Grabbing sound effect generation
+* Sound effect when grabbing
 
-The example includes a basic interaction based on VR_Pawn with the following effect:
-   <img src="./ReadMeScreenshot/1-1.jpg"  width = "600"/>
-   <img src="./ReadMeScreenshot/1-2.jpg"  width = "600"/>
-   <img src="./ReadMeScreenshot/1-3.jpg"  width = "600"/><br>
-In addition to this, the introductory UI interface of the Demo is provided, which can complete the long-distance capture, and realize the function as shown in Fig:
-   <br><img src="./ReadMeScreenshot/1-4.jpg"  width = "600"/><br>
-__Ray Selection__
-   <br><img src="./ReadMeScreenshot/1-5.jpg"  width = "600"/><br>
-__Grab function implementation__
-   <br><img src="./ReadMeScreenshot/1-6.jpg"  width = "600"/><br>
+|Locomotion|Nearby grabbing|
+|:-:|:-:|
+| <img src="./ReadMeScreenshot/1-1.jpg" width="300"> | <img src="./ReadMeScreenshot/1-2.jpg" width="300"> |
+
+|Gun shoot|Sample Scene|
+|:-:|:-:|
+| <img src="./ReadMeScreenshot/1-3.jpg" width="300"> | <img src="./ReadMeScreenshot/1-4.jpg" width="300"> 
+
+|ray cast|Long-distance grabbing|
+|:-:|:-:|
+| <img src="./ReadMeScreenshot/1-5.jpg" width="300"> | <img src="./ReadMeScreenshot/1-6.jpg" width="300"> |
+
+
 
 ## Note:
-- This project integrates v5.3 of Pico Unreal Integration SDK, If you are using other version of the engine, you need to download the corresponding version of Pico Unreal Integration SDK at [here.](https://developer.picoxr.com/zh/resources/#sdk)
+- This project integrates Pico Unreal Integration SDK 3.1.0 plugin for UE 5.3. If you are using other version Unreal engine, you will need to integrate the corresponding UE version plugin at [here.](https://developer.picoxr.com/zh/resources/#sdk)
