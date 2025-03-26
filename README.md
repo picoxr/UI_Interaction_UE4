@@ -20,9 +20,9 @@ The example includes a basic interaction based on VR_Pawn with the following eff
    <img src="./ReadMeScreenshot/1-3.jpg"  width = "600"/><br>
 In addition to this, the introductory UI interface of the Demo is provided, which can complete the long-distance capture, and realize the function as shown in Fig:
    <br><img src="./ReadMeScreenshot/1-4.jpg"  width = "600"/><br>
-Ray Selection
+__Ray Selection__
    <br><img src="./ReadMeScreenshot/1-5.jpg"  width = "600"/><br>
-Grab function implementation
+__Grab function implementation__
    <br><img src="./ReadMeScreenshot/1-6.jpg"  width = "600"/><br>
 
 ## Note:
