@@ -379,7 +379,7 @@ void EmptyLinkFunctionForGeneratedCodeOnlineSubsystemPico_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x768B67EE,
+				0x6C6518A1,
 				0x7BBE6666,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -387,5 +387,5 @@ void EmptyLinkFunctionForGeneratedCodeOnlineSubsystemPico_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_OnlineSubsystemPico.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_OnlineSubsystemPico(Z_Construct_UPackage__Script_OnlineSubsystemPico, TEXT("/Script/OnlineSubsystemPico"), Z_Registration_Info_UPackage__Script_OnlineSubsystemPico, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x768B67EE, 0x7BBE6666));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_OnlineSubsystemPico(Z_Construct_UPackage__Script_OnlineSubsystemPico, TEXT("/Script/OnlineSubsystemPico"), Z_Registration_Info_UPackage__Script_OnlineSubsystemPico, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x6C6518A1, 0x7BBE6666));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

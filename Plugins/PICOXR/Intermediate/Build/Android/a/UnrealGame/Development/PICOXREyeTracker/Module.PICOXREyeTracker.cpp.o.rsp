@@ -1,8 +1,8 @@
 -c
 -pipe
 -I"."
--I"E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Private"
--I"E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXREyeTracker/Private"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXREyeTracker/Private"
 -I"Runtime/Core/Public"
 -I"Runtime/Core/Internal"
 -I"Runtime/TraceLog/Public"
@@ -110,13 +110,13 @@
 -I"Runtime/TypedElementFramework/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/TypedElementRuntime/UHT"
 -I"Runtime/TypedElementRuntime/Public"
--I"E:/New_0311/New_0311/Plugins/PICOXR/Source"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source"
 -I"Runtime/InputDevice/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/EyeTracker/UHT"
 -I"Runtime/EyeTracker/Public"
--I"E:/New_0311/New_0311/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
--I"E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT"
--I"E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT"
+-I"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT"
 -I"Runtime/HeadMountedDisplay/Public"
 -I"Runtime/Launch/Public"
@@ -197,11 +197,11 @@
 -DPLATFORM_ANDROID_ARM64=1
 -march=armv8-a
 -fsigned-char
--include-pch "E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
--include "E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Definitions.PICOXREyeTracker.h"
+-include-pch "E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
+-include "E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Definitions.PICOXREyeTracker.h"
 -x c++
 -std=c++17
 -fpch-validate-input-files-content
-"E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp"
--MD -MF"E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp.d"
--o "E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp.o"
+"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp"
+-MD -MF"E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp.d"
+-o "E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXREyeTracker/Module.PICOXREyeTracker.cpp.o"

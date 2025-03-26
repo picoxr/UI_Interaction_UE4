@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodePicoSpatialAudio_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x7AD91BA0,
+				0x0DA2F893,
 				0x49E32A3D,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodePicoSpatialAudio_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_PicoSpatialAudio.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PicoSpatialAudio(Z_Construct_UPackage__Script_PicoSpatialAudio, TEXT("/Script/PicoSpatialAudio"), Z_Registration_Info_UPackage__Script_PicoSpatialAudio, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x7AD91BA0, 0x49E32A3D));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PicoSpatialAudio(Z_Construct_UPackage__Script_PicoSpatialAudio, TEXT("/Script/PicoSpatialAudio"), Z_Registration_Info_UPackage__Script_PicoSpatialAudio, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x0DA2F893, 0x49E32A3D));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

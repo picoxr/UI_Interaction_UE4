@@ -4690,11 +4690,11 @@ void FGetOrgScopedID_DelegateWrapper(const FScriptDelegate& GetOrgScopedID, bool
 	UPico_OrgScopedID::UPico_OrgScopedID(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UPico_OrgScopedID);
 	UPico_OrgScopedID::~UPico_OrgScopedID() {}
-	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics
+	struct Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo[] = {
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UOnlinePicoUserFunction, UOnlinePicoUserFunction::StaticClass, TEXT("UOnlinePicoUserFunction"), &Z_Registration_Info_UClass_UOnlinePicoUserFunction, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UOnlinePicoUserFunction), 2238411291U) },
 		{ Z_Construct_UClass_UPico_User, UPico_User::StaticClass, TEXT("UPico_User"), &Z_Registration_Info_UClass_UPico_User, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_User), 3550519040U) },
 		{ Z_Construct_UClass_UPico_UserArray, UPico_UserArray::StaticClass, TEXT("UPico_UserArray"), &Z_Registration_Info_UClass_UPico_UserArray, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_UserArray), 3587182404U) },
@@ -4705,8 +4705,8 @@ void FGetOrgScopedID_DelegateWrapper(const FScriptDelegate& GetOrgScopedID, bool
 		{ Z_Construct_UClass_UPico_EntitlementCheckResult, UPico_EntitlementCheckResult::StaticClass, TEXT("UPico_EntitlementCheckResult"), &Z_Registration_Info_UClass_UPico_EntitlementCheckResult, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_EntitlementCheckResult), 317021137U) },
 		{ Z_Construct_UClass_UPico_OrgScopedID, UPico_OrgScopedID::StaticClass, TEXT("UPico_OrgScopedID"), &Z_Registration_Info_UClass_UPico_OrgScopedID, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_OrgScopedID), 1599959884U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_2567409189(TEXT("/Script/OnlineSubsystemPico"),
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_2567409189(TEXT("/Script/OnlineSubsystemPico"),
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_User_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

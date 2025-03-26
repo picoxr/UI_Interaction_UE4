@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodePICOXRMotionTracking_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x6DC524F3,
+				0x8B52D6FE,
 				0xAF00D852,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodePICOXRMotionTracking_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_PICOXRMotionTracking.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PICOXRMotionTracking(Z_Construct_UPackage__Script_PICOXRMotionTracking, TEXT("/Script/PICOXRMotionTracking"), Z_Registration_Info_UPackage__Script_PICOXRMotionTracking, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x6DC524F3, 0xAF00D852));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PICOXRMotionTracking(Z_Construct_UPackage__Script_PICOXRMotionTracking, TEXT("/Script/PICOXRMotionTracking"), Z_Registration_Info_UPackage__Script_PICOXRMotionTracking, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x8B52D6FE, 0xAF00D852));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

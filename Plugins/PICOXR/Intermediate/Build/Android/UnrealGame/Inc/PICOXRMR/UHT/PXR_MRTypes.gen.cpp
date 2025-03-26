@@ -2264,12 +2264,12 @@ template<> PICOXRMR_API UScriptStruct* StaticStruct<FPICOMRSceneInfo>()
 		}
 		return Z_Registration_Info_UScriptStruct_PICOMRSceneInfo.InnerSingleton;
 	}
-	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics
+	struct Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 		static const FStructRegisterCompiledInInfo ScriptStructInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo[] = {
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo[] = {
 		{ EPICOResult_StaticEnum, TEXT("EPICOResult"), &Z_Registration_Info_UEnum_EPICOResult, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1390192157U) },
 		{ EPICOSpatialTrackingState_StaticEnum, TEXT("EPICOSpatialTrackingState"), &Z_Registration_Info_UEnum_EPICOSpatialTrackingState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1432727928U) },
 		{ EPICOSpatialTrackingStateMessage_StaticEnum, TEXT("EPICOSpatialTrackingStateMessage"), &Z_Registration_Info_UEnum_EPICOSpatialTrackingStateMessage, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3994494969U) },
@@ -2285,7 +2285,7 @@ template<> PICOXRMR_API UScriptStruct* StaticStruct<FPICOMRSceneInfo>()
 		{ EPICOSceneType_StaticEnum, TEXT("EPICOSceneType"), &Z_Registration_Info_UEnum_EPICOSceneType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1216638432U) },
 		{ EPICOSpatialMeshState_StaticEnum, TEXT("EPICOSpatialMeshState"), &Z_Registration_Info_UEnum_EPICOSpatialMeshState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 761296771U) },
 	};
-	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo[] = {
+	const FStructRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo[] = {
 		{ FPICOSpatialHandle::StaticStruct, Z_Construct_UScriptStruct_FPICOSpatialHandle_Statics::NewStructOps, TEXT("PICOSpatialHandle"), &Z_Registration_Info_UScriptStruct_PICOSpatialHandle, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPICOSpatialHandle), 82442488U) },
 		{ FFutureMessage::StaticStruct, Z_Construct_UScriptStruct_FFutureMessage_Statics::NewStructOps, TEXT("FutureMessage"), &Z_Registration_Info_UScriptStruct_FutureMessage, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FFutureMessage), 683919615U) },
 		{ FPICOSpatialUUID::StaticStruct, Z_Construct_UScriptStruct_FPICOSpatialUUID_Statics::NewStructOps, TEXT("PICOSpatialUUID"), &Z_Registration_Info_UScriptStruct_PICOSpatialUUID, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPICOSpatialUUID), 4199512061U) },
@@ -2302,8 +2302,8 @@ template<> PICOXRMR_API UScriptStruct* StaticStruct<FPICOMRSceneInfo>()
 		{ FPICOSpatialMeshInfo::StaticStruct, Z_Construct_UScriptStruct_FPICOSpatialMeshInfo_Statics::NewStructOps, TEXT("PICOSpatialMeshInfo"), &Z_Registration_Info_UScriptStruct_PICOSpatialMeshInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPICOSpatialMeshInfo), 1430625674U) },
 		{ FPICOMRSceneInfo::StaticStruct, Z_Construct_UScriptStruct_FPICOMRSceneInfo_Statics::NewStructOps, TEXT("PICOMRSceneInfo"), &Z_Registration_Info_UScriptStruct_PICOMRSceneInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FPICOMRSceneInfo), 3745358769U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_1612103080(TEXT("/Script/PICOXRMR"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_1612103080(TEXT("/Script/PICOXRMR"),
 		nullptr, 0,
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo),
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo));
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::ScriptStructInfo),
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

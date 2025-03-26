@@ -1,4 +1,4 @@
-#include "E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedDefinitions.Engine.Cpp17.h"
+#include "E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedDefinitions.Engine.Cpp17.h"
 #undef UE_IS_ENGINE_MODULE
 #undef DEPRECATED_FORGAME
 #define DEPRECATED_FORGAME DEPRECATED
@@ -13,8 +13,8 @@
 #define UE_ENABLE_INCLUDE_ORDER_DEPRECATED_IN_5_1 0
 #define UE_ENABLE_INCLUDE_ORDER_DEPRECATED_IN_5_2 0
 #define UE_ENABLE_INCLUDE_ORDER_DEPRECATED_IN_5_3 0
-#define UE_PROJECT_NAME New_0311
-#define UE_TARGET_NAME New_0311
+#define UE_PROJECT_NAME PICO_UEInteraction
+#define UE_TARGET_NAME PICO_UEInteraction
 #define UE_MODULE_NAME "PicoSpatialAudio"
 #define UE_PLUGIN_NAME "PicoSpatialAudio"
 #define IMPLEMENT_ENCRYPTION_KEY_REGISTRATION() 

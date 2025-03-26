@@ -1,4 +1,4 @@
-E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Module.PICOXRHMD.1.cpp.o: \
+E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Module.PICOXRHMD.1.cpp.o: \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/UObject/PropertyPortFlags.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/UObject/DebugSerializationFlags.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/Templates/ScopedCallback.h \
@@ -477,8 +477,8 @@ E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Deve
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/CoreTypes.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/Algo/Reverse.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Core/Public/CoreSharedPCH.h \
-  E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Core/SharedDefinitions.Core.Cpp17.h \
-  E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Core/SharedPCH.Core.Cpp17.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Core/SharedDefinitions.Core.Cpp17.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Core/SharedPCH.Core.Cpp17.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/initializer_list \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/features.h \
@@ -1881,8 +1881,8 @@ E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Deve
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/CoreUObject/Public/CoreUObjectSharedPCH.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Slate/Public/SlateSharedPCH.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Engine/Public/EngineSharedPCH.h \
-  E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedDefinitions.Engine.Cpp17.h \
-  E:/New_0311/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedPCH.Engine.Cpp17.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedDefinitions.Engine.Cpp17.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedPCH.Engine.Cpp17.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/algorithm \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/memory \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/stdexcept \
@@ -1925,12 +1925,10 @@ E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Deve
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__bsd_locale_fallbacks.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/bitset \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/istream \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Module.PICOXRHMD.1.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Definitions.PICOXRHMD.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PICOXRHMD.init.gen.cpp \
-  Runtime/CoreUObject/Public/UObject/GeneratedCppIncludes.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PICO_MRCSceneCapture2D.gen.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public/PICO_MRCSceneCapture2D.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Module.PICOXRHMD.1.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRHMD/Definitions.PICOXRHMD.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PICO_MRCSceneCapture2D.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PICO_MRCSceneCapture2D.h \
   Runtime/Core/Public/CoreMinimal.h \
   Runtime/Engine/Classes/Engine/SceneCapture2D.h \
   Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
@@ -1945,31 +1943,36 @@ E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Deve
   Runtime/Engine/Classes/Engine/Texture.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/TextureRenderTarget.generated.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/TextureRenderTarget2D.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PICO_MRCSceneCapture2D.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_BoundarySystem.gen.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_BoundarySystem.h \
-  Runtime/Engine/Classes/Engine/Texture2D.h \
-  Runtime/CoreUObject/Public/UObject/Object.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_BoundarySystem.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_Cubemap.gen.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_Cubemap.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_Cubemap.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.gen.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_EventManager.h \
-  Runtime/Core/Public/Delegates/Delegate.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDTypes.h \
-  Runtime/RHI/Public/RHI.h Runtime/RHI/Public/RHIResources.h \
-  Runtime/CoreUObject/Public/UObject/SoftObjectPath.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDTypes.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDFunctionLibrary.gen.cpp \
-  E:/New_0311/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDFunctionLibrary.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PICO_MRCSceneCapture2D.generated.h \
+  Runtime/Engine/Classes/Components/SceneCaptureComponent2D.h \
+  Runtime/CoreUObject/Public/UObject/ScriptInterface.h \
+  Runtime/Engine/Classes/Engine/BlendableInterface.h \
+  Runtime/Engine/Classes/Camera/CameraTypes.h \
+  Runtime/Engine/Classes/Components/SceneCaptureComponent.h \
+  Runtime/Engine/Classes/Components/SceneComponent.h \
+  Runtime/Engine/Public/SceneTypes.h Runtime/Engine/Public/ShowFlags.h \
+  Runtime/Engine/Classes/Engine/GameViewportClient.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SceneCaptureComponent.generated.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SceneCaptureComponent2D.generated.h \
+  Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMD.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDModule.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDPrivate.h \
+  Runtime/Engine/Classes/GameFramework/WorldSettings.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/IPXR_HMDModule.h \
+  Runtime/Core/Public/Modules/ModuleManager.h \
+  Runtime/HeadMountedDisplay/Public/IHeadMountedDisplayModule.h \
+  Runtime/Core/Public/Modules/ModuleInterface.h \
+  Runtime/Core/Public/Misc/ConfigCacheIni.h \
+  Runtime/Core/Public/Features/IModularFeatures.h \
+  Runtime/Core/Public/Features/IModularFeature.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDFunctionLibrary.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/array \
   Runtime/HeadMountedDisplay/Public/HeadMountedDisplayTypes.h \
   Runtime/Core/Public/Containers/Array.h \
+  Runtime/Core/Public/Delegates/Delegate.h \
   Runtime/HeadMountedDisplay/Public/IMotionController.h \
   Runtime/CoreUObject/Public/UObject/ObjectPtr.h \
-  Runtime/Core/Public/Features/IModularFeature.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/IMotionController.generated.h \
   Runtime/CoreUObject/Public/Templates/IsUEnumClass.h \
   Runtime/CoreUObject/Public/UObject/ReflectedTypeAccessors.h \
@@ -1980,9 +1983,134 @@ E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Deve
   Runtime/Core/Public/Math/IntRect.h Runtime/Core/Public/Math/Quat.h \
   Runtime/Core/Public/Math/UnrealMathSSE.h \
   Runtime/Core/Public/Math/Vector.h Runtime/Core/Public/Math/Vector2D.h \
-  Runtime/Core/Public/Misc/Guid.h \
+  Runtime/Core/Public/Misc/Guid.h Runtime/RHI/Public/RHI.h \
+  Runtime/RHI/Public/RHIResources.h \
   Runtime/TraceLog/Public/Trace/Detail/Channel.h \
   Runtime/Core/Public/UObject/NameTypes.h \
   Runtime/CoreUObject/Public/UObject/UObjectGlobals.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/HeadMountedDisplayTypes.generated.h \
-  E:/New_0311/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDFunctionLibrary.generated.h
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDTypes.h \
+  Runtime/Engine/Classes/Engine/Texture2D.h \
+  Runtime/CoreUObject/Public/UObject/SoftObjectPath.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDTypes.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDFunctionLibrary.generated.h \
+  Runtime/Engine/Public/StereoRendering.h \
+  Runtime/Core/Public/HAL/RunnableThread.h \
+  Runtime/Launch/Resources/Version.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_PluginWrapper.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
+  Runtime/ApplicationCore/Public/Android/AndroidApplication.h \
+  Runtime/ApplicationCore/Public/GenericPlatform/GenericApplication.h \
+  Runtime/ApplicationCore/Public/Android/AndroidWindow.h \
+  Runtime/ApplicationCore/Public/GenericPlatform/GenericWindow.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/native_window.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/data_space.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/inttypes.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/lib64/clang/14.0.6/include/inttypes.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/local/include/inttypes.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/inttypes.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/hardware_buffer.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/rect.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/native_window_jni.h \
+  Runtime/Core/Public/Android/AndroidJavaEnv.h \
+  Runtime/Core/Public/CoreTypes.h \
+  Runtime/Core/Public/Containers/UnrealString.h \
+  Runtime/Launch/Public/Android/AndroidJNI.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h \
+  Runtime/Core/Public/Android/AndroidPlatformMisc.h \
+  Runtime/HeadMountedDisplay/Public/IHeadMountedDisplay.h \
+  Runtime/HeadMountedDisplay/Public/LateUpdateManager.h \
+  Runtime/Engine/Public/SceneInterface.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_VulkanExtensions.h \
+  Runtime/HeadMountedDisplay/Public/IHeadMountedDisplayVulkanExtensions.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDSettings.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Splash.h \
+  Runtime/HeadMountedDisplay/Public/IXRLoadingScreen.h \
+  Runtime/RenderCore/Public/TickableObjectRenderThread.h \
+  Runtime/Core/Public/Stats/Stats.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_StereoLayer.h \
+  ../Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Public/ProceduralMeshComponent.h \
+  Runtime/Engine/Classes/Interfaces/Interface_CollisionDataProvider.h \
+  Runtime/Engine/Classes/Components/MeshComponent.h \
+  ../Plugins/Runtime/ProceduralMeshComponent/Intermediate/Build/Android/UnrealGame/Inc/ProceduralMeshComponent/UHT/ProceduralMeshComponent.generated.h \
+  Runtime/Engine/Public/IStereoLayers.h \
+  Runtime/Engine/Public/StereoLayerShapes.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDRenderBridge.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRSwapChain.h \
+  Runtime/Core/Public/HAL/Platform.h \
+  Runtime/Core/Public/Misc/AssertionMacros.h \
+  Runtime/Core/Public/Templates/SharedPointer.h \
+  Runtime/Core/Public/Templates/UnrealTemplate.h \
+  Runtime/RenderCore/Public/RendererInterface.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRRenderBridge.h \
+  Runtime/Engine/Classes/GameFramework/PlayerController.h \
+  Runtime/Engine/Classes/Components/StereoLayerComponent.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/StereoLayerComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_StereoLayer.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDRuntimeSettings.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDRuntimeSettings.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_GameFrame.h \
+  Runtime/Engine/Public/SceneViewExtension.h \
+  Runtime/Core/Public/Delegates/DelegateCombinations.h \
+  Runtime/Engine/Public/SceneViewExtensionContext.h \
+  Runtime/Engine/Public/UnrealClient.h \
+  Runtime/Engine/Public/ViewportClient.h \
+  Runtime/Engine/Classes/Engine/Engine.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SceneViewExtensionContext.generated.h \
+  Runtime/Engine/Public/SceneTexturesConfig.h \
+  Runtime/RenderCore/Public/RenderGraphDefinitions.h \
+  Runtime/RenderCore/Public/ShaderParameterMacros.h \
+  Runtime/RenderCore/Public/GBufferInfo.h \
+  Runtime/Core/Public/PixelFormat.h Runtime/RHI/Public/RHIDefinitions.h \
+  Runtime/RHI/Public/RHIShaderPlatform.h \
+  Runtime/Engine/Public/SceneUtils.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_EventManager.h \
+  Runtime/CoreUObject/Public/UObject/Object.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.generated.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRTrackingSystemBase.h \
+  Runtime/HeadMountedDisplay/Public/IXRTrackingSystem.h \
+  Runtime/HeadMountedDisplay/Public/IIdentifiableXRDevice.h \
+  Runtime/Core/Public/Templates/TypeHash.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/IIdentifiableXRDevice.generated.h \
+  Runtime/HeadMountedDisplay/Public/IXRInput.h \
+  Runtime/Engine/Classes/Engine/EngineBaseTypes.h \
+  Runtime/HeadMountedDisplay/Public/IXRCamera.h \
+  Runtime/AugmentedReality/Public/ARSupportInterface.h \
+  Runtime/AugmentedReality/Public/ARTypes.h \
+  Runtime/Engine/Classes/Engine/DataAsset.h \
+  Runtime/Core/Public/HAL/ThreadSafeBool.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARTypes.generated.h \
+  Runtime/AugmentedReality/Public/ARSessionConfig.h \
+  Runtime/AugmentedReality/Public/ARTrackable.h \
+  Runtime/AugmentedReality/Public/ARComponent.h \
+  Runtime/RenderCore/Public/PackedNormal.h \
+  Runtime/MRMesh/Public/MRMeshBufferDefines.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARComponent.generated.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARTrackable.generated.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARSessionConfig.generated.h \
+  Runtime/AugmentedReality/Public/ARTextures.h \
+  Runtime/Engine/Classes/Engine/TextureCube.h \
+  Runtime/Core/Public/Misc/FieldAccessor.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/TextureCube.generated.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARTextures.generated.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRRenderTargetManager.h \
+  Runtime/Engine/Public/StereoRenderTargetManager.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/HeadMountedDisplayBase.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/DefaultSpectatorScreenController.h \
+  Runtime/HeadMountedDisplay/Public/ISpectatorScreenController.h \
+  Runtime/Core/Public/UObject/WeakObjectPtrTemplates.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/StereoLayerManager.h \
+  Runtime/Core/Public/Containers/Map.h \
+  Runtime/Core/Public/HAL/CriticalSection.h \
+  Runtime/Core/Public/Misc/ScopeLock.h \
+  Runtime/Core/Public/Templates/Function.h \
+  Runtime/Core/Public/Templates/RefCounting.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_DelayDeleteLayer.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_FoveatedRendering.h \
+  Runtime/Core/Public/Misc/EngineVersionComparison.h \
+  Runtime/Renderer/Public/VariableRateShadingImageManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Log.h \
+  Runtime/Engine/Classes/Components/StaticMeshComponent.h \
+  Runtime/Engine/Public/TextureResource.h \
+  Runtime/Engine/Classes/Engine/StaticMesh.h

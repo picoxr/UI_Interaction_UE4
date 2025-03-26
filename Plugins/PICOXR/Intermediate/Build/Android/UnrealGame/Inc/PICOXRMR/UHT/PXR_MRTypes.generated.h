@@ -14,105 +14,105 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PICOXRMR_PXR_MRTypes_generated_h
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_143_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_143_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOSpatialHandle_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOSpatialHandle>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_173_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_173_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FFutureMessage_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FFutureMessage>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_209_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_209_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOSpatialUUID_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOSpatialUUID>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_299_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_299_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOAnchorPlaneBoundaryInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOAnchorPlaneBoundaryInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_311_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_311_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOAnchorPlanePolygonInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOAnchorPlanePolygonInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_323_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_323_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOAnchorVolumeInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOAnchorVolumeInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_374_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_374_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOAnchorLoadInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOAnchorLoadInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_401_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_401_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOSceneLoadInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOSceneLoadInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_418_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_418_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FAnchorLoadResult_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FAnchorLoadResult>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_618_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_618_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOExtent3Df_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOExtent3Df>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_640_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_640_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOExtent2Df_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOExtent2Df>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_658_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_658_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOBoundingBox3D_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOBoundingBox3D>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_676_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_676_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOBoundingBox2D_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOBoundingBox2D>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_694_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_694_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOSpatialMeshInfo_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOSpatialMeshInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_739_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h_739_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPICOMRSceneInfo_Statics; \
 	PICOXRMR_API static class UScriptStruct* StaticStruct();
 
@@ -120,7 +120,7 @@ template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOSpatialMeshInfo>
 template<> PICOXRMR_API UScriptStruct* StaticStruct<struct FPICOMRSceneInfo>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_New_0311_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h
+#define CURRENT_FILE_ID FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMR_Public_PXR_MRTypes_h
 
 
 #define FOREACH_ENUM_EPICORESULT(op) \

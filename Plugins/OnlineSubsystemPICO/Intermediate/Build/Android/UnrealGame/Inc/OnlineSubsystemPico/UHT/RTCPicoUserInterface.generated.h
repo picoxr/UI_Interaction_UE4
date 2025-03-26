@@ -16,7 +16,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define ONLINESUBSYSTEMPICO_RTCPicoUserInterface_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h
+#define CURRENT_FILE_ID FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h
 
 
 #define FOREACH_ENUM_ERTCPRIVILEGE(op) \

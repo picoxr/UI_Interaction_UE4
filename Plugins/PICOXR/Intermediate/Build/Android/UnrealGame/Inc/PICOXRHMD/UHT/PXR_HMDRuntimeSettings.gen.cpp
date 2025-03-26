@@ -1189,12 +1189,12 @@ void EmptyLinkFunctionForGeneratedCodePXR_HMDRuntimeSettings() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UPICOXRSettings);
 	UPICOXRSettings::~UPICOXRSettings() {}
-	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics
+	struct Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo[] = {
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo[] = {
 		{ EFoveationRenderingMode_StaticEnum, TEXT("EFoveationRenderingMode"), &Z_Registration_Info_UEnum_EFoveationRenderingMode, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4128707893U) },
 		{ EFoveationLevel_StaticEnum, TEXT("EFoveationLevel"), &Z_Registration_Info_UEnum_EFoveationLevel, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2608396520U) },
 		{ ERefreshRate_StaticEnum, TEXT("ERefreshRate"), &Z_Registration_Info_UEnum_ERefreshRate, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 338758220U) },
@@ -1203,11 +1203,11 @@ void EmptyLinkFunctionForGeneratedCodePXR_HMDRuntimeSettings() {}
 		{ EPICOXRSharpeningEnhanceModeType_StaticEnum, TEXT("EPICOXRSharpeningEnhanceModeType"), &Z_Registration_Info_UEnum_EPICOXRSharpeningEnhanceModeType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2890311121U) },
 		{ EPICOSpatialMeshLod_StaticEnum, TEXT("EPICOSpatialMeshLod"), &Z_Registration_Info_UEnum_EPICOSpatialMeshLod, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1769800351U) },
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo[] = {
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UPICOXRSettings, UPICOXRSettings::StaticClass, TEXT("UPICOXRSettings"), &Z_Registration_Info_UClass_UPICOXRSettings, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPICOXRSettings), 475345615U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_1726797483(TEXT("/Script/PICOXRHMD"),
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_1726797483(TEXT("/Script/PICOXRHMD"),
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::ClassInfo),
 		nullptr, 0,
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo));
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDRuntimeSettings_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

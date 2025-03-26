@@ -1,8 +1,8 @@
 -c
 -pipe
 -I"."
--I"D:/New_0311/Plugins/PICOXR/Source/PICOXRInput/Private"
--I"D:/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Private"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private"
 -I"Runtime/Core/Public"
 -I"Runtime/Core/Internal"
 -I"Runtime/TraceLog/Public"
@@ -112,9 +112,9 @@
 -I"Runtime/TypedElementRuntime/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT"
 -I"Runtime/HeadMountedDisplay/Public"
--I"D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT"
--I"D:/New_0311/Plugins/PICOXR/Source"
--I"D:/New_0311/Plugins/PICOXR/Source/PICOXRHMD/Public"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/EyeTracker/UHT"
 -I"Runtime/EyeTracker/Public"
 -I"Runtime/Launch/Public"
@@ -131,11 +131,11 @@
 -I"Runtime/AugmentedReality/Public"
 -I"../Intermediate/Build/Android/UnrealGame/Inc/MRMesh/UHT"
 -I"Runtime/MRMesh/Public"
--I"D:/New_0311/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
 -I"Runtime/Projects/Public"
 -I"Runtime/InputDevice/Public"
--I"D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT"
--I"D:/New_0311/Plugins/PICOXR/Source/PICOXRInput/Public"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT"
+-I"D:/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Public"
 -isystem"C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/sources/android/native_app_glue"
 -isystem"C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/sources/android/cpufeatures"
 -Wall
@@ -200,11 +200,11 @@
 -DPLATFORM_ANDROID_ARM64=1
 -march=armv8-a
 -fsigned-char
--include-pch "D:/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
--include "D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Definitions.PICOXRInput.h"
+-include-pch "D:/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
+-include "D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Definitions.PICOXRInput.h"
 -x c++
 -std=c++17
 -fpch-validate-input-files-content
-"D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp"
--MD -MF"D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp.d"
--o "D:/New_0311/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp.o"
+"D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp"
+-MD -MF"D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp.d"
+-o "D:/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp.o"

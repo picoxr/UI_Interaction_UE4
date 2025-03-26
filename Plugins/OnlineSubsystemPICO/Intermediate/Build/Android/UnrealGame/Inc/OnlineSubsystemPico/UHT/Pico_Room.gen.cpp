@@ -4189,17 +4189,17 @@ void FRoomGetNamedRooms_DelegateWrapper(const FScriptDelegate& RoomGetNamedRooms
 	UPico_RoomArray::UPico_RoomArray(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UPico_RoomArray);
 	UPico_RoomArray::~UPico_RoomArray() {}
-	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics
+	struct Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo[] = {
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo[] = {
 		{ Z_Construct_UClass_UOnlinePicoRoomFunction, UOnlinePicoRoomFunction::StaticClass, TEXT("UOnlinePicoRoomFunction"), &Z_Registration_Info_UClass_UOnlinePicoRoomFunction, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UOnlinePicoRoomFunction), 3795508237U) },
 		{ Z_Construct_UClass_UPico_Room, UPico_Room::StaticClass, TEXT("UPico_Room"), &Z_Registration_Info_UClass_UPico_Room, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_Room), 1607150613U) },
 		{ Z_Construct_UClass_UPico_RoomArray, UPico_RoomArray::StaticClass, TEXT("UPico_RoomArray"), &Z_Registration_Info_UClass_UPico_RoomArray, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPico_RoomArray), 2035897758U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_3384109204(TEXT("/Script/OnlineSubsystemPico"),
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_3384109204(TEXT("/Script/OnlineSubsystemPico"),
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_Pico_Room_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

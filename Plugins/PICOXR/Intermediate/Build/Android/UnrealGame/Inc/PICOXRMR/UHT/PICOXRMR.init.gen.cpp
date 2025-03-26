@@ -55,7 +55,7 @@ void EmptyLinkFunctionForGeneratedCodePICOXRMR_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xCB72C483,
+				0x61A17725,
 				0x752A915D,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -63,5 +63,5 @@ void EmptyLinkFunctionForGeneratedCodePICOXRMR_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_PICOXRMR.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PICOXRMR(Z_Construct_UPackage__Script_PICOXRMR, TEXT("/Script/PICOXRMR"), Z_Registration_Info_UPackage__Script_PICOXRMR, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xCB72C483, 0x752A915D));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_PICOXRMR(Z_Construct_UPackage__Script_PICOXRMR, TEXT("/Script/PICOXRMR"), Z_Registration_Info_UPackage__Script_PICOXRMR, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x61A17725, 0x752A915D));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -1,8 +1,8 @@
 -c
 -pipe
 -I"."
--I"D:/New_0311/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include"
--I"D:/New_0311/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private"
 -I"Runtime/Core/Public"
 -I"Runtime/Core/Internal"
 -I"Runtime/TraceLog/Public"
@@ -113,10 +113,10 @@
 -I"Runtime/Projects/Public"
 -I"../Plugins/Runtime/ProceduralMeshComponent/Intermediate/Build/Android/UnrealGame/Inc/ProceduralMeshComponent/UHT"
 -I"../Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Public"
--I"D:/New_0311/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
--I"D:/New_0311/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT"
--I"D:/New_0311/Plugins/PicoSpatialAudio/Source"
--I"D:/New_0311/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source"
+-I"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public"
 -I"Runtime/SoundFieldRendering/Public"
 -I"../Plugins/Runtime/AndroidPermission/Intermediate/Build/Android/UnrealGame/Inc/AndroidPermission/UHT"
 -I"../Plugins/Runtime/AndroidPermission/Source/AndroidPermission/Classes"
@@ -188,11 +188,11 @@
 -DPLATFORM_ANDROID_ARM64=1
 -march=armv8-a
 -fsigned-char
--include-pch "D:/New_0311/Intermediate/Build/Android/a/New_0311/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
--include "D:/New_0311/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Definitions.PicoSpatialAudio.h"
+-include-pch "D:/UI_Interaction_UE4/Intermediate/Build/Android/a/PICO_UEInteraction/Development/Engine/SharedPCH.Engine.Cpp17.h.gch"
+-include "D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Definitions.PicoSpatialAudio.h"
 -x c++
 -std=c++17
 -fpch-validate-input-files-content
-"D:/New_0311/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp"
--MD -MF"D:/New_0311/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp.d"
--o "D:/New_0311/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp.o"
+"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp"
+-MD -MF"D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp.d"
+-o "D:/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp.o"

@@ -14,28 +14,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PICOXRHMD_PXR_HMDTypes_generated_h
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_16_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_16_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRSplashDesc_Statics; \
 	PICOXRHMD_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRHMD_API UScriptStruct* StaticStruct<struct FPXRSplashDesc>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_93_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_93_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREventDataMotionTrackerKey_Statics; \
 	PICOXRHMD_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRHMD_API UScriptStruct* StaticStruct<struct FPXREventDataMotionTrackerKey>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_119_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_119_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREventDataExtDevConnectEvent_Statics; \
 	PICOXRHMD_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRHMD_API UScriptStruct* StaticStruct<struct FPXREventDataExtDevConnectEvent>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_136_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h_136_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREventDataExtDevBatteryEvent_Statics; \
 	PICOXRHMD_API static class UScriptStruct* StaticStruct();
 
@@ -43,7 +43,7 @@ template<> PICOXRHMD_API UScriptStruct* StaticStruct<struct FPXREventDataExtDevC
 template<> PICOXRHMD_API UScriptStruct* StaticStruct<struct FPXREventDataExtDevBatteryEvent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_New_0311_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h
+#define CURRENT_FILE_ID FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRHMD_Public_PXR_HMDTypes_h
 
 
 #define FOREACH_ENUM_EPICOXRCOORDINATETYPE(op) \

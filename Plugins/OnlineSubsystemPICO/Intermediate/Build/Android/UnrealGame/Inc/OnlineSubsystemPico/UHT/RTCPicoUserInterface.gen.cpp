@@ -1103,11 +1103,11 @@ void EmptyLinkFunctionForGeneratedCodeRTCPicoUserInterface() {}
 		}
 		return Z_Registration_Info_UEnum_ERtcStreamRemoveReason.InnerSingleton;
 	}
-	struct Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics
+	struct Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
 	};
-	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo[] = {
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo[] = {
 		{ ERtcPrivilege_StaticEnum, TEXT("ERtcPrivilege"), &Z_Registration_Info_UEnum_ERtcPrivilege, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1602453822U) },
 		{ ERtcEngineInitResult_StaticEnum, TEXT("ERtcEngineInitResult"), &Z_Registration_Info_UEnum_ERtcEngineInitResult, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3908106620U) },
 		{ ERtcRoomProfileType_StaticEnum, TEXT("ERtcRoomProfileType"), &Z_Registration_Info_UEnum_ERtcRoomProfileType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 810122025U) },
@@ -1126,8 +1126,8 @@ void EmptyLinkFunctionForGeneratedCodeRTCPicoUserInterface() {}
 		{ ERtcMediaStreamType_StaticEnum, TEXT("ERtcMediaStreamType"), &Z_Registration_Info_UEnum_ERtcMediaStreamType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1326565376U) },
 		{ ERtcStreamRemoveReason_StaticEnum, TEXT("ERtcStreamRemoveReason"), &Z_Registration_Info_UEnum_ERtcStreamRemoveReason, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4256790858U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_1188710943(TEXT("/Script/OnlineSubsystemPico"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_1188710943(TEXT("/Script/OnlineSubsystemPico"),
 		nullptr, 0,
 		nullptr, 0,
-		Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_New_0311_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo));
+		Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_UI_Interaction_UE4_Plugins_OnlineSubsystemPICO_Source_OnlineSubsystemPico_Public_RTCPicoUserInterface_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

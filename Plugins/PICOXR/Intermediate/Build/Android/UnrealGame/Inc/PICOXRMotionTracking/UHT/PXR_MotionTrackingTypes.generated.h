@@ -14,196 +14,196 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define PICOXRMOTIONTRACKING_PXR_MotionTrackingTypes_generated_h
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_149_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_149_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRFaceTrackingState_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRFaceTrackingState>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_163_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_163_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRFaceTrackingStartInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRFaceTrackingStartInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_174_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_174_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRFaceTrackingStopInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRFaceTrackingStopInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_185_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_185_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRFaceTrackingDataGetInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRFaceTrackingDataGetInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_196_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_196_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRFaceTrackingData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRFaceTrackingData>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_235_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_235_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyeTrackingState_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyeTrackingState>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_249_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_249_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyeTrackingStartInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyeTrackingStartInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_263_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_263_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyeTrackingStopInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyeTrackingStopInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_271_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_271_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyeTrackingDataGetInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyeTrackingDataGetInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_290_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_290_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRPerEyeData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRPerEyeData>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_316_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_316_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyeTrackingData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyeTrackingData>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_327_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_327_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXREyePupilInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXREyePupilInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_370_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_370_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingState_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingState>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_399_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_399_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingBoneLength_Statics; \
 	PICOXRMOTIONTRACKING_API static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingBoneLength>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_443_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_443_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingStartInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingStartInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_461_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_461_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingStopInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingStopInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_472_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_472_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingDataGetInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingDataGetInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_489_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_489_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRBodyTrackingData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRBodyTrackingData>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_505_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_505_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRMotionConnectState_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRMotionConnectState>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_534_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_534_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRMotionTrackerLocation_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRMotionTrackerLocation>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_557_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_557_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRMotionTrackerLocations_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRMotionTrackerLocations>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_574_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_574_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerInfo_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerInfo>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_599_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_599_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerConnectState_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerConnectState>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_614_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_614_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerMotorVibrate_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerMotorVibrate>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_635_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_635_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerPassData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerPassData>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_649_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_649_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerKey_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerKey>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_682_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_682_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerTouch_Statics; \
 	static class UScriptStruct* StaticStruct();
 
 
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerTouch>();
 
-#define FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_708_GENERATED_BODY \
+#define FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h_708_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FPXRExtDevTrackerKeyData_Statics; \
 	static class UScriptStruct* StaticStruct();
 
@@ -211,7 +211,7 @@ template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDe
 template<> PICOXRMOTIONTRACKING_API UScriptStruct* StaticStruct<struct FPXRExtDevTrackerKeyData>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_New_0311_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h
+#define CURRENT_FILE_ID FID_UI_Interaction_UE4_Plugins_PICOXR_Source_PICOXRMotionTracking_Public_PXR_MotionTrackingTypes_h
 
 
 #define FOREACH_ENUM_EPXRTRACKINGSTATECODE(op) \
