@@ -1927,18 +1927,11 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/istream \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRMR/Module.PICOXRMR.2.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRMR/Definitions.PICOXRMR.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_MRAsyncActions.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_MRAsyncActions.h \
-  Runtime/Core/Public/CoreMinimal.h \
-  Runtime/Engine/Classes/Kismet/BlueprintAsyncActionBase.h \
-  Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
-  Runtime/CoreUObject/Public/UObject/Object.h \
-  Runtime/CoreUObject/Public/UObject/ScriptMacros.h \
-  Runtime/CoreUObject/Public/UObject/WeakObjectPtr.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/BlueprintAsyncActionBase.generated.h \
-  Runtime/Core/Public/Delegates/DelegateCombinations.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_AnchorComponent.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_MRTypes.gen.cpp \
+  Runtime/CoreUObject/Public/UObject/GeneratedCppIncludes.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_MRTypes.h \
+  Runtime/Core/Public/CoreMinimal.h \
+  Runtime/Core/Public/Delegates/DelegateCombinations.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_PluginWrapper.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
@@ -1958,6 +1951,7 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Core/Public/Containers/Array.h \
   Runtime/Core/Public/Delegates/Delegate.h \
   Runtime/HeadMountedDisplay/Public/IMotionController.h \
+  Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
   Runtime/CoreUObject/Public/UObject/ObjectPtr.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/IMotionController.generated.h \
   Runtime/CoreUObject/Public/Templates/IsUEnumClass.h \
@@ -1975,6 +1969,7 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Core/Public/UObject/NameTypes.h \
   Runtime/CoreUObject/Public/UObject/UObjectGlobals.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/HeadMountedDisplayTypes.generated.h \
+  Runtime/CoreUObject/Public/UObject/ScriptMacros.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDTypes.h \
   Runtime/Engine/Classes/Engine/Texture2D.h \
   Runtime/CoreUObject/Public/UObject/SoftObjectPath.h \
@@ -2006,10 +2001,8 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDRuntimeSettings.generated.h \
   Runtime/Core/Public/Misc/EnumRange.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_MRTypes.generated.h \
-  Runtime/Engine/Classes/Components/ActorComponent.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_AnchorComponent.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_MRAsyncActions.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_ProviderManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshActor.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_SpatialMeshActor.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMD.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDModule.h \
   Runtime/HeadMountedDisplay/Public/IHeadMountedDisplay.h \
@@ -2058,6 +2051,7 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/RHI/Public/RHIShaderPlatform.h \
   Runtime/Engine/Public/SceneUtils.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_EventManager.h \
+  Runtime/CoreUObject/Public/UObject/Object.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.generated.h \
   ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRTrackingSystemBase.h \
   Runtime/HeadMountedDisplay/Public/IXRTrackingSystem.h \
@@ -2103,23 +2097,34 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_FoveatedRendering.h \
   Runtime/Core/Public/Misc/EngineVersionComparison.h \
   Runtime/Renderer/Public/VariableRateShadingImageManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_SpatialMeshComponent.h \
+  Runtime/MRMesh/Public/MRMeshComponent.h \
+  Runtime/Engine/Classes/Components/PrimitiveComponent.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/MRMesh/UHT/MRMeshComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshActor.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshComponent.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_AnchorComponent.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_AnchorComponent.h \
+  Runtime/Engine/Classes/Components/ActorComponent.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_AnchorComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_ProviderManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_MRAsyncActions.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_MRAsyncActions.h \
+  Runtime/Engine/Classes/Kismet/BlueprintAsyncActionBase.h \
+  Runtime/CoreUObject/Public/UObject/WeakObjectPtr.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/BlueprintAsyncActionBase.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_MRAsyncActions.generated.h \
   Runtime/Core/Public/Async/Async.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_MRFunctionLibrary.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_MRFunctionLibrary.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_MRFunctionLibrary.generated.h \
-  Runtime/MRMesh/Public/MRMeshComponent.h \
-  Runtime/Engine/Classes/Components/PrimitiveComponent.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/MRMesh/UHT/MRMeshComponent.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_MRModule.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_MRModule.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/IPXR_MRModule.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_ProviderManager.cpp \
   Runtime/Core/Public/Algo/Transform.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_SpatialMeshActor.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_SpatialMeshActor.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Public/PXR_SpatialMeshComponent.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshComponent.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMR/UHT/PXR_SpatialMeshActor.generated.h \
   Runtime/Engine/Classes/Materials/MaterialInstanceDynamic.h \
   Runtime/Engine/Classes/Materials/Material.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMR/Private/PXR_SpatialMeshComponent.cpp

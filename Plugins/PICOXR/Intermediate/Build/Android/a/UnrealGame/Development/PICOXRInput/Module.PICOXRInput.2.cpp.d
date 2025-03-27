@@ -1927,38 +1927,157 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/istream \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Module.PICOXRInput.2.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRInput/Definitions.PICOXRInput.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_Input.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_Input.h \
-  Runtime/ApplicationCore/Public/GenericPlatform/IInputInterface.h \
-  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRMotionControllerBase.h \
-  Runtime/Core/Public/Containers/Array.h \
-  Runtime/HeadMountedDisplay/Public/IMotionController.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_PICOXRPawn.gen.cpp \
+  Runtime/CoreUObject/Public/UObject/GeneratedCppIncludes.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_PICOXRPawn.h \
   Runtime/Core/Public/CoreMinimal.h \
+  Runtime/Engine/Classes/GameFramework/Pawn.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_PICOXRPawn.generated.h \
   Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
-  Runtime/CoreUObject/Public/UObject/ObjectPtr.h \
-  Runtime/Core/Public/Features/IModularFeature.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/IMotionController.generated.h \
-  Runtime/CoreUObject/Public/Templates/IsUEnumClass.h \
-  Runtime/CoreUObject/Public/UObject/ReflectedTypeAccessors.h \
-  Runtime/Core/Public/Math/Rotator.h \
-  Runtime/Core/Public/Math/UnrealMathSSE.h \
-  Runtime/Core/Public/Misc/Timespan.h \
+  Runtime/CoreUObject/Public/UObject/ScriptMacros.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_HandComponent.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_HandComponent.h \
+  Runtime/Engine/Classes/Components/PoseableMeshComponent.h \
+  Runtime/Engine/Public/BoneContainer.h \
+  Runtime/Engine/Classes/Components/SkinnedMeshComponent.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/PoseableMeshComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Public/PXR_InputFunctionLibrary.h \
+  Runtime/SignalProcessing/Public/SampleBuffer.h \
+  Runtime/SignalProcessing/Public/DSP/BufferVectorOperations.h \
+  Runtime/Engine/Public/AudioDevice.h \
+  Runtime/Engine/Public/AudioDeviceHandle.h \
+  Runtime/Engine/Public/AudioDynamicParameter.h \
+  Runtime/Engine/Public/AudioVirtualLoop.h \
+  Runtime/Engine/Public/ActiveSound.h \
+  Runtime/Engine/Public/WorldCollision.h \
+  Runtime/Engine/Classes/Sound/SoundAttenuation.h \
+  Runtime/Core/Public/HAL/ThreadSafeBool.h Runtime/Engine/Public/Audio.h \
+  Runtime/Engine/Public/Audio/AudioDebug.h \
+  Runtime/AudioMixerCore/Public/AudioDefines.h \
+  Runtime/Engine/Classes/Components/AudioComponent.h \
+  Runtime/Engine/Public/Audio/SoundParameterControllerInterface.h \
+  Runtime/AudioExtensions/Public/AudioParameterControllerInterface.h \
+  Runtime/CoreUObject/Public/UObject/Object.h \
+  Runtime/Engine/Classes/Kismet/BlueprintFunctionLibrary.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundParameterControllerInterface.generated.h \
+  Runtime/Engine/Classes/Components/SceneComponent.h \
+  Runtime/Engine/Classes/Engine/EngineTypes.h \
+  Runtime/AudioExtensions/Public/IAudioParameterTransmitter.h \
+  Runtime/AudioExtensions/Public/AudioParameter.h \
+  Runtime/Core/Public/Containers/Array.h Runtime/Core/Public/CoreTypes.h \
+  Runtime/AudioExtensions/Public/IAudioProxyInitializer.h \
+  Runtime/Core/Public/Templates/UniquePtr.h \
   Runtime/Core/Public/UObject/NameTypes.h \
-  Runtime/InputDevice/Public/IInputDevice.h \
-  Runtime/ApplicationCore/Public/GenericPlatform/GenericApplicationMessageHandler.h \
-  Runtime/InputDevice/Public/IHapticDevice.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/IPXR_HandTracker.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_PluginWrapper.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDRuntimeSettings.h \
+  Runtime/Core/Public/Math/RandomStream.h \
+  Runtime/AudioMixer/Public/Quartz/AudioMixerQuantizedCommands.h \
+  Runtime/AudioMixer/Public/Quartz/AudioMixerClock.h \
+  Runtime/Engine/Classes/Sound/QuartzQuantizationUtilities.h \
+  Runtime/AudioMixer/Public/Quartz/QuartzMetronome.h \
+  Runtime/Core/Public/HAL/Platform.h \
+  Runtime/Core/Public/Templates/SharedPointer.h \
+  Runtime/Engine/Classes/Sound/QuartzSubscription.h \
+  D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Sound/QuartzSubscriptionToken.h \
+  Runtime/Core/Public/Containers/ConsumeAllMpmcQueue.h \
+  Runtime/Core/Public/HAL/UnrealMemory.h \
+  Runtime/Core/Public/Templates/TypeCompatibleBytes.h \
+  Runtime/Core/Public/Templates/UnrealTemplate.h \
+  Runtime/Engine/Classes/Sound/SoundModulationDestination.h \
+  Runtime/Engine/Classes/Sound/SoundSubmixSend.h \
+  Runtime/Engine/Classes/Sound/SoundSourceBusSend.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioComponent.generated.h \
+  Runtime/SignalProcessing/Public/DSP/VolumeFader.h \
+  Runtime/AudioExtensions/Public/IAudioExtensionPlugin.h \
+  Runtime/Engine/Classes/Sound/AudioVolume.h \
+  Runtime/Engine/Classes/Sound/SoundConcurrency.h \
+  Runtime/Engine/Classes/Sound/SoundSourceBus.h \
+  Runtime/Engine/Classes/Sound/SoundWaveProcedural.h \
+  Runtime/Core/Public/HAL/ThreadSafeCounter.h \
+  Runtime/Core/Public/Containers/Queue.h \
+  Runtime/Engine/Classes/Sound/SoundWave.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundWaveProcedural.generated.h \
+  Runtime/Engine/Classes/Sound/AudioBus.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioBus.generated.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundSourceBus.generated.h \
+  Runtime/Core/Public/HAL/LowLevelMemStats.h \
+  Runtime/Core/Public/Math/Transform.h Runtime/Core/Public/Math/Vector.h \
+  Runtime/Engine/Classes/Sound/SoundClass.h \
+  Runtime/AudioExtensions/Public/IAudioModulation.h \
+  Runtime/Engine/Classes/Sound/AudioOutputTarget.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundClass.generated.h \
+  Runtime/Engine/Classes/Sound/SoundMix.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundMix.generated.h \
+  Runtime/Engine/Public/Subsystems/AudioEngineSubsystem.h \
+  Runtime/Engine/Public/AudioDeviceManager.h \
+  Runtime/Engine/Public/AudioThread.h Runtime/Core/Public/Stats/Stats.h \
+  Runtime/Core/Public/Tasks/Pipe.h \
+  Runtime/Core/Public/Async/Fundamental/Scheduler.h \
+  Runtime/Core/Public/Async/Fundamental/Task.h \
+  Runtime/Core/Public/Misc/AssertionMacros.h \
+  Runtime/Core/Public/Tasks/Task.h \
+  Runtime/Core/Public/Tasks/TaskPrivate.h \
+  Runtime/Core/Public/Containers/StaticArray.h \
+  Runtime/Core/Public/HAL/Event.h \
+  Runtime/Core/Public/HAL/IConsoleManager.h \
+  Runtime/Core/Public/Templates/Invoke.h \
+  Runtime/CoreUObject/Public/UObject/WeakObjectPtr.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioEngineSubsystem.generated.h \
+  Runtime/CoreUObject/Public/UObject/StrongObjectPtr.h \
+  Runtime/Engine/Classes/Sound/SampleBufferIO.h \
+  Runtime/Core/Public/Misc/Paths.h \
+  Runtime/Engine/Classes/Sound/SoundEffectBase.h \
+  Runtime/Core/Public/Async/AsyncWork.h \
+  Runtime/Core/Public/Templates/UnrealTypeTraits.h \
+  Runtime/CoreUObject/Public/UObject/GCObject.h \
+  Runtime/Engine/Public/Tickable.h \
+  Runtime/Engine/Classes/Engine/DataTable.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDTypes.h \
   Runtime/RHI/Public/RHI.h Runtime/RHI/Public/RHIResources.h \
   Runtime/Engine/Classes/Engine/Texture2D.h \
   Runtime/CoreUObject/Public/UObject/SoftObjectPath.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDTypes.generated.h \
-  Runtime/CoreUObject/Public/UObject/ScriptMacros.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_InputFunctionLibrary.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_HandComponent.generated.h \
+  Runtime/Engine/Classes/GameFramework/PlayerController.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDRuntimeSettings.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDRuntimeSettings.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_EventManager.h \
+  Runtime/Core/Public/Delegates/Delegate.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_InputState.h \
+  Runtime/InputDevice/Public/IInputDevice.h \
+  Runtime/ApplicationCore/Public/GenericPlatform/GenericApplicationMessageHandler.h \
+  Runtime/Engine/Classes/Engine/SkeletalMesh.h \
+  Runtime/Engine/Classes/Components/InputComponent.h \
+  Runtime/Engine/Classes/Materials/MaterialInterface.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDFunctionLibrary.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/array \
+  Runtime/HeadMountedDisplay/Public/HeadMountedDisplayTypes.h \
+  Runtime/HeadMountedDisplay/Public/IMotionController.h \
+  Runtime/CoreUObject/Public/UObject/ObjectPtr.h \
+  Runtime/Core/Public/Features/IModularFeature.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/IMotionController.generated.h \
+  Runtime/CoreUObject/Public/Templates/IsUEnumClass.h \
+  Runtime/CoreUObject/Public/UObject/ReflectedTypeAccessors.h \
+  Runtime/InputCore/Classes/InputCoreTypes.h \
+  Runtime/Core/Public/Logging/LogCategory.h \
+  Runtime/Core/Public/Logging/LogMacros.h \
+  Runtime/Core/Public/Math/IntRect.h Runtime/Core/Public/Math/Quat.h \
+  Runtime/Core/Public/Math/UnrealMathSSE.h \
+  Runtime/Core/Public/Math/Vector2D.h Runtime/Core/Public/Misc/Guid.h \
+  Runtime/TraceLog/Public/Trace/Detail/Channel.h \
+  Runtime/CoreUObject/Public/UObject/UObjectGlobals.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/HeadMountedDisplayTypes.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDFunctionLibrary.generated.h \
+  Runtime/Engine/Classes/Camera/PlayerCameraManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_Input.h \
+  Runtime/ApplicationCore/Public/GenericPlatform/IInputInterface.h \
+  ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRMotionControllerBase.h \
+  Runtime/Core/Public/Math/Rotator.h Runtime/Core/Public/Misc/Timespan.h \
+  Runtime/InputDevice/Public/IHapticDevice.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/IPXR_HandTracker.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_PluginWrapper.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMD.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDModule.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDPrivate.h \
@@ -1969,21 +2088,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Core/Public/Modules/ModuleInterface.h \
   Runtime/Core/Public/Misc/ConfigCacheIni.h \
   Runtime/Core/Public/Features/IModularFeatures.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Public/PXR_HMDFunctionLibrary.h \
-  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/array \
-  Runtime/HeadMountedDisplay/Public/HeadMountedDisplayTypes.h \
-  Runtime/Core/Public/Delegates/Delegate.h \
-  Runtime/InputCore/Classes/InputCoreTypes.h \
-  Runtime/Engine/Classes/Kismet/BlueprintFunctionLibrary.h \
-  Runtime/Core/Public/Logging/LogCategory.h \
-  Runtime/Core/Public/Logging/LogMacros.h \
-  Runtime/Core/Public/Math/IntRect.h Runtime/Core/Public/Math/Quat.h \
-  Runtime/Core/Public/Math/Vector.h Runtime/Core/Public/Math/Vector2D.h \
-  Runtime/Core/Public/Misc/Guid.h \
-  Runtime/TraceLog/Public/Trace/Detail/Channel.h \
-  Runtime/CoreUObject/Public/UObject/UObjectGlobals.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/HeadMountedDisplayTypes.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_HMDFunctionLibrary.generated.h \
   Runtime/Engine/Public/StereoRendering.h \
   Runtime/Core/Public/HAL/RunnableThread.h \
   Runtime/Launch/Resources/Version.h \
@@ -2001,7 +2105,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/rect.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/native_window_jni.h \
   Runtime/Core/Public/Android/AndroidJavaEnv.h \
-  Runtime/Core/Public/CoreTypes.h \
   Runtime/Core/Public/Containers/UnrealString.h \
   Runtime/Launch/Public/Android/AndroidJNI.h \
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h \
@@ -2015,7 +2118,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Splash.h \
   Runtime/HeadMountedDisplay/Public/IXRLoadingScreen.h \
   Runtime/RenderCore/Public/TickableObjectRenderThread.h \
-  Runtime/Core/Public/Stats/Stats.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_StereoLayer.h \
   ../Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Public/ProceduralMeshComponent.h \
   Runtime/Engine/Classes/Interfaces/Interface_CollisionDataProvider.h \
@@ -2025,15 +2127,9 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Engine/Public/StereoLayerShapes.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDRenderBridge.h \
   ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRSwapChain.h \
-  Runtime/Core/Public/HAL/Platform.h \
-  Runtime/Core/Public/Misc/AssertionMacros.h \
-  Runtime/Core/Public/Templates/SharedPointer.h \
-  Runtime/Core/Public/Templates/UnrealTemplate.h \
   Runtime/RenderCore/Public/RendererInterface.h \
   ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRRenderBridge.h \
-  Runtime/Engine/Classes/GameFramework/PlayerController.h \
   Runtime/Engine/Classes/Components/StereoLayerComponent.h \
-  Runtime/Engine/Classes/Components/SceneComponent.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/StereoLayerComponent.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_StereoLayer.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_GameFrame.h \
@@ -2052,9 +2148,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Core/Public/PixelFormat.h Runtime/RHI/Public/RHIDefinitions.h \
   Runtime/RHI/Public/RHIShaderPlatform.h \
   Runtime/Engine/Public/SceneUtils.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_EventManager.h \
-  Runtime/CoreUObject/Public/UObject/Object.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_EventManager.generated.h \
   ../Plugins/Runtime/XRBase/Source/XRBase/Public/XRTrackingSystemBase.h \
   Runtime/HeadMountedDisplay/Public/IXRTrackingSystem.h \
   Runtime/HeadMountedDisplay/Public/IIdentifiableXRDevice.h \
@@ -2066,7 +2159,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/AugmentedReality/Public/ARSupportInterface.h \
   Runtime/AugmentedReality/Public/ARTypes.h \
   Runtime/Engine/Classes/Engine/DataAsset.h \
-  Runtime/Core/Public/HAL/ThreadSafeBool.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/AugmentedReality/UHT/ARTypes.generated.h \
   Runtime/AugmentedReality/Public/ARSessionConfig.h \
   Runtime/AugmentedReality/Public/ARTrackable.h \
@@ -2099,96 +2191,11 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_FoveatedRendering.h \
   Runtime/Core/Public/Misc/EngineVersionComparison.h \
   Runtime/Renderer/Public/VariableRateShadingImageManager.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_InputState.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Log.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_Input.cpp \
   Runtime/HeadMountedDisplay/Public/MotionControllerComponent.h \
   Runtime/Engine/Classes/Components/PrimitiveComponent.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/HeadMountedDisplay/UHT/MotionControllerComponent.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_HandComponent.h \
-  Runtime/Engine/Classes/Components/PoseableMeshComponent.h \
-  Runtime/Engine/Public/BoneContainer.h \
-  Runtime/Engine/Classes/Components/SkinnedMeshComponent.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/PoseableMeshComponent.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Public/PXR_InputFunctionLibrary.h \
-  Runtime/SignalProcessing/Public/SampleBuffer.h \
-  Runtime/SignalProcessing/Public/DSP/BufferVectorOperations.h \
-  Runtime/Engine/Public/AudioDevice.h \
-  Runtime/Engine/Public/AudioDeviceHandle.h \
-  Runtime/Engine/Public/AudioDynamicParameter.h \
-  Runtime/Engine/Public/AudioVirtualLoop.h \
-  Runtime/Engine/Public/ActiveSound.h \
-  Runtime/Engine/Public/WorldCollision.h \
-  Runtime/Engine/Classes/Sound/SoundAttenuation.h \
-  Runtime/Engine/Public/Audio.h Runtime/Engine/Public/Audio/AudioDebug.h \
-  Runtime/AudioMixerCore/Public/AudioDefines.h \
-  Runtime/Engine/Classes/Components/AudioComponent.h \
-  Runtime/Engine/Public/Audio/SoundParameterControllerInterface.h \
-  Runtime/AudioExtensions/Public/AudioParameterControllerInterface.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundParameterControllerInterface.generated.h \
-  Runtime/Engine/Classes/Engine/EngineTypes.h \
-  Runtime/AudioExtensions/Public/IAudioParameterTransmitter.h \
-  Runtime/AudioExtensions/Public/AudioParameter.h \
-  Runtime/AudioExtensions/Public/IAudioProxyInitializer.h \
-  Runtime/Core/Public/Templates/UniquePtr.h \
-  Runtime/Core/Public/Math/RandomStream.h \
-  Runtime/AudioMixer/Public/Quartz/AudioMixerQuantizedCommands.h \
-  Runtime/AudioMixer/Public/Quartz/AudioMixerClock.h \
-  Runtime/Engine/Classes/Sound/QuartzQuantizationUtilities.h \
-  Runtime/AudioMixer/Public/Quartz/QuartzMetronome.h \
-  Runtime/Engine/Classes/Sound/QuartzSubscription.h \
-  D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Sound/QuartzSubscriptionToken.h \
-  Runtime/Core/Public/Containers/ConsumeAllMpmcQueue.h \
-  Runtime/Core/Public/HAL/UnrealMemory.h \
-  Runtime/Core/Public/Templates/TypeCompatibleBytes.h \
-  Runtime/Engine/Classes/Sound/SoundModulationDestination.h \
-  Runtime/Engine/Classes/Sound/SoundSubmixSend.h \
-  Runtime/Engine/Classes/Sound/SoundSourceBusSend.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioComponent.generated.h \
-  Runtime/SignalProcessing/Public/DSP/VolumeFader.h \
-  Runtime/AudioExtensions/Public/IAudioExtensionPlugin.h \
-  Runtime/Engine/Classes/Sound/AudioVolume.h \
-  Runtime/Engine/Classes/Sound/SoundConcurrency.h \
-  Runtime/Engine/Classes/Sound/SoundSourceBus.h \
-  Runtime/Engine/Classes/Sound/SoundWaveProcedural.h \
-  Runtime/Core/Public/HAL/ThreadSafeCounter.h \
-  Runtime/Core/Public/Containers/Queue.h \
-  Runtime/Engine/Classes/Sound/SoundWave.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundWaveProcedural.generated.h \
-  Runtime/Engine/Classes/Sound/AudioBus.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioBus.generated.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundSourceBus.generated.h \
-  Runtime/Core/Public/HAL/LowLevelMemStats.h \
-  Runtime/Core/Public/Math/Transform.h \
-  Runtime/Engine/Classes/Sound/SoundClass.h \
-  Runtime/AudioExtensions/Public/IAudioModulation.h \
-  Runtime/Engine/Classes/Sound/AudioOutputTarget.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundClass.generated.h \
-  Runtime/Engine/Classes/Sound/SoundMix.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundMix.generated.h \
-  Runtime/Engine/Public/Subsystems/AudioEngineSubsystem.h \
-  Runtime/Engine/Public/AudioDeviceManager.h \
-  Runtime/Engine/Public/AudioThread.h Runtime/Core/Public/Tasks/Pipe.h \
-  Runtime/Core/Public/Async/Fundamental/Scheduler.h \
-  Runtime/Core/Public/Async/Fundamental/Task.h \
-  Runtime/Core/Public/Tasks/Task.h \
-  Runtime/Core/Public/Tasks/TaskPrivate.h \
-  Runtime/Core/Public/Containers/StaticArray.h \
-  Runtime/Core/Public/HAL/Event.h \
-  Runtime/Core/Public/HAL/IConsoleManager.h \
-  Runtime/Core/Public/Templates/Invoke.h \
-  Runtime/CoreUObject/Public/UObject/WeakObjectPtr.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioEngineSubsystem.generated.h \
-  Runtime/CoreUObject/Public/UObject/StrongObjectPtr.h \
-  Runtime/Engine/Classes/Sound/SampleBufferIO.h \
-  Runtime/Core/Public/Misc/Paths.h \
-  Runtime/Engine/Classes/Sound/SoundEffectBase.h \
-  Runtime/Core/Public/Async/AsyncWork.h \
-  Runtime/Core/Public/Templates/UnrealTypeTraits.h \
-  Runtime/CoreUObject/Public/UObject/GCObject.h \
-  Runtime/Engine/Public/Tickable.h \
-  Runtime/Engine/Classes/Engine/DataTable.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_InputFunctionLibrary.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_HandComponent.generated.h \
   Runtime/Engine/Classes/Kismet/GameplayStatics.h \
   Runtime/CoreUObject/Public/Templates/SubclassOf.h \
   Runtime/CoreUObject/Public/UObject/Interface.h \
@@ -2217,7 +2224,6 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/GameplayStatics.generated.h \
   Runtime/Core/Public/Misc/CoreDelegates.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Utils.h \
-  Runtime/Engine/Classes/Materials/MaterialInterface.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRHMD/UHT/PXR_Utils.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_InputFunctionLibrary.cpp \
   Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h \
@@ -2240,7 +2246,4 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Projects/Public/VerseScope.h \
   Runtime/Core/Public/Containers/VersePathFwd.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_InputState.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_PICOXRPawn.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_PICOXRPawn.h \
-  Runtime/Engine/Classes/GameFramework/Pawn.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_PICOXRPawn.generated.h
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRInput/Private/PXR_PICOXRPawn.cpp

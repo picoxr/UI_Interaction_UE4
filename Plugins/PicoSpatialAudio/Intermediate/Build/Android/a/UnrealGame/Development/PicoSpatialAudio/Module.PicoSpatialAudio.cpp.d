@@ -1927,62 +1927,34 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Bu
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/istream \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Module.PicoSpatialAudio.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/a/UnrealGame/Development/PicoSpatialAudio/Definitions.PicoSpatialAudio.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsRenderer.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsRenderer.h \
-  Runtime/AudioExtensions/Public/IAudioExtensionPlugin.h \
-  Runtime/SoundFieldRendering/Public/SoundFieldRendering.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoAmbisonicsSettings.gen.cpp \
+  Runtime/CoreUObject/Public/UObject/GeneratedCppIncludes.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoAmbisonicsSettings.h \
   Runtime/Core/Public/CoreMinimal.h \
   Runtime/AudioExtensions/Public/ISoundfieldFormat.h \
-  Runtime/SoundFieldRendering/Public/SphericalHarmonicCalculator.h \
-  Runtime/SignalProcessing/Public/DSP/BufferVectorOperations.h \
-  Runtime/Core/Public/HAL/UnrealMemory.h \
-  Runtime/Core/Public/Math/Matrix.h \
-  Runtime/Core/Public/Math/UnrealMathSSE.h \
-  Runtime/Core/Public/Math/Vector2D.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerContextSingleton.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer_types.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApiNative.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApi.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer_channel_config.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerCommonUtils.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEnums.h \
-  Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
-  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/shared_mutex \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoAmbisonicsSettings.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoAmbisonicsSettings.generated.h \
+  Runtime/CoreUObject/Public/UObject/ObjectMacros.h \
   Runtime/CoreUObject/Public/UObject/ScriptMacros.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsSettings.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PicoSpatialAudioEventTracker.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PicoSpatialAudioEventTracker.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PXR_PluginWrapper.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
-  Runtime/Launch/Public/Android/AndroidJNI.h \
-  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApiNative.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PXR_PluginWrapper.cpp \
-  Runtime/Projects/Public/Interfaces/IPluginManager.h \
-  Runtime/Projects/Public/PluginDescriptor.h \
-  Runtime/Core/Public/Containers/Array.h \
-  Runtime/Core/Public/Containers/Map.h \
-  Runtime/Core/Public/Containers/UnrealString.h \
-  Runtime/Projects/Public/CustomBuildSteps.h \
-  Runtime/Json/Public/Serialization/JsonWriter.h \
-  Runtime/Core/Public/HAL/Platform.h \
-  Runtime/Projects/Public/LocalizationDescriptor.h \
-  Runtime/Projects/Public/ModuleDescriptor.h \
-  Runtime/Core/Public/HAL/PlatformMisc.h \
-  Runtime/Core/Public/UObject/NameTypes.h \
-  Runtime/Core/Public/UObject/UnrealNames.h \
-  Runtime/Projects/Public/PluginReferenceDescriptor.h \
-  Runtime/Core/Public/CoreTypes.h Runtime/Core/Public/HAL/PlatformCrt.h \
-  Runtime/Core/Public/Misc/Optional.h \
-  Runtime/Core/Public/Templates/SharedPointer.h \
-  Runtime/Projects/Public/VerseScope.h \
-  Runtime/Core/Public/Containers/VersePathFwd.h \
-  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/dlfcn.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioModule.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudio.init.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioEnums.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEnums.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSceneGeometryComponent.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatialAudioSceneGeometryComponent.h \
+  Runtime/Engine/Classes/Components/ActorComponent.h \
+  Runtime/Engine/Classes/Engine/StaticMeshActor.h \
+  Runtime/Engine/Classes/GameFramework/Actor.h \
+  Runtime/Engine/Classes/AI/Navigation/NavigationTypes.h \
+  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/StaticMeshActor.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatialAudioSceneMaterialSettings.h \
+  Runtime/CoreUObject/Public/UObject/Object.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer_types.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/include/pxr_audio_spatializer_channel_config.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSceneMaterialSettings.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerListener.h \
+  Runtime/Engine/Public/AudioPluginUtilities.h \
+  Runtime/AudioExtensions/Public/IAudioExtensionPlugin.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerCommonUtils.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatialAudioModule.h \
   Runtime/Core/Public/Modules/ModuleManager.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatializationSourceSettings.h \
@@ -2000,23 +1972,27 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Bu
   Runtime/Engine/Classes/Components/AudioComponent.h \
   Runtime/Engine/Public/Audio/SoundParameterControllerInterface.h \
   Runtime/AudioExtensions/Public/AudioParameterControllerInterface.h \
-  Runtime/CoreUObject/Public/UObject/Object.h \
   Runtime/Engine/Classes/Kismet/BlueprintFunctionLibrary.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundParameterControllerInterface.generated.h \
   Runtime/Engine/Classes/Components/SceneComponent.h \
   Runtime/Engine/Classes/Engine/EngineTypes.h \
   Runtime/AudioExtensions/Public/IAudioParameterTransmitter.h \
   Runtime/AudioExtensions/Public/AudioParameter.h \
+  Runtime/Core/Public/Containers/Array.h Runtime/Core/Public/CoreTypes.h \
   Runtime/AudioExtensions/Public/IAudioProxyInitializer.h \
   Runtime/Core/Public/Templates/UniquePtr.h \
+  Runtime/Core/Public/UObject/NameTypes.h \
   Runtime/Core/Public/Math/RandomStream.h \
   Runtime/AudioMixer/Public/Quartz/AudioMixerQuantizedCommands.h \
   Runtime/AudioMixer/Public/Quartz/AudioMixerClock.h \
   Runtime/Engine/Classes/Sound/QuartzQuantizationUtilities.h \
   Runtime/AudioMixer/Public/Quartz/QuartzMetronome.h \
+  Runtime/Core/Public/HAL/Platform.h \
+  Runtime/Core/Public/Templates/SharedPointer.h \
   Runtime/Engine/Classes/Sound/QuartzSubscription.h \
   D:/Epic\ Games/UE_5.3/Engine/Source/Runtime/Engine/Classes/Sound/QuartzSubscriptionToken.h \
   Runtime/Core/Public/Containers/ConsumeAllMpmcQueue.h \
+  Runtime/Core/Public/HAL/UnrealMemory.h \
   Runtime/Core/Public/Templates/TypeCompatibleBytes.h \
   Runtime/Core/Public/Templates/UnrealTemplate.h \
   Runtime/Engine/Classes/Sound/SoundModulationDestination.h \
@@ -2059,6 +2035,32 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Bu
   Runtime/CoreUObject/Public/UObject/WeakObjectPtr.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/AudioEngineSubsystem.generated.h \
   Runtime/CoreUObject/Public/UObject/StrongObjectPtr.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsRenderer.h \
+  Runtime/SoundFieldRendering/Public/SoundFieldRendering.h \
+  Runtime/SoundFieldRendering/Public/SphericalHarmonicCalculator.h \
+  Runtime/SignalProcessing/Public/DSP/BufferVectorOperations.h \
+  Runtime/Core/Public/Math/Matrix.h \
+  Runtime/Core/Public/Math/UnrealMathSSE.h \
+  Runtime/Core/Public/Math/Vector2D.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerContextSingleton.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApiNative.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApi.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/shared_mutex \
+  Runtime/Projects/Public/Interfaces/IPluginManager.h \
+  Runtime/Projects/Public/PluginDescriptor.h \
+  Runtime/Core/Public/Containers/Map.h \
+  Runtime/Core/Public/Containers/UnrealString.h \
+  Runtime/Projects/Public/CustomBuildSteps.h \
+  Runtime/Json/Public/Serialization/JsonWriter.h \
+  Runtime/Projects/Public/LocalizationDescriptor.h \
+  Runtime/Projects/Public/ModuleDescriptor.h \
+  Runtime/Core/Public/HAL/PlatformMisc.h \
+  Runtime/Core/Public/UObject/UnrealNames.h \
+  Runtime/Projects/Public/PluginReferenceDescriptor.h \
+  Runtime/Core/Public/HAL/PlatformCrt.h \
+  Runtime/Core/Public/Misc/Optional.h \
+  Runtime/Projects/Public/VerseScope.h \
+  Runtime/Core/Public/Containers/VersePathFwd.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerSpatialization.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerReverb.h \
   Runtime/Engine/Classes/Sound/SoundEffectSubmix.h \
@@ -2096,21 +2098,10 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Bu
   Runtime/AudioLink/AudioLinkCore/Public/AudioLinkSettingsAbstract.h \
   ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/SoundSubmix.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PxrAudioSpatializerReverb.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerListener.h \
-  Runtime/Engine/Public/AudioPluginUtilities.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSceneGeometryComponent.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatialAudioSceneGeometryComponent.h \
-  Runtime/Engine/Classes/Components/ActorComponent.h \
-  Runtime/Engine/Classes/Engine/StaticMeshActor.h \
-  Runtime/Engine/Classes/GameFramework/Actor.h \
-  Runtime/Engine/Classes/AI/Navigation/NavigationTypes.h \
-  ../Intermediate/Build/Android/UnrealGame/Inc/Engine/UHT/StaticMeshActor.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatialAudioSceneMaterialSettings.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSceneMaterialSettings.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSceneGeometryComponent.generated.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSceneMaterialSettings.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSettings.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatializationSourceDirectivityVisualizer.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSceneMaterialSettings.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatialAudioSettings.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatializationSourceDirectivityVisualizer.gen.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Public/PicoSpatializationSourceDirectivityVisualizer.h \
   Runtime/Engine/Classes/Materials/Material.h \
   ../Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Public/ProceduralMeshComponent.h \
@@ -2118,6 +2109,25 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Bu
   Runtime/Engine/Classes/Components/MeshComponent.h \
   ../Plugins/Runtime/ProceduralMeshComponent/Intermediate/Build/Android/UnrealGame/Inc/ProceduralMeshComponent/UHT/ProceduralMeshComponent.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatializationSourceDirectivityVisualizer.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PicoSpatializationSourceSettings.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Intermediate/Build/Android/UnrealGame/Inc/PicoSpatialAudio/UHT/PxrAudioSpatializerReverb.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsRenderer.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoAmbisonicsSettings.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PicoSpatialAudioEventTracker.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PicoSpatialAudioEventTracker.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PXR_PluginWrapper.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/ThirdParty/PXRPlugin/PXRPlugin/Include/PXR_Plugin_Types.h \
+  Runtime/Launch/Public/Android/AndroidJNI.h \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/android/log.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PxrAudioSpatializerApiNative.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioEngine/PXR_PluginWrapper.cpp \
+  C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/dlfcn.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioModule.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSceneGeometryComponent.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSceneMaterialSettings.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatialAudioSettings.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatializationSourceDirectivityVisualizer.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PicoSpatializationSourceSettings.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerCommonUtils.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PicoSpatialAudio/Source/PicoSpatialAudio/Private/PxrAudioSpatializerContextSingleton.cpp \

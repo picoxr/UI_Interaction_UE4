@@ -1927,7 +1927,9 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   C:/Users/Admin/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/istream \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRMotionTracking/Module.PICOXRMotionTracking.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/a/UnrealGame/Development/PICOXRMotionTracking/Definitions.PICOXRMotionTracking.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Private/PXR_EyeTrackingComponent.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PICOXRMotionTracking.init.gen.cpp \
+  Runtime/CoreUObject/Public/UObject/GeneratedCppIncludes.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_EyeTrackingComponent.gen.cpp \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_EyeTrackingComponent.h \
   Runtime/Core/Public/CoreMinimal.h \
   Runtime/Engine/Classes/Components/ActorComponent.h \
@@ -2036,6 +2038,16 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRInput/UHT/PXR_InputFunctionLibrary.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_MotionTrackingTypes.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_EyeTrackingComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_FaceTrackingComponent.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_FaceTrackingComponent.h \
+  Runtime/Engine/Classes/Components/SkeletalMeshComponent.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_MorphTargetsManager.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_FaceTrackingComponent.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_MotionTrackingFunctionLibrary.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_MotionTrackingFunctionLibrary.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_MotionTrackingFunctionLibrary.generated.h \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_MotionTrackingTypes.gen.cpp \
+  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Private/PXR_EyeTrackingComponent.cpp \
   Runtime/Engine/Classes/GameFramework/WorldSettings.h \
   Runtime/Engine/Classes/GameFramework/PlayerController.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDModule.h \
@@ -2094,15 +2106,9 @@ E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Androi
   Runtime/Engine/Public/SceneInterface.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_VulkanExtensions.h \
   Runtime/HeadMountedDisplay/Public/IHeadMountedDisplayVulkanExtensions.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_MotionTrackingFunctionLibrary.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_MotionTrackingFunctionLibrary.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_MotionTrackingUtility.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Log.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Private/PXR_FaceTrackingComponent.cpp \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_FaceTrackingComponent.h \
-  Runtime/Engine/Classes/Components/SkeletalMeshComponent.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRMotionTracking/Public/PXR_MorphTargetsManager.h \
-  E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Intermediate/Build/Android/UnrealGame/Inc/PICOXRMotionTracking/UHT/PXR_FaceTrackingComponent.generated.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMD.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_HMDSettings.h \
   E:/GitHub_UnrealDemo/UI_Interaction_UE4/Plugins/PICOXR/Source/PICOXRHMD/Private/PXR_Splash.h \
